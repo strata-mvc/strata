@@ -46,7 +46,7 @@ class Router {
 
     public function assignMap($map)
     {
-        $this->_altoRouter = new \AltoRouter\AltoRouter();
+        $this->_altoRouter = new \AltoRouter();
         $this->_altoRouter->addRoutes($map);
     }
 
@@ -61,6 +61,9 @@ class Router {
 
             $className = $this->_app->getNamespace() . "\\Controllers\\" . $target[0];
             $methodName = $target[1];
+
+            debug(class_exists($className));
+            debug($className);
             if(class_exists($className) && method_exists($className, $methodName)) {
 
                 // Expose the app context to the current process.

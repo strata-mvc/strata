@@ -36,7 +36,7 @@ class Mvc {
         $this->parseConfigFile();
 
         if (is_null($this->config)) {
-            trigger_error("Using the MVC bootstraper requires a file named [theme]/MVC/app.php that declares a configuration array named \$app." , E_USER_WARNING);
+            trigger_error("Using the MVC bootstraper requires a file named [theme]/wordpress-mvc/app.php that declares a configuration array named \$app." , E_USER_WARNING);
             return;
         }
         elseif (!array_key_exists('key', $this->config)) {
@@ -70,7 +70,7 @@ class Mvc {
     public function parseConfigFile()
     {
         // load the config file
-        $configFile = get_template_directory() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'MVC' . DIRECTORY_SEPARATOR . 'app.php';
+        $configFile = get_template_directory() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'wordpress-mvc' . DIRECTORY_SEPARATOR . 'app.php';
         if (file_exists($configFile)) {
             include_once($configFile);
             if(isset($app) && count($app)) {
