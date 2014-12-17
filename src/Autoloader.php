@@ -9,16 +9,19 @@ class Autoloader {
 
     public static function load($class)
     {
+
         $locations = array(
             get_template_directory() . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "MVC" . DIRECTORY_SEPARATOR,
-            ABSPATH . "Vendor" . DIRECTORY_SEPARATOR
+            ABSPATH . "vendor" . DIRECTORY_SEPARATOR . 'francoisfaubert' . DIRECTORY_SEPARATOR . "wordpress-mvc" . DIRECTORY_SEPARATOR
         );
 
         // Remove double \
         $contextualClassPath = preg_replace("/\\\\/", DIRECTORY_SEPARATOR, $class);
+
         // Remove project name from the namespacing as it's conventionnaly implied.
         $projectKey = Autoloader::$app->getNamespace();
         $contextualClassPath = preg_replace("/^$projectKey/", "", $contextualClassPath);
+        $contextualClassPath = preg_replace("/^MVC/", "", $contextualClassPath);
 
         while($location = array_shift($locations)) {
             if (file_exists($location . $contextualClassPath . ".php")) {
