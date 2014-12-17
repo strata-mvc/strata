@@ -1,4 +1,0 @@
-wordpress-mvc
-=============
-
-Wordpress MVC
