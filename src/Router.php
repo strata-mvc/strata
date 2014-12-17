@@ -62,8 +62,6 @@ class Router {
             $className = $this->_app->getNamespace() . "\\Controllers\\" . $target[0];
             $methodName = $target[1];
 
-            debug(class_exists($className));
-            debug($className);
             if(class_exists($className) && method_exists($className, $methodName)) {
 
                 // Expose the app context to the current process.
