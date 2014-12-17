@@ -41,7 +41,7 @@ $ cp vendor/francoisfaubert/wordpress-mvc/app.php.default wp-content/themes/twen
 
 In `app.php`, the only required parameter is the `key` variable. It represent the main namespace of your app and will be used when autoloading your modules. For instance, if your website is called Bob's fishing Emporium the namespace could be `Bobsfishingemporium`.
 
-Additionally, you can [add custom configuration values](docs/configuration), [customize routes](/docs/routes/) and [automatic model creation](/docs/models/).
+Additionally, you can [add custom configuration values]({{ site.baseurl }}/docs/configuration), [customize routes]({{ site.baseurl }}/docs/routes/) and [automatically create models model]({{ site.baseurl }}/docs/models/).
 
 ## Kickstarting in Wordpress
 
@@ -50,8 +50,6 @@ To kickstart the MVC, open your current theme's `functions.php` file and include
 We encourage placing the include call in `functions.php` for consistency across projects, but the actualy place or method you use to include the file does not matter.
 
 ~~~ php
-
 // Load up MVC bootstrapper for wordpress
 require_once ABSPATH . 'vendor' . DIRECTORY_SEPARATOR . 'francoisfaubert' . DIRECTORY_SEPARATOR . 'wordpress-mvc' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-
 ~~~

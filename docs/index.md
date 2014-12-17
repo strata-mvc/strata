@@ -4,8 +4,6 @@ title: Documentation
 permalink: /docs/
 ---
 
-# Rationale
-
 ## Why
 
 Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.
@@ -17,22 +15,3 @@ Wordpress MVC allows you to link permalinks with Controllers to offer you an ele
 ## What it doesn't do
 
 We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
-
-### Configuration
-
-* [Installation](/docs/installation/)
-* [Configuring Routes](/docs/routes/)
-
-### Writing code
-
-* [Configuration object](/docs/configuration/)
-* [Controllers](/docs/controllers/)
-* [Models](/docs/models/)
-
-
-* [Saving data](docs/saving/)
-    * [Form](docs/forms/)
-    * [Validators](/docs/validators/)
-
-* [Utilities](/docs/utilities/)
-    * [EmailLoader](/docs/utilities/emailloader/)

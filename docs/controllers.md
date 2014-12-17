@@ -6,10 +6,12 @@ permalink: /docs/controllers/
 
 ## On controllers
 
-Controllers allow an easy to undertand entry point in moderns web application. Once you have set up the [application's routes](/docs/routes/) in `app.php` you will have to code the corresponding controllers.
+Controllers allow an easy to undertand entry point in moderns web application. Once you have set up the [application's routes]({{ site.baseurl }}/docs/routes/) in `app.php` you will have to code the corresponding controllers.
 
 
 ## Writing a controllers declaration
+
+You must ensure the class extends `MVC\Controller` which does all the heavy lifting for you. Functions that have routes mapped to them need to be publicly accessible. You can declare variables to send to the templating files and well as instanciate helpers. Note that no helpers or models are auto loaded by controller.
 
 Here's how you could declare a controller for the school entity:
 
@@ -37,7 +39,6 @@ class SchoolController extends Controller {
 }
 ~~~
 
-You must ensure the class extends `MVC\Controller` which does all the heavy lifting for you. Functions that have routes mapped to them need to be publicly accessible. You can declare variables to send to the templating files and well as instanciate helpers. Note that no helpers or models are auto loaded by controller.
 
 ## Shortcodes and exposing actions.
 
@@ -45,7 +46,7 @@ In the case where you create a page in Wordpress and need to include logic in th
 
 In the example earlier a shortcode named `my_short_code` is generated and will point to `SchoolController::getCustomAction()`. This means that in Wordpress' WYSIWYG, entering `[my_short_code]` in the post body will print out whatever `SchoolController::getCustomAction()` will return.
 
-Calling shortcodes like these is also usefull when using the [FormHelper](/docs/helpers/formhelper/).
+Calling shortcodes like these is also usefull when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
 
 ## Setting view variables
 
@@ -54,15 +55,15 @@ To expose a view variable, simple use the controllers `set($key, $mixed)` functi
 In the controller :
 
 ~~~ php
-    $this->set("school", $myschool);
+$this->set("school", $myschool);
 ~~~
 
 In a template file :
 
 ~~~ php
-    &gt;?php if (isset($school)) : ?>
-        echo $school->post_title;
-    &gt;?php endif; ?>
+<php if (isset($school)) : ?>
+    echo $school->post_title;
+<php endif; ?>
 ~~~
 
 

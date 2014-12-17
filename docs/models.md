@@ -54,7 +54,7 @@ Finally, the optional `options` attribute allows you to customize the configurat
 
 ## Entity attributes validation
 
-If you supply entity attributes, you will be able to use this entity along side our [FormHelper](/docs/helpers/formhelper/) and automatically validate data. Read more on how to use custom and default [validators](/docs/validators/).
+If you supply entity attributes, you will be able to use this entity along side our [FormHelper]({{ site.baseurl }}/docs/helpers/formhelper/) and automatically validate data. Read more on how to use custom and default [validators]({{ site.baseurl }}/docs/validators/).
 
 ## Inserting
 

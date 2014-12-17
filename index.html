@@ -1,29 +1,69 @@
 ---
-layout: home
+layout: default
 ---
 
-<div class="hero">
-    <h2>A discreet MVC interface for Wordpress</h2>
+
+<div class="step-1">
+
+    <p>Say you create a page in Wordpress...</p>
+
+    <img src="{{ site.baseurl }}/assets/wordpress-admin.png" alt="wordpress backend">
+
 </div>
 
-<div class="why">
-    <h2>Why?</h2>
-    <p>Wordpress is a fantastic bloging engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.</p>
 
-    <p><em>Wordpress MVC</em> allows you to link permalinks with Controller actions to offer you an elegant coding method and keep the templates as clean as possible along with helping with customized database entries and view helpers.</p>
+<div class="step-2">
+
+    <p>Install our Composer dependency.</p>
+
 </div>
 
-<div class="how">
-    <h2>How?</h2>
-    <p><em>Wordpress MVC</em> is a Composer dependency that can be added to your application.</p>
-    <p>Once the MVC is downloaded and configured, it stays out of the way until you need it.</p>
-    <p><a href="/docs/installation" class="cta">How to install</a></p>
-</div>
+<div class="step-3">
 
-<div class="support">
-    <h2>Is there support?</h2>
-    <p>You can read <a href="/docs/">the documentation</a> for exemples on how to use any of the MVC features. You can also <a href="https://github.com/francoisfaubert/wordpress-mvc/issues">file in an issue on Github</a> if you have found something that doesn't quite work out the way you exected.</p>
+    <p>You can route requests to "<code>/schools/a-random-title/</code>" to a controller class like this one.</p>
 
-    <p>Or you can send me a tweet or something.</p>
-    <p>~ Francois Faubert (<a href="https://twitter.com/francoisfaubert/">@francoisfaubert</a>)</p>
-</div>
+<pre><code>
+namespace Mywebsite\Controllers;
+
+use MVC\Controller;
+use Mywebsite\Model\School;
+use Mywebsite\Model\Logger;
+
+class SchoolController extends Controller {
+
+    public $shortcodes = array("list_schools" => 'getSchoolListingShortcode');
+
+    public function before()
+    {
+        Logger::write(time());
+    }
+
+    public function view($schoolId = null)
+    {
+        if (isset($schoolId)) {
+            $this->set("school", School::getById((int)$schoolId));
+        }
+    }
+
+    public function getSchoolListingShortcode()
+    {
+        $list = School::listing();
+        return "&lt;p&gt;" . implode(", ", $list) . "&lt;/p&gt;";
+    }
+}
+</pre></code>
+
+## Why
+
+Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.
+
+## What it does
+
+Wordpress MVC allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
+
+## What it doesn't do
+
+We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
+
+
+{% include sitemenu.html %}
