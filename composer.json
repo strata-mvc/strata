@@ -1,0 +1,21 @@
+{
+    "name": "francoisfaubert/wordpress-mvc",
+    "type": "library",
+    "description": "MVC programming pattern for Wordpress.",
+    "keywords": ["wordpress","mvc"],
+    "homepage": "http://github.com/francoisfaubert/wordpress-mvc",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Francois Faubert",
+            "email": "frank@francoisfaubert.com",
+            "homepage": "http://francoisfaubert.com",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.0",
+        "altorouter/altorouter": "dev-master"
+    }
+}
