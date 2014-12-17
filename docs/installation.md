@@ -23,7 +23,7 @@ Afterwards, run the installation from the root directory of your wordpress insta
 $ php composer.phar install
 ~~~
 
-This will create a directory named `vendors` at the base of your Wordpress installation where all your PHP dependencies will be located. For more information on Composer, you can [read up on their documentation](https://getcomposer.org/doc/).
+This will create a directory named `vendor` at the base of your Wordpress installation where all your PHP dependencies will be located. For more information on Composer, you can [read up on their documentation](https://getcomposer.org/doc/).
 
 
 ## Configuring in Wordpress
@@ -47,7 +47,7 @@ Additionally, you can [add custom configuration values]({{ site.baseurl }}/docs/
 
 To kickstart the MVC, open your current theme's `functions.php` file and include the bootstraper.
 
-We encourage placing the include call in `functions.php` for consistency across projects, but the actualy place or method you use to include the file does not matter.
+We encourage placing the include call in `functions.php` for consistency across projects, but the actual place or method you use to include the file does not matter.
 
 ~~~ php
 // Load up MVC bootstrapper for wordpress
