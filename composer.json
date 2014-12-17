@@ -16,6 +16,6 @@
 
     "require": {
         "php": ">=5.3.0",
-        "altorouter/altorouter": "dev-master"
+        "altorouter/altorouter": "1.1.0"
     }
 }
