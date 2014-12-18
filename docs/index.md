@@ -10,7 +10,7 @@ Wordpress is a fantastic blog engine and is more and more used as a full fledged
 
 ## What it does
 
-Wordpress MVC allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
+Wordpress MVC allows you to associate permalinks to controller classes to offer an elegant way of maintaining complex code and keep the templates as clean as possible. It also maps models to custom post types so model relationships can similarly be programmed elegantly.
 
 ## What it doesn't do
 

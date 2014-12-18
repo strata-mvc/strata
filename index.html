@@ -1,29 +1,55 @@
 ---
-layout: default
+layout: page
 ---
 
+<div class="step">
+    <h1>Gain access to the MVC programming pattern in Wordpress.</h1>
 
-<div class="step-1">
+    <p class="lead">Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.</p>
 
-    <p>Say you create a page in Wordpress...</p>
+    <p>Be up and running in 4 simple steps:</p>
+</div>
+
+<div class="step step-1">
+
+    <h1><span>Step 1</span>Install</h1>
+
+    <p>Wordpress MVC is a Composer dependency.</p>
+
+<pre><code>"require": {
+    "francoisfaubert/wordpress-mvc": "dev-master"
+}</pre></code>
+
+</div>
+
+
+<div class="step step-2">
+
+    <h1><span>Step 2</span>Create a page</h1>
+
+    <p>Use the Wordpress engine just like you have been for years.</p>
+
+    <p>Here the page has a permalink of <code>/schools/a-random-title/</code>.</p>
 
     <img src="{{ site.baseurl }}/assets/wordpress-admin.png" alt="wordpress backend">
+</div>
+
+<div class="step step-3">
+
+    <h1><span>Step 3</span>Declare route</h1>
+
+    <p>Set up a route pointing to that page:</p>
+
+<pre><code>array('POST|GET',        '/schools/[*:slug]/',           'SchoolsController#view')</pre></code>
 
 </div>
 
+<div class="step step-4">
+    <h1><span>Step 4</span>Code</h1>
 
-<div class="step-2">
+    <p>And then all requests to "<code>/schools/a-random-title/</code>" will go though a controller class like this one before compiling the templates.</p>
 
-    <p>Install our Composer dependency.</p>
-
-</div>
-
-<div class="step-3">
-
-    <p>You can route requests to "<code>/schools/a-random-title/</code>" to a controller class like this one.</p>
-
-<pre><code>
-namespace Mywebsite\Controllers;
+<pre><code>namespace Mywebsite\Controllers;
 
 use MVC\Controller;
 use Mywebsite\Model\School;
@@ -50,20 +76,11 @@ class SchoolController extends Controller {
         $list = School::listing();
         return "&lt;p&gt;" . implode(", ", $list) . "&lt;/p&gt;";
     }
-}
-</pre></code>
+}</pre></code>
 
-## Why
+</div>
 
-Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.
-
-## What it does
-
-Wordpress MVC allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
-
-## What it doesn't do
-
-We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
-
-
-{% include sitemenu.html %}
+<div class="step">
+    <h1><span>Learn</span>Documentation</h1>
+    <p>You can learn more about Wordpress MVC by reading <a href="{{ site.baseurl }}/docs/">our documentation</a>.</p>
+</div>

@@ -6,15 +6,16 @@ permalink: /docs/utilities/emailloader/
 
 `EmailLoader` allows you to build dynamic templates for sending emails with Wordpress. It allows you to load template files located in `/templates/emails/` under your theme's directory.
 
-Two parameters can be sent to `EmailLoader::loadTemplate`.
+Two parameters can be sent to `EmailLoader::loadTemplate` :
 
-* The name of the template file (minus the .php extension).
-* an optional array of values to send to the template
+* The __name__ of the template file (minus the .php extension).
+* an optional array of __values__ used in the template
 
 
-In the case of this typical call in a controller :
+In the case of this typical call in a controller you will be able to format an email using a template located at `/templates/emails/new-student.school.notification.php` under your theme's directory.
 
 ~~~ php
+<?php
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
@@ -38,9 +39,10 @@ class ChildrenController extends Controller {
         EmailLoader::disableHTML();
     }
 }
+?>
 ~~~
 
-You will be able to format an email template like this, in `/templates/emails/new-student.school.notification.php` under your theme's directory.
+The template file named `new-student.parent.notification.php` could then use the variables send in the `$values` array.
 
 ~~~ html
 <ul>

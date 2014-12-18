@@ -8,5 +8,6 @@ Wordspress MVC ships with a couple of tools that aim to ease development. It bor
 
 Additionnally, we have a list of internal utilies tailored for use within wordpress.
 
+* [debug()]({{ site.baseurl }}/docs/utilities/debug/)
 * [EmailLoader]({{ site.baseurl }}/docs/utilities/emailloader/)
 * [Form]({{ site.baseurl }}/docs/saving/)

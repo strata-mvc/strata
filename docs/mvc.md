@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Configuration object
-permalink: /docs/configuration/
+title: Mvc global object
+permalink: /docs/mvc/
 ---
 
 ## Information on the current app
@@ -25,11 +25,12 @@ Accessing a value entered in `app.php` is handled by `Mvc::config` at which a do
 
 ## Custom values
 
-Because the `$app` variable declared in `app.php` is basically just an array, you can sent out custom values that you can use later on.
+Because the `$app` variable declared in `app.php` is basically just an array, you can input custom values to it that you can use later on.
 
-The custom `i-want-to` key will be available throughout the application using `Mvc::config`.
+In the example below, the custom `i-want-to` key will be available throughout the application using `Mvc::config`.
 
 ~~~ php
+<?php
 $app = array(
     "key" => "Mywebsite",
 
@@ -38,8 +39,11 @@ $app = array(
 
     "i-want-to" => "rock",
 );
+?>
 ~~~
 
 ~~~ php
-debug(\MVC\Mvc::config('i-want-to'));
+<?php
+    debug(\MVC\Mvc::config('i-want-to'));
+?>
 ~~~

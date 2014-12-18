@@ -5,4 +5,4 @@ permalink: /docs/validators/
 ---
 
 
-Comming soon.
+Coming soon.

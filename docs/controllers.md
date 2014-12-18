@@ -4,18 +4,18 @@ title: Controllers
 permalink: /docs/controllers/
 ---
 
-## On controllers
+Controllers allow an easy to understand entry point in moderns web applications. Once you have set up the [application's routes]({{ site.baseurl }}/docs/routes/) in `app.php` you will have to write the corresponding controller endpoints.
 
-Controllers allow an easy to undertand entry point in moderns web application. Once you have set up the [application's routes]({{ site.baseurl }}/docs/routes/) in `app.php` you will have to code the corresponding controllers.
+## Declaring a controller
 
+You must ensure the class extends `MVC\Controller` which does most of the heavy lifting for you. Functions that have routes mapped to them need to be publicly accessible.
 
-## Writing a controllers declaration
-
-You must ensure the class extends `MVC\Controller` which does all the heavy lifting for you. Functions that have routes mapped to them need to be publicly accessible. You can declare variables to send to the templating files and well as instanciate helpers. Note that no helpers or models are auto loaded by controller.
+In these functions, you can setup variables set to be sent to the templating files as well as instanciate any custom view helpers using `$this->set("varname", $mixedValue)`. Note that no helpers or models are being auto-loaded by controller.
 
 Here's how you could declare a controller for the school entity:
 
 ~~~ php
+<?php
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
@@ -37,16 +37,17 @@ class SchoolController extends Controller {
         return "<p>" . implode(", ", $list) . "</p>";
     }
 }
+?>
 ~~~
 
 
 ## Shortcodes and exposing actions.
 
-In the case where you create a page in Wordpress and need to include logic in the view, you must use shortcodes.
+In the case where you have created a page in Wordpress and need to include dynamic values inside the view's template, you must use shortcodes.
 
-In the example earlier a shortcode named `my_short_code` is generated and will point to `SchoolController::getCustomAction()`. This means that in Wordpress' WYSIWYG, entering `[my_short_code]` in the post body will print out whatever `SchoolController::getCustomAction()` will return.
+In the example earlier, a shortcode named `my_short_code` is generated and will point to `SchoolController::getCustomAction()`. This means that in Wordpress' WYSIWYG, entering `[my_short_code]` in the post body will print out whatever is returned by `SchoolController::getCustomAction()`. Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be applied.
 
-Calling shortcodes like these is also usefull when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
+Calling shortcodes like these is also useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
 
 ## Setting view variables
 
@@ -55,14 +56,16 @@ To expose a view variable, simple use the controllers `set($key, $mixed)` functi
 In the controller :
 
 ~~~ php
-$this->set("school", $myschool);
+<?php
+    $this->set("school", $myschool);
+?>
 ~~~
 
 In a template file :
 
 ~~~ php
 <php if (isset($school)) : ?>
-    echo $school->post_title;
+    <p><?php echo $school->post_title; ?></p>
 <php endif; ?>
 ~~~
 
@@ -72,6 +75,7 @@ In a template file :
 Upon each succesful route match the router will call the `before()` and `after()` functions. These functions can be usefull when setting up objects :
 
 ~~~ php
+<?php
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
@@ -82,16 +86,17 @@ class SchoolController extends Controller {
 
     public function before()
     {
-        if (\MVC\Mvc::config('useGithub')) {
+        if ((bool)\MVC\Mvc::config('useGithub')) {
             $this->_repository = "http://github.com/";
         }
     }
 }
+?>
 ~~~
 
 ## On ajax
 
-Ajax in wordpress can be difficult and we tailored a way to specify the content type and closing the request cleanly.
+Ajax in wordpress can be difficult to achieve and we tailored a way to help. In our controllers, you can specify the content type and trigger the closing of the request cleanly.
 
 Assuming we have this routing rule in `app.php`:
 
@@ -99,11 +104,14 @@ Assuming we have this routing rule in `app.php`:
 array('POST',       '/wp-admin/admin-ajax.php', 'AjaxController#index'),
 ~~~
 
-Notice here the mapping towards `index()` instead of an action. This is because Wordpress uses `$_POST['action']` to fork ajax requests. Our controller object has a default `index` action that check for this post value should the current request be made through Ajax.
+Notice here the mapping towards `index()` instead of an explict action. This is because Wordpress uses `$_POST['action']` to fork ajax requests an not distinct urls.
+
+Our parent root controller object has a default `index` action that checks for this `$_POST` value should the current request have been made through Ajax.
 
 The controller file could look like :
 
 ~~~ php
+<?php
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
@@ -116,7 +124,7 @@ class AjaxController extends Controller {
         $this->makeSecure();
 
         $data = array();
-        foreach (School::findByRegionId($_POST['region']) as $school) {
+        foreach (School::findByRegionId((int)$_POST['region']) as $school) {
             $data[] = array(
                 "value" => $school->ID,
                 "label" => $school->post_title
@@ -129,13 +137,14 @@ class AjaxController extends Controller {
         ));
     }
 }
+?>
 ~~~
 
-By calling `render()` the current php process will end and we will prevent the rendering of the full wordpress template stack which we don't need as we're printing json data. Valid content-types are those accepted by php `header()` function.
+By calling `render()` the current php process will end and it will prevent the rendering of the full Wordpress template stack which we don't need as we're printing json data. Valid content-types are those accepted by PHP's `header()` function.
 
 The `makeSecure()` function ensures the ajax request is safe by using `check_ajax_referer` internally.
 
 ## On scopes
 
-Because the MVC is trigger by a wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments. This is simply because Wordpress' initiation event and the one compiling shortcodes are in different scopes. The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
+Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments. This is simply because Wordpress' initiation event and the one compiling shortcodes are in different scopes. The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
 
