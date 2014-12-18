@@ -3,7 +3,7 @@ wordpress-mvc
 
 ### Why
 
-Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.
+Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can’t quite cleanly separate the business logic from the templating engine.
 
 ### What it does
 
