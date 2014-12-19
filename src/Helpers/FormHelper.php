@@ -276,17 +276,7 @@ class FormHelper {
                 return $prefixing . sprintf('<select %s>%s</select>', $this->_arrayToAttributes($options), $choices) . $suffixing;
 
             case "radio" :
-                $choices = "";
-                if (array_key_exists("choices", $options) && is_array($options["choices"])) {
-                    $data = $options["choices"];
-                    unset($options["choices"]);
-                    foreach ($data as $key => $val) {
-                        $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), $key === $value ? ' checked="checked"' : '' );
-                    }
-                }
-                else {
-                    $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), $options['value'] === $value ? ' checked="checked"' : '' );
-                }
+                 $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), "".$options['value'] === $value ? ' checked="checked"' : '' );
                 return $prefixing . $choices . $suffixing;
 
             case "checkbox" :
