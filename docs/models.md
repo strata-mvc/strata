@@ -16,7 +16,7 @@ Because of the adoption of Wordpress' methods every model requests will return _
 
 ## Writing a model declaration
 
-Here's how you could declare the model of a School entity:
+Here's how you could declare the model of a Song entity:
 
 ~~~ php
 <?php
@@ -24,11 +24,11 @@ namespace Mywebsite\Models;
 
 use MVC\CustomPostTypes\Entity;
 
-class School extends Entity
+class Song extends Entity
 {
-    public static $key         = 'school';
-    public static $singular    = 'School';
-    public static $plural      = 'Schools';
+    public static $key         = 'song';
+    public static $singular    = 'Song';
+    public static $plural      = 'Songs';
 
     // Optional
     public static $options = array(
@@ -53,7 +53,7 @@ class School extends Entity
 
 First, you must ensure the class extends `MVC\CustomPostTypes\Entity` so it inherits model methods.
 
-The `key` attribute defines the name of the custom post type internally. By default, this value will be prefixed by `ctp_` so that in this example the unique key of the custom post type will be `ctp_school`. The `singular` and `plural` attributes allow for the quicker generation of labels.
+The `key` attribute defines the name of the custom post type internally. By default, this value will be prefixed by `ctp_` so that in this example the unique key of the custom post type will be `ctp_song`. The `singular` and `plural` attributes allow for the quicker generation of labels.
 
 Finally, the optional `options` attribute allows you to customize the configuration array that is sent to `register_post_type` internally. As long as you follow the [conventions](http://codex.wordpress.org/Function_Reference/register_post_type) your post type will be created using these customized values, filling the missing options with their default counterparts.
 
@@ -67,11 +67,11 @@ Models extending `MVC\CustomPostTypes\Entity` will inherit a static function nam
 
 ~~~ php
 <?php
-use Mywebsite\Models\School;
+use Mywebsite\Models\Song;
 
-$schoolId = School::create(array(
-    'post_title'    => "School of Rock",
-    'post_status'   => School::STATUS_PENDING
+$songId = Song::create(array(
+    'post_title'    => "Song of Rock",
+    'post_status'   => Song::STATUS_PENDING
 ));
 ?>
 ~~~

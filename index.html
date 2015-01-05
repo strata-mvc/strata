@@ -29,9 +29,8 @@ layout: page
 
     <p>Use the Wordpress engine just like you have been for years.</p>
 
-    <p>Here the page has a permalink of <code>/schools/a-random-title/</code>.</p>
+    <p>Create a page that has a permalink of <code>/songs/a-random-title/</code> and insert a shortcode named <code>list_songs</code> in the post's body.</p>
 
-    <img src="{{ site.baseurl }}/assets/wordpress-admin.png" alt="wordpress backend">
 </div>
 
 <div class="step step-3">
@@ -40,47 +39,49 @@ layout: page
 
     <p>Set up a route pointing to that page:</p>
 
-<pre><code>array('POST|GET',        '/schools/[*:slug]/',           'SchoolsController#view')</pre></code>
+<pre><code>array('POST|GET',        '/songs/[*:slug]/',           'SongsController#view')</pre></code>
 
 </div>
 
 <div class="step step-4">
     <h1><span>Step 4</span>Code</h1>
 
-    <p>And then all requests to "<code>/schools/a-random-title/</code>" will go though a controller class like this one before compiling the templates.</p>
+    <p>And then all requests to "<code>/songs/a-random-title/</code>" will go though a controller class like this one before compiling the templates.</p>
 
-<pre><code>namespace Mywebsite\Controllers;
+<pre><code>&lt;?php
+namespace Mywebsite\Controllers;
 
 use MVC\Controller;
-use Mywebsite\Model\School;
+use Mywebsite\Model\Songs;
 use Mywebsite\Model\Logger;
 
-class SchoolController extends Controller {
+class SongsController extends Controller {
 
-    public $shortcodes = array("list_schools" => 'getSchoolListingShortcode');
+    public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
 
     public function before()
     {
         Logger::write(time());
     }
 
-    public function view($schoolId = null)
+    public function view($songId = null)
     {
-        if (isset($schoolId)) {
-            $this->set("school", School::getById((int)$schoolId));
+        if (isset($songId)) {
+            $this->set("song", Songs::getById((int)$songId));
         }
     }
 
-    public function getSchoolListingShortcode()
+    public function getSongsListingShortcode()
     {
-        $list = School::listing();
+        $list = Songs::listing();
         return "&lt;p&gt;" . implode(", ", $list) . "&lt;/p&gt;";
     }
-}</pre></code>
+}
+</pre></code>
 
 </div>
 
 <div class="step">
-    <h1><span>Learn</span>Documentation</h1>
+    <h1><span>Read on</span>Documentation</h1>
     <p>You can learn more about Wordpress MVC by reading <a href="{{ site.baseurl }}/docs/">our documentation</a>.</p>
 </div>

@@ -12,7 +12,7 @@ You must ensure the class extends `MVC\Controller` which does most of the heavy 
 
 In these functions, you can setup variables set to be sent to the templating files as well as instanciate any custom view helpers using `$this->set("varname", $mixedValue)`. Note that no helpers or models are being auto-loaded by controller.
 
-Here's how you could declare a controller for the school entity:
+Here's how you could declare a controller for the song entity:
 
 ~~~ php
 <?php
@@ -20,20 +20,20 @@ namespace Mywebsite\Controllers;
 
 use MVC\Controller;
 
-class SchoolController extends Controller {
+class SongController extends Controller {
 
     public $shortcodes = array("my_short_code" => 'getCustomAction');
 
-    public function view($schoolId = null)
+    public function view($songId = null)
     {
-        // custom processes that would instanciate the $myschool variable.
+        // custom processes that would instanciate the $mysong variable.
 
-        $this->set("school", $myschool);
+        $this->set("song", $mysong);
     }
 
     public function getCustomAction()
     {
-        $list = \Mywebsite\Model\School::listing();
+        $list = \Mywebsite\Model\Song::listing();
         return "<p>" . implode(", ", $list) . "</p>";
     }
 }
@@ -45,7 +45,7 @@ class SchoolController extends Controller {
 
 In the case where you have created a page in Wordpress and need to include dynamic values inside the view's template, you must use shortcodes.
 
-In the example earlier, a shortcode named `my_short_code` is generated and will point to `SchoolController::getCustomAction()`. This means that in Wordpress' WYSIWYG, entering `[my_short_code]` in the post body will print out whatever is returned by `SchoolController::getCustomAction()`. Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be applied.
+In the example earlier, a shortcode named `my_short_code` is generated and will point to `SongController::getCustomAction()`. This means that in Wordpress' WYSIWYG, entering `[my_short_code]` in the post body will print out whatever is returned by `SongController::getCustomAction()`. Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be applied.
 
 Calling shortcodes like these is also useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
 
@@ -57,15 +57,15 @@ In the controller :
 
 ~~~ php
 <?php
-    $this->set("school", $myschool);
+    $this->set("song", $mysong);
 ?>
 ~~~
 
 In a template file :
 
 ~~~ php
-<php if (isset($school)) : ?>
-    <p><?php echo $school->post_title; ?></p>
+<php if (isset($song)) : ?>
+    <p><?php echo $song->post_title; ?></p>
 <php endif; ?>
 ~~~
 
@@ -80,7 +80,7 @@ namespace Mywebsite\Controllers;
 
 use MVC\Controller;
 
-class SchoolController extends Controller {
+class SongController extends Controller {
 
     protected $_repository = null
 
@@ -115,19 +115,19 @@ The controller file could look like :
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
-use Mywebsite\Models\School;
+use Mywebsite\Models\Song;
 
 class AjaxController extends Controller {
 
-    public function schools()
+    public function songs()
     {
         $this->makeSecure();
 
         $data = array();
-        foreach (School::findByRegionId((int)$_POST['region']) as $school) {
+        foreach (Song::findByRegionId((int)$_POST['region']) as $song) {
             $data[] = array(
-                "value" => $school->ID,
-                "label" => $school->post_title
+                "value" => $song->ID,
+                "label" => $song->post_title
             );
         }
 

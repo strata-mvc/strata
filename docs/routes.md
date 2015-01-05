@@ -24,7 +24,7 @@ $app = array(
         array('GET|POST',   '/2014/12/hello-world/',        'HelloworldController#view')
         array('GET|POST',   '/participate/volunteer/',      'VolunteersController#create')
         array('POST',       '/wp-admin/admin-ajax.php',     'AjaxController#index')
-        array('GET',        '/schools/[*:slug]/',           'SchoolsController#view')
+        array('GET',        '/songs/[*:slug]/',           'SongsController#view')
     )
 );
 ?>
@@ -52,4 +52,4 @@ $app = array(
 ?>
 ~~~
 
-Url rewrites that are being added when creating custom post types are never taken into account when routing towards a controller file. In other words if the MVC has generated a post type that adds its own rewrite rule (ex: School created the url_rewrite "/local-schools/"), the frameworks does not automatically map this new route to an implicit controller object. One would have to add such a rule manually.
+Url rewrites that are being added when creating custom post types are never taken into account when routing towards a controller file. In other words if the MVC has generated a post type that adds its own rewrite rule (ex: Song created the url_rewrite "/local-songs/"), the frameworks does not automatically map this new route to an implicit controller object. One would have to add such a rule manually.
