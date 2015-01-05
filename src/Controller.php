@@ -13,6 +13,10 @@ class Controller {
     public $router = null;
     public $app = null;
 
+    public function init()
+    {
+        $GLOBALS['Controller'] = $this;
+    }
 
     public function after()
     {
@@ -84,7 +88,7 @@ class Controller {
     public static function loadTemplate($name, $values = array())
     {
         ob_start();
-        // expose local variables for the email template
+        // expose local variables for the template
         extract($values);
         include(get_template_directory() . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $name . '.php');
         return  ob_get_clean();
