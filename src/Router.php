@@ -23,10 +23,10 @@ class Router {
 
                     // Though wordpress wouldn't know what to do with the values, send them
                     // along the wordpress way anyway.
-                    $i = 0;
-                    while ($i++ < (int)substr_count($wordpressFriendlyUrl, $wordpressRegex)) {
-                        $pageurl .= "&var".$i.'=$matches['.$i.']';
-                    }
+                    //$i = 0;
+                    //while ($i++ < (int)substr_count($wordpressFriendlyUrl, $wordpressRegex)) {
+                    //    $pageurl .= "&var".$i.'=$matches['.$i.']';
+                //    }
                     add_rewrite_rule('^'.trailingslashit($wordpressFriendlyUrl).'?', "index.php?pagename=$pagename",'top');
                 }
             }
