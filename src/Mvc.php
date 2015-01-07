@@ -55,10 +55,7 @@ class Mvc {
                 CustomPostTypes\Loader::preload($this);
             }
 
-            // When not in the admin, set up MVC routing.
-            if (!is_admin() || defined('DOING_AJAX')) {
-                Router::kickstart($this);
-            }
+            Router::kickstart($this);
         }
     }
 

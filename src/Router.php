@@ -5,36 +5,13 @@ class Router {
 
     protected $_altoRouter = null;
     protected $_app = null;
+    protected $_parsedRoutes = array();
 
     public static function kickstart($app)
     {
         if (array_key_exists('routes', $app->config)) {
-            foreach ($app->config['routes'] as $route) {
-
-                // If there are dynamic parameters, decompose them and send a simpler version to wordpress
-                if (strstr($route[1], "[")) {
-                    $wordpressRegex = "([^/]*)";
-
-                    // Replace alto's rules to a more catchall regex so wordpress
-                    // doesn't try to do too much with our values.
-                    $wordpressFriendlyUrl = substr(preg_replace("/\[.+?\]/", $wordpressRegex, $route[1]), 1);
-                    // Get the request's page name without slashes .
-                    $pagename = substr($route[1], 1, strpos($route[1], "/", 1)-1);
-
-                    // Though wordpress wouldn't know what to do with the values, send them
-                    // along the wordpress way anyway.
-                    $i = 0;
-                    while ($i++ < (int)substr_count($wordpressFriendlyUrl, $wordpressRegex)) {
-                        $pageurl .= "&var".$i.'=$matches['.$i.']';
-                    }
-                    add_rewrite_rule('^'.trailingslashit($wordpressFriendlyUrl).'?', "index.php?pagename=$pagename",'top');
-                }
-            }
-
-            flush_rewrite_rules();
             $router = new self();
             $router->assignApp($app);
-            $router->assignMap($app->config['routes']);
             add_action('init' , array($router, "onWordpressInit"));
         }
     }
@@ -42,12 +19,8 @@ class Router {
     public function assignApp($app)
     {
         $this->_app = $app;
-    }
-
-    public function assignMap($map)
-    {
         $this->_altoRouter = new \AltoRouter();
-        $this->_altoRouter->addRoutes($map);
+        $this->_altoRouter->addRoutes($this->_parseRoutesForAlto($app->config['routes']));
     }
 
     public function onWordpressInit()
@@ -82,6 +55,24 @@ class Router {
                 }
             }
         }
+    }
+
+    protected function _parseRoutesForAlto($config)
+    {
+        $parsedAltoRoutes = $config;
+        foreach ($parsedAltoRoutes as $idx => $route) {
+            if (is_array($route[1]) && count($route[1]) === 1) {
+                $altoRegex = key($route[1]);
+                $wordpressRegex = str_replace('[', '(', $altoRegex);
+                $wordpressRegex = ltrim($wordpressRegex, '/');
+                $wordpressRegex = preg_replace('/[\*]/', '.*', $wordpressRegex);
+                $wordpressRegex = preg_replace('/(:.+?\]\/?)/', ')', $wordpressRegex);
+
+                add_rewrite_rule($wordpressRegex . '/?$', array_pop($route[1]),'top');
+                $parsedAltoRoutes[$idx][1] = $altoRegex;
+            }
+        }
+        return $parsedAltoRoutes;
     }
 }
 
