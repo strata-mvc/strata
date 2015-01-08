@@ -166,6 +166,21 @@ class Form {
         }
 
 
+        // Go to specified step if the form was posted asking to go back
+        if ($this->_formHelper->hasSteps() && $this->_formHelper->contextWantsToGoToStep()) {
+            // losing everything on the current page. Though the values
+            // are not kept alive and handled by the form helper, they are
+            // still in the $_POST object.
+            if ($this->_formHelper->currentStep > 1) {
+                $this->_formHelper->currentStep = (int)$this->_formHelper->getPostedValue(FormHelper::POST_KEY_GO_TO_STEP);
+            }
+
+            // we didn't validate anything and because of it there weren't any errors.
+            $this->_success = true;
+            $this->errors = array();
+            return $this->_success;
+        }
+
 
         // Go forward if there are steps and there are no errors
         if ($this->_formHelper->hasSteps() && $this->_formHelper->contextWantsToGoForward()) {

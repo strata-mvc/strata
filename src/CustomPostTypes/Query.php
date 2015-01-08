@@ -50,7 +50,7 @@ class Query
         return $this;
     }
 
-    public function join($type, $value)
+    public function join($type, $value = null)
     {
         $this->_filters['meta_key']   = $type;
         $this->_filters['meta_value'] = intval($value);

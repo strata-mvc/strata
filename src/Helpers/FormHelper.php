@@ -6,12 +6,13 @@ use MVC\Utility\Hash;
 
 class FormHelper {
 
-    const POST_KEY_CURRENT = "mvc-current-step";
-    const POST_KEY_NEXT_PAGE = "mvc-next-step";
+    const POST_KEY_CURRENT      = "mvc-current-step";
+    const POST_KEY_NEXT_PAGE    = "mvc-next-step";
     const POST_KEY_PREVIOUS_PAGE = "mvc-previous-step";
-    const POST_KEY_SUBMIT = "mvc-submit";
-    const POST_WRAP = "data";
-    const FIELD_PREFIX = "input_";
+    const POST_KEY_GO_TO_STEP   = "mvc-goto-step";
+    const POST_KEY_SUBMIT       = "mvc-submit";
+    const POST_WRAP             = "data";
+    const FIELD_PREFIX          = "input_";
 
     // @todo: consider adding getters/setters and making this private
     public $currentStep = 1;
@@ -133,6 +134,11 @@ class FormHelper {
         return $this->hasPostedValue(self::POST_KEY_PREVIOUS_PAGE);
     }
 
+    public function contextWantsToGoToStep()
+    {
+        return $this->hasPostedValue(self::POST_KEY_GO_TO_STEP);
+    }
+
     public function getPostedValue($key)
     {
         $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
@@ -212,8 +218,11 @@ class FormHelper {
 
     public function id($name)
     {
-        $nothingWeird = preg_replace('/[^\w\d\_]+?/', "", $this->_removeBrackets($name, '_'));
+        $keepIdx = preg_replace('/\[(\d+)\]/', "_$1", $name);
+        $unbracketted = $this->_removeBrackets($keepIdx, '_');
+        $nothingWeird = preg_replace('/[^\w\d\_]+?/', "", $unbracketted);
         $noTrail = preg_replace('/_$/', "", $nothingWeird);
+
         return self::FIELD_PREFIX . $noTrail;
     }
 
@@ -268,7 +277,7 @@ class FormHelper {
                 $choices = "";
                 if (array_key_exists("choices", $options) && is_array($options["choices"])) {
                     foreach ($options["choices"] as $key => $val) {
-                        $choices .= sprintf('<option%s value="%s">%s</option>', $key === $value ? ' selected="selected"' : '', $key, $val);
+                        $choices .= sprintf('<option%s value="%s">%s</option>', $key.'' === $value.'' ? ' selected="selected"' : '', $key, $val);
                     }
                     unset($options["choices"]);
                 }
@@ -320,6 +329,13 @@ class FormHelper {
         return $this->button(self::POST_KEY_NEXT_PAGE, $options);
     }
 
+    public function gotostep($stepIdx = 1, $options = array())
+    {
+        $options["type"] = "submit";
+        $options["value"] = $stepIdx;
+        return $this->button(self::POST_KEY_GO_TO_STEP, $options);
+    }
+
     public function button($name, $options = array())
     {
         $this->_validatePostName($name);
@@ -346,31 +362,36 @@ class FormHelper {
         $currentStep = $this->getCurrentStep();
         $options += array(
             'wrapperTpl'    => '<ul class="steps">%s</ul>',
-            'stepTpl'       => '<li class="%s"><span class="step-number">%s</span>%s</li>',//'<li class="%s"><span class="step-number"><a href="%s">%s</a></span>%s</li>',
-            'stepTextTpl'   => '<span class="step-text">%s</span>',//'<span class="step-text"><a href="%s">%s</a></span>',
-            'titles'        => null
+            'stepTpl'       => '<li class="%s"><span class="step-number">%s</span>%s</li>',
+            'stepTextTpl'   => '<span class="step-text">%s</span>',
+            'titles'        => null,
+            'allow-step-nav'  => true
         );
 
         $stepsHtml = "";
         $idx = 0;
         while ($idx++ < $this->stepsQty) {
             $classnames = array();
+            $label = $idx;
+
             if ($currentStep === $idx) {
                 $classnames[] = "active";
             } elseif ($idx < $currentStep) {
                 $classnames[] = "completed";
+                if ($options['allow-step-nav']) {
+                    $label = $this->gotostep($idx, array("label" => $idx));
+                }
+
             } elseif ($idx > $currentStep) {
                 $classnames[] = "future";
             }
 
             $stepDetails = "";
             if (is_array($options['titles'])) {
-                //$stepDetails = sprintf($options['stepTextTpl'], get_permalink(), $options['titles'][$idx-1]);
                 $stepDetails = sprintf($options['stepTextTpl'], $options['titles'][$idx-1]);
             }
 
-            //$stepsHtml .= sprintf($options['stepTpl'], implode(" ", $classnames), get_permalink() ."step-$idx/", $idx, $stepDetails);
-            $stepsHtml .= sprintf($options['stepTpl'], implode(" ", $classnames), $idx, $stepDetails);
+            $stepsHtml .= sprintf($options['stepTpl'], implode(" ", $classnames), $label, $stepDetails);
         }
 
         return sprintf($options['wrapperTpl'], $stepsHtml);
