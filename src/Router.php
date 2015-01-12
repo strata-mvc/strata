@@ -36,8 +36,6 @@ class Router {
             $methodName = $target[1];
 
             if(class_exists($className) && method_exists($className, $methodName)) {
-                // Expose the app context to the current process.
-                Mvc::expose($this->_app);
 
                 $ctrl = new $className();
                 $ctrl->init();

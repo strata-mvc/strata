@@ -50,6 +50,10 @@ class Mvc {
     public function run()
     {
         if ($this->ready) {
+
+            // Expose the app context to the current process.
+            Mvc::expose($this);
+
             // Set up the creation of custom post types based on models
             if (array_key_exists('custom-post-types', $this->config)) {
                 CustomPostTypes\Loader::preload($this);
@@ -71,7 +75,7 @@ class Mvc {
         if (file_exists($configFile)) {
             include_once($configFile);
             if(isset($app) && count($app)) {
-                $this->config = $app;
+                $this->config = Hash::normalize($app);
             }
             unset($app);
         }
