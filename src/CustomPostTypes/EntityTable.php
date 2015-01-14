@@ -2,6 +2,7 @@
 namespace MVC\CustomPostTypes;
 
 use MVC\Utility\Hash;
+use MVC\Utility\Inflector;
 use MVC\CustomPostTypes\LabeledEntity;
 
 class EntityTable extends LabeledEntity
@@ -69,9 +70,10 @@ class EntityTable extends LabeledEntity
             'capability_type'     => 'post',
         );
 
-        $translations = $ClassName::getTranslationSet();
+        $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
+        $projectKey = strtolower(\MVC\Mvc::app()->getNamespace());
 
         $customizedOptions['labels'] += array(
             'name'                => _x( $plural, 'Post Type General Name', $projectKey ),
@@ -97,4 +99,30 @@ class EntityTable extends LabeledEntity
             }
         }
     }
+
+    /**
+    *  Add backend menu links for the model
+    */
+    public static function addAdminMenus($cptAdminConfig)
+    {
+        $ClassName = get_called_class();
+        $parentSlug = 'edit.php?post_type=' . $ClassName::wordpressKey();
+        $namespace = \MVC\Mvc::app()->getNamespace();
+
+        foreach ($cptAdminConfig as $func => $config) {
+            $config += array(
+                'title'         => ucfirst($func),
+                'menu-title'    => ucfirst($func),
+                'capability'    => "manage_options",
+                'icon'          => null,
+                // This is an awful hack, but wordpress doesn't let you pass arguments to
+                // callbacks so we can send the controller and function to the router.
+                'route'         => array('MVC\Router', sprintf('___dynamic___callback___%s___%s', Inflector::pluralize($ClassName::getShortName()), $func)),
+                'position'      => null,
+            );
+
+            add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $func, $config['route'], $config['icon'], $config['position']);
+        }
+    }
+
 }

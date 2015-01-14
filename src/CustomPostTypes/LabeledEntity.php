@@ -33,7 +33,7 @@ class LabeledEntity
         return $ClassName::WP_PREFIX . $ClassName::key();
     }
 
-    public static function getTranslationSet()
+    public static function getLabels()
     {
         // Try and generate the labels automatically.
         $singular = "";

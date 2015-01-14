@@ -6,7 +6,7 @@ class Controller {
 
     public $viewVars = array();
 
-    // These hook allow views to use wordpress nicely, but still trigger
+    // These hooks allow views to use wordpress nicely, but still trigger
     // items in the current controller
     public $shortcodes = array();
 
@@ -30,13 +30,7 @@ class Controller {
 
     public function index()
     {
-        /**
-         * This function also catches AJAX calls inside the backend because of how WP works.
-         * Ensure the process is not broken if the request is not intended to us.
-         */
-        if (defined('DOING_AJAX') && method_exists($this, $_POST['action'])) {
-            call_user_func_array(array($this, $_POST['action']), func_get_args());
-        }
+
     }
 
     /**
@@ -66,10 +60,10 @@ class Controller {
     {
         $options += array(
             "Content-type" => "text/html",
-            "content" => ""
+            "Content-disposition" => null,
+            "content" => "",
+            "end" => true
         );
-
-        header('Content-type: ' . $options['Content-type']);
 
         if (is_array($options['content'])) {
             $content = json_encode($options['content']);
@@ -77,8 +71,20 @@ class Controller {
             $content = $options['content'];
         }
 
+        // When we have to end the process upon rendering, expected behaviour
+        // is an ajax request. Set the header as we will not use wordpress'.
+        if ($options['end']) {
+            header('Content-type: ' . $options['Content-type']);
+
+            if (!is_null($options['Content-disposition'])) {
+                header('Content-disposition: ' . $options['Content-disposition']);
+            }
+
+            echo $content;
+            exit();
+        }
+
         echo $content;
-        die();
     }
 
     /**

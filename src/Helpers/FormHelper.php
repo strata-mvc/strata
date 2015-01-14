@@ -175,7 +175,7 @@ class FormHelper {
         if (!is_null($errorObj)) {
             $errorTag .= '<ul class="inline-errors">';
             foreach ($errorObj as $key => $message) {
-                $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message); //__($message, \MVC\Mvc::config('key'))
+                $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
             }
             $errorTag .= '</ul>';
         }
@@ -424,7 +424,7 @@ class FormHelper {
     protected function _validatePostName($name)
     {
         if (in_array($name, $this->_wpReserved)) {
-            throw new Exception(sprintf("Using Wordpress reserved POST/GET name %s in form.", $name));
+            throw new \Exception(sprintf("Using Wordpress reserved POST/GET name %s in form.", $name));
         }
     }
 

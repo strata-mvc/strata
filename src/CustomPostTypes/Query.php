@@ -7,7 +7,7 @@ class Query
     protected $_filters = array(
         'orderby'          => 'title',
         'order'            => 'ASC',
-        'post_status'      => 'publish',
+        'post_status'      => 'any',
         'nopaging'         => true,
         'suppress_filters' => true,
     );
@@ -26,6 +26,12 @@ class Query
         return $data;
     }
 
+    public function date($dateQuery)
+    {
+        $this->_filters['date_query'] = $dateQuery;
+        return $this;
+    }
+
     public function orderby($orderBy)
     {
         $this->_filters['orderby'] = $orderBy;
@@ -38,18 +44,28 @@ class Query
         return $this;
     }
 
-    public function type($type)
+    public function type($type = null)
     {
-        $this->_filters['post_type'] = $type;
+        if (is_null($type)) {
+            unset($this->_filters['post_type']);
+        } else {
+            $this->_filters['post_type'] = $type;
+        }
         return $this;
     }
 
-    public function status($status)
+    public function status($status = null)
     {
-        $this->_filters['post_status'] = $status;
+        if (is_null($status)) {
+            unset($this->_filters['post_status']);
+        } else {
+            $this->_filters['post_status'] = $status;
+        }
+
         return $this;
     }
 
+    /** This is deprecated as its not really a join query. */
     public function join($type, $value = null)
     {
         $this->_filters['meta_key']   = $type;

@@ -27,6 +27,7 @@ class Entity extends EntityTable
     public function attemptAttributeSet($attr, $value, $formObject = null)
     {
         $attributeErrors = array();
+        $appNamespace = \MVC\Mvc::app()->getNamespace();
         $validations = Hash::extract($this->getAttributes(), "$attr.validations");
 
         if (count($validations)) {
@@ -34,7 +35,7 @@ class Entity extends EntityTable
                 // Check for custom validators in the MVC scope as well as in
                 // the project scope.
                 $scopes = array(
-                    \MVC\Mvc::config("key") . "\\Models\\Forms\\Validators\\" . ucfirst($validationKey) . "Validator",
+                    $appNamespace . "\\Models\\Validators\\" . ucfirst($validationKey) . "Validator",
                     "MVC\\Models\\Validators\\" . ucfirst($validationKey) . "Validator",
                 );
 

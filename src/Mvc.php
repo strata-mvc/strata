@@ -56,7 +56,7 @@ class Mvc {
 
             // Set up the creation of custom post types based on models
             if (array_key_exists('custom-post-types', $this->config)) {
-                CustomPostTypes\Loader::preload($this);
+                CustomPostTypes\Loader::preload();
             }
 
             Router::kickstart($this);

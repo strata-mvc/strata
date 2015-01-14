@@ -128,11 +128,13 @@ class Form {
      */
     public function process(array $entities)
     {
-        /* This does not work as I expected.
-        if (!wp_verify_nonce($_POST["mvc-nonce"], $this->_formKey)) {
-            throw new \Exception("The form is invalid or expired.");
-        }*/
-
+        /** this does not work as I was expected
+        if (Hash::check($_POST, "mvc-nonce")) {
+            if (!wp_verify_nonce($this->_formKey, "mvc-nonce")) {
+                throw new \Exception("The form is invalid or expired.");
+            }
+        }
+        */
 
         // Validate posted values against the entities if there is one set
         foreach ($entities as $entity) {
@@ -148,7 +150,6 @@ class Form {
                 }
             }
         }
-
 
         // Go back if the form was posted asking to go back
         if ($this->_formHelper->hasSteps() && $this->_formHelper->contextWantsToGoBackwards()) {

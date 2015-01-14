@@ -13,7 +13,7 @@ class TaxonomyEntity extends LabeledEntity
     public static function addTaxonomy($linkedObj)
     {
         $ClassName  = get_called_class();
-        $translations = $ClassName::getTranslationSet();
+        $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
 
