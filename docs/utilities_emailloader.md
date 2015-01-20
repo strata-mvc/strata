@@ -4,7 +4,7 @@ title: EmailLoader
 permalink: /docs/utilities/emailloader/
 ---
 
-`EmailLoader` allows you to build dynamic templates for sending emails with Wordpress. It allows you to load template files located in `/templates/emails/` under your theme's directory.
+`EmailLoader` allows you to build dynamic templates for sending emails with Wordpress. It loads template files located in `[current_theme]/templates/emails/` under your theme's directory.
 
 Two parameters can be sent to `EmailLoader::loadTemplate` :
 
@@ -12,7 +12,7 @@ Two parameters can be sent to `EmailLoader::loadTemplate` :
 * an optional array of __values__ used in the template
 
 
-In the case of this typical call in a controller you will be able to format an email using a template located at `/templates/emails/new-student.song.notification.php` under your theme's directory.
+In the case of this typical call in a controller you will be able to format an email using a template located at `/templates/emails/my-notification.php` under your theme's directory.
 
 ~~~ php
 <?php
@@ -29,20 +29,19 @@ class ChildrenController extends Controller {
             "userId" => 10,
             "color" => "green"
         );
-        $parentNotification = EmailLoader::loadTemplate('new-student.parent.notification', $values);
-        $songNotification = EmailLoader::loadTemplate('new-student.song.notification', $values);
+        $notification = EmailLoader::loadTemplate('my-notification', $values);
+        $email = "test@domain.com";
 
         // Send confirmation emails to song admins and parent.
         EmailLoader::enableHTML();
-        wp_mail($parentEmail,  __("Signup Confirmation", \MVC\Mvc::config('key')), $parentNotification, array('Reply-To' => 'no-reply@domain.com'));
-        wp_mail($shcoolEmails, __("Signup Confirmation", \MVC\Mvc::config('key')), $songNotification, array('Reply-To' => 'no-reply@domain.com'));
+        wp_mail($email, "This is the title of the email", $parentNotification, array('Reply-To' => 'no-reply@domain.com'));
         EmailLoader::disableHTML();
     }
 }
 ?>
 ~~~
 
-The template file named `new-student.parent.notification.php` could then use the variables send in the `$values` array.
+The template file named `my-notification.php` could then use the variables send in the `$values` array.
 
 ~~~ html
 <ul>

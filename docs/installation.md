@@ -6,20 +6,20 @@ permalink: /docs/installation/
 
 ## Get the library using Composer
 
-Though Wordpress does not yet implement composer we have hopes it will one day embrace the dependency manager.
-
 To install Wordpress MVC create a `composer.json` file in your root directory and add the requirement to Wordpress MVC to this file.
+
+The most recent release can be found on our [GitHub](https://github.com/francoisfaubert/wordpress-mvc/releases/latest)
 
 ~~~ json
 {
     "name": "Mynamespace/Mywebsite",
     "require": {
-        "francoisfaubert/wordpress-mvc": "dev-master"
+        "francoisfaubert/wordpress-mvc": "1.0.0"
     }
 }
 ~~~
 
-Afterwards run the installation from the root directory of your wordpress installation to fetch these required packages:
+Afterwards, run the installation from the root directory of your wordpress project to fetch these required packages:
 
 ~~~ bash
 $ php composer.phar install
@@ -30,21 +30,20 @@ This will create a directory named `vendor` at the base of your Wordpress instal
 
 ## Configuring in Wordpress
 
-Wordpress MVC is theme-based in that you can load the library with different code or a different configuration for each specific themes.
+Wordpress MVC is theme-based in that you can load the library with different controllers and models or a different configurations for each specific themes.
 
-All the project-related code you will write using the MVC must be located in `/lib/wordpress-mvc/` under your theme's directory. Additionally the project configuration values must be found in a file called `app.php` located at the root of this directory.
+All the project-related code you will write using the MVC must be located in `/lib/wordpress-mvc/` under your theme's directory. Additionally, a required file called `app.php` will located at the root of this directory and will contain the project's configuration values.
 
 We have created a sample version of the `app.php` file in our Composer package named `app.php.default` for you to copy in your active project.
 
-For example, should you be setting up MVC using the `twentyfourteen` theme:
+For example, should you be setting up WMVC using the `twentyfourteen` theme:
 
 ~~~ bash
 $ mkdir wp-content/themes/twentyfourteen/lib/wordpress-mvc
 $ cp vendor/francoisfaubert/wordpress-mvc/app.php.default wp-content/themes/twentyfourteen/lib/wordpress-mvc/app.php
 ~~~
 
-In `app.php`, the only required parameter is the `key` variable. It represent the main namespace of your app and will be used when autoloading your modules. For instance, if your website is called Bob's fishing Emporium the namespace could be `Bobsfishingemporium`.
-
+In `app.php`, the only required parameter is the `key` variable. It represents the namespace of your app and will be used when autoloading your modules. For instance, if your website is called Bob's Fishing Emporium the namespace could be `Bobsfishingemporium`.
 
 ~~~ php
 <?php
@@ -52,7 +51,7 @@ $app = array(
     // Give a namespace
     "key" => "Bobsfishingemporium",
 
-    // Followed by optional additional configuration values.
+    // Followed by optional additional configuration values. Ex:
 
     // Setup custom routing on the app
     "routes" => array(
@@ -62,11 +61,11 @@ $app = array(
 ?>
 ~~~
 
-Additionally you can [add custom configuration values]({{ site.baseurl }}/docs/configuration), [customize routes]({{ site.baseurl }}/docs/routes/) and [automatically create models model]({{ site.baseurl }}/docs/models/) to the configuration file.
+You can [add custom configuration values]({{ site.baseurl }}/docs/configuration), [customize routes]({{ site.baseurl }}/docs/routes/) and [automatically create models model]({{ site.baseurl }}/docs/models/) to the configuration file.
 
 ## Kickstarting in Wordpress
 
-To kickstart the MVC, open your current theme's `functions.php` file and include the bootstraper.
+To kickstart WMVC, open your current theme's `functions.php` file and include the bootstraper.
 
 We encourage placing the include call in `functions.php` for consistency across projects. In reality, the actual place or method you use to include the file does not really matter.
 

@@ -279,3 +279,15 @@ pre {
         }
     }
 }
+
+.lead {
+    font-size: 1.5em;
+
+    em {
+        text-transform:normal;
+        background:#eef;
+        font-style: normal;
+        padding:0.5em;
+        line-height:2em;
+    }
+}

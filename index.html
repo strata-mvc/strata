@@ -3,21 +3,18 @@ layout: page
 ---
 
 <div class="step">
-    <h1>Gain access to the MVC programming pattern in Wordpress.</h1>
-
-    <p class="lead">Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine.</p>
-
-    <p>Be up and running in 4 simple steps:</p>
+    <p class="lead">Wordpress MVC allows you to <em>organize your code based on programming concepts</em> instead of being inserted in the templating engine.</p>
 </div>
 
 <div class="step step-1">
 
+    <p>Be up and running in 4 simple steps:</p>
     <h1><span>Step 1</span>Install</h1>
 
     <p>Wordpress MVC is a Composer dependency.</p>
 
 <pre><code>"require": {
-    "francoisfaubert/wordpress-mvc": "dev-master"
+    "francoisfaubert/wordpress-mvc": "0.1a.1"
 }</pre></code>
 
 </div>
@@ -27,53 +24,57 @@ layout: page
 
     <h1><span>Step 2</span>Create a page</h1>
 
-    <p>Use the Wordpress engine just like you have been for years.</p>
+    <p>Using Wordpress' backend, create a page that has a permalink of <code>/songs/my-song-list/</code> and insert a shortcode named <code>list_songs</code> in the post's body.</p>
 
-    <p>Create a page that has a permalink of <code>/songs/a-random-title/</code> and insert a shortcode named <code>list_songs</code> in the post's body.</p>
+
+<pre><code>&lt;p&gt;One can customize the page's content.&lt;/p&gt;
+[list_songs]
+&lt;p&gt;This would be under the generated content of the shortcode.&lt;/p&gt;
+</pre></code>
 
 </div>
 
 <div class="step step-3">
 
-    <h1><span>Step 3</span>Declare route</h1>
+    <h1><span>Step 3</span>Declare a route</h1>
 
     <p>Set up a route pointing to that page:</p>
 
-<pre><code>array('POST|GET',        '/songs/[*:slug]/',           'SongsController#view')</pre></code>
+<pre><code>array('POST|GET',        '/songs/my-song-list/',           'SongsController#index')
+array('POST|GET',        array('/songs/my-song-list/[*:slug]?/' => 'index.php?pagename=songs/my-song-list'),           'SongsController#view')</pre></code>
 
 </div>
 
 <div class="step step-4">
     <h1><span>Step 4</span>Code</h1>
 
-    <p>And then all requests to "<code>/songs/a-random-title/</code>" will go though a controller class like this one before compiling the templates.</p>
+    <p>All requests to "<code>/songs/my-song-list/</code>" will be processed by a controller class like the following one before compiling the usual Wordpress templates.</p>
 
 <pre><code>&lt;?php
 namespace Mywebsite\Controllers;
 
 use MVC\Controller;
-use Mywebsite\Model\Songs;
-use Mywebsite\Model\Logger;
+use Mywebsite\Models\Song;
 
 class SongsController extends Controller {
 
     public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
 
-    public function before()
+    public function index()
     {
-        Logger::write(time());
+        // No additional processing needed.
     }
 
     public function view($songId = null)
     {
-        if (isset($songId)) {
-            $this->set("song", Songs::getById((int)$songId));
+        if (!is_null($songId)) {
+            $this->set("song", Song::findById((int)$songId));
         }
     }
 
     public function getSongsListingShortcode()
     {
-        $list = Songs::listing();
+        $list = Song::query()->listing("ID", "post_title");
         return "&lt;p&gt;" . implode(", ", $list) . "&lt;/p&gt;";
     }
 }
@@ -82,6 +83,6 @@ class SongsController extends Controller {
 </div>
 
 <div class="step">
-    <h1><span>Read on</span>Documentation</h1>
+    <h1><span>Dig deeper</span>Read the documentation</h1>
     <p>You can learn more about Wordpress MVC by reading <a href="{{ site.baseurl }}/docs/">our documentation</a>.</p>
 </div>
