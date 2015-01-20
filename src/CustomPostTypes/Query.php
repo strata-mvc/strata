@@ -14,7 +14,8 @@ class Query
 
     public function fetch()
     {
-        return get_posts($this->_filters);
+        $query = new \WP_Query($this->_filters);
+        return $query->posts;
     }
 
     public function listing($key, $label)

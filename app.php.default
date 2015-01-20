@@ -6,13 +6,12 @@ $app = array(
 
     // Setup custom routing on the app based on valid rules in AltoRouter.
     // https://github.com/dannyvankooten/AltoRouter
-    //
-    // These routes must map to a valid Wordpress url. 
+    // These routes must map to a valid Wordpress-generated url.
     "routes" => array(
         // Here are exemple values:
         // array('GET|POST',   '/participate/volunteer/',     'VolunteersController#create'),
         // array('POST',       '/wp-admin/admin-ajax.php',    'AjaxController#index'),
-        // array('GET',        '/schools/[*:slug]/',  'SchoolsController#view'),
+        //array('GET',         array('/en/songs/[*:slug]?/' => 'index.php?pagename=en/songs'), 'SongsController#view'),
     ),
 
     // Automate the creation of backend based post types.

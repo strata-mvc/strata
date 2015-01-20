@@ -271,7 +271,7 @@ class FormHelper {
         switch ($options['type']) {
             case "textarea" :
                 unset($options["type"]);
-                return $prefixing . sprintf('<textarea %s>%s</textarea>', $this->_arrayToAttributes($options), $value) . $suffixing;
+                return $prefixing . sprintf('<textarea %s>%s</textarea>', $this->_arrayToAttributes($options), stripslashes($value)) . $suffixing;
 
             case "select" :
                 $choices = "";

@@ -1,8 +1,6 @@
 <?php
-
 // Use composer to load the autoloader.
 $loader = require ABSPATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
 
 /**
  * Offer a prettier way of formating debugging output on screen
@@ -20,11 +18,10 @@ if (!function_exists('debug')) {
     }
 }
 
-
 $app = new \MVC\Mvc();
 $app->init();
 
-if ($app->ready) {
+if ($app->ready()) {
     // Add the project's directory to the autoloader
     $loader->setPsr4($app->config['key'] . '\\', get_template_directory() . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR . "wordpress-mvc" . DIRECTORY_SEPARATOR);
 

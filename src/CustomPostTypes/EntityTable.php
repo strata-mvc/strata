@@ -31,6 +31,12 @@ class EntityTable extends LabeledEntity
         return wp_insert_post( $options );
     }
 
+    public static function update($options)
+    {
+        return wp_update_post( $options );
+    }
+
+
     /**
      * Starts a wrapped wp_query pattern object. Used to chain parameters
      * @return (Query) $query;
@@ -44,6 +50,11 @@ class EntityTable extends LabeledEntity
     public static function findAll()
     {
         return self::query()->fetch();
+    }
+
+    public static function count()
+    {
+        return wp_count_posts(self::wordpressKey());
     }
 
     public static function createPostType()
@@ -115,14 +126,21 @@ class EntityTable extends LabeledEntity
                 'menu-title'    => ucfirst($func),
                 'capability'    => "manage_options",
                 'icon'          => null,
-                // This is an awful hack, but wordpress doesn't let you pass arguments to
-                // callbacks so we can send the controller and function to the router.
-                'route'         => array('MVC\Router', sprintf('___dynamic___callback___%s___%s', Inflector::pluralize($ClassName::getShortName()), $func)),
+                'route'         => array(Inflector::pluralize($ClassName::getShortName()) . "Controller", $func),
                 'position'      => null,
             );
 
-            add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $func, $config['route'], $config['icon'], $config['position']);
+            // This is to circumvent that wordpress doesn't let you pass arguments to
+            // callbacks so we can send the controller and function to the router.
+            // We dont want people to have to specify that odd function name.
+            // Allow them to send the controller string name and take care of the rest.
+            if (is_string($config['route'])) {
+                $route = \MVC\Router::callback($config['route'], $func);
+            }  else {
+                $route = \MVC\Router::callback($config['route'][0], $config['route'][1]);
+            }
+
+            add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $func, $route, $config['icon'], $config['position']);
         }
     }
-
 }

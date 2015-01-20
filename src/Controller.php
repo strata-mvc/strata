@@ -15,7 +15,12 @@ class Controller {
 
     public function init()
     {
+        // Expose a reference to the current controller
         $GLOBALS['Controller'] = $this;
+
+        // If this controller has shortcodes, try to assign them.
+        $this->_buildShortcodes();
+
     }
 
     public function after()
@@ -85,6 +90,20 @@ class Controller {
         }
 
         echo $content;
+    }
+
+    /**
+     * Register dynamic shortcodes hooks to the instanciated controller
+     */
+    protected function _buildShortcodes()
+    {
+        if (count($this->shortcodes) > 0) {
+            foreach ($this->shortcodes as $shortcode => $methodName) {
+                if(method_exists($this, $methodName)) {
+                    add_shortcode($shortcode, array($this, $methodName));
+                }
+            }
+        }
     }
 
     /**
