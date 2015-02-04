@@ -26,7 +26,7 @@ class Router {
         if (preg_match('/^___dynamic___callback___(.+)___(.+)(___\d+)?/', $method, $matches)) {
             $app = \MVC\Mvc::app();
             $className = $app->getNamespace() . "\\Controllers\\" . $matches[1];
-            Router::performAction($className, $matches[2], $args);
+            return Router::performAction($className, $matches[2], $args);
         }
     }
 
@@ -71,8 +71,10 @@ class Router {
             $ctrl = new $className();
             $ctrl->init();
             call_user_func(array($ctrl, "before"));
-            call_user_func_array(array($ctrl, $methodName), $params);
+            $returnData = call_user_func_array(array($ctrl, $methodName), $params);
             call_user_func(array($ctrl, "after"));
+
+            return $returnData;
         }
     }
 

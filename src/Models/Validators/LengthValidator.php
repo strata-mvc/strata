@@ -13,16 +13,25 @@ class LengthValidator extends Validator {
 
     public function test($value, $context)
     {
-        $length = is_array($value) ? count($value) : strlen($value);
+        $length = 0;
+        if (is_array($value)) {
+            foreach ($value as $val) {
+                if ($val !== "0") {
+                    $length++;
+                }
+            }
+        } else {
+            $length = strlen($value);
+        }
 
         if (!is_null($this->_config['min'])) {
-            if ($length < $this->_config['min']) {
+            if ($length < (int)$this->_config['min']) {
                 return false;
             }
         }
 
         if (!is_null($this->_config['max'])) {
-            if ($length > $this->_config['max']) {
+            if ($length > (int)$this->_config['max']) {
                 return false;
             }
         }
