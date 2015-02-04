@@ -34,7 +34,7 @@ class ChildrenController extends Controller {
 
         // Send confirmation emails to song admins and parent.
         EmailLoader::enableHTML();
-        wp_mail($email, "This is the title of the email", $parentNotification, array('Reply-To' => 'no-reply@domain.com'));
+        wp_mail($email, "This is the title of the email", $parentNotification);
         EmailLoader::disableHTML();
     }
 }

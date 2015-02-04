@@ -55,13 +55,15 @@ class SongsController extends Controller {
 
 In the case where you have created a page in Wordpress and need to include dynamic values inside the post's CMS content, you may use auto-generated shortcodes.
 
-In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListingShortcode()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListingShortcode()`. Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be declared and applied. In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller).
+In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListingShortcode()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListingShortcode()`.
+
+Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be declared and applied. In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller).
 
 Generating shortcodes like these is also useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
 
 ## Setting view variables
 
-To expose a variable to the regular Wordpress templating, simple use the controllers' `set($key, $mixed)` method. This exposes the value to the templating engine so you can use them in Wordpress' template files.
+To expose a variable to the regular Wordpress templating, use the controllers' `set($key, $mixed)` method. This exposes the value to the templating engine so you can use them in Wordpress' template files.
 
 In the controller :
 
@@ -101,7 +103,7 @@ class AdminController extends Controller {
         }
 
         if (!is_admin()) {
-            throw new \Exception("This contorller is expected to map to the admin.");
+            throw new \Exception("This controller is expected to map to the admin.");
         }
     }
 }
@@ -118,7 +120,7 @@ Assuming we have this routing rule in `app.php`:
 array('POST',       '/wp-admin/admin-ajax.php', 'AjaxController'),
 ~~~
 
-Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore, controller will call the method matching the value of the posted `action`.
+Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore the controller will call the method matching the value of the posted `action` parameter.
 
 The controller file could look like :
 
@@ -156,11 +158,11 @@ And the javascript call could be :
 ~~~ js
 <script>
     $.ajax({
-        url: WpConfig.ajaxurl,
+        url: <?php echo admin_url('admin-ajax.php'); ?>,
         method: 'POST',
         data: {
             action: 'songs',
-            security: WpConfig.security,
+            security: wp_create_nonce(SECURITY_SALT),
             album_name: $('input[name=album_name]').val()
         }
     }).done(function(data){
@@ -168,7 +170,6 @@ And the javascript call could be :
     });
 </script>
 ~~~
-
 
 ## On file downloads
 
@@ -201,7 +202,9 @@ class FileController extends Controller {
 
 ## On scopes and custom templating
 
-Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the one executing shortcodes are in different scopes. The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
+Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different scopes.
+
+The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
 
 Say you create a dashboard widget:
 

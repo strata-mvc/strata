@@ -77,11 +77,11 @@ Should you wish to hook into one of Wordpress' hooks instead of an URL, you may 
 
 ~~~ php
 <?php
-    add_filter('pre_get_posts', \MVC\Router::callback('AdminController', 'onPreGetPosts'));
+    add_filter('pre_get_posts', \MVC\Router::callback('CallbackController', 'onPreGetPosts'));
 ?>
 ~~~
 
-The previous example will call the method `onPreGetPosts` of your project's `AdminController` controller class and send the expected function parameters.
+The previous example will call the method `onPreGetPosts` of your project's `CallbackController` controller class and send the expected function parameters.
 
 
 ~~~ php
@@ -90,7 +90,7 @@ namespace Mywebsite\Controllers;
 
 use MVC\Controller;
 
-class AdminController extends Controller {
+class CallbackController extends Controller {
     public function onPreGetPosts($query)
     {
         // Manipulate the query.

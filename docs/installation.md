@@ -14,7 +14,7 @@ The most recent release can be found on our [GitHub](https://github.com/francois
 {
     "name": "Mynamespace/Mywebsite",
     "require": {
-        "francoisfaubert/wordpress-mvc": "1.0.0"
+        "francoisfaubert/wordpress-mvc": "{{ site.current_version }}"
     }
 }
 ~~~

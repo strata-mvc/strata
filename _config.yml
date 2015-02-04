@@ -3,11 +3,12 @@ title: Wordpress MVC
 email: frank@francoisfaubert.com
 description: > # this means to ignore newlines until "baseurl:"
   A composer package for Wordpress that allows the use of the Model View Controller
-  coding pattern inside Wordpress while being as uninstrusive as possible.
+  coding pattern inside Wordpress while being as unobstrusive as possible.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://wordpress-mvc.francoisfaubert.com" # the base hostname & protocol for your site
 twitter_username: francoisfaubert
 github_username:  francoisfaubert
+current_version: 0.1a.1
 
 # Build settings
 markdown: kramdown

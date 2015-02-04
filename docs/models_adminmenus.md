@@ -12,7 +12,7 @@ You can add additional admin menu links based on the model when configuring the 
 <?php
 $app = array(
     // Give a context to the app
-    "key" => "TrottiMywebsitebus",
+    "key" => "Mywebsite",
 
     // Setup custom routing on the app
     "routes" => array( /* have routes ready */ ),
@@ -39,7 +39,7 @@ In the previous example, two model entities will be automatically set up at runt
 
 Each key of the `admin` configuration array will map to a controller's method. If the `route` parameter is present, it will be forwarded to this controller. If the parameter is not present, it will be forwarded to the model's controller.
 
-In the exemple above, `Profile` will have two links added. The first will link to the `exportProfiles` of the `AdminController` while the second will link to `secondProfileAction` also of the `AdminController` class.
+In the example above, `Profile` will have two links added. The first will link to the `exportProfiles` of the `AdminController` while the second will link to `secondProfileAction` also of the `AdminController` class.
 
 On the other hand, `Song` will have only added one link. It will attempt to call `extraSongInfo` of the `SongController` class.
 

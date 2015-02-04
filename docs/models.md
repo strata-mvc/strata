@@ -12,7 +12,7 @@ In regular MVC frameworks a model can (but is not required to) map to a table in
 
 Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
 
-Because of the adoption of Wordpress' methods, every model requests will return __arrays__ and not model entities. Something to keep in mind when manupulating the received data.
+Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manupulating the received data.
 
 ## Writing a model declaration
 

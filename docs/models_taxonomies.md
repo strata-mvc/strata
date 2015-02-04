@@ -33,8 +33,6 @@ use MVC\CustomPostTypes\TaxonomyEntity;
 
 class ProfileType extends TaxonomyEntity
 {
-    // These are not created dynamically. An entry of the same name
-    // should be set in the backend using the WYSIWYG.
     const TYPE_VOLUNTEER   = "volunteer";
     const TYPE_SUBCRIBER   = "subscriber";
 
@@ -43,13 +41,6 @@ class ProfileType extends TaxonomyEntity
             'name' => "Profile Types"
         )
     );
-
-    public static function getTaxInput($type)
-    {
-        $constName = "TYPE_" . strtoupper($type);
-        $constValue = constant("self::$constName");
-        return array(self::wordpressKey() => array($constValue));
-    }
 }
 ?>
 ~~~

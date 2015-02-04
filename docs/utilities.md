@@ -4,7 +4,7 @@ title: Utilities
 permalink: /docs/utilities/
 ---
 
-Wordspress MVC ships with a tools that aim to ease development.
+Wordspress MVC ships with a set of tools that aim to ease development.
 
 It borrows the awesome [`Inflector`](http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html), [`Hash`](http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html) and its requirement [`String`](http://book.cakephp.org/2.0/en/core-utility-libraries/string.html) objects from Cakephp 2.
 
