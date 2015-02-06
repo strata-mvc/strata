@@ -1,6 +1,8 @@
 wordpress-mvc
 =============
 
+More details and documentation can be found on the [official website](http://wordpress-mvc.francoisfaubert.com/)
+
 ### Why
 
 Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can’t quite cleanly separate the business logic from the templating engine.
@@ -12,5 +14,3 @@ Wordpress MVC allows you to link permalinks with Controllers to offer you an ele
 ### What it doesn't do
 
 We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
-
-More details can be found on the [official website](http://francoisfaubert.com/wordpress-mvc/)
