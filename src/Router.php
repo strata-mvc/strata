@@ -138,7 +138,7 @@ class Router {
                 $wordpressRegex = preg_replace('/[\*]/', '.*', $wordpressRegex);
                 $wordpressRegex = preg_replace('/(:.+?\]\/?)/', ')', $wordpressRegex);
 
-                add_rewrite_rule($wordpressRegex . '/?$', array_pop($route[1]),'top');
+                add_rewrite_rule($wordpressRegex . '$', array_pop($route[1]),'top');
                 $parsedAltoRoutes[$idx][1] = $altoRegex;
             }
         }
