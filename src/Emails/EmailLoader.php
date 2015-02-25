@@ -2,6 +2,8 @@
 
 namespace MVC\Emails;
 
+use MVC;
+
 class EmailLoader {
 
     /**
@@ -38,11 +40,9 @@ class EmailLoader {
             return DEBUG_EMAIL;
         }
 
-        if (function_exists('project_email_list')) {
-            $emails = project_email_list();
-            if (array_key_exists($which, $emails)) {
-                return $emails[$which];
-            }
+        $emails = MVC\app::config("project_email_list");
+        if (is_array($emails) && array_key_exists($which, $emails)) {
+            return $emails[$which];
         }
 
         return null;

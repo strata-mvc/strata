@@ -8,17 +8,18 @@ class TaxonomyEntity extends LabeledEntity
 {
     CONST WP_PREFIX = "tax_";
 
-    public static $options     = array();
+    public  $configuration     = array();
 
     public static function addTaxonomy($linkedObj)
     {
         $ClassName  = get_called_class();
+        $obj = new $ClassName();
         $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
 
 
-        $customizedOptions = $ClassName::$options + array(
+        $customizedOptions = $obj->configuration + array(
             'hierarchical'               => false,
             'public'                     => true,
             'show_ui'                    => true,
@@ -37,29 +38,24 @@ class TaxonomyEntity extends LabeledEntity
                 'delete_terms' => 'read',
                 'assign_terms' => 'read',
             ),
+            'labels'=> array()
         );
 
-        $defaultLabels = array(
-            'name'                       => _x( $plural, 'Taxonomy General Name', $projectKey ),
-            'singular_name'              => _x( $singular . ' type', 'Taxonomy Singular Name', $projectKey ),
-            'menu_name'                  => __( $plural, $projectKey ),
-            'all_items'                  => __( 'All ' . $plural, $projectKey ),
-            'parent_item'                => __( 'Parent ' . $singular, $projectKey ),
-            'parent_item_colon'          => __( 'Parent ' . $singular .':', $projectKey ),
-            'new_item_name'              => __( 'New ' . $singular .' Name', $projectKey ),
-            'add_new_item'               => __( 'Add New ' . $singular, $projectKey ),
-            'edit_item'                  => __( 'Edit ' . $singular, $projectKey ),
-            'update_item'                => __( 'Update ' . $singular, $projectKey ),
-            'separate_items_with_commas' => __( 'Separate '.$plural.' with commas', $projectKey ),
-            'search_items'               => __( 'Search '. $plural, $projectKey ),
-            'add_or_remove_items'        => __( 'Add or remove ' . $plural, $projectKey ),
-            'choose_from_most_used'      => __( 'Choose from the most used ' . $plural, $projectKey ),
-            'not_found'                  => __( 'Not Found', $projectKey ),
+        $customizedOptions['labels'] += array(
+            'name'                => _x( $plural, 'Post Type General Name', $projectKey ),
+            'singular_name'       => _x( $singular, 'Post Type Singular Name', $projectKey ),
+            'menu_name'           => __( $plural, $projectKey ),
+            'parent_item_colon'   => __( $singular. ' Item:', $projectKey ),
+            'all_items'           => __( 'All ' . $plural, $projectKey ),
+            'view_item'           => __( 'View ' . $singular. ' Item', $projectKey ),
+            'add_new_item'        => __( 'Add New', $projectKey ),
+            'add_new'             => __( 'Add New', $projectKey ),
+            'edit_item'           => __( 'Edit ' . $singular, $projectKey ),
+            'update_item'         => __( 'Update ' . $singular, $projectKey ),
+            'search_items'        => __( 'Search ' . $plural, $projectKey ),
+            'not_found'           => __( 'Not found', $projectKey ),
+            'not_found_in_trash'  => __( 'Not found in Trash', $projectKey ),
         );
-
-        if (Hash::check($ClassName::$options, "labels")) {
-            $customizedOptions['labels'] = $ClassName::$options["labels"] + $defaultLabels;
-        }
 
         return register_taxonomy($ClassName::wordpressKey(), array($linkedObj::wordpressKey()), $customizedOptions);
     }

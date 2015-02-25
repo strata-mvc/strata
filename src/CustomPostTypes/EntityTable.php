@@ -9,12 +9,6 @@ class EntityTable extends LabeledEntity
 {
     CONST WP_PREFIX = "cpt_";
 
-    // Table props
-   // public static $key         = null;
-   // public static $singular    = null;
-   // public static $plural      = null;
-    public static $options     = array();
-
     /**
      * Creates a post of the current post type
      * @param (array) options : Options to be sent to wp_insert_post()
@@ -60,9 +54,10 @@ class EntityTable extends LabeledEntity
     public static function createPostType()
     {
         $ClassName = get_called_class();
+        $obj = new $ClassName();
 
         // Ensure the default options have been set.
-        $customizedOptions = $ClassName::$options + array(
+        $customizedOptions = $obj->configuration + array(
             'labels'              => array(),
             'supports'            => array( 'title' ),
             //'taxonomies'          => null,
@@ -117,6 +112,7 @@ class EntityTable extends LabeledEntity
     public static function addAdminMenus($cptAdminConfig)
     {
         $ClassName = get_called_class();
+        $obj = new $ClassName();
         $parentSlug = 'edit.php?post_type=' . $ClassName::wordpressKey();
         $namespace = \MVC\Mvc::app()->getNamespace();
 

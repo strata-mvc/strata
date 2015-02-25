@@ -7,7 +7,7 @@ use MVC\Mvc;
 
 class LabeledEntity
 {
-    public static $options     = array();
+    public $configuration     = array();
 
     public static function getShortName($linkToObj = null)
     {
@@ -41,14 +41,15 @@ class LabeledEntity
         $projectKey = strtolower(Mvc::app()->getNamespace());
 
         $ClassName = get_called_class();
+        $obj = new $ClassName();
         $shortname  = strtolower($ClassName::getShortName());
 
         // Fetch the basic values from possible user defined values.
-        if (Hash::check($ClassName::$options, "labels")) {
-            if (Hash::check($ClassName::$options, "labels.singular_name")) {
-                $singular = Hash::get($ClassName::$options, "labels.singular_name");
-            } elseif (Hash::check($ClassName::$options, "labels.name")) {
-                $plural = Hash::get($ClassName::$options, "labels.name");
+        if (Hash::check($obj->configuration, "labels")) {
+            if (Hash::check($obj->configuration, "labels.singular_name")) {
+                $singular = Hash::get($obj->configuration, "labels.singular_name");
+            } elseif (Hash::check($obj->configuration, "labels.name")) {
+                $plural = Hash::get($obj->configuration, "labels.name");
             }
         }
 
