@@ -17,6 +17,8 @@ class ServerShell extends Shell
             "port" => "3000",
             "webroot" => MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "webroot"
         );
+        
+        parent::initialize($options);
     }
 
     public function contextualize($args)

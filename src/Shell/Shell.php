@@ -5,6 +5,12 @@ namespace MVC\Shell;
 
 class Shell
 {    
+    
+    public function initialize($options = array())
+    {
+        $this->_welcome();
+    }
+    
     /**
      * Starts up the Shell and displays the welcome message.
      * Allows for checking and configuring prior to command or main execution
