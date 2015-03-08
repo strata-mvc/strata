@@ -54,7 +54,7 @@ class ServerShell extends Shell
     {
         $this->_host = self::DEFAULT_HOST;
         $this->_port = self::DEFAULT_PORT;
-        $this->_documentRoot = WWW_ROOT;
+        $this->_documentRoot = MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "webroot";
     }
 
     /**
@@ -108,7 +108,7 @@ class ServerShell extends Shell
 
         $port = ':' . $this->_port;
         $this->out(sprintf('built-in server is running in http://%s%s/', $this->_host, $port));
-        $this->out(sprintf('You can exit with <info>`CTRL-C`</info>'));
+        $this->out('You can exit with <info>`CTRL-C`</info>');
         system($command);
     }
 
