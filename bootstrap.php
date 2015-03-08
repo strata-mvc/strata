@@ -18,6 +18,7 @@ if (!function_exists('debug')) {
     }
 }
 
+\MVC\Mvc::loadEnvConfiguration();
 $app = new \MVC\Mvc();
 $app->init();
 
