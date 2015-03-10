@@ -10,6 +10,12 @@ use MVC\Shell\Shell;
  */
 class ServerShell extends Shell
 {
+    /*
+        The original idea here was to allow the user to modify the
+        host and port by calling bin/mvc [arg] [arg1] [n].
+
+        However, because we needed to use a Vagrant VM this options
+        is currently on hold
     public function contextualize($args)
     {
         if (count($args) > 2) {
@@ -25,6 +31,7 @@ class ServerShell extends Shell
         }
         parent::contextualize($args);
     }
+     */
 
     /**
      * Override main() to handle action
@@ -39,9 +46,12 @@ class ServerShell extends Shell
 
         $this->out('A webserver is now availlable at http://127.0.0.1:3000/');
         $this->out('Press CTRL + C to exit');
+        $this->out('');
 
-        $command = "tail -f /vagrant/log/access.log";
-        system("vagrant ssh -c '" . $command . "'");
-        system("vagrant suspend");
+        $this->out('');
+        $this->startup();
+        $this->out('');
+
+        return system("vagrant suspend");
     }
 }

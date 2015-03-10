@@ -37,15 +37,24 @@ class Shell
      */
     public function startup()
     {
+        $msg = file_exists(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . ".vagrant") ?
+            'Starting the VM. This can take a few seconds.' :
+            'A new virtual machine needs to be downloaded and/or setup for the first time. This will take a long time.';
+
         $this->out("");
-        if (file_exists(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . ".vagrant")) {
-            $this->out('Starting the VM. This can take a few seconds.');
-        } else {
-            $this->out('A new virtual machine needs to be downloaded and/or setup for the first time. This will take a long time.');
-        }
+        $this->out($msg);
         $this->out("");
 
-        system("vagrant up");
+        return system("vagrant up");
+    }
+
+    public function shutdown()
+    {
+        $this->out("");
+        $this->out('Suspending the VM.');
+        $this->out("");
+
+        return system("vagrant suspend");
     }
 
     public function getPHPBin()
@@ -64,7 +73,8 @@ class Shell
      */
     public function contextualize($args)
     {
-       // eventually do something with the args.
+       // The extending classes will be able to do
+       // something with the arguments sent to the shell command.
     }
 
     /**
@@ -80,5 +90,4 @@ class Shell
         $this->out("========================================================================");
         $this->out("");
     }
-
 }

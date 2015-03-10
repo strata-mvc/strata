@@ -13,7 +13,6 @@ use MVC\Utility\Hash;
  */
 class Mvc {
 
-    public static $loader = null;
 
     /**
      * @var array The configuration array specified in the theme's app.php
@@ -24,6 +23,13 @@ class Mvc {
      * @var bool Specifies the requirements have been met from the current configuration
      */
     protected $_ready = false;
+
+
+    /**
+     * @var composer Composer's loader object. Kept handy in case additional paths
+     * need to be added along the way.
+     */
+    public static $loader = null;
 
     /**
      * Because the processing is called asynchronously using wordpress' hooks,
@@ -70,6 +76,11 @@ class Mvc {
         }
     }
 
+    /**
+     * Appends a PSR4 rule to composer's loader.
+     * @param [type] $key  root path
+     * @param [type] $path location of the files
+     */
     public static function addPsr4($key, $path)
     {
         return \MVC\Mvc::$loader->addPsr4($key, $path);
