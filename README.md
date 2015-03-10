@@ -14,3 +14,5 @@ Wordpress MVC allows you to link permalinks with Controllers to offer you an ele
 ### What it doesn't do
 
 We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
+
+

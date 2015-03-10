@@ -45,15 +45,15 @@ class Mvc {
     }
 
     public static function loadEnvConfiguration()
-    {   
+    {
         $ini = parse_ini_file(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "production.ini");
         foreach($ini as $key => $value) {
             if (!defined($key)) {
                 define(strtoupper($key), $value);
             }
-        }        
+        }
     }
-    
+
     /**
      * Prepares the object for its run.
      */

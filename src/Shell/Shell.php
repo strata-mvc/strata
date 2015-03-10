@@ -4,13 +4,12 @@
 namespace MVC\Shell;
 
 class Shell
-{    
-    
+{
     public function initialize($options = array())
     {
         $this->_welcome();
     }
-    
+
     /**
      * Starts up the Shell and displays the welcome message.
      * Allows for checking and configuring prior to command or main execution
@@ -22,19 +21,27 @@ class Shell
      */
     public function startup()
     {
-        $this->_welcome();
+        $this->out("");
+        if (file_exists(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . ".vagrant")) {
+            $this->out('Starting the VM. This can take a few seconds.');
+        } else {
+            $this->out('A new virtual machine needs to be downloaded and/or setup for the first time. This will take a long time.');
+        }
+        $this->out("");
+
+        system("vagrant up");
     }
-    
+
     public function getPHPBin()
     {
         return PHP_BINDIR . DIRECTORY_SEPARATOR . 'php';
-    }    
-    
+    }
+
     public function out($msg)
     {
         echo $msg . "\n";
     }
-    
+
     /**
      *
      * @return void
@@ -42,8 +49,8 @@ class Shell
     public function contextualize($args)
     {
        // eventually do something with the args.
-    }        
-    
+    }
+
     /**
      * Displays a header for the shell
      *
@@ -51,9 +58,11 @@ class Shell
      */
     protected function _welcome()
     {
-        echo "";
-        echo "Welcome to Roots Console.";
-        echo "";
+        $this->out("");
+        $this->out("========================================================================");
+        $this->out(" Welcome to Wordpress MVC Console");
+        $this->out("========================================================================");
+        $this->out("");
     }
-    
+
 }
