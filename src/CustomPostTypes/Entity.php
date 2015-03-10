@@ -35,8 +35,8 @@ class Entity extends EntityTable
                 // Check for custom validators in the MVC scope as well as in
                 // the project scope.
                 $scopes = array(
-                    $appNamespace . "\\Models\\Validators\\" . ucfirst($validationKey) . "Validator",
-                    "MVC\\Models\\Validators\\" . ucfirst($validationKey) . "Validator",
+                    $appNamespace . "\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
+                    "MVC\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
                 );
 
                 foreach ($scopes as $validatorName) {

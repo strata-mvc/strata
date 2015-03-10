@@ -5,6 +5,22 @@ namespace MVC\Shell;
 
 class Shell
 {
+    public static function factory($key)
+    {
+        \MVC\Mvc::loadEnvConfiguration();
+
+        if (!defined("MVC_APP_NAMESPACE")) {
+            throw new Exception("'MVC_APP_NAMESPACE' must be set.");
+        }
+
+        switch($key) {
+            case "c" : case "console" : return new \MVC\Shell\ConsoleShell();
+            case "s" : case "server" : return new \MVC\Shell\ServerShell();
+            case "g" : case "generate" : return new \MVC\Shell\GenerateShell();
+            case "m" : case "migrate" : return new \MVC\Shell\MigrationShell();
+        }
+    }
+
     public function initialize($options = array())
     {
         $this->_welcome();

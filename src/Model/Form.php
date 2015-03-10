@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models;
+namespace MVC\Model;
 
 use MVC\Utility\Hash;
 use MVC\Helpers\FormHelper;

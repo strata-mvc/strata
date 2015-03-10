@@ -2,12 +2,12 @@
 $app = array(
     // Give a context to the app by supplying the namespace you will be
     // using when declaring your constructors and models.
-    "key" => "Mywebsite",
+    "key" => MVC_APP_NAMESPACE,
 
     // Setup custom routing on the app based on valid rules in AltoRouter.
     // https://github.com/dannyvankooten/AltoRouter
     //
-    // These routes must map to a valid Wordpress url. 
+    // These routes must map to a valid Wordpress url.
     "routes" => array(
         // Here are exemple values:
         // array('GET|POST',   '/participate/volunteer/',     'VolunteersController#create'),

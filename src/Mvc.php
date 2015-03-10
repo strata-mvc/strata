@@ -13,6 +13,8 @@ use MVC\Utility\Hash;
  */
 class Mvc {
 
+    public static $loader = null;
+
     /**
      * @var array The configuration array specified in the theme's app.php
      */
@@ -52,6 +54,25 @@ class Mvc {
                 define(strtoupper($key), $value);
             }
         }
+    }
+
+    public static function bootstrap()
+    {
+        $app = new \MVC\Mvc();
+        $app->init();
+
+        if ($app->ready()) {
+            // Add the project's directory to the autoloader
+            \MVC\Mvc::$loader->setPsr4($app->config['key'] . "\\", MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src");
+
+            // Start the process
+            $app->run();
+        }
+    }
+
+    public static function addPsr4($key, $path)
+    {
+        return \MVC\Mvc::$loader->addPsr4($key, $path);
     }
 
     /**
@@ -115,7 +136,7 @@ class Mvc {
      */
     protected function _parseConfigFile()
     {
-        $configFile = get_template_directory() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'wordpress-mvc' . DIRECTORY_SEPARATOR . 'app.php';
+        $configFile = MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . 'app.php';
         if (file_exists($configFile)) {
             include_once($configFile);
             if(isset($app) && count($app)) {

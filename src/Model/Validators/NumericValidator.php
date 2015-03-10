@@ -1,8 +1,8 @@
 <?php
 
-namespace MVC\Models\Validators;
+namespace MVC\Model\Validators;
 
-use MVC\Models\Validator;
+use MVC\Model\Validator;
 
 class NumericValidator extends Validator {
 
