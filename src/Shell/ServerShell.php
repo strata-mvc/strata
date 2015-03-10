@@ -57,7 +57,7 @@ class ServerShell extends Shell
         $this->startup();
         $this->out('');
 
-        $this->out('A webserver is now availlable at http://192.168.33.10/');
+        $this->out('A webserver is now availlable at http://localhost:3000/');
         $this->out('Press CTRL + C to exit');
 
         $command = "sudo tail -f /var/log/apache2/access.log";
