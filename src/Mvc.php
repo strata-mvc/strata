@@ -1,90 +1,27 @@
 <?php
 namespace MVC;
 
-use MVC\CustomPostTypes;
 use MVC\Router;
 use MVC\Utility\Hash;
+use MVC\Context\MvcContext;
+use MVC\Model\CustomPostType\Loader;
 
 /**
  * Running MVC instance
  *
- * @package       MVC.Router
- * @link          http://wordpress-mvc.francoisfaubert.com/docs/routes/
+ * @package       MVC
+ * @link          http://wordpress-mvc.francoisfaubert.com/docs/
  */
-class Mvc {
-
-
+class Mvc extends MvcContext {
     /**
      * @var array The configuration array specified in the theme's app.php
      */
-    public $config = null;
+    protected $_config = null;
 
     /**
      * @var bool Specifies the requirements have been met from the current configuration
      */
     protected $_ready = false;
-
-
-    /**
-     * @var composer Composer's loader object. Kept handy in case additional paths
-     * need to be added along the way.
-     */
-    public static $loader = null;
-
-    /**
-     * Because the processing is called asynchronously using wordpress' hooks,
-     * we will lose the referece to the kickstarter object.
-     * we need to make sure the config values are availlable through global values.
-     */
-    public static function app()
-    {
-        return $GLOBALS['__MVC__'];
-    }
-
-    /**
-     * Fetches a value in the app's configuration array
-     * @param string $key In dot-notation format
-     * @return mixed
-     */
-    public static function config($key)
-    {
-        $app = Mvc::app();
-        return array_pop(Hash::extract($app->config, $key));
-    }
-
-    public static function loadEnvConfiguration()
-    {
-        $ini = parse_ini_file(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "production.ini");
-        foreach($ini as $key => $value) {
-            if (!defined($key)) {
-                define(strtoupper($key), $value);
-            }
-        }
-    }
-
-    public static function bootstrap()
-    {
-        $app = new \MVC\Mvc();
-        $app->init();
-
-        if ($app->ready()) {
-            // Add the project's directory to the autoloader
-            \MVC\Mvc::$loader->setPsr4($app->config['key'] . "\\", MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src");
-
-            // Start the process
-            $app->run();
-        }
-    }
-
-    /**
-     * Appends a PSR4 rule to composer's loader.
-     * @param [type] $key  root path
-     * @param [type] $path location of the files
-     */
-    public static function addPsr4($key, $path)
-    {
-        return \MVC\Mvc::$loader->addPsr4($key, $path);
-    }
 
     /**
      * Prepares the object for its run.
@@ -93,13 +30,14 @@ class Mvc {
     {
         $this->_ready = false;
 
-        $this->_parseConfigFile();
+        $this->_includeUtils();
+        $this->_parseProjectConfigFile();
 
-        if (is_null($this->config)) {
+        if (is_null($this->_config)) {
             trigger_error("Using the MVC bootstraper requires a file named [theme]/wordpress-mvc/app.php that declares a configuration array named \$app." , E_USER_WARNING);
             return;
         }
-        elseif (!array_key_exists('key', $this->config)) {
+        elseif (!array_key_exists('key', $this->_config)) {
             trigger_error("Using the MVC bootstraper requires a config value called 'key' that sets the main project namespace." , E_USER_WARNING);
             return;
         }
@@ -112,26 +50,17 @@ class Mvc {
      */
     public function run()
     {
-        if ($this->_ready) {
-
-            // Expose the app context to the current process.
-            $GLOBALS['__MVC__'] = $this;
-
-            // Set up the creation of custom post types based on models
-            if (array_key_exists('custom-post-types', $this->config)) {
-                CustomPostTypes\Loader::preload();
-            }
-
-            Router::kickstart();
+        if (!$this->_ready) {
+            trigger_error("The MVC instance is not ready to be called. Have you initiated it?" , E_USER_WARNING);
+            return;
         }
-    }
 
-    /**
-     * Return the current project's namespace key
-     */
-    public function getNamespace()
-    {
-        return ucfirst($this->config['key']);
+        // Set up the creation of custom post types based on models
+        if (array_key_exists('custom-post-types', $this->_config)) {
+            Loader::preload();
+        }
+
+        Router::kickstart();
     }
 
     /**
@@ -139,21 +68,41 @@ class Mvc {
      */
     public function ready()
     {
-        return $this->_ready;
+        return (bool)$this->_ready;
+    }
+
+    /**
+     * Fetches a value in the app's configuration array
+     * @param string $key In dot-notation format
+     * @return mixed
+     */
+    public function read($key)
+    {
+        return array_pop(Hash::extract($this->_config, $key));
+    }
+
+    public function write($key, $value)
+    {
+        return Hash::set($this->_config, $key, $value);
     }
 
     /**
      * Loads app.php, cleans up the data and saves it as config to the current instance of the MVC object.
      */
-    protected function _parseConfigFile()
+    protected function _parseProjectConfigFile()
     {
-        $configFile = MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . 'app.php';
+        $configFile = self::getProjectConfigurationFilePath();
         if (file_exists($configFile)) {
             include_once($configFile);
             if(isset($app) && count($app)) {
-                $this->config = Hash::normalize($app);
+                $this->_config = Hash::normalize($app);
             }
             unset($app);
         }
+    }
+
+    protected function _includeUtils()
+    {
+        include_once(self::getUtilityPath() . "Debug.php");
     }
 }

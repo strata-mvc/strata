@@ -1,17 +1,19 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
+
 use MVC\Utility\Hash;
+use MVC\Mvc;
 
 class Loader
 {
     public static function preload()
     {
-        $app = \MVC\Mvc::app();
-        $namespace = $app->getNamespace();
+        $namespace = Mvc::getNamespace();
+        $customPostTypes = Mvc::config('custom-post-types');
 
         // Set up the creation of custom post types based on models
-        if (array_key_exists('custom-post-types', $app->config) && is_array($app->config['custom-post-types'])) {
-            foreach (Hash::normalize($app->config['custom-post-types']) as $cpt => $config) {
+        if ($customPostTypes) {
+            foreach (Hash::normalize($customPostTypes) as $cpt => $config) {
                 // Pipe the creation of the post type object.
                 add_action('init', sprintf('%s\\Model\\%s::createPostType', $namespace, $cpt));
 

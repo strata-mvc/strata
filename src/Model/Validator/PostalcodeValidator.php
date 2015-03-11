@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Model\Validators;
+namespace MVC\Model\Validator;
 
 use MVC\Model\Validator;
 

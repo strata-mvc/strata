@@ -1,5 +1,5 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
 
 use MVC\Utility\Hash;
 use MVC\Utility\Inflector;
@@ -38,7 +38,7 @@ class LabeledEntity
         // Try and generate the labels automatically.
         $singular = "";
         $plural = "";
-        $projectKey = strtolower(Mvc::app()->getNamespace());
+        $projectKey = strtolower(Mvc::getNamespace());
 
         $ClassName = get_called_class();
         $obj = new $ClassName();

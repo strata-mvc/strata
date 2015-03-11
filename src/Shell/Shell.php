@@ -45,7 +45,7 @@ class Shell
         $this->out($msg);
         $this->out("");
 
-        return system("vagrant up");
+        system("vagrant up");
     }
 
     public function shutdown()

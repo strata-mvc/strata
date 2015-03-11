@@ -1,7 +1,8 @@
 <?php
 
-namespace MVC\Helpers;
+namespace MVC\View\Helper;
 
+use MVC\Controller\Request;
 use MVC\Utility\Hash;
 
 class FormHelper {
@@ -19,6 +20,8 @@ class FormHelper {
     public $stepsQty = 1;
     public $errors = array();
     public $assigned = array();
+
+    protected $_request = null;
 
     private $_wpReserved = array(
         'attachment',
@@ -103,6 +106,8 @@ class FormHelper {
 
     public function __construct()
     {
+        $this->_request = new Request();
+
         $postedStep = (int)$this->getPostedValue(self::POST_KEY_CURRENT);
         if($postedStep > 0) {
             $this->currentStep = $postedStep;
@@ -142,13 +147,13 @@ class FormHelper {
     public function getPostedValue($key)
     {
         $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return Hash::get($_POST, $this->_removeBrackets($this->name($key)));
+        return $this->_request->post($this->_removeBrackets($this->name($key)));
     }
 
     public function hasPostedValue($key)
     {
         $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return Hash::check($_POST, $this->_removeBrackets($this->name($key)));
+        return $this->_request->hasPost($this->_removeBrackets($this->name($key)));
     }
 
     public function hasErrors($key = null)

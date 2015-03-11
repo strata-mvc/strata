@@ -48,9 +48,10 @@ class ServerShell extends Shell
         $this->out('Press CTRL + C to exit');
         $this->out('');
 
-        $this->out('');
-        $this->startup();
-        $this->out('');
+        // Tail the server logs in order to keep the illusion that the console is
+        // controlling the server.
+        $command = "tail -f /vagrant/log/access.log";
+        system("vagrant ssh -c '" . $command . "'");
 
         return system("vagrant suspend");
     }

@@ -1,8 +1,9 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
 
 use MVC\Utility\Hash;
 use MVC\Mvc;
+use MVC\Model\CustomPostType\EntityTable;
 
 class Entity extends EntityTable
 {
@@ -27,7 +28,7 @@ class Entity extends EntityTable
     public function attemptAttributeSet($attr, $value, $formObject = null)
     {
         $attributeErrors = array();
-        $appNamespace = \MVC\Mvc::app()->getNamespace();
+        $appNamespace = \MVC\Mvc::getNamespace();
         $validations = Hash::extract($this->getAttributes(), "$attr.validations");
 
         if (count($validations)) {

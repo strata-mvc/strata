@@ -1,8 +1,8 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
 
 use MVC\Utility\Hash;
-use MVC\CustomPostTypes\LabeledEntity;
+use MVC\Model\CustomPostType\LabeledEntity;
 
 class TaxonomyEntity extends LabeledEntity
 {

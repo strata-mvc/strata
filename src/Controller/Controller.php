@@ -1,6 +1,8 @@
 <?php
 
-namespace MVC;
+namespace MVC\Controller;
+
+use MVC\Controller\Request;
 
 class Controller {
 
@@ -10,17 +12,17 @@ class Controller {
     // items in the current controller
     public $shortcodes = array();
 
-    public $router = null;
-    public $app = null;
+    public $request = null;
 
     public function init()
     {
+        $this->request = new Request();
+
         // Expose a reference to the current controller
         $GLOBALS['Controller'] = $this;
 
         // If this controller has shortcodes, try to assign them.
         $this->_buildShortcodes();
-
     }
 
     public function after()

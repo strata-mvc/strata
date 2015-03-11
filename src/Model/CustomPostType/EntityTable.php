@@ -1,9 +1,12 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
 
 use MVC\Utility\Hash;
 use MVC\Utility\Inflector;
-use MVC\CustomPostTypes\LabeledEntity;
+use MVC\Mvc;
+use MVC\Router;
+use MVC\Model\CustomPostType\LabeledEntity;
+use MVC\Model\CustomPostType\Query;
 
 class EntityTable extends LabeledEntity
 {
@@ -79,7 +82,7 @@ class EntityTable extends LabeledEntity
         $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
-        $projectKey = strtolower(\MVC\Mvc::app()->getNamespace());
+        $projectKey = strtolower(Mvc::app()->getNamespace());
 
         $customizedOptions['labels'] += array(
             'name'                => _x( $plural, 'Post Type General Name', $projectKey ),
@@ -114,7 +117,7 @@ class EntityTable extends LabeledEntity
         $ClassName = get_called_class();
         $obj = new $ClassName();
         $parentSlug = 'edit.php?post_type=' . $ClassName::wordpressKey();
-        $namespace = \MVC\Mvc::app()->getNamespace();
+        $namespace = \MVC\Mvc::getNamespace();
 
         foreach ($cptAdminConfig as $func => $config) {
             $config += array(
@@ -131,9 +134,9 @@ class EntityTable extends LabeledEntity
             // We dont want people to have to specify that odd function name.
             // Allow them to send the controller string name and take care of the rest.
             if (is_string($config['route'])) {
-                $route = \MVC\Router::callback($config['route'], $func);
+                $route = Router::callback($config['route'], $func);
             }  else {
-                $route = \MVC\Router::callback($config['route'][0], $config['route'][1]);
+                $route = Router::callback($config['route'][0], $config['route'][1]);
             }
 
             add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $func, $route, $config['icon'], $config['position']);

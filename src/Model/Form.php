@@ -3,7 +3,8 @@
 namespace MVC\Model;
 
 use MVC\Utility\Hash;
-use MVC\Helpers\FormHelper;
+use MVC\Controller\Request;
+use MVC\View\Helper\FormHelper;
 
 class Form {
 
@@ -19,9 +20,12 @@ class Form {
      * Refers to a completed, validated form
      */
     protected $_completed = false;
+    protected $_request = null;
+
 
     public function __construct()
     {
+        $this->_request = new Request();
         $this->init();
     }
 
@@ -139,7 +143,7 @@ class Form {
         // Validate posted values against the entities if there is one set
         foreach ($entities as $entity) {
             // should we not use $_POST directly?
-            $entityValues = Hash::extract($_POST, FormHelper::POST_WRAP . "." . $entity->getPostPrefix());
+            $entityValues = $this->_request->post(FormHelper::POST_WRAP . "." . $entity->getPostPrefix());
 
             // Switch between multiple entities posted, or just one.
             if(!array_key_exists(0, $entityValues)) {
