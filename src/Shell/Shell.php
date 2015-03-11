@@ -51,10 +51,10 @@ class Shell
     public function shutdown()
     {
         $this->out("");
-        $this->out('Suspending the VM.');
+        $this->out('Halting the VM.');
         $this->out("");
 
-        return system("vagrant suspend");
+        return system("vagrant halt");
     }
 
     public function getPHPBin()

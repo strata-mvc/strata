@@ -33,6 +33,10 @@ class MigrationShell extends \MVC\Shell\Shell
      */
     public function main()
     {
+        $this->out('');
+        $this->startup();
+        $this->out('');
+
         if (is_null($this->_config['filepath'])) {
             $this->out('No file passed as migration. Loading most recent .sql file in /db/.');
             $this->_config['filepath'] = $this->_getMostRecent(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "db");
@@ -41,13 +45,9 @@ class MigrationShell extends \MVC\Shell\Shell
             $this->out('Applying migration for ' . $this->_config['filepath']);
         }
 
-        $this->out('');
-        $this->startup();
-        $this->out('');
-
         $command = sprintf("pv %s | mysql -u%s -p%s %s", "/vagrant/db/" . $this->_config['filepath'], DB_USER, DB_PASSWORD, DB_NAME);
         system("vagrant ssh -c '" . $command . "'");
-        system("vagrant suspend");
+        $this->shutdown();
     }
 
     protected function _getMostRecent($path)

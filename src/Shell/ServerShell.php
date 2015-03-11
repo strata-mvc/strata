@@ -44,7 +44,7 @@ class ServerShell extends Shell
         $this->startup();
         $this->out('');
 
-        $this->out('A webserver is now availlable at http://127.0.0.1:3000/');
+        $this->out('A webserver is now availlable at http://127.0.0.1:5454/');
         $this->out('Press CTRL + C to exit');
         $this->out('');
 
@@ -52,7 +52,6 @@ class ServerShell extends Shell
         // controlling the server.
         $command = "tail -f /vagrant/log/access.log";
         system("vagrant ssh -c '" . $command . "'");
-
-        return system("vagrant suspend");
+        $this->shutdown();
     }
 }
