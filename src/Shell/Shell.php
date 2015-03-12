@@ -54,7 +54,7 @@ class Shell
         $this->out('Halting the VM.');
         $this->out("");
 
-        return system("vagrant halt");
+        system("vagrant suspend");
     }
 
     public function getPHPBin()
