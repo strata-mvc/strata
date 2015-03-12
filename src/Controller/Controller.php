@@ -3,6 +3,7 @@
 namespace MVC\Controller;
 
 use MVC\Controller\Request;
+use MVC\View\Template;
 
 class Controller {
 
@@ -16,10 +17,8 @@ class Controller {
 
     public function init()
     {
+        // Save the current request
         $this->request = new Request();
-
-        // Expose a reference to the current controller
-        $GLOBALS['Controller'] = $this;
 
         // If this controller has shortcodes, try to assign them.
         $this->_buildShortcodes();
@@ -48,11 +47,6 @@ class Controller {
         $this->viewVars[$name] = $value;
         // Not super pretty, but this is the only way I could think of reaching WP's scope.
         $GLOBALS[$name] = $value;
-    }
-
-    public function posted()
-    {
-        return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
     }
 
     public function makeSecure()
@@ -114,11 +108,7 @@ class Controller {
      */
     public static function loadTemplate($name, $values = array())
     {
-        ob_start();
-        // expose local variables for the template
-        extract($values);
-        include(get_template_directory() . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $name . '.php');
-        return  ob_get_clean();
+        return Template::render($name, $values);
     }
 
 }

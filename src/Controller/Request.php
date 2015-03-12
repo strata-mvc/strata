@@ -15,6 +15,31 @@ class Request {
         $this->_buildRequestData();
     }
 
+    public function isPost()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
+    }
+
+    public function isGet()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'GET';
+    }
+
+    public function isPut()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'PUT';
+    }
+
+    public function isPatch()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'PATCH';
+    }
+
+    public function isDelete()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'DELETE';
+    }
+
     public function get($key)
     {
         return Hash::extract($this->_GET, $key);
@@ -32,17 +57,17 @@ class Request {
 
     public function hasPost($key)
     {
-        return Hash::check($this->_POST, $this->name($key));
+        return Hash::check($this->_POST, $key);
     }
 
     public function hasGet($key)
     {
-        return Hash::check($this->_GET, $this->name($key));
+        return Hash::check($this->_GET, $key);
     }
 
     public function hasCookie($key)
     {
-        return Hash::check($this->_COOKIE, $this->name($key));
+        return Hash::check($this->_COOKIE, $key);
     }
 
     protected function _buildRequestData()

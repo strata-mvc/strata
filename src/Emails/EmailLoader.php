@@ -3,6 +3,7 @@
 namespace MVC\Emails;
 
 use MVC;
+use MVC\View\Template;
 
 class EmailLoader {
 
@@ -12,11 +13,7 @@ class EmailLoader {
      */
     public static function loadTemplate($name, $values = array())
     {
-        ob_start();
-        // expose local variables for the email template
-        extract($values);
-        include(get_template_directory() . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'emails' . DIRECTORY_SEPARATOR . $name . '.php');
-        return  ob_get_clean();
+        return Template::render($name, $values);
     }
 
     // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
@@ -40,7 +37,7 @@ class EmailLoader {
             return DEBUG_EMAIL;
         }
 
-        $emails = MVC\app::config("project_email_list");
+        $emails = MVC\Mvc::config("project_email_list");
         if (is_array($emails) && array_key_exists($which, $emails)) {
             return $emails[$which];
         }
