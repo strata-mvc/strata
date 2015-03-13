@@ -84,7 +84,7 @@ class GenerateShell extends Shell
     protected function _renderModel()
     {
         $this->out("Scaffolding model {$this->_classname}");
-        $ctpExtend =  (bool)$this->_options["is_ctp"] ? "\MVC\CustomPostTypes\Entity" : "{$this->_namespace}\Model\AppModel";
+        $ctpExtend =  (bool)$this->_options["is_ctp"] ? "\MVC\Model\CustomPostTypes\Entity" : "{$this->_namespace}\Model\AppModel";
         
         file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . $this->_classname . ".php", "<?php
             namespace {$this->_namespace}\Model;
