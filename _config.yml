@@ -8,7 +8,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://wordpress-mvc.francoisfaubert.com" # the base hostname & protocol for your site
 twitter_username: francoisfaubert
 github_username:  francoisfaubert
-current_version: 0.1a.2
+current_version: dev-master
 
 # Build settings
 markdown: kramdown

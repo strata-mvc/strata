@@ -6,7 +6,7 @@ permalink: /docs/routes/
 
 ## Configuring
 
-Routes are declared inside `app.php` found in `/lib/wordpress-mvc/` under your theme's directory.
+Routes are declared inside `app.php` found in `/config/`.
 
 A routing rule is represented by an array consisting of 3 parameters :
 
@@ -22,9 +22,9 @@ $app = array(
     "key" => "Mynamespace",
     "routes" => array(
         array('GET|POST',   '/2014/12/hello-world/',        'HelloworldController#view')
-        array('GET|POST',   '/participate/volunteer/',      'VolunteersController#create')
+        array('GET|POST',   '/participate/volunteer/',      'VolunteerController#create')
         array('POST',       '/wp-admin/admin-ajax.php',     'AjaxController#index')
-        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongsController#view')
+        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongController#view')
     )
 );
 ?>
@@ -41,7 +41,7 @@ WMVC allows dynamic url parameters that will be transparent to Wordpress. You ca
 $app = array(
     "key" => "Mynamespace",
     "routes" => array(
-        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongsController#view')
+        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongController#view')
     )
 );
 ?>
@@ -55,12 +55,11 @@ As far as Wordpress will be concerned, the CMS page with the root permalink of `
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
 use Mywebsite\Models\Song;
 
-class SongsController extends Controller {
+class SongsController extends AppController {
     public function view($songSlug = null)
     {
         if (!is_null($songSlug)) {
@@ -88,9 +87,8 @@ The previous example will call the method `onPreGetPosts` of your project's `Cal
 <?php
 namespace Mywebsite\Controllers;
 
-use MVC\Controller;
 
-class CallbackController extends Controller {
+class CallbackController extends AppController {
     public function onPreGetPosts($query)
     {
         // Manipulate the query.

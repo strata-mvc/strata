@@ -4,74 +4,42 @@ title: Installation
 permalink: /docs/installation/
 ---
 
-## Get the library using Composer
+## Requirements
 
-To install Wordpress MVC create a `composer.json` file in your root directory and add the requirement to Wordpress MVC to this file.
+- You require [VirtualBox && Extension Pack](https://www.virtualbox.org/wiki/Downloads)
+- You require [Vagrant](http://www.vagrantup.com/downloads) to be installed
+- You require [Node.js](https://nodejs.org/), NPM and [yo](https://github.com/yeoman/yo) to be installed.
 
-The most recent release can be found on our [GitHub](https://github.com/francoisfaubert/wordpress-mvc/releases/latest)
-
-~~~ json
-{
-    "name": "Mynamespace/Mywebsite",
-    "require": {
-        "francoisfaubert/wordpress-mvc": "{{ site.current_version }}"
-    }
-}
-~~~
-
-Afterwards, run the installation from the root directory of your wordpress project to fetch these required packages:
+Finally, you need to Wordpress MVC generator for Yeoman:
 
 ~~~ bash
-$ php composer.phar install
+$ npm install -g generator-wordpress-mvc
 ~~~
 
-This will create a directory named `vendor` at the base of your Wordpress installation where all your PHP dependencies will be located. For more information on Composer you can [read up on their documentation](https://getcomposer.org/doc/).
 
+## Building the environment
 
-## Configuring in Wordpress
-
-Wordpress MVC is theme-based in that you can load the library with different controllers and models or a different configurations for each specific themes.
-
-All the project-related code you will write using the MVC must be located in `/lib/wordpress-mvc/` under your theme's directory. Additionally, a required file called `app.php` will located at the root of this directory and will contain the project's configuration values.
-
-We have created a sample version of the `app.php` file in our Composer package named `app.php.default` for you to copy in your active project.
-
-For example, should you be setting up WMVC using the `twentyfourteen` theme:
+Simply run the generator from the project's website. It will download the latest version of Wordpress as well as additional dependencies while creating the directory structure and configuration files for you.
 
 ~~~ bash
-$ mkdir wp-content/themes/twentyfourteen/lib/wordpress-mvc
-$ cp vendor/francoisfaubert/wordpress-mvc/app.php.default wp-content/themes/twentyfourteen/lib/wordpress-mvc/app.php
+$ mkdir my-website && cd my-website
+$ yo wordpress-mvc
 ~~~
 
-In `app.php`, the only required parameter is the `key` variable. It represents the namespace of your app and will be used when autoloading your modules. For instance, if your website is called Bob's Fishing Emporium the namespace could be `Bobsfishingemporium`.
+The generator will confirm that you are in the correct directory before doing anything. Afterwards, it will ask you for the project's namespace that will be used across the project to identify your files.
 
-~~~ php
-<?php
-$app = array(
-    // Give a namespace
-    "key" => "Bobsfishingemporium",
 
-    // Followed by optional additional configuration values. Ex:
-
-    // Setup custom routing on the app
-    "routes" => array(
-        array('GET|POST',   '/2014/12/hello-world/',     'HelloworldController#view'),
-    )
-);
-?>
-~~~
-
-You can [add custom configuration values]({{ site.baseurl }}/docs/configuration), [customize routes]({{ site.baseurl }}/docs/routes/) and [automatically create models model]({{ site.baseurl }}/docs/models/) to the configuration file.
-
-## Kickstarting in Wordpress
+## Kickstarting in Wordpress themes
 
 To kickstart WMVC, open your current theme's `functions.php` file and include the bootstraper.
 
-We encourage placing the include call in `functions.php` for consistency across projects. In reality, the actual place or method you use to include the file does not really matter.
+We encourage placing the include call in `functions.php` for consistency across projects. In reality, the actual place or method you use to include the file does not really matter as long as it precedes view files.
+
+By default, our Yeoman generator includes the following line automatically to the default theme's `functions.php` file. You will have to add it manually when creating additionnal themes.
 
 ~~~ php
 <?php
-// Load up MVC bootstrapper for wordpress
-require_once ABSPATH . 'vendor' . DIRECTORY_SEPARATOR . 'francoisfaubert' . DIRECTORY_SEPARATOR . 'wordpress-mvc' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+/* Load up MVC bootstrapper for wordpress */
+\MVC\Mvc::bootstrap();
 ?>
 ~~~

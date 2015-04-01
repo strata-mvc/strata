@@ -6,11 +6,13 @@ permalink: /docs/
 
 ## Why
 
-Wordpress is a fantastic blog engine and is more frequently used as a full fledged CMS. When building more complex websites or applications, one may find that you can't quite cleanly separate the business logic from the templating engine. For this reason, WMVC tries to organize your code away from the templates.
+Wordpress is a fantastic blog engine and can sometimes be used as a full fledged CMS. When building more complex websites and applications, one may find that you can't quite cleanly separate the business logic from the templating engine. For this reason, WMVC tries to organize your business code away from the templates.
 
 ## What it does
 
-Wordpress MVC allows you to associate permalinks to controller classes to offer an elegant way of maintaining complex code and keep the templates as clean as possible. It also maps models to custom post types so model relationships can be programmed similarly elegantly. It routes dynamic callback to controllers and removes all application logic from the theme's templates files without affecting the normal wordpress flow.
+Packaged in a stand-alone developing environment similar to CakePHP and Rails's, Wordpress MVC allows you to associate permalinks to controller classes to offer an elegant way of maintaining complex code and keep the templates as clean as possible. It also maps models to custom post types so model relationships can be programmed similarly elegantly.
+
+It routes dynamic callback to controllers and removes all application logic from the theme's templates files without affecting the normal wordpress flow.
 
 ## What it doesn't do
 

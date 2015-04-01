@@ -3,7 +3,8 @@ layout: page
 ---
 
 <div class="step">
-    <p class="lead">Wordpress MVC allows you to <em>organize your code based on programming concepts</em> instead of being inserted in the templating engine.</p>
+    <p class="lead">Wordpress MVC gives you a stable <em>development environment</em> that allows you to <em>organize your code outside of the templating engine.</em></p>
+    <p class="lead">It vows to keep Wordpress unmodified while doing so.</p>
 </div>
 
 <div class="step step-1">
@@ -11,11 +12,12 @@ layout: page
     <p>Be up and running in 4 simple steps:</p>
     <h1><span>Step 1</span>Install</h1>
 
-    <p>Wordpress MVC is a Composer dependency.</p>
+    <p>Wordpress MVC can be install using a Yeoman generator.</p>
 
-<pre><code>"require": {
-    "francoisfaubert/wordpress-mvc": "{{ site.current_version }}"
-}</pre></code>
+<pre><code>$ mkdir my-website &amp;&amp; cd my-website
+$ yo wordpress-mvc</pre></code>
+
+    <p>This will generate a set of tools inside a solid and secure directory structure, containing with a preconfigured VM that is dedicated only for this one project.</p>
 
 </div>
 
@@ -40,15 +42,14 @@ layout: page
 
     <p>Set up a route pointing to that page:</p>
 
-<pre><code>array('POST|GET',        '/songs/my-song-list/',           'SongsController#index')
-array('POST|GET',        array('/songs/my-song-list/[*:slug]?/' => 'index.php?pagename=songs/my-song-list'),           'SongsController#view')</pre></code>
-
+<pre><code>array('GET',        '/songs/my-song-list/',           'SongsController#index')
+array('GET',        array('/songs/my-song-list/?[*:slug]?' => 'index.php?pagename=songs/my-song-list'), 'SchoolsController#view')</pre></code>
 </div>
 
 <div class="step step-4">
     <h1><span>Step 4</span>Code</h1>
 
-    <p>All requests to "<code>/songs/my-song-list/</code>" will be processed by a controller class like the following one before compiling the usual Wordpress templates.</p>
+    <p>All requests to <code>/songs/my-song-list/</code> will be processed by a controller class similar to the following one. They will be ran before compiling the usual Wordpress templates.</p>
 
 <pre><code>&lt;?php
 namespace Mywebsite\Controllers;
@@ -62,13 +63,13 @@ class SongsController extends Controller {
 
     public function index()
     {
-        // No additional processing needed.
+
     }
 
-    public function view($songId = null)
+    public function view($slug = null)
     {
-        if (!is_null($songId)) {
-            $this->set("song", Song::findById((int)$songId));
+        if (!is_null($slug)) {
+            $this->set("song", Song::findBySlug($slug));
         }
     }
 
