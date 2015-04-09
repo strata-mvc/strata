@@ -50,8 +50,7 @@ class ServerShell extends Shell
 
         // Tail the server logs in order to keep the illusion that the console is
         // controlling the server.
-        $command = "tail -f /vagrant/log/access.log";
-        system("vagrant ssh -c '" . $command . "'");
+        system("tail -f /vagrant/log/error.log -f /vagrant/log/access.log");
         $this->shutdown();
     }
 }

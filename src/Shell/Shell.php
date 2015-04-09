@@ -14,16 +14,16 @@ class Shell
         }
 
         switch($key) {
-            case "c" : case "console" : return new \MVC\Shell\ConsoleShell();
-            case "s" : case "server" : return new \MVC\Shell\ServerShell();
-            case "g" : case "generate" : return new \MVC\Shell\GenerateShell();
-            case "m" : case "migrate" : return new \MVC\Shell\MigrationShell();
+            case "c" : case "console"   : return new \MVC\Shell\ConsoleShell();
+            case "s" : case "server"    : return new \MVC\Shell\ServerShell();
+            case "g" : case "generate"  : return new \MVC\Shell\GenerateShell();
+            case "m" : case "migrate"   : return new \MVC\Shell\MigrationShell();
         }
     }
 
     public function initialize($options = array())
     {
-        $this->_welcome();
+
     }
 
     /**
@@ -37,24 +37,12 @@ class Shell
      */
     public function startup()
     {
-        $msg = file_exists(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . ".vagrant") ?
-            'Starting the VM. This can take a few seconds.' :
-            'A new virtual machine needs to be downloaded and/or setup for the first time. This will take a long time.';
 
-        $this->out("");
-        $this->out($msg);
-        $this->out("");
-
-        system("vagrant up");
     }
 
     public function shutdown()
     {
-        $this->out("");
-        $this->out('Halting the VM.');
-        $this->out("");
 
-        system("vagrant suspend");
     }
 
     public function getPHPBin()
@@ -75,19 +63,5 @@ class Shell
     {
        // The extending classes will be able to do
        // something with the arguments sent to the shell command.
-    }
-
-    /**
-     * Displays a header for the shell
-     *
-     * @return void
-     */
-    protected function _welcome()
-    {
-        $this->out("");
-        $this->out("========================================================================");
-        $this->out(" Welcome to Wordpress MVC Console");
-        $this->out("========================================================================");
-        $this->out("");
     }
 }

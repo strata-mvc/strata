@@ -1,29 +1,19 @@
 #!/usr/bin/env bash
-################################################################################
-#
-# roots is a shell script for running Roots generator script
-# @see https://github.com/cakephp/app/blob/master/bin/cake
-#
-################################################################################
 
-# Canonicalize by following every symlink of the given name recursively
-canonicalize() {
-    NAME="$1"
-    if [ -f "$NAME" ]
-    then
-        DIR=$(dirname -- "$NAME")
-        NAME=$(cd -P "$DIR" > /dev/null && pwd -P)/$(basename -- "$NAME")
-    fi
-    while [ -h "$NAME" ]; do
-        DIR=$(dirname -- "$NAME")
-        SYM=$(readlink "$NAME")
-        NAME=$(cd "$DIR" > /dev/null && cd $(dirname -- "$SYM") > /dev/null && pwd)/$(basename -- "$SYM")
-    done
-    echo "$NAME"
-}
+echo "========================================================================"
+echo " Welcome to Wordpress MVC Console"
+echo "========================================================================"
 
-CONSOLE=$(dirname -- "$(canonicalize "$0")")
-APP=$(dirname "$CONSOLE")
+vagrant up
 
-exec /usr/bin/php "$CONSOLE"/runner.php "$@"
+COMMAND="php /vagrant/bin/runner.php $@"
+
+vagrant ssh --command "$COMMAND"
+
+echo ''
+echo 'Halting the VM.'
+echo ''
+
+vagrant suspend
+
 exit
