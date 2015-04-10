@@ -46,7 +46,7 @@ class RoutingContext {
 
         // If routes are not present, router has nothing to do and processing should be ignored.
         if ($app && $routes) {
-            $router = new self();
+            $router = new \MVC\Router();
             $router->init();
 
             // Hook on Wordpress' init action to start any process.

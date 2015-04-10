@@ -102,7 +102,7 @@ class EntityTable extends LabeledEntity
 
         register_post_type($ClassName::wordpressKey(), $customizedOptions);
 
-        if (count($customizedOptions['has'])) {
+        if (array_key_exists('has', $customizedOptions) && count($customizedOptions['has'])) {
             foreach ($customizedOptions['has'] as $Taxonomy) {
                 $Taxonomy::addTaxonomy($ClassName);
             }

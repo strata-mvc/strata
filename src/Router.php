@@ -21,11 +21,9 @@ class Router extends RoutingContext {
      */
     public function init()
     {
-        $parsedAltoRoutes = $this->_parseRoutesForAlto(\MVC\Mvc::config('routes'));
-
         // Create the AltoRouter instance
         $this->_altoRouter = new \AltoRouter();
-        $this->_altoRouter->addRoutes($parsedAltoRoutes);
+        $this->_altoRouter->addRoutes(\MVC\Mvc::config('routes'));
     }
 
     /**
@@ -57,34 +55,6 @@ class Router extends RoutingContext {
                 }
             }
         }
-    }
-
-    /**
-     * Wordpress route regexes are different from those Alto can parse.
-     * Convert the alto regexes to a pattern add_rewrite_rule can use.
-     * @param array $config The configuration array of app->config
-     * @return array The parsed routes
-     */
-    protected function _parseRoutesForAlto($config)
-    {
-        $parsedAltoRoutes = $config;
-
-        // @bug : This does not seem to work as intended. Wordpress never accepts
-        // our dynamic slugs. The concept could probably be thrown out because custom slugs
-        // must be handled at the custom post type level.
-        foreach ($parsedAltoRoutes as $idx => $route) {
-            if (is_array($route[1]) && count($route[1]) === 1) {
-                $altoRegex = key($route[1]);
-                $wordpressRegex = str_replace('[', '(', $altoRegex);
-                $wordpressRegex = ltrim($wordpressRegex, '/');
-                $wordpressRegex = preg_replace('/[\*]/', '.*', $wordpressRegex);
-                $wordpressRegex = preg_replace('/(:.+?\]\/?)/', ')', $wordpressRegex);
-
-                add_rewrite_rule($wordpressRegex . '$', array_pop($route[1]),'top');
-                $parsedAltoRoutes[$idx][1] = $altoRegex;
-            }
-        }
-        return $parsedAltoRoutes;
     }
 }
 

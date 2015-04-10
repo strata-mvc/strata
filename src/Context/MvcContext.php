@@ -38,7 +38,8 @@ class MvcContext {
      */
     public static function getNamespace()
     {
-        return self::config('key');
+        $var = self::config('key');
+        return array_pop($var);
     }
 
     public static function loadEnvConfiguration($env = "production")

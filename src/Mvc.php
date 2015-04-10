@@ -78,7 +78,7 @@ class Mvc extends MvcContext {
      */
     public function read($key)
     {
-        return array_pop(Hash::extract($this->_config, $key));
+        return Hash::extract($this->_config, $key);
     }
 
     public function write($key, $value)

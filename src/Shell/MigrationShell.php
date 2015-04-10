@@ -46,7 +46,7 @@ class MigrationShell extends \MVC\Shell\Shell
         }
 
         $command = sprintf("pv %s | mysql -u%s -p%s %s", "/vagrant/db/" . $this->_config['filepath'], DB_USER, DB_PASSWORD, DB_NAME);
-        system("vagrant ssh -c '" . $command . "'");
+        system($command);
         $this->shutdown();
     }
 

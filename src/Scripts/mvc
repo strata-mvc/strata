@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-echo "========================================================================"
-echo " Welcome to Wordpress MVC Console"
-echo "========================================================================"
+echo ""
+echo " ========================================================================"
+echo "  Welcome to Wordpress MVC Console"
+echo " ========================================================================"
+echo ""
 
 vagrant up
 
 COMMAND="php /vagrant/bin/runner.php $@"
-
 vagrant ssh --command "$COMMAND"
 
 echo ''

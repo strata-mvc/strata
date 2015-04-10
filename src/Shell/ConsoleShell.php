@@ -9,7 +9,7 @@ use MVC\Shell\Shell;
  * Simple console wrapper around Boris.
  */
 class ConsoleShell extends Shell
-{        
+{
     /**
      * Start the shell and interactive console.
      *
@@ -17,7 +17,7 @@ class ConsoleShell extends Shell
      */
     public function main()
     {
-        if (!class_exists('Boris\Boris')) {            
+        if (!class_exists('Boris\Boris')) {
             $this->out('Unable to load Boris\Boris.');
             $this->out('');
             $this->out('Make sure you have installed boris as a dependency,');
@@ -35,11 +35,11 @@ class ConsoleShell extends Shell
             $this->out('You are missing the pcntl extension, the interactive console requires this extension.');
             return 2;
         }
-        
+
         $this->out('You can exit with <info>CTRL-D</info>');
-        
-        $boris = new Boris('roots > ');
+
+        $boris = new Boris('MVC > ');
         $boris->start();
     }
-    
+
 }

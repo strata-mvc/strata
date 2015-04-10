@@ -5,7 +5,7 @@ namespace MVC\View\Helper;
 use MVC\Controller\Request;
 use MVC\Utility\Hash;
 
-class FormHelper {
+class FormHelper extends \MVC\View\Helper\Helper {
 
     const POST_KEY_CURRENT      = "mvc-current-step";
     const POST_KEY_NEXT_PAGE    = "mvc-next-step";

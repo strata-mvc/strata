@@ -15,23 +15,11 @@ class ServerShell extends Shell
         host and port by calling bin/mvc [arg] [arg1] [n].
 
         However, because we needed to use a Vagrant VM this options
-        is currently on hold
+        is currently on hold */
     public function contextualize($args)
     {
-        if (count($args) > 2) {
-            for($i = 2; $i < count($args); $i++) {
-                $matches = null;
-                if (preg_match('/host=(.*)/', $args[$i], $matches)) {
-                    $this->_config["host"] = $matches[1];
-                }
-                elseif (preg_match('/port=(.*)/', $args[$i], $matches)) {
-                    $this->_config["port"] = $matches[1];
-                }
-            }
-        }
         parent::contextualize($args);
     }
-     */
 
     /**
      * Override main() to handle action
@@ -50,7 +38,7 @@ class ServerShell extends Shell
 
         // Tail the server logs in order to keep the illusion that the console is
         // controlling the server.
-        system("tail -f /vagrant/log/error.log -f /vagrant/log/access.log");
+        system("tail -n 0 -f /vagrant/log/access.log");
         $this->shutdown();
     }
 }

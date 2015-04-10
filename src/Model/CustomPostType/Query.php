@@ -1,5 +1,5 @@
 <?php
-namespace MVC\CustomPostTypes;
+namespace MVC\Model\CustomPostType;
 
 class Query
 {
