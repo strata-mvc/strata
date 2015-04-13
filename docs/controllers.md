@@ -6,13 +6,29 @@ permalink: /docs/controllers/
 
 Controllers allow an easy to understand entry point in modern web applications. Once you have set up the [application's routes]({{ site.baseurl }}/docs/routes/) in your project's `app.php` you will have to write the corresponding controller endpoints.
 
-## Declaring a controller
+## Creating a controller file
 
-Controller files are located under `/lib/wordpress-mvc/Controllers/` inside your theme's directory.
+To generate a Controller, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-You must ensure the class extends `MVC\Controller` which instanciate the object for you. Functions that have routes mapped to them need to be publicly accessible.
+Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a controller for the `Artist` object:
 
-Inside these action functions, you can prepare variables set to be sent to the templating files as well as instanciate any custom view helpers using `$this->set("varname", $mixedValue)`.
+~~~ sh
+$ bin/mvc generate controller Artist
+~~~
+
+It will generate a couple of files for you, including the actual controller file and test suites for the generated class.
+
+~~~ sh
+Scaffolding controller Artist
+src/controller/ArtistController.php
+tests/controller/ArtistController.php
+~~~
+
+The main use case of Controllers in Wordpress MVC is to replace the need of placing pure code in the top area of a template file. Instead of instanciating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the abbility to use the same business logic code in mutiple themes as well as improving code testability.
+
+Controllers may seem like overkill if you only use the regular templating. You can achieve similar results by placing the code in a custom `template-customposttype.php` file. It's up to you to decide if you need such infrastructure in your project.
+
+ On the other hand, when handling posted data on a Wordpress CMS page or for any other reasons when the page can have a dynamic state, controllers become a great way of speparating your code.
 
 Note that no helpers or models are being auto-loaded by the controller.
 
@@ -20,18 +36,16 @@ Here's how you could declare a controller for a Song entity:
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-use Mywebsite\Models\Song;
+use Mywebsite\Model\Song;
 
-class SongsController extends Controller {
+class SongsController extends \MyProject\Controller\AppController {
 
     public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
 
     public function index()
     {
-        // No additional processing needed.
     }
 
     public function view($songId = null)
@@ -50,16 +64,17 @@ class SongsController extends Controller {
 ?>
 ~~~
 
-
 ## Shortcodes and exposing actions.
 
 In the case where you have created a page in Wordpress and need to include dynamic values inside the post's CMS content, you may use auto-generated shortcodes.
 
 In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListingShortcode()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListingShortcode()`.
 
-Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be declared and applied. In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller).
+Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be declared and applied.
 
-Generating shortcodes like these is also useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/).
+In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\MVC\Router::callback()]({{ site.baserl }}/docs/routes/).
+
+Generating shortcodes like these is useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/) or when generating data that needs to be manipulated right form CMS data.
 
 ## Setting view variables
 
@@ -88,7 +103,7 @@ Upon each succesful route match the router will call the `before()` and `after()
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
 use MVC\Controller;
 
@@ -112,7 +127,7 @@ class AdminController extends Controller {
 
 ## On ajax
 
-Ajax in wordpress can be difficult to achieve and we tailored a way to help. In our controllers, you can specify the rending method along side a content type and various options to ease request capture.
+Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In our controllers, you can specify the rending method along side a content type and various options to ease request capture.
 
 Assuming we have this routing rule in `app.php`:
 
@@ -126,12 +141,11 @@ The controller file could look like :
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-use Mywebsite\Models\Song;
+use Mywebsite\Model\Song;
 
-class AjaxController extends Controller {
+class AjaxController extends \MyProject\Controller\AppController {
 
     public function songs()
     {
@@ -173,18 +187,15 @@ And the javascript call could be :
 
 ## On file downloads
 
-By default, calling `render()` will end the current php process and it will prevent the rendering of the full Wordpress template stack which we don't need as we are printing json data. Valid content-types are those accepted by PHP's `header()` function.
-
-It is easy to set up file downloads by entering the known PHP header arguments.
+By default, calling `render()` will end the current php process and it will prevent the rendering of the full Wordpress template stack (which we don't need as we are printing partial data). This function allows you to specify the content-type of the returned value as well as additional PHP's `header()` values. It is easy to set up file downloads by entering known PHP header arguments:
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-use Mywebsite\Models\Forms\CSVExportForm;
+use Mywebsite\Model\Form\CSVExportForm;
 
-class FileController extends Controller {
+class FileController extends \MyProject\Controller\AppController {
 
     public function downloadcvs()
     {
@@ -202,7 +213,7 @@ class FileController extends Controller {
 
 ## On scopes and custom templating
 
-Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different scopes.
+Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
 
 The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
 
@@ -218,15 +229,13 @@ The metabox uses its own template file, outside of the current page rendering. Y
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-
-class AdminController extends Controller {
+class AdminController extends \MyProject\Controller\AppController {
 
     public function before()
     {
-        $this->set("testvar3", "before!")
+        $this->set("testvar3", "before!");
     }
 
     public function testDashboardMetabox()

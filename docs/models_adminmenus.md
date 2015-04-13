@@ -44,17 +44,15 @@ In the example above, `Profile` will have two links added. The first will link t
 On the other hand, `Song` will have only added one link. It will attempt to call `extraSongInfo` of the `SongController` class.
 
 
-## On rendering
+## On rendering in the admin
 
 Hooks into the backend like these will be rendered mid-page and not before the first line of HTML is printed. This means that if your action needs to print something, it is important that you do not stop the original page rendering when calling the controller's `render()` method. Passing `false` to the `end` parameter of the function will allow the request to complete normally.
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-
-class AdminController extends Controller {
+class AdminController extends \MyProject\Controller\AppController {
 
     public function secondProfileAction()
     {

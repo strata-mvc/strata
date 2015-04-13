@@ -22,9 +22,9 @@ $app = array(
     "key" => "Mynamespace",
     "routes" => array(
         array('GET|POST',   '/2014/12/hello-world/',        'HelloworldController#view')
-        array('GET|POST',   '/participate/volunteer/',      'VolunteerController#create')
         array('POST',       '/wp-admin/admin-ajax.php',     'AjaxController#index')
-        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongController#view')
+        array('GET',        '/music-page/',                 'SongController#index'),
+        array('GET',        '/music-page/[*:slug]/',        'SongController#view'),
     )
 );
 ?>
@@ -34,32 +34,29 @@ In the previous example, you can see you can pipe multiple request types (useful
 
 ## Dynamic url parameters
 
-WMVC allows dynamic url parameters that will be transparent to Wordpress. You can achieve this by assigning an array as permalink parameter:
+The last route in the previous exemple will trigger on calls to `/music-page/my-name-is-jonas/`, `/music-page/x-y-u/` should the custom post types exist and be publicly visible to the frontend. These request will  to the method `view` of the controller `SongController` with the matched slug as first parameter, should it be present.
+
+The custom post type `Song` needs to be configured the proper rewrite rule prefix :
 
 ~~~ php
 <?php
-$app = array(
-    "key" => "Mynamespace",
-    "routes" => array(
-        array('GET',        array('/songs/[*:slug]?/' => 'index.php?pagename=songs'),           'SongController#view')
-    )
-);
+ public $configuration = array(
+        'publicly_queryable' => true,
+        "rewrite"   => array(
+            'slug'                => 'music-page',
+            'with_front'          => true,
+        )
+    );
 ?>
 ~~~
-
-The array key is the permalink to match and the array value is the page Wordpress will have to load when it will hits that permalink. This allows you to fork all calls to one controller and one CMS page.
-
-The route in the previous exemple will forward calls to `/songs/`, `/songs/my-name-is-jonas/`, `/songs/x-y-u/` to the method `view` of the controller `SongsController` with the matched slug as first parameter, should it be present.
-
-As far as Wordpress will be concerned, the CMS page with the root permalink of `/songs/` will always be loaded because we've map the route to `index.php?pagename=songs`. This must be a valid second parameter to Wordpress' `add_rewrite_rule` function.
 
 ~~~ php
 <?php
 namespace Mywebsite\Controller;
 
-use Mywebsite\Models\Song;
+use Mywebsite\Model\Song;
 
-class SongsController extends AppController {
+class SongController extends \MyProject\Controller\AppController {
     public function view($songSlug = null)
     {
         if (!is_null($songSlug)) {
@@ -72,7 +69,7 @@ class SongsController extends AppController {
 
 ## On-demand routing and dynamic callbacks
 
-Should you wish to hook into one of Wordpress' hooks instead of an URL, you may need to generate a dynamic callback to a controller's action. You may call the `Router` directly to obtain a callback array.
+Should you wish to hook into one of Wordpress' filters and action instead of an URL, you may need to generate a dynamic callback to a controller's action. You may call the `Router` object directly to obtain a callback array.
 
 ~~~ php
 <?php
@@ -82,13 +79,11 @@ Should you wish to hook into one of Wordpress' hooks instead of an URL, you may 
 
 The previous example will call the method `onPreGetPosts` of your project's `CallbackController` controller class and send the expected function parameters.
 
-
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-
-class CallbackController extends AppController {
+class CallbackController extends \MyProject\Controller\AppController {
     public function onPreGetPosts($query)
     {
         // Manipulate the query.
@@ -96,7 +91,6 @@ class CallbackController extends AppController {
 }
 ?>
 ~~~
-
 
 ## More complex request matching
 

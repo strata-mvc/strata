@@ -6,6 +6,7 @@ permalink: /docs/installation/
 
 ## Requirements
 
+- A *nix enviroment (Unless you contribute to the project and help me create the .bat file)
 - You require [VirtualBox && Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 - You require [Vagrant](http://www.vagrantup.com/downloads) to be installed
 - You require [Node.js](https://nodejs.org/), NPM and [yo](https://github.com/yeoman/yo) to be installed.

@@ -4,11 +4,11 @@ title: Saving
 permalink: /docs/saving/
 ---
 
-Saving data is an important part of a complex web application and Wordpress MVC expects that one will have to save data outside of the regular wordpress scope (ex: the backend).
+Saving data is an important part of a complex web application. Wordpress MVC allows you to save data outside of the regular wordpress scope (ex: the backend).
 
-To ease and automate this process, it allows the building of dynamic forms and automated test on posted values when saving data.
+To ease and automate this process, it allows the building of dynamic forms and automated tests on posted values when saving data.
 
-The are 4 steps to this process
+The are 4 steps to this process :
 
 * Setting up the controller to prepare and catch form data
 * Creating the form object that will contain form logic
@@ -17,30 +17,30 @@ The are 4 steps to this process
 
 # Setting up the controller
 
-Your controller can plublicize the form using a shortcode. In the following example, we declare a shortcode titled `[songform]` that will print out the form's generated html. Because of scoping we must send the current controller's view variables in the shortcode callback as discussed [in the Controller documentation](/docs/controllers/).
+Your controller can expose the form using a shortcode. In the following example, we declare a shortcode titled `[songform]` that will print out the form's generated html. Because of scoping we must send the current controller's view variables in the shortcode callback as discussed [in the Controller documentation](/docs/controllers/).
 
-Implying you have [created routing routes](/docs/routes/) that will reach the `create` action, you can know start declaring your tools. You need to declare a model entity and a form object the will both be used to validate posted data.
+Implying you have [created routing routes](/docs/routes/) that will reach the `create` action, you can now start crafting your tools. You need to declare a model entity and a form object that will both be used to validate posted data.
 
-Upon each page loads when `$form->process()` is called, the form will validate values in the $_POST array and look for variables that match the attributes of the entities passed to it. This allows you to validate multiple entities in the same form.
+Upon each page loads when `$form->process()` is called, the form will validate values in the `$_POST` array and look for variables that match the attributes of the entities passed to it. This allows you to validate multiple entities in the same form.
 
 Because a form is considered completed once form steps are completed (if there were any) and when all the attributes have passed the automated validation tests, we can save the form by passing it to the model entity.
 
 
 ~~~ php
 <?php
-namespace Mywebsite\Controllers;
+namespace Mywebsite\Controller;
 
-use MVC\Controller;
-use Mywebsite\Models\Song;
-use Mywebsite\Models\Forms\SongForm;
+use Mywebsite\Model\Song;
+use Mywebsite\Model\Form\SongForm;
 
-class SongsController extends Controller {
+class SongsController extends \MyProject\Controller\AppController {
 
     public $shortcodes = array("songform" => 'getFormTemplate');
     protected $_form = null;
 
     /**
      * The form is expected to be loaded by shortcode that prints the current form object.
+     * Therefore is it in a second scope and we need to send view variables manually.
      */
     public function getFormTemplate()
     {
@@ -65,7 +65,7 @@ class SongsController extends Controller {
 
 ## Creating the form object
 
-Each form must be linked to an object implementing `MCV\Models\Form`. These objects should be located under your project's model's forms directory : `[current_theme]/lib/wordpress-mvc/Models/Forms/SongForm.php`.
+Each form must be linked to an object implementing `MCV\Model\Form`. These objects should be located under your project's model's forms directory : `src/model/form/SongForm.php`.
 
 The role of this object is to declare the context of the form as well as grant functions that can help controllers handle the form data. For example, here the form will have 5 steps to it and the Form object will look for template files prefixed with `songs` when building the html.
 
@@ -73,11 +73,9 @@ The role of this object is to declare the context of the form as well as grant f
 
 ~~~ php
 <?php
-namespace Trottibus\Models\Forms;
+namespace Mywebsite\Model\Form;
 
-use MVC\Models\Form;
-
-class SongForm extends Form
+class SongForm extends \MVC\Model\Form
 {
     public function init($options = array())
     {
@@ -86,7 +84,9 @@ class SongForm extends Form
             "formKey"   => 'songs' // this key is used when loading templating files
         ));
     }
-    public function hasATitle() {
+
+    public function hasATitle()
+    {
         $helper = $this->getHelper();
         return $helper->hasPostedValue("song.title");
     }
@@ -160,7 +160,6 @@ If your form has steps you can print out the step labels. It's important to plac
 
 
 
-
     <!-- you wouldn't have to test for steps here as you are supposed to know if the form does. This is only to illustrate
     how one would print submit buttons depending on use cases -->
 
@@ -191,11 +190,9 @@ The example bellow saves a new `Song` with the song title as post title and assi
 
 ~~~ php
 <?php
-namespace Mywebsite\Models;
+namespace Mywebsite\Model;
 
-use MVC\CustomPostTypes\Entity;
-
-class School extends Entity
+class Song extends \MVC\Model\CustomPostType\Entity {
 {
     public $attributes = array(
         // Proofed info
@@ -210,15 +207,18 @@ class School extends Entity
     public function saveForm($formHelper)
     {
         // Create the post type entity
-        $songId = Song::create(array(
+        $songId = self::create(array(
             'post_title'    => trim($formHelper->getPostedValue('song.title')),
             'post_status'   => 'publish',
         ));
 
+        // We encourage the use of Advanced custom field to save additional meta-data
+        // in the custom post types. This example illustrates how one could decide to implement it:
+        //
         // Loop through all supported attributes and set the ACF field linked
         // to the entity. The corresponding keys have to have been set in WP's backend.
         foreach (array_keys($this->getAttributes()) as $attribute) {
-            update_field($attribute, $formHelper->getPostedValue(Song::key() . "." . $attribute), $songId);
+            update_field($attribute, $formHelper->getPostedValue(self::key() . "." . $attribute), $songId);
         }
 
         return $songId;

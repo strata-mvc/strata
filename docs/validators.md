@@ -10,15 +10,13 @@ Validators should be passed as configuration arrays to the `validations` key of 
 
 ~~~ php
 <?php
-namespace Mywebsite\Models;
+namespace Mywebsite\Model;
 
-use MVC\CustomPostTypes\Entity;
-
-class Song extends Entity
+class Song extends \MVC\Model\CustomPostType\Entity {
 {
     public $attributes = array(
         "artist"            => array("validations" => array("required", "postExists")),
-        'genre'             => array("validations" => array("in" => array("Mywebsite\Models\Song::genreListing"))),
+        'genre'             => array("validations" => array("in" => array("Mywebsite\Model\Song::genreListing"))),
         "lyrics"            => array("validations" => array("required")),
         "year_active"       => array("validations" => array("required", "numeric", "length" => array("min" => 2, "max" => 4))),
         "email"             => array("validations" => array("required", "email", "same" => array("as" => "email_confirm"))),
@@ -61,7 +59,7 @@ This is to help creating form controls making it easier to look in value/labels 
 ~~~ php
 <?php
 public $attributes = array(
-    "attributename"      => array("validations" => array("in" => array("Mywebsite\Models\Song::genreListing"))),
+    "attributename"      => array("validations" => array("in" => array("Mywebsite\Model\Song::genreListing"))),
 );
 
 public static function genreListing()
@@ -157,9 +155,13 @@ public $attributes = array(
 
 ## Creating a custom validator
 
-To create a validator from scatch, create a file under your model's validators directory: `[current_theme]/lib/wordpress-mvc/Models/Validators/MyValidator.php`.
+To generate a custom validator, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-Ensure it extends `MVC\Models\Validator`.
+Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
+
+~~~ sh
+$ bin/mvc generate validator MyPasswordValidator RequiredValidator
+~~~
 
 You class must implement a function named `test` which will run the actual test. This function is expected to return a boolean value. The two parameters are the posted value and the formhelper object. Using the formhelper reference allows you to reach out to posted values and various contextual information.
 
@@ -167,11 +169,9 @@ To customize the error message of your validator, implement the function `getMes
 
 ~~~ php
 <?php
-namespace Mywebsite\Models\Validators;
+namespace Mywebsite\Model\Validator;
 
-use MVC\Models\Validator;
-
-class MyValidator extends Validator {
+class MyValidator extends \MVC\Model\Validator {
 
     public function test($value, $context)
     {
@@ -186,16 +186,15 @@ class MyValidator extends Validator {
 ?>
 ~~~
 
-
 ## Modifying an existing validator
 
-If a validator does not do all you desire you may extend the default ones in your project. In this exemple, we allow translation on the default error message of the `PostExistsValidator`.
+If a validator does not do all you desire you may extend the default ones in your project. In this exemple, we will allow translation on the default error message of the `PostExistsValidator`.
 
 ~~~ php
 <?php
-namespace Mywebsite\Models\Validators;
+namespace Mywebsite\Model\Validator;
 
-class PostExistsValidator extends \MVC\Models\Validators\PostExistsValidator {
+class PostExistsValidator extends \MVC\Model\Validator\PostExistsValidator {
 
     public function getMessage()
     {
