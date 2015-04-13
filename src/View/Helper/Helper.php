@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Helper;
+namespace MVC\View\Helper;
 
 class Helper {
 

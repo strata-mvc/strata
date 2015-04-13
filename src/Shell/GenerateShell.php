@@ -32,6 +32,18 @@ class GenerateShell extends Shell
                     $this->_options["is_ctp"] =  count($args) > 4 && $args[4] == "true";
                     break;
 
+                case "taxonomy" :
+                    $this->out("Generating a taxonomy is not yet supported, but should be soon.");
+                    break;
+
+                case "validator" :
+                    $this->out("Generating a validator is not yet supported, but should be soon.");
+                    break;
+
+                case "route" :
+                    $this->out("Generating a route is not yet supported, but should be soon.");
+                    break;
+
                 case "helper" :
                     $this->_type = "helper";
                     $this->_classname = Inflector::classify($args[3]) . "Helper";

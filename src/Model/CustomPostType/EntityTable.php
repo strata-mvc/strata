@@ -33,6 +33,10 @@ class EntityTable extends LabeledEntity
         return wp_update_post( $options );
     }
 
+    public static function wp_delete_post($postId, $force = false)
+    {
+        return wp_delete_post( $postId, $force);
+    }
 
     /**
      * Starts a wrapped wp_query pattern object. Used to chain parameters
