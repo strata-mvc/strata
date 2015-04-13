@@ -7,79 +7,34 @@ layout: page
     <p class="lead">It vows to keep Wordpress unmodified while doing so.</p>
 </div>
 
-<div class="step step-1">
+<div class="step">
 
-    <p>Be up and running in 4 simple steps:</p>
-    <h1><span>Step 1</span>Install</h1>
+    <div class="col">
+        <p><strong>The development environment contains:</strong></p>
+        <ul>
+            <li>A stand-alone webserver</li>
+            <li>Generators of MVC files</li>
+            <li>Testing suite</li>
+            <li>Documentation suite</li>
+            <li>Migration tools</li>
+        </ul>
+    </div>
 
-    <p>Wordpress MVC can be install using a Yeoman generator.</p>
+    <div class="col">
+        <p><strong>The framework allows:</strong></p>
+        <ul>
+            <li>PHP dependencies through Composer</li>
+            <li>Controller page state handling</li>
+            <li>Contained Model queries</li>
+            <li>ViewHelper tools</li>
+            <li>Performance boost (unused code is not interpreted)</li>
+            <li>Code availability for all website themes</li>
+        </ul>
+    </div>
 
-<pre><code>$ mkdir my-website &amp;&amp; cd my-website
-$ yo wordpress-mvc</pre></code>
+    <br clear="all" />
 
-    <p>This will generate a set of tools inside a solid and secure directory structure, containing with a preconfigured VM that is dedicated only for this one project.</p>
-
-</div>
-
-
-<div class="step step-2">
-
-    <h1><span>Step 2</span>Create a page</h1>
-
-    <p>Using Wordpress' backend, create a page that has a permalink of <code>/songs/my-song-list/</code> and insert a shortcode named <code>list_songs</code> in the post's body.</p>
-
-
-<pre><code>&lt;p&gt;One can customize the page's content.&lt;/p&gt;
-[list_songs]
-&lt;p&gt;This would be under the generated content of the shortcode.&lt;/p&gt;
-</pre></code>
-
-</div>
-
-<div class="step step-3">
-
-    <h1><span>Step 3</span>Declare a route</h1>
-
-    <p>Set up a route pointing to that page:</p>
-
-<pre><code>array('GET',        '/songs/my-song-list/',           'SongsController#index')
-array('GET',        array('/songs/my-song-list/?[*:slug]?' => 'index.php?pagename=songs/my-song-list'), 'SchoolsController#view')</pre></code>
-</div>
-
-<div class="step step-4">
-    <h1><span>Step 4</span>Code</h1>
-
-    <p>All requests to <code>/songs/my-song-list/</code> will be processed by a controller class similar to the following one. They will be ran before compiling the usual Wordpress templates.</p>
-
-<pre><code>&lt;?php
-namespace Mywebsite\Controllers;
-
-use MVC\Controller;
-use Mywebsite\Models\Song;
-
-class SongsController extends Controller {
-
-    public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
-
-    public function index()
-    {
-
-    }
-
-    public function view($slug = null)
-    {
-        if (!is_null($slug)) {
-            $this->set("song", Song::findBySlug($slug));
-        }
-    }
-
-    public function getSongsListingShortcode()
-    {
-        $list = Song::query()->listing("ID", "post_title");
-        return "&lt;p&gt;" . implode(", ", $list) . "&lt;/p&gt;";
-    }
-}
-</pre></code>
+    <p>Wordpress MCV provides a development environment featuring concepts often seen in other MVC solutions of all languages. It eases the development of more complex and custom Wordpress applications by seperating logic and presentation. In doing so, the code is easier to work on for a team of developers in the context of a business.</p>
 
 </div>
 
