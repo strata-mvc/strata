@@ -34,7 +34,7 @@ In the previous example, you can see you can pipe multiple request types (useful
 
 ## Dynamic url parameters
 
-The last route in the previous exemple will trigger on calls to `/music-page/my-name-is-jonas/`, `/music-page/x-y-u/` should the custom post types exist and be publicly visible to the frontend. These request will  to the method `view` of the controller `SongController` with the matched slug as first parameter, should it be present.
+The last route in the previous example will trigger on calls to `/music-page/my-name-is-jonas/`, `/music-page/x-y-u/` should the custom post types exist and be publicly visible to the frontend. These request will  to the method `view` of the controller `SongController` with the matched slug as first parameter, should it be present.
 
 The custom post type `Song` needs to be configured the proper rewrite rule prefix :
 
@@ -98,7 +98,7 @@ Under the hood Wordpress MVC uses AltoRouter. As long as you enter the rules usi
 
 ## On translated pages
 
-To be as unobstrusive as possible we chose not to support automatic page translations mapping. However you can map multiple urls to the same controller, therefore you can expect the following example to work the way you would think :
+To be as unobtrusive as possible we chose not to support automatic page translations mapping. However you can map multiple urls to the same controller, therefore you can expect the following example to work the way you would think :
 
 ~~~ php
 <?php

@@ -12,13 +12,13 @@ In regular MVC frameworks a model can (but is not required to) map to a table in
 
 Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
 
-Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manupulating the received data.
+Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manipulating the received data.
 
 ## Creating a model file.
 
 To generate a Model, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a model named `Artist` :
+Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
 
 ~~~ sh
 $ bin/mvc generate model Artist
@@ -34,11 +34,11 @@ tests/model/Artist.php
 
 ## Customizing the Model
 
-The generated entity will be only accesssible through Wordpress' backend. The intend of the Model entity is not to be displayed on the front end using the default Wordpress Loop.
+The generated entity will be only accessible through Wordpress' backend. The intend of the Model entity is not to be displayed on the front end using the default Wordpress Loop.
 
 You can customize the model declaration by supplying the optional `$configuration` public attribute. It allows you to customize the configuration array that is sent to `register_post_type` internally. As long as you follow the [conventions](http://codex.wordpress.org/Function_Reference/register_post_type) your post type will be created using these customized values, filling the missing options with their default counterparts.
 
-The following exemple illustrates how we allow the `editor` and also allow the custom post types to be accessible using the `music-page` slug (ex: `yourwebsite/music-page/weezer/`).
+The following example illustrates how we allow the `editor` and also allow the custom post types to be accessible using the `music-page` slug (ex: `yourwebsite/music-page/weezer/`).
 
 ~~~ php
 <?php
@@ -65,7 +65,7 @@ The custom post type key is generated from the model's class name. By default, t
 
 ## Custom Queries
 
-The main use case for models in WMVC is to contain all the database queries used throught your application in the same file.
+The main use case for models in WMVC is to contain all the database queries used through your application in the same file.
 
 You could therefore do the following to contain all queries against a custom post type :
 
@@ -95,7 +95,7 @@ Every view and template files would then call the centralized `MyProject\Model\A
 
 ## Internal Query class
 
-While the previous exemple is prefectly functional, we offer a way to improve on it. Model entities in WMVC generate `Query` objects that will hold configuration data that can be chained and manipulated before triggering the query. Up to the moment when `fetch()` is called, you can manipulate the query parameters.
+While the previous example is perfectly functional, we offer a way to improve on it. Model entities in WMVC generate `Query` objects that will hold configuration data that can be chained and manipulated before triggering the query. Up to the moment when `fetch()` is called, you can manipulate the query parameters.
 
 It offers some of the advantages of a full-fledged ORM without bastardizing Wordpress's `WP_Query`.
 
@@ -175,7 +175,7 @@ If you supply entity attributes, you will be able to use this entity against our
 
 This is useful when you want to take user-submitted information, validate the data and save the info as custom post types with additional business logic applied to and implied from the saved information.
 
-Here is a lengthy, but complete, exemple of how attributes and the FormHelper can be implemented in a Model:
+Here is a lengthy, but complete, example of how attributes and the FormHelper can be implemented in a Model:
 
 ~~~ php
 <?php
@@ -215,11 +215,9 @@ class CustomerDetail extends \MVC\Model\CustomPostType\Entity {
             'post_status'   => 'publish',
         ));
 
-        // Loop through all supported attributes and set the Advan field linked
-        // to the entity. The corresponding keys have to have been set in WP's backend.
         foreach (array_keys($this->getAttributes()) as $attribute) {
             // Do something with the posted value.
-            // A good method is to declare fields using the same name as the attributs
+            // A good method is to declare fields using the same name as the attributes
             // in the Advanced Custom Fields plugin.
             // and calling something like :
             //  update_field($attribute, $formHelper->getPostedValue(CustomerDetail::key() . "." . $attribute), $guardianId);
@@ -238,7 +236,7 @@ class CustomerDetail extends \MVC\Model\CustomPostType\Entity {
 
 Models extending `\MVC\Model\CustomPostType\Entity` will inherit a static functions named `create`, `update` and `delete` that map to `wp_insert_post`, `wp_update_post` and `wp_delete_post`. They supports the same arguments as their Wordpress counterparts.
 
-They exist only to do last minute manipulation of the data and are not intented to replace core Wordpress functions.
+They exist only to do last minute manipulation of the data and are not intended to replace core Wordpress functions.
 
 ~~~ php
 <?php

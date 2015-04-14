@@ -4,7 +4,7 @@ title: EmailLoader
 permalink: /docs/utilities/emailloader/
 ---
 
-__This class has not been singularized and may be so in the near future__. It is possible code will break because of this change.
+__This class has not been made singular and may be so in the near future__. It is possible code will break because of this change.
 
 `EmailLoader` allows you to build dynamic templates for sending emails with Wordpress. It loads template files located in `[current_theme]/templates/emails/` under your theme's directory.
 

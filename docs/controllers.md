@@ -10,7 +10,7 @@ Controllers allow an easy to understand entry point in modern web applications. 
 
 To generate a Controller, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a controller for the `Artist` object:
+Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
 ~~~ sh
 $ bin/mvc generate controller Artist
@@ -24,11 +24,11 @@ src/controller/ArtistController.php
 tests/controller/ArtistController.php
 ~~~
 
-The main use case of Controllers in Wordpress MVC is to replace the need of placing pure code in the top area of a template file. Instead of instanciating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the abbility to use the same business logic code in mutiple themes as well as improving code testability.
+The main use case of Controllers in Wordpress MVC is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the ability to use the same business logic code in multiple themes as well as improving code testability.
 
 Controllers may seem like overkill if you only use the regular templating. You can achieve similar results by placing the code in a custom `template-customposttype.php` file. It's up to you to decide if you need such infrastructure in your project.
 
- On the other hand, when handling posted data on a Wordpress CMS page or for any other reasons when the page can have a dynamic state, controllers become a great way of speparating your code.
+ On the other hand, when handling posted data on a Wordpress CMS page or for any other reasons when the page can have a dynamic state, controllers become a great way of separating your code.
 
 Note that no helpers or models are being auto-loaded by the controller.
 
@@ -70,7 +70,7 @@ In the case where you have created a page in Wordpress and need to include dynam
 
 In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListingShortcode()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListingShortcode()`.
 
-Note that the permalink of this page must be caught by a route in order for the controller to be instanciated and the shortcode to be declared and applied.
+Note that the permalink of this page must be caught by a route in order for the controller to be instantiated and the shortcode to be declared and applied.
 
 In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\MVC\Router::callback()]({{ site.baserl }}/docs/routes/).
 
@@ -99,7 +99,7 @@ In a template file :
 
 ## Before and after
 
-Upon each succesful route match the router will call the `before()` and `after()` functions. These functions can be useful when setting up objects or adding validation :
+Upon each successful route match the router will call the `before()` and `after()` functions. These functions can be useful when setting up objects or adding validation :
 
 ~~~ php
 <?php
@@ -213,7 +213,7 @@ class FileController extends \MyProject\Controller\AppController {
 
 ## On scopes and custom templating
 
-Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instanciated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
+Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instantiated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
 
 The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
 

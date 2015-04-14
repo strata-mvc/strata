@@ -9,7 +9,7 @@ permalink: /docs/models/taxonomies/
 
 To generate a taxonomy definition, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a taxonomy called for the `ProfileType`:
+Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a taxonomy called for the `ProfileType`:
 
 ~~~ sh
 $ bin/mvc generate taxonomy ProfileType

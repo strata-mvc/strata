@@ -27,16 +27,16 @@ $ mkdir my-website && cd my-website
 $ yo wordpress-mvc
 ~~~
 
-The generator will confirm that you are in the correct directory before doing anything. Afterwards, it will ask you for the project's namespace that will be used across the project to identify your files.
+The generator will confirm that you are in the correct directory before doing anything. Afterwards, it will ask you for the project's name space that will be used across the project to identify your files.
 
 
 ## Kickstarting in Wordpress themes
 
-To kickstart WMVC, open your current theme's `functions.php` file and include the bootstraper.
+To kick start WMVC, open your current theme's `functions.php` file and include the bootstraper.
+
+By default, our Yeoman generator includes the following line automatically to the default theme's `functions.php` file. You will have to add it to your source files manually when creating additional themes.
 
 We encourage placing the include call in `functions.php` for consistency across projects. In reality, the actual place or method you use to include the file does not really matter as long as it precedes view files.
-
-By default, our Yeoman generator includes the following line automatically to the default theme's `functions.php` file. You will have to add it manually when creating additionnal themes.
 
 ~~~ php
 <?php

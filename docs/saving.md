@@ -4,7 +4,7 @@ title: Saving
 permalink: /docs/saving/
 ---
 
-Saving data is an important part of a complex web application. Wordpress MVC allows you to save data outside of the regular wordpress scope (ex: the backend).
+Saving data is an important part of a complex web application. Wordpress MVC allows you to save data outside of the regular Wordpress scope (ex: the backend).
 
 To ease and automate this process, it allows the building of dynamic forms and automated tests on posted values when saving data.
 
@@ -69,7 +69,7 @@ Each form must be linked to an object implementing `MCV\Model\Form`. These objec
 
 The role of this object is to declare the context of the form as well as grant functions that can help controllers handle the form data. For example, here the form will have 5 steps to it and the Form object will look for template files prefixed with `songs` when building the html.
 
-`hasATitle` is a method that could be used by a controller to differenciate between to special cases only the form should know about in details.
+`hasATitle` is a method that could be used by a controller to differentiate between to special cases only the form should know about in details.
 
 ~~~ php
 <?php
@@ -186,7 +186,7 @@ The completed template doesn't really have anything else than a formatted messag
 
 The controller sent the Form's helper object to the model's `saveForm` function. The helper's job is to fetch the posted values. Because the method is called after validating `isComplete()` is `true`, we can assume the posted values have passed all validation.
 
-The example bellow saves a new `Song` with the song title as post title and assigns it a published state. Once we have a post id, we can loop though the model's attribute list to assign the posted values to the post's meta or, in this case, Avanced Custom Fields.
+The example bellow saves a new `Song` with the song title as post title and assigns it a published state. Once we have a post id, we can loop though the model's attribute list to assign the posted values to the post's meta or, in this case, Advanced Custom Fields.
 
 ~~~ php
 <?php

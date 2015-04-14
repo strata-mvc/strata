@@ -4,7 +4,7 @@ title: Validators
 permalink: /docs/validators/
 ---
 
-Should you require to save the post data of your custom models, you may automate the validation of the entitie's known attributes.
+Should you require to save the post data of your custom models, you may automate the validation of the entity's known attributes.
 
 Validators should be passed as configuration arrays to the `validations` key of the model's attributes declaration:
 
@@ -54,7 +54,7 @@ public $attributes = array(
 
 Validates that value is inside a possible list of values. The parameter is expected to be a callable function that returns an array in which the array key is the value we are looking for.
 
-This is to help creating form controls making it easier to look in value/labels sets. It is good pratice to skip the 0 index as to not prevent false positives in other Validators like the RequiredValidator.
+This is to help creating form controls making it easier to look in value/labels sets. It is good practice to skip the 0 index as to not prevent false positives in other Validators like the RequiredValidator.
 
 ~~~ php
 <?php
@@ -74,9 +74,9 @@ public static function genreListing()
 
 ### LengthValidator
 
-Validates the length of a string or an array. Possible configurations include de `min` and `max` attributes. They are both optional and can be used together. The value entered should be an expected possibility.
+Validates the length of a string or an array. Possible configurations include the `min` and `max` attributes. They are both optional and can be used together. The value entered should be an expected possibility.
 
-In the following exemple, the first attribute will fail if the value is shorter than 3, passing at an exact length of 3. The second attribute will fail if the length is longer than 9, passing at a length of 9. The final attribute will fail is the value is shorter than 3 or longer than 4, passing if the value of a length of 3 or 4.
+In the following example, the first attribute will fail if the value is shorter than 3, passing at an exact length of 3. The second attribute will fail if the length is longer than 9, passing at a length of 9. The final attribute will fail is the value is shorter than 3 or longer than 4, passing if the value of a length of 3 or 4.
 
 ~~~ php
 <?php
@@ -114,7 +114,7 @@ public $attributes = array(
 
 ### PostalcodeValidator
 
-Currently only validates canadian postal codes.
+Currently only validates Canadian postal codes.
 
 ~~~ php
 <?php
@@ -128,7 +128,7 @@ public $attributes = array(
 
 Validates the presence of a required value.
 
-If optionally accepts the `if` attribute allowing optionaly requirements based on contextual information. It expect an array in which the key is the name of the posted object as created by the FormHelper and the value is the expected value. In the cases when the conditions are not met, the attribute will not be required.
+If optionally accepts the `if` attribute allowing optionally requirements based on contextual information. It expect an array in which the key is the name of the posted object as created by the FormHelper and the value is the expected value. In the cases when the conditions are not met, the attribute will not be required.
 
 ~~~ php
 <?php
@@ -143,7 +143,7 @@ public $attributes = array(
 
 Validates the similarity of two different variables.
 
-If accepts a `as` attribute which represents a $_POST value key. In the exemple bellow, the email field is validated against a confirmation email input box.
+If accepts a `as` attribute which represents a $_POST value key. In the example bellow, the email field is validated against a confirmation email input box.
 
 ~~~ php
 <?php
@@ -157,13 +157,13 @@ public $attributes = array(
 
 To generate a custom validator, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
 
-Using the command line, run the `generate` command from your project's base directory. In this exemple, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
+Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
 
 ~~~ sh
 $ bin/mvc generate validator MyPasswordValidator RequiredValidator
 ~~~
 
-You class must implement a function named `test` which will run the actual test. This function is expected to return a boolean value. The two parameters are the posted value and the formhelper object. Using the formhelper reference allows you to reach out to posted values and various contextual information.
+You class must implement a function named `test` which will run the actual test. This function is expected to return a boolean value. The two parameters are the posted value and the FormHelper object. Using the FormHelper reference allows you to reach out to posted values and various contextual information.
 
 To customize the error message of your validator, implement the function `getMessage`. This function is called when the test has failed and the form object is gathering error messages.
 
@@ -188,7 +188,7 @@ class MyValidator extends \MVC\Model\Validator {
 
 ## Modifying an existing validator
 
-If a validator does not do all you desire you may extend the default ones in your project. In this exemple, we will allow translation on the default error message of the `PostExistsValidator`.
+If a validator does not do all you desire you may extend the default ones in your project. In this example, we will allow translation on the default error message of the `PostExistsValidator`.
 
 ~~~ php
 <?php

@@ -4,7 +4,7 @@ title: Migrations
 permalink: /docs/migrations/
 ---
 
-WMVC does not ship with a complex database migration tool. It does offer a simpler inline database import and export tool.
+WMVC does not ship with a complex database migration tool but it does offer a simpler in line database import and export tool.
 
 ## Creating a migration
 
