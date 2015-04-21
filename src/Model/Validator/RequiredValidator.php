@@ -31,7 +31,7 @@ class RequiredValidator extends Validator {
 
         if (is_string($value)) {
             $trimmed = trim($value);
-            return !empty($trimmed);
+            return !empty($trimmed) || $trimmed === "0";
         }
 
         // Array are expected to be lists on which we are

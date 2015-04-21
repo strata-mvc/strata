@@ -78,7 +78,7 @@ class Form {
 
         // Load the file
         $step = null;
-        if ($this->isCompleted()) {
+        if ($this->isCompleted() && $this->_formHelper->success) {
             $step = "complete";
         } else {
             if ($this->_formHelper->hasSteps()) {
@@ -95,6 +95,11 @@ class Form {
     public function isValid()
     {
         return $this->_success;
+    }
+
+    public function setFailed()
+    {
+        $this->_success = false;
     }
 
     public function isCompleted()
@@ -205,8 +210,8 @@ class Form {
         if ($this->_formHelper->contextWantsToSubmit()) {
             // Block when there are errors
             if ($this->hasErrors()) {
-                $this->success = false;
-                return $this->success;
+                $this->_success = false;
+                return $this->_success;
             }
 
             $this->_completed = true;
