@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
 
 echo ""
-echo " ========================================================================"
-echo "  Welcome to Wordpress MVC Console"
-echo " ========================================================================"
-echo ""
 
-vagrant up
+cwd=$(pwd)
+hasVagrant=$(command -v vagrant >/dev/null)
 
-COMMAND="php /vagrant/bin/runner.php $@"
-vagrant ssh --command "$COMMAND"
+if [[ ${hasVagrant} && -e "VagrantFile" ]] ; then
 
-echo ''
-echo 'Halting the VM.'
-echo ''
+    echo "Found Vagrant, executing from its environment."
 
-vagrant suspend
+    vagrant up
+
+    COMMAND="php /vagrant/bin/runner.php $@"
+    vagrant ssh --command "$COMMAND"
+
+    echo ''
+    echo 'Suspending the VM.'
+    echo ''
+
+    vagrant suspend
+else
+    exec php ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/runner.php ${cwd} $@
+fi
 
 exit

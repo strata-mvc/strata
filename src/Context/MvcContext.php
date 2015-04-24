@@ -1,8 +1,8 @@
 <?php
-namespace MVC\Context;
+namespace Strata\Context;
 
-use MVC\Mvc;
-use MVC\Utility\Hash;
+use Strata\Strata;
+use Strata\Utility\Hash;
 
 class MvcContext {
 
@@ -19,7 +19,7 @@ class MvcContext {
      */
     public static function app()
     {
-        return $GLOBALS['__MVC__'];
+        return $GLOBALS['__STRATA__'];
     }
 
     /**
@@ -45,10 +45,11 @@ class MvcContext {
     public static function loadEnvConfiguration($env = "production")
     {
         $filepath = self::getConfigurationPath() . $env . ".ini";
-
-        foreach (parse_ini_file($filepath) as $key => $value) {
-            if (!defined($key)) {
-                define(strtoupper($key), $value);
+        if (file_exists($filepath)) {
+            foreach (parse_ini_file($filepath) as $key => $value) {
+                if (!defined($key)) {
+                    define(strtoupper($key), $value);
+                }
             }
         }
     }

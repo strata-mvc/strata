@@ -5,6 +5,7 @@ namespace MVC\Shell;
 
 use MVC\Shell\Shell;
 use MVC\Utility\Inflector;
+use Exception;
 
 /**
  * built-in Generator Shell
@@ -16,20 +17,27 @@ class GenerateShell extends Shell
     protected $_options = array();
     protected $_namespace = null;
 
+    protected $_classTemplate = "<?php
+namespace {NAMESPACE};
+
+class {CLASSNAME} extends {EXTENDS} {
+
+
+}";
+
     public function contextualize($args)
     {
-        if (count($args) > 2) {
-            switch($args[2]) {
-
+        if (count($args) > 3) {
+            switch($args[3]) {
                 case "controller" :
                     $this->_type = "controller";
-                    $this->_classname = Inflector::classify($args[3]). "Controller";
+                    $this->_classname = Inflector::classify($args[4]). "Controller";
                     break;
 
                 case "model" :
                     $this->_type = "model";
-                    $this->_classname = Inflector::classify($args[3]);
-                    $this->_options["is_ctp"] =  count($args) > 4 && $args[4] == "true";
+                    $this->_classname = Inflector::classify($args[4]);
+                    $this->_options["is_ctp"] =  count($args) > 4 && $args[5] == "true";
                     break;
 
                 case "taxonomy" :
@@ -46,16 +54,19 @@ class GenerateShell extends Shell
 
                 case "helper" :
                     $this->_type = "helper";
-                    $this->_classname = Inflector::classify($args[3]) . "Helper";
+                    $this->_classname = Inflector::classify($args[4]) . "Helper";
                     break;
 
                 case "migration" :
                     $this->_type = "migration";
                     break;
+
+                default : throw new Exception("That is not a valid command.");
             }
             // offer the option of changing the namespace?
-            $this->_namespace = MVC_APP_NAMESPACE;
+            $this->_namespace = "App";
         }
+
         parent::contextualize($args);
     }
 
@@ -66,6 +77,8 @@ class GenerateShell extends Shell
      */
     public function main()
     {
+        $this->startup();
+
         switch ($this->_type) {
             case "controller"   : $this->_renderController(); break;
             case "model"        : $this->_renderModel(); break;
@@ -74,7 +87,7 @@ class GenerateShell extends Shell
         }
 
         $this->out("");
-        $this->out("Completed.");
+        $this->shutdown();
     }
 
     protected function _exportDB()
@@ -87,74 +100,102 @@ class GenerateShell extends Shell
         system($command);
     }
 
+    protected function _generateFileContents($namespace, $classname, $extends)
+    {
+        $data = $this->_classTemplate;
+        $data = str_replace("{EXTENDS}", $extends, $data);
+        $data = str_replace("{NAMESPACE}", $namespace, $data);
+        $data = str_replace("{CLASSNAME}", $classname, $data);
+
+        return $data;
+    }
+
     protected function _renderController()
     {
-        $this->out("Scaffolding controller {$this->_classname}");
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\Controller;
-
-class {$this->_classname} extends \{$this->_namespace}\Controller\AppController {
+        $this->out("Scaffolding controller " . $this->info($this->_classname));
 
 
-}
-        ");
-        $this->out("src" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . $this->_classname . ".php");
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "controller", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Controller", $this->_classname , "\{$this->_namespace}\AppController");
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree() . $this->ok($destination));
+            } else {
+                $this->out($this->tree() . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree() . $this->skip($destination));
+        }
 
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "tests" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "Test" . $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\Tests\Controller;
-
-class Test{$this->_classname} extends \MVC\Test\Test {
-
-}
-        ");
-        $this->out("tests" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "Test" . $this->_classname . ".php");
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "controller", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Controller", "Test{$this->_classname}" , "\MVC\Test\Test ");
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree(true) . $this->ok($destination));
+            } else {
+                $this->out($this->tree(true) . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree(true) . $this->skip($destination));
+        }
     }
 
     protected function _renderModel()
     {
-        $this->out("Scaffolding model {$this->_classname}");
+        $this->out("Scaffolding model " . $this->info($this->_classname));
         $ctpExtend =  (bool)$this->_options["is_ctp"] ? "\MVC\Model\CustomPostType\Entity" : "\{$this->_namespace}\Model\AppModel";
 
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\Model;
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Model", $this->_classname , $ctpExtend);
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree() . $this->ok($destination));
+            } else {
+                $this->out($this->tree() . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree() . $this->skip($destination));
+        }
 
-class {$this->_classname} extends $ctpExtend {
-
-
-}
-        ");
-        $this->out("src" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . $this->_classname . ".php");
-
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "tests" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Test" . $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\Tests\Model;
-
-class Test{$this->_classname} extends \MVC\Test\Test {
-
-}
-        ");
-        $this->out("tests" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Test" . $this->_classname . ".php");
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Model", "Test{$this->_classname}", "\MVC\Test\Test");
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree(true) . $this->ok($destination));
+            } else {
+                $this->out($this->tree(true) . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree(true) . $this->skip($destination));
+        }
     }
 
     protected function _renderHelper()
     {
-        $this->out("Scaffolding view helper {$this->_classname}");
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "helper" . DIRECTORY_SEPARATOR. $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\View\Helper;
+        $this->out("Scaffolding view helper " . $this->info($this->_classname));
 
-class {$this->_classname} extends \{$this->_namespace}\View\Helper\AppHelper {
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "view", "helper", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Test\View\Helper", $this->_classname, "\{$this->_namespace}\View\Helper\AppHelper");
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree() . $this->ok($destination));
+            } else {
+                $this->out($this->tree() . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree() . $this->skip($destination));
+        }
 
-
-}
-        ");
-        $this->out("src" . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "helper" . DIRECTORY_SEPARATOR. $this->_classname . ".php");
-
-        file_put_contents(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "tests" . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "helper" . DIRECTORY_SEPARATOR. "Test" . $this->_classname . ".php", "<?php
-namespace {$this->_namespace}\Tests\View\Helper;
-
-class Test{$this->_classname} extends \MVC\Test\Test {
-
-}
-        ");
-        $this->out("tests" . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "helper" . DIRECTORY_SEPARATOR. "Test" . $this->_classname . ".php");
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "view", "helper", $this->_classname . ".php"));
+        if (!file_exists($destination)) {
+            $contents = $this->_generateFileContents("{$this->_namespace}\Tests\View\Helper", "Test{$this->_classname}", "\MVC\Test\Test");
+            if (@file_put_contents($destination, $contents) > 0) {
+                $this->out($this->tree(true) . $this->ok($destination));
+            } else {
+                $this->out($this->tree(true) . $this->fail($destination));
+            }
+        } else {
+            $this->out($this->tree(true) . $this->skip($destination));
+        }
     }
 }

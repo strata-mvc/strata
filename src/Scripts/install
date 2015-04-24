@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+cwd=$(pwd)
+
+echo ""
+echo " We determined your project path to be '${cwd}'."
+
+echo ""
+echo " We will copy Strata's runtime in the './bin' directory in your project's root."
+
+if [[ -d "bin" && ! -L "bin" ]] ; then
+    echo " [SKIP] './bin/' directory already exists."
+else
+    echo " [ OK ] ./bin/..."
+    mkdir ${cwd}/bin
+fi
+
+if [[ -e "bin/strata" || -L "bin/strata" ]] ; then
+    echo " [SKIP] './bin/strata' file already exists."
+else
+    echo " [ OK ] Creating symlink './bin/strata'..."
+    ln -s ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/mvc ${cwd}/bin/strata
+fi
+
+chmod +x ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/mvc
+
+echo ""
+echo " Completing the installation script, launching Strata installer."
+
+exec bin/strata strata install
+
+exit
