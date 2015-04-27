@@ -14,9 +14,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace MVC\Utility;
+namespace Strata\Utility;
 
-use MVC\Utility\String;
+use Strata\Utility\String;
 
 /**
  * Library of array functions for manipulating and extracting data

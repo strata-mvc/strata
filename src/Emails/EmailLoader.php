@@ -1,9 +1,9 @@
 <?php
 
-namespace MVC\Emails;
+namespace Strata\Emails;
 
-use MVC;
-use MVC\View\Template;
+use Strata;
+use Strata\View\Template;
 
 class EmailLoader {
 
@@ -19,13 +19,13 @@ class EmailLoader {
     // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
     public static function enableHTML()
     {
-        return add_filter( 'wp_mail_content_type', 'MVC\Emails\EmailLoader::setContentType' );
+        return add_filter( 'wp_mail_content_type', 'Strata\Emails\EmailLoader::setContentType' );
     }
 
     // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
     public static function disableHTML()
     {
-        return remove_filter( 'wp_mail_content_type', 'MVC\Emails\EmailLoader::setContentType' );
+        return remove_filter( 'wp_mail_content_type', 'Strata\Emails\EmailLoader::setContentType' );
     }
 
     /**
@@ -37,7 +37,7 @@ class EmailLoader {
             return DEBUG_EMAIL;
         }
 
-        $emails = MVC\Mvc::config("project_email_list");
+        $emails = Strata\Strata::config("project_email_list");
         if (is_array($emails) && array_key_exists($which, $emails)) {
             return $emails[$which];
         }

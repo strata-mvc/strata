@@ -1,10 +1,10 @@
 <?php
 /**
  */
-namespace MVC\Shell;
+namespace Strata\Shell;
 
-use MVC\Shell\Shell;
-use MVC\Utility\Inflector;
+use Strata\Shell\Shell;
+use Strata\Utility\Inflector;
 use Exception;
 
 /**
@@ -129,7 +129,7 @@ class {CLASSNAME} extends {EXTENDS} {
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "controller", $this->_classname . ".php"));
         if (!file_exists($destination)) {
-            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Controller", "Test{$this->_classname}" , "\MVC\Test\Test ");
+            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Controller", "Test{$this->_classname}" , "\Strata\Test\Test ");
             if (@file_put_contents($destination, $contents) > 0) {
                 $this->out($this->tree(true) . $this->ok($destination));
             } else {
@@ -143,7 +143,7 @@ class {CLASSNAME} extends {EXTENDS} {
     protected function _renderModel()
     {
         $this->out("Scaffolding model " . $this->info($this->_classname));
-        $ctpExtend =  (bool)$this->_options["is_ctp"] ? "\MVC\Model\CustomPostType\Entity" : "\{$this->_namespace}\Model\AppModel";
+        $ctpExtend =  (bool)$this->_options["is_ctp"] ? "\Strata\Model\CustomPostType\Entity" : "\{$this->_namespace}\Model\AppModel";
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", $this->_classname . ".php"));
         if (!file_exists($destination)) {
@@ -159,7 +159,7 @@ class {CLASSNAME} extends {EXTENDS} {
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $this->_classname . ".php"));
         if (!file_exists($destination)) {
-            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Model", "Test{$this->_classname}", "\MVC\Test\Test");
+            $contents = $this->_generateFileContents("{$this->_namespace}\Test\Model", "Test{$this->_classname}", "\Strata\Test\Test");
             if (@file_put_contents($destination, $contents) > 0) {
                 $this->out($this->tree(true) . $this->ok($destination));
             } else {
@@ -188,7 +188,7 @@ class {CLASSNAME} extends {EXTENDS} {
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "view", "helper", $this->_classname . ".php"));
         if (!file_exists($destination)) {
-            $contents = $this->_generateFileContents("{$this->_namespace}\Tests\View\Helper", "Test{$this->_classname}", "\MVC\Test\Test");
+            $contents = $this->_generateFileContents("{$this->_namespace}\Tests\View\Helper", "Test{$this->_classname}", "\Strata\Test\Test");
             if (@file_put_contents($destination, $contents) > 0) {
                 $this->out($this->tree(true) . $this->ok($destination));
             } else {

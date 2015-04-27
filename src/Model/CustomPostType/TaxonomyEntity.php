@@ -1,8 +1,8 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
-use MVC\Utility\Hash;
-use MVC\Model\CustomPostType\LabeledEntity;
+use Strata\Utility\Hash;
+use Strata\Model\CustomPostType\LabeledEntity;
 
 class TaxonomyEntity extends LabeledEntity
 {
@@ -17,7 +17,7 @@ class TaxonomyEntity extends LabeledEntity
         $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
-
+        $projectKey = "App";
 
         $customizedOptions = $obj->configuration + array(
             'hierarchical'               => false,

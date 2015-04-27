@@ -1,9 +1,9 @@
 <?php
 
-namespace MVC\Controller;
+namespace Strata\Controller;
 
-use MVC\Controller\Request;
-use MVC\View\Template;
+use Strata\Controller\Request;
+use Strata\View\Template;
 
 class Controller {
 
@@ -84,7 +84,6 @@ class Controller {
             echo $content;
             exit();
         }
-
         echo $content;
     }
 

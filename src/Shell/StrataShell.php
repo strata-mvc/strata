@@ -1,9 +1,9 @@
 <?php
 /**
  */
-namespace MVC\Shell;
+namespace Strata\Shell;
 
-use MVC\Shell\Shell;
+use Strata\Shell\Shell;
 use Exception;
 
 /**
@@ -22,24 +22,25 @@ class StrataShell extends Shell
         "doc",
         "log",
         "src",
-        "src/controller",
-        "src/model",
-        "src/view",
-        "src/view/helper",
+        "src/Controller",
+        "src/Model",
+        "src/View",
+        "src/View/helper",
         "test",
-        "test/controller",
-        "test/model",
-        "test/view",
-        "test/view/helper",
+        "test/Controller",
+        "test/Model",
+        "test/View",
+        "test/View/Helper",
         "tmp"
     );
 
-    protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/generator-wordpress-mvc/master/app/templates/_base/";
+    protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-template-files/master/src/";
 
     protected $_starterFiles = array(
         'AppController.php' => 'src/controller/AppController.php',
         'AppModel.php'      => 'src/model/AppModel.php',
         'AppHelper.php'     => 'src/view/helper/AppHelper.php',
+        'strata-bootstraper.php' => 'web/app/mu-plugins/strata-bootstraper.php',
     );
 
     public function contextualize($args)

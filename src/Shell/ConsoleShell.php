@@ -1,9 +1,9 @@
 <?php
 
-namespace MVC\Shell;
+namespace Strata\Shell;
 
 use Boris\Boris;
-use MVC\Shell\Shell;
+use Strata\Shell\Shell;
 
 /**
  * Simple console wrapper around Boris.
@@ -38,7 +38,7 @@ class ConsoleShell extends Shell
 
         $this->out('You can exit with <info>CTRL-D</info>');
 
-        $boris = new Boris('MVC > ');
+        $boris = new Boris('Strata > ');
         $boris->start();
     }
 

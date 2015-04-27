@@ -1,12 +1,12 @@
 <?php
-namespace MVC;
+namespace Strata;
 
-use MVC\Context\RoutingContext;
+use Strata\Context\RoutingContext;
 
 /**
- * Maps wordpress urls to MVC classes
+ * Maps wordpress urls to Strata classes
  *
- * @package       MVC.Router
+ * @package       Strata.Router
  * @link          http://wordpress-mvc.francoisfaubert.com/docs/routes/
  */
 class Router extends RoutingContext {
@@ -23,7 +23,7 @@ class Router extends RoutingContext {
     {
         // Create the AltoRouter instance
         $this->_altoRouter = new \AltoRouter();
-        $this->_altoRouter->addRoutes(\MVC\Mvc::config('routes'));
+        $this->_altoRouter->addRoutes(\Strata\Strata::config('routes'));
     }
 
     /**
@@ -33,11 +33,10 @@ class Router extends RoutingContext {
     public function onWordpressInit()
     {
         $match = $this->_altoRouter->match();
-
         if ($match) {
             // Decompose request params to kick off the autoloader.
             $target = explode("#", $match['target']);
-            $className = \MVC\Mvc::getNamespace() . "\\Controller\\" . $target[0];
+            $className = \Strata\Strata::getNamespace() . "\\Controller\\" . $target[0];
 
             if(class_exists($className)) {
                 // When a method is passed on, load that method
@@ -53,6 +52,9 @@ class Router extends RoutingContext {
                 } elseif (method_exists($className, $_POST['action'])) {
                     Router::performAction($className, $_POST['action']);
                 }
+            } else {
+                $error = new \Strata\Shell\Shell();
+                error_log($error->fail('Strata : No file matched the controller handled by this route. Looked for ' . $error->info($className) . '.'));
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Model;
+namespace Strata\Model;
 
 class Model {
 

@@ -1,9 +1,9 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
-use MVC\Utility\Hash;
-use MVC\Utility\Inflector;
-use MVC\Mvc;
+use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
+use Strata\Strata;
 
 class LabeledEntity
 {
@@ -38,7 +38,7 @@ class LabeledEntity
         // Try and generate the labels automatically.
         $singular = "";
         $plural = "";
-        $projectKey = strtolower(Mvc::getNamespace());
+        $projectKey = strtolower(Strata::getNamespace());
 
         $ClassName = get_called_class();
         $obj = new $ClassName();

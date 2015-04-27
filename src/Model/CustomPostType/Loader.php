@@ -1,15 +1,15 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
-use MVC\Utility\Hash;
-use MVC\Mvc;
+use Strata\Utility\Hash;
+use Strata\Strata;
 
 class Loader
 {
     public static function preload()
     {
-        $namespace = Mvc::getNamespace();
-        $customPostTypes = Mvc::config('custom-post-types');
+        $namespace = Strata::getNamespace();
+        $customPostTypes = Strata::config('custom-post-types');
 
         // Set up the creation of custom post types based on models
         if ($customPostTypes) {

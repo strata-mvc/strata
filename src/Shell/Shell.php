@@ -1,7 +1,7 @@
 <?php
 /**
  */
-namespace MVC\Shell;
+namespace Strata\Shell;
 
 use Exception;
 
@@ -30,14 +30,15 @@ class Shell
 
     public static function factory($key)
     {
-        \MVC\Mvc::loadEnvConfiguration();
+        \Strata\Strata::loadEnvConfiguration();
 
         switch($key) {
-            case "s" : case "server"    : return new \MVC\Shell\ServerShell();
-            case "g" : case "generate"  : return new \MVC\Shell\GenerateShell();
-            case "m" : case "migrate"   : return new \MVC\Shell\MigrationShell();
-            case "c" : case "console"   : return new \MVC\Shell\ConsoleShell();
-            case "strata"               : return new \MVC\Shell\StrataShell();
+            case "s" : case "server"    : return new \Strata\Shell\ServerShell();
+            case "g" : case "generate"  : return new \Strata\Shell\GenerateShell();
+            case "m" : case "migrate"   : return new \Strata\Shell\MigrationShell();
+            case "c" : case "console"   : return new \Strata\Shell\ConsoleShell();
+            case "doc"                  : return new \Strata\Shell\DocumentationShell();
+            case "strata"               : return new \Strata\Shell\StrataShell();
             default                     : throw new Exception("That is not a valid command.");
         }
     }

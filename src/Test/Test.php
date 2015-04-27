@@ -1,12 +1,12 @@
 <?php
 /**
  */
-namespace MVC\Test;
+namespace Strata\Test;
 
 class Test
-{        
+{
     public function initialize($options = array())
     {
-        
-    }        
+
+    }
 }

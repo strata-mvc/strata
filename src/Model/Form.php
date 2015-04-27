@@ -1,10 +1,10 @@
 <?php
 
-namespace MVC\Model;
+namespace Strata\Model;
 
-use MVC\Utility\Hash;
-use MVC\Controller\Request;
-use MVC\View\Helper\FormHelper;
+use Strata\Utility\Hash;
+use Strata\Controller\Request;
+use Strata\View\Helper\FormHelper;
 
 class Form {
 
@@ -146,11 +146,13 @@ class Form {
             $entityValues = $this->_request->post(FormHelper::POST_WRAP . "." . $entity->getPostPrefix());
 
             // Switch between multiple entities posted, or just one.
-            if(!array_key_exists(0, $entityValues)) {
-                $this->_checkEntityValues($entity, $entityValues);
-            } else {
-                foreach ($entityValues as $idx => $repeatingEntityValues) {
-                    $this->_checkEntityValues($entity, $repeatingEntityValues, $idx);
+            if (!is_null($entityValues)) {
+                if(!array_key_exists(0, $entityValues)) {
+                    $this->_checkEntityValues($entity, $entityValues);
+                } else {
+                    foreach ($entityValues as $idx => $repeatingEntityValues) {
+                        $this->_checkEntityValues($entity, $repeatingEntityValues, $idx);
+                    }
                 }
             }
         }

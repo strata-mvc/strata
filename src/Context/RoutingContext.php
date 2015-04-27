@@ -1,7 +1,8 @@
 <?php
-namespace MVC\Context;
+namespace Strata\Context;
 
-use MVC\Utility\Hash;
+use Strata\Router;
+use Strata\Utility\Hash;
 
 class RoutingContext {
 
@@ -15,7 +16,7 @@ class RoutingContext {
     public static function __callStatic($method, $args)
     {
         if (preg_match('/^___dynamic___callback___(.+)___(.+)(___\d+)?/', $method, $matches)) {
-            $app = \MVC\Mvc::app();
+            $app = \Strata\Strata::app();
             $className = $app->getNamespace() . "\\Controller\\" . $matches[1];
             return Router::performAction($className, $matches[2], $args);
         }
@@ -30,10 +31,10 @@ class RoutingContext {
     public static function callback($ctrl, $action)
     {
         $count = 0;
-        while(method_exists(self, $action))  {
+        while(method_exists(__CLASS__, $action))  {
             $action = $action . "___" . $count++;
         }
-        return array('MVC\Router', sprintf('___dynamic___callback___%s___%s', $ctrl, $action));
+        return array('Strata\Router', sprintf('___dynamic___callback___%s___%s', $ctrl, $action));
     }
 
     /**
@@ -41,12 +42,12 @@ class RoutingContext {
      */
     public static function kickstart()
     {
-        $app = \MVC\Mvc::app();
-        $routes = \MVC\Mvc::config('routes');
+        $app = \Strata\Strata::app();
+        $routes = \Strata\Strata::config('routes');
 
         // If routes are not present, router has nothing to do and processing should be ignored.
         if ($app && $routes) {
-            $router = new \MVC\Router();
+            $router = new \Strata\Router();
             $router->init();
 
             // Hook on Wordpress' init action to start any process.

@@ -1,5 +1,5 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
 class TermsQuery
 {

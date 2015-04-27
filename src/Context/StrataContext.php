@@ -4,7 +4,9 @@ namespace Strata\Context;
 use Strata\Strata;
 use Strata\Utility\Hash;
 
-class MvcContext {
+class StrataContext {
+
+    const DEFAULT_NAMESPACE = "App";
 
     /**
      * @var composer Composer's loader object. Kept handy in case additional paths
@@ -19,7 +21,7 @@ class MvcContext {
      */
     public static function app()
     {
-        return $GLOBALS['__STRATA__'];
+        return $GLOBALS['__Strata__'];
     }
 
     /**
@@ -29,7 +31,7 @@ class MvcContext {
      */
     public static function config($key)
     {
-        $app = Mvc::app();
+        $app = Strata::app();
         return $app->read($key);
     }
 
@@ -38,8 +40,14 @@ class MvcContext {
      */
     public static function getNamespace()
     {
-        $var = self::config('key');
-        return array_pop($var);
+        $var = self::config('namespace');
+        $namespace = array_pop($var);
+
+        if (!is_null($namespace)) {
+            return $namespace;
+        }
+
+        return self::DEFAULT_NAMESPACE;
     }
 
     public static function loadEnvConfiguration($env = "production")
@@ -56,39 +64,52 @@ class MvcContext {
 
     public static function bootstrap()
     {
-        $app = new \MVC\Mvc();
+        $app = new \Strata\Strata();
 
         // Expose the app context to the current process.
-        $GLOBALS['__MVC__'] = $app;
+        $GLOBALS['__Strata__'] = $app;
 
         $app->init();
 
         if ($app->ready()) {
             // Add the project's directory to the autoloader
-            self::addPsr4(self::getNamespace(), self::getSRCPath());
+            //self::addPsr4(self::getNamespace(), self::getSRCPath());
 
             // Start the process
             $app->run();
         }
     }
 
-    /**
+    /* *
      * Appends a PSR4 rule to composer's loader.
      * @param [type] $key  root path
      * @param [type] $path location of the files
-     */
+
     public static function addPsr4($key, $path)
     {
         if (!substr($key, -2) != "\\") {
             $key = $key . "\\";
         }
 
-        return \MVC\Mvc::$loader->setPsr4($key, $path);
+        return \Strata\Strata::$loader->setPsr4($key, $path);
+    }*/
+
+    public static function getRootPath()
+    {
+        if (defined('ABSPATH')) {
+            return dirname(dirname(ABSPATH));
+        }
+        return getcwd();
+    }
+
+    public static function getThemesPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "web", "app", "themes")) . DIRECTORY_SEPARATOR;
     }
 
     public static function getSRCPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(MVC_ROOT_PATH, "src")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "src")) . DIRECTORY_SEPARATOR;
     }
 
     public static function getUtilityPath()
@@ -98,12 +119,12 @@ class MvcContext {
 
     public static function getConfigurationPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(MVC_ROOT_PATH, "config")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "config")) . DIRECTORY_SEPARATOR;
     }
 
     public static function getVendorPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(MVC_ROOT_PATH, "vendor")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "vendor")) . DIRECTORY_SEPARATOR;
     }
 
     public static function getOurVendorPath()
@@ -113,6 +134,6 @@ class MvcContext {
 
     public static function getProjectConfigurationFilePath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(self::getConfigurationPath(), 'app.php'));
+        return implode(DIRECTORY_SEPARATOR, array(self::getConfigurationPath(), 'strata.php'));
     }
 }

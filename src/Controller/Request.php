@@ -1,8 +1,8 @@
 <?php
 
-namespace MVC\Controller;
+namespace Strata\Controller;
 
-use MVC\Utility\Hash;
+use Strata\Utility\Hash;
 
 class Request {
 
@@ -42,17 +42,17 @@ class Request {
 
     public function get($key)
     {
-        return Hash::extract($this->_GET, $key);
+        return Hash::get($this->_GET, $key);
     }
 
     public function post($key)
     {
-        return Hash::extract($this->_POST, $key);
+        return Hash::get($this->_POST, $key);
     }
 
     public function cookie($key)
     {
-        return Hash::extract($this->_COOKIE, $key);
+        return Hash::get($this->_COOKIE, $key);
     }
 
     public function hasPost($key)

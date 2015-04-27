@@ -1,12 +1,12 @@
 <?php
 /**
  */
-namespace MVC\Shell;
+namespace Strata\Shell;
 
 /**
  * built-in Migration Shell
  */
-class MigrationShell extends \MVC\Shell\Shell
+class MigrationShell extends \Strata\Shell\Shell
 {
     public function initialize($options = array())
     {
@@ -39,7 +39,7 @@ class MigrationShell extends \MVC\Shell\Shell
 
         if (is_null($this->_config['filepath'])) {
             $this->out('No file passed as migration. Loading most recent .sql file in /db/.');
-            $this->_config['filepath'] = $this->_getMostRecent(MVC_ROOT_PATH . DIRECTORY_SEPARATOR . "db");
+            $this->_config['filepath'] = $this->_getMostRecent(Strata_ROOT_PATH . DIRECTORY_SEPARATOR . "db");
             $this->out('Applying migration for ' . $this->_config['filepath']);
         } else {
             $this->out('Applying migration for ' . $this->_config['filepath']);

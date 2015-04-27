@@ -1,9 +1,9 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
-use MVC\Utility\Hash;
-use MVC\Mvc;
-use MVC\Model\CustomPostType\EntityTable;
+use Strata\Utility\Hash;
+use Strata\Strata;
+use Strata\Model\CustomPostType\EntityTable;
 
 class Entity extends EntityTable
 {
@@ -28,16 +28,16 @@ class Entity extends EntityTable
     public function attemptAttributeSet($attr, $value, $formObject = null)
     {
         $attributeErrors = array();
-        $appNamespace = \MVC\Mvc::getNamespace();
+        $appNamespace = \Strata\Strata::getNamespace();
         $validations = Hash::extract($this->getAttributes(), "$attr.validations");
 
         if (count($validations)) {
             foreach (Hash::normalize($validations) as $validationKey => $validatorConfig) {
-                // Check for custom validators in the MVC scope as well as in
+                // Check for custom validators in the Strata scope as well as in
                 // the project scope.
                 $scopes = array(
                     $appNamespace . "\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
-                    "MVC\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
+                    "Strata\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
                 );
 
                 foreach ($scopes as $validatorName) {

@@ -1,18 +1,18 @@
 <?php
-namespace MVC;
+namespace Strata;
 
-use MVC\Router;
-use MVC\Utility\Hash;
-use MVC\Context\MvcContext;
-use MVC\Model\CustomPostType\Loader;
+use Strata\Router;
+use Strata\Utility\Hash;
+use Strata\Context\StrataContext;
+use Strata\Model\CustomPostType\Loader;
 
 /**
- * Running MVC instance
+ * Running Strata instance
  *
- * @package       MVC
+ * @package       Strata
  * @link          http://wordpress-mvc.francoisfaubert.com/docs/
  */
-class Mvc extends MvcContext {
+class Strata extends StrataContext {
     /**
      * @var array The configuration array specified in the theme's app.php
      */
@@ -34,11 +34,7 @@ class Mvc extends MvcContext {
         $this->_parseProjectConfigFile();
 
         if (is_null($this->_config)) {
-            trigger_error("Using the MVC bootstraper requires a file named [theme]/wordpress-mvc/app.php that declares a configuration array named \$app." , E_USER_WARNING);
-            return;
-        }
-        elseif (!array_key_exists('key', $this->_config)) {
-            trigger_error("Using the MVC bootstraper requires a config value called 'key' that sets the main project namespace." , E_USER_WARNING);
+            trigger_error("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata." , E_USER_WARNING);
             return;
         }
 
@@ -51,7 +47,7 @@ class Mvc extends MvcContext {
     public function run()
     {
         if (!$this->_ready) {
-            trigger_error("The MVC instance is not ready to be called. Have you initiated it?" , E_USER_WARNING);
+            trigger_error("The Strata instance is not ready to be called. Have you initiated it?" , E_USER_WARNING);
             return;
         }
 
@@ -87,17 +83,16 @@ class Mvc extends MvcContext {
     }
 
     /**
-     * Loads app.php, cleans up the data and saves it as config to the current instance of the MVC object.
+     * Loads app.php, cleans up the data and saves it as config to the current instance of the Strata object.
      */
     protected function _parseProjectConfigFile()
     {
         $configFile = self::getProjectConfigurationFilePath();
         if (file_exists($configFile)) {
-            include_once($configFile);
-            if(isset($app) && count($app)) {
-                $this->_config = Hash::normalize($app);
+            $strata = include_once($configFile);
+            if(isset($strata) && count($strata)) {
+                $this->_config = Hash::normalize($strata);
             }
-            unset($app);
         }
     }
 

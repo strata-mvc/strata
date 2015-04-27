@@ -1,5 +1,5 @@
 <?php
-namespace MVC\View;
+namespace Strata\View;
 
 class Template {
 

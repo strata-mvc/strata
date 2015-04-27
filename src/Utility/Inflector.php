@@ -14,7 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace MVC\Utility;
+namespace Strata\Utility;
 
 /**
  * Pluralize and singularize English words.

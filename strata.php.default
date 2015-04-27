@@ -1,9 +1,5 @@
 <?php
-$app = array(
-    // Give a context to the app by supplying the namespace you will be
-    // using when declaring your constructors and models.
-    "key" => MVC_APP_NAMESPACE,
-
+$strata = array(
     // Setup custom routing on the app based on valid rules in AltoRouter.
     // https://github.com/dannyvankooten/AltoRouter
     //
@@ -23,3 +19,5 @@ $app = array(
       //  "Volunteer",
     )
 );
+
+return $strata;

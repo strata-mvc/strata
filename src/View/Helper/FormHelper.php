@@ -1,11 +1,11 @@
 <?php
 
-namespace MVC\View\Helper;
+namespace Strata\View\Helper;
 
-use MVC\Controller\Request;
-use MVC\Utility\Hash;
+use Strata\Controller\Request;
+use Strata\Utility\Hash;
 
-class FormHelper extends \MVC\View\Helper\Helper {
+class FormHelper extends \Strata\View\Helper\Helper {
 
     const POST_KEY_CURRENT      = "mvc-current-step";
     const POST_KEY_NEXT_PAGE    = "mvc-next-step";
@@ -204,7 +204,8 @@ class FormHelper extends \MVC\View\Helper\Helper {
         // Remove the unsupported attributes once were have mapped them to real html ones.
         unset($options['type']);
 
-        $additional = wp_nonce_field($this->_formKey, "mvc-nonce", true, false);
+        //$additional = wp_nonce_field($this->_formKey, "mvc-nonce", true, false);
+        $additional = "";
 
         if ($this->hasSteps()) {
             // Keep a backlog of previously set values.

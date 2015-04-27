@@ -1,12 +1,12 @@
 <?php
-namespace MVC\Model\CustomPostType;
+namespace Strata\Model\CustomPostType;
 
-use MVC\Utility\Hash;
-use MVC\Utility\Inflector;
-use MVC\Mvc;
-use MVC\Router;
-use MVC\Model\CustomPostType\LabeledEntity;
-use MVC\Model\CustomPostType\Query;
+use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
+use Strata\Strata;
+use Strata\Router;
+use Strata\Model\CustomPostType\LabeledEntity;
+use Strata\Model\CustomPostType\Query;
 
 class EntityTable extends LabeledEntity
 {
@@ -86,7 +86,7 @@ class EntityTable extends LabeledEntity
         $translations = $ClassName::getLabels();
         $singular   = $translations['singular'];
         $plural     = $translations['plural'];
-        $projectKey = strtolower(Mvc::app()->getNamespace());
+        $projectKey = strtolower(Strata::app()->getNamespace());
 
         $customizedOptions['labels'] += array(
             'name'                => _x( $plural, 'Post Type General Name', $projectKey ),
@@ -121,7 +121,7 @@ class EntityTable extends LabeledEntity
         $ClassName = get_called_class();
         $obj = new $ClassName();
         $parentSlug = 'edit.php?post_type=' . $ClassName::wordpressKey();
-        $namespace = \MVC\Mvc::getNamespace();
+        $namespace = \Strata\Strata::getNamespace();
 
         foreach ($cptAdminConfig as $func => $config) {
             $config += array(

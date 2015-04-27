@@ -1,9 +1,9 @@
 <?php
 /**
  */
-namespace MVC\Shell;
+namespace Strata\Shell;
 
-use MVC\Shell\Shell;
+use Strata\Shell\Shell;
 
 /**
  * built-in Server Shell

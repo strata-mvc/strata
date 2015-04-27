@@ -1,8 +1,8 @@
 <?php
 
-namespace MVC\Model\Validator;
+namespace Strata\Model\Validator;
 
-use MVC\Model\Validator;
+use Strata\Model\Validator;
 
 class RequiredValidator extends Validator {
 
