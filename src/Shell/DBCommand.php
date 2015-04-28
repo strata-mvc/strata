@@ -1,6 +1,4 @@
 <?php
-/**
- */
 namespace Strata\Shell;
 
 use Strata\Shell\StrataCommand;
@@ -13,10 +11,18 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * built-in Migration Shell
+ * Automates Strata's database manipulation operations.
+ *
+ * Intended use include:
+ *     <code>bin/strata db migrate</code>
+ *     <code>bin/strata db import</code>
+ *     <code>bin/strata db dump</code>
  */
 class DBCommand extends StrataCommand
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -35,6 +41,9 @@ class DBCommand extends StrataCommand
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->startup($input, $output);
@@ -59,7 +68,8 @@ class DBCommand extends StrataCommand
     }
 
     /**
-     * @todo Ensure this works in an outside of Vagrant.
+     * Dumps the current environment's database to an .sql file in /db/
+     * @todo Ensure this works in and outside of Vagrant.
      */
     protected function _dumpCurrentDB()
     {
@@ -72,6 +82,7 @@ class DBCommand extends StrataCommand
     }
 
     /**
+     * Imports an .sql file to the current environment's database.
      * @todo Ensure this works in an outside of Vagrant.
      */
     protected function _importSqlFile($file)
@@ -87,6 +98,11 @@ class DBCommand extends StrataCommand
         $this->_output->writeLn("<error>We could not find a valid SQL file.</error>");
     }
 
+    /**
+     * Gets the working .sql file either from an option passed to the command or
+     * by returning the most recent sql file in /db/.
+     * @return string Filepath
+     */
     protected function _getSqlFile()
     {
         if (!is_null($this->_input->getOption('filename'))) {
@@ -97,6 +113,11 @@ class DBCommand extends StrataCommand
         return $this->_getMostRecent(\Strata\Strata::getDbPath());
     }
 
+    /**
+     * Returns the most recent file in $path.
+     * @param  string $path Where to look
+     * @return string       Most recent file
+     */
     protected function _getMostRecent($path)
     {
         $latestFilename = null;
@@ -110,7 +131,6 @@ class DBCommand extends StrataCommand
             $latestFilename = $entry;
           }
         }
-
         return $latestFilename;
     }
 }

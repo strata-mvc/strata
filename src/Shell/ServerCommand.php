@@ -1,6 +1,4 @@
 <?php
-/**
- */
 namespace Strata\Shell;
 
 use Strata\Shell\StrataCommand;
@@ -12,10 +10,17 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * built-in Server Shell
+ * Starts the Strata Server Shell. This server is expected to understand the differences in
+ * configuration between a Vagrant environment and cases when it runs using the current
+ * computer's binaries.
+ *
+ * Intended use is <code>bin/strata server</code>
  */
 class ServerCommand extends StrataCommand
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -23,11 +28,8 @@ class ServerCommand extends StrataCommand
             ->setDescription('Starts a server instance');
     }
 
-
     /**
-     * Starts a server instance
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -44,7 +46,6 @@ class ServerCommand extends StrataCommand
         // Tail the server logs in order to keep the illusion that the console is
         // controlling the server.
         //system("tail -n 0 -f /vagrant/log/access.log");
-
 
         $this->shutdown();
     }

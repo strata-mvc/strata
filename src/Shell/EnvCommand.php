@@ -1,6 +1,4 @@
 <?php
-/**
- */
 namespace Strata\Shell;
 
 use Strata\Shell\StrataCommand;
@@ -10,15 +8,30 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Exception;
+use InvalidArgumentException;
 
 /**
- * Strata self maintaining Shell
+ * Automates Strata self-maintaining scripts.
+ *
+ * Intended use include:
+ *     <code>bin/strata strata install</code>
+ *     <code>bin/strata strata uninstall</code>
  */
-class StrataAppCommand extends StrataCommand
+class EnvCommand extends StrataCommand
 {
+    /**
+     * A flag that is maintain through a process to advise the
+     * user should something happen.
+     *
+     * @var boolean
+     */
     protected $_seemsFine = true;
 
+    /**
+     * Strata's directory structure
+     *
+     * @var array
+     */
     protected $_directoryStructure = array(
         "bin",
         "bin/vagrant",
@@ -38,8 +51,20 @@ class StrataAppCommand extends StrataCommand
         "tmp"
     );
 
+
+    /**
+     * The source URL for stater app files
+     *
+     * @todo This needs to be a composer dependency.
+     * @var string
+     */
     protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-template-files/master/src/";
 
+    /**
+     * Strata's empty project files and their destination.
+     *
+     * @var array
+     */
     protected $_starterFiles = array(
         'AppController.php' => 'src/controller/AppController.php',
         'AppModel.php'      => 'src/model/AppModel.php',
@@ -47,46 +72,45 @@ class StrataAppCommand extends StrataCommand
         'strata-bootstraper.php' => 'web/app/mu-plugins/strata-bootstraper.php',
     );
 
-
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
             ->setName('strata')
             ->setDescription('Manages the Strata installation on your Bedrock Wordpress stack')
-            ->addOption(
-               'install',
-               null,
-               InputOption::VALUE_NONE,
-               'If set, the task will install Strata'
-            )
-            ->addOption(
-               'uninstall',
-               null,
-               InputOption::VALUE_NONE,
-               'If set, the task will uninstall Strata'
-            )
-        ;
+            ->addArgument(
+                'mode',
+                InputArgument::REQUIRED,
+                'One of install or uninstall.'
+            );
     }
 
-
     /**
-     *
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->startup($input, $output);
 
-        if ($input->getOption('install')) {
-            $this->_install();
-        } elseif ($input->getOption('uninstall')) {
-            $this->_uninstall();
+        switch ($input->getArgument('mode')) {
+            case "install":
+                $this->_install();
+                break;
+            case "uninstall":
+                $this->_uninstall();
+                break;
+            default : throw new InvalidArgumentException("That is not a valid command.");
         }
 
         $this->shutdown();
     }
 
+    /**
+     * Installs Strata files and directories
+     * @return null
+     */
     protected function _install()
     {
         $this->_createDirectoryStructure();
@@ -94,6 +118,10 @@ class StrataAppCommand extends StrataCommand
         $this->_installDone();
     }
 
+    /**
+     * Uninstalls Strata files and directories
+     * @return null
+     */
     protected function _uninstall()
     {
         $this->_removeStarterFiles();
@@ -101,6 +129,11 @@ class StrataAppCommand extends StrataCommand
         $this->_uninstallDone();
     }
 
+    /**
+     * Creates the directory structure. Does not overwrite existing
+     * directories.
+     * @return null
+     */
     protected function _createDirectoryStructure()
     {
         $this->_output->writeLn("Ensuring correct directory structure.");
@@ -123,6 +156,11 @@ class StrataAppCommand extends StrataCommand
         $this->nl();
     }
 
+    /**
+     * Removes the directory structure. Does not delete non-empty
+     * directories.
+     * @return null
+     */
     protected function _removeDirectoryStructure()
     {
         $this->_output->writeLn("Attempting to remove directory structure.");
@@ -145,6 +183,11 @@ class StrataAppCommand extends StrataCommand
         $this->nl();
     }
 
+    /**
+     * Adds the starter file to a new project. Does not overwrite existing
+     * files.
+     * @return null
+     */
     protected function _createStarterFiles()
     {
         $this->_output->writeLn("Ensuring project files are present.");
@@ -167,6 +210,10 @@ class StrataAppCommand extends StrataCommand
         $this->nl();
     }
 
+    /**
+     * Removes the starter file from a new project.
+     * @return null
+     */
     protected function _removeStarterFiles()
     {
         $this->_output->writeLn("Attempting to remove starter files.");
@@ -189,11 +236,19 @@ class StrataAppCommand extends StrataCommand
         $this->nl();
     }
 
+    /**
+     * Flag the current process is not behaving as we expected.
+     * @return null
+     */
     protected function _flagFailing()
     {
         $this->_seemsFine = false;
     }
 
+    /**
+     * Presents a summary of the operation to the user.
+     * @return
+     */
     protected function _uninstallDone()
     {
         $this->nl();
@@ -212,6 +267,10 @@ class StrataAppCommand extends StrataCommand
         $this->nl();
     }
 
+    /**
+     * Presents a summary of the operation to the user.
+     * @return
+     */
     protected function _installDone()
     {
         $this->nl();
@@ -228,5 +287,4 @@ class StrataAppCommand extends StrataCommand
         }
         $this->nl();
     }
-
 }

@@ -1,6 +1,4 @@
 <?php
-/**
- */
 namespace Strata\Shell;
 
 use Strata\Shell\StrataCommand;
@@ -13,10 +11,16 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * built-in Server Shell
+ * Automates Strata's Documentation.
+ *
+ * Intended use:
+ *     <code>bin/strata documentat</code>
  */
 class DocumentationCommand extends StrataCommand
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -29,7 +33,9 @@ class DocumentationCommand extends StrataCommand
             );
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->startup($input, $output);
@@ -48,6 +54,11 @@ class DocumentationCommand extends StrataCommand
         $this->shutdown();
     }
 
+    /**
+     * Gets the documentation's destination, either from an
+     * argument passed as option or from the default path.
+     * @return string Destination path.
+     */
     protected function _getDestination()
     {
         if (!is_null($this->_input->getOption('destination'))) {
@@ -57,20 +68,37 @@ class DocumentationCommand extends StrataCommand
         return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR));
     }
 
+    /**
+     * Gets the api documentation's destination
+     * @return string Destination path.
+     */
     protected function _getApiDestination()
     {
         return $this->_getDestination() . 'api';
     }
+
+    /**
+     * Gets the Wordpress themes documentation's destination
+     * @return string Destination path.
+     */
     protected function _getWpdocDestination()
     {
         return $this->_getDestination() . 'wpdoc';
     }
 
+    /**
+     * Return the path to the Apigen binary
+     * @return string Apigen binary path
+     */
     protected function _getApigenBin()
     {
         return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getOurVendorPath() . "vendor", "apigen", "apigen", "bin", "apigen"));;
     }
 
+    /**
+     * Outputs a summary of the operation.
+     * @return null
+     */
     protected function _summary()
     {
         $this->_output->writeLn("The project documentation has been generated at the following URLs: ");
@@ -81,12 +109,20 @@ class DocumentationCommand extends StrataCommand
         $this->_output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
     }
 
+    /**
+     * Deletes the previous generated output in the destination folders.
+     * @return [type] [description]
+     */
     protected function _deletePrevious()
     {
         $this->_rrmdir($this->_getApiDestination());
         $this->_rrmdir($this->_getWpdocDestination());
     }
 
+    /**
+     * Generates the API documentation contents
+     * @return null
+     */
     protected function _generateAPI()
     {
         $srcPath = \Strata\Strata::getSRCPath();
@@ -98,6 +134,10 @@ class DocumentationCommand extends StrataCommand
         system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
     }
 
+    /**
+     * Generates the Wordpress themes documentation contents
+     * @return null
+     */
     protected function _generateThemesApi()
     {
         $this->_output->writeLn("<info>Generating Wordpress theme details</info>");
@@ -108,9 +148,10 @@ class DocumentationCommand extends StrataCommand
     }
 
     /**
+     * Render the theme documentation file based on known $info fields.
      * @todo  This will do for now, but the template shouldn't be hardcoded.
-     * @param  [type] $info [description]
-     * @return [type]       [description]
+     * @param  array $info The parsed theme data
+     * @return bool       True is the file was successfully created.
      */
     protected function _writeThemesDocumentation($info)
     {
@@ -152,9 +193,15 @@ class DocumentationCommand extends StrataCommand
             mkdir($wpdocdir);
         }
 
-        file_put_contents($wpdocdir . "/index.html", $header . $content . $footer, LOCK_EX);
+        return file_put_contents($wpdocdir . "/index.html", $header . $content . $footer, LOCK_EX);
     }
 
+    /**
+     * Scans the theme directories of the current Wordpress installation and looks
+     * for things useful for a programmer.
+     * @param  string $base The base theme path.
+     * @return array       A associative array of theme information
+     */
     protected function _scanThemeDirectories($base)
     {
         $tree = array("themes" => array());
@@ -189,8 +236,6 @@ class DocumentationCommand extends StrataCommand
                     foreach ($headerKeys as $key) {
                         $tree["themes"][$theme]["templates"][$template][$key] = $templateDetails[$key];
                     }
-
-                   // $this->_output->writeLn($this->tree() . $template);
                 }
             }
 
@@ -208,7 +253,6 @@ class DocumentationCommand extends StrataCommand
                     foreach ($headerKeys as $key) {
                         $tree["themes"][$theme]["libs"][$lib][$key] = $libDetails[$key];
                     }
-                    //$this->_output->writeLn($this->tree() . $lib);
                 }
             }
         }
@@ -261,6 +305,11 @@ class DocumentationCommand extends StrataCommand
 
     }
 
+    /**
+     * Recurses through a directory and deletes sub-directories.
+     * @param  string $dir A directory path to delete
+     * @return null
+     */
     protected function _rrmdir($dir)
     {
         if (is_dir($dir)) {
