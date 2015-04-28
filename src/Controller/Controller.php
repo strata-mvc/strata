@@ -5,35 +5,70 @@ namespace Strata\Controller;
 use Strata\Controller\Request;
 use Strata\View\Template;
 
+/**
+ * Base controller class.
+ */
 class Controller {
 
-    public $viewVars = array();
-
-    // These hooks allow views to use wordpress nicely, but still trigger
-    // items in the current controller
-    public $shortcodes = array();
-
+    /**
+     * The current request
+     *
+     * @var Strata\Controller\Request
+     */
     public $request = null;
 
+    /**
+     * The associated view template
+     *
+     * @var Strata\View\Template
+     */
+    public $template = null;
+
+
+    /**
+     * These hooks allow views to use Wordpress nicely, but still trigger
+     * items in the current controller.
+     *
+     * @var  array
+     */
+    public $shortcodes = array();
+
+    /**
+     * Initiate the controller.
+     * @return null
+     */
     public function init()
     {
         // Save the current request
         $this->request = new Request();
+        $this->template = new Template();
 
         // If this controller has shortcodes, try to assign them.
         $this->_buildShortcodes();
     }
 
+    /**
+     * Executed after each calls to a controller action.
+     * @return null
+     */
     public function after()
     {
 
     }
 
+    /**
+     * Executed before each calls to a controller action.
+     * @return null
+     */
     public function before()
     {
 
     }
 
+    /**
+     * Base action. This is used mainly as a precautionary fallback.
+     * @return  null
+     */
     public function index()
     {
 
@@ -45,17 +80,15 @@ class Controller {
     public function set($name, $value)
     {
         $this->viewVars[$name] = $value;
-        // Not super pretty, but this is the only way I could think of reaching WP's scope.
+        // Not super pretty, but this is the only way I could think
+        // of for reaching WP's scope.
         $GLOBALS[$name] = $value;
     }
 
-    public function makeSecure()
-    {
-        check_ajax_referer( SECURITY_SALT, 'security' );
-    }
-
     /**
-     * Renders on the page and end the process. Usefull for simple HTML returns or Ajax requests.
+     * Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.
+     * @param  array $options An associative array of rendering options
+     * @return string          The rendered content.
      */
     public function render($options)
     {
@@ -88,7 +121,10 @@ class Controller {
     }
 
     /**
-     * Register dynamic shortcodes hooks to the instanciated controller
+     * Registers dynamic shortcodes hooks to the instantiated controller.
+     * Note that these are not available when this instance of the controller
+     * is not being loaded.
+     * @return  null
      */
     protected function _buildShortcodes()
     {
@@ -100,14 +136,4 @@ class Controller {
             }
         }
     }
-
-    /**
-     * @param string The name of the template to load (.php will be added to it)
-     * @param array an associative array of values to assign in the template
-     */
-    public static function loadTemplate($name, $values = array())
-    {
-        return Template::render($name, $values);
-    }
-
 }

@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Automates Strata's Documentation.
  *
  * Intended use:
- *     <code>bin/strata documentat</code>
+ *     <code>bin/strata document</code>
  */
 class DocumentationCommand extends StrataCommand
 {

@@ -41,11 +41,13 @@ class EnvCommand extends StrataCommand
         "src",
         "src/Controller",
         "src/Model",
+        "src/Model/Validator",
         "src/View",
         "src/View/helper",
         "test",
         "test/Controller",
         "test/Model",
+        "test/Model/Validator",
         "test/View",
         "test/View/Helper",
         "tmp"

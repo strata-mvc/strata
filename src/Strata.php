@@ -34,7 +34,7 @@ class Strata extends StrataContext {
         $this->_ready = false;
 
         $this->_includeUtils();
-        $this->_parseProjectConfigFile();
+        $this->_saveConfigValues(self::parseProjectConfigFile());
 
         if (is_null($this->_config)) {
             trigger_error("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata." , E_USER_WARNING);
@@ -71,7 +71,7 @@ class Strata extends StrataContext {
     }
 
     /**
-     * Fetches a value in the app's configuration array
+     * Fetches a value in the app's configuration array for the duration of the runtime.
      * @param string $key In dot-notation format
      * @return mixed
      */
@@ -79,24 +79,19 @@ class Strata extends StrataContext {
     {
         return Hash::extract($this->_config, $key);
     }
-
+    /**
+     * Saves a value in the app's configuration array for the duration of the runtime.
+     * @param string $key In dot-notation format
+     * @return mixed
+     */
     public function write($key, $value)
     {
         return Hash::set($this->_config, $key, $value);
     }
 
-    /**
-     * Loads app.php, cleans up the data and saves it as config to the current instance of the Strata object.
-     */
-    protected function _parseProjectConfigFile()
+    protected function _saveConfigValues($values)
     {
-        $configFile = self::getProjectConfigurationFilePath();
-        if (file_exists($configFile)) {
-            $strata = include_once($configFile);
-            if(isset($strata) && count($strata)) {
-                $this->_config = Hash::normalize($strata);
-            }
-        }
+        $this->_config = Hash::normalize($values);
     }
 
     protected function _includeUtils()

@@ -20,14 +20,14 @@ class StrataCommand extends Command
      *
      * @var string
      */
-    protected $_tree_line = "├── ";
+    protected $_tree_line = "  ├── ";
 
     /**
      * The bottom part of a tree representation prefix.
      *
      * @var string
      */
-    protected $_tree_end = "└── ";
+    protected $_tree_end = "  └── ";
 
     /**
      * A reference to the current input interface object
@@ -141,8 +141,6 @@ class StrataCommand extends Command
      * @return null|int null or 0 if everything went fine, or an error code
      *
      * @throws \LogicException When this abstract method is not implemented
-     *
-     * @see setCode()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

@@ -3,6 +3,7 @@
  */
 namespace Strata\Shell;
 
+use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
 use Strata\Shell\StrataCommand;
 
@@ -67,34 +68,38 @@ class {CLASSNAME} extends {EXTENDS} {
         $this->startup($input, $output);
 
         $options = $input->getArgument('options');
+        $classname = Inflector::classify($options[0]);
 
         switch ($input->getArgument('type')) {
             case "controller" :
-                $this->_renderController(Inflector::classify($options[0]). "Controller");
+                $this->_renderController($classname."Controller");
                 break;
 
             case "model" :
-                $this->_renderModel(Inflector::classify($options[0]). "Model");
+                $this->_renderModel($classname);
                 break;
 
             case "customposttype" :
-                $this->_renderCustomPostType(Inflector::classify($options[0]). "Model", true);
+                $this->_renderCustomPostType($classname, true);
                 break;
 
             case "helper" :
-                $this->_renderHelper(Inflector::classify($options[0]) . "Helper");
+                $this->_renderHelper($classname."Helper");
                 break;
 
             case "taxonomy" :
-                $this->_output->writeLn("Generating a taxonomy is not yet supported, but should be soon.");
+                $this->_renderTaxonomy($classname);
                 break;
 
             case "validator" :
-                $this->_output->writeLn("Generating a validator is not yet supported, but should be soon.");
+                $this->_renderValidator($classname."Validator");
                 break;
 
             case "route" :
-                $this->_output->writeLn("Generating a route is not yet supported, but should be soon.");
+                if (count($options) < 3) {
+                    throw new InvalidArgumentException("A route requires 3 parameters: The request type, the url to match and the MVC destination.");
+                }
+                $this->_addRoute($options[0], $options[1], $options[2]);
                 break;
 
             default : throw new InvalidArgumentException("That is not a valid command.");
@@ -167,7 +172,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $namespace = $this->_getNamespace();
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "controller", "$classname.php"));
-        $this->_createFile($destination, "$classname\Controller", $classname, "\{$namespace}\AppController");
+        $this->_createFile($destination, "$namespace\Controller", $classname, "\{$namespace}\AppController");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "controller", $classname . ".php"));
         $this->_createFile($destination, "{$namespace}\Test\Controller", "Test{$namespace}" , "\Strata\Test\Test", true);
@@ -189,7 +194,43 @@ class {CLASSNAME} extends {EXTENDS} {
         $this->_createFile($destination, "$namespace\Model", $classname, $ctpExtend);
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . ".php"));
-        $this->_createFile($destination, "{$classname}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
+    }
+
+    /**
+     * Creates a Taxonomy Model class file
+     * @param  string $classname The class name
+     * @return null
+     */
+    protected function _renderTaxonomy($classname)
+    {
+        $this->_output->writeLn("Scaffolding taxonomy <info>$classname</info>");
+
+        $namespace = $this->_getNamespace();
+
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", $classname . ".php"));
+        $this->_createFile($destination, "$namespace\Model", $classname, "\Strata\Model\CustomPostType\TaxonomyEntity");
+
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . ".php"));
+        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
+    }
+
+    /**
+     * Creates a Validator class file
+     * @param  string $classname The class name
+     * @return null
+     */
+    protected function _renderValidator($classname)
+    {
+        $this->_output->writeLn("Scaffolding validator <info>$classname</info>");
+
+        $namespace = $this->_getNamespace();
+
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", "validator", $classname . ".php"));
+        $this->_createFile($destination, "$namespace\Model\Validator", $classname, "\Strata\Model\Validator");
+
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", "validator", $classname . ".php"));
+        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
     }
 
     /**
@@ -204,9 +245,41 @@ class {CLASSNAME} extends {EXTENDS} {
         $namespace = $this->_getNamespace();
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "view", "helper", $classname . ".php"));
-        $this->_createFile($destination, "{$classname}\Test\View\Helper", $classname, "\{$namespace}\View\Helper\AppHelper");
+        $this->_createFile($destination, "{$namespace}\View\Helper", $classname, "\{$namespace}\View\Helper\AppHelper");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "view", "helper", $classname . ".php"));
         $this->_createFile($destination, "{$namespace}\Tests\View\Helper", "Test{$classname}", "\Strata\Test\Test", true);
     }
+
+    /**
+     * Adds a new route entry to the strata.php configuration file.string
+     * @param string $type        The type of request to handle
+     * @param string $url         The matching url
+     * @param string $destination A valid MVC destination
+     */
+    protected function _addRoute($type, $url, $destination)
+    {
+        $this->_output->writeLn("Add new route to <info>$destination</info>");
+
+        $target = explode("#", $destination);
+        $className = \Strata\Strata::getNamespace() . "\\Controller\\" . $target[0];
+
+        if(class_exists($className)) {
+            $this->_output->writeLn($this->tree(true) . $this->fail('No file matched the controller handled by this route. Looked for ' . $this->info($className) . '.'));
+            return;
+        }
+
+        if (count($target) > 1 && !method_exists($className, $target[1])) {
+            $this->_output->writeLn($this->tree(true) . $this->fail('No method named '. $target[1] .' is declared by '. $className .'.'));
+            return;
+        }
+
+        $currentConfig = \Strata\Strata::parseProjectConfigFile();
+        $newConfig = Hash::insert($currentConfig, "routes", array(strtoupper($type), $url, $destination));
+
+        $this->_output->writeLn($this->tree(true) . $this->ok('Added route : $type | $url -> $destination.'));
+
+        return \Strata\Strata::writeProjectConfigFile($newConfig);
+    }
+
 }
