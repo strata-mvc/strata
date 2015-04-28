@@ -3,43 +3,36 @@
  */
 namespace Strata\Shell;
 
+use Strata\Shell\StrataCommand;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * built-in Server Shell
  */
-class DocumentationShell extends \Strata\Shell\Shell
+class DocumentationCommand extends StrataCommand
 {
-
-    public function initialize($options = array())
+    protected function configure()
     {
-        $this->_config = $options + array(
-            "destination"  => implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR)),
-            "theme"  => "theme-bootstrap",
-        );
-
-        parent::initialize($options);
+        $this
+            ->setName('document')
+            ->setDescription('Documents the current app')
+            ->setDefinition(
+                new InputDefinition(array(
+                    new InputOption('destination', 'c', InputOption::VALUE_OPTIONAL),
+                ))
+            );
     }
 
-    public function contextualize($args)
+
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (count($args) > 3) {
-            $this->_config["destination"] = $args[3];
-        }
-
-        if (count($args) > 4) {
-            $this->_config["theme"] = $args[4];
-        }
-
-        parent::contextualize($args);
-    }
-
-    /**
-     * Override main() to handle action
-     *
-     * @return void
-     */
-    public function main()
-    {
-        $this->startup();
+        $this->startup($input, $output);
 
         $this->_deletePrevious();
 
@@ -55,46 +48,67 @@ class DocumentationShell extends \Strata\Shell\Shell
         $this->shutdown();
     }
 
+    protected function _getDestination()
+    {
+        if (!is_null($this->_input->getOption('destination'))) {
+            return $this->_input->getOption('destination');
+        }
+
+        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR));
+    }
+
+    protected function _getApiDestination()
+    {
+        return $this->_getDestination() . 'api';
+    }
+    protected function _getWpdocDestination()
+    {
+        return $this->_getDestination() . 'wpdoc';
+    }
+
+    protected function _getApigenBin()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getOurVendorPath() . "vendor", "apigen", "apigen", "bin", "apigen"));;
+    }
+
     protected function _summary()
     {
-        $this->out("The project documentation has been generated at the following URLs: ");
+        $this->_output->writeLn("The project documentation has been generated at the following URLs: ");
         $this->nl();
 
-        $this->out($this->info("API               : ") . $this->_config["destination"] . 'api/index.html');
-        $this->out($this->info("Theme Information : ") . $this->_config["destination"] . 'wpdoc/index.html');
+        $destination = $this->_getDestination();
+        $this->_output->writeLn("<info>API               :</info> ". $this->_getApiDestination()   ."/index.html");
+        $this->_output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
     }
 
     protected function _deletePrevious()
     {
-        $this->_rrmdir($this->_config["destination"] . 'api');
-        $this->_rrmdir($this->_config["destination"] . 'wpdoc');
+        $this->_rrmdir($this->_getApiDestination());
+        $this->_rrmdir($this->_getWpdocDestination());
     }
 
     protected function _generateAPI()
     {
         $srcPath = \Strata\Strata::getSRCPath();
-        $destination = $this->_config["destination"] . 'api';
-        $apigen = implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getOurVendorPath() . "vendor", "apigen", "apigen", "bin", "apigen"));
 
-        $this->out($this->info("Generating API"));
-        $this->out($this->tree(true) . "Scanning $srcPath");
+        $this->_output->writeLn("<info>Generating API</info>");
+        $this->_output->writeLn($this->tree(true) . "Scanning $srcPath");
         $this->nl();
 
-        system(sprintf("%s generate -s %s -d %s --quiet", $apigen, $srcPath, $destination));
+        system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
     }
 
     protected function _generateThemesApi()
     {
-        $srcPath = \Strata\Strata::getSRCPath();
+        $this->_output->writeLn("<info>Generating Wordpress theme details</info>");
 
-        $this->out($this->info("Generating Wordpress theme details"));
-
-        $info = $this->_scanThemeDirectories(\Strata\Strata::getThemesPath());
+        $themesPath = \Strata\Strata::getThemesPath();
+        $info = $this->_scanThemeDirectories($themesPath);
         $this->_writeThemesDocumentation($info);
     }
 
     /**
-     * @todo  This will do for now, but we may need to steal the styles from apigen's theme to make sure things look the same.
+     * @todo  This will do for now, but the template shouldn't be hardcoded.
      * @param  [type] $info [description]
      * @return [type]       [description]
      */
@@ -133,11 +147,12 @@ class DocumentationShell extends \Strata\Shell\Shell
             $content .= "</tbody></table>";
         }
 
-        if (!is_dir($this->_config["destination"] . 'wpdoc')) {
-            mkdir($this->_config["destination"] . 'wpdoc');
+        $wpdocdir = $this->_getWpdocDestination();
+        if (!is_dir($wpdocdir)) {
+            mkdir($wpdocdir);
         }
 
-        file_put_contents($this->_config["destination"] . 'wpdoc/index.html', $header . $content . $footer, LOCK_EX);
+        file_put_contents($wpdocdir . "/index.html", $header . $content . $footer, LOCK_EX);
     }
 
     protected function _scanThemeDirectories($base)
@@ -157,7 +172,7 @@ class DocumentationShell extends \Strata\Shell\Shell
                         "libs"      => array()
                     );
 
-                    $this->out($this->tree(true) . "Scanning $theme");
+                    $this->_output->writeLn($this->tree(true) . "Scanning $theme");
                 }
             }
 
@@ -175,7 +190,7 @@ class DocumentationShell extends \Strata\Shell\Shell
                         $tree["themes"][$theme]["templates"][$template][$key] = $templateDetails[$key];
                     }
 
-                   // $this->out($this->tree() . $template);
+                   // $this->_output->writeLn($this->tree() . $template);
                 }
             }
 
@@ -193,7 +208,7 @@ class DocumentationShell extends \Strata\Shell\Shell
                     foreach ($headerKeys as $key) {
                         $tree["themes"][$theme]["libs"][$lib][$key] = $libDetails[$key];
                     }
-                    //$this->out($this->tree() . $lib);
+                    //$this->_output->writeLn($this->tree() . $lib);
                 }
             }
         }

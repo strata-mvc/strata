@@ -112,6 +112,11 @@ class StrataContext {
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "src")) . DIRECTORY_SEPARATOR;
     }
 
+    public static function getDbPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "db")) . DIRECTORY_SEPARATOR;
+    }
+
     public static function getUtilityPath()
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getOurVendorPath(), "src", "Utility")) . DIRECTORY_SEPARATOR;

@@ -6,6 +6,9 @@ use Strata\Utility\Hash;
 use Strata\Context\StrataContext;
 use Strata\Model\CustomPostType\Loader;
 
+// Use our own set of dependencies.
+require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+
 /**
  * Running Strata instance
  *
