@@ -4,16 +4,12 @@ namespace Strata\Context;
 use Strata\Strata;
 use Strata\Utility\Hash;
 
+use Composer\Autoload\ClassLoader;
+
 /**
  * Contains all the static methods related to the Strata app object.
  */
 class StrataContext {
-
-    /**
-     * @var composer Composer's loader object. Kept handy in case additional paths
-     * need to be added along the way.
-     */
-    public static $loader = null;
 
     /**
      * Because the processing is called asynchronously using wordpress' hooks,
@@ -61,20 +57,20 @@ class StrataContext {
     /**
      * Bootstraps Strata by creating an instance and
      * saving it to the global scope.
-     * @return
+     * @param  \Composer\Autoload\ClassLoader Current project's Composer autoloader.
+     * @return \Strata\Strata The current application
      */
-    public static function bootstrap()
+    public static function bootstrap(ClassLoader $loader)
     {
         $app = new \Strata\Strata();
 
         // Expose the app context to the current process.
         $GLOBALS['__Strata__'] = $app;
 
-        $app->init();
+        $app->setLoader($loader);
+        $app->run();
 
-        if ($app->ready()) {
-            $app->run();
-        }
+        return $app;
     }
 
     /**
@@ -86,7 +82,7 @@ class StrataContext {
         $configFile = self::getProjectConfigurationFilePath();
         if (file_exists($configFile)) {
             $strata = include_once($configFile);
-            if(isset($strata) && count($strata)) {
+            if (isset($strata) && count($strata)) {
                 return Hash::normalize($strata);
             }
         }
@@ -101,6 +97,11 @@ class StrataContext {
     {
         $configFile = self::getProjectConfigurationFilePath();
         return file_put_contents($configFile, print_r($config, true));
+    }
+
+    public static function requireVendorAutoload()
+    {
+        return require \Strata\Strata::getVendorPath() . 'autoload.php';
     }
 
     /**

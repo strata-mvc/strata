@@ -3,8 +3,11 @@ namespace Strata;
 
 use Strata\Router;
 use Strata\Utility\Hash;
+use Strata\Utility\ErrorMessenger;
 use Strata\Context\StrataContext;
 use Strata\Model\CustomPostType\Loader;
+
+use Composer\Autoload\ClassLoader;
 
 // Use our own set of dependencies.
 require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
@@ -27,19 +30,27 @@ class Strata extends StrataContext {
     protected $_ready = false;
 
     /**
-     * Prepares the object for its run.
+     * @var \Composer\Autoload\ClassLoader Keeps a reference to the current project's Composer autoloader file.
      */
-    public function init()
+    protected $_loader = null;
+
+    /**
+     * Prepares the object for its run.
+     * @throws \Exception Throws an exception if the configuration array could not be loaded.
+     */
+    protected function _init()
     {
         $this->_ready = false;
 
         $this->_includeUtils();
+
         $this->_saveConfigValues(self::parseProjectConfigFile());
 
         if (is_null($this->_config)) {
-            trigger_error("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata." , E_USER_WARNING);
-            return;
+            throw new \Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
         }
+
+        $this->_addProjectNamespace();
 
         $this->_ready = true;
     }
@@ -50,8 +61,7 @@ class Strata extends StrataContext {
     public function run()
     {
         if (!$this->_ready) {
-            trigger_error("The Strata instance is not ready to be called. Have you initiated it?" , E_USER_WARNING);
-            return;
+            $this->_init();
         }
 
         // Set up the creation of custom post types based on models
@@ -63,11 +73,12 @@ class Strata extends StrataContext {
     }
 
     /**
-     * Return the ready state of the app
+     * Assigns a class loader to the application
+     * @param ClassLoader $loader The application's class loader.
      */
-    public function ready()
+    public function setLoader(ClassLoader $loader)
     {
-        return (bool)$this->_ready;
+        $this->_loader = $loader;
     }
 
     /**
@@ -79,6 +90,7 @@ class Strata extends StrataContext {
     {
         return Hash::extract($this->_config, $key);
     }
+
     /**
      * Saves a value in the app's configuration array for the duration of the runtime.
      * @param string $key In dot-notation format
@@ -89,13 +101,34 @@ class Strata extends StrataContext {
         return Hash::set($this->_config, $key, $value);
     }
 
-    protected function _saveConfigValues($values)
+    /**
+     * Saves an array of options to the _config attribute.
+     * @param  array $values A list of project values.
+     * @return null
+     */
+    protected function _saveConfigValues(array $values)
     {
         $this->_config = Hash::normalize($values);
     }
 
+    /**
+     * Includes the debugger classes.
+     * @return boolean True if the file was correctly included.
+     */
     protected function _includeUtils()
     {
-        include_once(self::getUtilityPath() . "Debug.php");
+        return include_once(self::getUtilityPath() . "Debug.php");
+    }
+
+    /**
+     * Adds the current project namespace to the projet's class loader.
+     * @return null
+     */
+    protected function _addProjectNamespace()
+    {
+        $srcPath = self::getSRCPath();
+        $namespace = self::getNamespace() . "\\";
+
+        $this->_loader->setPsr4($namespace, $srcPath);
     }
 }

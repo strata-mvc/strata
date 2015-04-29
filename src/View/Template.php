@@ -4,15 +4,23 @@ namespace Strata\View;
 class Template {
 
     /**
-     * @param string The name of the template to load (.php will be added to it)
+     * Parses a template file and declares view variables in this scope for the
+     * template to have access to them.
+     * @param string The name of the template to load
      * @param array an associative array of values to assign in the template
+     * @param string The file extension of the template to be loaded
+     * @return  string The parsed html.
      */
-    public static function render($name, $values = array())
+    public static function parse($name, $variables = array(), $extension = '.php')
     {
+        $templateFilePath = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name . $extension));
+
         ob_start();
-        // expose local variables for the template
-        extract($values);
-        include(get_template_directory() . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $name . '.php');
+
+        extract($variables);
+        include($templateFilePath);
+
         return  ob_get_clean();
     }
+
 }

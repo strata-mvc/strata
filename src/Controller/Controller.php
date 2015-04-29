@@ -3,7 +3,7 @@
 namespace Strata\Controller;
 
 use Strata\Controller\Request;
-use Strata\View\Template;
+use Strata\View\View;
 
 /**
  * Base controller class.
@@ -20,10 +20,9 @@ class Controller {
     /**
      * The associated view template
      *
-     * @var Strata\View\Template
+     * @var Strata\View\View
      */
-    public $template = null;
-
+    public $view = null;
 
     /**
      * These hooks allow views to use Wordpress nicely, but still trigger
@@ -41,7 +40,7 @@ class Controller {
     {
         // Save the current request
         $this->request = new Request();
-        $this->template = new Template();
+        $this->view = new View();
 
         // If this controller has shortcodes, try to assign them.
         $this->_buildShortcodes();
@@ -72,52 +71,6 @@ class Controller {
     public function index()
     {
 
-    }
-
-    /**
-     * Assigns the variable to the current view
-     */
-    public function set($name, $value)
-    {
-        $this->viewVars[$name] = $value;
-        // Not super pretty, but this is the only way I could think
-        // of for reaching WP's scope.
-        $GLOBALS[$name] = $value;
-    }
-
-    /**
-     * Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.
-     * @param  array $options An associative array of rendering options
-     * @return string          The rendered content.
-     */
-    public function render($options)
-    {
-        $options += array(
-            "Content-type" => "text/html",
-            "Content-disposition" => null,
-            "content" => "",
-            "end" => true
-        );
-
-        if (is_array($options['content'])) {
-            $content = json_encode($options['content']);
-        } else {
-            $content = $options['content'];
-        }
-
-        // When we have to end the process upon rendering, expected behaviour
-        // is an ajax request. Set the header as we will not use wordpress'.
-        if ($options['end']) {
-            header('Content-type: ' . $options['Content-type']);
-
-            if (!is_null($options['Content-disposition'])) {
-                header('Content-disposition: ' . $options['Content-disposition']);
-            }
-
-            echo $content;
-            exit();
-        }
-        echo $content;
     }
 
     /**

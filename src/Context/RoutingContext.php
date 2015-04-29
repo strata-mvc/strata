@@ -69,14 +69,18 @@ class RoutingContext {
     public static function performAction($className, $methodName, $params = array())
     {
         if(method_exists($className, $methodName))  {
-            $ctrl = new $className();
-            $ctrl->init();
+            try {
+                $ctrl = new $className();
+                $ctrl->init();
 
-            call_user_func(array($ctrl, "before"));
-            $returnData = call_user_func_array(array($ctrl, $methodName), $params);
-            call_user_func(array($ctrl, "after"));
+                call_user_func(array($ctrl, "before"));
+                $returnData = call_user_func_array(array($ctrl, $methodName), $params);
+                call_user_func(array($ctrl, "after"));
 
-            return $returnData;
+                return $returnData;
+            } catch(\Exception $e) {
+                error_log("\033[31m Strata : " . $e->getMessage());
+            }
 
         } else {
             error_log("\033[31m Strata : Missing method $methodName.");

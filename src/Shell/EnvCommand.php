@@ -80,7 +80,7 @@ class EnvCommand extends StrataCommand
     protected function configure()
     {
         $this
-            ->setName('strata')
+            ->setName('env')
             ->setDescription('Manages the Strata installation on your Bedrock Wordpress stack')
             ->addArgument(
                 'mode',
