@@ -32,7 +32,7 @@ class StrataContext {
     {
         $app = Strata::app();
         if (!is_null($app)) {
-            return $app->read($key);
+            return $app->getConfig($key);
         }
     }
 

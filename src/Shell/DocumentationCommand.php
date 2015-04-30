@@ -131,7 +131,7 @@ class DocumentationCommand extends StrataCommand
         $this->_output->writeLn($this->tree(true) . "Scanning $srcPath");
         $this->nl();
 
-        system(sprintf("%s generate -s %s -d %s", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
+        system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
     }
 
     /**

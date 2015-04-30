@@ -1,7 +1,7 @@
 <?php
 namespace Strata;
 
-use Strata\Router;
+use Strata\Router\Router;
 use Strata\Utility\Hash;
 use Strata\Utility\ErrorMessenger;
 use Strata\Context\StrataContext;
@@ -69,7 +69,7 @@ class Strata extends StrataContext {
             Loader::preload();
         }
 
-        Router::kickstart();
+        $this->_configureRouter();
     }
 
     /**
@@ -86,7 +86,7 @@ class Strata extends StrataContext {
      * @param string $key In dot-notation format
      * @return mixed
      */
-    public function read($key)
+    public function getConfig($key)
     {
         return Hash::extract($this->_config, $key);
     }
@@ -96,9 +96,15 @@ class Strata extends StrataContext {
      * @param string $key In dot-notation format
      * @return mixed
      */
-    public function write($key, $value)
+    public function setConfig($key, $value)
     {
         return Hash::set($this->_config, $key, $value);
+    }
+
+
+    protected function _configureRouter()
+    {
+        Router::automateURLRoutes($this->getConfig('routes'));
     }
 
     /**
