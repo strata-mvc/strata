@@ -14,7 +14,7 @@ Bedrock handles most of the declaration of global configuration variables. They 
 
 Strata will have access to all the environment variables declared in the `.env` file located at the base of the project. It is the main method of setting environment based values in Bedrock. Read more on [dotenv](https://github.com/vlucas/phpdotenv).
 
-## Strata Configuration
+## Strata configuration
 
 Strata has one configuration file that contains all the information it needs to run correctly in your project. You can find that file in `config/strata.php`.
 
@@ -71,5 +71,5 @@ By default, your project classes will be appended to the `App` namespace. If you
 ~~~
 
 <p class="warning">
-    Should you change the namespace mid-project, after having generated project files, you will have to change the value of the namespace inside all of the classes manually.
+    Should you change the namespace mid-project you will have to change the namespace value of the all previously generated project files.
 </p>

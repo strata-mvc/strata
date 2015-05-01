@@ -4,7 +4,13 @@ title: Controllers
 permalink: /docs/controllers/
 ---
 
-Controllers allow an easy to understand entry point in modern web applications. Once you have set up the [application's routes]({{ site.baseurl }}/docs/routes/) in your project's `app.php` you will have to write the corresponding controller endpoints.
+Controllers allow easy to understand entry points in modern web applications. Once you have set up at least one [application route]({{ site.baseurl }}/docs/routes/) in your project's [configuration file]({{ site.baseurl }}/docs/configuring/#strata-configuration) you will have to write the corresponding controller endpoints.
+
+The main use case of Controllers in Strata is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. The biggest gain is the ability to use the same business logic code multiple times as well as improving code testability.
+
+Additionally, handling posted data on a Wordpress CMS page or handling dynamic page states, controllers are a great way of maintaining your website's code.
+
+<p class="warning">No helpers or models are being auto-loaded by the controller as some other frameworks may do.</p>
 
 ## Creating a controller file
 
@@ -13,24 +19,18 @@ To generate a Controller, you should use the automated generator provided by Str
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
 ~~~ sh
-$ bin/mvc generate controller Artist
+$ bin/strata generate controller Artist
 ~~~
 
 It will generate a couple of files for you, including the actual controller file and test suites for the generated class.
 
 ~~~ sh
-Scaffolding controller Artist
-src/controller/ArtistController.php
-tests/controller/ArtistController.php
+Scaffolding controller ArtistController
+  ├── [ OK ] src/controller/ArtistController.php
+  └── [ OK ] test/controller/ArtistControllerTest.php
 ~~~
 
-The main use case of Controllers in Strata is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the ability to use the same business logic code in multiple themes as well as improving code testability.
-
-Controllers may seem like overkill if you only use the regular templating. You can achieve similar results by placing the code in a custom `template-customposttype.php` file. It's up to you to decide if you need such infrastructure in your project.
-
- On the other hand, when handling posted data on a Wordpress CMS page or for any other reasons when the page can have a dynamic state, controllers become a great way of separating your code.
-
-Note that no helpers or models are being auto-loaded by the controller.
+# Example class
 
 Here's how you could declare a controller for a Song entity:
 
@@ -64,7 +64,7 @@ class SongsController extends \MyProject\Controller\AppController {
 ?>
 ~~~
 
-## Shortcodes and exposing actions.
+## Shortcodes and exposing actions
 
 In the case where you have created a page in Wordpress and need to include dynamic values inside the post's CMS content, you may use auto-generated shortcodes.
 
@@ -105,16 +105,16 @@ Upon each successful route match the router will call the `before()` and `after(
 <?php
 namespace Mywebsite\Controller;
 
-use MVC\Controller;
-
-class AdminController extends Controller {
+class AdminController extends \Mywebsite\Controller\AppController {
 
     protected $_repository = null
 
     public function before()
     {
-        if ((bool)\Strata\Mvc::config('useGithub')) {
-            $this->_repository = "http://github.com/";
+        if ((bool)\Strata\Strata::config('useGithub')) {
+            $this->_repository = "http://github.com/xyz/";
+        } else {
+            $this->_repository = "http://bitbucket.org/xyz/";
         }
 
         if (!is_admin()) {
@@ -145,12 +145,15 @@ namespace Mywebsite\Controller;
 
 use Mywebsite\Model\Song;
 
-class AjaxController extends \MyProject\Controller\AppController {
+class AjaxController extends \Mywebsite\Controller\AppController {
+
+    public function before()
+    {
+        check_ajax_referer( SECURITY_SALT, 'security' );
+    }
 
     public function songs()
     {
-        $this->makeSecure();
-
         $data = Song::query()
             ->where("meta_key", "album_name")
             ->where("meta_value", $_POST['album_name'])
@@ -164,8 +167,6 @@ class AjaxController extends \MyProject\Controller\AppController {
 }
 ?>
 ~~~
-
-The `makeSecure()` function ensures the ajax request is safe by using `check_ajax_referer` internally.
 
 And the javascript call could be :
 
@@ -195,7 +196,7 @@ namespace Mywebsite\Controller;
 
 use Mywebsite\Model\Form\CSVExportForm;
 
-class FileController extends \MyProject\Controller\AppController {
+class FileController extends \Mywebsite\Controller\AppController {
 
     public function downloadcvs()
     {
@@ -210,10 +211,9 @@ class FileController extends \MyProject\Controller\AppController {
 ?>
 ~~~
 
-
 ## On scopes and custom templating
 
-Because the MVC is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instantiated. It is the case with shortcode assignments and some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
+Because Strata is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instantiated. It is the case with shortcode assignments and during some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
 
 The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
 
@@ -221,7 +221,7 @@ Say you create a dashboard widget:
 
 ~~~ php
 <?php
-    wp_add_dashboard_widget('mywebsite-test-dashboard', 'This is a test dashboard',  \Strata\Router::callback('AdminController', 'testDashboardMetabox'));
+    wp_add_dashboard_widget('mywebsite-test-dashboard', 'This is a test dashboard',  \Strata\Router\Router::callback('AdminController', 'testDashboardMetabox'));
 ?>
 ~~~
 
@@ -231,7 +231,7 @@ The metabox uses its own template file, outside of the current page rendering. Y
 <?php
 namespace Mywebsite\Controller;
 
-class AdminController extends \MyProject\Controller\AppController {
+class AdminController extends \Mywebsite\Controller\AppController {
 
     public function before()
     {

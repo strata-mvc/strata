@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Server
+title: Bundled Server
 permalink: /docs/server/
 ---
 
@@ -11,13 +11,20 @@ Strata ships with a server on which you can test your application. This server i
 Using the command line, run the `server` command from your project's base directory.
 
 ~~~ sh
-$ bin/mvc server
+$ bin/strata server
 ~~~
 
-It will kickoff a running instance of your Wordpress installation available at `http://127.0.0.1:5454/`. There is no way of changing this url for the moment. Also, instances launched with the bin/mvc script will always load the development.ini variables.
+It will kickoff a running instance of your Wordpress installation available at `http://127.0.0.1:5454/`. There is no way of changing this url for the moment.
+
 
 ## Customizing the server
 
+{% include workinprogress.html %}
+
+There will be a short period during which server customization will not be explained while we finish solidifying what happens when Strata runs inside Vagrant and when it runs using the default PHP binaries.
+
+
+<!---
 We ship a simple basic [Vagrant](http://vagrantup.com) configuration with the solution. You can modify the `VagrantFile` and the `bin\vagrant\provision.sh` as you wish so the image better suits your needs.
 
 There are a few settings that must be made to your image to make sure everything runs properly:
@@ -35,3 +42,5 @@ sed -i "s#\${APACHE_LOG_DIR}#/vagrant/log#g" /etc/apache2/sites-available/000-de
 sed -i "s#APACHE_RUN_USER=www-data#APACHE_RUN_USER=vagrant#g" /etc/apache2/envvars
 sed -i "s#APACHE_RUN_GROUP=www-data#APACHE_RUN_GROUP=vagrant#g" /etc/apache2/envvars
 ~~~
+
+-->
