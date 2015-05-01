@@ -1,0 +1,16 @@
+.site-header {
+
+    height: 50px;
+    padding: 0 1em;
+
+    h1 {
+        clear:left;
+        float: left;
+    }
+
+    nav {
+        clear:right;
+        display:block;
+        float: right;
+    }
+}

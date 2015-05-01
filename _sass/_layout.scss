@@ -296,3 +296,21 @@ pre {
     width:50%;
     float:left;
 }
+
+.workinprogress {
+    margin:0.5em;
+    padding:0.5em;
+    float:right;
+    border:#dedede;
+    background:#eee;
+    color:#666;
+    font-size:90%;
+    width:200px;
+}
+
+.warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    padding:1em;
+}

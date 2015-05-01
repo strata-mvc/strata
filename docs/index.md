@@ -6,11 +6,11 @@ permalink: /docs/
 
 ## Why
 
-Wordpress is a fantastic blog engine and can sometimes be used as a full fledged CMS. When building more complex websites and applications, one may find that you can't quite cleanly separate the business logic from the templating engine. For this reason, WMVC tries to organize your business code away from the templates.
+Wordpress is a fantastic blog engine and can sometimes be used as a full fledged CMS. When building more complex websites and applications, one may find that you can't quite cleanly separate the business logic from the templating engine. For this reason, Strata tries to organize your business code away from the templates.
 
 ## What it does
 
-Packaged in a stand-alone developing environment similar to CakePHP and Rails', Wordpress MVC allows you to dissociate business logic code form the template files while maintaining a totally clean and valid Wordpress installation.
+Packaged in a stand-alone developing environment similar to CakePHP and Rails', Strata allows you to dissociate business logic code form the template files while maintaining a totally clean and valid Wordpress installation.
 
 You can associate permalinks to controller classes to offer an elegant way of maintaining complex code and keep the templates as clean as possible. It also maps models to custom post types so model relationships can be programmed similarly elegantly.
 

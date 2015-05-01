@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Strata\View\View</title>
+
+	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Strata.html">
+						Strata<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Context.html">
+						Context					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Emails.html">
+						Emails					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.html">
+						Model<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.html">
+						CustomPostType					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Validator.html">
+						Validator					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Router.html">
+						Router<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.html">
+						RouteParser<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Alto.html">
+						Alto					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Callback.html">
+						Callback					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-Strata.Shell.html">
+						Shell					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Test.html">
+						Test					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Utility.html">
+						Utility					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Strata.View.html">
+						View<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.View.Helper.html">
+						Helper					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Strata.View.Template.html">Template</a></li>
+				<li class="active"><a href="class-Strata.View.View.html">View</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Strata.View.html" title="Summary of Strata\View"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class View</h1>
+
+
+	<div class="description">
+	<p>Handles the generation of view html. It is important to understand this is not used
+when a request continues the regular Wordpress flow which generates its own templates.</p>
+
+<p>This class is used when a controller is printing the view object itself, as it is often the
+case for AJAX, file downloads and numeric returns.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.View.html">View</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Strata.View.View.html#4-112" title="Go to source code">View/View.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Strata.View.View.html#25-37" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			<p>The constructor of the View class populates the default options.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The constructor of the View class populates the default options.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code><a href="source-class-Strata.View.View.html#39-49" title="Go to source code">set</a>( <span> <var>$name</var></span>, <span> <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Assigns the variable to the current view</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Assigns the variable to the current view</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getVariables" id="_getVariables">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getVariables">#</a>
+		<code><a href="source-class-Strata.View.View.html#51-58" title="Go to source code">getVariables</a>( )</code>
+
+		<div class="description short">
+			<p>Returns the list of currently declared variables in this view.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the list of currently declared variables in this view.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>An associative array of values
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="render" id="_render">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_render">#</a>
+		<code><a href="source-class-Strata.View.View.html#60-81" title="Go to source code">render</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			<p>Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd>An associative array of rendering options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The rendered content.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_parseCurrentContent" id="__parseCurrentContent">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__parseCurrentContent">#</a>
+		<code><a href="source-class-Strata.View.View.html#83-96" title="Go to source code">_parseCurrentContent</a>( )</code>
+
+		<div class="description short">
+			<p>Takes the current value of the content option and ensure that it is
+correctly formatted for output. If the content is an array or an object, the value.
+is encoded to a json string. Otherwise, the content simply cast into string.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Takes the current value of the content option and ensure that it is
+correctly formatted for output. If the content is an array or an object, the value.
+is encoded to a json string. Otherwise, the content simply cast into string.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The content of the view
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_applyHeaders" id="__applyHeaders">
+
+		<td class="attributes"><code>
+			 protected 
+
+			null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__applyHeaders">#</a>
+		<code><a href="source-class-Strata.View.View.html#98-110" title="Go to source code">_applyHeaders</a>( )</code>
+
+		<div class="description short">
+			<p>Applies header values sent as options. For the time being, only Content-type and Content-disposition
+are supported.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Applies header values sent as options. For the time being, only Content-type and Content-disposition
+are supported.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="_options" id="$_options">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.View.View.html#13-17" title="Go to source code"><var>$_options</var></a>
+
+			<div class="description short">
+				<p>Rendering options, used when explicitly rendering a view from a controller.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Rendering options, used when explicitly rendering a view from a controller.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$_options" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="_templateVars" id="$_templateVars">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.View.View.html#19-23" title="Go to source code"><var>$_templateVars</var></a>
+
+			<div class="description short">
+				<p>The list of variables to be declared when loading the view</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The list of variables to be declared when loading the view</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$_templateVars" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

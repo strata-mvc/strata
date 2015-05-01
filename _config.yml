@@ -1,8 +1,8 @@
 # Site settings
-title: Wordpress MVC
+title: Strata
 email: frank@francoisfaubert.com
 description: > # this means to ignore newlines until "baseurl:"
-  Wordpress MVC gives you a stable development environment and a
+  Strata gives you a stable development environment and a
   Model View Controller framework that allows you to organize your
   Wordpress code outside of the templating engine.
 baseurl: "" # the subpath of your site, e.g. /blog/

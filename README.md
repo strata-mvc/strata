@@ -1,10 +1,4 @@
-Wordpress MVC
+Strata
 =============
 
-This branch contains the website offering documentation for the Wordpress MVC.
-
-To launch the server, run :
-
-~~~ sh
-> jekyll serve
-~~~
+This branch contains the website offering documentation for [Strata](http://wordpress-mvc.francoisfaubert.com/).

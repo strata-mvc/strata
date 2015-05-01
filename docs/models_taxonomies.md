@@ -7,7 +7,7 @@ permalink: /docs/models/taxonomies/
 
 ## Creating the taxonomy class
 
-To generate a taxonomy definition, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
+To generate a taxonomy definition, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a taxonomy called for the `ProfileType`:
 
@@ -24,7 +24,7 @@ Should you wish to link a taxonomy to created models you can do so using the `ha
 <?php
 namespace Mywebsite\Model;
 
-class Profile extends \MVC\Model\CustomPostType\Entity
+class Profile extends \Strata\Model\CustomPostType\Entity
 {
     public $configuration = array(
         'has' => array('Mywebsite\Model\ProfileType')
@@ -39,7 +39,7 @@ This will look for a taxonomy definition called `ProfileType`, which can be conf
 <?php
 namespace Mywebsite\Model;
 
-class ProfileType extends \MVC\Model\CustomPostType\TaxonomyEntity
+class ProfileType extends \Strata\Model\CustomPostType\TaxonomyEntity
 {
     public $configuration = array(
         'labels'      => array(

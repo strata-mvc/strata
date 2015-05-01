@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Strata\Utility\Hash</title>
+
+	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Strata.html">
+						Strata<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Context.html">
+						Context					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Emails.html">
+						Emails					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.html">
+						Model<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.html">
+						CustomPostType					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Validator.html">
+						Validator					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Router.html">
+						Router<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.html">
+						RouteParser<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Alto.html">
+						Alto					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Callback.html">
+						Callback					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-Strata.Shell.html">
+						Shell					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Test.html">
+						Test					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Strata.Utility.html">
+						Utility					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.View.html">
+						View<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.View.Helper.html">
+						Helper					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Strata.Utility.Hash.html">Hash</a></li>
+				<li><a href="class-Strata.Utility.Inflector.html">Inflector</a></li>
+				<li><a href="class-Strata.Utility.String.html">String</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Strata.Utility.html" title="Summary of Strata\Utility"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Hash</h1>
+
+
+	<div class="description">
+	<p>Library of array functions for manipulating and extracting data
+from arrays or 'sets' of data.</p>
+
+<p><code>Hash</code> provides an improved interface, more consistent and
+predictable set of features over <code>Set</code>. While it lacks the spotty
+support for pseudo Xpath, its more fully featured dot notation provides
+similar features in a more consistent implementation.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Utility.html">Utility</a><br>
+		<b>Package:</b> Cake\Utility<br>
+
+			<b>Located at</b> <a href="source-class-Strata.Utility.Hash.html#21-1002" title="Go to source code">Utility/Hash.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public static
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#33-62" title="Go to source code">get</a>( <span>array <var>$data</var></span>, <span>string|array <var>$path</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Get a single value specified by $path out of $data.
+Does not support the full dot notation feature set,
+but is faster for simple read operations.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get a single value specified by $path out of $data.
+Does not support the full dot notation feature set,
+but is faster for simple read operations.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array of data to operate on.</dd>
+					<dt><var>$path</var></dt>
+					<dd><p>The path being searched for. Either a dot
+  separated string, or an array of path segments.</p></dd>
+					<dt><var>$default</var></dt>
+					<dd>The return value when the path does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The value fetched from the array, or null.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::get">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::get</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extract" id="_extract">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extract">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#63-130" title="Go to source code">extract</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Gets the values from an array matching the $path expression.
+The path expression is a dot separated expression, that can contain a set
+of patterns and expressions:</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Gets the values from an array matching the $path expression.
+The path expression is a dot separated expression, that can contain a set
+of patterns and expressions:</p>
+
+<ul>
+<li><code>{n}</code> Matches any numeric key, or integer.</li>
+<li><code>{s}</code> Matches any string key.</li>
+<li><code>Foo</code> Matches any key with the exact same value.</li>
+</ul>
+
+<p>There are a number of attribute operators:
+ - <code>=</code>, <code>!=</code> Equality. - <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> Value comparison. - <code>=/.../</code> Regular expression pattern match.</p>
+
+<p>Given a set of User array data, from a <code>$User-&gt;find('all')</code> call:</p>
+
+<ul>
+<li><code>1.User.name</code> Get the name of the user at index 1.</li>
+<li><code>{n}.User.name</code> Get the name of every user in the set of users.</li>
+<li><code>{n}.User[id]</code> Get the name of every user with an id key.</li>
+<li><code>{n}.User[id&gt;=2]</code> Get the name of every user with an id key greater than or equal to 2.</li>
+<li><code>{n}.User[username=/^paul/]</code> Get User elements with username matching <code>^paul</code>.</li>
+</ul>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to extract from.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to extract.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br><p>An array of the extracted values. Returns an empty array
+  if there are no matches.</p>
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::extract">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::extract</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_splitConditions" id="__splitConditions">
+
+		<td class="attributes"><code>
+			 protected static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__splitConditions">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#131-145" title="Go to source code">_splitConditions</a>( <span>string <var>$token</var></span> )</code>
+
+		<div class="description short">
+			<p>Split token conditions</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Split token conditions</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$token</var></dt>
+					<dd>the token being splitted.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>array(token, conditions) with token splitted
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_matchToken" id="__matchToken">
+
+		<td class="attributes"><code>
+			 protected static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__matchToken">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#146-164" title="Go to source code">_matchToken</a>( <span>string <var>$key</var></span>, <span>string <var>$token</var></span> )</code>
+
+		<div class="description short">
+			<p>Check a key against a token.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check a key against a token.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The key in the array being searched.</dd>
+					<dt><var>$token</var></dt>
+					<dd>The token being matched.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_matches" id="__matches">
+
+		<td class="attributes"><code>
+			 protected static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__matches">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#165-217" title="Go to source code">_matches</a>( <span>array <var>$data</var></span>, <span>string <var>$selector</var></span> )</code>
+
+		<div class="description short">
+			<p>Checks whether or not $data matches the attribute patterns</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checks whether or not $data matches the attribute patterns</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array of data to match.</dd>
+					<dt><var>$selector</var></dt>
+					<dd>The patterns to match.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Fitness of expression.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="insert" id="_insert">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_insert">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#218-252" title="Go to source code">insert</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span>, <span>array <var>$values</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Insert $values into an array with the given $path. You can use
+<code>{n}</code> and <code>{s}</code> elements to insert $data multiple times.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Insert $values into an array with the given $path. You can use
+<code>{n}</code> and <code>{s}</code> elements to insert $data multiple times.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to insert into.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to insert at.</dd>
+					<dt><var>$values</var></dt>
+					<dd>The values to insert.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The data with $values inserted.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::insert">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::insert</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_simpleOp" id="__simpleOp">
+
+		<td class="attributes"><code>
+			 protected static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__simpleOp">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#253-293" title="Go to source code">_simpleOp</a>( <span>string <var>$op</var></span>, <span>array <var>$data</var></span>, <span>array <var>$path</var></span>, <span>mixed <var>$values</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a simple insert/remove operation.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a simple insert/remove operation.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$op</var></dt>
+					<dd>The operation to do.</dd>
+					<dt><var>$data</var></dt>
+					<dd>The data to operate on.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to work on.</dd>
+					<dt><var>$values</var></dt>
+					<dd>The values to insert when doing inserts.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>data.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="remove" id="_remove">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_remove">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#294-332" title="Go to source code">remove</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Remove data matching $path from the $data array.
+You can use <code>{n}</code> and <code>{s}</code> to remove multiple elements
+from $data.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Remove data matching $path from the $data array.
+You can use <code>{n}</code> and <code>{s}</code> to remove multiple elements
+from $data.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to operate on</dd>
+					<dt><var>$path</var></dt>
+					<dd>A path expression to use to remove.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The modified array.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::remove">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::remove</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="combine" id="_combine">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_combine">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#333-395" title="Go to source code">combine</a>( <span>array <var>$data</var></span>, <span>string <var>$keyPath</var></span>, <span>string <var>$valuePath</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$groupPath</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates an associative array using <code>$keyPath</code> as the path to build its keys, and optionally
+<code>$valuePath</code> as path to get the values. If <code>$valuePath</code> is not specified, all values will be initialized
+to null (useful for Hash::merge). You can optionally group the values by what is obtained when
+following the path specified in <code>$groupPath</code>.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates an associative array using <code>$keyPath</code> as the path to build its keys, and optionally
+<code>$valuePath</code> as path to get the values. If <code>$valuePath</code> is not specified, all values will be initialized
+to null (useful for Hash::merge). You can optionally group the values by what is obtained when
+following the path specified in <code>$groupPath</code>.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array from where to extract keys and values</dd>
+					<dt><var>$keyPath</var></dt>
+					<dd>A dot-separated string.</dd>
+					<dt><var>$valuePath</var></dt>
+					<dd>A dot-separated string.</dd>
+					<dt><var>$groupPath</var></dt>
+					<dd>A dot-separated string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>Combined array
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					CakeException<br>CakeException When keys and values count is unequal.
+				</div>
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::combine">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::combine</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="format" id="_format">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_format">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#396-440" title="Go to source code">format</a>( <span>array <var>$data</var></span>, <span>array <var>$paths</var></span>, <span>string <var>$format</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns a formatted series of values extracted from <code>$data</code>, using
+<code>$format</code> as the format and <code>$paths</code> as the values to extract.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns a formatted series of values extracted from <code>$data</code>, using
+<code>$format</code> as the format and <code>$paths</code> as the values to extract.</p>
+
+<p>Usage:</p>
+
+<p>{{{
+$result = Hash::format($users, array('{n}.User.id', '{n}.User.name'), '%s : %s');
+}}}</p>
+
+<p>The <code>$format</code> string can use any format options that <code>vsprintf()</code> and <code>sprintf()</code> do.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Source array from which to extract the data</dd>
+					<dt><var>$paths</var></dt>
+					<dd>An array containing one or more Hash::extract()-style key paths</dd>
+					<dt><var>$format</var></dt>
+					<dd>Format string into which values will be inserted, see sprintf()</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>An array of strings extracted from <code>$path</code> and formatted with <code>$format</code>
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						sprintf()<br>
+						<code><a href="class-Strata.Utility.Hash.html#_extract">Strata\Utility\Hash::extract()</a></code><br>
+				</div>
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::format">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::format</a><br>
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::format">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::format</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="contains" id="_contains">
+
+		<td class="attributes"><code>
+			 public static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_contains">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#441-472" title="Go to source code">contains</a>( <span>array <var>$data</var></span>, <span>array <var>$needle</var></span> )</code>
+
+		<div class="description short">
+			<p>Determines if one array contains the exact keys and values of another.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determines if one array contains the exact keys and values of another.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to search through.</dd>
+					<dt><var>$needle</var></dt>
+					<dd>The values to file in $data</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>true if $data contains $needle, false otherwise
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::contains">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::contains</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="check" id="_check">
+
+		<td class="attributes"><code>
+			 public static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_check">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#473-492" title="Go to source code">check</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Test whether or not a given path exists in $data.
+This method uses the same path syntax as Hash::extract()</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Test whether or not a given path exists in $data.
+This method uses the same path syntax as Hash::extract()</p>
+
+<p>Checking for paths that could target more than one element will
+make sure that at least one matching element exists.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to check.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to check for.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Existence of path.
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-Strata.Utility.Hash.html#_extract">Strata\Utility\Hash::extract()</a></code><br>
+				</div>
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::check">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::check</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="filter" id="_filter">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filter">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#493-509" title="Go to source code">filter</a>( <span>array <var>$data</var></span>, <span>callable <var>$callback</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'self'</span>, <span class="php-quote">'_filter'</span>)</span> )</code>
+
+		<div class="description short">
+			<p>Recursively filters a data set.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Recursively filters a data set.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Either an array to filter, or value when in callback</dd>
+					<dt><var>$callback</var></dt>
+					<dd><p>A function to filter the data with. Defaults to
+  <code>self::_filter()</code> Which strips out all non-zero empty values.</p></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>Filtered array
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::filter">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::filter</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_filter" id="__filter">
+
+		<td class="attributes"><code>
+			 protected static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__filter">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#510-521" title="Go to source code">_filter</a>( <span>array <var>$var</var></span> )</code>
+
+		<div class="description short">
+			<p>Callback function for filtering.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Callback function for filtering.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$var</var></dt>
+					<dd>Array to filter.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flatten" id="_flatten">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flatten">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#522-557" title="Go to source code">flatten</a>( <span>array <var>$data</var></span>, <span>string <var>$separator</var> = <span class="php-quote">'.'</span></span> )</code>
+
+		<div class="description short">
+			<p>Collapses a multi-dimensional array into a single dimension, using a delimited array path for
+each array element's key, i.e. array(array('Foo' => array('Bar' => 'Far'))) becomes
+array('0.Foo.Bar' => 'Far').)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Collapses a multi-dimensional array into a single dimension, using a delimited array path for
+each array element's key, i.e. array(array('Foo' => array('Bar' => 'Far'))) becomes
+array('0.Foo.Bar' => 'Far').)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array to flatten</dd>
+					<dt><var>$separator</var></dt>
+					<dd>String used to separate array key elements in a path, defaults to '.'</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::flatten">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::flatten</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="expand" id="_expand">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_expand">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#558-603" title="Go to source code">expand</a>( <span>array <var>$data</var></span>, <span>string <var>$separator</var> = <span class="php-quote">'.'</span></span> )</code>
+
+		<div class="description short">
+			<p>Expands a flat array to a nested array.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Expands a flat array to a nested array.</p>
+
+<p>For example, unflattens an array that was collapsed with <code>Hash::flatten()</code>
+into a multi-dimensional array. So, <code>array('0.Foo.Bar' =&gt; 'Far')</code> becomes
+<code>array(array('Foo' =&gt; array('Bar' =&gt; 'Far')))</code>.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Flattened array</dd>
+					<dt><var>$separator</var></dt>
+					<dd>The delimiter used</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::expand">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::expand</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#604-641" title="Go to source code">merge</a>( <span>array <var>$data</var></span>, <span>mixed <var>$merge</var></span> )</code>
+
+		<div class="description short">
+			<p>This function can be thought of as a hybrid between PHP's <code>array_merge</code> and <code>array_merge_recursive</code>.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>This function can be thought of as a hybrid between PHP's <code>array_merge</code> and <code>array_merge_recursive</code>.</p>
+
+<p>The difference between this method and the built-in ones, is that if an array key contains another array, then
+Hash::merge() will behave in a recursive fashion (unlike <code>array_merge</code>). But it will not act recursively for
+keys that contain scalar values (unlike <code>array_merge_recursive</code>).</p>
+
+<p>Note: This function will work with an unlimited amount of arguments and typecasts non-array parameters into arrays.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array to be merged</dd>
+					<dt><var>$merge</var></dt>
+					<dd>Array to merge with. The argument and all trailing arguments will be array cast when merged</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>Merged array
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::merge">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::merge</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="numeric" id="_numeric">
+
+		<td class="attributes"><code>
+			 public static
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_numeric">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#642-654" title="Go to source code">numeric</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Checks to see if all the values in the array are numeric</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checks to see if all the values in the array are numeric</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The array to check.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>true if values are numeric, false otherwise
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::numeric">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::numeric</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dimensions" id="_dimensions">
+
+		<td class="attributes"><code>
+			 public static
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dimensions">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#655-681" title="Go to source code">dimensions</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Counts the dimensions of an array.
+Only considers the dimension of the first element in the array.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Counts the dimensions of an array.
+Only considers the dimension of the first element in the array.</p>
+
+<p>If you have an un-even or heterogenous array, consider using Hash::maxDimensions()
+to get the dimensions of the array.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array to count dimensions on</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer<br>The number of dimensions in $data
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::dimensions">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::dimensions</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="maxDimensions" id="_maxDimensions">
+
+		<td class="attributes"><code>
+			 public static
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_maxDimensions">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#682-698" title="Go to source code">maxDimensions</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Counts the dimensions of <em>all</em> array elements. Useful for finding the maximum
+number of dimensions in a mixed array.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Counts the dimensions of <em>all</em> array elements. Useful for finding the maximum
+number of dimensions in a mixed array.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Array to count dimensions on</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer<br>The maximum number of dimensions in $data
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::maxDimensions">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::maxDimensions</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="map" id="_map">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_map">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#699-712" title="Go to source code">map</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span>, <span>callable <var>$function</var></span> )</code>
+
+		<div class="description short">
+			<p>Map a callback across all elements in a set.
+Can be provided a path to only modify slices of the set.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Map a callback across all elements in a set.
+Can be provided a path to only modify slices of the set.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to map over, and extract data out of.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to extract for mapping over.</dd>
+					<dt><var>$function</var></dt>
+					<dd>The function to call on each extracted value.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>An array of the modified values.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::map">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::map</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reduce" id="_reduce">
+
+		<td class="attributes"><code>
+			 public static
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reduce">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#713-725" title="Go to source code">reduce</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span>, <span>callable <var>$function</var></span> )</code>
+
+		<div class="description short">
+			<p>Reduce a set of extracted values using <code>$function</code>.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Reduce a set of extracted values using <code>$function</code>.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to reduce.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to extract from $data.</dd>
+					<dt><var>$function</var></dt>
+					<dd>The function to call on each extracted value.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The reduced value.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::reduce">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::reduce</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="apply" id="_apply">
+
+		<td class="attributes"><code>
+			 public static
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_apply">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#726-749" title="Go to source code">apply</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span>, <span>callable <var>$function</var></span> )</code>
+
+		<div class="description short">
+			<p>Apply a callback to a set of extracted values using <code>$function</code>.
+The function will get the extracted values as the first argument.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Apply a callback to a set of extracted values using <code>$function</code>.
+The function will get the extracted values as the first argument.</p>
+
+<h3>Example</h3>
+
+<p>You can easily count the results of an extract using apply().
+For example to count the comments on an Article:</p>
+
+<p><code>$count = Hash::apply($data, 'Article.Comment.{n}', 'count');</code></p>
+
+<p>You could also use a function like <code>array_sum</code> to sum the results.</p>
+
+<p><code>$total = Hash::apply($data, '{n}.Item.price', 'array_sum');</code></p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to reduce.</dd>
+					<dt><var>$path</var></dt>
+					<dd>The path to extract from $data.</dd>
+					<dt><var>$function</var></dt>
+					<dd>The function to call on each extracted value.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The results of the applied method.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sort" id="_sort">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sort">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#750-827" title="Go to source code">sort</a>( <span>array <var>$data</var></span>, <span>string <var>$path</var></span>, <span>string <var>$dir</var> = <span class="php-quote">'asc'</span></span>, <span>string <var>$type</var> = <span class="php-quote">'regular'</span></span> )</code>
+
+		<div class="description short">
+			<p>Sorts an array by any value, determined by a Set-compatible path</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sorts an array by any value, determined by a Set-compatible path</p>
+
+<h3>Sort directions</h3>
+
+<ul>
+<li><code>asc</code> Sort ascending.</li>
+<li><code>desc</code> Sort descending.</li>
+</ul>
+
+<h2>Sort types</h2>
+
+<ul>
+<li><code>regular</code> For regular sorting (don't change types)</li>
+<li><code>numeric</code> Compare values numerically</li>
+<li><code>string</code> Compare values as strings</li>
+<li><code>natural</code> Compare items as strings using "natural ordering" in a human friendly way. Will sort foo10 below foo2 as an example. Requires PHP 5.4 or greater or it will fallback to 'regular'</li>
+</ul>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>An array of data to sort</dd>
+					<dt><var>$path</var></dt>
+					<dd>A Set-compatible path to the array value</dd>
+					<dt><var>$dir</var></dt>
+					<dd>See directions above. Defaults to 'asc'.</dd>
+					<dt><var>$type</var></dt>
+					<dd>See direction types above. Defaults to 'regular'.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>Sorted array of data
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::sort">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::sort</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_squash" id="__squash">
+
+		<td class="attributes"><code>
+			 protected static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__squash">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#828-850" title="Go to source code">_squash</a>( <span>array <var>$data</var></span>, <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Helper method for sort()
+Squashes an array to a single hash so it can be sorted.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Helper method for sort()
+Squashes an array to a single hash so it can be sorted.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to squash.</dd>
+					<dt><var>$key</var></dt>
+					<dd>The key for the data.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="diff" id="_diff">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_diff">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#851-878" title="Go to source code">diff</a>( <span>array <var>$data</var></span>, <span>array <var>$compare</var></span> )</code>
+
+		<div class="description short">
+			<p>Computes the difference between two complex arrays.
+This method differs from the built-in array_diff() in that it will preserve keys
+and work on multi-dimensional arrays.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Computes the difference between two complex arrays.
+This method differs from the built-in array_diff() in that it will preserve keys
+and work on multi-dimensional arrays.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>First value</dd>
+					<dt><var>$compare</var></dt>
+					<dd>Second value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br><p>Returns the key => value pairs that are not common in $data and $compare
+   The expression for this function is ($data - $compare) + ($compare - ($data - $compare))</p>
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::diff">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::diff</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeDiff" id="_mergeDiff">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeDiff">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#879-902" title="Go to source code">mergeDiff</a>( <span>array <var>$data</var></span>, <span>array <var>$compare</var></span> )</code>
+
+		<div class="description short">
+			<p>Merges the difference between $data and $compare onto $data.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Merges the difference between $data and $compare onto $data.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to append onto.</dd>
+					<dt><var>$compare</var></dt>
+					<dd>The data to compare and append onto.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The merged array.
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::mergeDiff">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::mergeDiff</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="normalize" id="_normalize">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_normalize">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#903-935" title="Go to source code">normalize</a>( <span>array <var>$data</var></span>, <span>boolean <var>$assoc</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			<p>Normalizes an array, and converts it to a standard format.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Normalizes an array, and converts it to a standard format.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>List to normalize</dd>
+					<dt><var>$assoc</var></dt>
+					<dd>If true, $data will be converted to an associative array.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::normalize">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::normalize</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="nest" id="_nest">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_nest">#</a>
+		<code><a href="source-class-Strata.Utility.Hash.html#936-1001" title="Go to source code">nest</a>( <span>array <var>$data</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			<p>Takes in a flat array and returns a nested array</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Takes in a flat array and returns a nested array</p>
+
+<h3>Options:</h3>
+
+<ul>
+<li><code>children</code> The key name to use in the resultset for children.</li>
+<li><code>idPath</code> The path to a key that identifies each entry. Should be compatible with Hash::extract(). Defaults to <code>{n}.$alias.id</code></li>
+<li><code>parentPath</code> The path to a key that identifies the parent of each entry. Should be compatible with Hash::extract(). Defaults to <code>{n}.$alias.parent_id</code></li>
+<li><code>root</code> The id of the desired top-most result.</li>
+</ul>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data to nest.</dd>
+					<dt><var>$options</var></dt>
+					<dd>Options are:</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>of results, nested
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-Strata.Utility.Hash.html#_extract">Strata\Utility\Hash::extract()</a></code><br>
+				</div>
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::nest">http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::nest</a><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

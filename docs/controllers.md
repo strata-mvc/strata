@@ -8,7 +8,7 @@ Controllers allow an easy to understand entry point in modern web applications. 
 
 ## Creating a controller file
 
-To generate a Controller, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
+To generate a Controller, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
@@ -24,7 +24,7 @@ src/controller/ArtistController.php
 tests/controller/ArtistController.php
 ~~~
 
-The main use case of Controllers in Wordpress MVC is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the ability to use the same business logic code in multiple themes as well as improving code testability.
+The main use case of Controllers in Strata is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. This biggest advantage, apart from code clarity, is that you gain the ability to use the same business logic code in multiple themes as well as improving code testability.
 
 Controllers may seem like overkill if you only use the regular templating. You can achieve similar results by placing the code in a custom `template-customposttype.php` file. It's up to you to decide if you need such infrastructure in your project.
 
@@ -72,7 +72,7 @@ In the earlier example, a shortcode named `list_songs` is generated and will poi
 
 Note that the permalink of this page must be caught by a route in order for the controller to be instantiated and the shortcode to be declared and applied.
 
-In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\MVC\Router::callback()]({{ site.baserl }}/docs/routes/).
+In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\Strata\Router::callback()]({{ site.baserl }}/docs/routes/).
 
 Generating shortcodes like these is useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/) or when generating data that needs to be manipulated right form CMS data.
 
@@ -113,7 +113,7 @@ class AdminController extends Controller {
 
     public function before()
     {
-        if ((bool)\MVC\Mvc::config('useGithub')) {
+        if ((bool)\Strata\Mvc::config('useGithub')) {
             $this->_repository = "http://github.com/";
         }
 
@@ -221,7 +221,7 @@ Say you create a dashboard widget:
 
 ~~~ php
 <?php
-    wp_add_dashboard_widget('mywebsite-test-dashboard', 'This is a test dashboard',  \MVC\Router::callback('AdminController', 'testDashboardMetabox'));
+    wp_add_dashboard_widget('mywebsite-test-dashboard', 'This is a test dashboard',  \Strata\Router::callback('AdminController', 'testDashboardMetabox'));
 ?>
 ~~~
 

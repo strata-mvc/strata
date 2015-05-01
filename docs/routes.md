@@ -73,7 +73,7 @@ Should you wish to hook into one of Wordpress' filters and action instead of an 
 
 ~~~ php
 <?php
-    add_filter('pre_get_posts', \MVC\Router::callback('CallbackController', 'onPreGetPosts'));
+    add_filter('pre_get_posts', \Strata\Router::callback('CallbackController', 'onPreGetPosts'));
 ?>
 ~~~
 
@@ -94,7 +94,7 @@ class CallbackController extends \MyProject\Controller\AppController {
 
 ## More complex request matching
 
-Under the hood Wordpress MVC uses AltoRouter. As long as you enter the rules using their array notation, it will work. More information about how you can customize the rules can be found on [Altorouter's documention page](https://github.com/dannyvankooten/AltoRouter).
+Under the hood Strata uses AltoRouter. As long as you enter the rules using their array notation, it will work. More information about how you can customize the rules can be found on [Altorouter's documention page](https://github.com/dannyvankooten/AltoRouter).
 
 ## On translated pages
 

@@ -9,8 +9,8 @@ permalink: /docs/mvc/
 You can always obtain a reference to the current instance of the MVC using  `Mvc::app`.
 
 ~~~ php
-\MVC\Mvc::app();
-\MVC\Mvc::app()->getNamespace();
+\Strata\Mvc::app();
+\Strata\Mvc::app()->getNamespace();
 ~~~
 
 ## Reading configuration value
@@ -18,9 +18,9 @@ You can always obtain a reference to the current instance of the MVC using  `Mvc
 Accessing a value entered in `app.php` is handled by `Mvc::config` at which an array path in dot notation can be passed to read the current configuration value.
 
 ~~~ php
-\MVC\Mvc::config('key');
-\MVC\Mvc::config('routes.1');
-\MVC\Mvc::config('routes.{n}');
+\Strata\Mvc::config('key');
+\Strata\Mvc::config('routes.1');
+\Strata\Mvc::config('routes.{n}');
 ~~~
 
 ## Custom values
@@ -44,6 +44,6 @@ $app = array(
 
 ~~~ php
 <?php
-    debug(\MVC\Mvc::config('i-want-to'));
+    debug(\Strata\Mvc::config('i-want-to'));
 ?>
 ~~~

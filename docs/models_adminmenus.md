@@ -11,9 +11,6 @@ You can add additional admin menu links based on the model when configuring the 
 ~~~ php
 <?php
 $app = array(
-    // Give a context to the app
-    "key" => "Mywebsite",
-
     // Setup custom routing on the app
     "routes" => array( /* have routes ready */ ),
 

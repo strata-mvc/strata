@@ -8,7 +8,7 @@ permalink: /docs/models/
 
 Models are where the logic being the website's custom processes, validations and everything that is generally defined as "business logic" is located.
 
-In regular MVC frameworks a model can (but is not required to) map to a table in the database. In Wordpress MVC, there is no direct link between a model and a table because we do not want to use an ORM and stray this far outside of the Wordpress ecosystem.
+In regular MVC frameworks a model can (but is not required to) map to a table in the database. In Strata, there is no direct link between a model and a table because we do not want to use an ORM and stray this far outside of the Wordpress ecosystem.
 
 Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
 
@@ -16,7 +16,7 @@ Because of the adoption of Wordpress' methods, every model requests will return 
 
 ## Creating a model file.
 
-To generate a Model, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
+To generate a Model, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
 
@@ -44,7 +44,7 @@ The following example illustrates how we allow the `editor` and also allow the c
 <?php
 namespace MyProject\Model;
 
-class Artist extends \MVC\Model\CustomPostType\Entity {
+class Artist extends \Strata\Model\CustomPostType\Entity {
 
     public $configuration = array(
         "supports"  => array( 'title', 'editor' ),
@@ -65,7 +65,7 @@ The custom post type key is generated from the model's class name. By default, t
 
 ## Custom Queries
 
-The main use case for models in WMVC is to contain all the database queries used through your application in the same file.
+The main use case for models in Strata is to contain all the database queries used through your application in the same file.
 
 You could therefore do the following to contain all queries against a custom post type :
 
@@ -73,7 +73,7 @@ You could therefore do the following to contain all queries against a custom pos
 <?php
 namespace MyProject\Model;
 
-class Artist extends \MVC\Model\CustomPostType\Entity {
+class Artist extends \Strata\Model\CustomPostType\Entity {
 
     public static function findPublished()
     {
@@ -95,7 +95,7 @@ Every view and template files would then call the centralized `MyProject\Model\A
 
 ## Internal Query class
 
-While the previous example is perfectly functional, we offer a way to improve on it. Model entities in WMVC generate `Query` objects that will hold configuration data that can be chained and manipulated before triggering the query. Up to the moment when `fetch()` is called, you can manipulate the query parameters.
+While the previous example is perfectly functional, we offer a way to improve on it. Model entities in Strata generate `Query` objects that will hold configuration data that can be chained and manipulated before triggering the query. Up to the moment when `fetch()` is called, you can manipulate the query parameters.
 
 It offers some of the advantages of a full-fledged ORM without bastardizing Wordpress's `WP_Query`.
 
@@ -105,7 +105,7 @@ The following example shows how to query published posts ordered by the menu ord
 <?php
 namespace MyProject\Model;
 
-class Artist extends \MVC\Model\CustomPostType\Entity {
+class Artist extends \Strata\Model\CustomPostType\Entity {
 
     public static function findPublished()
     {
@@ -121,7 +121,7 @@ If you create your own instance of the `Query` class, you can start chaining you
 <?php
 namespace MyProject\Model;
 
-class ArtistQuery extends \MVC\Model\CustomPostType\Query {
+class ArtistQuery extends \Strata\Model\CustomPostType\Query {
 
     public function published()
     {
@@ -151,7 +151,7 @@ namespace MyProject\Model;
 
 use MyProject\Model\ArtistQuery;
 
-class Artist extends \MVC\Model\CustomPostType\Entity {
+class Artist extends \Strata\Model\CustomPostType\Entity {
 
     public static function query()
     {
@@ -181,7 +181,7 @@ Here is a lengthy, but complete, example of how attributes and the FormHelper ca
 <?php
 namespace Mywebsite\Model;
 
-class CustomerDetail extends \MVC\Model\CustomPostType\Entity {
+class CustomerDetail extends \Strata\Model\CustomPostType\Entity {
 {
     public $attributes = array(
         "telephone_area"            => array("validations" => array("required", "numeric", "length" => array("min" => 3, "max" => 3))),
@@ -234,7 +234,7 @@ class CustomerDetail extends \MVC\Model\CustomPostType\Entity {
 
 ## Insert, Create, Delete
 
-Models extending `\MVC\Model\CustomPostType\Entity` will inherit a static functions named `create`, `update` and `delete` that map to `wp_insert_post`, `wp_update_post` and `wp_delete_post`. They supports the same arguments as their Wordpress counterparts.
+Models extending `\Strata\Model\CustomPostType\Entity` will inherit a static functions named `create`, `update` and `delete` that map to `wp_insert_post`, `wp_update_post` and `wp_delete_post`. They supports the same arguments as their Wordpress counterparts.
 
 They exist only to do last minute manipulation of the data and are not intended to replace core Wordpress functions.
 

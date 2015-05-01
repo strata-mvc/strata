@@ -4,43 +4,55 @@ title: Installation
 permalink: /docs/installation/
 ---
 
+## Install Composer
+
+Strata is a dependency of [Bedrock](https://roots.io/bedrock/), which uses [Composer](http://getcomposer.org/) to manage its dependencies.
+
+You need Composer installed on your machine before using Strata and Bedrock.
+
+## Install Strata
+
+If you are starting from scratch, you will need to create a new Bedrock project.
+
+~~~ bash
+$ composer create-project roots/bedrock mywebsite
+~~~
+
+From the project directory, add the Strata as a dependency.
+
+~~~ bash
+$ composer require francoisfaubert/wordpress-mvc:dev-master
+~~~
+
+There are some folders and files that need to be created in order for Strata to be used inside your project. To ensure you have everything needed, the last step is to run the Strata installer script which comes packaged in Strata.
+
+Ensure the file is executable first, then run the bash script. The script will confirm that you have the correct directory structure as well as populate your project with starter files.
+
+~~~ bash
+$ chmod +x vendor/francoisfaubert/wordpress-mvc/src/Scripts/install
+$ vendor/francoisfaubert/wordpress-mvc/src/Scripts/install
+~~~
+
+## Wordpress hooks
+
+During the installation phase, Strata will include a new must-use plugin named `web/app/mu-plugin/strata-bootstraper.php`. It is this plugin that will ensure Strata is automatically loaded upon each page load.
+
 ## Requirements
 
-- A *nix enviroment (Unless you contribute to the project and help me create the .bat file)
-- You require [VirtualBox && Extension Pack](https://www.virtualbox.org/wiki/Downloads)
-- You require [Vagrant](http://www.vagrantup.com/downloads) to be installed
-- You require [Node.js](https://nodejs.org/), NPM and [yo](https://github.com/yeoman/yo) to be installed.
+{% include workinprogress.html %}
 
-Finally, you need to Wordpress MVC generator for Yeoman:
+Strata means to be as self-contained as possible. It achieves this be packaging all of the tools it needs within the project. With that in mind, the most self-contained way it can be used is within a Vagrant machine which will contain the required PHP and MySQL installation.
 
-~~~ bash
-$ npm install -g generator-wordpress-mvc
-~~~
+Should you think this is unnecessary overhead, you can disable the Vagrant virtual machine and use the PHP and MySQL binaries available to your computer. One can therefore use a PHP binary supplied by MAMP by making their php binary available to your PATH variable.
 
+In other words, the requirements the purely **stand-alone mode** are :
 
-## Building the environment
+ - Vagrant
+ - VirtualBox
 
-Simply run the generator from the project's website. It will download the latest version of Wordpress as well as additional dependencies while creating the directory structure and configuration files for you.
+The requirements for **local machine mode** are :
 
-~~~ bash
-$ mkdir my-website && cd my-website
-$ yo wordpress-mvc
-~~~
+ - PHP >= 5.3 (available to your $PATH)
+ - Mcrypt PHP Extension
+ - MySQL
 
-The generator will confirm that you are in the correct directory before doing anything. Afterwards, it will ask you for the project's name space that will be used across the project to identify your files.
-
-
-## Kickstarting in Wordpress themes
-
-To kick start WMVC, open your current theme's `functions.php` file and include the bootstraper.
-
-By default, our Yeoman generator includes the following line automatically to the default theme's `functions.php` file. You will have to add it to your source files manually when creating additional themes.
-
-We encourage placing the include call in `functions.php` for consistency across projects. In reality, the actual place or method you use to include the file does not really matter as long as it precedes view files.
-
-~~~ php
-<?php
-/* Load up MVC bootstrapper for wordpress */
-\MVC\Mvc::bootstrap();
-?>
-~~~

@@ -12,7 +12,7 @@ Validators should be passed as configuration arrays to the `validations` key of 
 <?php
 namespace Mywebsite\Model;
 
-class Song extends \MVC\Model\CustomPostType\Entity {
+class Song extends \Strata\Model\CustomPostType\Entity {
 {
     public $attributes = array(
         "artist"            => array("validations" => array("required", "postExists")),
@@ -34,9 +34,9 @@ class Song extends \MVC\Model\CustomPostType\Entity {
 ?>
 ~~~
 
-WMVC comes with 8 common validators that you can use or derive from. They will automatically be used to validate the current value of the POST variable associated with this field as created by the FormHelper.
+Strata comes with 8 common validators that you can use or derive from. They will automatically be used to validate the current value of the POST variable associated with this field as created by the FormHelper.
 
-When loading validators, WMVC looks in your project's namespace before trying to load the default ones. This allows you to customize existing or create new validators.
+When loading validators, Strata looks in your project's namespace before trying to load the default ones. This allows you to customize existing or create new validators.
 
 ### EmailValidator
 
@@ -155,7 +155,7 @@ public $attributes = array(
 
 ## Creating a custom validator
 
-To generate a custom validator, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
+To generate a custom validator, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
 
@@ -171,7 +171,7 @@ To customize the error message of your validator, implement the function `getMes
 <?php
 namespace Mywebsite\Model\Validator;
 
-class MyValidator extends \MVC\Model\Validator {
+class MyValidator extends \Strata\Model\Validator {
 
     public function test($value, $context)
     {
@@ -194,7 +194,7 @@ If a validator does not do all you desire you may extend the default ones in you
 <?php
 namespace Mywebsite\Model\Validator;
 
-class PostExistsValidator extends \MVC\Model\Validator\PostExistsValidator {
+class PostExistsValidator extends \Strata\Model\Validator\PostExistsValidator {
 
     public function getMessage()
     {

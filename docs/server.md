@@ -4,7 +4,7 @@ title: Server
 permalink: /docs/server/
 ---
 
-WMVC ships with a server on which you can test your application. This server is not meant to be used in production. It is packaged only as a mean to lower the amount of prerequisites needed to start developing.
+Strata ships with a server on which you can test your application. This server is not meant to be used in production. It is packaged only as a mean to lower the amount of prerequisites needed to start developing.
 
 ## Starting the server
 

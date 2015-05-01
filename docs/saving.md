@@ -4,7 +4,7 @@ title: Saving
 permalink: /docs/saving/
 ---
 
-Saving data is an important part of a complex web application. Wordpress MVC allows you to save data outside of the regular Wordpress scope (ex: the backend).
+Saving data is an important part of a complex web application. Strata allows you to save data outside of the regular Wordpress scope (ex: the backend).
 
 To ease and automate this process, it allows the building of dynamic forms and automated tests on posted values when saving data.
 
@@ -75,7 +75,7 @@ The role of this object is to declare the context of the form as well as grant f
 <?php
 namespace Mywebsite\Model\Form;
 
-class SongForm extends \MVC\Model\Form
+class SongForm extends \Strata\Model\Form
 {
     public function init($options = array())
     {
@@ -192,7 +192,7 @@ The example bellow saves a new `Song` with the song title as post title and assi
 <?php
 namespace Mywebsite\Model;
 
-class Song extends \MVC\Model\CustomPostType\Entity {
+class Song extends \Strata\Model\CustomPostType\Entity {
 {
     public $attributes = array(
         // Proofed info

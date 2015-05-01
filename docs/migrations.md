@@ -4,11 +4,11 @@ title: Migrations
 permalink: /docs/migrations/
 ---
 
-WMVC does not ship with a complex database migration tool but it does offer a simpler in line database import and export tool.
+Strata does not ship with a complex database migration tool but it does offer a simpler in line database import and export tool.
 
 ## Creating a migration
 
-To generate a Migration, you should use the automated generator provided by WMVC. It will ensure it will be correctly defined.
+To generate a Migration, you should use the automated generator provided by Strata. It will ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory.
 

@@ -6,7 +6,7 @@ permalink: /docs/helpers/
 
 ## Creating a ViewHelper file.
 
-To generate a `ViewHelper`, you should use the automated generator provided by WMVC. It will validate your object's name and ensure it will be correctly defined.
+To generate a `ViewHelper`, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a view helper for the `Artist` object:
 
@@ -29,7 +29,7 @@ use MVC\View\Template;
 /**
  * Renderer for post thumbnails
  */
-class ThumbnailHelper extends \MVC\View\Helper\Helper
+class ThumbnailHelper extends \Strata\View\Helper\Helper
 {
     /**
      * Renders the ACF Header
