@@ -209,6 +209,20 @@ class EnvCommand extends StrataCommand
             }
         }
 
+        $file = "bin/phpunit.phar";
+        $this->_output->writeLn("Fetching PHPUnit");
+
+         if (!file_exists($file)) {
+            if (file_put_contents($file, fopen("https://phar.phpunit.de/phpunit.phar", 'r')) > 0) {
+                $this->_output->writeLn($label . $this->ok($file));
+            } else {
+                $this->_output->writeLn($label . $this->fail($file));
+                $this->_flagFailing();
+            }
+        } else {
+            $this->_output->writeLn($label . $this->skip($file));
+        }
+
         $this->nl();
     }
 

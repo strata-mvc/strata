@@ -80,7 +80,7 @@ class {CLASSNAME} extends {EXTENDS} {
                 break;
 
             case "customposttype" :
-                $this->_renderCustomPostType($classname, true);
+                $this->_renderModel($classname, true);
                 break;
 
             case "helper" :
@@ -174,7 +174,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "controller", "$classname.php"));
         $this->_createFile($destination, "$namespace\Controller", $classname, "\{$namespace}\AppController");
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "controller", $classname . ".php"));
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "controller", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Test\Controller", "Test{$namespace}" , "\Strata\Test\Test", true);
     }
 
@@ -193,7 +193,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", $classname . ".php"));
         $this->_createFile($destination, "$namespace\Model", $classname, $ctpExtend);
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . ".php"));
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
     }
 
@@ -211,7 +211,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", $classname . ".php"));
         $this->_createFile($destination, "$namespace\Model", $classname, "\Strata\Model\CustomPostType\TaxonomyEntity");
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . ".php"));
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
     }
 
@@ -229,7 +229,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", "validator", $classname . ".php"));
         $this->_createFile($destination, "$namespace\Model\Validator", $classname, "\Strata\Model\Validator");
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", "validator", $classname . ".php"));
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", "validator", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);
     }
 
@@ -247,7 +247,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "view", "helper", $classname . ".php"));
         $this->_createFile($destination, "{$namespace}\View\Helper", $classname, "\{$namespace}\View\Helper\AppHelper");
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "view", "helper", $classname . ".php"));
+        $destination = implode(DIRECTORY_SEPARATOR, array("test", "view", "helper", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Tests\View\Helper", "Test{$classname}", "\Strata\Test\Test", true);
     }
 

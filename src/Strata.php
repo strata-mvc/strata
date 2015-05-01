@@ -101,7 +101,11 @@ class Strata extends StrataContext {
         return Hash::set($this->_config, $key, $value);
     }
 
-
+    /**
+     * Configures the default router object to ensure that URL mapping
+     * is automated.
+     * @return null
+     */
     protected function _configureRouter()
     {
         Router::automateURLRoutes($this->getConfig('routes'));

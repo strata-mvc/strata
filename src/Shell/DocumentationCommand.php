@@ -48,6 +48,9 @@ class DocumentationCommand extends StrataCommand
         $this->_generateThemesApi();
         $this->nl();
 
+        $this->_generateThemesDocumentation();
+        $this->nl();
+
         $this->_summary();
         $this->nl();
 
@@ -87,6 +90,15 @@ class DocumentationCommand extends StrataCommand
     }
 
     /**
+     * Gets the Wordpress themes API documentation's destination
+     * @return string Destination path.
+     */
+    protected function _getWpApiDestination()
+    {
+        return $this->_getDestination() . 'wpapi';
+    }
+
+    /**
      * Return the path to the Apigen binary
      * @return string Apigen binary path
      */
@@ -106,6 +118,7 @@ class DocumentationCommand extends StrataCommand
 
         $destination = $this->_getDestination();
         $this->_output->writeLn("<info>API               :</info> ". $this->_getApiDestination()   ."/index.html");
+        $this->_output->writeLn("<info>Theme API         :</info> ". $this->_getWpApiDestination()   ."/index.html");
         $this->_output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
     }
 
@@ -116,6 +129,7 @@ class DocumentationCommand extends StrataCommand
     protected function _deletePrevious()
     {
         $this->_rrmdir($this->_getApiDestination());
+        $this->_rrmdir($this->_getWpApiDestination());
         $this->_rrmdir($this->_getWpdocDestination());
     }
 
@@ -135,12 +149,28 @@ class DocumentationCommand extends StrataCommand
     }
 
     /**
+     * Generates the API documentation contents
+     * @return null
+     */
+    protected function _generateThemesAPI()
+    {
+        $themesPath = \Strata\Strata::getThemesPath();
+
+        $this->_output->writeLn("<info>Generating Wordpress theme API</info>");
+        $this->_output->writeLn($this->tree(true) . "Scanning $themesPath");
+        $this->nl();
+
+        system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $themesPath, $this->_getWpApiDestination()));
+    }
+
+
+    /**
      * Generates the Wordpress themes documentation contents
      * @return null
      */
-    protected function _generateThemesApi()
+    protected function _generateThemesDocumentation()
     {
-        $this->_output->writeLn("<info>Generating Wordpress theme details</info>");
+        $this->_output->writeLn("<info>Generating Wordpress theme documentation</info>");
 
         $themesPath = \Strata\Strata::getThemesPath();
         $info = $this->_scanThemeDirectories($themesPath);

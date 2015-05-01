@@ -24,6 +24,7 @@ class Shell
         $application->add(new \Strata\Shell\DBCommand());
         $application->add(new \Strata\Shell\DocumentationCommand());
         $application->add(new \Strata\Shell\EnvCommand());
+        $application->add(new \Strata\Shell\TestCommand());
 
         return $application;
     }
