@@ -8,9 +8,7 @@ Controllers allow easy to understand entry points in modern web applications. On
 
 The main use case of Controllers in Strata is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. The biggest gain is the ability to use the same business logic code multiple times as well as improving code testability.
 
-Additionally, handling posted data on a Wordpress CMS page or handling dynamic page states, controllers are a great way of maintaining your website's code.
-
-<p class="warning">No helpers or models are being auto-loaded by the controller as some other frameworks may do.</p>
+<p class="warning">No helpers or models are being auto-loaded by the controller as other MVC frameworks may do.</p>
 
 ## Creating a controller file
 
@@ -40,7 +38,7 @@ namespace Mywebsite\Controller;
 
 use Mywebsite\Model\Song;
 
-class SongsController extends \MyProject\Controller\AppController {
+class SongsController extends \Mywebsite\Controller\AppController {
 
     public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
 
@@ -51,7 +49,7 @@ class SongsController extends \MyProject\Controller\AppController {
     public function view($songId = null)
     {
         if (!is_null($songId)) {
-            $this->set("song", Song::findById((int)$songId));
+            $this->view->set("song", Song::findById((int)$songId));
         }
     }
 
@@ -75,26 +73,6 @@ Note that the permalink of this page must be caught by a route in order for the 
 In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\Strata\Router::callback()]({{ site.baserl }}/docs/routes/).
 
 Generating shortcodes like these is useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/) or when generating data that needs to be manipulated right form CMS data.
-
-## Setting view variables
-
-To expose a variable to the regular Wordpress templating, use the controllers' `set($key, $mixed)` method. This exposes the value to the templating engine so you can use them in Wordpress' template files.
-
-In the controller :
-
-~~~ php
-<?php
-    $this->set("song", $mysong);
-?>
-~~~
-
-In a template file :
-
-~~~ php
-<php if (isset($song)) : ?>
-    <p><?php echo $song->post_title; ?></p>
-<php endif; ?>
-~~~
 
 
 ## Before and after
@@ -159,7 +137,7 @@ class AjaxController extends \Mywebsite\Controller\AppController {
             ->where("meta_value", $_POST['album_name'])
             ->listing("ID", "post_title");
 
-        $this->render(array(
+        $this->view->render(array(
             "Content-type" => "text/javascript",
             "content" => $data
         ));
@@ -184,80 +162,4 @@ And the javascript call could be :
        console.log(data);
     });
 </script>
-~~~
-
-## On file downloads
-
-By default, calling `render()` will end the current php process and it will prevent the rendering of the full Wordpress template stack (which we don't need as we are printing partial data). This function allows you to specify the content-type of the returned value as well as additional PHP's `header()` values. It is easy to set up file downloads by entering known PHP header arguments:
-
-~~~ php
-<?php
-namespace Mywebsite\Controller;
-
-use Mywebsite\Model\Form\CSVExportForm;
-
-class FileController extends \Mywebsite\Controller\AppController {
-
-    public function downloadcvs()
-    {
-        $form = new CSVExportForm();
-        $this->render(array(
-            "Content-type"          => 'text/csv',
-            "Content-disposition"   => "attachment;filename=" . $form->getCSVFilename(),
-            "content"               => $form->filterResultsToCSV()
-        ));
-    }
-}
-?>
-~~~
-
-## On scopes and custom templating
-
-Because Strata is triggered by a Wordpress event, you may run into cases were the controller's view variables are no longer instantiated. It is the case with shortcode assignments and during some callbacks. This is because Wordpress' initiation event and the ones executing the shortcodes are in different PHP scopes.
-
-The reference to the current controller is retained but the view vars cannot be automatically declared. You can however fetch them using `$this->viewVars['varname']`.
-
-Say you create a dashboard widget:
-
-~~~ php
-<?php
-    wp_add_dashboard_widget('mywebsite-test-dashboard', 'This is a test dashboard',  \Strata\Router\Router::callback('AdminController', 'testDashboardMetabox'));
-?>
-~~~
-
-The metabox uses its own template file, outside of the current page rendering. You must send the controller's view variables manually to retain them on the new template file. Allow the rendering process to complete using the `end` argument.
-
-~~~ php
-<?php
-namespace Mywebsite\Controller;
-
-class AdminController extends \Mywebsite\Controller\AppController {
-
-    public function before()
-    {
-        $this->set("testvar3", "before!");
-    }
-
-    public function testDashboardMetabox()
-    {
-        $this->set("testvar1", 1);
-        $this->set("testvar2", "abc");
-
-        $this->render(array(
-            "content" => Controller::loadTemplate('admin'.DIRECTORY_SEPARATOR.'dashboard'.DIRECTORY_SEPARATOR.'testDashboard', $this->viewVars),
-            "end" => false
-        ));
-    }
-}
-?>
-~~~
-
-Finally, your template file located at `[website_theme]/templates/admin/dashboard/testDashboard.php` would look like the following, even though that template was not the one dynamically parsed by Wordpress:
-
-~~~ php
-<ul>
-    <li>Testvar 1 : <?php echo $testvar1; ?></li>
-    <li>Testvar 2 : <?php echo $testvar2; ?></li>
-    <li>Testvar 3 : <?php echo $testvar3; ?></li>
-</ul>
 ~~~

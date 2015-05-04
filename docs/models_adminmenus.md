@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Model taxonomies
+title: Admin menus on custom post types
 permalink: /docs/models/adminmenus/
 ---
 
@@ -11,18 +11,14 @@ You can add additional admin menu links based on the model when configuring the 
 ~~~ php
 <?php
 $app = array(
-    // Setup custom routing on the app
-    "routes" => array( /* have routes ready */ ),
-
-    // Automate the creation of backend based post types.
     "custom-post-types" => array(
-        "Profile"       => array(
+        "Profile" => array(
             "admin" => array(
                 "exportProfiles" => array("route" => "AdminController", "title" => "Export", "menu-title" => "Export")
                 "secondProfileAction" => array("route" => "AdminController", "title" => "Additional link", "menu-title" => "Additional link")
             )
         ),
-        "Song"          => array(
+        "Song" => array(
             "admin" => array(
                 "extraSongInfo" => array("title" => "Extra song information", "menu-title" => "Extra song information")
             )
@@ -40,24 +36,6 @@ In the example above, `Profile` will have two links added. The first will link t
 
 On the other hand, `Song` will have only added one link. It will attempt to call `extraSongInfo` of the `SongController` class.
 
-
-## On rendering in the admin
-
-Hooks into the backend like these will be rendered mid-page and not before the first line of HTML is printed. This means that if your action needs to print something, it is important that you do not stop the original page rendering when calling the controller's `render()` method. Passing `false` to the `end` parameter of the function will allow the request to complete normally.
-
-~~~ php
-<?php
-namespace Mywebsite\Controller;
-
-class AdminController extends \MyProject\Controller\AppController {
-
-    public function secondProfileAction()
-    {
-        $this->render(array(
-            "content" => "This is content that will be print on the page.",
-            "end" => false
-        ));
-    }
-}
-?>
-~~~
+<p class="warning">
+    Make sure you understand how pages are <a href="/docs/controllers/view/#on-rendering-in-the-admin">being rendered in the Admin area</a> to obtain the correct behavior.
+</p>

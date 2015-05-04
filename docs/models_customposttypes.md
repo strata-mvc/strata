@@ -1,38 +1,66 @@
 ---
 layout: docs
-title: Models
-permalink: /docs/models/
+title: Custom Post Types
+permalink: /docs/models/customposttypes/
 ---
 
-## Model entities, tables and Custom Post Types
+## Creating a Custom Post Type
 
-Models are where the logic being the website's custom processes, validations and everything that is generally defined as "business logic" is located.
-
-In regular MVC frameworks a model can (but is not required to) map to a table in the database. In Strata, there is no direct link between a model and a table because we do not want to use an ORM and stray this far outside of the Wordpress ecosystem.
-
-Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
-
-Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manipulating the received data.
-
-## Creating a model file
-
-To generate a flat Model in which you can add business logic but cannot save entities in Wordpress' database, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
-
-Look at [automated custom post type models](/docs/models/customposttypes/) for information on how to create models that map to database entries.
-
-Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
+You can generate models that will allow database operations in that they map to custom post types. To do do, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 ~~~ sh
-$ bin/mvc generate model Artist
+$ bin/mvc generate customposttype Song
 ~~~
 
-It will generate a couple of files for you, including the actual model file and test suites for the generated class.
+It will generate a couple of files for you, including the actual model file and test suites for the generated class. The model will extend `Strata\Model\CustomPostType\Entity` and gain access to DB manipulation objects and methods.
 
 ~~~ sh
-Scaffolding model Artist
-  ├── [ OK ] src/model/Artist.php
-  └── [ OK ] tests/model/ArtistTest.php
+Scaffolding model Song
+  ├── [ OK ] src/model/Song.php
+  └── [ OK ] tests/model/SongTest.php
 ~~~
+
+## Customizing the CustomPostType Model
+
+The generated entity will be only accessible through Wordpress' backend. The intend of the Model entity is not to be displayed on the front end using the default Wordpress Loop.
+
+You can customize the model declaration by supplying the optional `$configuration` public attribute. It allows you to customize the configuration array that is sent to `register_post_type` internally. As long as you follow the [conventions](http://codex.wordpress.org/Function_Reference/register_post_type) your post type will be created using these customized values, filling the missing options with their default counterparts.
+
+The following example illustrates how we allow the `editor` and also allow the custom post types to be accessible using the `music-page` slug (ex: `yourwebsite/music-page/weezer/`).
+
+~~~ php
+<?php
+namespace MyProject\Model;
+
+class Artist extends \Strata\Model\CustomPostType\Entity {
+
+    public $configuration = array(
+        "supports"  => array( 'title', 'editor' ),
+        'publicly_queryable' => true,
+        "rewrite"   => array(
+            'slug'                => 'music-page',
+            'with_front'          => true,
+        )
+    );
+
+}
+?>
+~~~
+
+## On automated configuration
+
+The custom post type key is generated from the model's class name. By default, this value will be prefixed by `ctp_`. In this example the unique key of the custom post type will be `ctp_artist`.
+
+At all times, you can get the Wordpress key of the model using `wordpressKey()`.
+
+~~~ php
+<?php
+$data = new \WP_Query(array(
+    'post_type'     => Profile::wordpressKey()
+));
+?>
+~~~
+
 
 ## Entity attributes validation
 

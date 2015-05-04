@@ -85,6 +85,8 @@ What we mean by mentioning the custom post type needs to be publicly visible to 
 ?>
 ~~~
 
+You can read more on model configuration on the [Models](/docs/models/) page.
+
 ## On-demand routing and dynamic callbacks
 
 Quite frequently, you will want to hook into Wordpress using `add_filter` and `add_action`. For these hook to refer to your controllers, you will need to generate a dynamic callback to a controller's action. You may call the `\Strata\Router\Router` object directly to obtain a callback array.

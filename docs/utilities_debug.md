@@ -4,7 +4,7 @@ title: debug()
 permalink: /docs/utilities/debug/
 ---
 
-By including the MVC's bootstraper, you gain access to a global function titled `debug()`. While it is mainly a styled version of `var_dump`, it can still be useful while developing.
+By running Strata, you gain access to a global function titled `debug()`. It is mainly a styled version of `var_dump` that can be useful while developing.
 
 The function accepts anything as it's first and only parameter. It will print the value of the variable followed by a stack trace dump.
 

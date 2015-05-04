@@ -33,18 +33,14 @@ namespace Mywebsite\Controller;
 use Mywebsite\Model\Song;
 use Mywebsite\Model\Form\SongForm;
 
-class SongsController extends \MyProject\Controller\AppController {
+class SongsController extends \Mywebsite\Controller\AppController {
 
     public $shortcodes = array("songform" => 'getFormTemplate');
     protected $_form = null;
 
-    /**
-     * The form is expected to be loaded by shortcode that prints the current form object.
-     * Therefore is it in a second scope and we need to send view variables manually.
-     */
     public function getFormTemplate()
     {
-        return $this->_form->toHtml($this->viewVars);
+        return $this->_form->toHtml();
     }
 
     public function create()
@@ -65,7 +61,7 @@ class SongsController extends \MyProject\Controller\AppController {
 
 ## Creating the form object
 
-Each form must be linked to an object implementing `MCV\Model\Form`. These objects should be located under your project's model's forms directory : `src/model/form/SongForm.php`.
+Each form must be linked to an object implementing `Strata\Model\Form`. These objects should be located under your project's model's forms directory : `src/model/form/SongForm.php`.
 
 The role of this object is to declare the context of the form as well as grant functions that can help controllers handle the form data. For example, here the form will have 5 steps to it and the Form object will look for template files prefixed with `songs` when building the html.
 
@@ -96,7 +92,7 @@ class SongForm extends \Strata\Model\Form
 
 ## Preparing the view
 
-Though the form is loaded through a shortcode, there will still be templating involved. In the controller above, when `$this->_form->toHtml($this->viewVars)` is called the form object will try to load template file located under `[current_theme]/templates/forms/*`. The name of the template is based on the `formKey` parameter sent in when constructing the `SongForm` object.
+Though the form is loaded through a shortcode, there will still be templating involved. In the controller above, when `$this->_form->toHtml()` is called the form object will try to load template file located under `[current_theme]/templates/forms/*`. The name of the template is based on the `formKey` parameter sent in when constructing the `SongForm` object.
 
 Should your form have steps, the template's file name will have the current step name to it: `[current_theme]/templates/forms/songs.step1.php`.
 

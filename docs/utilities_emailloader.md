@@ -4,7 +4,7 @@ title: EmailLoader
 permalink: /docs/utilities/emailloader/
 ---
 
-__This class has not been made singular and may be so in the near future__. It is possible code will break because of this change.
+<p class="warning">This class has not been made singular and may be so in the near future. It is possible code will break because of this change.</p>
 
 `EmailLoader` allows you to build dynamic templates for sending emails with Wordpress. It loads template files located in `[current_theme]/templates/emails/` under your theme's directory.
 
@@ -19,9 +19,9 @@ In the case of this typical call in a controller you will be able to format an e
 <?php
 namespace Mywebsite\Controller;
 
-use MVC\Emails\EmailLoader;
+use Strata\Emails\EmailLoader;
 
-class ChildrenController extends \MyProject\Controller\AppController {
+class ChildrenController extends \Mywebsite\Controller\AppController {
 
     protected function _sendEmail()
     {
