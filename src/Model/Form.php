@@ -70,7 +70,7 @@ class Form {
      * wordpress request that triggered the rendering of the page. We need to send
      * instanciated controller variables when loading the form template file.
      */
-    public function toHtml($values = array())
+    public function toHtml()
     {
         // Assign the helper
         $rc = new \ReflectionClass($this);
@@ -86,7 +86,7 @@ class Form {
             }
         }
 
-        return self::loadTemplateFile($this->_formKey, $step, $values);
+        return self::loadTemplateFile($this->_formKey, $step, $this->_request->getVariables());
     }
 
     /**

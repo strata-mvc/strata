@@ -1,6 +1,8 @@
 <?php
 namespace Strata\View;
 
+use Strata\View\Template;
+
 /**
  * Handles the generation of view html. It is important to understand this is not used
  * when a request continues the regular Wordpress flow which generates its own templates.
@@ -34,6 +36,11 @@ class View {
             "content" => "",
             "end" => true
         );
+    }
+
+    public function loadTemplate($path)
+    {
+        return Template::parse($path, $this->getVariables());
     }
 
     /**
