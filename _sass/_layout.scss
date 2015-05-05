@@ -109,6 +109,12 @@
     padding: $spacing-unit 0;
     text-align: center;
     font-size: $small-font-size;
+
+    p {
+        margin: auto;
+        max-width:500px;
+        margin-bottom: 0.5em;
+    }
 }
 
 
@@ -193,7 +199,7 @@
 
 aside {
     float:left;
-    padding-top: #{$spacing-unit};
+    padding-top: 70px;
     margin-left: #{$spacing-unit};
     margin-right: #{$spacing-unit};
     width: 20%;
