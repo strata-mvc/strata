@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Documentation
+title: Manifest
 permalink: /docs/
 ---
 

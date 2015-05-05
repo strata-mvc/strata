@@ -17,11 +17,10 @@ body {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: 300;
     color: $text-color;
     background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
     margin-top: 62px;
+    font-weight:200;
 }
 
 
@@ -81,7 +80,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 
@@ -128,19 +127,22 @@ blockquote {
  */
 pre,
 code {
-    font-size: 15px;
+    font-size: 13px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    background-color: #f8f8f8;
+    color: #333;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
 
 code {
-    padding: 1px 5px;
+    padding: 3px;
+    margin:0 2px;
 }
 
 pre {
     padding: 8px 12px;
-    overflow-x: scroll;
+    overflow: auto;
 
     > code {
         border: 0;
@@ -149,7 +151,9 @@ pre {
     }
 }
 
-
+strong {
+    font-weight: 400;
+}
 
 /**
  * Wrapper

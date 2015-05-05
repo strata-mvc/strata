@@ -1,12 +1,12 @@
 ---
 layout: docs
-title: Saving
+title: Saving user data
 permalink: /docs/saving/
 ---
 
-Saving data is an important part of a complex web application. Strata allows you to save data outside of the regular Wordpress scope (ex: the backend).
+Saving data is an important part of a complex web application. Strata allows you to save data outside of the regular Wordpress scope (expicitely, outside of the Wordpress backend).
 
-To ease and automate this process, it allows the building of dynamic forms and automated tests on posted values when saving data.
+To ease and automate this process, our tools allow the building of dynamic forms and automated validations on posted values.
 
 The are 4 steps to this process :
 
@@ -15,13 +15,16 @@ The are 4 steps to this process :
 * Adding the form in the view
 * Saving the data through the model object.
 
+
+{% include workinprogress.html %}
+
 # Setting up the controller
 
-Your controller can expose the form using a shortcode. In the following example, we declare a shortcode titled `[songform]` that will print out the form's generated html. Because of scoping we must send the current controller's view variables in the shortcode callback as discussed [in the Controller documentation](/docs/controllers/).
+Your controller can expose the form using a shortcode. In the following example, we declare a shortcode labeled `[songform]` that will print out the form's generated html. The shortcode callbacks are discussed [in the Controller documentation](/docs/controllers/#shortcodes-and-exposing-actions).
 
 Implying you have [created routing routes](/docs/routes/) that will reach the `create` action, you can now start crafting your tools. You need to declare a model entity and a form object that will both be used to validate posted data.
 
-Upon each page loads when `$form->process()` is called, the form will validate values in the `$_POST` array and look for variables that match the attributes of the entities passed to it. This allows you to validate multiple entities in the same form.
+Upon each page load, when `$form->process()` is called, the form will validate values in the `$_POST` array and look for variables that match the attributes of the entities passed to it. This allows you to validate multiple entities in the same form.
 
 Because a form is considered completed once form steps are completed (if there were any) and when all the attributes have passed the automated validation tests, we can save the form by passing it to the model entity.
 
@@ -61,11 +64,11 @@ class SongsController extends \Mywebsite\Controller\AppController {
 
 ## Creating the form object
 
-Each form must be linked to an object implementing `Strata\Model\Form`. These objects should be located under your project's model's forms directory : `src/model/form/SongForm.php`.
+Each one of your forms must be linked to an object implementing `Strata\Model\Form`. You custom form objects should be located under your project's model's forms directory : `src/model/form/SongForm.php`.
 
 The role of this object is to declare the context of the form as well as grant functions that can help controllers handle the form data. For example, here the form will have 5 steps to it and the Form object will look for template files prefixed with `songs` when building the html.
 
-`hasATitle` is a method that could be used by a controller to differentiate between to special cases only the form should know about in details.
+`hasATitle` is a method that could be used by a controller to differentiate between to special cases where only the form should be in on the details.
 
 ~~~ php
 <?php

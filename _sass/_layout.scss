@@ -216,26 +216,26 @@
     margin-bottom: $spacing-unit;
 
     h2 {
-        font-size: 32px;
+        font-size: 28px;
 
         @include media-query($on-laptop) {
-            font-size: 28px;
+            font-size: 24px;
         }
     }
 
     h3 {
-        font-size: 26px;
+        font-size: 22px;
 
         @include media-query($on-laptop) {
-            font-size: 22px;
+            font-size: 20px;
         }
     }
 
     h4 {
-        font-size: 20px;
+        font-size: 18px;
 
         @include media-query($on-laptop) {
-            font-size: 18px;
+            font-size: 16px;
         }
     }
 }
@@ -248,6 +248,22 @@ aside {
     width: -webkit-calc(20% + #{$spacing-unit});
     width:         calc(20% + #{$spacing-unit});
 
+    h3 {
+        margin: 0 0 0.2em;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-left: 0;
+        margin-bottom:1em;
+
+        ul {
+            list-style-type: disc;
+            margin-left: #{$spacing-unit};
+            font-size:  $small-font-size;
+        }
+    }
+
 }
 
 article {
@@ -256,6 +272,11 @@ article {
     width: -webkit-calc(80% - (#{$spacing-unit} * 3));
     width:         calc(80% - (#{$spacing-unit} * 3));
     min-height: 400px;
+    max-width:800px;
+
+    a {
+        text-decoration: underline;
+    }
 }
 
 h2 {
@@ -302,6 +323,7 @@ pre {
     color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
+    border-radius: 5px;
 }
 
 .warning {
@@ -309,4 +331,5 @@ pre {
     background-color: #f0ad4e;
     border-color: #eea236;
     padding:1em;
+    border-radius: 5px;
 }

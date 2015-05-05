@@ -28,7 +28,11 @@ In a template file :
 <php endif; ?>
 ~~~
 
-The most frequent use case will be to load a template file that will contain your HTML using the `loadTemplate` function.
+## Rendering
+
+### Loading view templates
+
+Frequently, you will will have to load a template file containing your HTML. To load a template file in which all view variables are instanciated, you can use the `loadTemplate` function.
 
 ~~~ php
 <?php
@@ -47,6 +51,8 @@ class AdminController extends \Mywebsite\Controller\AppController {
 }
 ?>
 ~~~
+
+### JSON and object types
 
 The value of `content` does not have to be of type `string`. You can return an Array and the value will automatically be converted to JSON data.
 

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Bundled Server
-permalink: /docs/server/
+permalink: /docs/shell/server/
 ---
 
 Strata ships with a server on which you can test your application. This server is not meant to be used in production. It is packaged only as a mean to lower the amount of prerequisites needed to start developing.

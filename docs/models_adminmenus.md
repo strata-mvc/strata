@@ -6,7 +6,7 @@ permalink: /docs/models/adminmenus/
 
 By default, creating a model will add it to the list of custom post types in Wordpress' backend with the basic 'All posts', 'Add new' links.
 
-You can add additional admin menu links based on the model when configuring the model entry in `app.php` found in `/lib/wordpress-mvc/` under your theme's directory.
+You can add additional admin menu links based on the model when configuring the model entry in `strata.php` found in `/config/` at the base of your project.
 
 ~~~ php
 <?php
@@ -14,13 +14,24 @@ $app = array(
     "custom-post-types" => array(
         "Profile" => array(
             "admin" => array(
-                "exportProfiles" => array("route" => "AdminController", "title" => "Export", "menu-title" => "Export")
-                "secondProfileAction" => array("route" => "AdminController", "title" => "Additional link", "menu-title" => "Additional link")
+                "exportProfiles" => array(
+                    "route" => "AdminController",
+                    "title" => "Export",
+                    "menu-title" => "Export"
+                ),
+                "secondProfileAction" => array(
+                    "route" => "AdminController",
+                    "title" => "Additional link",
+                    "menu-title" => "Additional link"
+                )
             )
         ),
         "Song" => array(
             "admin" => array(
-                "extraSongInfo" => array("title" => "Extra song information", "menu-title" => "Extra song information")
+                "extraSongInfo" => array(
+                    "title" => "Extra song information",
+                    "menu-title" => "Extra song information"
+                )
             )
         ),
     )
@@ -37,5 +48,5 @@ In the example above, `Profile` will have two links added. The first will link t
 On the other hand, `Song` will have only added one link. It will attempt to call `extraSongInfo` of the `SongController` class.
 
 <p class="warning">
-    Make sure you understand how pages are <a href="/docs/controllers/view/#on-rendering-in-the-admin">being rendered in the Admin area</a> to obtain the correct behavior.
+    Make sure you understand how pages are <a href="/docs/controllers/view/#on-rendering-in-the-admin">being rendered in the Admin area</a> to ensure you are obtaining the correct behavior.
 </p>

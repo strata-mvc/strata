@@ -4,12 +4,18 @@ title: Custom Post Types
 permalink: /docs/models/customposttypes/
 ---
 
+In regular MVC frameworks a model can (but is not required to) map to a table in the database. In Strata, there is no direct link between a model and a table because we do not want to use an ORM and stray this far outside of the Wordpress ecosystem.
+
+Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
+
+Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manipulating the received data.
+
 ## Creating a Custom Post Type
 
 You can generate models that will allow database operations in that they map to custom post types. To do do, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 ~~~ sh
-$ bin/mvc generate customposttype Song
+$ bin/strata generate customposttype Song
 ~~~
 
 It will generate a couple of files for you, including the actual model file and test suites for the generated class. The model will extend `Strata\Model\CustomPostType\Entity` and gain access to DB manipulation objects and methods.

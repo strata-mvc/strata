@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Migrations
-permalink: /docs/migrations/
+permalink: /docs/shell/migrations/
 ---
 
 Strata does not ship with a complex database migration tool but it does offer a simpler in line database import and export tool.

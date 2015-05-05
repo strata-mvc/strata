@@ -33,7 +33,7 @@ class Artist extends \Strata\Model\CustomPostType\Entity {
 ?>
 ~~~
 
-Every view and template files would then call the centralized `MyProject\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal Query class is a preferred method of handling `WP_Query` assignments.
+Every view and template files would then call the centralized `MyProject\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal `Query` class is a preferred method of handling `WP_Query` assignments.
 
 ## Internal Query class
 

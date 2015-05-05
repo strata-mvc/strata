@@ -8,12 +8,6 @@ permalink: /docs/models/
 
 Models are where the logic being the website's custom processes, validations and everything that is generally defined as "business logic" is located.
 
-In regular MVC frameworks a model can (but is not required to) map to a table in the database. In Strata, there is no direct link between a model and a table because we do not want to use an ORM and stray this far outside of the Wordpress ecosystem.
-
-Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available to the post object.
-
-Because of the adoption of Wordpress' methods, every model requests will return __arrays of posts__. Something to keep in mind when manipulating the received data.
-
 ## Creating a model file
 
 To generate a flat Model in which you can add business logic but cannot save entities in Wordpress' database, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
@@ -23,7 +17,7 @@ Look at [automated custom post type models](/docs/models/customposttypes/) for i
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
 
 ~~~ sh
-$ bin/mvc generate model Artist
+$ bin/strata generate model Artist
 ~~~
 
 It will generate a couple of files for you, including the actual model file and test suites for the generated class.

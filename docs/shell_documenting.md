@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Documenting your Strata App
-permalink: /docs/documenting/
+title: Documentation
+permalink: /docs/shell/documenting/
 ---
 
 Strata offers means for an application to be self maintained. This implies that it must also be packaged by documentation about the implementation so that another programmer (or you, next month) can have a high level view of the code base.

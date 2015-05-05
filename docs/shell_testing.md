@@ -1,7 +1,7 @@
 ---
 layout: docs
-title: Testing your Strata app
-permalink: /docs/testing/
+title: Testing
+permalink: /docs/shell/testing/
 ---
 
 Strata uses [PHPUnit](https://phpunit.de/) as test suite for Test Driven Development. All test cases must be located under the `test` directory and end with the `Test` keyword.

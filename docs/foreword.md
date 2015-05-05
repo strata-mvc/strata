@@ -22,5 +22,5 @@ Here is my unofficial todo list, vaguely in the order which I plan to go by:
 
 * While code is close to being in final condition, I am still finalizing concepts. Some of these concepts are not completed across the board (singular vs plural names, base classes inside vs base classes outside of descendant directory). This implies code that will be moved around.
 * Improve the Vagrant machine to prevent weird bugs (no constant logging, clock out of sync, menu on reboot)
-* Create a bin/mvc.bat counterpart for Windows
+* Create a bin/strata.bat counterpart for Windows
 * Do screen casts
