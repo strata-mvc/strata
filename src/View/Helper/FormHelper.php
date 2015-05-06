@@ -4,6 +4,7 @@ namespace Strata\View\Helper;
 
 use Strata\Controller\Request;
 use Strata\Utility\Hash;
+use Strata\Model\Form\ValidationCollector;
 
 class FormHelper extends \Strata\View\Helper\Helper {
 
@@ -104,14 +105,10 @@ class FormHelper extends \Strata\View\Helper\Helper {
         'year',
     );
 
-    public function __construct()
+    public function __construct(\Strata\Controller\Request  $request)
     {
-        $this->_request = new Request();
-
-        $postedStep = (int)$this->getPostedValue(self::POST_KEY_CURRENT);
-        if($postedStep > 0) {
-            $this->currentStep = $postedStep;
-        }
+        $this->_linkToRequest($request);
+        $this->_setStepContext();
     }
 
     public function getCurrentStep()
@@ -154,6 +151,12 @@ class FormHelper extends \Strata\View\Helper\Helper {
     {
         $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
         return $this->_request->hasPost($this->_removeBrackets($this->name($key)));
+    }
+
+    public function applyValidationCollection(\Strata\Model\Form\ValidationCollector $collector)
+    {
+        $this->errors = $collector->getErrors();
+        $this->assignments = $collector->getAssignments();
     }
 
     public function hasErrors($key = null)
@@ -403,6 +406,19 @@ class FormHelper extends \Strata\View\Helper\Helper {
         return sprintf($options['wrapperTpl'], $stepsHtml);
     }
 
+    private function _linkToRequest(\Strata\Controller\Request $request)
+    {
+        $this->_request = $request;
+    }
+
+    private function _setStepContext()
+    {
+        $postedStep = (int)$this->getPostedValue(self::POST_KEY_CURRENT);
+        if($postedStep > 0) {
+            $this->currentStep = $postedStep;
+        }
+    }
+
     protected function _arrayToAttributes($attributes)
     {
         $output = "";
@@ -415,7 +431,7 @@ class FormHelper extends \Strata\View\Helper\Helper {
     protected function _createBacklog()
     {
         $backlogHtml = "";
-        foreach ($this->assigned as $key => $value) {
+        foreach ($this->assignments as $key => $value) {
             if (!is_array($value)) {
                 $backlogHtml .= $this->input($key, array("type" => "hidden", "value" => $value));
             } else {

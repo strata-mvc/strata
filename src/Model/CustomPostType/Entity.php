@@ -3,16 +3,21 @@ namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Hash;
 use Strata\Strata;
+use Strata\Model\Validator\Validator;
 use Strata\Model\CustomPostType\EntityTable;
 
 class Entity extends EntityTable
 {
-    // Entity props
     public $attributes  = array();
+
+    function __construct()
+    {
+        $this->_normalizeAttributes();
+    }
 
     public function getAttributes()
     {
-        return Hash::normalize($this->attributes);
+        return $this->attributes;
     }
 
     public function isSupportedAttribute($attr)
@@ -28,34 +33,24 @@ class Entity extends EntityTable
     public function attemptAttributeSet($attr, $value, $formObject = null)
     {
         $attributeErrors = array();
-        $appNamespace = \Strata\Strata::getNamespace();
-        $validations = Hash::extract($this->getAttributes(), "$attr.validations");
+        if ($this->hasAttributeValidation($attr)) {
 
-        if (count($validations)) {
-            foreach (Hash::normalize($validations) as $validationKey => $validatorConfig) {
-                // Check for custom validators in the Strata scope as well as in
-                // the project scope.
-                $scopes = array(
-                    $appNamespace . "\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
-                    "Strata\\Model\\Validator\\" . ucfirst($validationKey) . "Validator",
-                );
+            $validations = $this->_extractNormalizedValidations($attr);
+            foreach ($validations as $validationKey => $validatorConfig) {
 
-                foreach ($scopes as $validatorName) {
-                    if (class_exists($validatorName)) {
-                        $validator = new $validatorName($validatorConfig);
-                        if (!$validator->test($value, $formObject)) {
-                            $attributeErrors[$validationKey] = $validator->getMessage();
-                        }
-                        break;
-                    }
+                $validator = Validator::factory($validationKey);
+                $validator->configure($validatorConfig);
+
+                if (!$validator->test($value, $formObject)) {
+                    $attributeErrors[$validationKey] = $validator->getMessage();
                 }
+                break;
             }
         }
-
         return $attributeErrors;
     }
 
-    public function validateRaw($formObject, $dataset)
+    public function validateForm($formObject, $dataset)
     {
         $validationErrors = array();
         $validAssignments = array();
@@ -84,5 +79,15 @@ class Entity extends EntityTable
     {
         $rc = new \ReflectionClass($this);
         return strtolower($rc->getShortName());
+    }
+
+    private function _extractNormalizedValidations($attr)
+    {
+        return Hash::normalize(Hash::extract($this->getAttributes(), "$attr.validations"));
+    }
+
+    private function _normalizeAttributes()
+    {
+        $this->attributes = Hash::normalize($this->attributes);
     }
 }

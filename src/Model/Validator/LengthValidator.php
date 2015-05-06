@@ -2,7 +2,7 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator;
+use Strata\Model\Validator\Validator;
 
 class LengthValidator extends Validator {
 

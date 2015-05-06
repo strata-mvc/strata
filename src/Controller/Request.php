@@ -14,21 +14,21 @@ class Request {
      *
      * @var array
      */
-    protected $_GET = array();
+    private $_GET = array();
 
     /**
      * A cache of the parsed Cookie values in the current request.
      *
      * @var array
      */
-    protected $_COOKIE = array();
+    private $_COOKIE = array();
 
     /**
      * A cache of the parsed Post values in the current request.
      *
      * @var array
      */
-    protected $_POST = array();
+    private $_POST = array();
 
     function __construct()
     {

@@ -29,13 +29,7 @@ class View {
      */
     function __construct()
     {
-        // Apply default header values on a view response.
-        $this->_options += array(
-            "Content-type" => "text/html",
-            "Content-disposition" => null,
-            "content" => "",
-            "end" => true
-        );
+
     }
 
     public function loadTemplate($path)
@@ -71,7 +65,12 @@ class View {
      */
     public function render($options = array())
     {
-        $this->_options += $options;
+        $this->_options = $options + array(
+            "Content-type" => "text/html",
+            "Content-disposition" => null,
+            "content" => "",
+            "end" => true
+        );
 
         $content = $this->_parseCurrentContent();
 
@@ -109,10 +108,10 @@ class View {
      */
     protected function _applyHeaders()
     {
-        header('Content-type: ' . $options['Content-type']);
+        header('Content-type: ' . $this->_options['Content-type']);
 
-        if (!is_null($options['Content-disposition'])) {
-            header('Content-disposition: ' . $options['Content-disposition']);
+        if (!is_null($this->_options['Content-disposition'])) {
+            header('Content-disposition: ' . $this->_options['Content-disposition']);
         }
     }
 

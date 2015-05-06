@@ -2,7 +2,7 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator;
+use Strata\Model\Validator\Validator;
 
 class EmailValidator extends Validator {
 

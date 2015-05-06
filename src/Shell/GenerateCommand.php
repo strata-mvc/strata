@@ -79,6 +79,10 @@ class {CLASSNAME} extends {EXTENDS} {
                 $this->_renderModel($classname);
                 break;
 
+            case "form" :
+                $output->writeLn("Will be ready soon.");
+                break;
+
             case "customposttype" :
                 $this->_renderModel($classname, true);
                 break;
@@ -227,7 +231,7 @@ class {CLASSNAME} extends {EXTENDS} {
         $namespace = $this->_getNamespace();
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "model", "validator", $classname . ".php"));
-        $this->_createFile($destination, "$namespace\Model\Validator", $classname, "\Strata\Model\Validator");
+        $this->_createFile($destination, "$namespace\Model\Validator", $classname, "\Strata\Model\Validator\validator");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "model", "validator", $classname . "Test.php"));
         $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$classname}", "\Strata\Test\Test", true);

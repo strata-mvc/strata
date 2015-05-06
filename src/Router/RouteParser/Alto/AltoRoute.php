@@ -64,7 +64,7 @@ class AltoRoute extends Route
 
         // When no method is sent, guesstimate from the action post value (basic ajax)
         } elseif ($this->controller->request->hasPost('action')) {
-            return $this->controller->request->get('post');
+            return $this->controller->request->post('action');
         }
     }
 
