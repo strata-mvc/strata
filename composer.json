@@ -1,9 +1,9 @@
 {
-    "name": "francoisfaubert/wordpress-mvc",
+    "name": "francoisfaubert/strata",
     "type": "library",
-    "description": "MVC programming environment for Bedrock and Wordpress.",
+    "description": "Strata is a MVC programming environment for Bedrock and Wordpress.",
     "keywords": ["wordpress","mvc"],
-    "homepage": "http://github.com/francoisfaubert/wordpress-mvc",
+    "homepage": "http://github.com/francoisfaubert/strata",
     "license": "GPL",
     "authors": [
         {
@@ -32,7 +32,7 @@
         }
     },
     "support": {
-        "issues": "https://github.com/francoisfaubert/wordpress-mvc/issues"
+        "issues": "https://github.com/francoisfaubert/strata/issues"
     },
     "config": {
         "preferred-install": "dist"

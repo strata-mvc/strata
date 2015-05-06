@@ -1,7 +1,7 @@
-wordpress-mvc
-=============
+Strata
+======
 
-More details and documentation can be found on the [official website](http://wordpress-mvc.francoisfaubert.com/)
+More details and documentation can be found on the [official website](http://strata.francoisfaubert.com/)
 
 ### Why
 
@@ -9,7 +9,7 @@ Wordpress is a fantastic blog engine and is more and more used as a full fledged
 
 ### What it does
 
-Wordpress MVC allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
+Strata allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
 
 ### What it doesn't do
 

@@ -8,7 +8,7 @@ use Strata\Router\RouteParser\Alto\AltoRoute;
  * Maps wordpress urls to Strata classes
  *
  * @package       Strata.Router
- * @link          http://wordpress-mvc.francoisfaubert.com/docs/routes/
+ * @link          http://strata.francoisfaubert.com/docs/routes/
  */
 class AltoRouteParser extends Router {
 

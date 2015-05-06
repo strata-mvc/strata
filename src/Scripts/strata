@@ -20,8 +20,8 @@ if [[ ${hasVagrant} && -e "VagrantFile" ]] ; then
 
     vagrant suspend
 else
-    exec /Applications/MAMP/bin/php/php5.6.2/bin/php ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/runner.php $@
-    #exec php ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/runner.php ${cwd} $@
+    exec /Applications/MAMP/bin/php/php5.6.2/bin/php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php $@
+    #exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php ${cwd} $@
 fi
 
 exit

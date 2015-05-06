@@ -10,7 +10,7 @@ use Strata\Router\RouteParser\Callback\CallbackRouter;
  * Assigns callback handlers on demand and from the URL context.
  *
  * @package       Strata.Router
- * @link          http://wordpress-mvc.francoisfaubert.com/docs/routes/
+ * @link          http://strata.francoisfaubert.com/docs/routes/
  */
 class Router {
 

@@ -176,7 +176,7 @@ class StrataContext {
      */
     public static function getOurVendorPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "francoisfaubert", "wordpress-mvc")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "francoisfaubert", "strata")) . DIRECTORY_SEPARATOR;
     }
 
     /**

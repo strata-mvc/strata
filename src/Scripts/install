@@ -19,10 +19,10 @@ if [[ -e "bin/strata" || -L "bin/strata" ]] ; then
     echo " [SKIP] './bin/strata' file already exists."
 else
     echo " [ OK ] Creating symlink './bin/strata'..."
-    ln -s ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/strata ${cwd}/bin/strata
+    ln -s ${cwd}/vendor/francoisfaubert/strata/src/Scripts/strata ${cwd}/bin/strata
 fi
 
-chmod +x ${cwd}/vendor/francoisfaubert/wordpress-mvc/src/Scripts/strata
+chmod +x ${cwd}/vendor/francoisfaubert/strata/src/Scripts/strata
 
 echo ""
 echo " Completing the installation script, launching Strata installer."

@@ -299,7 +299,7 @@ class EnvCommand extends StrataCommand
             $this->_output->writeLn("========================================================================");
         } else {
             $this->_output->writeLn("Automatic installation failed to complete cleanly.");
-            $this->_output->writeLn("Head over to https://github.com/francoisfaubert/wordpress-mvc/ to get help.");
+            $this->_output->writeLn("Head over to https://github.com/francoisfaubert/strata/ to get help.");
         }
         $this->nl();
     }

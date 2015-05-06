@@ -16,7 +16,7 @@ require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
  * Running Strata instance
  *
  * @package       Strata
- * @link          http://wordpress-mvc.francoisfaubert.com/docs/
+ * @link          http://strata.francoisfaubert.com/docs/
  */
 class Strata extends StrataContext {
     /**
