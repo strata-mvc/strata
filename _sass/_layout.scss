@@ -203,8 +203,6 @@ aside {
     margin-left: #{$spacing-unit};
     margin-right: #{$spacing-unit};
     width: 20%;
-    border-right: 1px solid #eee;
-
 
     h3 {
         margin: 0 0 0.2em;
@@ -226,9 +224,18 @@ aside {
 
 }
 
+.docs {
+    article {
+        border-left: 1px solid #eee;
+        min-height: 1000px;
+        padding-left: #{$spacing-unit};
+    }
+}
+
+
 article {
-    margin-left: -webkit-calc(20% + (#{$spacing-unit} * 2));
-    margin-left:         calc(20% + (#{$spacing-unit} * 2));
+    margin-left: -webkit-calc(20% + #{$spacing-unit});
+    margin-left:         calc(20% + #{$spacing-unit});
     width: -webkit-calc(80% - (#{$spacing-unit} * 3));
     width:         calc(80% - (#{$spacing-unit} * 3));
     padding-top: 64px;
