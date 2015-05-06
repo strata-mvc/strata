@@ -21,7 +21,7 @@ $ composer create-project roots/bedrock mywebsite
 From the project directory, add the Strata as a dependency.
 
 ~~~ bash
-$ composer require francoisfaubert/wordpress-mvc:dev-master
+$ composer require francoisfaubert/strata:dev-master
 ~~~
 
 There are some folders and files that need to be created in order for Strata to be used inside your project. To ensure you have everything needed, the last step is to run the Strata installer script which comes packaged in Strata.
@@ -29,8 +29,8 @@ There are some folders and files that need to be created in order for Strata to 
 Ensure the file is executable first, then run the bash script. The script will confirm that you have the correct directory structure as well as populate your project with starter files.
 
 ~~~ bash
-$ chmod +x vendor/francoisfaubert/wordpress-mvc/src/Scripts/install
-$ vendor/francoisfaubert/wordpress-mvc/src/Scripts/install
+$ chmod +x vendor/francoisfaubert/strata/src/Scripts/install
+$ vendor/francoisfaubert/strata/src/Scripts/install
 ~~~
 
 ## Wordpress hooks
