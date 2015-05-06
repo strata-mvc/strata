@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Strata\Model\CustomPostType\LabeledEntity</title>
+	<title>Class Strata\Model\Form\ModelValidation</title>
 
 	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
 
@@ -45,9 +45,26 @@
 					</a>
 
 						<ul>
-				<li class="active">
+				<li>
 					<a href="namespace-Strata.Model.CustomPostType.html">
-						CustomPostType					</a>
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li class="active">
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
 
 						</li>
 				<li>
@@ -115,13 +132,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Strata.Model.CustomPostType.Entity.html">Entity</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.EntityTable.html">EntityTable</a></li>
-				<li class="active"><a href="class-Strata.Model.CustomPostType.LabeledEntity.html">LabeledEntity</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.Loader.html">Loader</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.Query.html">Query</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.TaxonomyEntity.html">TaxonomyEntity</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.TermsQuery.html">TermsQuery</a></li>
+				<li><a href="class-Strata.Model.Form.Form.html">Form</a></li>
+				<li class="active"><a href="class-Strata.Model.Form.ModelValidation.html">ModelValidation</a></li>
+				<li><a href="class-Strata.Model.Form.ValidationCollector.html">ValidationCollector</a></li>
 			</ul>
 
 
@@ -148,7 +161,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-Strata.Model.CustomPostType.html" title="Summary of Strata\Model\CustomPostType"><span>Namespace</span></a>
+				<a href="namespace-Strata.Model.Form.html" title="Summary of Strata\Model\Form"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -160,22 +173,13 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class LabeledEntity</h1>
+	<h1>Class ModelValidation</h1>
 
 
 
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-Strata.Model.CustomPostType.EntityTable.html">Strata\Model\CustomPostType\EntityTable</a>, 
-			<a href="class-Strata.Model.CustomPostType.TaxonomyEntity.html">Strata\Model\CustomPostType\TaxonomyEntity</a>
-	</div>
 
-	<div>
-		<h4>Indirect known subclasses</h4>
-			<a href="class-Strata.Model.CustomPostType.Entity.html">Strata\Model\CustomPostType\Entity</a>
-	</div>
 
 
 
@@ -184,10 +188,10 @@
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Model.html">Model</a>\<a href="namespace-Strata.Model.CustomPostType.html">CustomPostType</a><br>
+		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Model.html">Model</a>\<a href="namespace-Strata.Model.Form.html">Form</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#8-75" title="Go to source code">Model/CustomPostType/LabeledEntity.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Model.Form.ModelValidation.html#8-70" title="Go to source code">Model/Form/ModelValidation.php</a>
 		<br>
 	</div>
 
@@ -195,10 +199,10 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="getShortName" id="_getShortName">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 
 			
 			
@@ -206,8 +210,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getShortName">#</a>
-		<code><a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#12-16" title="Go to source code">getShortName</a>( <span> <var>$linkToObj</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#26-30" title="Go to source code">__construct</a>( <span><code><a href="class-Strata.Model.Model.html">Strata\Model\Model</a></code> <var>$model</var></span>, <span><code><a href="class-Strata.Model.Form.Form.html">Strata\Model\Form\Form</a></code> <var>$form</var></span> )</code>
 
 		<div class="description short">
 			
@@ -225,10 +229,10 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="key" id="_key">
+	<tr data-order="getErrors" id="_getErrors">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 
 			
 			
@@ -236,15 +240,15 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_key">#</a>
-		<code><a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#18-25" title="Go to source code">key</a>( )</code>
+		<a class="anchor" href="#_getErrors">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#32-35" title="Go to source code">getErrors</a>( )</code>
 
 		<div class="description short">
-			<p>Returns the short key of the current object.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns the short key of the current object.</p>
+			
 
 
 
@@ -255,10 +259,10 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="wordpressKey" id="_wordpressKey">
+	<tr data-order="hasErrors" id="_hasErrors">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 
 			
 			
@@ -266,15 +270,15 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_wordpressKey">#</a>
-		<code><a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#27-34" title="Go to source code">wordpressKey</a>( )</code>
+		<a class="anchor" href="#_hasErrors">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#37-40" title="Go to source code">hasErrors</a>( )</code>
 
 		<div class="description short">
-			<p>Returns the internal custom post type slug</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns the internal custom post type slug</p>
+			
 
 
 
@@ -285,10 +289,10 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getLabels" id="_getLabels">
+	<tr data-order="getAssignments" id="_getAssignments">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 
 			
 			
@@ -296,8 +300,68 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getLabels">#</a>
-		<code><a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#36-74" title="Go to source code">getLabels</a>( )</code>
+		<a class="anchor" href="#_getAssignments">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#42-45" title="Go to source code">getAssignments</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasAssignments" id="_hasAssignments">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasAssignments">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#47-50" title="Go to source code">hasAssignments</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateSet" id="_validateSet">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateSet">#</a>
+		<code><a href="source-class-Strata.Model.Form.ModelValidation.html#52-69" title="Go to source code">validateSet</a>( <span> <var>$dataset</var></span> )</code>
 
 		<div class="description short">
 			
@@ -328,34 +392,6 @@
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="configuration" id="$configuration">
-		<td class="attributes"><code>
-			public  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Strata.Model.CustomPostType.LabeledEntity.html#10" title="Go to source code"><var>$configuration</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$configuration" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 

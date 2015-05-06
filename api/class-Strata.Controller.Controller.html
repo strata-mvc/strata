@@ -47,7 +47,24 @@
 						<ul>
 				<li>
 					<a href="namespace-Strata.Model.CustomPostType.html">
-						CustomPostType					</a>
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
 
 						</li>
 				<li>
@@ -117,6 +134,7 @@
 			<ul>
 				<li class="active"><a href="class-Strata.Controller.Controller.html">Controller</a></li>
 				<li><a href="class-Strata.Controller.Request.html">Request</a></li>
+				<li><a href="class-Strata.Controller.ShortcodeLoader.html">ShortcodeLoader</a></li>
 			</ul>
 
 
@@ -176,7 +194,7 @@
 		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Controller.html">Controller</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Strata.Controller.Controller.html#10-123" title="Go to source code">Controller/Controller.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Controller.Controller.html#11-107" title="Go to source code">Controller/Controller.php</a>
 		<br>
 	</div>
 
@@ -196,7 +214,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_factory">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#37-50" title="Go to source code">factory</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#16-29" title="Go to source code">factory</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -235,7 +253,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateClassPath">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#52-62" title="Go to source code">generateClassPath</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#31-41" title="Go to source code">generateClassPath</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			<p>Generates a possible namespace and classname combination of a
@@ -278,7 +296,7 @@ string everywhere.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#64-68" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#65-69" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -308,7 +326,7 @@ string everywhere.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_init">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#70-78" title="Go to source code">init</a>( )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#71-79" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			<p>Initiate the controller.</p>
@@ -342,7 +360,7 @@ string everywhere.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_after">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#80-87" title="Go to source code">after</a>( )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#81-88" title="Go to source code">after</a>( )</code>
 
 		<div class="description short">
 			<p>Executed after each calls to a controller action.</p>
@@ -376,7 +394,7 @@ string everywhere.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_before">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#89-96" title="Go to source code">before</a>( )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#90-97" title="Go to source code">before</a>( )</code>
 
 		<div class="description short">
 			<p>Executed before each calls to a controller action.</p>
@@ -410,7 +428,7 @@ string everywhere.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_index">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#98-105" title="Go to source code">index</a>( )</code>
+		<code><a href="source-class-Strata.Controller.Controller.html#99-106" title="Go to source code">index</a>( )</code>
 
 		<div class="description short">
 			<p>Base action. This is used mainly as a precautionary fallback.</p>
@@ -418,44 +436,6 @@ string everywhere.</p>
 
 		<div class="description detailed hidden">
 			<p>Base action. This is used mainly as a precautionary fallback.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					null
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_buildShortcodes" id="__buildShortcodes">
-
-		<td class="attributes"><code>
-			 protected 
-
-			null
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__buildShortcodes">#</a>
-		<code><a href="source-class-Strata.Controller.Controller.html#107-122" title="Go to source code">_buildShortcodes</a>( )</code>
-
-		<div class="description short">
-			<p>Registers dynamic shortcodes hooks to the instantiated controller.
-Note that these are not available when this instance of the controller
-is not being loaded.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Registers dynamic shortcodes hooks to the instantiated controller.
-Note that these are not available when this instance of the controller
-is not being loaded.</p>
 
 
 
@@ -492,7 +472,7 @@ is not being loaded.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Strata.Controller.Controller.html#15-20" title="Go to source code"><var>$request</var></a>
+				<a href="source-class-Strata.Controller.Controller.html#43-48" title="Go to source code"><var>$request</var></a>
 
 			<div class="description short">
 				<p>The current request</p>
@@ -517,7 +497,7 @@ is not being loaded.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Strata.Controller.Controller.html#22-27" title="Go to source code"><var>$view</var></a>
+				<a href="source-class-Strata.Controller.Controller.html#50-55" title="Go to source code"><var>$view</var></a>
 
 			<div class="description short">
 				<p>The associated view template</p>
@@ -542,7 +522,7 @@ is not being loaded.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Strata.Controller.Controller.html#29-35" title="Go to source code"><var>$shortcodes</var></a>
+				<a href="source-class-Strata.Controller.Controller.html#57-63" title="Go to source code"><var>$shortcodes</var></a>
 
 			<div class="description short">
 				<p>These hooks allow views to use Wordpress nicely, but still trigger

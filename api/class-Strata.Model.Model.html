@@ -47,7 +47,24 @@
 						<ul>
 				<li>
 					<a href="namespace-Strata.Model.CustomPostType.html">
-						CustomPostType					</a>
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
 
 						</li>
 				<li>
@@ -115,9 +132,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Strata.Model.Form.html">Form</a></li>
 				<li class="active"><a href="class-Strata.Model.Model.html">Model</a></li>
-				<li><a href="class-Strata.Model.Validator.html">Validator</a></li>
+				<li><a href="class-Strata.Model.WordpressEntity.html">WordpressEntity</a></li>
 			</ul>
 
 
@@ -165,7 +181,16 @@
 
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Strata.Model.WordpressEntity.html">Strata\Model\WordpressEntity</a>
+	</div>
 
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Strata.Model.CustomPostType.Entity.html">Strata\Model\CustomPostType\Entity</a>, 
+			<a href="class-Strata.Model.Taxonomy.TaxonomyEntity.html">Strata\Model\Taxonomy\TaxonomyEntity</a>
+	</div>
 
 
 
@@ -177,12 +202,358 @@
 		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Model.html">Model</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Strata.Model.Model.html#4-9" title="Go to source code">Model/Model.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Model.Model.html#11-115" title="Go to source code">Model/Model.php</a>
 		<br>
 	</div>
 
 
 
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="generateClassPath" id="_generateClassPath">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateClassPath">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#16-26" title="Go to source code">generateClassPath</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Generates a possible namespace and classname combination of a
+Strata controller. Mainly used to avoid hardcoding the '&#92;Controller&#92;'
+string everywhere.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Generates a possible namespace and classname combination of a
+Strata controller. Mainly used to avoid hardcoding the '&#92;Controller&#92;'
+string everywhere.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The class name of the controller</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>A fulle namespaced controller name
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="factory" id="_factory">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_factory">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#28-36" title="Go to source code">factory</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="staticFactory" id="_staticFactory">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_staticFactory">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#38-42" title="Go to source code">staticFactory</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#46-49" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAttributes" id="_getAttributes">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAttributes">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#51-54" title="Go to source code">getAttributes</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSupportedAttribute" id="_isSupportedAttribute">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isSupportedAttribute">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#56-59" title="Go to source code">isSupportedAttribute</a>( <span> <var>$attr</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasAttributeValidation" id="_hasAttributeValidation">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasAttributeValidation">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#61-64" title="Go to source code">hasAttributeValidation</a>( <span> <var>$attr</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="attemptAttributeSet" id="_attemptAttributeSet">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_attemptAttributeSet">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#66-84" title="Go to source code">attemptAttributeSet</a>( <span> <var>$attr</var></span>, <span> <var>$value</var></span>, <span> <var>$formObject</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateForm" id="_validateForm">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateForm">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#86-91" title="Go to source code">validateForm</a>( <span> <var>$formObject</var></span>, <span> <var>$dataset</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPostPrefix" id="_getPostPrefix">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPostPrefix">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#93-96" title="Go to source code">getPostPrefix</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getShortName" id="_getShortName">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getShortName">#</a>
+		<code><a href="source-class-Strata.Model.Model.html#98-102" title="Go to source code">getShortName</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
@@ -195,6 +566,34 @@
 
 
 
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="attributes" id="$attributes">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.Model.Model.html#44" title="Go to source code"><var>$attributes</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$attributes" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 

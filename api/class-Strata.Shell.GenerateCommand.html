@@ -47,7 +47,24 @@
 						<ul>
 				<li>
 					<a href="namespace-Strata.Model.CustomPostType.html">
-						CustomPostType					</a>
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
 
 						</li>
 				<li>
@@ -211,7 +228,7 @@ Symfony\Component\Console\Command\Command
 		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Shell.html">Shell</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Strata.Shell.GenerateCommand.html#19-285" title="Go to source code">Shell/GenerateCommand.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Shell.GenerateCommand.html#19-289" title="Go to source code">Shell/GenerateCommand.php</a>
 		<br>
 	</div>
 
@@ -263,7 +280,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#63-111" title="Go to source code">execute</a>( <span>Symfony\Component\Console\Input\InputInterface <var>$input</var></span>, <span>Symfony\Component\Console\Output\OutputInterface <var>$output</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#63-115" title="Go to source code">execute</a>( <span>Symfony\Component\Console\Input\InputInterface <var>$input</var></span>, <span>Symfony\Component\Console\Output\OutputInterface <var>$output</var></span> )</code>
 
 		<div class="description short">
 			<p>Executes the current command.</p>
@@ -310,7 +327,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__getNamespace">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#113-120" title="Go to source code">_getNamespace</a>( )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#117-124" title="Go to source code">_getNamespace</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the namespace of the current project.</p>
@@ -344,7 +361,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__generateFileContents">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#122-138" title="Go to source code">_generateFileContents</a>( <span>string <var>$namespace</var></span>, <span>string <var>$classname</var></span>, <span>string <var>$extends</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#126-142" title="Go to source code">_generateFileContents</a>( <span>string <var>$namespace</var></span>, <span>string <var>$classname</var></span>, <span>string <var>$extends</var></span> )</code>
 
 		<div class="description short">
 			<p>Generates a file string content based on the global template.</p>
@@ -387,7 +404,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__createFile">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#140-161" title="Go to source code">_createFile</a>( <span>string <var>$destination</var></span>, <span>string <var>$namespace</var></span>, <span>string <var>$classname</var></span>, <span>string <var>$extends</var></span>, <span>boolean <var>$last</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#144-165" title="Go to source code">_createFile</a>( <span>string <var>$destination</var></span>, <span>string <var>$namespace</var></span>, <span>string <var>$classname</var></span>, <span>string <var>$extends</var></span>, <span>boolean <var>$last</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Generates and writes a file in the file system</p>
@@ -434,7 +451,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__renderController">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#163-179" title="Go to source code">_renderController</a>( <span>string <var>$classname</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#167-183" title="Go to source code">_renderController</a>( <span>string <var>$classname</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Controller class file</p>
@@ -473,7 +490,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__renderModel">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#181-198" title="Go to source code">_renderModel</a>( <span>string <var>$classname</var></span>, <span> <var>$isCustomPostType</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#185-202" title="Go to source code">_renderModel</a>( <span>string <var>$classname</var></span>, <span> <var>$isCustomPostType</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Model class file</p>
@@ -514,7 +531,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__renderTaxonomy">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#200-216" title="Go to source code">_renderTaxonomy</a>( <span>string <var>$classname</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#204-220" title="Go to source code">_renderTaxonomy</a>( <span>string <var>$classname</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Taxonomy Model class file</p>
@@ -553,7 +570,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__renderValidator">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#218-234" title="Go to source code">_renderValidator</a>( <span>string <var>$classname</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#222-238" title="Go to source code">_renderValidator</a>( <span>string <var>$classname</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Validator class file</p>
@@ -592,7 +609,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__renderHelper">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#236-252" title="Go to source code">_renderHelper</a>( <span>string <var>$classname</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#240-256" title="Go to source code">_renderHelper</a>( <span>string <var>$classname</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a View helper class file</p>
@@ -631,7 +648,7 @@ Symfony\Component\Console\Command\Command
 
 		<td class="name"><div>
 		<a class="anchor" href="#__addRoute">#</a>
-		<code><a href="source-class-Strata.Shell.GenerateCommand.html#254-283" title="Go to source code">_addRoute</a>( <span>string <var>$type</var></span>, <span>string <var>$url</var></span>, <span>string <var>$destination</var></span> )</code>
+		<code><a href="source-class-Strata.Shell.GenerateCommand.html#258-287" title="Go to source code">_addRoute</a>( <span>string <var>$type</var></span>, <span>string <var>$url</var></span>, <span>string <var>$destination</var></span> )</code>
 
 		<div class="description short">
 			<p>Adds a new route entry to the strata.php configuration file.string</p>

@@ -48,7 +48,24 @@
 						<ul>
 				<li>
 					<a href="namespace-Strata.Model.CustomPostType.html">
-						CustomPostType					</a>
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
 
 						</li>
 				<li>
@@ -119,17 +136,22 @@
 				<li><a href="class-Strata.Context.StrataContext.html">Strata\Context\StrataContext</a></li>
 				<li><a href="class-Strata.Controller.Controller.html">Strata\Controller\Controller</a></li>
 				<li><a href="class-Strata.Controller.Request.html">Strata\Controller\Request</a></li>
+				<li><a href="class-Strata.Controller.ShortcodeLoader.html">Strata\Controller\ShortcodeLoader</a></li>
 				<li><a href="class-Strata.Emails.EmailLoader.html">Strata\Emails\EmailLoader</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Entity.html">Strata\Model\CustomPostType\Entity</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.EntityTable.html">Strata\Model\CustomPostType\EntityTable</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.LabeledEntity.html">Strata\Model\CustomPostType\LabeledEntity</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.LabelParser.html">Strata\Model\CustomPostType\LabelParser</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Loader.html">Strata\Model\CustomPostType\Loader</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Query.html">Strata\Model\CustomPostType\Query</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.TaxonomyEntity.html">Strata\Model\CustomPostType\TaxonomyEntity</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.Registrar.Registrar.html">Strata\Model\CustomPostType\Registrar\Registrar</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.TermsQuery.html">Strata\Model\CustomPostType\TermsQuery</a></li>
-				<li><a href="class-Strata.Model.Form.html">Strata\Model\Form</a></li>
+				<li><a href="class-Strata.Model.Form.Form.html">Strata\Model\Form\Form</a></li>
+				<li><a href="class-Strata.Model.Form.ModelValidation.html">Strata\Model\Form\ModelValidation</a></li>
+				<li><a href="class-Strata.Model.Form.ValidationCollector.html">Strata\Model\Form\ValidationCollector</a></li>
 				<li><a href="class-Strata.Model.Model.html">Strata\Model\Model</a></li>
-				<li><a href="class-Strata.Model.Validator.html">Strata\Model\Validator</a></li>
+				<li><a href="class-Strata.Model.Taxonomy.TaxonomyEntity.html">Strata\Model\Taxonomy\TaxonomyEntity</a></li>
 				<li><a href="class-Strata.Model.Validator.EmailValidator.html">Strata\Model\Validator\EmailValidator</a></li>
 				<li><a href="class-Strata.Model.Validator.InValidator.html">Strata\Model\Validator\InValidator</a></li>
 				<li><a href="class-Strata.Model.Validator.LengthValidator.html">Strata\Model\Validator\LengthValidator</a></li>
@@ -138,6 +160,8 @@
 				<li><a href="class-Strata.Model.Validator.PostExistsValidator.html">Strata\Model\Validator\PostExistsValidator</a></li>
 				<li><a href="class-Strata.Model.Validator.RequiredValidator.html">Strata\Model\Validator\RequiredValidator</a></li>
 				<li><a href="class-Strata.Model.Validator.SameValidator.html">Strata\Model\Validator\SameValidator</a></li>
+				<li><a href="class-Strata.Model.Validator.Validator.html">Strata\Model\Validator\Validator</a></li>
+				<li><a href="class-Strata.Model.WordpressEntity.html">Strata\Model\WordpressEntity</a></li>
 				<li><a href="class-Strata.Router.RouteParser.Alto.AltoRoute.html">Strata\Router\RouteParser\Alto\AltoRoute</a></li>
 				<li><a href="class-Strata.Router.RouteParser.Alto.AltoRouteParser.html">Strata\Router\RouteParser\Alto\AltoRouteParser</a></li>
 				<li><a href="class-Strata.Router.RouteParser.Callback.CallbackRoute.html">Strata\Router\RouteParser\Callback\CallbackRoute</a></li>
@@ -202,7 +226,7 @@
 </span><span id="2" class="l">
 </span><span id="3" class="l"><span class="php-keyword1">namespace</span> Strata\Model\Validator;
 </span><span id="4" class="l">
-</span><span id="5" class="l"><span class="php-keyword1">use</span> Strata\Model\Validator;
+</span><span id="5" class="l"><span class="php-keyword1">use</span> Strata\Model\Validator\Validator;
 </span><span id="6" class="l">
 </span><span id="7" class="l"><span class="php-keyword1">class</span> PostalcodeValidator <span class="php-keyword1">extends</span> Validator {
 </span><span id="8" class="l">
@@ -222,6 +246,6 @@
 </div>
 </div>
 <script src="resources/combined.js?a5747d75c0a4d560621d90f68ddc4599cc91546b"></script>
-<script src="elementlist.js?3bac37d4096f5e82d148fb8b3dd37335b01d59da"></script>
+<script src="elementlist.js?be6800e154e26b9f0b4f7e51ca0a26ebaa751011"></script>
 </body>
 </html>
