@@ -91,33 +91,34 @@ class ValidationCollector {
         return $this->_assignments[$fieldkey] = $statusMessage;
     }
 
-    private function _checkSingleEntityValues($entity, array $entityValues)
+    private function _checkSingleEntityValues($entity, $entityValues)
     {
-        $feedback = $entity->validateForm($this->_form->getHelper(), $entityValues);
+        $feedback = $entity->validateForm($this->_form, $entityValues);
 
-        $this->_collectEntityErrors($entity->getPostPrefix(), $feedback);
-        $this->_collectEntityAssignments($entity->getPostPrefix(), $feedback);
+        $this->_collectEntityErrors($entity->getPostPrefix(), $feedback->getErrors());
+        $this->_collectEntityAssignments($entity->getPostPrefix(), $feedback->getAssignments());
     }
 
-    private function _checkSingleEntityValuesInSet($entity, array $entityValues, $idx)
+    private function _checkSingleEntityValuesInSet($entity, $entityValues, $idx)
     {
         $contextualPostPrefix = sprintf("%s[%s]", $entity->getPostPrefix(), $idx);
-        $feedback = $entity->validateForm($this->_form->getHelper(), $entityValues);
+        $feedback = $entity->validateForm($this->_form, $entityValues);
 
-        $this->_collectEntityErrors($contextualPostPrefix, $feedback);
-        $this->_collectEntityAssignments($contextualPostPrefix, $feedback);
+        $this->_collectEntityErrors($contextualPostPrefix, $feedback->getErrors());
+        $this->_collectEntityAssignments($contextualPostPrefix, $feedback->getAssignments());
     }
 
-    private function _collectEntityErrors($entityPostPrefix, $feedback)
+    private function _collectEntityErrors($entityPostPrefix, $errors)
     {
-        foreach ($feedback["errors"] as $attr => $error) {
+        foreach ($errors as $attr => $error) {
             $fieldkey = sprintf("%s[%s]", $entityPostPrefix, $attr);
             $this->_addError($fieldkey, $error);
         }
     }
-    private function _collectEntityAssignments($entityPostPrefix, $feedback)
+
+    private function _collectEntityAssignments($entityPostPrefix, $assignments)
     {
-        foreach ($feedback["assigned"] as $attr => $status) {
+        foreach ($assignments as $attr => $status) {
             $fieldkey = sprintf("%s[%s]", $entityPostPrefix, $attr);
             $this->_addAssignment($fieldkey, $status);
         }
@@ -132,7 +133,7 @@ class ValidationCollector {
         }
 
         foreach ($entityValues as $idx => $repeatingEntityValues) {
-            $this->_checkSingleEntityValues($entity, $repeatingEntityValues, $idx);
+            $this->_checkSingleEntityValuesInSet($entity, $repeatingEntityValues, $idx);
         }
     }
 }

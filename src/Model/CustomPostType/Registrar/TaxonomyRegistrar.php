@@ -1,36 +1,45 @@
 <?php
-namespace Strata\Model\CustomPostType;
+namespace Strata\Model\CustomPostType\Registrar;
 
-use Strata\Utility\Hash;
-use Strata\Model\CustomPostType\LabeledEntity;
+use \Strata\Strata;
+use Strata\Model\CustomPostType\Registrar\Registrar;
 
-class TaxonomyEntity extends LabeledEntity
+class TaxonomyRegistrar extends Registrar
 {
-    CONST WP_PREFIX = "tax_";
-
-    public  $configuration     = array();
-
-    public static function addTaxonomy($linkedObj)
+    public function register()
     {
-        $ClassName  = get_called_class();
-        $obj = new $ClassName();
-        $translations = $ClassName::getLabels();
-        $singular   = $translations['singular'];
-        $plural     = $translations['plural'];
-        $projectKey = "App";
+        $status = true;
+        if ($this->_hasTaxonomyConfiguration()) {
+            foreach ($this->_getTaxonomyConfiguration() as $taxonomy) {
+                $status = $status && $this->_registerTaxonomy($taxonomy);
+            }
+        }
+        return $status;
+    }
 
-        $customizedOptions = $obj->configuration + array(
+    private function _registerTaxonomy($taxonomyClassname)
+    {
+        $singular   = $this->_labelParser->singular();
+        $plural     = $this->_labelParser->plural();
+
+        $projectKey = Strata::getNamespace();
+        $taxonomyKey = $taxonomyClassname::wordpressKey();
+
+        $taxonomy = new $taxonomyClassname();
+        $key = $this->_wordpressKey . "_" . $taxonomyKey;
+
+        $customizedOptions = $taxonomy->configuration + array(
             'hierarchical'               => false,
             'public'                     => true,
             'show_ui'                    => true,
             'show_admin_column'          => true,
             'update_count_callback'     => '_update_post_term_count',
-            'query_var'                 =>  $ClassName::wordpressKey() . "_" . $linkedObj::wordpressKey(),
+            'query_var'                 =>  $key,
             'show_in_nav_menus'          => false,
             'show_tagcloud'              => false,
             'rewrite' => array(
                 'with_front' => true,
-                'slug' => $ClassName::wordpressKey() . "_" . $linkedObj::wordpressKey()
+                'slug' => $key
             ),
             'capabilities' => array(
                 'manage_terms' => 'read',
@@ -57,9 +66,17 @@ class TaxonomyEntity extends LabeledEntity
             'not_found_in_trash'  => __( 'Not found in Trash', $projectKey ),
         );
 
-        return register_taxonomy($ClassName::wordpressKey(), array($linkedObj::wordpressKey()), $customizedOptions);
+        return register_taxonomy($taxonomyKey, array($this->_wordpressKey), $customizedOptions);
     }
 
+    private function _hasTaxonomyConfiguration()
+    {
+        return array_key_exists('has', $this->_entity->configuration) && count($this->_getTaxonomyConfiguration()) > 0;
+    }
 
+    private function _getTaxonomyConfiguration()
+    {
+        return $this->_entity->configuration['has'];
+    }
 
 }

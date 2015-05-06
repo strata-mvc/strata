@@ -2,92 +2,85 @@
 namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Strata;
-use Strata\Model\Validator\Validator;
-use Strata\Model\CustomPostType\EntityTable;
+use Strata\Router;
 
-class Entity extends EntityTable
+use Strata\Model\WordpressEntity;
+use Strata\Model\CustomPostType\Query;
+use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
+use Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar;
+
+use Strata\Model\Model;
+
+class Entity extends WordpressEntity
 {
-    public $attributes  = array();
 
-    function __construct()
+    public $wpPrefix = "cpt_";
+
+    /**
+     * Creates a post of the current post type
+     * @param (array) options : Options to be sent to wp_insert_post()
+     * @return (int) postID
+     */
+    public static function create($options)
     {
-        $this->_normalizeAttributes();
-    }
-
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
-
-    public function isSupportedAttribute($attr)
-    {
-        return in_array($attr, array_keys($this->getAttributes()));
-    }
-
-    public function hasAttributeValidation($attr)
-    {
-        return Hash::check($this->getAttributes(), "$attr.validations");
-    }
-
-    public function attemptAttributeSet($attr, $value, $formObject = null)
-    {
-        $attributeErrors = array();
-        if ($this->hasAttributeValidation($attr)) {
-
-            $validations = $this->_extractNormalizedValidations($attr);
-            foreach ($validations as $validationKey => $validatorConfig) {
-
-                $validator = Validator::factory($validationKey);
-                $validator->configure($validatorConfig);
-
-                if (!$validator->test($value, $formObject)) {
-                    $attributeErrors[$validationKey] = $validator->getMessage();
-                }
-                break;
-            }
-        }
-        return $attributeErrors;
-    }
-
-    public function validateForm($formObject, $dataset)
-    {
-        $validationErrors = array();
-        $validAssignments = array();
-
-        // Check each of the values in the dataset prefixed with this
-        // entities' short class name for availability and validators.
-        foreach ($dataset as $key => $value) {
-            $errors = null;
-            if ($this->isSupportedAttribute($key)) {
-                $errors = $this->attemptAttributeSet($key, $value, $formObject);
-                if (count($errors)) {
-                    $validationErrors[$key] = $errors;
-                } else {
-                    $validAssignments[$key] = $value;
-                }
-            }
-        }
-
-        return array(
-            "errors"    => $validationErrors,
-            "assigned"  => $validAssignments
+        $options += array(
+            'post_type'         => self::wordpressKey(),
+            'ping_status'       => false,
+            'comment_status'    => false
         );
+
+        return wp_insert_post( $options );
     }
 
-    public function getPostPrefix()
+    public static function update($options)
     {
-        $rc = new \ReflectionClass($this);
-        return strtolower($rc->getShortName());
+        return wp_update_post( $options );
     }
 
-    private function _extractNormalizedValidations($attr)
+    public static function wp_delete_post($postId, $force = false)
     {
-        return Hash::normalize(Hash::extract($this->getAttributes(), "$attr.validations"));
+        return wp_delete_post( $postId, $force);
     }
 
-    private function _normalizeAttributes()
+    /**
+     * Starts a wrapped wp_query pattern object. Used to chain parameters
+     * @return (Query) $query;
+     */
+    public static function query()
     {
-        $this->attributes = Hash::normalize($this->attributes);
+        $query = new Query();
+        return $query->type(self::wordpressKey());
+    }
+
+    public static function findAll()
+    {
+        return self::query()->fetch();
+    }
+
+    public static function count()
+    {
+        return wp_count_posts(self::wordpressKey());
+    }
+
+    public static function buildRegisteringCall($cpt)
+    {
+        $obj = Model::factory($cpt);
+        return array($obj, "registerPostType");
+    }
+
+    public function registerPostType()
+    {
+        $obj = self::staticFactory();
+
+        $registrars = array(
+            new CustomPostTypeRegistrar($obj),
+            new TaxonomyRegistrar($obj)
+        );
+
+        foreach ($registrars as $registrar) {
+            $registrar->register();
+        }
     }
 }
