@@ -45,7 +45,7 @@ class AdminController extends \Mywebsite\Controller\AppController {
         $this->set('nbVolunteers', Profile::getVolunteerCount());
 
         $this->view->render(array(
-            "content" => $this->view::loadTemplate('admin/dashboard/profiles')
+            "content" => $this->view->loadTemplate('admin/dashboard/profiles')
         ));
     }
 }
@@ -109,7 +109,7 @@ class AdminController extends \Mywebsite\Controller\AppController {
 
     public function secondProfileAction()
     {
-        $this->render(array(
+        $this->view->render(array(
             "content" => "This is content that will be print on the page.",
             "end" => false
         ));
