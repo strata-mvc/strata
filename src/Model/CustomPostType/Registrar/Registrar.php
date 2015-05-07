@@ -1,7 +1,6 @@
 <?php
 namespace Strata\Model\CustomPostType\Registrar;
 
-use \Strata\Strata;
 use Strata\Model\CustomPostType\LabelParser;
 
 class Registrar

@@ -1,17 +1,15 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
-use Strata\Utility\Hash;
-use Strata\Utility\Inflector;
-use Strata\Strata;
-use Strata\Router;
 
+use Strata\Model\Model;
 use Strata\Model\WordpressEntity;
 use Strata\Model\CustomPostType\Query;
+
+use Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
 use Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar;
 
-use Strata\Model\Model;
 
 class Entity extends WordpressEntity
 {
@@ -70,7 +68,7 @@ class Entity extends WordpressEntity
         return array($obj, "registerPostType");
     }
 
-    public function registerPostType()
+    public static function registerPostType()
     {
         $obj = self::staticFactory();
 
@@ -82,5 +80,12 @@ class Entity extends WordpressEntity
         foreach ($registrars as $registrar) {
             $registrar->register();
         }
+    }
+
+    public function registerAdminMenus(array $adminConfig)
+    {
+        $registration = new CustomPostTypeAdminMenuRegistrar($this);
+        $registration->configure($adminConfig);
+        $registration->register();
     }
 }

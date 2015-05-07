@@ -1,18 +1,26 @@
 Strata
 ======
 
-More details and documentation can be found on the [official website](http://strata.francoisfaubert.com/)
+## Welcome
 
-### Why
+If you are (or wish to become) a Strata user please go to the [official website](http://strata.francoisfaubert.com/) to obtain the latest information.
 
-Wordpress is a fantastic blog engine and is more and more used as a full fledged CMS. When building more complex websites or applications, one may find that you can’t quite cleanly separate the business logic from the templating engine.
+## Contributing
 
-### What it does
+### Modifying the code
 
-Strata allows you to link permalinks with Controllers to offer you an elegant place to place code and keep the templates as clean as possible. It also maps Models to custom post types so model relationships can be programmed elegantly.
+1. Fork and clone the repository.
+1. Run `composer update`.
+1. Run `npm install`.
 
-### What it doesn't do
+While coding, it's useful to have the test suite always running. You can do so by running our `grunt watch` task.
 
-We do not want to change how Wordpress works. Integrators and front-end programmers should not notice what is being processed in the controllers except for explicitly exposed shortcodes and view variables. We also do not want to interfere with core Wordpress variables, libraries, plugins and themes or custom posts types created outside the MVC process.
+### Submitting Code
 
+All code must be submit through pull requests. Obviously, you need to follow the conventions you see used in the source already.
 
+1. Create a new branch, please don't work in your master branch directly.
+1. Add failing tests for the change you want to make. Run 'grunt watch' to see the tests fail.
+1. Repeat until the tests do not fail and your feature/fix is complete.
+1. Update the documentation to reflect any changes. Be clear about what you have done.
+1. Push to your fork and submit a pull request.

@@ -5,12 +5,13 @@ use Strata\Router\Router;
 use Strata\Utility\Hash;
 use Strata\Utility\ErrorMessenger;
 use Strata\Context\StrataContext;
-use Strata\Model\CustomPostType\Loader;
+use Strata\Model\CustomPostType\CustomPostTypeLoader;
 
 use Composer\Autoload\ClassLoader;
+use Exception;
 
-// Use our own set of dependencies.
-require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+// Use our own set of dependencies.\
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
  * Running Strata instance
@@ -47,7 +48,7 @@ class Strata extends StrataContext {
         $this->_saveConfigValues(self::parseProjectConfigFile());
 
         if (is_null($this->_config)) {
-            throw new \Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
+            throw new Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
         }
 
         $this->_addProjectNamespace();
@@ -64,11 +65,7 @@ class Strata extends StrataContext {
             $this->_init();
         }
 
-        // Set up the creation of custom post types based on models
-        if (array_key_exists('custom-post-types', $this->_config)) {
-            Loader::preload();
-        }
-
+        $this->_configureCustomPostType();
         $this->_configureRouter();
     }
 
@@ -109,6 +106,17 @@ class Strata extends StrataContext {
     protected function _configureRouter()
     {
         Router::automateURLRoutes($this->getConfig('routes'));
+    }
+
+    /**
+     * Configures the post type loader
+     * is automated.
+     * @return null
+     */
+    protected function _configureCustomPostType()
+    {
+        $loader = new CustomPostTypeLoader($this->config('custom-post-types'));
+        $loader->load();
     }
 
     /**

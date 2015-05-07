@@ -64,8 +64,6 @@ class Controller {
 
     function __construct()
     {
-        $this->request = new Request();
-        $this->view = new View();
     }
 
     /**
@@ -74,6 +72,9 @@ class Controller {
      */
     public function init()
     {
+        $this->request = new Request();
+        $this->view = new View();
+
         $shortcodes = new ShortcodeLoader($this);
         $shortcodes->register();
     }
