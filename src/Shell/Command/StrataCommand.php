@@ -1,5 +1,5 @@
 <?php
-namespace Strata\Shell;
+namespace Strata\Shell\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,6 +8,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Exception;
 
+use Strata\Strata;
+
 /**
  * Base class for Shell Command reflection.
  * This class contains a basic toolset to perform repetitive visual outputs.
@@ -15,6 +17,33 @@ use Exception;
  */
 class StrataCommand extends Command
 {
+    /**
+     *
+     * @param  string $name The class name of the controller
+     * @return mixed       A controller
+     */
+    public static function factory($name)
+    {
+        $classpath = self::generateClassPath($name);
+        if (class_exists($classpath)) {
+            return new $classpath();
+        }
+
+        throw new Exception("Strata : No file matched the command '$classpath'.");
+    }
+
+    /**
+     * Generates a possible namespace and classname combination of a
+     * Strata controller. Mainly used to avoid hardcoding the '\\Shell\\Command\\'
+     * string everywhere.
+     * @param  string $name The class name of the controller
+     * @return string       A fulle namespaced controller name
+     */
+    public static function generateClassPath($name)
+    {
+        return Strata::getNamespace() . "\\Shell\\Command\\" . ucfirst($name);
+    }
+
     /**
      * A tree representation prefix.
      *
@@ -34,14 +63,14 @@ class StrataCommand extends Command
      *
      * @var Symfony\Component\Console\Input\InputInterface
      */
-    protected $_input = null;
+    public $input = null;
 
     /**
      * A reference to the current output interface object
      *
      * @var Symfony\Component\Console\Output\OutputInterface
      */
-    protected $_output = null;
+    public $output = null;
 
     /**
      * Creates a visual representation of a tree branch. This is useful when
@@ -93,7 +122,7 @@ class StrataCommand extends Command
      */
     public function nl()
     {
-        return $this->_output->writeLn('');
+        return $this->output->writeLn('');
     }
 
     /**
@@ -106,8 +135,8 @@ class StrataCommand extends Command
      */
     public function startup(InputInterface $input, OutputInterface $output)
     {
-        $this->_input = $input;
-        $this->_output = $output;
+        $this->input = $input;
+        $this->output = $output;
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
-namespace Strata\Shell;
+namespace Strata\Shell\Command;
 
-use Strata\Shell\StrataCommand;
+use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -54,7 +54,7 @@ class DBCommand extends StrataCommand
                 break;
 
             case "import" :
-                $this->_output->writeLn("Importing from an environment is not yet available.");
+                $output->writeLn("Importing from an environment is not yet available.");
                 break;
 
             case "dump" :
@@ -77,7 +77,7 @@ class DBCommand extends StrataCommand
         $absoluteFilename = "\/vagrant\/" . $relativeFilename;
         $command = sprintf("mysqldump -u%s -p%s %s > %s", DB_USER, DB_PASSWORD, DB_NAME, $absoluteFilename);
 
-        $this->_output->writeLn("Generating MySQL export dump to ./$relativeFilename");
+        $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);
     }
 
@@ -88,14 +88,14 @@ class DBCommand extends StrataCommand
     protected function _importSqlFile($file)
     {
         if (!is_null($file)) {
-            $this->_output->writeLn("Applying migration for <info>$file</info>");
+            $this->output->writeLn("Applying migration for <info>$file</info>");
 
             $command = sprintf("pv %s | mysql -u%s -p%s %s", $file, DB_USER, DB_PASSWORD, DB_NAME);
             system($command);
             return;
         }
 
-        $this->_output->writeLn("<error>We could not find a valid SQL file.</error>");
+        $this->output->writeLn("<error>We could not find a valid SQL file.</error>");
     }
 
     /**
@@ -105,11 +105,11 @@ class DBCommand extends StrataCommand
      */
     protected function _getSqlFile()
     {
-        if (!is_null($this->_input->getOption('filename'))) {
-            return $this->_input->getOption('filename');
+        if (!is_null($this->input->getOption('filename'))) {
+            return $this->input->getOption('filename');
         }
 
-        $this->_output->writeLn('No file passed as migration. Loading most recent .sql file in <info>./db/</info>');
+        $this->output->writeLn('No file passed as migration. Loading most recent .sql file in <info>./db/</info>');
         return $this->_getMostRecent(\Strata\Strata::getDbPath());
     }
 

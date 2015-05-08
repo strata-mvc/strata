@@ -1,7 +1,7 @@
 <?php
-namespace Strata\Shell;
+namespace Strata\Shell\Command;
 
-use Strata\Shell\StrataCommand;
+use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

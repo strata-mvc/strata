@@ -30,6 +30,10 @@ class StrataContext {
      */
     public static function config($key)
     {
+        if (is_null($key)) {
+            throw new Exception("key parameter is required.");
+        }
+
         $app = Strata::app();
         if (!is_null($app)) {
             return $app->getConfig($key);
@@ -68,7 +72,6 @@ class StrataContext {
         $GLOBALS['__Strata__'] = $app;
 
         $app->setLoader($loader);
-        $app->run();
 
         return $app;
     }
@@ -81,7 +84,7 @@ class StrataContext {
     {
         $configFile = self::getProjectConfigurationFilePath();
         if (file_exists($configFile)) {
-            $strata = include_once($configFile);
+            $strata = include($configFile);
             if (isset($strata) && count($strata)) {
                 return Hash::normalize($strata);
             }
@@ -96,7 +99,7 @@ class StrataContext {
     public static function writeProjectConfigFile($config)
     {
         $configFile = self::getProjectConfigurationFilePath();
-        return file_put_contents($configFile, print_r($config, true));
+        return file_put_contents($configFile, json_encode($config, JSON_PRETTY_PRINT));
     }
 
     public static function requireVendorAutoload()
@@ -132,6 +135,24 @@ class StrataContext {
     public static function getSRCPath()
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "src")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * Returns the path to the project command folder.
+     * @return string Path
+     */
+    public static function getCommandPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getShellPath(), "Command")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * Returns the path to the project shell folder.
+     * @return string Path
+     */
+    public static function getShellPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getSRCPath(), "Shell")) . DIRECTORY_SEPARATOR;
     }
 
     /**

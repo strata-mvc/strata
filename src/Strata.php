@@ -39,19 +39,12 @@ class Strata extends StrataContext {
      * Prepares the object for its run.
      * @throws \Exception Throws an exception if the configuration array could not be loaded.
      */
-    protected function _init()
+    public function init()
     {
         $this->_ready = false;
 
         $this->_includeUtils();
-
-        $this->_saveConfigValues(self::parseProjectConfigFile());
-
-        if (is_null($this->_config)) {
-            throw new Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
-        }
-
-        $this->_addProjectNamespace();
+        $this->loadConfiguration();
 
         $this->_ready = true;
     }
@@ -62,12 +55,24 @@ class Strata extends StrataContext {
     public function run()
     {
         if (!$this->_ready) {
-            $this->_init();
+            $this->init();
         }
 
         $this->_configureCustomPostType();
         $this->_configureRouter();
     }
+
+    public function loadConfiguration()
+    {
+        $this->_saveConfigValues(self::parseProjectConfigFile());
+
+        if (is_null($this->_config)) {
+            throw new Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
+        }
+
+        $this->_addProjectNamespace();
+    }
+
 
     /**
      * Assigns a class loader to the application

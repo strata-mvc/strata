@@ -1,7 +1,7 @@
 <?php
-namespace Strata\Shell;
+namespace Strata\Shell\Command;
 
-use Strata\Shell\StrataCommand;
+use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -138,20 +138,20 @@ class EnvCommand extends StrataCommand
      */
     protected function _createDirectoryStructure()
     {
-        $this->_output->writeLn("Ensuring correct directory structure.");
+        $this->output->writeLn("Ensuring correct directory structure.");
 
         $count = 0;
         foreach ($this->_directoryStructure as $dir) {
             $label = $this->tree(++$count >= count($this->_directoryStructure));
             if (!is_dir($dir)) {
                 if (mkdir($dir)) {
-                    $this->_output->writeLn($label . $this->ok($dir));
+                    $this->output->writeLn($label . $this->ok($dir));
                 } else {
-                    $this->_output->writeLn($label . $this->fail($dir));
+                    $this->output->writeLn($label . $this->fail($dir));
                     $this->_flagFailing();
                 }
             } else {
-                $this->_output->writeLn($label . $this->skip($dir));
+                $this->output->writeLn($label . $this->skip($dir));
             }
         }
 
@@ -165,20 +165,20 @@ class EnvCommand extends StrataCommand
      */
     protected function _removeDirectoryStructure()
     {
-        $this->_output->writeLn("Attempting to remove directory structure.");
+        $this->output->writeLn("Attempting to remove directory structure.");
 
         $count = 0;
         foreach (array_reverse($this->_directoryStructure) as $dir) {
             $label = $this->tree(++$count >= count($this->_directoryStructure));
             if (is_dir($dir)) {
                 if (@rmdir($dir)) {
-                    $this->_output->writeLn($label . $this->ok($dir));
+                    $this->output->writeLn($label . $this->ok($dir));
                 } else {
-                    $this->_output->writeLn($label . $this->fail($dir). " <fg=yellow>Is it empty?</fg=yellow>");
+                    $this->output->writeLn($label . $this->fail($dir). " <fg=yellow>Is it empty?</fg=yellow>");
                     $this->_flagFailing();
                 }
             } else {
-                $this->_output->writeLn($label . $this->skip($dir));
+                $this->output->writeLn($label . $this->skip($dir));
             }
         }
 
@@ -192,35 +192,35 @@ class EnvCommand extends StrataCommand
      */
     protected function _createStarterFiles()
     {
-        $this->_output->writeLn("Ensuring project files are present.");
+        $this->output->writeLn("Ensuring project files are present.");
 
         $count = 0;
         foreach ($this->_starterFiles as $source => $file) {
             $label = $this->tree(++$count >= count($this->_starterFiles));
             if (!file_exists($file)) {
                 if (file_put_contents($file, fopen($this->_srcUrl . $source, 'r')) > 0) {
-                    $this->_output->writeLn($label . $this->ok($file));
+                    $this->output->writeLn($label . $this->ok($file));
                 } else {
-                    $this->_output->writeLn($label . $this->fail($file));
+                    $this->output->writeLn($label . $this->fail($file));
                     $this->_flagFailing();
                 }
             } else {
-                $this->_output->writeLn($label . $this->skip($file));
+                $this->output->writeLn($label . $this->skip($file));
             }
         }
 
         $file = "bin/phpunit.phar";
-        $this->_output->writeLn("Fetching PHPUnit");
+        $this->output->writeLn("Fetching PHPUnit");
 
          if (!file_exists($file)) {
             if (file_put_contents($file, fopen("https://phar.phpunit.de/phpunit.phar", 'r')) > 0) {
-                $this->_output->writeLn($label . $this->ok($file));
+                $this->output->writeLn($label . $this->ok($file));
             } else {
-                $this->_output->writeLn($label . $this->fail($file));
+                $this->output->writeLn($label . $this->fail($file));
                 $this->_flagFailing();
             }
         } else {
-            $this->_output->writeLn($label . $this->skip($file));
+            $this->output->writeLn($label . $this->skip($file));
         }
 
         $this->nl();
@@ -232,20 +232,20 @@ class EnvCommand extends StrataCommand
      */
     protected function _removeStarterFiles()
     {
-        $this->_output->writeLn("Attempting to remove starter files.");
+        $this->output->writeLn("Attempting to remove starter files.");
 
         $count = 0;
         foreach ($this->_starterFiles as $file) {
             $label = $this->tree(++$count >= count($this->_starterFiles));
             if (file_exists($file)) {
                 if (unlink($file)) {
-                    $this->_output->writeLn($label . $this->ok($file));
+                    $this->output->writeLn($label . $this->ok($file));
                 } else {
-                    $this->_output->writeLn($label . $this->fail($file));
+                    $this->output->writeLn($label . $this->fail($file));
                     $this->_flagFailing();
                 }
             } else {
-                $this->_output->writeLn($label . $this->skip($file));
+                $this->output->writeLn($label . $this->skip($file));
             }
         }
 
@@ -269,16 +269,16 @@ class EnvCommand extends StrataCommand
     {
         $this->nl();
         if ($this->_seemsFine) {
-            $this->_output->writeLn("========================================================================");
+            $this->output->writeLn("========================================================================");
             $this->nl();
-            $this->_output->writeLn("                      Uninstallation completed!");
-            $this->_output->writeLn("             Please remember to remove the composer dependency.");
+            $this->output->writeLn("                      Uninstallation completed!");
+            $this->output->writeLn("             Please remember to remove the composer dependency.");
             $this->nl();
-            $this->_output->writeLn("========================================================================");
+            $this->output->writeLn("========================================================================");
         } else {
-            $this->_output->writeLn("Automatic uninstallation failed to complete cleanly.");
-            $this->_output->writeLn("This is often due to directories not being empty.");
-            $this->_output->writeLn("Based on the output above, you can delete the directories manually.");
+            $this->output->writeLn("Automatic uninstallation failed to complete cleanly.");
+            $this->output->writeLn("This is often due to directories not being empty.");
+            $this->output->writeLn("Based on the output above, you can delete the directories manually.");
         }
         $this->nl();
     }
@@ -291,15 +291,15 @@ class EnvCommand extends StrataCommand
     {
         $this->nl();
         if ($this->_seemsFine) {
-            $this->_output->writeLn("========================================================================");
+            $this->output->writeLn("========================================================================");
             $this->nl();
-            $this->_output->writeLn("                      Installation completed!");
-            $this->_output->writeLn("              Run '<info>bin/strata server</info>' to start your app.");
+            $this->output->writeLn("                      Installation completed!");
+            $this->output->writeLn("              Run '<info>bin/strata server</info>' to start your app.");
             $this->nl();
-            $this->_output->writeLn("========================================================================");
+            $this->output->writeLn("========================================================================");
         } else {
-            $this->_output->writeLn("Automatic installation failed to complete cleanly.");
-            $this->_output->writeLn("Head over to https://github.com/francoisfaubert/strata/ to get help.");
+            $this->output->writeLn("Automatic installation failed to complete cleanly.");
+            $this->output->writeLn("Head over to https://github.com/francoisfaubert/strata/ to get help.");
         }
         $this->nl();
     }

@@ -1,7 +1,7 @@
 <?php
-namespace Strata\Shell;
+namespace Strata\Shell\Command;
 
-use Strata\Shell\StrataCommand;
+use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -64,8 +64,8 @@ class DocumentationCommand extends StrataCommand
      */
     protected function _getDestination()
     {
-        if (!is_null($this->_input->getOption('destination'))) {
-            return $this->_input->getOption('destination');
+        if (!is_null($this->input->getOption('destination'))) {
+            return $this->input->getOption('destination');
         }
 
         return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR));
@@ -113,13 +113,13 @@ class DocumentationCommand extends StrataCommand
      */
     protected function _summary()
     {
-        $this->_output->writeLn("The project documentation has been generated at the following URLs: ");
+        $this->output->writeLn("The project documentation has been generated at the following URLs: ");
         $this->nl();
 
         $destination = $this->_getDestination();
-        $this->_output->writeLn("<info>API               :</info> ". $this->_getApiDestination()   ."/index.html");
-        $this->_output->writeLn("<info>Theme API         :</info> ". $this->_getWpApiDestination()   ."/index.html");
-        $this->_output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
+        $this->output->writeLn("<info>API               :</info> ". $this->_getApiDestination()   ."/index.html");
+        $this->output->writeLn("<info>Theme API         :</info> ". $this->_getWpApiDestination()   ."/index.html");
+        $this->output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
     }
 
     /**
@@ -141,8 +141,8 @@ class DocumentationCommand extends StrataCommand
     {
         $srcPath = \Strata\Strata::getSRCPath();
 
-        $this->_output->writeLn("<info>Generating API</info>");
-        $this->_output->writeLn($this->tree(true) . "Scanning $srcPath");
+        $this->output->writeLn("<info>Generating API</info>");
+        $this->output->writeLn($this->tree(true) . "Scanning $srcPath");
         $this->nl();
 
         system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
@@ -156,8 +156,8 @@ class DocumentationCommand extends StrataCommand
     {
         $themesPath = \Strata\Strata::getThemesPath();
 
-        $this->_output->writeLn("<info>Generating Wordpress theme API</info>");
-        $this->_output->writeLn($this->tree(true) . "Scanning $themesPath");
+        $this->output->writeLn("<info>Generating Wordpress theme API</info>");
+        $this->output->writeLn($this->tree(true) . "Scanning $themesPath");
         $this->nl();
 
         system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $themesPath, $this->_getWpApiDestination()));
@@ -170,7 +170,7 @@ class DocumentationCommand extends StrataCommand
      */
     protected function _generateThemesDocumentation()
     {
-        $this->_output->writeLn("<info>Generating Wordpress theme documentation</info>");
+        $this->output->writeLn("<info>Generating Wordpress theme documentation</info>");
 
         $themesPath = \Strata\Strata::getThemesPath();
         $info = $this->_scanThemeDirectories($themesPath);
@@ -249,7 +249,7 @@ class DocumentationCommand extends StrataCommand
                         "libs"      => array()
                     );
 
-                    $this->_output->writeLn($this->tree(true) . "Scanning $theme");
+                    $this->output->writeLn($this->tree(true) . "Scanning $theme");
                 }
             }
 

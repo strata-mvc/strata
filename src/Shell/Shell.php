@@ -4,6 +4,7 @@ namespace Strata\Shell;
 require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
+use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
 
 /**
  * A factory that build the Strata command line application.
@@ -19,12 +20,15 @@ class Shell
     {
         $application = new Application('Strata Console Application', '0.1.0');
 
-        $application->add(new \Strata\Shell\ServerCommand());
-        $application->add(new \Strata\Shell\GenerateCommand());
-        $application->add(new \Strata\Shell\DBCommand());
-        $application->add(new \Strata\Shell\DocumentationCommand());
-        $application->add(new \Strata\Shell\EnvCommand());
-        $application->add(new \Strata\Shell\TestCommand());
+        $registrar = new ProjectCommandRegistrar($application);
+        $registrar->assign();
+
+        $application->add(new \Strata\Shell\Command\ServerCommand());
+        $application->add(new \Strata\Shell\Command\GenerateCommand());
+        $application->add(new \Strata\Shell\Command\DBCommand());
+        $application->add(new \Strata\Shell\Command\DocumentationCommand());
+        $application->add(new \Strata\Shell\Command\EnvCommand());
+        $application->add(new \Strata\Shell\Command\TestCommand());
 
         return $application;
     }
