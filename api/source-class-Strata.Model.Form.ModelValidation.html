@@ -138,9 +138,9 @@
 				<li><a href="class-Strata.Controller.Request.html">Strata\Controller\Request</a></li>
 				<li><a href="class-Strata.Controller.ShortcodeLoader.html">Strata\Controller\ShortcodeLoader</a></li>
 				<li><a href="class-Strata.Emails.EmailLoader.html">Strata\Emails\EmailLoader</a></li>
+				<li><a href="class-Strata.Model.CustomPostType.CustomPostTypeLoader.html">Strata\Model\CustomPostType\CustomPostTypeLoader</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Entity.html">Strata\Model\CustomPostType\Entity</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.LabelParser.html">Strata\Model\CustomPostType\LabelParser</a></li>
-				<li><a href="class-Strata.Model.CustomPostType.Loader.html">Strata\Model\CustomPostType\Loader</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Query.html">Strata\Model\CustomPostType\Query</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar</a></li>
 				<li><a href="class-Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar</a></li>
@@ -282,7 +282,7 @@
 </span><span id="58" class="l">                <span class="php-var">$errors</span> = <span class="php-keyword1">null</span>;
 </span><span id="59" class="l">                <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;_model-&gt;isSupportedAttribute(<span class="php-var">$key</span>)) {
 </span><span id="60" class="l">                    <span class="php-var">$errors</span> = <span class="php-var">$this</span>-&gt;_model-&gt;attemptAttributeSet(<span class="php-var">$key</span>, <span class="php-var">$value</span>, <span class="php-var">$this</span>-&gt;_form);
-</span><span id="61" class="l">                    <span class="php-keyword1">if</span> (<span class="php-keyword2">count</span>(<span class="php-var">$errors</span>)) {
+</span><span id="61" class="l">                    <span class="php-keyword1">if</span> (<span class="php-keyword2">count</span>(<span class="php-var">$errors</span>) &gt; <span class="php-num">0</span>) {
 </span><span id="62" class="l">                        <span class="php-var">$this</span>-&gt;_errors[<span class="php-var">$key</span>] = <span class="php-var">$errors</span>;
 </span><span id="63" class="l">                    } <span class="php-keyword1">else</span> {
 </span><span id="64" class="l">                        <span class="php-var">$this</span>-&gt;_assignments[<span class="php-var">$key</span>] = <span class="php-var">$value</span>;
@@ -299,7 +299,7 @@
 	</div>
 </div>
 </div>
-<script src="resources/combined.js?a5747d75c0a4d560621d90f68ddc4599cc91546b"></script>
-<script src="elementlist.js?be6800e154e26b9f0b4f7e51ca0a26ebaa751011"></script>
+<script src="resources/combined.js?64ea672b782c1a8872a58acdf010dca3bd75b598"></script>
+<script src="elementlist.js?d8d1dd92ff5edd7fb5ae7af475c015b5316d1d7c"></script>
 </body>
 </html>
