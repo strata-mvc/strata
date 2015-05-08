@@ -98,9 +98,27 @@
 							</ul></li></ul></li>
 				<li>
 					<a href="namespace-Strata.Shell.html">
-						Shell					</a>
+						Shell<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Shell.Command.html">
+						Command<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Generator.html">
+						Generator					</a>
 
 						</li>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li></ul></li>
 				<li>
 					<a href="namespace-Strata.Test.html">
 						Test					</a>
@@ -208,7 +226,7 @@
 
 				<b>Link:</b>
 				<a href="http://strata.francoisfaubert.com/docs/">http://strata.francoisfaubert.com/docs/</a><br>
-			<b>Located at</b> <a href="source-class-Strata.Strata.html#16-152" title="Go to source code">Strata.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Strata.html#16-157" title="Go to source code">Strata.php</a>
 		<br>
 	</div>
 
@@ -216,10 +234,10 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="_init" id="__init">
+	<tr data-order="init" id="_init">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 
 			
 			
@@ -227,8 +245,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#__init">#</a>
-		<code><a href="source-class-Strata.Strata.html#38-57" title="Go to source code">_init</a>( )</code>
+		<a class="anchor" href="#_init">#</a>
+		<code><a href="source-class-Strata.Strata.html#38-50" title="Go to source code">init</a>( )</code>
 
 		<div class="description short">
 			<p>Prepares the object for its run.</p>
@@ -262,7 +280,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_run">#</a>
-		<code><a href="source-class-Strata.Strata.html#59-70" title="Go to source code">run</a>( )</code>
+		<code><a href="source-class-Strata.Strata.html#52-63" title="Go to source code">run</a>( )</code>
 
 		<div class="description short">
 			<p>Kickstarts the router and preload the custom post types associated to the project.</p>
@@ -270,6 +288,36 @@
 
 		<div class="description detailed hidden">
 			<p>Kickstarts the router and preload the custom post types associated to the project.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadConfiguration" id="_loadConfiguration">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadConfiguration">#</a>
+		<code><a href="source-class-Strata.Strata.html#65-74" title="Go to source code">loadConfiguration</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
 
 
 
@@ -292,7 +340,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLoader">#</a>
-		<code><a href="source-class-Strata.Strata.html#72-79" title="Go to source code">setLoader</a>( <span>Composer\Autoload\ClassLoader <var>$loader</var></span> )</code>
+		<code><a href="source-class-Strata.Strata.html#77-84" title="Go to source code">setLoader</a>( <span>Composer\Autoload\ClassLoader <var>$loader</var></span> )</code>
 
 		<div class="description short">
 			<p>Assigns a class loader to the application</p>
@@ -327,7 +375,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-Strata.Strata.html#81-89" title="Go to source code">getConfig</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Strata.Strata.html#86-94" title="Go to source code">getConfig</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			<p>Fetches a value in the app's configuration array for the duration of the runtime.</p>
@@ -366,7 +414,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setConfig">#</a>
-		<code><a href="source-class-Strata.Strata.html#91-99" title="Go to source code">setConfig</a>( <span>string <var>$key</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-Strata.Strata.html#96-104" title="Go to source code">setConfig</a>( <span>string <var>$key</var></span>, <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			<p>Saves a value in the app's configuration array for the duration of the runtime.</p>
@@ -407,7 +455,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#__configureRouter">#</a>
-		<code><a href="source-class-Strata.Strata.html#101-109" title="Go to source code">_configureRouter</a>( )</code>
+		<code><a href="source-class-Strata.Strata.html#106-114" title="Go to source code">_configureRouter</a>( )</code>
 
 		<div class="description short">
 			<p>Configures the default router object to ensure that URL mapping
@@ -443,7 +491,7 @@ is automated.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__configureCustomPostType">#</a>
-		<code><a href="source-class-Strata.Strata.html#111-120" title="Go to source code">_configureCustomPostType</a>( )</code>
+		<code><a href="source-class-Strata.Strata.html#116-125" title="Go to source code">_configureCustomPostType</a>( )</code>
 
 		<div class="description short">
 			<p>Configures the post type loader
@@ -479,7 +527,7 @@ is automated.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__saveConfigValues">#</a>
-		<code><a href="source-class-Strata.Strata.html#122-130" title="Go to source code">_saveConfigValues</a>( <span>array <var>$values</var></span> )</code>
+		<code><a href="source-class-Strata.Strata.html#127-135" title="Go to source code">_saveConfigValues</a>( <span>array <var>$values</var></span> )</code>
 
 		<div class="description short">
 			<p>Saves an array of options to the _config attribute.</p>
@@ -518,7 +566,7 @@ is automated.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__includeUtils">#</a>
-		<code><a href="source-class-Strata.Strata.html#132-139" title="Go to source code">_includeUtils</a>( )</code>
+		<code><a href="source-class-Strata.Strata.html#137-144" title="Go to source code">_includeUtils</a>( )</code>
 
 		<div class="description short">
 			<p>Includes the debugger classes.</p>
@@ -552,7 +600,7 @@ is automated.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__addProjectNamespace">#</a>
-		<code><a href="source-class-Strata.Strata.html#141-151" title="Go to source code">_addProjectNamespace</a>( )</code>
+		<code><a href="source-class-Strata.Strata.html#146-156" title="Go to source code">_addProjectNamespace</a>( )</code>
 
 		<div class="description short">
 			<p>Adds the current project namespace to the projet's class loader.</p>
@@ -583,6 +631,7 @@ is automated.</p>
 			<a href="class-Strata.Context.StrataContext.html#_app">app()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_bootstrap">bootstrap()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_config">config()</a>, 
+			<a href="class-Strata.Context.StrataContext.html#_getCommandPath">getCommandPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getConfigurationPath">getConfigurationPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getDbPath">getDbPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getNamespace">getNamespace()</a>, 
@@ -590,6 +639,7 @@ is automated.</p>
 			<a href="class-Strata.Context.StrataContext.html#_getProjectConfigurationFilePath">getProjectConfigurationFilePath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getRootPath">getRootPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getSRCPath">getSRCPath()</a>, 
+			<a href="class-Strata.Context.StrataContext.html#_getShellPath">getShellPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getThemesPath">getThemesPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getUtilityPath">getUtilityPath()</a>, 
 			<a href="class-Strata.Context.StrataContext.html#_getVendorPath">getVendorPath()</a>, 

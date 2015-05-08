@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Strata\Shell\Command\StrataCommand</title>
+
+	<link rel="stylesheet" href="resources/style.css?95ada9fb523b6ab4fd1c47bb375f713f2cc65542">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Strata.html">
+						Strata<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Context.html">
+						Context					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Emails.html">
+						Emails					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.html">
+						Model<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.html">
+						CustomPostType<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Model.CustomPostType.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Model.Form.html">
+						Form					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Taxonomy.html">
+						Taxonomy					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Model.Validator.html">
+						Validator					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-Strata.Router.html">
+						Router<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.html">
+						RouteParser<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Alto.html">
+						Alto					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Router.RouteParser.Callback.html">
+						Callback					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li class="active">
+					<a href="namespace-Strata.Shell.html">
+						Shell<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Strata.Shell.Command.html">
+						Command<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Generator.html">
+						Generator					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-Strata.Test.html">
+						Test					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.Utility.html">
+						Utility					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Strata.View.html">
+						View<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.View.Helper.html">
+						Helper					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Strata.Shell.Command.DBCommand.html">DBCommand</a></li>
+				<li><a href="class-Strata.Shell.Command.DocumentationCommand.html">DocumentationCommand</a></li>
+				<li><a href="class-Strata.Shell.Command.EnvCommand.html">EnvCommand</a></li>
+				<li><a href="class-Strata.Shell.Command.GenerateCommand.html">GenerateCommand</a></li>
+				<li><a href="class-Strata.Shell.Command.ServerCommand.html">ServerCommand</a></li>
+				<li class="active"><a href="class-Strata.Shell.Command.StrataCommand.html">StrataCommand</a></li>
+				<li><a href="class-Strata.Shell.Command.TestCommand.html">TestCommand</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Strata.Shell.Command.html" title="Summary of Strata\Shell\Command"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class StrataCommand</h1>
+
+
+	<div class="description">
+	<p>Base class for Shell Command reflection.
+This class contains a basic toolset to perform repetitive visual outputs.
+It is also the interface between Strata and Symfony's codebase.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Symfony\Component\Console\Command\Command
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Strata\Shell\Command\StrataCommand</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Strata.Shell.Command.DBCommand.html">Strata\Shell\Command\DBCommand</a>, 
+			<a href="class-Strata.Shell.Command.DocumentationCommand.html">Strata\Shell\Command\DocumentationCommand</a>, 
+			<a href="class-Strata.Shell.Command.EnvCommand.html">Strata\Shell\Command\EnvCommand</a>, 
+			<a href="class-Strata.Shell.Command.GenerateCommand.html">Strata\Shell\Command\GenerateCommand</a>, 
+			<a href="class-Strata.Shell.Command.ServerCommand.html">Strata\Shell\Command\ServerCommand</a>, 
+			<a href="class-Strata.Shell.Command.TestCommand.html">Strata\Shell\Command\TestCommand</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Shell.html">Shell</a>\<a href="namespace-Strata.Shell.Command.html">Command</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Strata.Shell.Command.StrataCommand.html#13-178" title="Go to source code">Shell/Command/StrataCommand.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="factory" id="_factory">
+
+		<td class="attributes"><code>
+			 public static
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_factory">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#20-33" title="Go to source code">factory</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The class name of the controller</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>A controller
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateClassPath" id="_generateClassPath">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateClassPath">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#35-45" title="Go to source code">generateClassPath</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			<p>Generates a possible namespace and classname combination of a
+Strata controller. Mainly used to avoid hardcoding the '&#92;Shell&#92;Command&#92;'
+string everywhere.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Generates a possible namespace and classname combination of a
+Strata controller. Mainly used to avoid hardcoding the '&#92;Shell&#92;Command&#92;'
+string everywhere.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The class name of the controller</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>A fulle namespaced controller name
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tree" id="_tree">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tree">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#75-84" title="Go to source code">tree</a>( <span>boolean <var>$isEnd</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates a visual representation of a tree branch. This is useful when
+generating a list of files.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a visual representation of a tree branch. This is useful when
+generating a list of files.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$isEnd</var></dt>
+					<dd>Specifies if we are at the end of a list</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br><p>The correct characters based on the</p>
+
+<pre><span class="php-var">$isEnd</span></pre>
+
+<p>context.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ok" id="_ok">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ok">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#86-95" title="Go to source code">ok</a>( <span>string <var>$msg</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates a visual representation of an OK status. This is useful when performing
+an action that can fail or be skipped.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a visual representation of an OK status. This is useful when performing
+an action that can fail or be skipped.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd>The optional message associated to the status.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>A colored string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="skip" id="_skip">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_skip">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#97-106" title="Go to source code">skip</a>( <span>string <var>$msg</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates a visual representation of a skipped status. This is useful when performing
+an action that can fail or succeed.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a visual representation of a skipped status. This is useful when performing
+an action that can fail or succeed.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd>The optional message associated to the status.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>A colored string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fail" id="_fail">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fail">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#108-117" title="Go to source code">fail</a>( <span>string <var>$msg</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates a visual representation of a failed status. This is useful when performing
+an action that can be skipped or succeed.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a visual representation of a failed status. This is useful when performing
+an action that can be skipped or succeed.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd>The optional message associated to the status.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>A colored string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="nl" id="_nl">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_nl">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#119-126" title="Go to source code">nl</a>( )</code>
+
+		<div class="description short">
+			<p>Return a new line.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return a new line.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>An empty line break.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="startup" id="_startup">
+
+		<td class="attributes"><code>
+			 public 
+
+			null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_startup">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#128-140" title="Go to source code">startup</a>( <span>Symfony\Component\Console\Input\InputInterface <var>$input</var></span>, <span>Symfony\Component\Console\Output\OutputInterface <var>$output</var></span> )</code>
+
+		<div class="description short">
+			<p>The startup function should be called each time a command is being executed. It
+saves the Input and Output interfaces to allow the command to use it further down
+the process.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The startup function should be called each time a command is being executed. It
+saves the Input and Output interfaces to allow the command to use it further down
+the process.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd>The current input interface</dd>
+					<dt><var>$output</var></dt>
+					<dd>The current output interface</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="shutdown" id="_shutdown">
+
+		<td class="attributes"><code>
+			 public 
+
+			null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_shutdown">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#142-149" title="Go to source code">shutdown</a>( )</code>
+
+		<div class="description short">
+			<p>The shutdown function should be called each time a command has completed execution.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The shutdown function should be called each time a command has completed execution.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="configure" id="_configure">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_configure">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#151-157" title="Go to source code">configure</a>( )</code>
+
+		<div class="description short">
+			<p>Configures the current command.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Configures the current command.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="execute" id="_execute">
+
+		<td class="attributes"><code>
+			 protected 
+
+			null|integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_execute">#</a>
+		<code><a href="source-class-Strata.Shell.Command.StrataCommand.html#159-177" title="Go to source code">execute</a>( <span>Symfony\Component\Console\Input\InputInterface <var>$input</var></span>, <span>Symfony\Component\Console\Output\OutputInterface <var>$output</var></span> )</code>
+
+		<div class="description short">
+			<p>Executes the current command.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Executes the current command.</p>
+
+<p>This method is not abstract because you can use this class
+as a concrete class. In this case, instead of defining the
+execute() method, you set the code to execute by passing
+a Closure to the setCode() method.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd>An InputInterface instance</dd>
+					<dt><var>$output</var></dt>
+					<dd>An OutputInterface instance</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					null|integer<br>null or 0 if everything went fine, or an error code
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					LogicException<br>When this abstract method is not implemented
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="_tree_line" id="$_tree_line">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.Shell.Command.StrataCommand.html#47-52" title="Go to source code"><var>$_tree_line</var></a>
+
+			<div class="description short">
+				<p>A tree representation prefix.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>A tree representation prefix.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$_tree_line" class="anchor">#</a>
+				<code><span class="php-quote">&quot;  ├── &quot;</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="_tree_end" id="$_tree_end">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.Shell.Command.StrataCommand.html#54-59" title="Go to source code"><var>$_tree_end</var></a>
+
+			<div class="description short">
+				<p>The bottom part of a tree representation prefix.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The bottom part of a tree representation prefix.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$_tree_end" class="anchor">#</a>
+				<code><span class="php-quote">&quot;  └── &quot;</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="input" id="$input">
+		<td class="attributes"><code>
+			public  
+			Symfony\Component\Console\Input\InputInterface
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.Shell.Command.StrataCommand.html#61-66" title="Go to source code"><var>$input</var></a>
+
+			<div class="description short">
+				<p>A reference to the current input interface object</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>A reference to the current input interface object</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$input" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="output" id="$output">
+		<td class="attributes"><code>
+			public  
+			Symfony\Component\Console\Output\OutputInterface
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Strata.Shell.Command.StrataCommand.html#68-73" title="Go to source code"><var>$output</var></a>
+
+			<div class="description short">
+				<p>A reference to the current output interface object</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>A reference to the current output interface object</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$output" class="anchor">#</a>
+				<code><span class="php-keyword1">null</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

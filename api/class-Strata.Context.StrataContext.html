@@ -98,9 +98,27 @@
 							</ul></li></ul></li>
 				<li>
 					<a href="namespace-Strata.Shell.html">
-						Shell					</a>
+						Shell<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Shell.Command.html">
+						Command<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Generator.html">
+						Generator					</a>
 
 						</li>
+				<li>
+					<a href="namespace-Strata.Shell.Command.Registrar.html">
+						Registrar					</a>
+
+						</li>
+							</ul></li></ul></li>
 				<li>
 					<a href="namespace-Strata.Test.html">
 						Test					</a>
@@ -196,7 +214,7 @@
 		<b>Namespace:</b> <a href="namespace-Strata.html">Strata</a>\<a href="namespace-Strata.Context.html">Context</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Strata.Context.StrataContext.html#9-190" title="Go to source code">Context/StrataContext.php</a>
+			<b>Located at</b> <a href="source-class-Strata.Context.StrataContext.html#9-211" title="Go to source code">Context/StrataContext.php</a>
 		<br>
 	</div>
 
@@ -250,7 +268,7 @@ we need to make sure the config values are availlable through global values.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_config">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#26-37" title="Go to source code">config</a>( <span>string <var>$key</var></span> )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#26-41" title="Go to source code">config</a>( <span>string <var>$key</var></span> )</code>
 
 		<div class="description short">
 			<p>Fetches a value in the app's configuration array</p>
@@ -289,7 +307,7 @@ we need to make sure the config values are availlable through global values.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNamespace">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#39-55" title="Go to source code">getNamespace</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#43-59" title="Go to source code">getNamespace</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the current project's namespace key</p>
@@ -323,7 +341,7 @@ we need to make sure the config values are availlable through global values.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bootstrap">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#57-74" title="Go to source code">bootstrap</a>( <span>Composer\Autoload\ClassLoader <var>$loader</var></span> )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#61-77" title="Go to source code">bootstrap</a>( <span>Composer\Autoload\ClassLoader <var>$loader</var></span> )</code>
 
 		<div class="description short">
 			<p>Bootstraps Strata by creating an instance and
@@ -364,7 +382,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseProjectConfigFile">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#76-89" title="Go to source code">parseProjectConfigFile</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#79-92" title="Go to source code">parseProjectConfigFile</a>( )</code>
 
 		<div class="description short">
 			<p>Loads strata.php, cleans up the data and saves it as config to the current instance of the Strata object.</p>
@@ -398,7 +416,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writeProjectConfigFile">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#91-100" title="Go to source code">writeProjectConfigFile</a>( <span>array <var>$config</var></span> )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#94-103" title="Go to source code">writeProjectConfigFile</a>( <span>array <var>$config</var></span> )</code>
 
 		<div class="description short">
 			<p>Write the config object to the project's configuration file.</p>
@@ -437,7 +455,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_requireVendorAutoload">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#102-105" title="Go to source code">requireVendorAutoload</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#105-108" title="Go to source code">requireVendorAutoload</a>( )</code>
 
 		<div class="description short">
 			
@@ -467,7 +485,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRootPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#107-117" title="Go to source code">getRootPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#110-120" title="Go to source code">getRootPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the root path of the project.</p>
@@ -501,7 +519,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getThemesPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#119-126" title="Go to source code">getThemesPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#122-129" title="Go to source code">getThemesPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the Wordpress themes path of the project.</p>
@@ -535,7 +553,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSRCPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#128-135" title="Go to source code">getSRCPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#131-138" title="Go to source code">getSRCPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to the src folder.</p>
@@ -543,6 +561,74 @@ saving it to the global scope.</p>
 
 		<div class="description detailed hidden">
 			<p>Returns the path to the src folder.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Path
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCommandPath" id="_getCommandPath">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCommandPath">#</a>
+		<code><a href="source-class-Strata.Context.StrataContext.html#140-147" title="Go to source code">getCommandPath</a>( )</code>
+
+		<div class="description short">
+			<p>Returns the path to the project command folder.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the path to the project command folder.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Path
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getShellPath" id="_getShellPath">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getShellPath">#</a>
+		<code><a href="source-class-Strata.Context.StrataContext.html#149-156" title="Go to source code">getShellPath</a>( )</code>
+
+		<div class="description short">
+			<p>Returns the path to the project shell folder.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the path to the project shell folder.</p>
 
 
 
@@ -569,7 +655,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDbPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#137-144" title="Go to source code">getDbPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#158-165" title="Go to source code">getDbPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to the db folder.</p>
@@ -603,7 +689,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getUtilityPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#146-153" title="Go to source code">getUtilityPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#167-174" title="Go to source code">getUtilityPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to the utility folder.</p>
@@ -637,7 +723,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfigurationPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#155-162" title="Go to source code">getConfigurationPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#176-183" title="Go to source code">getConfigurationPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to the config folder.</p>
@@ -671,7 +757,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVendorPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#164-171" title="Go to source code">getVendorPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#185-192" title="Go to source code">getVendorPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to the project's vendor folder.</p>
@@ -705,7 +791,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOurVendorPath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#173-180" title="Go to source code">getOurVendorPath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#194-201" title="Go to source code">getOurVendorPath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to our vendor folder.</p>
@@ -739,7 +825,7 @@ saving it to the global scope.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProjectConfigurationFilePath">#</a>
-		<code><a href="source-class-Strata.Context.StrataContext.html#182-189" title="Go to source code">getProjectConfigurationFilePath</a>( )</code>
+		<code><a href="source-class-Strata.Context.StrataContext.html#203-210" title="Go to source code">getProjectConfigurationFilePath</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the path to Strata's configuration file.</p>
