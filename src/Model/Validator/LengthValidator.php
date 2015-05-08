@@ -6,7 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class LengthValidator extends Validator {
 
-    public $_config = array(
+    protected $_config = array(
         "min" => null,
         "max" => null
     );
@@ -42,14 +42,14 @@ class LengthValidator extends Validator {
     public function getMessage()
     {
         if (is_null($this->_config['min']) && !is_null($this->_config['max'])) {
-            return sprintf(__("The length must be at most %s characters long."), $this->_config['max']);
+            return sprintf("The length must be at most %s characters long.", $this->_config['max']);
         } elseif (!is_null($this->_config['min']) && is_null($this->_config['max'])) {
-            return sprintf(__("The length must be at least %s characters long."), $this->_config['min']);
+            return sprintf("The length must be at least %s characters long.", $this->_config['min']);
         } elseif ($this->_config['min'] === $this->_config['max'] && !is_null($this->_config['min'])) {
-            return sprintf(__("The length must be exactly %s characters."), $this->_config['min']);
+            return sprintf("The length must be exactly %s characters.", $this->_config['min']);
         }
 
-        return sprintf(__("The length must be between %s and %s."), $this->_config['min'], $this->_config['max']);
+        return sprintf("The length must be between %s and %s.", $this->_config['min'], $this->_config['max']);
     }
 
 }

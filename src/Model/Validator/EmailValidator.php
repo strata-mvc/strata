@@ -6,7 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class EmailValidator extends Validator {
 
-    public $_errorMessage = "This does not look like a valid email.";
+    protected $_errorMessage = "This does not look like a valid email.";
 
     public function test($value, $context)
     {

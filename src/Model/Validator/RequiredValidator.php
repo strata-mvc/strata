@@ -6,9 +6,9 @@ use Strata\Model\Validator\Validator;
 
 class RequiredValidator extends Validator {
 
-    public $_errorMessage = "This is a required field.";
+    protected $_errorMessage = "This is a required field.";
 
-    public $_config = array(
+    protected $_config = array(
         "if" => null
     );
 

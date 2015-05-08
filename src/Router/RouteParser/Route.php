@@ -33,7 +33,7 @@ class Route
      */
     public function process()
     {
-        throw new Exception('Process should be overriden by the route handler');
+
     }
 
     /**

@@ -19,10 +19,11 @@ module.exports = function (grunt) {
 
         watch: {
           scripts: {
-            files: ['**/*.php'],
+            files: ['**/*.php', '**/**/*.php'],
             tasks: ['phpunit'],
             options: {
-              spawn: false,
+                spawn: false,
+                debounceDelay: 20,
             },
           },
         },

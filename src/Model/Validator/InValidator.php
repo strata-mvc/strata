@@ -6,10 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class InValidator extends Validator {
 
-    // The expected config parameter is at index 0 as there is no need for a label
-    public $_config = array();
-
-    public $_errorMessage = "This is not a valid selection.";
+    protected $_errorMessage = "This is not a valid selection.";
 
     public function test($value, $context)
     {

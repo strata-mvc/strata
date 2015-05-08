@@ -6,7 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class PostExistsValidator extends Validator {
 
-    public $_errorMessage = "This post could not be found.";
+    protected $_errorMessage = "This post could not be found.";
 
     public function test($value, $context)
     {

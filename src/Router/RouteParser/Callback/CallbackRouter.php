@@ -25,7 +25,7 @@ class CallbackRouter extends Router
         $this->route->addPossibilities($methodPattern);
         $this->route->arguments = $args;
 
-        $this->run();
+        return $this->run();
     }
 
     public function generate($controllerName, $action)

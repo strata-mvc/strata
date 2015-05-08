@@ -6,7 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class NumericValidator extends Validator {
 
-    public $_errorMessage = "Only numeric values are allowed.";
+    protected $_errorMessage = "Only numeric values are allowed.";
 
     public function test($value, $context)
     {

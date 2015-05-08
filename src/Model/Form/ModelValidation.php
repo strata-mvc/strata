@@ -58,7 +58,7 @@ class ModelValidation {
                 $errors = null;
                 if ($this->_model->isSupportedAttribute($key)) {
                     $errors = $this->_model->attemptAttributeSet($key, $value, $this->_form);
-                    if (count($errors)) {
+                    if (count($errors) > 0) {
                         $this->_errors[$key] = $errors;
                     } else {
                         $this->_assignments[$key] = $value;

@@ -32,13 +32,16 @@ class Form {
     private $_validationCollector = null;
 
 
+    public $request = null;
+
     public $attributes = array();
 
 
     public function __construct(\Strata\Controller\Request $request, \Strata\View\View $view)
     {
         $this->_normalizeAttributes();
-        $this->_assignHelper(new FormHelper($request));
+        $this->request = $request;
+        $this->_assignHelper(new FormHelper($this->request));
         $this->_linktoView($view);
 
         $this->_validationCollector = new ValidationCollector($this);

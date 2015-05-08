@@ -17,7 +17,7 @@ class Router {
     /**
      * @var Strata\Router\RouteParser\Route A route that this object will try to execute
      */
-    protected $route = null;
+    public $route = null;
 
     /**
      * Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.

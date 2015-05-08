@@ -49,12 +49,12 @@ class Validator {
     /**
      * @var string An error message for this validation.
      */
-    private $_errorMessage = "There has been an error with this field.";
+    protected $_errorMessage = "There has been an error with this field.";
 
     /**
      * @var array An associative array of options used during the validation.
      */
-    private $_config = array();
+    protected $_config = array();
 
     /**
      * Configures the validator

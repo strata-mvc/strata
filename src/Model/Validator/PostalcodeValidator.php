@@ -6,7 +6,7 @@ use Strata\Model\Validator\Validator;
 
 class PostalcodeValidator extends Validator {
 
-    public $_errorMessage = "Only Canadian postal codes are supported (ex: H0H 0H0).";
+    protected $_errorMessage = "Only Canadian postal codes are supported (ex: H0H 0H0).";
 
     public function test($value, $context)
     {

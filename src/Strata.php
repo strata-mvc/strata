@@ -115,7 +115,7 @@ class Strata extends StrataContext {
      */
     protected function _configureCustomPostType()
     {
-        $loader = new CustomPostTypeLoader($this->config('custom-post-types'));
+        $loader = new CustomPostTypeLoader($this->getConfig('custom-post-types'));
         $loader->load();
     }
 
