@@ -2,7 +2,10 @@
     "name": "francoisfaubert/strata",
     "type": "library",
     "description": "Strata is a MVC programming environment for Bedrock and Wordpress.",
-    "keywords": ["wordpress","mvc"],
+    "keywords": [
+        "wordpress",
+        "mvc"
+    ],
     "homepage": "http://github.com/francoisfaubert/strata",
     "license": "GPL",
     "authors": [
@@ -23,12 +26,12 @@
     "require-dev": {
         "phpunit/phpunit": "4.6.*"
     },
-    "repositories": [
-        {
-            "type": "git",
+    "repositories": {
+        "strata-template-files": {
+            "type": "vcs",
             "url": "https://github.com/francoisfaubert/strata-template-files"
         }
-    ],
+    },
     "autoload": {
         "psr-4": {
             "Strata\\": "src"
