@@ -28,7 +28,7 @@
     },
     "repositories": {
         "strata-template-files": {
-            "type": "vcs",
+            "type": "git",
             "url": "https://github.com/francoisfaubert/strata-template-files"
         }
     },
