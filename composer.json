@@ -27,10 +27,6 @@
         "phpunit/phpunit": "4.6.*"
     },
     "repositories": {
-        "apigen/apigen": {
-            "type": "git",
-            "url": "https://github.com/ApiGen/ApiGen"
-        },
         "strata-template-files": {
             "type": "git",
             "url": "https://github.com/francoisfaubert/strata-template-files"
