@@ -4,13 +4,23 @@ title: Installation
 permalink: /docs/installation/
 ---
 
-## Install Composer
+## One step install
+
+The following steps are all contained in a script that can be ran form an online file. Make sure you know the security implications, but it makes the process simpler.
+
+~~~ bash
+$ bash <(curl -s https://raw.githubusercontent.com/francoisfaubert/iprospect-strata-scripts/master/src/create_project.sh)
+~~~
+
+## Manual installation
+
+### Install Composer
 
 Strata is a dependency of [Bedrock](https://roots.io/bedrock/), which uses [Composer](http://getcomposer.org/) to manage its dependencies.
 
 You need Composer installed on your machine before using Strata and Bedrock.
 
-## Install Strata
+### Install Strata
 
 If you are starting from scratch, you will need to create a new Bedrock project.
 
