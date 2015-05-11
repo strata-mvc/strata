@@ -51,5 +51,5 @@ cd $PROJECTNAME
 composer require francoisfaubert/strata:dev-master
 
 # Install Strata
-chmod +x vendor/francoisfaubert/strata/src/Scripts/install.sh
-vendor/francoisfaubert/strata/src/Scripts/install.sh
+chmod +x vendor/francoisfaubert/strata/src/Scripts/install
+vendor/francoisfaubert/strata/src/Scripts/install
