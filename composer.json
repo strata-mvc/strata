@@ -40,7 +40,6 @@
     "support": {
         "issues": "https://github.com/francoisfaubert/strata/issues"
     },
-    "config": {
-        "preferred-install": "dist"
-    }
+    "minimum-stability": "dev",
+    "prefer-stable" : true
 }
