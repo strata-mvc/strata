@@ -10,8 +10,11 @@ use Strata\Model\CustomPostType\CustomPostTypeLoader;
 use Composer\Autoload\ClassLoader;
 use Exception;
 
-// Use our own set of dependencies.\
-require dirname(__DIR__) . '/vendor/autoload.php';
+// Use our own set of dependencies.
+$ourVendor = dirname(__DIR__) . '/vendor/autoload.php';
+if (file_exists($ourVendor)) {
+    require $ourVendor;
+}
 
 /**
  * Running Strata instance
@@ -23,7 +26,7 @@ class Strata extends StrataContext {
     /**
      * @var array The configuration array specified in the theme's app.php
      */
-    protected $_config = null;
+    protected $_config = array();
 
     /**
      * @var bool Specifies the requirements have been met from the current configuration
@@ -129,10 +132,13 @@ class Strata extends StrataContext {
      * @param  array $values A list of project values.
      * @return null
      */
-    protected function _saveConfigValues(array $values)
+    protected function _saveConfigValues($values = array())
     {
-        $this->_config = Hash::normalize($values);
+        if (count($values) > 0) {
+            $this->_config = Hash::normalize($values);
+        }
     }
+
 
     /**
      * Includes the debugger classes.

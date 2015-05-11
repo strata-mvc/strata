@@ -209,6 +209,8 @@ class EnvCommand extends StrataCommand
             }
         }
 
+        $this->nl();
+
         $file = "bin/phpunit.phar";
         $this->output->writeLn("Fetching PHPUnit");
 

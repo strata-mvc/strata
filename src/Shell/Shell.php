@@ -1,7 +1,12 @@
 <?php
 namespace Strata\Shell;
 
-require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+// Use our own set of dependencies.
+$ourVendor = dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+if (file_exists($ourVendor)) {
+    require $ourVendor;
+}
+
 
 use Symfony\Component\Console\Application;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
