@@ -5,23 +5,22 @@ echo ""
 cwd=$(pwd)
 hasVagrant=$(command -v vagrant >/dev/null)
 
-if [[ ${hasVagrant} && -e "VagrantFile" ]] ; then
+command -v vagrant >/dev/null 2>&1 || {
+    exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php ${cwd} $@
+    exit;
+}
 
-    echo "Found Vagrant, executing from its environment."
+echo "Found Vagrant, executing from its environment."
 
-    vagrant up
+vagrant up
 
-    COMMAND="php /vagrant/bin/runner.php $@"
-    vagrant ssh --command "$COMMAND"
+COMMAND="php /vagrant/bin/runner.php $@"
+vagrant ssh --command "$COMMAND"
 
-    echo ''
-    echo 'Suspending the VM.'
-    echo ''
+echo ''
+echo 'Suspending the VM.'
+echo ''
 
-    vagrant suspend
-else
-    exec /Applications/MAMP/bin/php/php5.6.2/bin/php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php $@
-    #exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php ${cwd} $@
-fi
+vagrant suspend
 
-exit
+exit;
