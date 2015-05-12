@@ -9,7 +9,7 @@ permalink: /docs/installation/
 The following steps are all contained in a script that can be ran form an online file. Make sure you know the security implications, but it makes the process simpler.
 
 ~~~ bash
-$ bash <(curl -s https://raw.githubusercontent.com/francoisfaubert/iprospect-strata-scripts/master/src/create_project.sh)
+$ bash <(curl -s https://raw.githubusercontent.com/francoisfaubert/strata/master/src/Scripts/create_project)
 ~~~
 
 ## Manual installation
