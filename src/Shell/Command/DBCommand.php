@@ -73,10 +73,9 @@ class DBCommand extends StrataCommand
      */
     protected function _dumpCurrentDB()
     {
-        $relativeFilename = sprintf("db/dump_%s.sql", date('m-d-Y_hia'));
-        $absoluteFilename = "\/vagrant\/" . $relativeFilename;
-        $command = sprintf("mysqldump -u%s -p%s %s > %s", DB_USER, DB_PASSWORD, DB_NAME, $absoluteFilename);
-
+        date_default_timezone_set("Etc/UTC");
+        $relativeFilename = sprintf("db/dump_%s_%s.sql", date('m-d-Y'), time());
+        $command = sprintf("mysqldump -u%s -p%s %s > %s", getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'), $relativeFilename);
         $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);
     }
@@ -90,7 +89,8 @@ class DBCommand extends StrataCommand
         if (!is_null($file)) {
             $this->output->writeLn("Applying migration for <info>$file</info>");
 
-            $command = sprintf("pv %s | mysql -u%s -p%s %s", $file, DB_USER, DB_PASSWORD, DB_NAME);
+
+            $command = sprintf("pv %s | mysql -u%s -p%s %s", $file, getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'));
             system($command);
             return;
         }

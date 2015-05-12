@@ -34,7 +34,6 @@ class EnvCommand extends StrataCommand
      */
     protected $_directoryStructure = array(
         "bin",
-        "bin/vagrant",
         "db",
         "doc",
         "log",
