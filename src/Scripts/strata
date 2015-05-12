@@ -2,5 +2,5 @@
 
 echo ""
 cwd=$(pwd)
-exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php ${cwd} $@
+exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php $@
 exit;
