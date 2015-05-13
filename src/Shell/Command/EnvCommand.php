@@ -34,6 +34,7 @@ class EnvCommand extends StrataCommand
      */
     protected $_directoryStructure = array(
         "bin",
+        "config",
         "db",
         "doc",
         "log",
@@ -71,9 +72,10 @@ class EnvCommand extends StrataCommand
         'AppController.php' => 'src/Controller/AppController.php',
         'AppModel.php'      => 'src/Model/AppModel.php',
         'AppHelper.php'     => 'src/View/Helper/AppHelper.php',
-        'strata-bootstraper.php' => 'web/app/mu-plugins/strata-bootstraper.php',
-        'strata-test-bootstraper.php' => 'test/strata-test-bootstraper.php',
-        'wordpress-bootstraper.php' => 'test/Fixture/Wordpress/wordpress-bootstraper.php',
+        'strata.php'        => 'config/strata.php',
+        'strata-bootstraper.php'        => 'web/app/mu-plugins/strata-bootstraper.php',
+        'strata-test-bootstraper.php'   => 'test/strata-test-bootstraper.php',
+        'wordpress-bootstraper.php'     => 'test/Fixture/Wordpress/wordpress-bootstraper.php',
     );
 
     /**
