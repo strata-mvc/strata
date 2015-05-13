@@ -39,7 +39,7 @@ class TestCommand extends StrataCommand
 
         $phpunit = $this->_getPhpunitBin();
         $arguments = $this->_preparePhpunitArguments();
-        system(sprintf("php %s %s %s", $phpunit, $arguments, Strata::getTestPath());
+        system(sprintf("php %s %s %s", $phpunit, $arguments, Strata::getTestPath()));
 
         $this->shutdown();
     }
