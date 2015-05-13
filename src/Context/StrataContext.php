@@ -128,7 +128,8 @@ class StrataContext {
 
     public static function includeWordpressFixture()
     {
-        return include(\Strata\Strata::getVendorPath() . 'Fixtures/Wordpress/wordpress-bootstrap.php');
+        $path = array(\Strata\Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
+        return include(implode(DIRECTORY_SEPARATOR, $path));
     }
 
     /**
@@ -150,6 +151,15 @@ class StrataContext {
     public static function getThemesPath()
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "web", "app", "themes")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * Returns the Wordpress path.
+     * @return string Path
+     */
+    public static function getWordpressPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "web", "wp")) . DIRECTORY_SEPARATOR;
     }
 
     /**

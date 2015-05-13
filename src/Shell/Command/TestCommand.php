@@ -65,7 +65,7 @@ class TestCommand extends StrataCommand
             $arguments[] = "--bootstrap " . Strata::getVendorPath() . "autoload.php";
         }
 
-        return $arguments;
+        return implode(" ", $arguments);
     }
 
     private function _hasBootstrapFile()
@@ -75,6 +75,6 @@ class TestCommand extends StrataCommand
 
     protected function _getBootstrapFile()
     {
-        return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "bootstrap.php"));
+        return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "strata-test-bootstraper.php"));
     }
 }
