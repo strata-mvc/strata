@@ -17,6 +17,6 @@ class ValidatorGenerator extends ClassWriter {
         $this->_createFile($destination, "$namespace\Model\Validator", $this->classname, "\Strata\Model\Validator\validator");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", "Validator", $this->classname . "Test.php"));
-        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
     }
 }

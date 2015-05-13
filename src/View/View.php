@@ -69,7 +69,7 @@ class View {
             "Content-type" => "text/html",
             "Content-disposition" => null,
             "content" => "",
-            "end" => true
+            "end" => !is_admin()
         );
 
         $content = $this->_parseCurrentContent();

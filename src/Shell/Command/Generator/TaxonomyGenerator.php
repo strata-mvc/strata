@@ -17,6 +17,6 @@ class TaxonomyGenerator extends ClassWriter {
         $this->_createFile($destination, "$namespace\Model", $this->classname, "\Strata\Model\CustomPostType\TaxonomyEntity");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", $this->classname . "Test.php"));
-        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
     }
 }

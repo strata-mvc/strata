@@ -17,6 +17,6 @@ class CommandGenerator extends ClassWriter {
         $this->_createFile($destination, "$namespace\Shell\Command", $this->classname, "\Strata\Shell\Command\StrataCommand");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Shell", "Command", $this->classname . "Test.php"));
-        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
     }
 }

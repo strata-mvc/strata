@@ -14,9 +14,9 @@ class CustomPostTypeGenerator extends ClassWriter {
         $namespace = $this->_getNamespace();
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "Model", $this->classname . ".php"));
-        $this->_createFile($destination, "{$namespace}\Model", $this->classname, "\Strata\Model\CustomPostType\Entity");
+        $this->_createFile($destination, "$namespace\Model", $this->classname, "\Strata\Model\CustomPostType\Entity");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", $this->classname . "Test.php"));
-        $this->_createFile($destination, "{$namespace}\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
     }
 }
