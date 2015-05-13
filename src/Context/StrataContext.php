@@ -165,7 +165,7 @@ class StrataContext {
      * Returns the path to the test folder.
      * @return string Path
      */
-    public static function getSRCPath()
+    public static function getTestPath()
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "test")) . DIRECTORY_SEPARATOR;
     }
