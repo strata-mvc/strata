@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Shell\Command;
 
+use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
@@ -37,7 +38,8 @@ class TestCommand extends StrataCommand
         $this->nl();
 
         $phpunit = $this->_getPhpunitBin();
-        system("php $phpunit --colors --bootstrap vendor/autoload.php test");
+        $arguments = $this->_preparePhpunitArguments();
+        system(sprintf("php %s %s %s", $phpunit, $arguments, Strata::getTestPath());
 
         $this->shutdown();
     }
@@ -49,6 +51,30 @@ class TestCommand extends StrataCommand
      */
     protected function _getPhpunitBin()
     {
-        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getOurVendorPath() . "vendor", "phpunit", "phpunit", "phpunit"));;
+
+        return implode(DIRECTORY_SEPARATOR, array(Strata::getBinPath() . "phpunit.phar"));
+    }
+
+    protected function _preparePhpunitArguments()
+    {
+        $arguments = array("--colors");
+
+        if ($this->_hasBootstrapFile()) {
+            $arguments[] = "--bootstrap " . $this->_getBootstrapFile();
+        } else {
+            $arguments[] = "--bootstrap " . Strata::getVendorPath() . "autoload.php";
+        }
+
+        return $arguments;
+    }
+
+    private function _hasBootstrapFile()
+    {
+        return file_exists($this->_getBootstrapFile());
+    }
+
+    protected function _getBootstrapFile()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "bootstrap.php"));
     }
 }

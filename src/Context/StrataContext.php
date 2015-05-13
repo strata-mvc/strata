@@ -77,6 +77,25 @@ class StrataContext {
     }
 
     /**
+     * Bootstraps Strata in test mode
+     * @param  \Composer\Autoload\ClassLoader Current project's Composer autoloader.
+     * @return \Strata\Strata The current application
+     */
+    public static function bootstrapTest(ClassLoader $loader)
+    {
+        // Require the Fixtures' paths.
+        $loader->setPsr4("Tests\\", \Strata\Strata::getTestPath());
+
+        // Expose the app context to the current process.
+        $app = new \Strata\Strata();
+        $app->setLoader($loader);
+
+        $GLOBALS['__Strata__'] = $app;
+
+        return $app;
+    }
+
+    /**
      * Loads strata.php, cleans up the data and saves it as config to the current instance of the Strata object.
      * @return  array The configuration array
      */
@@ -105,6 +124,11 @@ class StrataContext {
     public static function requireVendorAutoload()
     {
         return require \Strata\Strata::getVendorPath() . 'autoload.php';
+    }
+
+    public static function includeWordpressFixture()
+    {
+        return include(\Strata\Strata::getVendorPath() . 'Fixtures/Wordpress/wordpress-bootstrap.php');
     }
 
     /**
@@ -138,6 +162,15 @@ class StrataContext {
     }
 
     /**
+     * Returns the path to the test folder.
+     * @return string Path
+     */
+    public static function getSRCPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "test")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
      * Returns the path to the project command folder.
      * @return string Path
      */
@@ -162,6 +195,15 @@ class StrataContext {
     public static function getDbPath()
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "db")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * Returns the path to the bin folder.
+     * @return string Path
+     */
+    public static function getBinPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "bin")) . DIRECTORY_SEPARATOR;
     }
 
     /**

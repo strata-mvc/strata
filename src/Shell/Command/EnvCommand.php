@@ -49,9 +49,10 @@ class EnvCommand extends StrataCommand
         "test/Model/Validator",
         "test/View",
         "test/View/Helper",
+        "test/Fixture",
+        "test/Fixture/Wordpress",
         "tmp"
     );
-
 
     /**
      * The source URL for stater app files
@@ -67,10 +68,12 @@ class EnvCommand extends StrataCommand
      * @var array
      */
     protected $_starterFiles = array(
-        'AppController.php' => 'src/controller/AppController.php',
-        'AppModel.php'      => 'src/model/AppModel.php',
-        'AppHelper.php'     => 'src/view/helper/AppHelper.php',
+        'AppController.php' => 'src/Controller/AppController.php',
+        'AppModel.php'      => 'src/Model/AppModel.php',
+        'AppHelper.php'     => 'src/View/Helper/AppHelper.php',
         'strata-bootstraper.php' => 'web/app/mu-plugins/strata-bootstraper.php',
+        'strata-test-bootstraper.php' => 'test/strata-test-bootstraper.php',
+        'wordpress-bootstraper.php' => 'test/Fixture/Wordpress/wordpress-bootstraper.php',
     );
 
     /**
