@@ -7,7 +7,7 @@
 
 // Require the Fixtures' paths.
 $loader = require \Strata\Strata::getVendorPath() . 'autoload.php';
-$loader->setPsr4("Tests\\", \Strata\Strata::getRootPath() . DIRECTORY_SEPARATOR . "tests" . DIRECTORY_SEPARATOR);
+$loader->setPsr4("Tests\\", \Strata\Strata::getTestPath());
 
 // Load up a fake Wordpress wrapper on which the tests will register things.
 include('Fixtures/Wordpress/bootstrap.php');
