@@ -8,12 +8,17 @@ if (!function_exists('debug')) {
      */
     function debug($mixed)
     {
-        echo "<pre>=======[Debug]=======\n";
-        echo "(".gettype($mixed) . ") " ;
-        var_export($mixed);
+        $header =  "=======[Debug]=======";
+        $debug =  "(".gettype($mixed) . ") " . var_export($mixed, true);
+        $footer =  "=======[Debug]=======";
+
+        error_log("\n\n\e[0;36m".$header . "\e[0m\n" . $debug . "\n\e[0;36m" . $footer . "\e[0m\n");
+
+        echo "<pre>".$header."\n";
+        echo $debug;
         echo "\n\n<div style=\"overflow:auto; font-size: 12px; font-family: consolas; background:transparent; width:100%; height:80px;\">";
         debug_print_backtrace();
-        echo "</textarea>";
-        echo "\n=======[Debug]=======</pre>";
+        echo "</div>";
+        echo "\n".$footer."</pre>";
     }
 }

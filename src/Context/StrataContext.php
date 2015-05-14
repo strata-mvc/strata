@@ -154,6 +154,15 @@ class StrataContext {
     }
 
     /**
+     * Returns the Wordpress plugins path of the project.
+     * @return string Path
+     */
+    public static function getPluginsPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "web", "app", "plugins")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
      * Returns the Wordpress path.
      * @return string Path
      */

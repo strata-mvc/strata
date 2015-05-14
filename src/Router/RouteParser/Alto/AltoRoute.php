@@ -4,6 +4,7 @@ namespace Strata\Router\RouteParser\Alto;
 use AltoRouter;
 use Strata\Controller\Controller;
 use Strata\Router\RouteParser\Route;
+use Strata\Controller\Request;
 
 class AltoRoute extends Route
 {
@@ -58,10 +59,11 @@ class AltoRoute extends Route
 
         if (count($target) > 1) {
             return $target[1];
+        }
 
-        } elseif (is_admin() && $this->controller->request->hasGet('page')) {
+        $this->controller->request = new Request();
+        if (is_admin() && $this->controller->request->hasGet('page')) {
             return $this->controller->request->get('page');
-
         // When no method is sent, guesstimate from the action post value (basic ajax)
         } elseif ($this->controller->request->hasPost('action')) {
             return $this->controller->request->post('action');
