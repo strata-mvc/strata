@@ -129,7 +129,16 @@ class StrataContext {
     public static function includeWordpressFixture()
     {
         $path = array(\Strata\Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
-        return include(implode(DIRECTORY_SEPARATOR, $path));
+        $file =  include(implode(DIRECTORY_SEPARATOR, $path));
+
+        // Wordpress registers callbacks in the global scope.
+        // Remove them. We'll have to keep an eye on what needs to
+        // be included here.
+        $GLOBALS = array(
+            "_SERVER" => $GLOBALS["_SERVER"]
+        );
+
+        return $file;
     }
 
     /**
