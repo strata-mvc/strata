@@ -104,7 +104,7 @@ class DocumentationCommand extends StrataCommand
      */
     protected function _getApigenBin()
     {
-        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getOurVendorPath() . "vendor", "apigen", "apigen", "bin", "apigen"));;
+        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getVendorPath(), "apigen", "apigen", "bin", "apigen"));
     }
 
     /**

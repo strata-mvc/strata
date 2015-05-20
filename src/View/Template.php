@@ -14,13 +14,17 @@ class Template {
     public static function parse($name, $variables = array(), $extension = '.php')
     {
         $templateFilePath = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name . $extension));
+        return Template::parseFile($templateFilePath, $variables);
+    }
 
+    public static function parseFile($templateFilePath, $variables = array())
+    {
         ob_start();
 
         extract($variables);
         include($templateFilePath);
 
-        return  ob_get_clean();
+        return ob_get_clean();
     }
 
 }

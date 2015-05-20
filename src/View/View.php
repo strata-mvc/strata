@@ -69,7 +69,7 @@ class View {
             "Content-type" => "text/html",
             "Content-disposition" => null,
             "content" => "",
-            "end" => !is_admin()
+            "end" => false
         );
 
         $content = $this->_parseCurrentContent();
@@ -108,7 +108,9 @@ class View {
      */
     protected function _applyHeaders()
     {
-        header('Content-type: ' . $this->_options['Content-type']);
+        if ($this->_options['Content-type'] != "text/html") {
+            header('Content-type: ' . $this->_options['Content-type']);
+        }
 
         if (!is_null($this->_options['Content-disposition'])) {
             header('Content-disposition: ' . $this->_options['Content-disposition']);

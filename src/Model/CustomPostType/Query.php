@@ -85,4 +85,11 @@ class Query
         return $this;
     }
 
+    public function limit($qty)
+    {
+        $this->_filters['posts_per_page']   = $qty;
+        $this->_filters['nopaging']         = false;
+        return $this;
+    }
+
 }

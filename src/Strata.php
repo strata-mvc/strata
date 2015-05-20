@@ -87,6 +87,15 @@ class Strata extends StrataContext {
     }
 
     /**
+     * Returns a class loader to the application
+     * @return ClassLoader $loader The application's class loader.
+     */
+    public function getLoader()
+    {
+        return $this->_loader;
+    }
+
+    /**
      * Fetches a value in the app's configuration array for the duration of the runtime.
      * @param string $key In dot-notation format
      * @return mixed
