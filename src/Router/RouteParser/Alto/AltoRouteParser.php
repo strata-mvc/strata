@@ -35,9 +35,28 @@ class AltoRouteParser extends Router {
         $this->route->addPossibilities($routes);
     }
 
+    /**
+     * This function is required to send variables in Wordpress' scope.
+     * Unlike the templating using Controller#view->render() which allow
+     * passing variables, Wordpress's load_template extracts variables in
+     * $wp_query only.
+     * @param   $wp_query
+     */
+    public function assignViewVars($wp_query)
+    {
+        foreach ($this->route->controller->view->getVariables() as $key => $value) {
+            if (array_key_exists($key, $wp_query->query_vars)) {
+                error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
+            } else {
+                $wp_query->set($key, $value);
+            }
+        }
+    }
+
     protected function registerWordpressAction()
     {
         add_action('init' , array($this, "onWordpressInit"));
+        add_action('parse_query',  array($this, 'assignViewVars'));
     }
 
     /**
@@ -48,6 +67,7 @@ class AltoRouteParser extends Router {
     {
         $this->run();
     }
+
 }
 
 

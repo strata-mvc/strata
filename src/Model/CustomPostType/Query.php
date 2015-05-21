@@ -71,14 +71,6 @@ class Query
         return $this;
     }
 
-    /** This is deprecated as its not really a join query. */
-    public function join($type, $value = null)
-    {
-        $this->_filters['meta_key']   = $type;
-        $this->_filters['meta_value'] = intval($value);
-        return $this;
-    }
-
     public function where($field, $value)
     {
         $this->_filters[$field]   = $value;
