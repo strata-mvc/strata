@@ -55,7 +55,7 @@ class Artist extends \Strata\Model\CustomPostType\Entity {
 
 ## On automated configuration
 
-The custom post type key is generated from the model's class name. By default, this value will be prefixed by `ctp_`. In this example the unique key of the custom post type will be `ctp_artist`.
+The custom post type key is generated from the model's class name. By default, this value will be prefixed by `cpt_`. In this example the unique key of the custom post type will be `cpt_artist`.
 
 At all times, you can get the Wordpress key of the model using `wordpressKey()`.
 
