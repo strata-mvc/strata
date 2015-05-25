@@ -37,7 +37,7 @@ class Entity extends WordpressEntity
         return wp_update_post( $options );
     }
 
-    public static function wp_delete_post($postId, $force = false)
+    public static function delete($postId, $force = false)
     {
         return wp_delete_post( $postId, $force);
     }
