@@ -59,7 +59,7 @@ class Entity extends WordpressEntity
 
     public static function findById($id)
     {
-        return self::query()->where("ID", $id)->fetch();
+        return get_post($id);
     }
 
     public static function count()
