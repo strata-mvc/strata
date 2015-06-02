@@ -9,14 +9,14 @@ permalink: /docs/installation/
 The following steps are all contained in a script that can be ran form an online file. Make sure you know the security implications, but it makes the process simpler.
 
 ~~~ bash
-$ bash <(curl -s https://raw.githubusercontent.com/francoisfaubert/strata/master/src/Scripts/create_project)
+$ bash <(curl -s http://create-strata-project.francoisfaubert.com)
 ~~~
 
 ## Manual installation
 
 ### Install Composer
 
-Strata is a dependency of [Bedrock](https://roots.io/bedrock/), which uses [Composer](http://getcomposer.org/) to manage its dependencies.
+Strata is a tool with [Bedrock](https://roots.io/bedrock/) as main dependency, which uses [Composer](http://getcomposer.org/) to manage its dependencies.
 
 You need Composer installed on your machine before using Strata and Bedrock.
 
