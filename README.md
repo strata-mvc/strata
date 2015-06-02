@@ -1,11 +1,13 @@
 Strata
 ======
 
-[![Join the chat at https://gitter.im/francoisfaubert/strata](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/francoisfaubert/strata?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ## Welcome
 
 If you are (or wish to become) a Strata user please go to the [official website](http://strata.francoisfaubert.com/) to obtain the latest information.
+
+## Help and support
+
+Feel free to ask questions to the Strata community on the [Help and support](http://strata-community.francoisfaubert.com/) forum.
 
 ## Contributing
 
