@@ -15,32 +15,3 @@ $ bin/strata server
 ~~~
 
 It will kickoff a running instance of your Wordpress installation available at `http://127.0.0.1:5454/`. There is no way of changing this url for the moment.
-
-
-## Customizing the server
-
-{% include workinprogress.html %}
-
-There will be a short period during which server customization will not be explained while we finish solidifying what happens when Strata runs inside Vagrant and when it runs using the default PHP binaries.
-
-
-<!---
-We ship a simple basic [Vagrant](http://vagrantup.com) configuration with the solution. You can modify the `VagrantFile` and the `bin\vagrant\provision.sh` as you wish so the image better suits your needs.
-
-There are a few settings that must be made to your image to make sure everything runs properly:
-
-* Apache's root directory and DocumentRoot must be : /vagrant/webroot/
-* Apache's logs must point to : /vagrant/log
-* Apache's user and group must be : www-data:vagrant
-
-Here is the code we use in our default `provision.sh` file to set up these variables. You can add it to your own provision file.
-
-~~~ sh
-sed -i "s#DocumentRoot /var/www/public#DocumentRoot /vagrant/webroot/#g" /etc/apache2/sites-available/000-default.conf
-sed -i "s#Directory /var/www/#Directory /vagrant/webroot/#g" /etc/apache2/apache2.conf
-sed -i "s#\${APACHE_LOG_DIR}#/vagrant/log#g" /etc/apache2/sites-available/000-default.conf
-sed -i "s#APACHE_RUN_USER=www-data#APACHE_RUN_USER=vagrant#g" /etc/apache2/envvars
-sed -i "s#APACHE_RUN_GROUP=www-data#APACHE_RUN_GROUP=vagrant#g" /etc/apache2/envvars
-~~~
-
--->

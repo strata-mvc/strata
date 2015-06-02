@@ -17,10 +17,4 @@ $ bin/strata _command_ _arguments_
 * [Migration](/docs/shell/migrations)
 * [Bundled server](/docs/shell/server)
 * [Testing suite](/docs/shell/testing)
-
-## Custom commands
-
-{% include workinprogress.html %}
-
-For the moment, you cannot add custom project-level commands to the generator. This functionality is a top priority for us as apps require a mean of running cron tasks, maintenance scripts and so on.
-
+* [Custom commands](/docs/shell/customcommands)
