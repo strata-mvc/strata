@@ -54,7 +54,6 @@ class Request {
         return strtoupper($_SERVER['REQUEST_METHOD']) === 'GET';
     }
 
-
     /**
      * Checks if the current value is of type PUT.
      * @return boolean
@@ -147,7 +146,7 @@ class Request {
      * along the way.
      * @return null
      */
-    protected function _buildRequestData()
+    private function _buildRequestData()
     {
         $strip_slashes_deep = function ($value) use (&$strip_slashes_deep) {
             return is_array($value) ? array_map($strip_slashes_deep, $value) : htmlspecialchars(stripslashes($value));

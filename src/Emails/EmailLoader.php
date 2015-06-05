@@ -13,40 +13,33 @@ class EmailLoader {
      */
     public static function loadTemplate($name, $values = array())
     {
-        return Template::render($name, $values);
+        return Template::parse($name, $values);
     }
 
-    // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+    /**
+     * Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+     * @return bool
+     */
     public static function enableHTML()
     {
         return add_filter( 'wp_mail_content_type', 'Strata\Emails\EmailLoader::setContentType' );
     }
 
-    // Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+    /**
+     * Reset content-type to avoid conflicts -- http://core.trac.wordpress.org/ticket/23578
+     * @return bool
+     */
     public static function disableHTML()
     {
         return remove_filter( 'wp_mail_content_type', 'Strata\Emails\EmailLoader::setContentType' );
     }
 
     /**
-     * @todo Expose the list of emails in the configuration file and load it here.
+     * Set the content type on the email
+     * @param string $contentType
      */
-    public static function getEmailAddress($which)
+    public static function setContentType($contentType = 'text/html')
     {
-        if (defined('DEBUG_EMAIL')) {
-            return DEBUG_EMAIL;
-        }
-
-        $emails = Strata\Strata::config("project_email_list");
-        if (is_array($emails) && array_key_exists($which, $emails)) {
-            return $emails[$which];
-        }
-
-        return null;
-    }
-
-    public static function setContentType($which)
-    {
-        return 'text/html';
+        return $contentType;
     }
 }

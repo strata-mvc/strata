@@ -33,7 +33,7 @@ class Controller {
      * Strata controller. Mainly used to avoid hardcoding the '\\Controller\\'
      * string everywhere.
      * @param  string $name The class name of the controller
-     * @return string       A fulle namespaced controller name
+     * @return string       A fully namespaced controller name
      */
     public static function generateClassPath($name)
     {
@@ -61,10 +61,6 @@ class Controller {
      * @var  array
      */
     public $shortcodes = array();
-
-    function __construct()
-    {
-    }
 
     /**
      * Initiate the controller.
