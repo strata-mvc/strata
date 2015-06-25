@@ -99,12 +99,12 @@ class DocumentationCommand extends StrataCommand
     }
 
     /**
-     * Return the path to the Apigen binary
-     * @return string Apigen binary path
+     * Return the path to the phpDocumentor binary
+     * @return string phpDocumentor binary path
      */
-    protected function _getApigenBin()
+    protected function _getPhpDocumentorBin()
     {
-        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getVendorPath(), "apigen", "apigen", "bin", "apigen"));
+        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getVendorPath(), "bin", "phpDocumentor"));
     }
 
     /**
@@ -145,7 +145,7 @@ class DocumentationCommand extends StrataCommand
         $this->output->writeLn($this->tree(true) . "Scanning $srcPath");
         $this->nl();
 
-        system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $srcPath, $this->_getApiDestination()));
+        system(sprintf("%s -d %s -t %s", $this->_getPhpDocumentorBin(), $srcPath, $this->_getApiDestination()));
     }
 
     /**
@@ -160,7 +160,7 @@ class DocumentationCommand extends StrataCommand
         $this->output->writeLn($this->tree(true) . "Scanning $themesPath");
         $this->nl();
 
-        system(sprintf("%s generate -s %s -d %s --quiet", $this->_getApigenBin(), $themesPath, $this->_getWpApiDestination()));
+        system(sprintf("%s -d %s -t %s", $this->_getPhpDocumentorBin(), $themesPath, $this->_getWpApiDestination()));
     }
 
 
