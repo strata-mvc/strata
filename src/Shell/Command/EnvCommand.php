@@ -162,14 +162,16 @@ class EnvCommand extends StrataCommand
 
         if (file_exists('README.md')) {
             unlink('README.md');
-            $readme = fopen('README.md');
-            fwrite($readme, "
+        }
+
+        $readme = fopen('README.md', 'w');
+        fwrite($readme, "
 ## A new Strata project
 
-The documentation for Strata can be found on the [official website](http://strata.francoisfaubert.com/). Feel free to ask questions to the Strata community on the [Help and support](http://strata-community.francoisfaubert.com/) forums.
+The documentation for Strata can be found on the [official website](http://strata.francoisfaubert.com/). Feel free to ask questions to the community on the [Help and support](http://strata-community.francoisfaubert.com/) forums.
 ");
-            fclose($readme);
-        }
+        fclose($readme);
+
     }
 
     /**
