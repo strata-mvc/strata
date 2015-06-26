@@ -22,7 +22,7 @@
         "symfony/console": "~2.6",
         "phpdocumentor/phpdocumentor": "2.*",
         "phpunit/phpunit": "4.6.*",
-        "francoisfaubert/sqlite-for-strata-mu-plugin": "0.1.1"
+        "francoisfaubert/sqlite-for-strata-mu-plugin": "dev-master"
     },
     "autoload": {
         "psr-4": {
