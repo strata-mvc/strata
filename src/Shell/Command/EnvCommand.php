@@ -104,6 +104,9 @@ class EnvCommand extends StrataCommand
             case "install":
                 $this->_install();
                 break;
+            case "destructivecleanup":
+                $this->_removeUnrequiredBedrockfiles();
+                break;
             case "uninstall":
                 $this->_uninstall();
                 break;
@@ -135,6 +138,32 @@ class EnvCommand extends StrataCommand
         $this->_removeStarterFiles();
         $this->_removeDirectoryStructure();
         $this->_uninstallDone();
+    }
+
+    protected function _removeUnrequiredBedrockfiles()
+    {
+        if (!file_exists('.env') && file_exists('.env.example')) {
+            rename(".env.example", ".env");
+        }
+
+        $trash = array(
+            '.travis.yml',
+            'CHANGELOG.md',
+            'CONTRIBUTING.md',
+            'LICENSE.md',
+            'ruleset.xml'
+        );
+
+        foreach ($trash as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
+
+        if (!file_exists('README.md')) {
+            unlink('README.md');
+            fopen('README.md');
+        }
     }
 
     /**

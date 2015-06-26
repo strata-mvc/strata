@@ -27,6 +27,7 @@ chmod +x ${cwd}/vendor/francoisfaubert/strata/src/Scripts/strata
 echo ""
 echo " Completing the installation script, launching Strata installer."
 
+exec bin/strata env destructivecleanup
 exec bin/strata env install
 
 exit
