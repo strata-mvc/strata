@@ -31,6 +31,5 @@
     "support": {
         "issues": "https://github.com/francoisfaubert/strata/issues"
     },
-    "minimum-stability": "dev",
     "prefer-stable" : true
 }
