@@ -222,6 +222,7 @@ class EnvCommand extends StrataCommand
     {
         $file = "bin/wp-cli.phar";
         $this->output->writeLn("Fetching WP CLI");
+        $label = $this->tree(true);
 
          if (!file_exists($file)) {
             if (file_put_contents($file, fopen("https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", 'r')) > 0) {
@@ -239,6 +240,7 @@ class EnvCommand extends StrataCommand
     protected function _getPhpunit()
     {
         $file = "bin/phpunit.phar";
+        $label = $this->tree(true);
         $this->output->writeLn("Fetching PHPUnit");
 
          if (!file_exists($file)) {

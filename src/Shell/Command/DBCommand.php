@@ -81,7 +81,7 @@ class DBCommand extends StrataCommand
 
     protected function _getWpCliPhar()
     {
-        return sprintf("%swp-cli.phar", Strata::getBinPath());
+        return sprintf("php %swp-cli.phar", Strata::getBinPath());
     }
 
     /**
@@ -91,8 +91,8 @@ class DBCommand extends StrataCommand
     protected function _dumpCurrentDB()
     {
         date_default_timezone_set("Etc/UTC");
-        $relativeFilename = sprintf("db/dump_%s_%s.sql", date('m-d-Y'), time());
-        $command = sprintf("%s db export --add-drop-table", $this->_getWpCliPhar(), $relativeFilename);
+        $relativeFilename = sprintf("export_%s_%s.sql", date('m-d-Y'), time());
+        $command = sprintf("%s db export %s%s --add-drop-table", $this->_getWpCliPhar(), Strata::getDbPath(), $relativeFilename);
         $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);
     }
@@ -146,6 +146,6 @@ class DBCommand extends StrataCommand
             $latestFilename = $entry;
           }
         }
-        return $latestFilename;
+        return $path . $latestFilename;
     }
 }
