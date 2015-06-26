@@ -23,6 +23,8 @@ class Shell
      */
     public static function getApplication()
     {
+        require(\Strata\Strata::getConfigurationPath() . "application.php");
+
         $application = new Application('Strata Console Application', '0.1.0');
 
         $registrar = new ProjectCommandRegistrar($application);

@@ -199,6 +199,15 @@ class StrataContext {
     }
 
     /**
+     * Returns the path to the temporary folder.
+     * @return string Path
+     */
+    public static function getTmpPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "tmp")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
      * Returns the path to the test folder.
      * @return string Path
      */
