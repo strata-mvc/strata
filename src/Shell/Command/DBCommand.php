@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Shell\Command;
 
+use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
@@ -49,6 +50,10 @@ class DBCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('type')) {
+            case "create" :
+                $this->_createDB();
+                break;
+
             case "migrate" :
                 $this->_importSqlFile( $this->_getSqlFile() );
                 break;
@@ -57,7 +62,7 @@ class DBCommand extends StrataCommand
                 $output->writeLn("Importing from an environment is not yet available.");
                 break;
 
-            case "dump" :
+            case "export" :
                 $this->_dumpCurrentDB();
                 break;
         }
@@ -65,6 +70,18 @@ class DBCommand extends StrataCommand
         $this->nl();
 
         $this->shutdown();
+    }
+
+    protected function _createDB()
+    {
+        $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
+        $command = sprintf("%s db create", $this->_getWpCliPhar());
+        system($command);
+    }
+
+    protected function _getWpCliPhar()
+    {
+        return sprintf("%swp-cli.phar", Strata::getBinPath());
     }
 
     /**
@@ -75,7 +92,7 @@ class DBCommand extends StrataCommand
     {
         date_default_timezone_set("Etc/UTC");
         $relativeFilename = sprintf("db/dump_%s_%s.sql", date('m-d-Y'), time());
-        $command = sprintf("mysqldump -u%s -p%s %s > %s", getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'), $relativeFilename);
+        $command = sprintf("%s db export --add-drop-table", $this->_getWpCliPhar(), $relativeFilename);
         $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);
     }
@@ -88,9 +105,7 @@ class DBCommand extends StrataCommand
     {
         if (!is_null($file)) {
             $this->output->writeLn("Applying migration for <info>$file</info>");
-
-
-            $command = sprintf("pv %s | mysql -u%s -p%s %s", $file, getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'));
+            $command = sprintf("%s db import %s", $this->_getWpCliPhar(), $file);
             system($command);
             return;
         }
@@ -110,7 +125,7 @@ class DBCommand extends StrataCommand
         }
 
         $this->output->writeLn('No file passed as migration. Loading most recent .sql file in <info>./db/</info>');
-        return $this->_getMostRecent(\Strata\Strata::getDbPath());
+        return $this->_getMostRecent(Strata::getDbPath());
     }
 
     /**

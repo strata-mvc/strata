@@ -121,6 +121,8 @@ class EnvCommand extends StrataCommand
     {
         $this->_createDirectoryStructure();
         $this->_createStarterFiles();
+        $this->_getPhpunit();
+        $this->_getWpCLI();
         $this->_installDone();
     }
 
@@ -214,7 +216,28 @@ class EnvCommand extends StrataCommand
         }
 
         $this->nl();
+    }
 
+    protected function _getWpCLI()
+    {
+        $file = "bin/wp-cli.phar";
+        $this->output->writeLn("Fetching WP CLI");
+
+         if (!file_exists($file)) {
+            if (file_put_contents($file, fopen("https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", 'r')) > 0) {
+                $this->output->writeLn($label . $this->ok($file));
+            } else {
+                $this->output->writeLn($label . $this->fail($file));
+                $this->_flagFailing();
+            }
+        } else {
+            $this->output->writeLn($label . $this->skip($file));
+        }
+
+        $this->nl();
+    }
+    protected function _getPhpunit()
+    {
         $file = "bin/phpunit.phar";
         $this->output->writeLn("Fetching PHPUnit");
 
