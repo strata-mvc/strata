@@ -1,6 +1,8 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
+use WP_Query;
+
 class Query
 {
     // Set defaults: return a list of published posts ordered by name
@@ -20,7 +22,7 @@ class Query
 
     public function query()
     {
-        return new \WP_Query($this->_filters);
+        return new WP_Query($this->_filters);
     }
 
     public function listing($key, $label)

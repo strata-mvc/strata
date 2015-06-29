@@ -12,7 +12,7 @@ class WordpressEntity extends Model
     public static function wordpressKey()
     {
         $obj = self::staticFactory();
-        return $obj->wpPrefix . strtolower($obj->getShortName());
+        return $obj->getWordpressKey();
     }
 
     public $configuration     = array();
@@ -21,6 +21,11 @@ class WordpressEntity extends Model
     {
         $this->_normalizeConfiguration();
         parent::__construct();
+    }
+
+    public function getWordpressKey()
+    {
+        return $this->wpPrefix . strtolower($this->getShortName());
     }
 
     private function _normalizeConfiguration()
