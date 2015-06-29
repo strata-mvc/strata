@@ -44,7 +44,7 @@ class AltoRouteParser extends Router {
      */
     public function assignViewVars($wp_query)
     {
-        if (!is_null($this->route->controller->view)) {
+        if (!is_null($this->route->controller) && !is_null($this->route->controller->view)) {
             foreach ($this->route->controller->view->getVariables() as $key => $value) {
                 if (array_key_exists($key, $wp_query->query_vars)) {
                     error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
