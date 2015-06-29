@@ -2,7 +2,7 @@
 namespace Strata\Model\CustomPostType;
 
 use Strata\Model\Model;
-use Strata\Model\QueriableEntity;
+use Strata\Model\CustomPostType\QueriableEntity;
 
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
@@ -22,6 +22,12 @@ class Entity extends QueriableEntity
         foreach ($registrars as $registrar) {
             $registrar->register();
         }
+    }
+
+    public static function buildRegisteringCall($cpt)
+    {
+        $obj = Model::factory($cpt);
+        return array($obj, "registerPostType");
     }
 
     public $wpPrefix = "cpt_";
@@ -50,12 +56,6 @@ class Entity extends QueriableEntity
     public function delete($postId, $force = false)
     {
         return wp_delete_post( $postId, $force);
-    }
-
-    public function buildRegisteringCall($cpt)
-    {
-        $obj = Model::factory($cpt);
-        return array($obj, "registerPostType");
     }
 
     public function registerAdminMenus(array $adminConfig)

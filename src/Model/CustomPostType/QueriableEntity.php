@@ -6,6 +6,16 @@ use Strata\Model\CustomPostType\Query;
 
 class QueriableEntity extends WordpressEntity
 {
+
+    /**
+     * Returns an instantiated object to access the repository.
+     * @return QueriableEntity
+     */
+    public static function repo()
+    {
+        return self::staticFactory();
+    }
+
     protected $activeQuery = null;
 
     /**
