@@ -71,6 +71,7 @@ class EnvCommand extends StrataCommand
     protected $_starterFiles = array(
         'AppController.php' => 'src/Controller/AppController.php',
         'AppModel.php'      => 'src/Model/AppModel.php',
+        'AppCustomPostType.php'      => 'src/Model/AppCustomPostType.php',
         'AppHelper.php'     => 'src/View/Helper/AppHelper.php',
         'strata.php'        => 'config/strata.php',
         'strata-bootstraper.php'        => 'web/app/mu-plugins/strata-bootstraper.php',
