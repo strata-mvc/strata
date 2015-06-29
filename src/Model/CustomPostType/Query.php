@@ -17,6 +17,7 @@ class Query
     public function fetch()
     {
         $query = $this->query();
+        $this->log($query->request);
         return $query->posts;
     }
 
@@ -84,6 +85,14 @@ class Query
         $this->_filters['posts_per_page']   = $qty;
         $this->_filters['nopaging']         = false;
         return $this;
+    }
+
+    private function log($sql)
+    {
+        if (WP_ENV == 'development') {
+            $oneLine = preg_replace('/\s+/', ' ', trim($sql));
+            error_log("\e[0;36m[STRATA QUERY]\e[0m: " . $oneLine . "\e[0m");
+        }
     }
 
 }
