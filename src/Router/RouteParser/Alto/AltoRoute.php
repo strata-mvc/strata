@@ -24,6 +24,7 @@ class AltoRoute extends Route
      */
     public function addPossibilities($routes)
     {
+        $routes = $this->_patchBuiltInServerPrefix($routes);
         $this->_altoRouter->addRoutes($routes);
     }
 
@@ -77,5 +78,18 @@ class AltoRoute extends Route
         }
 
         return array();
+    }
+
+    // Built in server will generate links with index.php because
+    // it doesn't have access to mod_reqrite
+    private function _patchBuiltInServerPrefix($routes)
+    {
+        foreach ($routes as $idx => $route) {
+            if (!preg_match("/^\/index.php/i", $route[1])) {
+                $route[1] = "(/index.php)?" . $route[1];
+                $routes[$idx] = $route;
+            }
+        }
+        return $routes;
     }
 }

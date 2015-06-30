@@ -59,6 +59,24 @@ class View {
     }
 
     /**
+     * Returns a variable assigned to the current view
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return $this->_templateVars[$name];
+    }
+
+    /**
+     * Checks whether a variable is assigned to the current view
+     * @return boolean
+     */
+    public function check($name)
+    {
+        return array_key_exists($name, $this->_templateVars);
+    }
+
+    /**
      * Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.
      * @param  array $options An associative array of rendering options
      * @return string          The rendered content.

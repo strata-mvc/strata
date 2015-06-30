@@ -12,8 +12,17 @@ if (!function_exists('debug')) {
         $debug =  "(".gettype($mixed) . ") " . var_export($mixed, true);
         $footer =  "=======[Debug]=======";
 
+        $context = "unknown context at unknown line";
+        foreach (debug_backtrace() as $idx => $file) {
+            if ($file['file'] != __FILE__) {
+                $last = explode(DIRECTORY_SEPARATOR, $file['file']);
+                $context = sprintf("In %s at line %s: ", $last[count($last)-1], $file['line']);
+                break;
+            }
+        }
+
         $app = \Strata\Strata::app();
-        $app->log("", "[Strata::debug]");
+        $app->log($context, "[Strata::debug]");
         $app->log($debug, "[Strata::debug]");
         $app->log("", "[Strata::debug]");
 

@@ -40,12 +40,7 @@ class ServerCommand extends StrataCommand
 
         $this->nl();
 
-        // Does this work on vagrant?
-        system("php -S 0.0.0.0:5454 -t web/");
-
-        // Tail the server logs in order to keep the illusion that the console is
-        // controlling the server.
-        //system("tail -n 0 -f /vagrant/log/access.log");
+        system("WP_ENV=development php -S 0.0.0.0:5454 -t web/");
 
         $this->shutdown();
     }
