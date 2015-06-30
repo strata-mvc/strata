@@ -15,16 +15,20 @@ class Query
         'suppress_filters' => true,
     );
 
+    private $executionStart = 0;
+
     public function fetch()
     {
         $query = $this->query();
-        $this->log($query->request);
         return $query->posts;
     }
 
     public function query()
     {
-        return new WP_Query($this->_filters);
+        $this->logQueryStart();
+        $result = new WP_Query($this->_filters);
+        $this->logQueryCompletion($result->request);
+        return $result;
     }
 
     public function listing($key, $label)
@@ -88,11 +92,21 @@ class Query
         return $this;
     }
 
-    private function log($sql)
+    private function logQueryStart()
     {
+        $app = Strata::app();
+        $this->executionStart = microtime(true);
+    }
+
+    private function logQueryCompletion($sql)
+    {
+        $app = Strata::app();
+        $executionTime = microtime(true) - $this->executionStart;
+        $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
+
         $oneLine = preg_replace('/\s+/', ' ', trim($sql));
         $app = Strata::app();
-        $app->log($oneLine, "[Strata:Query]");
+        $app->log($oneLine . $timer, "[Strata:Query]");
     }
 
 }
