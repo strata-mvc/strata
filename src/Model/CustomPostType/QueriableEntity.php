@@ -13,7 +13,8 @@ class QueriableEntity extends WordpressEntity
      */
     public static function repo()
     {
-        return self::staticFactory();
+        $ref = self::staticFactory();
+        return $ref->query();
     }
 
     protected $activeQuery = null;

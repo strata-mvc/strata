@@ -1,6 +1,7 @@
 <?php
 namespace Strata;
 
+use Strata\Logger\Logger;
 use Strata\Router\Router;
 use Strata\Utility\Hash;
 use Strata\Utility\ErrorMessenger;
@@ -38,6 +39,8 @@ class Strata extends StrataContext {
      */
     protected $_loader = null;
 
+    protected $_logger = null;
+
     /**
      * Prepares the object for its run.
      * @throws \Exception Throws an exception if the configuration array could not be loaded.
@@ -46,6 +49,7 @@ class Strata extends StrataContext {
     {
         $this->_ready = false;
 
+        $this->_configureLogger();
         $this->_includeUtils();
         $this->loadConfiguration();
 
@@ -103,7 +107,7 @@ class Strata extends StrataContext {
      */
     public function getConfig($key)
     {
-        return Hash::extract($this->_config, $key);
+        return Hash::get($this->_config, $key);
     }
 
     /**
@@ -113,7 +117,7 @@ class Strata extends StrataContext {
      */
     public function setConfig($key, $value)
     {
-        return Hash::set($this->_config, $key, $value);
+        $this->_config = Hash::merge($this->_config, array($key => $value));
     }
 
     /**
@@ -132,6 +136,16 @@ class Strata extends StrataContext {
                 }
             }
         }
+    }
+
+    protected function _configureLogger()
+    {
+        $this->_logger = new Logger();
+    }
+
+    public function log($message, $context = "[Strata]")
+    {
+        return $this->_logger->log($message, $context);
     }
 
     /**
@@ -167,12 +181,23 @@ class Strata extends StrataContext {
         }
     }
 
-
     /**
      * Includes the debugger classes.
      * @return boolean True if the file was correctly included.
      */
     protected function _includeUtils()
+    {
+        return $this->_saveCurrentPID() && $this->_includeDebug();
+    }
+
+    protected function _saveCurrentPID()
+    {
+        $pid = getmypid();
+        $this->log(sprintf("Loaded and running with process ID %s", $pid));
+        return file_put_contents(self::getTmpPath() . "pid", $pid);
+    }
+
+    protected function _includeDebug()
     {
         return include_once(self::getUtilityPath() . "Debug.php");
     }

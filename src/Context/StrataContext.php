@@ -208,6 +208,16 @@ class StrataContext {
     }
 
     /**
+     * Returns the path to the log folder.
+     * @return string Path
+     */
+    public static function getLogPath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "log")) . DIRECTORY_SEPARATOR;
+    }
+
+
+    /**
      * Returns the path to the test folder.
      * @return string Path
      */

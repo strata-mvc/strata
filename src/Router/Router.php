@@ -3,6 +3,7 @@ namespace Strata\Router;
 
 use Exception;
 
+use Strata\Strata;
 use Strata\Router\RouteParser\Alto\AltoRouteParser;
 use Strata\Router\RouteParser\Callback\CallbackRouter;
 
@@ -18,6 +19,8 @@ class Router {
      * @var Strata\Router\RouteParser\Route A route that this object will try to execute
      */
     public $route = null;
+
+    private $executionStart = 0;
 
     /**
      * Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.
@@ -54,12 +57,30 @@ class Router {
 
         $this->route->process();
         if ($this->route->isValid()) {
+
+            $this->logRouteStart();
             $this->route->controller->init();
             $this->route->controller->before();
             $returnData = call_user_func_array(array($this->route->controller, $this->route->action), $this->route->arguments);
             $this->route->controller->after();
+            $this->logRouteCompletion();
+
             return $returnData;
         }
+    }
+
+    private function logRouteStart()
+    {
+        $app = Strata::app();
+        $this->executionStart = microtime(true);
+        $app->log(sprintf("Routing to -> %s#%s", get_class($this->route->controller), $this->route->action), "[Strata::Router]");
+    }
+
+    private function logRouteCompletion()
+    {
+        $app = Strata::app();
+        $executionTime = microtime(true) - $this->executionStart;
+        $app->log(sprintf("Done in %s seconds", round($executionTime, 4)), "[Strata::Router]");
     }
 }
 

@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
+use Strata\Strata;
 use WP_Query;
 
 class Query
@@ -89,10 +90,9 @@ class Query
 
     private function log($sql)
     {
-        if (WP_ENV == 'development') {
-            $oneLine = preg_replace('/\s+/', ' ', trim($sql));
-            error_log("\e[0;36m[STRATA QUERY]\e[0m: " . $oneLine . "\e[0m");
-        }
+        $oneLine = preg_replace('/\s+/', ' ', trim($sql));
+        $app = Strata::app();
+        $app->log($oneLine, "[Strata:Query]");
     }
 
 }

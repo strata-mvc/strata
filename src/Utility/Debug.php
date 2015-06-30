@@ -12,7 +12,11 @@ if (!function_exists('debug')) {
         $debug =  "(".gettype($mixed) . ") " . var_export($mixed, true);
         $footer =  "=======[Debug]=======";
 
-        error_log("\n\n\e[0;36m".$header . "\e[0m\n" . $debug . "\n\e[0;36m" . $footer . "\e[0m\n");
+        $app = \Strata\Strata::app();
+        $app->log("", "[Strata::debug]");
+        $app->log($debug, "[Strata::debug]");
+        $app->log("", "[Strata::debug]");
+
 
         echo "<pre>".$header."\n";
         echo $debug;
