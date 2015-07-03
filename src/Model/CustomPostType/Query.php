@@ -23,11 +23,17 @@ class Query
         return $query->posts;
     }
 
+    public function first()
+    {
+        $result = $this->fetch();
+        return array_shift($result);
+    }
+
     public function query()
     {
         $this->logQueryStart();
         $result = new WP_Query($this->_filters);
-        $this->logQueryCompletion($result->request);
+        $this->logQueryCompletion($result->re);
         return $result;
     }
 

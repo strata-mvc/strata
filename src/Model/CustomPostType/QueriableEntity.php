@@ -128,6 +128,12 @@ class QueriableEntity extends WordpressEntity
         return $query->listing($key, $label);
     }
 
+    public function first()
+    {
+        $result = $this->fetch();
+        return array_shift($result);
+    }
+
     private function throwIfContextInvalid()
     {
         if (is_null($this->activeQuery)) {
