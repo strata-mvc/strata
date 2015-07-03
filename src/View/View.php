@@ -42,7 +42,8 @@ class View {
     public function loadHelper($helperName, $config = array())
     {
         $helper = Helper::factory($helperName, $config);
-        return $this->set($helper->getShortName(), $helper);
+        $name = array_key_exists("name", (array)$config) ? $config["name"] : $helper->getShortName();
+        $this->set($name, $helper);
     }
 
     /**

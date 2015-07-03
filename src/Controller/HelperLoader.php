@@ -2,8 +2,10 @@
 
 namespace Strata\Controller;
 
+use Strata\Controller\Controller;
 use Strata\Strata;
 use Strata\Utility\Hash;
+use Exception;
 
 /**
  * Allows the automation of Helpers loading.
@@ -16,7 +18,7 @@ class HelperLoader {
     private $controller = null;
     private $helpers = null;
 
-    public function __construct(\Strata\Controller\Controller $controller)
+    public function __construct(Controller $controller)
     {
         if (is_null($controller)) {
             throw new Exception("No controller has been defined in which helpers can be instantiated.");
@@ -32,7 +34,7 @@ class HelperLoader {
      */
     public function hasHelpers()
     {
-        return count($this->_helpers) > 0;
+        return count($this->helpers) > 0;
     }
 
     /**
@@ -51,7 +53,8 @@ class HelperLoader {
 
     private function log()
     {
-        $app = Strata\Strata::app();
-        $app->log(sprintf("Autoloaded %s view helpers: %s", count($this->helpers), implode(", ", $this->helpers)), "[Strata::HelperLoader]");
+        $app = Strata::app();
+        $names = array_keys($this->helpers);
+        $app->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)));
     }
 }
