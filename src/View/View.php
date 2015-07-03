@@ -42,7 +42,7 @@ class View {
     public function loadHelper($helperName, $config = array())
     {
         $helper = Helper::factory($helperName, $config);
-        $this->set($helper->getShortName(), $helper);
+        return $this->set($helper->getShortName(), $helper);
     }
 
     /**
