@@ -2,6 +2,8 @@
 namespace Strata\View;
 
 use Strata\View\Template;
+use Strata\View\Helper\Helper;
+use Strata\Utility\Inflector;
 
 /**
  * Handles the generation of view html. It is important to understand this is not used
@@ -35,6 +37,12 @@ class View {
     public function loadTemplate($path)
     {
         return Template::parse($path, $this->getVariables());
+    }
+
+    public function loadHelper($helperName, $config = array())
+    {
+        $helper = Helper::factory($helperName, $config);
+        $this->set($helper->getShortName(), $helper);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Strata\Controller;
 
 use Strata\Controller\Request;
 use Strata\Controller\ShortcodeLoader;
+use Strata\Controller\HelperLoader;
 use Strata\View\View;
 use Strata\Strata;
 use Exception;
@@ -62,6 +63,13 @@ class Controller {
      */
     public $shortcodes = array();
 
+
+    /**
+     * Helpers that will need to be loaded across all the actions of the Controller.
+     * @var array
+     */
+    public $helpers = array();
+
     /**
      * Initiate the controller.
      * @return null
@@ -73,6 +81,9 @@ class Controller {
 
         $shortcodes = new ShortcodeLoader($this);
         $shortcodes->register();
+
+        $helpers = new HelperLoader($this);
+        $helpers->register();
     }
 
     /**
