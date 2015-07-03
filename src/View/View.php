@@ -43,7 +43,7 @@ class View {
     {
         $helper = Helper::factory($helperName, $config);
         $name = array_key_exists("name", (array)$config) ? $config["name"] : $helper->getShortName();
-        return $this->set($name, $helper);
+        $this->set($name, $helper);
     }
 
     /**
@@ -96,7 +96,7 @@ class View {
             "Content-type" => "text/html",
             "Content-disposition" => null,
             "content" => "",
-            "end" => false
+            "end" => true
         );
 
         $content = $this->_parseCurrentContent();
