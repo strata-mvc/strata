@@ -43,7 +43,7 @@ class View {
     {
         $helper = Helper::factory($helperName, $config);
         $name = array_key_exists("name", (array)$config) ? $config["name"] : $helper->getShortName();
-        $this->set($name, $helper);
+        return $this->set($name, $helper);
     }
 
     /**
