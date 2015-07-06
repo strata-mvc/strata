@@ -17,7 +17,7 @@ There are 3 types of routes :
 
 ## Resourced-based routing
 
-When you have created [Custom Post Types](/docs/models_customposttypes/), you may do automated routing on the object by adding it to the `resources` array.
+When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by adding it to the `resources` array.
 
 ~~~ php
 <?php
@@ -35,7 +35,7 @@ $strata = array(
 
 This will create 2 routes : one pointing to `PollController::index()` and a second one pointing to the `PollController::show($slug)` action.
 
-The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post type's `$configuration` array. Should it not have been customized, it will try to match the routes `cpt_poll/` and `cpt_poll/[.*]/`.
+The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post Type's `$configuration` array. Should it not have been customized, it will try to match the URLs `cpt_poll/` and `cpt_poll/[.*]/`.
 
 ## Matched routing
 
@@ -100,6 +100,11 @@ use Mywebsite\Model\Song;
 
 class SongController extends \Mywebsite\Controller\AppController {
 
+    public function index()
+    {
+
+    }
+
     public function show($slug = null)
     {
         if (!is_null($slug)) {
@@ -135,6 +140,7 @@ Quite frequently, you will want to hook into Wordpress using `add_filter` and `a
 
 ~~~ php
 <?php
+// function.php
     add_filter('pre_get_posts', \Strata\Router\Router::callback('CallbackController', 'onPreGetPosts'));
 ?>
 ~~~
@@ -169,7 +175,7 @@ Template Name: Song Page Template
 */
 ?>
 
-<?
+<?php
     # Call a controller#action
     $callback = \Strata\Router\Router::callback('SongController', 'index');
     $callback();

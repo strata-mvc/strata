@@ -4,6 +4,14 @@ title: Installation
 permalink: /docs/installation/
 ---
 
+## Requirements
+
+ - Linux, Mac OS, Cygwin (untested)
+ - PHP >= 5.3
+ - MySQL
+ - Composer
+ - Active Internet connection while running install scripts
+
 ## One step install
 
 The following steps are all contained in a script that can be ran form an online file. Make sure you know the security implications, but it makes the process simpler.
@@ -16,9 +24,8 @@ $ bash <(curl -s http://create-strata-project.francoisfaubert.com)
 
 ### Install Composer
 
-Strata is a tool with [Bedrock](https://roots.io/bedrock/) as main dependency, which uses [Composer](http://getcomposer.org/) to manage its dependencies.
+Strata requires [Bedrock](https://roots.io/bedrock/) as main dependency, and both tools use [Composer](http://getcomposer.org/) to manage their dependencies.
 
-You need Composer installed on your machine before using Strata and Bedrock.
 
 ### Install Strata
 
@@ -28,13 +35,13 @@ If you are starting from scratch, you will need to create a new Bedrock project.
 $ composer create-project roots/bedrock mywebsite
 ~~~
 
-From the project directory, add the Strata as a dependency.
+From the project directory, add Strata as a dependency.
 
 ~~~ bash
 $ composer require francoisfaubert/strata:dev-master
 ~~~
 
-There are some folders and files that need to be created in order for Strata to be used inside your project. To ensure you have everything needed, the last step is to run the Strata installer script which comes packaged in Strata.
+There are folders and files that need to be created in order for Strata to be used from within your project. To ensure you have everything needed, the last step is to run the Strata installer script which comes packaged in Strata.
 
 Ensure the file is executable first, then run the bash script. The script will confirm that you have the correct directory structure as well as populate your project with starter files.
 
@@ -45,24 +52,13 @@ $ vendor/francoisfaubert/strata/src/Scripts/install
 
 ## Wordpress hooks
 
-During the installation phase, Strata will include a new must-use plugin named `web/app/mu-plugin/strata-bootstraper.php`. It is this plugin that will ensure Strata is automatically loaded upon each page load.
+During the installation phase, Strata will include a new must-use plugin named `web/app/mu-plugin/strata-bootstraper.php`. It is this plugin that will ensure Strata is automatically registered upon each page load.
 
-## Requirements
+## Rebuilding a Strata project
 
-{% include workinprogress.html %}
+If you need to rebuild the project structure, whether because of how the project is versioned or simply because symbolic links are missing, you can run the packaged bootstrapping script. It will ensure Strata is properly configured in the current setting.
 
-Strata means to be as self-contained as possible. It achieves this be packaging all of the tools it needs within the project. With that in mind, the most self-contained way it can be used is within a Vagrant machine which will contain the required PHP and MySQL installation.
-
-Should you think this is unnecessary overhead, you can disable the Vagrant virtual machine and use the PHP and MySQL binaries available to your computer. One can therefore use a PHP binary supplied by MAMP by making their php binary available to your PATH variable.
-
-In other words, the requirements the purely **stand-alone mode** are :
-
- - Vagrant
- - VirtualBox
-
-The requirements for **local machine mode** are :
-
- - PHP >= 5.3 (available to your $PATH)
- - Mcrypt PHP Extension
- - MySQL
-
+~~~ bash
+$ chmod +x vendor/francoisfaubert/strata/src/Scripts/bootstrap
+$ vendor/francoisfaubert/strata/src/Scripts/bootstrap
+~~~
