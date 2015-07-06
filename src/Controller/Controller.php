@@ -38,6 +38,10 @@ class Controller {
      */
     public static function generateClassPath($name)
     {
+        if (!preg_match("/Controller/", $name)) {
+            $name .= "Controller";
+        }
+
         return Strata::getNamespace() . "\\Controller\\" . ucfirst($name);
     }
 

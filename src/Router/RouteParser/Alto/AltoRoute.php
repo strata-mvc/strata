@@ -5,6 +5,7 @@ use AltoRouter;
 use Strata\Controller\Controller;
 use Strata\Router\RouteParser\Route;
 use Strata\Controller\Request;
+use Exception;
 
 class AltoRoute extends Route
 {
@@ -13,6 +14,8 @@ class AltoRoute extends Route
      * @var AltoRouter
      */
     private $_altoRouter = null;
+
+    const DYNAMIC_PARSE = "__strata_dynamic_parse__";
 
     public function __construct()
     {
@@ -25,7 +28,10 @@ class AltoRoute extends Route
     public function addPossibilities($routes)
     {
         $routes = $this->_patchBuiltInServerPrefix($routes);
-        $this->_altoRouter->addRoutes($routes);
+
+        foreach ($routes as $route) {
+            $this->_altoRouter->map($route[0], $route[1], count($route) > 2 ? $route[2] : self::DYNAMIC_PARSE);
+        }
     }
 
     /**
@@ -36,6 +42,7 @@ class AltoRoute extends Route
         $this->_handleRouterAnswer();
     }
 
+
     private function _handleRouterAnswer()
     {
         $match = $this->_altoRouter->match();
@@ -43,8 +50,14 @@ class AltoRoute extends Route
             return;
         }
 
-        $this->controller   = $this->_getControllerFromMatch($match);
-        $this->action       = $this->_getActionFromMatch($match);
+        if ($match["target"] === self::DYNAMIC_PARSE) {
+            $this->controller   = $this->_getControllerFromDynamicMatch($match);
+            $this->action       = $this->_getActionFromDynamicMatch($match);
+        } else {
+            $this->controller   = $this->_getControllerFromMatch($match);
+            $this->action       = $this->_getActionFromMatch($match);
+        }
+
         $this->arguments    = $this->_getArgumentsFromMatch($match);
     }
 
@@ -52,6 +65,15 @@ class AltoRoute extends Route
     {
         $target = explode("#", $match["target"]);
         return Controller::factory($target[0]);
+    }
+
+    private function _getControllerFromDynamicMatch($match = array())
+    {
+        if (array_key_exists("controller", $match["params"])) {
+            return Controller::factory($match["params"]["controller"]);
+        }
+
+        throw new Exception("No valid controller could be parsed.");
     }
 
     private function _getActionFromMatch($match = array())
@@ -69,6 +91,15 @@ class AltoRoute extends Route
         } elseif ($this->controller->request->hasPost('action')) {
             return $this->controller->request->post('action');
         }
+    }
+
+    private function _getActionFromDynamicMatch($match)
+    {
+        if (array_key_exists("action", $match["params"])) {
+            return $match["params"]["action"];
+        }
+
+        throw new Exception("No valid action could be parsed.");
     }
 
     private function _getArgumentsFromMatch($match = array())
