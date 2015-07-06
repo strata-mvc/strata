@@ -39,6 +39,11 @@ class Controller {
      */
     public static function generateClassPath($name)
     {
+        return Strata::getNamespace() . "\\Controller\\" . self::generateClassName($name);
+    }
+
+    public static function generateClassName($name)
+    {
         $name = str_replace("-", "_", $name);
         $name = Inflector::classify($name);
 
@@ -46,8 +51,9 @@ class Controller {
             $name .= "Controller";
         }
 
-        return Strata::getNamespace() . "\\Controller\\" . $name;
+        return $name;
     }
+
 
     /**
      * The current request

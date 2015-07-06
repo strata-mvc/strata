@@ -2,10 +2,15 @@
 namespace Strata\Router\RouteParser\Alto;
 
 use AltoRouter;
-use Strata\Controller\Controller;
 use Strata\Router\RouteParser\Route;
+
+use Strata\Controller\Controller;
 use Strata\Controller\Request;
+use Strata\Model\Model;
+
+use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
+
 use Exception;
 
 class AltoRoute extends Route
@@ -14,13 +19,14 @@ class AltoRoute extends Route
      * Altorouter is the library that does the heavy lifting for us.
      * @var AltoRouter
      */
-    private $_altoRouter = null;
+    private $altoRouter = null;
 
     const DYNAMIC_PARSE = "__strata_dynamic_parse__";
+    const RESOURCE = "resources";
 
     public function __construct()
     {
-        $this->_altoRouter = new AltoRouter();
+        $this->altoRouter = new AltoRouter();
     }
 
     /**
@@ -28,10 +34,9 @@ class AltoRoute extends Route
      */
     public function addPossibilities($routes)
     {
-        $routes = $this->_patchBuiltInServerPrefix($routes);
 
         foreach ($routes as $route) {
-            $this->_altoRouter->map($route[0], $route[1], count($route) > 2 ? $route[2] : self::DYNAMIC_PARSE);
+            $this->parseRouteConfig($route);
         }
     }
 
@@ -40,35 +45,97 @@ class AltoRoute extends Route
      */
     public function process()
     {
-        $this->_handleRouterAnswer();
-    }
-
-    private function _handleRouterAnswer()
-    {
-        $match = $this->_altoRouter->match();
+        $match = $this->altoRouter->match();
 
         if (!is_array($match)) {
             return;
         }
 
-        if ($match["target"] === self::DYNAMIC_PARSE) {
-            $this->controller   = $this->_getControllerFromDynamicMatch($match);
-            $this->action       = $this->_getActionFromDynamicMatch($match);
-            $this->arguments    = $this->_getArgumentsFromDynamicMatch($match);
+        $this->handleRouterAnswer($match);
+    }
+
+    private function parseRouteConfig($route)
+    {
+        if (!is_array($route)) {
+            throw new Exception("Strata configuration file contains an invalid route.");
+        }
+
+        if ($this->isResourced($route)) {
+            $this->parseResourceRoute($route);
+        } elseif ($this->isDynamic($route)) {
+            $this->parseDynamicRoute($route);
         } else {
-            $this->controller   = $this->_getControllerFromMatch($match);
-            $this->action       = $this->_getActionFromMatch($match);
-            $this->arguments    = $this->_getArgumentsFromMatch($match);
+            $this->parseMatchedRoute($route);
         }
     }
 
-    private function _getControllerFromMatch($match = array())
+    private function isResourced($route)
+    {
+        return array_key_exists(self::RESOURCE, $route);
+    }
+
+    private function isDynamic($route)
+    {
+        return count($route) < 3;
+    }
+
+    private function parseResourceRoute($route)
+    {
+        foreach (Hash::normalize($route[self::RESOURCE]) as $customPostType => $config) {
+            $model = Model::factory($customPostType);
+
+            $slug = Hash::check($model->configuration, "rewrite.slug")
+                ? Hash::get($model->configuration, "rewrite.slug")
+                : $model->getWordpressKey();
+
+            $controller = Controller::generateClassName($slug);
+
+            $this->parseMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+            $this->parseMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
+        }
+    }
+
+    private function parseDynamicRoute($route)
+    {
+        $this->parseMatchedRoute(array($route[0], $route[1], self::DYNAMIC_PARSE));
+    }
+
+    private function parseMatchedRoute($route)
+    {
+        $route = $this->patchBuiltInServerPrefix($route);
+        $this->altoRouter->map($route[0], $route[1], $route[2]);
+    }
+
+    private function handleRouterAnswer($match)
+    {
+        if ($match["target"] === self::DYNAMIC_PARSE) {
+            $this->handleDynamicRouterAnswer($match);
+        } else {
+            $this->handleMatchedRouterAnswer($match);
+        }
+    }
+
+    private function handleDynamicRouterAnswer($match)
+    {
+        $this->controller   = $this->getControllerFromDynamicMatch($match);
+        $this->action       = $this->getActionFromDynamicMatch($match);
+        $this->arguments    = $this->getArgumentsFromDynamicMatch($match);
+    }
+
+    private function handleMatchedRouterAnswer($match)
+    {
+        $this->controller   = $this->getControllerFromMatch($match);
+        $this->action       = $this->getActionFromMatch($match);
+        $this->arguments    = $this->getArgumentsFromMatch($match);
+    }
+
+    private function getControllerFromMatch($match = array())
     {
         $target = explode("#", $match["target"]);
         return Controller::factory($target[0]);
     }
 
-    private function _getControllerFromDynamicMatch($match = array())
+    private function getControllerFromDynamicMatch($match = array())
     {
         if (array_key_exists("controller", $match["params"])) {
             return Controller::factory($match["params"]["controller"]);
@@ -77,7 +144,7 @@ class AltoRoute extends Route
         return Controller::factory("App");
     }
 
-    private function _getActionFromMatch($match = array())
+    private function getActionFromMatch($match = array())
     {
         $target = explode("#", $match["target"]);
 
@@ -94,7 +161,7 @@ class AltoRoute extends Route
         }
     }
 
-    private function _getActionFromDynamicMatch($match)
+    private function getActionFromDynamicMatch($match)
     {
         if (array_key_exists("action", $match["params"])) {
             $action = $match["params"]["action"];
@@ -105,7 +172,7 @@ class AltoRoute extends Route
         return "index";
     }
 
-    private function _getArgumentsFromMatch($match = array())
+    private function getArgumentsFromMatch($match = array())
     {
         if (is_array($match['params']) && count($match['params'])) {
             $params = $match['params'];
@@ -115,7 +182,7 @@ class AltoRoute extends Route
         return array();
     }
 
-    private function _getArgumentsFromDynamicMatch($match = array())
+    private function getArgumentsFromDynamicMatch($match = array())
     {
         if (array_key_exists("params", $match["params"])) {
             $params = $match["params"]["params"];
@@ -127,14 +194,12 @@ class AltoRoute extends Route
 
     // Built in server will generate links with index.php because
     // it doesn't have access to mod_reqrite
-    private function _patchBuiltInServerPrefix($routes)
+    private function patchBuiltInServerPrefix($route)
     {
-        foreach ($routes as $idx => $route) {
             if (!preg_match("/^\/index.php/i", $route[1])) {
                 $route[1] = "(/index.php)?" . $route[1];
-                $routes[$idx] = $route;
             }
-        }
-        return $routes;
+
+        return $route;
     }
 }

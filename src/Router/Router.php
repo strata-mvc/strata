@@ -56,9 +56,7 @@ class Router {
         }
 
         $this->route->process();
-
         if ($this->route->isValid()) {
-
             $this->logRouteStart();
             $this->route->controller->init();
             $this->route->controller->before();
@@ -68,7 +66,7 @@ class Router {
 
             return $returnData;
         } else {
-            $this->log(sprintf("%s#%s is not valid.", get_class($this->route->controller), $this->route->action));
+            $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
         }
     }
 
