@@ -294,7 +294,8 @@ class FormHelper extends \Strata\View\Helper\Helper {
                 return $prefixing . sprintf('<select %s>%s</select>', $this->_arrayToAttributes($options), $choices) . $suffixing;
 
             case "radio" :
-                 $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), "".$options['value'] === $value ? ' checked="checked"' : '' );
+                $choices = "";
+                $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), "".$options['value'] === $value ? ' checked="checked"' : '' );
                 return $prefixing . $choices . $suffixing;
 
             case "checkbox" :

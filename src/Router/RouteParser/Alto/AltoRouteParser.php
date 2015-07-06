@@ -40,10 +40,11 @@ class AltoRouteParser extends Router {
      * Unlike the templating using Controller#view->render() which allow
      * passing variables, Wordpress's load_template extracts variables in
      * $wp_query only.
-     * @param   $wp_query
      */
-    public function assignViewVars($wp_query)
+    public function assignViewVars()
     {
+        global $wp_query;
+
         if (!is_null($this->route->controller) && !is_null($this->route->controller->view)) {
             foreach ($this->route->controller->view->getVariables() as $key => $value) {
                 if (array_key_exists($key, $wp_query->query_vars)) {
@@ -57,8 +58,7 @@ class AltoRouteParser extends Router {
 
     protected function registerWordpressAction()
     {
-        add_action('init' , array($this, "onWordpressInit"));
-        add_action('parse_query',  array($this, 'assignViewVars'));
+        add_action('wp' , array($this, "onWordpressInit"));
     }
 
     /**
@@ -68,8 +68,6 @@ class AltoRouteParser extends Router {
     public function onWordpressInit()
     {
         $this->run();
+        $this->assignViewVars();
     }
-
 }
-
-
