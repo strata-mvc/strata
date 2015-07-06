@@ -2,6 +2,7 @@
 namespace Strata\View\Helper;
 
 use Strata\Strata;
+use Strata\Utility\Inflector;
 
 /**
  * A base class for ViewHelper objects
@@ -36,8 +37,8 @@ class Helper {
         if (!preg_match("/Helper$/", $name)) {
             $name .= "Helper";
         }
-
-        return Strata::getNamespace() . "\\View\\Helper\\" . ucfirst($name);
+        $name = str_replace("-", "_", $name);
+        return Strata::getNamespace() . "\\View\\Helper\\" . Inflector::classify($name);
     }
 
     public function getShortName()

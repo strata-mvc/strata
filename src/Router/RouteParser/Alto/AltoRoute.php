@@ -5,6 +5,7 @@ use AltoRouter;
 use Strata\Controller\Controller;
 use Strata\Router\RouteParser\Route;
 use Strata\Controller\Request;
+use Strata\Utility\Inflector;
 use Exception;
 
 class AltoRoute extends Route
@@ -42,10 +43,10 @@ class AltoRoute extends Route
         $this->_handleRouterAnswer();
     }
 
-
     private function _handleRouterAnswer()
     {
         $match = $this->_altoRouter->match();
+
         if (!is_array($match)) {
             return;
         }
@@ -53,12 +54,12 @@ class AltoRoute extends Route
         if ($match["target"] === self::DYNAMIC_PARSE) {
             $this->controller   = $this->_getControllerFromDynamicMatch($match);
             $this->action       = $this->_getActionFromDynamicMatch($match);
+            $this->arguments    = $this->_getArgumentsFromDynamicMatch($match);
         } else {
             $this->controller   = $this->_getControllerFromMatch($match);
             $this->action       = $this->_getActionFromMatch($match);
+            $this->arguments    = $this->_getArgumentsFromMatch($match);
         }
-
-        $this->arguments    = $this->_getArgumentsFromMatch($match);
     }
 
     private function _getControllerFromMatch($match = array())
@@ -73,7 +74,7 @@ class AltoRoute extends Route
             return Controller::factory($match["params"]["controller"]);
         }
 
-        throw new Exception("No valid controller could be parsed.");
+        return Controller::factory("App");
     }
 
     private function _getActionFromMatch($match = array())
@@ -96,16 +97,29 @@ class AltoRoute extends Route
     private function _getActionFromDynamicMatch($match)
     {
         if (array_key_exists("action", $match["params"])) {
-            return $match["params"]["action"];
+            $action = $match["params"]["action"];
+            $action = str_replace("-", "_", $action);
+            return lcfirst(Inflector::camelize($action));
         }
 
-        throw new Exception("No valid action could be parsed.");
+        return "index";
     }
 
     private function _getArgumentsFromMatch($match = array())
     {
         if (is_array($match['params']) && count($match['params'])) {
-            return $match['params'];
+            $params = $match['params'];
+            return is_array($params) ? $params : array($params);
+        }
+
+        return array();
+    }
+
+    private function _getArgumentsFromDynamicMatch($match = array())
+    {
+        if (array_key_exists("params", $match["params"])) {
+            $params = $match["params"]["params"];
+            return is_array($params) ? $params : array($params);
         }
 
         return array();

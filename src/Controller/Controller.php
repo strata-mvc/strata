@@ -7,6 +7,7 @@ use Strata\Controller\ShortcodeLoader;
 use Strata\Controller\HelperLoader;
 use Strata\View\View;
 use Strata\Strata;
+use Strata\Utility\Inflector;
 use Exception;
 
 /**
@@ -38,11 +39,14 @@ class Controller {
      */
     public static function generateClassPath($name)
     {
+        $name = str_replace("-", "_", $name);
+        $name = Inflector::classify($name);
+
         if (!preg_match("/Controller/", $name)) {
             $name .= "Controller";
         }
 
-        return Strata::getNamespace() . "\\Controller\\" . ucfirst($name);
+        return Strata::getNamespace() . "\\Controller\\" . $name;
     }
 
     /**

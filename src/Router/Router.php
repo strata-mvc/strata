@@ -56,6 +56,7 @@ class Router {
         }
 
         $this->route->process();
+
         if ($this->route->isValid()) {
 
             $this->logRouteStart();
@@ -66,21 +67,27 @@ class Router {
             $this->logRouteCompletion();
 
             return $returnData;
+        } else {
+            $this->log(sprintf("%s#%s is not valid.", get_class($this->route->controller), $this->route->action));
         }
     }
 
     private function logRouteStart()
     {
-        $app = Strata::app();
         $this->executionStart = microtime(true);
-        $app->log(sprintf("Routing to -> %s#%s", get_class($this->route->controller), $this->route->action), "[Strata::Router]");
+        $this->log(sprintf("Routing to -> %s#%s", get_class($this->route->controller), $this->route->action));
     }
 
     private function logRouteCompletion()
     {
-        $app = Strata::app();
         $executionTime = microtime(true) - $this->executionStart;
-        $app->log(sprintf("Done in %s seconds", round($executionTime, 4)), "[Strata::Router]");
+        $this->log(sprintf("Done in %s seconds", round($executionTime, 4)));
+    }
+
+    private function log($msg, $type = "[Strata::Router]")
+    {
+        $app = Strata::app();
+        $app->log($msg, $type);
     }
 }
 
