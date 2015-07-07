@@ -7,25 +7,73 @@
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prism.css" rel="stylesheet" media="all"/>
-    <link href="css/template.css" rel="stylesheet" media="all"/>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
     
     <!--[if lt IE 9]>
-    <script src="js/html5.js"></script>
+    <script src="../js/html5.js"></script>
     <![endif]-->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.smooth-scroll.js"></script>
-    <script src="js/prism.min.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    
-    <link rel="shortcut icon" href="images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"/>
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
 </head>
 <body>
 
@@ -35,16 +83,16 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <i class="icon-ellipsis-vertical"></i>
             </a>
-            <a class="brand" href="index.html">API Documentation</a>
+            <a class="brand" href="../index.html">API Documentation</a>
 
             <div class="nav-collapse">
                 <ul class="nav pull-right">
                                         <li class="dropdown">
-                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
                             API Documentation <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                                                        <li><a href="namespaces/Strata.html">\Strata</a></li>
+                                                        <li><a href="../namespaces/Strata.html">\Strata</a></li>
                                                     </ul>
                     </li>
                                         <li class="dropdown" id="charts-menu">
@@ -53,7 +101,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="graphs/class.html">
+                                <a href="../graphs/class.html">
                                     <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
                                 </a>
                             </li>
@@ -65,17 +113,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="reports/errors.html">
+                                <a href="../reports/errors.html">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">568</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="reports/markers.html">
+                                <a href="../reports/markers.html">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="reports/deprecated.html">
+                                <a href="../reports/deprecated.html">
                                                                                                             <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
@@ -96,33 +144,33 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-708373331"></a>
-                                <a href="namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1741538061"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-708373331" class="accordion-body collapse in">
+            <div id="namespace-1741538061" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1309365236"></a>
-                                <a href="namespaces/Strata.html" style="margin-left: 30px; padding-left: 0">Strata</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1934754911"></a>
+                                <a href="../namespaces/Strata.html" style="margin-left: 30px; padding-left: 0">Strata</a>
             </div>
-            <div id="namespace-1309365236" class="accordion-body collapse ">
+            <div id="namespace-1934754911" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1460595251"></a>
-                                <a href="namespaces/Strata.Context.html" style="margin-left: 30px; padding-left: 0">Context</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1497247379"></a>
+                                <a href="../namespaces/Strata.Context.html" style="margin-left: 30px; padding-left: 0">Context</a>
             </div>
-            <div id="namespace-1460595251" class="accordion-body collapse ">
+            <div id="namespace-1497247379" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Context.StrataContext.html">StrataContext</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Context.StrataContext.html">StrataContext</a></li>
                                             </ul>
                 </div>
             </div>
@@ -132,18 +180,18 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2057794204"></a>
-                                <a href="namespaces/Strata.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-476312587"></a>
+                                <a href="../namespaces/Strata.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
             </div>
-            <div id="namespace-2057794204" class="accordion-body collapse ">
+            <div id="namespace-476312587" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Controller.Controller.html">Controller</a></li>
-                                                    <li class="class"><a href="classes/Strata.Controller.HelperLoader.html">HelperLoader</a></li>
-                                                    <li class="class"><a href="classes/Strata.Controller.Request.html">Request</a></li>
-                                                    <li class="class"><a href="classes/Strata.Controller.ShortcodeLoader.html">ShortcodeLoader</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Controller.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.HelperLoader.html">HelperLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.ShortcodeLoader.html">ShortcodeLoader</a></li>
                                             </ul>
                 </div>
             </div>
@@ -153,15 +201,15 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1174510951"></a>
-                                <a href="namespaces/Strata.Emails.html" style="margin-left: 30px; padding-left: 0">Emails</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1966659649"></a>
+                                <a href="../namespaces/Strata.Emails.html" style="margin-left: 30px; padding-left: 0">Emails</a>
             </div>
-            <div id="namespace-1174510951" class="accordion-body collapse ">
+            <div id="namespace-1966659649" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Emails.EmailLoader.html">EmailLoader</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Emails.EmailLoader.html">EmailLoader</a></li>
                                             </ul>
                 </div>
             </div>
@@ -171,15 +219,15 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-997383056"></a>
-                                <a href="namespaces/Strata.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-489684451"></a>
+                                <a href="../namespaces/Strata.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
             </div>
-            <div id="namespace-997383056" class="accordion-body collapse ">
+            <div id="namespace-489684451" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Logger.Logger.html">Logger</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Logger.Logger.html">Logger</a></li>
                                             </ul>
                 </div>
             </div>
@@ -189,36 +237,36 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2127198515"></a>
-                                <a href="namespaces/Strata.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1653034030"></a>
+                                <a href="../namespaces/Strata.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
             </div>
-            <div id="namespace-2127198515" class="accordion-body collapse ">
+            <div id="namespace-1653034030" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1267365056"></a>
-                                <a href="namespaces/Strata.Model.CustomPostType.html" style="margin-left: 30px; padding-left: 0">CustomPostType</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-290837383"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.html" style="margin-left: 30px; padding-left: 0">CustomPostType</a>
             </div>
-            <div id="namespace-1267365056" class="accordion-body collapse ">
+            <div id="namespace-290837383" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1049354381"></a>
-                                <a href="namespaces/Strata.Model.CustomPostType.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-40298275"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
             </div>
-            <div id="namespace-1049354381" class="accordion-body collapse ">
+            <div id="namespace-40298275" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">CustomPostTypeAdminMenuRegistrar</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">CustomPostTypeRegistrar</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Registrar.Registrar.html">Registrar</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">TaxonomyRegistrar</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">CustomPostTypeAdminMenuRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">CustomPostTypeRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.Registrar.html">Registrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">TaxonomyRegistrar</a></li>
                                             </ul>
                 </div>
             </div>
@@ -227,32 +275,12 @@
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.CustomPostTypeLoader.html">CustomPostTypeLoader</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Entity.html">Entity</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.LabelParser.html">LabelParser</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.QueriableEntity.html">QueriableEntity</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.Query.html">Query</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.CustomPostType.TermsQuery.html">TermsQuery</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1798685517"></a>
-                                <a href="namespaces/Strata.Model.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
-            </div>
-            <div id="namespace-1798685517" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.Form.Form.html">Form</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Form.ModelValidation.html">ModelValidation</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Form.ValidationCollector.html">ValidationCollector</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.CustomPostTypeLoader.html">CustomPostTypeLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Entity.html">Entity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.LabelParser.html">LabelParser</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.QueriableEntity.html">QueriableEntity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.TermsQuery.html">TermsQuery</a></li>
                                             </ul>
                 </div>
             </div>
@@ -262,15 +290,17 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1784412242"></a>
-                                <a href="namespaces/Strata.Model.Taxonomy.html" style="margin-left: 30px; padding-left: 0">Taxonomy</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1501475575"></a>
+                                <a href="../namespaces/Strata.Model.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
             </div>
-            <div id="namespace-1784412242" class="accordion-body collapse ">
+            <div id="namespace-1501475575" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.Taxonomy.TaxonomyEntity.html">TaxonomyEntity</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Form.Form.html">Form</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Form.ModelValidation.html">ModelValidation</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Form.ValidationCollector.html">ValidationCollector</a></li>
                                             </ul>
                 </div>
             </div>
@@ -280,33 +310,15 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1997595658"></a>
-                                <a href="namespaces/Strata.Model.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1526507340"></a>
+                                <a href="../namespaces/Strata.Model.Taxonomy.html" style="margin-left: 30px; padding-left: 0">Taxonomy</a>
             </div>
-            <div id="namespace-1997595658" class="accordion-body collapse ">
+            <div id="namespace-1526507340" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.Validator.EmailValidator.html">EmailValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.InValidator.html">InValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.LengthValidator.html">LengthValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.NumericValidator.html">NumericValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.PostalcodeValidator.html">PostalcodeValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.PostExistsValidator.html">PostExistsValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.RequiredValidator.html">RequiredValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.SameValidator.html">SameValidator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.Validator.Validator.html">Validator</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Model.Model.html">Model</a></li>
-                                                    <li class="class"><a href="classes/Strata.Model.WordpressEntity.html">WordpressEntity</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.TaxonomyEntity.html">TaxonomyEntity</a></li>
                                             </ul>
                 </div>
             </div>
@@ -316,34 +328,33 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1808731449"></a>
-                                <a href="namespaces/Strata.Router.html" style="margin-left: 30px; padding-left: 0">Router</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-128411347"></a>
+                                <a href="../namespaces/Strata.Model.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
             </div>
-            <div id="namespace-1808731449" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1449991515"></a>
-                                <a href="namespaces/Strata.Router.RouteParser.html" style="margin-left: 30px; padding-left: 0">RouteParser</a>
-            </div>
-            <div id="namespace-1449991515" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1573535840"></a>
-                                <a href="namespaces/Strata.Router.RouteParser.Alto.html" style="margin-left: 30px; padding-left: 0">Alto</a>
-            </div>
-            <div id="namespace-1573535840" class="accordion-body collapse ">
+            <div id="namespace-128411347" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Router.RouteParser.Alto.AltoRoute.html">AltoRoute</a></li>
-                                                    <li class="class"><a href="classes/Strata.Router.RouteParser.Alto.AltoRouteParser.html">AltoRouteParser</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Validator.EmailValidator.html">EmailValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.InValidator.html">InValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.LengthValidator.html">LengthValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.NumericValidator.html">NumericValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostalcodeValidator.html">PostalcodeValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostExistsValidator.html">PostExistsValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.RequiredValidator.html">RequiredValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.SameValidator.html">SameValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.WordpressEntity.html">WordpressEntity</a></li>
                                             </ul>
                 </div>
             </div>
@@ -353,34 +364,34 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-537101554"></a>
-                                <a href="namespaces/Strata.Router.RouteParser.Callback.html" style="margin-left: 30px; padding-left: 0">Callback</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1343895741"></a>
+                                <a href="../namespaces/Strata.Router.html" style="margin-left: 30px; padding-left: 0">Router</a>
             </div>
-            <div id="namespace-537101554" class="accordion-body collapse ">
+            <div id="namespace-1343895741" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-704066524"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.html" style="margin-left: 30px; padding-left: 0">RouteParser</a>
+            </div>
+            <div id="namespace-704066524" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1305346363"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Alto.html" style="margin-left: 30px; padding-left: 0">Alto</a>
+            </div>
+            <div id="namespace-1305346363" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Router.RouteParser.Callback.CallbackRoute.html">CallbackRoute</a></li>
-                                                    <li class="class"><a href="classes/Strata.Router.RouteParser.Callback.CallbackRouter.html">CallbackRouter</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Router.RouteParser.Route.html">Route</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Router.Router.html">Router</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRoute.html">AltoRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRouteParser.html">AltoRouteParser</a></li>
                                             </ul>
                 </div>
             </div>
@@ -390,43 +401,34 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1523466150"></a>
-                                <a href="namespaces/Strata.Shell.html" style="margin-left: 30px; padding-left: 0">Shell</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2112185254"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Callback.html" style="margin-left: 30px; padding-left: 0">Callback</a>
             </div>
-            <div id="namespace-1523466150" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1612547588"></a>
-                                <a href="namespaces/Strata.Shell.Command.html" style="margin-left: 30px; padding-left: 0">Command</a>
-            </div>
-            <div id="namespace-1612547588" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-918338809"></a>
-                                <a href="namespaces/Strata.Shell.Command.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
-            </div>
-            <div id="namespace-918338809" class="accordion-body collapse ">
+            <div id="namespace-2112185254" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.ClassWriter.html">ClassWriter</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.CommandGenerator.html">CommandGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.ControllerGenerator.html">ControllerGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.CustomPostTypeGenerator.html">CustomPostTypeGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.FormGenerator.html">FormGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.GeneratorBase.html">GeneratorBase</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.HelperGenerator.html">HelperGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.ModelGenerator.html">ModelGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.RouteGenerator.html">RouteGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.TaxonomyGenerator.html">TaxonomyGenerator</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.Generator.ValidatorGenerator.html">ValidatorGenerator</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRoute.html">CallbackRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRouter.html">CallbackRouter</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.Router.html">Router</a></li>
                                             </ul>
                 </div>
             </div>
@@ -436,39 +438,43 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1313518568"></a>
-                                <a href="namespaces/Strata.Shell.Command.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1904968226"></a>
+                                <a href="../namespaces/Strata.Shell.html" style="margin-left: 30px; padding-left: 0">Shell</a>
             </div>
-            <div id="namespace-1313518568" class="accordion-body collapse ">
+            <div id="namespace-1904968226" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1112900517"></a>
+                                <a href="../namespaces/Strata.Shell.Command.html" style="margin-left: 30px; padding-left: 0">Command</a>
+            </div>
+            <div id="namespace-1112900517" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-935154804"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
+            </div>
+            <div id="namespace-935154804" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Shell.Command.Registrar.ProjectCommandRegistrar.html">ProjectCommandRegistrar</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Shell.Command.DBCommand.html">DBCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.DocumentationCommand.html">DocumentationCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.EnvCommand.html">EnvCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.GenerateCommand.html">GenerateCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.ServerCommand.html">ServerCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.StrataCommand.html">StrataCommand</a></li>
-                                                    <li class="class"><a href="classes/Strata.Shell.Command.TestCommand.html">TestCommand</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Shell.Shell.html">Shell</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ClassWriter.html">ClassWriter</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CommandGenerator.html">CommandGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ControllerGenerator.html">ControllerGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CustomPostTypeGenerator.html">CustomPostTypeGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.FormGenerator.html">FormGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.GeneratorBase.html">GeneratorBase</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.HelperGenerator.html">HelperGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ModelGenerator.html">ModelGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.RouteGenerator.html">RouteGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.TaxonomyGenerator.html">TaxonomyGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ValidatorGenerator.html">ValidatorGenerator</a></li>
                                             </ul>
                 </div>
             </div>
@@ -478,15 +484,39 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-289445988"></a>
-                                <a href="namespaces/Strata.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2121545447"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
             </div>
-            <div id="namespace-289445988" class="accordion-body collapse ">
+            <div id="namespace-2121545447" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Test.Test.html">Test</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Registrar.ProjectCommandRegistrar.html">ProjectCommandRegistrar</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DBCommand.html">DBCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DocumentationCommand.html">DocumentationCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.EnvCommand.html">EnvCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.GenerateCommand.html">GenerateCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.ServerCommand.html">ServerCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.StrataCommand.html">StrataCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.TestCommand.html">TestCommand</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Shell.html">Shell</a></li>
                                             </ul>
                 </div>
             </div>
@@ -496,17 +526,15 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1426371717"></a>
-                                <a href="namespaces/Strata.Utility.html" style="margin-left: 30px; padding-left: 0">Utility</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1692953132"></a>
+                                <a href="../namespaces/Strata.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
             </div>
-            <div id="namespace-1426371717" class="accordion-body collapse ">
+            <div id="namespace-1692953132" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Utility.Hash.html">Hash</a></li>
-                                                    <li class="class"><a href="classes/Strata.Utility.Inflector.html">Inflector</a></li>
-                                                    <li class="class"><a href="classes/Strata.Utility.String.html">String</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Test.Test.html">Test</a></li>
                                             </ul>
                 </div>
             </div>
@@ -516,25 +544,45 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1435046603"></a>
-                                <a href="namespaces/Strata.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-648585858"></a>
+                                <a href="../namespaces/Strata.Utility.html" style="margin-left: 30px; padding-left: 0">Utility</a>
             </div>
-            <div id="namespace-1435046603" class="accordion-body collapse ">
+            <div id="namespace-648585858" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Utility.Hash.html">Hash</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.Inflector.html">Inflector</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.String.html">String</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1439346371"></a>
+                                <a href="../namespaces/Strata.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+            </div>
+            <div id="namespace-1439346371" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-123575876"></a>
-                                <a href="namespaces/Strata.View.Helper.html" style="margin-left: 30px; padding-left: 0">Helper</a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1851207803"></a>
+                                <a href="../namespaces/Strata.View.Helper.html" style="margin-left: 30px; padding-left: 0">Helper</a>
             </div>
-            <div id="namespace-123575876" class="accordion-body collapse ">
+            <div id="namespace-1851207803" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.View.Helper.FormHelper.html">FormHelper</a></li>
-                                                    <li class="class"><a href="classes/Strata.View.Helper.Helper.html">Helper</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Helper.FormHelper.html">FormHelper</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.Helper.Helper.html">Helper</a></li>
                                             </ul>
                 </div>
             </div>
@@ -543,8 +591,8 @@
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.View.Template.html">Template</a></li>
-                                                    <li class="class"><a href="classes/Strata.View.View.html">View</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.View.html">View</a></li>
                                             </ul>
                 </div>
             </div>
@@ -553,7 +601,7 @@
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/Strata.Strata.html">Strata</a></li>
+                                                                                                    <li class="class"><a href="../classes/Strata.Strata.html">Strata</a></li>
                                             </ul>
                 </div>
             </div>
@@ -573,30 +621,38 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content namespace">
+                <div class="span8 content file">
                     <nav>
-                                                
-                                            </nav>
-                    <h1><small></small>\</h1>
+                                                                    </nav>
 
-                                        <h2>Namespaces</h2>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>Model/CustomPostType/Registrar</small>TaxonomyRegistrar.php</h1>
+                    <p><em></em></p>
+                    
+
+                    
+                    
+                                        <h2>Classes</h2>
                     <table class="table table-hover">
-                                                    <tr>
-                                <td><a href="namespaces/Strata.html">Strata</a></td>
-                            </tr>
-                                            </table>
-                    
-                    
-                    
+                                            <tr>
+                            <td><a href="../classes/Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">TaxonomyRegistrar</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                        </table>
                                     </div>
 
                 <aside class="span4 detailsbar">
                     <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                <div class="namespace-wrapper">\</div>
-                        </dd>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
                     </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
                 </aside>
             </div>
 
@@ -604,6 +660,16 @@
             
         </div>
     </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Model/CustomPostType/Registrar/TaxonomyRegistrar.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
 
     <footer class="row-fluid">
         <section class="span10 offset2">
@@ -614,7 +680,7 @@
                                                         <h1><i class="icon-code"></i></h1>
                             <div>
                                 <ul>
-                                                                            <li><a href="namespaces/Strata.html">\Strata</a></li>
+                                                                            <li><a href="../namespaces/Strata.html">\Strata</a></li>
                                                                     </ul>
                             </div>
                         </section>
@@ -622,7 +688,7 @@
                                                         <h1><i class="icon-bar-chart"></i></h1>
                             <div>
                                 <ul>
-                                    <li><a href="graphs/class.html">Class Hierarchy Diagram</a></li>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
                                 </ul>
                             </div>
                         </section>
@@ -630,8 +696,8 @@
                                                         <h1><i class="icon-pushpin"></i></h1>
                             <div>
                                 <ul>
-                                    <li><a href="reports/errors.html">Errors</a></li>
-                                    <li><a href="reports/markers.html">Markers</a></li>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
                                 </ul>
                             </div>
                         </section>
