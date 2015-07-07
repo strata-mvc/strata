@@ -6,7 +6,7 @@ permalink: /docs/routes/
 
 ## Configuring
 
-Routes are declared inside `/config/strata.php`. Routes are tested in the order that they appear in the configuration file.
+Routes are declared inside `/config/strata.php`. They are tested in the order that they appear in the configuration file.
 
 There are 3 types of routes :
 
@@ -35,13 +35,13 @@ $strata = array(
 
 This will create 2 routes : one pointing to `PollController::index()` and a second one pointing to the `PollController::show($slug)` action.
 
-The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post Type's `$configuration` array. Should it not have been customized, it will try to match the URLs `cpt_poll/` and `cpt_poll/[.*]/`.
+The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post Type's `$configuration` array. Should it not have been customized, it will try to match using the URL keys, which in this case would be `cpt_poll/` and `cpt_poll/[.*]/`.
 
 ## Matched routing
 
-Matched routing is when URL are compared to an exact string and are manually routed to a Controller and action.
+Matched routing occurs when URLs are compared to an exact string and are manually routed to a Controller and action destination.
 
-A route is represented by an array consisting of 3 indexes :
+This type of route is represented by an array consisting of 3 indexes :
 
 * The supported __request type__
 * The actual __permalink__ to match
@@ -63,15 +63,16 @@ $strata = array(
 
 ## Dynamically matched routing
 
-You can dynamically declare controllers and action using regular expression keys in the permalink. If you go as far as dynamically setting the controller and action, you no longer have to set the third destination parameter.
+You can dynamically declare controllers and actions using regular expression keys in the permalink. If you go as far as dynamically setting the controller and action, you no longer have to set the third destination parameter.
+
+Note that it is the parsing of the route that is dynamic and not the creation of the page. Wordpress needs to know the URL exists as post or page slug. Otherwise you will always be forwarded to the 404 page.
 
 ~~~ php
 <?php
 $strata = array(
     "routes" => array(
-
+        array('GET', '/about-us/team/[:slug]/', 'TeamController#show'),
         array('GET|POST|PATCH|PUT|DELETE', "/([:controller]/([:action]/([:params]/)?)?)?"),
-
     )
 );
 ?>
@@ -90,7 +91,7 @@ $strata = array(
 ?>
 ~~~
 
-The last route in the previous example will trigger on calls to `/music-page/my-name-is-jonas/` and `/music-page/x-y-u/`. These request will ensure a call to the `show` method of the controller `SongController` with the matched `slug` as first parameter.
+The last route in the previous example will trigger on calls to `/music-page/my-name-is-jonas/` and `/music-page/x-y-u/`. These request will be routed to the `show` method of the controller `SongController` with the matched `slug` as first parameter.
 
 ~~~ php
 <?php
@@ -119,7 +120,7 @@ class SongController extends \Mywebsite\Controller\AppController {
 
 ### More complex request matching
 
-Under the hood Strata uses AltoRouter. As long as you specify rules using their array notation it will work. More information about how you can customize the rules can be found on [Altorouter's documention page](https://github.com/dannyvankooten/AltoRouter).
+Under the hood Strata uses AltoRouter to match routes. As long as you specify rules using their array notation it will work. More information about how you can customize the rules can be found on [Altorouter's documention page](https://github.com/dannyvankooten/AltoRouter).
 
 <!--
 ## Creating a new route
@@ -166,7 +167,7 @@ class CallbackController extends \Mywebsite\Controller\AppController {
 
 You can route by templates by adding a call to gain a dynamic callback and running in at the top of your template file.
 
-In `template-song.php` :
+So, a `template-song.php` template file could look like the following :
 
 ~~~ php
 <?php
@@ -185,7 +186,7 @@ Template Name: Song Page Template
 ~~~
 
 
-## On translated pages
+## On translated pages and common destinations
 
 You can map multiple URLs to the same controller, therefore you can expect the following example to work the way you would think :
 

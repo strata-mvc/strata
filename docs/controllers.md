@@ -6,13 +6,11 @@ permalink: /docs/controllers/
 
 Controllers allow easy to understand entry points in modern web applications. Once you have set up at least one [application route]({{ site.baseurl }}/docs/routes/) in your project's [configuration file]({{ site.baseurl }}/docs/configuring/#strata-configuration) you will have to write the corresponding controller endpoints.
 
-The main use case of Controllers in Strata is to replace the need of placing pure code in the top area of a template file. Instead of instantiating queries and various variables inside a template file, you should place the code in a controller. The biggest gain is the ability to use the same business logic code multiple times as well as improving code testability.
-
-<p class="warning">No helpers or models are being auto-loaded by the controller as other MVC frameworks may do.</p>
+The main use case of Controllers in Strata is to replace the need of placing pure code in template file. Instead of instantiating queries and various variables inside the template file, you should place the code in a controller. The biggest gain is the ability to use the same business logic code multiple times as well as improving code testability.
 
 ## Creating a controller file
 
-To generate a Controller, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
+To generate a Controller, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined following the guidelines.
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
@@ -40,22 +38,22 @@ use Mywebsite\Model\Song;
 
 class SongsController extends \Mywebsite\Controller\AppController {
 
-    public $shortcodes = array("list_songs" => 'getSongsListingShortcode');
+    public $shortcodes = array("list_songs" => 'getSongsListing');
 
     public function index()
     {
     }
 
-    public function view($songId = null)
+    public function show($songId = null)
     {
         if (!is_null($songId)) {
-            $this->view->set("song", Song::findById((int)$songId));
+            $this->view->set("song", Song::repo()->findById((int)$songId));
         }
     }
 
-    public function getSongsListingShortcode()
+    public function getSongsListing()
     {
-        $list = Song::query()->listing("ID", "post_title");
+        $list = Song::repo()->inGlamRock()->listing("ID", "post_title");
         return "<p>" . implode(", ", $list) . "</p>";
     }
 }
@@ -66,7 +64,7 @@ class SongsController extends \Mywebsite\Controller\AppController {
 
 In the case where you have created a page in Wordpress and need to include dynamic values inside the post's CMS content, you may use auto-generated shortcodes.
 
-In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListingShortcode()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListingShortcode()`.
+In the earlier example, a shortcode named `list_songs` is generated and will point to `SongController::getSongsListing()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongsListing()`.
 
 Note that the permalink of this page must be caught by a route in order for the controller to be instantiated and the shortcode to be declared and applied.
 

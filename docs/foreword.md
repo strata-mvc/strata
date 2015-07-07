@@ -8,16 +8,17 @@ permalink: /docs/foreword/
 
 Bottom line : not yet ready to be used for a real project.
 
-However it should be ready "pretty soon" as I am solving issues daily on the project. Make sure to post pain points and found issues on our [Github](https://github.com/francoisfaubert/strata) to speed up this process.
+However it should be ready in the upcoming weeks as I am solving issues daily on the project. Make sure to submit pain points and issues on our [Github](https://github.com/francoisfaubert/strata) to speed up this process.
 
-Additionally, the documentation is not written with as much care as it deserves. I am French-speaking and writing in English is harder for me. I am also the one that coded most of this version of Strata and I have an understanding of every concepts and decisions. Because of this, I expect I may not be explaining the things other developers may not quite get.
+Additionally, the documentation is not written with as much care as it deserves. I am French-speaking and writing in English is harder for me. I am also the one that coded Strata and I have a complete understanding of every concept and historical decisions. Because of this I expect I may not be explaining things in neutral, clear ways for other developers.
 
 ## What's next
 
-I am committed in shipping a working release very soon as well as exposing the API and proper documentation. In the meantime, if you encounter spelling mistakes or inconsistencies in the code, please report them to me on GitHub (or even better contribute to the project!)
+Improvements to the way View Helpers are handled are to be expected.
 
-## Rough roadmap
+Data submission against Custom Post Type models needs to be re-factored into something cleaner and more intuitive.
 
-* Do **screen casts** as this will be the easiest way of discovering Strata
-* Improve Strata hooks that allow automated integration of Strata-aware Composer packages
-* Create a bin/strata.bat counterpart for Windows
+Features such as the email manager and SQLite support will be bundled as Strata plugins to be required manually with Composer.
+
+~ Frank
+July 7th, 2015
