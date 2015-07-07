@@ -22,9 +22,9 @@ Should you wish to link a taxonomy to created models you can do so using the `ha
 
 ~~~ php
 <?php
-namespace Mywebsite\Model;
+namespace Mywebsite;
 
-class Profile extends \Strata\Model\CustomPostType\Entity
+class Profile extends \App\Model\AppCustomPostType
 {
     public $configuration = array(
         'has' => array('Mywebsite\Model\ProfileType')
@@ -37,7 +37,7 @@ This will look for a taxonomy definition called `ProfileType`, which can be conf
 
 ~~~ php
 <?php
-namespace Mywebsite\Model;
+namespace Mywebsite;
 
 class ProfileType extends \Strata\Model\CustomPostType\TaxonomyEntity
 {
@@ -49,7 +49,6 @@ class ProfileType extends \Strata\Model\CustomPostType\TaxonomyEntity
 }
 ?>
 ~~~
-
 
 ## Additional options
 

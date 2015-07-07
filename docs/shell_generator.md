@@ -4,7 +4,7 @@ title: Object generator
 permalink: /docs/shell/generator/
 ---
 
-You should not be creating the files by hand when building a Strata app. We have a suite of commands and will do repetitive actions for you while ensuring that conventions are being enforced.
+You should not be creating the files by hand when building a Strata app. We have a suite of commands that does repetitive actions for you all the while ensuring conventions are being enforced.
 
 
 ## Controller
@@ -71,6 +71,7 @@ Generates a new shell command class.
 $ bin/strata generate command MyClass
 ~~~
 
+<!--
 ## Route
 
 Generates a new route.
@@ -78,3 +79,4 @@ Generates a new route.
 ~~~ sh
 $ bin/strata generate route GET|POST /[.*] AppController#index
 ~~~
+-->

@@ -70,8 +70,6 @@ Note that the permalink of this page must be caught by a route in order for the 
 
 In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\Strata\Router::callback()]({{ site.baserl }}/docs/routes/).
 
-Generating shortcodes like these is useful when using the [FormHelper]({{ site.baserl }}/docs/helpers/formhelper/) or when generating data that needs to be manipulated right form CMS data.
-
 
 ## Before and after
 
@@ -81,20 +79,23 @@ Upon each successful route match the router will call the `before()` and `after(
 <?php
 namespace Mywebsite\Controller;
 
+use Strata\Strata;
+use Exception;
+
 class AdminController extends \Mywebsite\Controller\AppController {
 
-    protected $_repository = null
+    protected $repository = null
 
     public function before()
     {
-        if ((bool)\Strata\Strata::config('useGithub')) {
-            $this->_repository = "http://github.com/xyz/";
+        if ((bool)Strata::config('useGithub')) {
+            $this->repository = "http://github.com/xyz/";
         } else {
-            $this->_repository = "http://bitbucket.org/xyz/";
+            $this->repository = "http://bitbucket.org/xyz/";
         }
 
         if (!is_admin()) {
-            throw new \Exception("This controller is expected to map to the admin.");
+            throw new Exception("This controller is expected to map to the admin.");
         }
     }
 }
@@ -103,15 +104,15 @@ class AdminController extends \Mywebsite\Controller\AppController {
 
 ## On ajax
 
-Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In our controllers, you can specify the rending method along side a content type and various options to ease request capture.
+Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In your controllers, you can specify the rending method along side a content type and various options to ease request capture.
 
-Assuming we have this routing rule in `app.php`:
+Assuming we have the following routing path in `config/strata.php`:
 
 ~~~ php
 array('POST',       '/wp-admin/admin-ajax.php', 'AjaxController'),
 ~~~
 
-Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore the controller will call the method matching the value of the posted `action` parameter.
+Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore Strata will call the method matching the value of the posted `$_POST['action']` value implicitly.
 
 The controller file could look like :
 
@@ -123,17 +124,12 @@ use Mywebsite\Model\Song;
 
 class AjaxController extends \Mywebsite\Controller\AppController {
 
-    public function before()
-    {
-        check_ajax_referer( SECURITY_SALT, 'security' );
-    }
-
     public function songs()
     {
         $data = Song::query()
             ->where("meta_key", "album_name")
             ->where("meta_value", $_POST['album_name'])
-            ->listing("ID", "post_title");
+            ->fetch();
 
         $this->view->render(array(
             "Content-type" => "text/javascript",

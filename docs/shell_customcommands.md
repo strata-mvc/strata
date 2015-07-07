@@ -19,8 +19,8 @@ The command will create a new class in the `src/Shell` directory.
 
 ~~~ sh
 Scaffolding command BundleCommand
-  ├── [SKIP] src/Shell/Command/BundleCommand.php
-  └── [SKIP] test/Shell/Command/BundleCommandTest.php
+  ├── [ OK ] src/Shell/Command/BundleCommand.php
+  └── [ OK ] test/Shell/Command/BundleCommandTest.php
 ~~~
 
 ## Executing
@@ -41,7 +41,7 @@ More information can be found in [Symfony's documentation](http://symfony.com/do
 
 ## Example
 
-The following is an example `bundle` command. It goes through all the themes installed on the current project and executes installation scripts of known libraries.
+The following is an example `bundle` command. It goes through all the themes installed on the current project and executes installation scripts of known frontend libraries.
 
 Looking at this class should give you a good understanding of what is possible with custom commands.
 

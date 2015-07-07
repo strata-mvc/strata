@@ -18,7 +18,7 @@ namespace MyProject\Model;
 
 use WP_Query;
 
-class Artist extends \Strata\Model\CustomPostType\Entity {
+class Artist extends \App\Model\AppCustomPostType {
 
     public static function findPublished()
     {
@@ -38,7 +38,7 @@ class Artist extends \Strata\Model\CustomPostType\Entity {
 
 Every view and template files would then call the centralized `MyProject\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal `Query` class is a preferred method of handling `WP_Query` assignments.
 
-## Internal Query class
+## Preferred Query class
 
 While the previous example is perfectly functional, we offer a way to improve on it. Model entities in Strata generate `Query` adapters that hold configuration data and can be chained or manipulated before triggering the query lookup.
 
@@ -51,9 +51,9 @@ The following example shows how to query published posts ordered by the menu ord
 ~~~ php
 <?php
 // src/Model/Artist.php
-namespace MyProject\Model;
+namespace MyProject;
 
-class Artist extends \Strata\Model\CustomPostType\Entity {
+class Artist extends \App\Model\AppCustomPostType {
 
     public function findPublished()
     {
@@ -72,3 +72,19 @@ class Artist extends \Strata\Model\CustomPostType\Entity {
 }
 ?>
 ~~~
+
+You can call this query from your controllers by accessing the repository using `repo()`:
+
+~~~ php
+<?php
+    debug(Artist::repo()->findPublished());
+?>
+~~~
+
+## Conventions
+
+There are conventions when building your model's queries. Following them will make your code easier to understand.
+
+* Functions prefixed with `find` will execute a database lookup
+* All other querying functions must be chainable
+* Functions are not expected to be static as to not break inheritance
