@@ -3,6 +3,7 @@ namespace Strata\View\Helper;
 
 use Strata\Strata;
 use Strata\Utility\Inflector;
+use Exception;
 
 /**
  * A base class for ViewHelper objects

@@ -2,6 +2,8 @@
 
 namespace Strata\Controller;
 
+use Exception;
+
 /**
  * Allows bridging between Strata and Wordpress for declaring shortcodes.
  */

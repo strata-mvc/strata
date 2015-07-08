@@ -137,8 +137,13 @@ class AltoRoute extends Route
 
     private function getControllerFromDynamicMatch($match = array())
     {
-        if (array_key_exists("controller", $match["params"])) {
-            return Controller::factory($match["params"]["controller"]);
+        try {
+            if (array_key_exists("controller", $match["params"])) {
+                return Controller::factory($match["params"]["controller"]);
+            }
+        } catch (Exception $e) {
+            // The controller did not exist, we don't care at this point.
+            // We'll just ignore the route.
         }
 
         return Controller::factory("App");
