@@ -120,7 +120,7 @@ class ArtistController extends AppController {
 ?>
 ~~~
 
-On the helpers are planned to automatically be instantiated by your controllers, you can use them in the template files like so:
+Once the helpers are planned to automatically be instantiated by your controllers, you can use them in the template files like so:
 
 ~~~ php
 <h1><?php the_title(); ?></h1>

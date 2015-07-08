@@ -14,11 +14,11 @@ You can bundle all of the related queries in the same object. It will make it mu
 
 ~~~ php
 <?php
-namespace MyProject\Model;
+namespace App\Model;
 
 use WP_Query;
 
-class Artist extends \App\Model\AppCustomPostType {
+class Artist extends AppCustomPostType {
 
     public static function findPublished()
     {
@@ -36,7 +36,7 @@ class Artist extends \App\Model\AppCustomPostType {
 ?>
 ~~~
 
-Every view and template files would then call the centralized `MyProject\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal `Query` class is a preferred method of handling `WP_Query` assignments.
+Every view and template files would then call the centralized `App\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal `Query` class is a preferred method of handling `WP_Query` assignments.
 
 ## Preferred Query class
 
@@ -51,9 +51,9 @@ The following example shows how to query published posts ordered by the menu ord
 ~~~ php
 <?php
 // src/Model/Artist.php
-namespace MyProject;
+namespace App;
 
-class Artist extends \App\Model\AppCustomPostType {
+class Artist extends AppCustomPostType {
 
     public function findPublished()
     {

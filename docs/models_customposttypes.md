@@ -36,9 +36,9 @@ The following example illustrates how we allow the `editor` feature and also mak
 
 ~~~ php
 <?php
-namespace MyProject\Model;
+namespace App\Model;
 
-class Artist extends \App\Model\AppCustomPostType {
+class Artist extends AppCustomPostType {
 
     public $configuration = array(
         "supports"  => array( 'title', 'editor' ),
