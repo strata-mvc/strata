@@ -8,11 +8,11 @@ On each instantiation of the Controller object, a linked Request object is creat
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-use Mywebsite\Model\Song;
+use App\Model\Song;
 
-class SongsController extends \Mywebsite\Controller\AppController {
+class SongsController extends AppController {
 
     public function save()
     {
@@ -33,11 +33,11 @@ You may also define a new instance of `Request` in one of your object to gain it
 
 ~~~ php
 <?php
-namespace Mywebsite\Model;
+namespace App\Model;
 
 use Strata\Controller\Request;
 
-class SubmissionModel {
+class SubmissionModel extends AppModel {
 
     public $request;
 

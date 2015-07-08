@@ -10,13 +10,13 @@ Validators should be passed as configuration arrays to the `validations` key of 
 
 ~~~ php
 <?php
-namespace Mywebsite\Model;
+namespace App\Model;
 
-class Song extends \Strata\Model\CustomPostType\Entity {
+class Song extends AppCustomPostType {
 {
     public $attributes = array(
         "artist"            => array("validations" => array("required", "postExists")),
-        'genre'             => array("validations" => array("in" => array("Mywebsite\Model\Song::genreListing"))),
+        'genre'             => array("validations" => array("in" => array("App\Model\Song::genreListing"))),
         "lyrics"            => array("validations" => array("required")),
         "year_active"       => array("validations" => array("required", "numeric", "length" => array("min" => 2, "max" => 4))),
         "email"             => array("validations" => array("required", "email", "same" => array("as" => "email_confirm"))),
@@ -59,7 +59,7 @@ This is to help creating form controls making it easier to look in value/labels 
 ~~~ php
 <?php
 public $attributes = array(
-    "attributename"      => array("validations" => array("in" => array("Mywebsite\Model\Song::genreListing"))),
+    "attributename"      => array("validations" => array("in" => array("App\Model\Song::genreListing"))),
 );
 
 public static function genreListing()
@@ -134,7 +134,7 @@ If optionally accepts the `if` attribute allowing optionally requirements based 
 <?php
 public $attributes = array(
     "name"          => array("validations" => array("required")), // always required
-    "specialattr"   => array("validations" => array("required" => array("if" => array("posted_field_name" => "value")))), // depends on $_POST['data[posted_field_name]']
+    "specialattr"   => array("validations" => array("required" => array("if" => array("posted_field_name" => "value")))), // depends on whether $_POST['data[posted_field_name]'] is set to "value"
 );
 ?>
 ~~~
@@ -169,7 +169,7 @@ To customize the error message of your validator, implement the function `getMes
 
 ~~~ php
 <?php
-namespace Mywebsite\Model\Validator;
+namespace App\Model\Validator;
 
 class MyValidator extends \Strata\Model\Validator {
 
@@ -192,13 +192,13 @@ If a validator does not do all you desire you may extend the default ones in you
 
 ~~~ php
 <?php
-namespace Mywebsite\Model\Validator;
+namespace App\Model\Validator;
 
 class PostExistsValidator extends \Strata\Model\Validator\PostExistsValidator {
 
     public function getMessage()
     {
-        return __("This post could not be found.", "Mywebsite");
+        return __("This post could not be found.", "App");
     }
 
 }

@@ -17,11 +17,11 @@ In the case of this typical call in a controller you will be able to format an e
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
 use Strata\Emails\EmailLoader;
 
-class ChildrenController extends \Mywebsite\Controller\AppController {
+class ChildrenController extends AppController {
 
     protected function _sendEmail()
     {

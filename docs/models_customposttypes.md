@@ -80,9 +80,9 @@ Here is a lengthy, but complete, example of how attributes and the FormHelper ca
 
 ~~~ php
 <?php
-namespace Mywebsite;
+namespace App\Model;
 
-class CustomerDetail extends \App\Model\AppCustomPostType {
+class CustomerDetail extends AppCustomPostType {
 {
     public $attributes = array(
         "telephone_area"            => array("validations" => array("required", "numeric", "length" => array("min" => 3, "max" => 3))),
@@ -98,7 +98,7 @@ class CustomerDetail extends \App\Model\AppCustomPostType {
         "postalcode"    => array("validations" => array("required", "postalcode")),
         "city"          => array("validations" => array("required")),
         "comment",
-        "agreements"              => array("validations" => array("required", "in" => array("Mywebsite\Model\CustomerDetail::agreementsListing"))),
+        "agreements"              => array("validations" => array("required", "in" => array("App\Model\CustomerDetail::agreementsListing"))),
     );
 
     public static function agreementsListing()

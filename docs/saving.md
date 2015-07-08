@@ -31,26 +31,26 @@ Because a form is considered completed once form steps are completed (if there w
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-use Mywebsite\Model\Song;
-use Mywebsite\Model\Form\SongForm;
+use App\Model\Song;
+use App\Model\Form\SongForm;
 
-class SongsController extends \Mywebsite\Controller\AppController {
+class SongsController extends AppController {
 
     public $shortcodes = array("songform" => 'getFormTemplate');
-    protected $_form = null;
+    protected $form = null;
 
     public function getFormTemplate()
     {
-        return $this->_form->toHtml();
+        return $this->form->toHtml();
     }
 
     public function create()
     {
         $song           = new Song();
         $form           = new SongForm();
-        $this->_form    = $form;
+        $this->form    = $form;
 
         $form->process(array($song));
 
@@ -72,9 +72,11 @@ The role of this object is to declare the context of the form as well as grant f
 
 ~~~ php
 <?php
-namespace Mywebsite\Model\Form;
+namespace App\Model\Form;
 
-class SongForm extends \Strata\Model\Form
+use Strata\Model\Form;
+
+class SongForm extends Form
 {
     public function init($options = array())
     {
@@ -95,7 +97,7 @@ class SongForm extends \Strata\Model\Form
 
 ## Preparing the view
 
-Though the form is loaded through a shortcode, there will still be templating involved. In the controller above, when `$this->_form->toHtml()` is called the form object will try to load template file located under `[current_theme]/templates/forms/*`. The name of the template is based on the `formKey` parameter sent in when constructing the `SongForm` object.
+Though the form is loaded through a shortcode, there will still be templating involved. In the controller above, when `$this->form->toHtml()` is called the form object will try to load template file located under `[current_theme]/templates/forms/*`. The name of the template is based on the `formKey` parameter sent in when constructing the `SongForm` object.
 
 Should your form have steps, the template's file name will have the current step name to it: `[current_theme]/templates/forms/songs.step1.php`.
 
@@ -189,12 +191,11 @@ The example bellow saves a new `Song` with the song title as post title and assi
 
 ~~~ php
 <?php
-namespace Mywebsite\Model;
+namespace App\Model;
 
-class Song extends \Strata\Model\CustomPostType\Entity {
+class Song extends AppCustomPostType{
 {
     public $attributes = array(
-        // Proofed info
         "title",                    => array("validations" => array("required")),
         "artist"                    => array("validations" => array("required", "postExists")),
         "telephone_area"            => array("validations" => array("required", "numeric", "length" => array("min" => 3, "max" => 3))),

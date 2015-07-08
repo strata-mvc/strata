@@ -31,7 +31,7 @@ Strata uses [Composer](http://getcomposer.org/) to manage it's dependencies. You
 If you are starting from scratch you will need to create a new Bedrock project, on which Strata is based.
 
 ~~~ bash
-$ composer create-project roots/bedrock mywebsite
+$ composer create-project roots/bedrock MyApplication
 ~~~
 
 From the project directory, add Strata as a dependency.

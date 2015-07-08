@@ -22,15 +22,22 @@ First, start by building your helper :
 
 ~~~ php
 <?php
-namespace MyProject\helper;
+namespace App\View\Helper;
 
-use MVC\View\Template;
+use Strata\View\Template;
 
 /**
  * Renderer for post thumbnails
  */
-class ThumbnailHelper extends \Strata\View\Helper\Helper
+class ThumbnailHelper extends AppHelper
 {
+    private $config = null;
+
+    function __construct($config = array())
+    {
+        $this->config = $config;
+    }
+
     /**
      * Renders the ACF Header
      * @param  integer
@@ -42,10 +49,10 @@ class ThumbnailHelper extends \Strata\View\Helper\Helper
             $postID = get_the_ID();
         }
 
-        $imgUrl = $this->_getImageUrl($postID);
+        $imgUrl = $this->getImageUrl($postID);
 
-        return Template::render(array(
-            "imageurl"  => $imgUrl,
+        return Template::parse("partials/thumbnail", array(
+            "imageUrl"  => $imgUrl,
             "permalink" => post_permalink($postID),
             "alt"       => htmlspecialchars(get_the_title($postID))
         ));
@@ -56,7 +63,7 @@ class ThumbnailHelper extends \Strata\View\Helper\Helper
      * @param  integer
      * @return string
      */
-    protected function _getImageUrl($postID)
+    protected function getImageUrl($postID)
     {
         if (has_post_thumbnail($postID)) {
             $thumbnailId = get_post_thumbnail_id($postID);
@@ -64,10 +71,10 @@ class ThumbnailHelper extends \Strata\View\Helper\Helper
             return $thumbnailObject->guid;
         }
 
-        return $this->_getDefaultThumbnailUrl();
+        return $this->getDefaultThumbnailUrl();
     }
 
-    protected function _getDefaultThumbnailUrl()
+    protected function getDefaultThumbnailUrl()
     {
         return sprintf("%s/assets/img/placeholder-medium.gif", get_template_directory_uri());
     }
@@ -75,15 +82,55 @@ class ThumbnailHelper extends \Strata\View\Helper\Helper
 ?>
 ~~~
 
-And then use it in your template files :
+Once your helper is ready, you must include it from within your controllers. You can have them be autoloaded by adding them to the public `$helpers` attribute, or manually using `$this->view->loadHelper()`.
+
+Both of these methods allow for a configuration array that can be sent to the helper's constructor. You can send values that you will handle yourself afterwards within the helper. The only value Strata will look for is the `name` key. If it is sent as part of the configuration, the helper will be declared with this variable name in the view files. Otherwise the variable name in the view is always suffixed with `Helper`.
 
 ~~~ php
 <?php
-    $thumb   = new MyProject\Helper\ThumbnailHelper();
-    echo $tumb->render();
+namespace App\Controller;
+
+use App\Model\Page;
+
+class ArtistController extends AppController {
+
+    public $helpers = array(
+        "Thumbnail",
+        "Acf" => array(
+            "name" => "Acf"
+        )
+    );
+
+    public function init()
+    {
+        parent::init();
+
+        // OR you can declare them manually
+        if (get_the_ID() == Page::schedulerPageID()) {
+            $this->view->loadHelper("Calendar", array("numberOfDays" => 5));
+        }
+    }
+
+    public function index()
+    {
+
+    }
+
+}
 ?>
+~~~
+
+On the helpers are planned to automatically be instantiated by your controllers, you can use them in the template files like so:
+
+~~~ php
+<h1><?php the_title(); ?></h1>
+
+<?php echo $ThumbnailHelper->render(); ?>
+
+<article><?php the_content(); ?></article>
+
 ~~~
 
 ## Pre-packaged Helpers
 
-Wordspress MVC currently only ships with the [FormHelper](/docs/helpers/formhelper/), from which you can derive to create your own forms.
+Strata currently ships with the [FormHelper](/docs/helpers/formhelper/), from which you can derive to create your own forms.

@@ -95,11 +95,11 @@ The last route in the previous example will trigger on calls to `/music-page/my-
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-use Mywebsite\Model\Song;
+use App\Model\Song;
 
-class SongController extends \Mywebsite\Controller\AppController {
+class SongController extends AppController {
 
     public function index()
     {
@@ -150,9 +150,9 @@ The previous example will call the method `onPreGetPosts` of your project's `Cal
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-class CallbackController extends \Mywebsite\Controller\AppController {
+class CallbackController extends AppController {
     public function onPreGetPosts($query)
     {
         // Manipulate the query.

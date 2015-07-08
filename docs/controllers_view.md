@@ -32,17 +32,19 @@ In a template file :
 
 Frequently, you will will have to load a template file containing HTML. To load a template file in which all view variables are instantiated, you can use the `loadTemplate` function.
 
+By default, calling `render()` will end the current PHP process and it will prevent the rendering of the full Wordpress template stack (which we don't need as we are printing partial data).
+
 ~~~ php
 <?php
-namespace Mywebsite;
+namespace App\Controller;
 
-use Mywebsite\Model\Profile;
+use App\Model\Profile;
 
-class AdminController extends \Mywebsite\Controller\AppController {
+class AdminController extends AppController {
 
     public function volunteersDashboardMetabox()
     {
-        $this->set('nbVolunteers', Profile::repo()->getVolunteerCount());
+        $this->set('nbVolunteers', Profile::repo()->findVolunteerCount());
 
         $this->view->render(array(
             "content" => $this->view->loadTemplate('admin/dashboard/profiles')
@@ -59,15 +61,15 @@ The value of `content` does not have to be of type `string`. You can return an A
 ~~~ php
 <?php
 
-namespace Mywebsite;
+namespace App\Controller;
 
-use Mywebsite\Model\Profile;
+use App\Model\Profile;
 
-class AjaxController extends \Mywebsite\Controller\AppController {
+class AjaxController extends AppController {
     public function getProfiles()
     {
         $this->view->render(array(
-            "content" => Profile::repo()->findAll())
+            "content" => Profile::repo()->findAll()
         ));
     }
 }
@@ -76,15 +78,15 @@ class AjaxController extends \Mywebsite\Controller\AppController {
 
 ## On file downloads
 
-By default, calling `render()` will end the current php process and it will prevent the rendering of the full Wordpress template stack (which we don't need as we are printing partial data). This function allows you to specify the content-type of the returned object as well as additional values to PHP's `header()` call. It is easy to set up file downloads by entering known PHP header arguments:
+ The `render()` function allows you to specify the content-type of the returned object as well as additional values which are sent to PHP's `header()` function. It is easy to set up file downloads by entering known PHP header arguments:
 
 ~~~ php
 <?php
-namespace Mywebsite;
+namespace App\Controller;
 
-use Mywebsite\Model\Form\CSVExportForm;
+use App\Model\Form\CSVExportForm;
 
-class FileController extends \Mywebsite\Controller\AppController {
+class FileController extends AppController {
 
     public function downloadcsv()
     {
@@ -105,11 +107,11 @@ Hooks into the backend will be rendered mid-page and not before the first line o
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-class AdminController extends \Mywebsite\Controller\AppController {
+class AdminController extends AppController {
 
-    public function secondProfileAction()
+    public function action()
     {
         $this->view->render(array(
             "content" => "This is content that will print on the page, but the admin's footer will appear.",

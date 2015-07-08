@@ -32,11 +32,11 @@ Here's how you could declare a controller for a Song entity:
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-use Mywebsite\Model\Song;
+use App\Model\Song;
 
-class SongsController extends \Mywebsite\Controller\AppController {
+class SongsController extends AppController {
 
     public $shortcodes = array("list_songs" => 'getSongsListing');
 
@@ -77,12 +77,12 @@ Upon each successful route match the router will call the `before()` and `after(
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
 use Strata\Strata;
 use Exception;
 
-class AdminController extends \Mywebsite\Controller\AppController {
+class AdminController extends AppController {
 
     protected $repository = null
 
@@ -109,7 +109,7 @@ Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In 
 Assuming we have the following routing path in `config/strata.php`:
 
 ~~~ php
-array('POST',       '/wp-admin/admin-ajax.php', 'AjaxController'),
+array('POST',       '/wp/wp-admin/admin-ajax.php', 'AjaxController'),
 ~~~
 
 Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore Strata will call the method matching the value of the posted `$_POST['action']` value implicitly.
@@ -118,15 +118,15 @@ The controller file could look like :
 
 ~~~ php
 <?php
-namespace Mywebsite\Controller;
+namespace App\Controller;
 
-use Mywebsite\Model\Song;
+use App\Model\Song;
 
-class AjaxController extends \Mywebsite\Controller\AppController {
+class AjaxController extends AppController {
 
     public function songs()
     {
-        $data = Song::query()
+        $data = Song::repo()
             ->where("meta_key", "album_name")
             ->where("meta_value", $_POST['album_name'])
             ->fetch();
