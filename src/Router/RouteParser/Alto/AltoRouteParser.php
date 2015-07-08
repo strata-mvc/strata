@@ -58,7 +58,8 @@ class AltoRouteParser extends Router {
 
     protected function registerWordpressAction()
     {
-        add_action('wp' , array($this, "onWordpressInit"));
+        $action = ($this->isAjax() || is_admin()) ? 'init' : 'wp';
+        add_action($action, array($this, "onWordpressInit"));
     }
 
     /**
@@ -69,5 +70,10 @@ class AltoRouteParser extends Router {
     {
         $this->run();
         $this->assignViewVars();
+    }
+
+    private function isAjax()
+    {
+        return defined('DOING_AJAX') && DOING_AJAX;
     }
 }

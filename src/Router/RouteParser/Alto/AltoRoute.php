@@ -34,9 +34,8 @@ class AltoRoute extends Route
      */
     public function addPossibilities($routes)
     {
-
         foreach ($routes as $route) {
-            $this->parseRouteConfig($route);
+            $this->addRouteConfig($route);
         }
     }
 
@@ -54,18 +53,18 @@ class AltoRoute extends Route
         $this->handleRouterAnswer($match);
     }
 
-    private function parseRouteConfig($route)
+    private function addRouteConfig($route)
     {
         if (!is_array($route)) {
             throw new Exception("Strata configuration file contains an invalid route.");
         }
 
         if ($this->isResourced($route)) {
-            $this->parseResourceRoute($route);
+            $this->addResourceRoute($route);
         } elseif ($this->isDynamic($route)) {
-            $this->parseDynamicRoute($route);
+            $this->addDynamicRoute($route);
         } else {
-            $this->parseMatchedRoute($route);
+            $this->addMatchedRoute($route);
         }
     }
 
@@ -79,7 +78,7 @@ class AltoRoute extends Route
         return count($route) < 3;
     }
 
-    private function parseResourceRoute($route)
+    private function addResourceRoute($route)
     {
         foreach (Hash::normalize($route[self::RESOURCE]) as $customPostType => $config) {
             $model = Model::factory($customPostType);
@@ -90,17 +89,17 @@ class AltoRoute extends Route
 
             $controller = Controller::generateClassName($slug);
 
-            $this->parseMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
-            $this->parseMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
+            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
         }
     }
 
-    private function parseDynamicRoute($route)
+    private function addDynamicRoute($route)
     {
-        $this->parseMatchedRoute(array($route[0], $route[1], self::DYNAMIC_PARSE));
+        $this->addMatchedRoute(array($route[0], $route[1], self::DYNAMIC_PARSE));
     }
 
-    private function parseMatchedRoute($route)
+    private function addMatchedRoute($route)
     {
         $route = $this->patchBuiltInServerPrefix($route);
         $this->altoRouter->map($route[0], $route[1], $route[2]);
