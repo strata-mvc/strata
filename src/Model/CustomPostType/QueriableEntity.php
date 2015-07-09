@@ -34,10 +34,11 @@ class QueriableEntity extends WordpressEntity
         $this->activeQuery = null;
     }
 
-    private function getCachedQueryAdapter()
+    private function reloadQueryAdapter()
     {
         if (is_null($this->activeQuery)) {
             $this->activeQuery = $this->getQueryAdapter();
+            $this->activeQuery->type($this->getWordpressKey());
         }
 
         return $this->activeQuery;
@@ -51,52 +52,49 @@ class QueriableEntity extends WordpressEntity
     public function query()
     {
         $this->resetCurrentQuery();
-
-        $query = $this->getCachedQueryAdapter();
-        $query->type($this->getWordpressKey());
-
+        $this->reloadQueryAdapter();
         return $this;
     }
 
     public function date($dateQuery)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->date($dateQuery);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->date($dateQuery);
         return $this;
     }
 
     public function orderby($orderBy)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->orderby($orderBy);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->orderby($orderBy);
         return $this;
     }
 
     public function direction($order)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->direction($order);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->direction($order);
         return $this;
     }
 
     public function status($status = null)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->status($status);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->status($status);
         return $this;
     }
 
     public function where($field, $value)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->where($field, $value);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->where($field, $value);
         return $this;
     }
 
     public function limit($qty)
     {
-        $query = $this->getCachedQueryAdapter();
-        $query->limit($qty);
+        $this->reloadQueryAdapter();
+        $this->activeQuery->limit($qty);
         return $this;
     }
 
@@ -108,10 +106,12 @@ class QueriableEntity extends WordpressEntity
     {
         $this->throwIfContextInvalid();
 
-        $query = $this->getCachedQueryAdapter();
+        $this->reloadQueryAdapter();
+        $results = $this->activeQuery->fetch();
+
         $this->resetCurrentQuery();
 
-        return $query->fetch();
+        return $results;
     }
 
     /**
@@ -122,10 +122,12 @@ class QueriableEntity extends WordpressEntity
     {
         $this->throwIfContextInvalid();
 
-        $query = $this->getCachedQueryAdapter();
+        $this->reloadQueryAdapter();
+        $results = $this->activeQuery->listing($key, $label);
+
         $this->resetCurrentQuery();
 
-        return $query->listing($key, $label);
+        return $results;
     }
 
     public function first()

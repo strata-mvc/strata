@@ -44,6 +44,11 @@ class Router {
         return AltoRouteParser::factory($routes);
     }
 
+    public static function isAjax()
+    {
+        return defined('DOING_AJAX') && DOING_AJAX;
+    }
+
     /**
      * Attemps to run the currently loaded route object.
      * @return mixed Returns what the action function will have returned.
@@ -56,6 +61,7 @@ class Router {
         }
 
         $this->route->process();
+
         if ($this->route->isValid()) {
             $this->logRouteStart();
             $this->route->controller->init();

@@ -14,6 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
 namespace Strata\Utility;
 
 /**
@@ -26,6 +27,7 @@ namespace Strata\Utility;
  * @link          http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html
  */
 class Inflector {
+
 /**
  * Plural inflector rules
  *
@@ -108,9 +110,11 @@ class Inflector {
             'hero' => 'heroes',
             'tooth' => 'teeth',
             'goose' => 'geese',
-            'foot' => 'feet'
+            'foot' => 'feet',
+            'sieve' => 'sieves'
         )
     );
+
 /**
  * Singular inflector rules
  *
@@ -161,6 +165,7 @@ class Inflector {
             'foes' => 'foe',
         )
     );
+
 /**
  * Words that should not be inflected
  *
@@ -180,6 +185,7 @@ class Inflector {
         'trousers', 'trout', 'tuna', 'Vermontese', 'Wenchowese', 'whiting', 'wildebeest',
         'Yengeese'
     );
+
 /**
  * Default map of accented and special characters to ASCII characters
  *
@@ -244,18 +250,21 @@ class Inflector {
         '/ї/' => 'yi',
         '/ź|ż|ž/' => 'z',
     );
+
 /**
  * Method cache array.
  *
  * @var array
  */
     protected static $_cache = array();
+
 /**
  * The initial state of Inflector so reset() works.
  *
  * @var array
  */
     protected static $_initialState = array();
+
 /**
  * Cache inflected values, and return if already available
  *
@@ -276,6 +285,7 @@ class Inflector {
         }
         return self::$_cache[$type][$key];
     }
+
 /**
  * Clears Inflectors inflected value caches. And resets the inflection
  * rules to the initial values.
@@ -293,6 +303,7 @@ class Inflector {
             }
         }
     }
+
 /**
  * Adds custom inflection $rules, of either 'plural', 'singular' or 'transliteration' $type.
  *
@@ -316,6 +327,7 @@ class Inflector {
  */
     public static function rules($type, $rules, $reset = false) {
         $var = '_' . $type;
+
         switch ($type) {
             case 'transliteration':
                 if ($reset) {
@@ -324,6 +336,7 @@ class Inflector {
                     self::$_transliteration = $rules + self::$_transliteration;
                 }
                 break;
+
             default:
                 foreach ($rules as $rule => $pattern) {
                     if (is_array($pattern)) {
@@ -350,6 +363,7 @@ class Inflector {
                 self::${$var}['rules'] = $rules + self::${$var}['rules'];
         }
     }
+
 /**
  * Return $word in plural form.
  *
@@ -361,24 +375,32 @@ class Inflector {
         if (isset(self::$_cache['pluralize'][$word])) {
             return self::$_cache['pluralize'][$word];
         }
+
         if (!isset(self::$_plural['merged']['irregular'])) {
             self::$_plural['merged']['irregular'] = self::$_plural['irregular'];
         }
+
         if (!isset(self::$_plural['merged']['uninflected'])) {
             self::$_plural['merged']['uninflected'] = array_merge(self::$_plural['uninflected'], self::$_uninflected);
         }
+
         if (!isset(self::$_plural['cacheUninflected']) || !isset(self::$_plural['cacheIrregular'])) {
             self::$_plural['cacheUninflected'] = '(?:' . implode('|', self::$_plural['merged']['uninflected']) . ')';
             self::$_plural['cacheIrregular'] = '(?:' . implode('|', array_keys(self::$_plural['merged']['irregular'])) . ')';
         }
-        if (preg_match('/(.*)\\b(' . self::$_plural['cacheIrregular'] . ')$/i', $word, $regs)) {
-            self::$_cache['pluralize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$_plural['merged']['irregular'][strtolower($regs[2])], 1);
+
+        if (preg_match('/(.*?(?:\\b|_))(' . self::$_plural['cacheIrregular'] . ')$/i', $word, $regs)) {
+            self::$_cache['pluralize'][$word] = $regs[1] .
+                substr($regs[2], 0, 1) .
+                substr(self::$_plural['merged']['irregular'][strtolower($regs[2])], 1);
             return self::$_cache['pluralize'][$word];
         }
+
         if (preg_match('/^(' . self::$_plural['cacheUninflected'] . ')$/i', $word, $regs)) {
             self::$_cache['pluralize'][$word] = $word;
             return $word;
         }
+
         foreach (self::$_plural['rules'] as $rule => $replacement) {
             if (preg_match($rule, $word)) {
                 self::$_cache['pluralize'][$word] = preg_replace($rule, $replacement, $word);
@@ -386,6 +408,7 @@ class Inflector {
             }
         }
     }
+
 /**
  * Return $word in singular form.
  *
@@ -397,30 +420,38 @@ class Inflector {
         if (isset(self::$_cache['singularize'][$word])) {
             return self::$_cache['singularize'][$word];
         }
+
         if (!isset(self::$_singular['merged']['uninflected'])) {
             self::$_singular['merged']['uninflected'] = array_merge(
                 self::$_singular['uninflected'],
                 self::$_uninflected
             );
         }
+
         if (!isset(self::$_singular['merged']['irregular'])) {
             self::$_singular['merged']['irregular'] = array_merge(
                 self::$_singular['irregular'],
                 array_flip(self::$_plural['irregular'])
             );
         }
+
         if (!isset(self::$_singular['cacheUninflected']) || !isset(self::$_singular['cacheIrregular'])) {
             self::$_singular['cacheUninflected'] = '(?:' . implode('|', self::$_singular['merged']['uninflected']) . ')';
             self::$_singular['cacheIrregular'] = '(?:' . implode('|', array_keys(self::$_singular['merged']['irregular'])) . ')';
         }
-        if (preg_match('/(.*)\\b(' . self::$_singular['cacheIrregular'] . ')$/i', $word, $regs)) {
-            self::$_cache['singularize'][$word] = $regs[1] . substr($word, 0, 1) . substr(self::$_singular['merged']['irregular'][strtolower($regs[2])], 1);
+
+        if (preg_match('/(.*?(?:\\b|_))(' . self::$_singular['cacheIrregular'] . ')$/i', $word, $regs)) {
+            self::$_cache['singularize'][$word] = $regs[1] .
+                substr($regs[2], 0, 1) .
+                substr(self::$_singular['merged']['irregular'][strtolower($regs[2])], 1);
             return self::$_cache['singularize'][$word];
         }
+
         if (preg_match('/^(' . self::$_singular['cacheUninflected'] . ')$/i', $word, $regs)) {
             self::$_cache['singularize'][$word] = $word;
             return $word;
         }
+
         foreach (self::$_singular['rules'] as $rule => $replacement) {
             if (preg_match($rule, $word)) {
                 self::$_cache['singularize'][$word] = preg_replace($rule, $replacement, $word);
@@ -430,6 +461,7 @@ class Inflector {
         self::$_cache['singularize'][$word] = $word;
         return $word;
     }
+
 /**
  * Returns the given lower_case_and_underscored_word as a CamelCased word.
  *
@@ -444,6 +476,7 @@ class Inflector {
         }
         return $result;
     }
+
 /**
  * Returns the given camelCasedWord as an underscored_word.
  *
@@ -453,11 +486,13 @@ class Inflector {
  */
     public static function underscore($camelCasedWord) {
         if (!($result = self::_cache(__FUNCTION__, $camelCasedWord))) {
-            $result = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $camelCasedWord));
+            $underscoredWord = preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $camelCasedWord);
+            $result = mb_strtolower($underscoredWord);
             self::_cache(__FUNCTION__, $camelCasedWord, $result);
         }
         return $result;
     }
+
 /**
  * Returns the given underscored_word_group as a Human Readable Word Group.
  * (Underscores are replaced by spaces and capitalized following words.)
@@ -468,11 +503,16 @@ class Inflector {
  */
     public static function humanize($lowerCaseAndUnderscoredWord) {
         if (!($result = self::_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord))) {
-            $result = ucwords(str_replace('_', ' ', $lowerCaseAndUnderscoredWord));
+            $result = explode(' ', str_replace('_', ' ', $lowerCaseAndUnderscoredWord));
+            foreach ($result as &$word) {
+                $word = mb_strtoupper(mb_substr($word, 0, 1)) . mb_substr($word, 1);
+            }
+            $result = implode(' ', $result);
             self::_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord, $result);
         }
         return $result;
     }
+
 /**
  * Returns corresponding table name for given model $className. ("people" for the model class "Person").
  *
@@ -487,6 +527,7 @@ class Inflector {
         }
         return $result;
     }
+
 /**
  * Returns Cake model class name ("Person" for the database table "people".) for given database table.
  *
@@ -501,6 +542,7 @@ class Inflector {
         }
         return $result;
     }
+
 /**
  * Returns camelBacked version of an underscored string.
  *
@@ -517,6 +559,7 @@ class Inflector {
         }
         return $result;
     }
+
 /**
  * Returns a string with all spaces converted to underscores (by default), accented
  * characters converted to non-accented characters, and non word characters removed.
@@ -528,14 +571,18 @@ class Inflector {
  */
     public static function slug($string, $replacement = '_') {
         $quotedReplacement = preg_quote($replacement, '/');
+
         $merge = array(
             '/[^\s\p{Zs}\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}]/mu' => ' ',
             '/[\s\p{Zs}]+/mu' => $replacement,
             sprintf('/^[%s]+|[%s]+$/', $quotedReplacement, $quotedReplacement) => '',
         );
+
         $map = self::$_transliteration + $merge;
         return preg_replace(array_keys($map), array_values($map), $string);
     }
+
 }
+
 // Store the initial state
 Inflector::reset();

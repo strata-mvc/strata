@@ -33,7 +33,7 @@ class Query
     {
         $this->logQueryStart();
         $result = new WP_Query($this->_filters);
-        $this->logQueryCompletion($result->re);
+        $this->logQueryCompletion($result->request);
         return $result;
     }
 
@@ -87,7 +87,11 @@ class Query
 
     public function where($field, $value)
     {
-        $this->_filters[$field]   = $value;
+        if (strtolower($field) === "meta_query") {
+            return $this->metaWhere($field, $value);
+        }
+
+        $this->_filters[$field] = $value;
         return $this;
     }
 
@@ -95,6 +99,21 @@ class Query
     {
         $this->_filters['posts_per_page']   = $qty;
         $this->_filters['nopaging']         = false;
+        return $this;
+    }
+
+    protected function metaWhere($field, $value)
+    {
+        // When other conditions exists, append
+        if (array_key_exists($field, $this->_filters) && is_array($this->_filters[$field])) {
+            $this->_filters[$field] += $value;
+        }
+
+        // This also allows query reset on "NULL"
+        else {
+            $this->_filters[$field] = $value;
+        }
+
         return $this;
     }
 
