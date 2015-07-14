@@ -87,7 +87,13 @@ class AltoRoute extends Route
                 ? Hash::get($model->configuration, "rewrite.slug")
                 : $model->getWordpressKey();
 
-            $controller = Controller::generateClassName($slug);
+
+            $hasMultipleLevels = explode("/", $slug);
+            if (count($hasMultipleLevels) > 1) {
+                $controller = Controller::generateClassName($hasMultipleLevels[0]);
+            } else {
+                $controller = Controller::generateClassName($slug);
+            }
 
             $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
             $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));

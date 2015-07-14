@@ -90,6 +90,9 @@ class Query
         if (strtolower($field) === "meta_query") {
             return $this->metaWhere($field, $value);
         }
+        elseif (strtolower($field) === "tax_query") {
+            return $this->taxWhere($field, $value);
+        }
 
         $this->_filters[$field] = $value;
         return $this;
@@ -106,7 +109,7 @@ class Query
     {
         // When other conditions exists, append
         if (array_key_exists($field, $this->_filters) && is_array($this->_filters[$field])) {
-            $this->_filters[$field] += $value;
+            $this->_filters[$field][] = $value[0];
         }
 
         // This also allows query reset on "NULL"
@@ -115,6 +118,11 @@ class Query
         }
 
         return $this;
+    }
+
+    protected function taxWhere($field, $value)
+    {
+        return $this->metaWhere($field, $value);
     }
 
     private function logQueryStart()
