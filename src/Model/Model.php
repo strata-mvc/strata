@@ -4,6 +4,7 @@ namespace Strata\Model;
 use Strata\Model\Form\ModelValidation;
 use Strata\Model\Validator\Validator;
 use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Strata;
 
 use Exception;
@@ -22,7 +23,13 @@ class Model {
      */
     public static function generateClassPath($name)
     {
-        return Strata::getNamespace() . "\\Model\\" . ucfirst($name);
+        return Strata::getNamespace() . "\\Model\\" . self::generateClassName($name);
+    }
+
+    public static function generateClassName($name)
+    {
+        $name = str_replace("-", "_", $name);
+        return Inflector::classify($name);
     }
 
     public static function factory($name)

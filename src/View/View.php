@@ -4,6 +4,7 @@ namespace Strata\View;
 use Strata\View\Template;
 use Strata\View\Helper\Helper;
 use Strata\Utility\Inflector;
+use Strata\Router\Router;
 
 /**
  * Handles the generation of view html. It is important to understand this is not used
@@ -96,7 +97,9 @@ class View {
             "Content-type" => "text/html",
             "Content-disposition" => null,
             "content" => "",
-            "end" => true
+            // Only the admin does not end Wordpress' parsing of the views
+            // because we hook in the middle of the page.
+            "end" =>  is_admin() ? false : true
         );
 
         $content = $this->_parseCurrentContent();

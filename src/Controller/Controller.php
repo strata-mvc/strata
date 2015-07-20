@@ -47,7 +47,7 @@ class Controller {
         $name = str_replace("-", "_", $name);
         $name = Inflector::classify($name);
 
-        if (!preg_match("/Controller/", $name)) {
+        if (!preg_match("/Controller$/", $name)) {
             $name .= "Controller";
         }
 
