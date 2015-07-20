@@ -87,7 +87,6 @@ class AltoRoute extends Route
                 ? Hash::get($model->configuration, "rewrite.slug")
                 : $model->getWordpressKey();
 
-
             $hasMultipleLevels = explode("/", $slug);
             if (count($hasMultipleLevels) > 1) {
                 $controller = Controller::generateClassName($hasMultipleLevels[0]);
@@ -202,13 +201,16 @@ class AltoRoute extends Route
         return array();
     }
 
-    // Built in server will generate links with index.php because
-    // it doesn't have access to mod_reqrite
+    /**
+     * Built in server will generate links with index.php because
+     * it doesn't have access to mod_rewrite. This function appends
+     * index to the route sent in.
+     */
     private function patchBuiltInServerPrefix($route)
     {
-            if (!preg_match("/^\/index.php/i", $route[1])) {
-                $route[1] = "(/index.php)?" . $route[1];
-            }
+        if (!preg_match("/^\/index.php/i", $route[1])) {
+            $route[1] = "(/index.php)?" . $route[1];
+        }
 
         return $route;
     }

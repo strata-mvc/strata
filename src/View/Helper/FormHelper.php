@@ -4,9 +4,30 @@ namespace Strata\View\Helper;
 
 use Strata\Controller\Request;
 use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Model\Form\ValidationCollector;
 
 class FormHelper extends \Strata\View\Helper\Helper {
+
+    public static function generateClassPath($name)
+    {
+        return Strata::getNamespace() . "\\View\\" . self::generateClassName($name);
+    }
+
+    public static function generateClassName($name)
+    {
+        $name = str_replace("-", "_", $name);
+        $name = Inflector::classify($name);
+
+        if (preg_match("/Form$/", $name)) {
+            $name .= "Helper";
+        } elseif (!preg_match("/FormHelper$/", $name)) {
+            $name .= "FormHelper";
+        }
+
+        return $name;
+    }
+
 
     const POST_KEY_CURRENT      = "mvc-current-step";
     const POST_KEY_NEXT_PAGE    = "mvc-next-step";

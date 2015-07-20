@@ -3,11 +3,29 @@
 namespace Strata\Model\Form;
 
 use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Controller\Request;
 use Strata\View\Helper\FormHelper;
 use Strata\Model\Form\ValidationCollector;
 
 class Form {
+
+    public static function generateClassPath($name)
+    {
+        return Strata::getNamespace() . "\\Model\\Form\\" . self::generateClassName($name);
+    }
+
+    public static function generateClassName($name)
+    {
+        $name = str_replace("-", "_", $name);
+        $name = Inflector::classify($name);
+
+        if (!preg_match("/Form/", $name)) {
+            $name .= "Form";
+        }
+
+        return $name;
+    }
 
     protected $_formHelper = null;
     protected $_formKey = null;
@@ -81,6 +99,11 @@ class Form {
     public function hasErrors()
     {
         return $this->_validationCollector->hasErrors();
+    }
+
+    public function triggerError()
+    {
+        $this->_completed = false;
     }
 
     public function getAssignments()
@@ -271,7 +294,7 @@ class Form {
     private function _linktoView(\Strata\View\View $view)
     {
         $this->_view = $view;
-        $this->_view->set($this->getShortName(), $this->getHelper());
+        $this->_view->set(FormHelper::generateClassName($this->getShortName()), $this->getHelper());
     }
 
     private function _assignHelper($frmHelper)
