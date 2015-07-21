@@ -91,6 +91,13 @@ class QueriableEntity extends WordpressEntity
         return $this;
     }
 
+    public function orWhere($field, $value)
+    {
+        $this->reloadQueryAdapter();
+        $this->activeQuery->orWhere($field, $value);
+        return $this;
+    }
+
     public function limit($qty)
     {
         $this->reloadQueryAdapter();

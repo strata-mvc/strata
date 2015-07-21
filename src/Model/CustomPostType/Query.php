@@ -13,6 +13,14 @@ class Query
         'post_status'      => 'any',
         'nopaging'         => true,
         'suppress_filters' => true,
+
+        // This field, though not used by Wordpress will
+        // allow some flexibility with combining AND and OR query
+        // relations.
+        'strata_relations' => array(
+            'meta_query' => array("AND" => array(), "OR" => array()),
+            'tax_query' => array("AND" => array(), "OR" => array()),
+        ),
     );
 
     private $executionStart = 0;
@@ -31,9 +39,16 @@ class Query
 
     public function query()
     {
+        $this->carryOverIncompatibleQueries();
+        return $this->executeFilteredQuery();
+    }
+
+    private function executeFilteredQuery()
+    {
         $this->logQueryStart();
         $result = new WP_Query($this->_filters);
         $this->logQueryCompletion($result->request);
+
         return $result;
     }
 
@@ -98,6 +113,20 @@ class Query
         return $this;
     }
 
+    public function orWhere($field, $value)
+    {
+        if (strtolower($field) === "meta_query") {
+            return $this->metaWhere($field, $value, 'OR');
+        }
+        elseif (strtolower($field) === "tax_query") {
+            return $this->taxWhere($field, $value, 'OR');
+        }
+
+        $this->_filters[$field] = $value;
+        return $this;
+    }
+
+
     public function limit($qty)
     {
         $this->_filters['posts_per_page']   = $qty;
@@ -105,24 +134,125 @@ class Query
         return $this;
     }
 
-    protected function metaWhere($field, $value)
+    public function getFilters()
     {
-        // When other conditions exists, append
-        if (array_key_exists($field, $this->_filters) && is_array($this->_filters[$field])) {
-            $this->_filters[$field][] = $value[0];
-        }
+        return $this->_filters;
+    }
 
-        // This also allows query reset on "NULL"
-        else {
-            $this->_filters[$field] = $value;
+    public function applyFilters($filters)
+    {
+        foreach($filters as $key => $value) {
+            $this->_filters[$key] = $value;
         }
 
         return $this;
     }
 
-    protected function taxWhere($field, $value)
+
+    // If previous meta queries are set, they may prevent the combination of
+    // both 'AND' and 'OR' relation. Carries over the exclusive fields as a list of
+    // IDs to apply in a Query with a new meta_query relation type.
+    protected function carryOverIncompatibleQueries()
     {
-        return $this->metaWhere($field, $value);
+        foreach($this->_filters['strata_relations'] as $queryType => $queryDetails) {
+
+            if ($this->hasRelationQuery($queryType, 'AND') && $this->hasRelationQuery($queryType, 'OR')) {
+                $this->andRelationToPostIn($queryType);
+            }
+
+            // At this point, there should only be exclusive AND or OR query groups
+            $metaQueries = null;
+            $relationTypes = array_keys($queryDetails);
+            foreach ($relationTypes as $relationType)  {
+                if ($this->hasRelationQuery($queryType, $relationType)) {
+                    $metaQueries = $this->getRelationQuery($queryType, $relationType);
+                    $this->setQueryRelation($queryType, $relationType);
+                    $this->resetQueryRelation($queryType, $relationType);
+                }
+            }
+
+            if (!is_null($metaQueries)) {
+                foreach($metaQueries as $query) {
+                    $this->addRelationQuery($queryType, $query);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    public function andRelationToPostIn($query_type)
+    {
+        $andQuery = new Query();
+
+        // Copy the current Query but remove the OR conditions.
+        // They will be looked up as this instance goes on with
+        // the process.
+        $andQuery->applyFilters($this->_filters);
+        $andQuery->resetQueryRelation($query_type, 'OR');
+
+        // This forces the AND relationships to be loaded before
+        // comparing the or parameters
+        $andIds = $andQuery->listing("ID", "ID");
+        $this->where('post__in', array_values($andIds));
+        $this->resetQueryRelation($query_type, 'AND');
+
+        return $this;
+    }
+
+    public function resetQueryRelation($which, $type)
+    {
+        $this->_filters['strata_relations'][$which][$type] = array();
+        return $this;
+    }
+
+    public function getRelationQuery($which, $type)
+    {
+        return $this->_filters['strata_relations'][$which][$type];
+    }
+
+    public function hasRelationQuery($which, $type)
+    {
+        return count($this->getRelationQuery($which, $type)) > 0;
+    }
+
+    public function setQueryRelation($type, $which)
+    {
+        $this->prepareRelationFilter($type);
+        $this->_filters[$type]['relation'] = $which;
+        return $this;
+    }
+
+    public function prepareRelationFilter($type)
+    {
+        if (!array_key_exists($type, $this->_filters) || !is_array($this->_filters[$type])) {
+            $this->_filters[$type] = array();
+        }
+        return $this;
+    }
+
+    // This does not actually set the meta_query parameter. It is
+    // used to build a more complex AND/OR logical fetch.
+    protected function metaWhere($field, $value, $compare = 'AND')
+    {
+        $this->_filters['strata_relations']['meta_query'][$compare][] = $value;
+        return $this;
+    }
+
+    // This does not actually set the meta_query parameter. It is
+    // used to build a more complex AND/OR logical fetch.
+    protected function taxWhere($field, $value, $compare = 'AND')
+    {
+        $this->_filters['strata_relations']['tax_query'][$compare][] = $value;
+        return $this;
+    }
+
+    // This actually set the wp_query parameter
+    private function addRelationQuery($type, $value)
+    {
+        $this->prepareRelationFilter($type);
+        $this->_filters[$type][] = $value;
+        return $this;
     }
 
     private function logQueryStart()

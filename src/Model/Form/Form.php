@@ -72,6 +72,11 @@ class Form {
         return $rc->getShortName();
     }
 
+    public function getKey()
+    {
+        return $this->_formKey;
+    }
+
     public function toHtml()
     {
         $tplPath = 'forms' . DIRECTORY_SEPARATOR . $this->_getStepFilename();
