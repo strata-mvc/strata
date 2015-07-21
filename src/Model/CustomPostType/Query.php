@@ -40,6 +40,7 @@ class Query
     public function query()
     {
         $this->carryOverIncompatibleQueries();
+        $this->relationsToQueries();
         return $this->executeFilteredQuery();
     }
 
@@ -159,7 +160,14 @@ class Query
             if ($this->hasRelationQuery($queryType, 'AND') && $this->hasRelationQuery($queryType, 'OR')) {
                 $this->andRelationToPostIn($queryType);
             }
+        }
 
+        return $this;
+    }
+
+    protected function relationsToQueries()
+    {
+        foreach($this->_filters['strata_relations'] as $queryType => $queryDetails) {
             // At this point, there should only be exclusive AND or OR query groups
             $metaQueries = null;
             $relationTypes = array_keys($queryDetails);
@@ -181,7 +189,7 @@ class Query
         return $this;
     }
 
-    public function andRelationToPostIn($query_type)
+    protected function andRelationToPostIn($query_type)
     {
         $andQuery = new Query();
 
