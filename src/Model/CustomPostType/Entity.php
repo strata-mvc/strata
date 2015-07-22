@@ -33,6 +33,28 @@ class Entity extends QueriableEntity
     public $wpPrefix = "cpt_";
 
     /**
+     * Returns whether or not the current model supports and has taxonomies.
+     * @return boolean True if model has taxonomies
+     */
+    public function hasTaxonomies()
+    {
+        return array_key_exists("has", $this->configuration) && count($this->configuration['has'] > 0);
+    }
+
+    /**
+     * Gets the associated taxonomy objects.
+     * @return array
+     */
+    public function getTaxonomies()
+    {
+        $tax = array();
+        foreach ($this->configuration['has']  as $taxonomyName) {
+            $tax[] = Model::factory($taxonomyName);
+        }
+        return $tax;
+    }
+
+    /**
      * Creates a post of the current post type
      * @param (array) options : Options to be sent to wp_insert_post()
      * @return (int) postID

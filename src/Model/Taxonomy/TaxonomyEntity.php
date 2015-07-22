@@ -1,14 +1,20 @@
 <?php
 namespace Strata\Model\Taxonomy;
 
-use Strata\Utility\Hash;
-
-use Strata\Model\WordpressEntity;
-use Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar;
-
-use Strata\Model\Model;
-
-class TaxonomyEntity extends WordpressEntity
+class TaxonomyEntity extends QueriableEntity
 {
     public $wpPrefix = "tax_";
+
+    /**
+     * {@inheritdoc}
+     */
+    public function wordpressKey()
+    {
+        return "Taxonomy";
+    }
+
+    public function getQueryAdapter()
+    {
+        return new TaxonomyQuery();
+    }
 }
