@@ -1,6 +1,8 @@
 <?php
 namespace Strata\View;
 
+use Strata\Strata;
+
 class Template {
 
     /**
