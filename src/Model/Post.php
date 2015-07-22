@@ -2,6 +2,7 @@
 namespace Strata\Model;
 
 use Strata\Model\CustomPostType\LabelParser;
+use Strata\Model\CustomPostType\QueriableEntity;
 
 /**
  * Wraps Post default objects.

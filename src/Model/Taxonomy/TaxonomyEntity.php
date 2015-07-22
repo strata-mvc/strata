@@ -1,17 +1,11 @@
 <?php
 namespace Strata\Model\Taxonomy;
 
+use Strata\Model\CustomPostType\QueriableEntity;
+
 class TaxonomyEntity extends QueriableEntity
 {
     public $wpPrefix = "tax_";
-
-    /**
-     * {@inheritdoc}
-     */
-    public function wordpressKey()
-    {
-        return "Taxonomy";
-    }
 
     public function getQueryAdapter()
     {

@@ -19,11 +19,13 @@ class Template {
 
     public static function parseFile($templateFilePath, $variables = array())
     {
-        ob_start();
+        $app = Strata::app();
+        $vars = array_keys($variables);
+        $app->log(sprintf("Parsing template file '%s' with variables: %s", $templateFilePath, implode(", ", $vars)), "[Strata::Template]");
 
+        ob_start();
         extract($variables);
         include($templateFilePath);
-
         return ob_get_clean();
     }
 
