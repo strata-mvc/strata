@@ -99,7 +99,7 @@ class View {
             "content" => "",
             // Only the admin does not end Wordpress' parsing of the views
             // because we hook in the middle of the page.
-            "end" =>  is_admin() ? false : true
+            "end" =>  is_admin() && !Router::isAjax() ? false : true
         );
 
         $content = $this->_parseCurrentContent();

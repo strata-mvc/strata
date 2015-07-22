@@ -19,8 +19,28 @@ class WordpressEntity extends Model
 
     function __construct()
     {
-        $this->_normalizeConfiguration();
+        $this->normalizeConfiguration();
         parent::__construct();
+    }
+
+    /**
+     * Fetches a value in the custom post type's configuration array
+     * @param string $key In dot-notation format
+     * @return mixed
+     */
+    public function getConfig($key)
+    {
+        return Hash::get($this->configuration, $key);
+    }
+
+    /**
+     * Confirms the presence of a value in the custom post type's configuration array
+     * @param string $key In dot-notation format
+     * @return mixed
+     */
+    public function hasConfig($key)
+    {
+        return Hash::check($this->configuration, $key);
     }
 
     public function getWordpressKey()
@@ -28,7 +48,7 @@ class WordpressEntity extends Model
         return $this->wpPrefix . strtolower($this->getShortName());
     }
 
-    private function _normalizeConfiguration()
+    private function normalizeConfiguration()
     {
         $this->configuration = Hash::normalize($this->configuration);
     }

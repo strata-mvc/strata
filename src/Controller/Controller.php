@@ -119,10 +119,19 @@ class Controller {
     }
 
     /**
-     * Base action. This is used mainly as a precautionary fallback.
+     * Base action.
      * @return  null
      */
     public function index()
+    {
+
+    }
+
+    /**
+     * Base action when no action is found. This is used mainly as a precautionary fallback.
+     * @return  null
+     */
+    public function noActionMatch()
     {
 
     }

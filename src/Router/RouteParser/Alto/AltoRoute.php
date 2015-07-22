@@ -117,6 +117,10 @@ class AltoRoute extends Route
         } else {
             $this->handleMatchedRouterAnswer($match);
         }
+
+        if (!method_exists($this->controller, $this->action)) {
+            $this->action = "noActionMatch";
+        }
     }
 
     private function handleDynamicRouterAnswer($match)
