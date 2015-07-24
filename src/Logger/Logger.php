@@ -34,7 +34,8 @@ class Logger {
 
     protected function canPrintLogs()
     {
-        return !defined("WP_ENV") || WP_ENV == 'development';
+        $isDev = !defined("WP_ENV") || WP_ENV == 'development';
+        $isWritable = is_writable($this->logfile);
     }
 
     protected function write($message, $context)
