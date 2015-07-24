@@ -194,7 +194,13 @@ class Strata extends StrataContext {
     {
         $pid = getmypid();
         $this->log(sprintf("Loaded and running with process ID %s", $pid));
-        return file_put_contents(self::getTmpPath() . "pid", $pid);
+        $filename = self::getTmpPath() . "pid";
+
+        if (is_writable($filename)) {
+            file_put_contents($filename, $pid);
+        }
+
+        return true;
     }
 
     protected function _includeDebug()
