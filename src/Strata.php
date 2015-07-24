@@ -128,7 +128,7 @@ class Strata extends StrataContext {
     {
         $loader = $this->getLoader();
         foreach($loader->getPrefixesPsr4() as $prefix => $path) {
-            if (strstr($prefix, "Strata\\MuPlugin")) {
+            if (preg_match("/^Strata\\\\MuPlugin\\\\(.+?)\\\\$/", $prefix)) {
                 $className = $prefix . "PluginInitializer";
                 if (class_exists($className)) {
                     $initializer = new $className();
