@@ -62,7 +62,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
     public function testGeneratesAWordpressHook()
     {
         $this->assertArrayHasKey('init', $this->wordpress->actions);
-        $this->assertEquals('onWordpressInit', $this->wordpress->actions['init'][0][1]);
+        $this->assertEquals('onWordpressEarlyInit', $this->wordpress->actions['init'][0][1]);
     }
 
     public function testAltoRoutesCanRun()

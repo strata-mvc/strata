@@ -49,10 +49,7 @@ class StrataContext {
         $var = self::config('namespace');
 
         if (!is_null($var)) {
-            $namespace = array_pop($var);
-            if (!is_null($namespace)) {
-                return $namespace;
-            }
+            return $var;
         }
 
         return "App";

@@ -40,7 +40,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
     {
         $this->wordpress->reset();
 
-        $strata = new Strata();
+        $strata = $GLOBALS['__Strata__'];
         $strata->configure(array(
             "namespace" => "Tests\Fixtures",
             "custom-post-types" => array(
@@ -57,7 +57,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
     {
         $this->wordpress->reset();
 
-        $strata = new Strata();
+        $strata = $GLOBALS['__Strata__'];
         $strata->configure(array(
             "namespace" => "Tests\Fixtures",
             "custom-post-types" => array(

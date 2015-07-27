@@ -18,7 +18,7 @@ class StrataTest extends PHPUnit_Framework_TestCase
             )
         ));
 
-        $value = array_pop($strata->getConfig("first_level.second_level"));
+        $value = $strata->getConfig("first_level.second_level");
         $this->assertTrue($value);
     }
 

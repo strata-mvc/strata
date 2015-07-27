@@ -24,6 +24,9 @@
         "phpdocumentor/phpdocumentor": "2.*",
         "wp-cli/wp-cli": "^0.19.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "4.7.*"
+    },
     "autoload": {
         "psr-4": {
             "Strata\\": "src"

@@ -145,7 +145,9 @@ class Strata extends StrataContext {
 
     public function log($message, $context = "[Strata]")
     {
-        return $this->_logger->log($message, $context);
+        if (!is_null($this->_logger)) {
+            return $this->_logger->log($message, $context);
+        }
     }
 
     /**
