@@ -21,7 +21,8 @@
         "johnpbloch/wordpress": "4.2.3",
         "altorouter/altorouter": "1.1.0",
         "symfony/console": "~2.6",
-        "phpdocumentor/phpdocumentor": "2.*"
+        "phpdocumentor/phpdocumentor": "2.*",
+        "wp-cli/wp-cli": "^0.19.2"
     },
     "autoload": {
         "psr-4": {
