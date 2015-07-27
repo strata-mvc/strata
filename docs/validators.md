@@ -15,7 +15,7 @@ namespace App\Model;
 class Song extends AppCustomPostType {
 {
     public $attributes = array(
-        "artist"            => array("validations" => array("required", "postExists")),
+        "artist"            => array("validations" => array("required", "postexist")),
         'genre'             => array("validations" => array("in" => array("App\Model\Song::genreListing"))),
         "lyrics"            => array("validations" => array("required")),
         "year_active"       => array("validations" => array("required", "numeric", "length" => array("min" => 2, "max" => 4))),
@@ -100,14 +100,14 @@ public $attributes = array(
 ?>
 ~~~
 
-### PostExistsValidator
+### PostexistValidator
 
 Validates a post id exists. Useful when doing soft relationships between custom post types.
 
 ~~~ php
 <?php
 public $attributes = array(
-    "artist"            => array("validations" => array("postExists")),
+    "artist"            => array("validations" => array("postexist")),
 );
 ?>
 ~~~
@@ -188,13 +188,13 @@ class MyValidator extends \Strata\Model\Validator {
 
 ## Modifying an existing validator
 
-If a validator does not do all you desire you may extend the default ones in your project. In this example, we will allow translation on the default error message of the `PostExistsValidator`.
+If a validator does not do all you desire you may extend the default ones in your project. In this example, we will allow translation on the default error message of the `PostexistValidator`.
 
 ~~~ php
 <?php
 namespace App\Model\Validator;
 
-class PostExistsValidator extends \Strata\Model\Validator\PostExistsValidator {
+class PostexistValidator extends \Strata\Model\Validator\PostexistValidator {
 
     public function getMessage()
     {
