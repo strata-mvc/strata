@@ -119,7 +119,7 @@ class EnvCommand extends StrataCommand
     {
         $this->createDirectoryStructure();
         $this->createStarterFiles();
-        $this->_nstallDone();
+        $this->installDone();
     }
 
     /**
@@ -219,8 +219,7 @@ class EnvCommand extends StrataCommand
         if ($this->_seemsFine) {
             $this->output->writeLn("========================================================================");
             $this->nl();
-            $this->output->writeLn("                      Installation completed!");
-            $this->output->writeLn("              Run '<info>bin/strata server</info>' to start your app.");
+            $this->output->writeLn("                      Repair completed!");
             $this->nl();
             $this->output->writeLn("========================================================================");
         } else {
