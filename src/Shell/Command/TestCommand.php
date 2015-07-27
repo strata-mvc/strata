@@ -51,8 +51,7 @@ class TestCommand extends StrataCommand
      */
     protected function _getPhpunitBin()
     {
-
-        return implode(DIRECTORY_SEPARATOR, array(Strata::getBinPath() . "phpunit.phar"));
+        return "vendor/bin/phpunit";
     }
 
     protected function _preparePhpunitArguments()
