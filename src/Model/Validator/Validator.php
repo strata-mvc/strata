@@ -43,8 +43,21 @@ class Validator {
     public static function generateClassPath($name, $local = true)
     {
         $namespace = $local ? Strata::getNamespace() : 'Strata';
-        return $namespace . "\\Model\\Validator\\" . ucfirst($name) . "Validator";
+        return $namespace . "\\Model\\Validator\\" . self::generateClassName($name);
     }
+
+    public static function generateClassName($name)
+    {
+        $name = str_replace("-", "_", $name);
+        $name = Inflector::classify($name);
+
+        if (!preg_match("/Validator/", $name)) {
+            $name .= "Validator";
+        }
+
+        return $name;
+    }
+
 
     /**
      * @var string An error message for this validation.

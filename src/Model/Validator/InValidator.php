@@ -2,8 +2,6 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator\Validator;
-
 class InValidator extends Validator {
 
     protected $_errorMessage = "This is not a valid selection.";

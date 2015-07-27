@@ -2,8 +2,6 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator\Validator;
-
 class PostalcodeValidator extends Validator {
 
     protected $_errorMessage = "Only Canadian postal codes are supported (ex: H0H 0H0).";

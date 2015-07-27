@@ -2,8 +2,6 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator\Validator;
-
 class SameValidator extends Validator {
 
     protected $_errorMessage = "The two values do not match.";

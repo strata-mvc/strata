@@ -18,7 +18,6 @@
     ],
     "require": {
         "php": ">=5.4",
-        "johnpbloch/wordpress": "4.2.3",
         "altorouter/altorouter": "1.1.0",
         "symfony/console": "~2.6",
         "phpdocumentor/phpdocumentor": "2.*",

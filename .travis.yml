@@ -6,7 +6,8 @@ php:
   - hhvm
   - nightly
 before_script:
-  - "composer update"
+  - "/home/travis/.phpenv/versions/5.4/bin/composer self-update"
+  - "composer update --prefer-source"
 script: vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/Tests
 notifications:
   email:

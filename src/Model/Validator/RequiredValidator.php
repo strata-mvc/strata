@@ -2,8 +2,6 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator\Validator;
-
 class RequiredValidator extends Validator {
 
     protected $_errorMessage = "This is a required field.";

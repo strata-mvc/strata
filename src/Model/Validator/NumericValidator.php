@@ -2,8 +2,6 @@
 
 namespace Strata\Model\Validator;
 
-use Strata\Model\Validator\Validator;
-
 class NumericValidator extends Validator {
 
     protected $_errorMessage = "Only numeric values are allowed.";
