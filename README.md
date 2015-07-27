@@ -1,6 +1,8 @@
 Strata
 ======
 
+[![Build Status](https://travis-ci.org/francoisfaubert/strata.svg?branch=master)](https://travis-ci.org/francoisfaubert/strata)
+
 ## Welcome
 
 If you are (or wish to become) a Strata user please go to the [official website](http://strata.francoisfaubert.com/) to obtain the latest information.
