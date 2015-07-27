@@ -12,7 +12,7 @@ Projects often have a need for customized command line accessible scripts, may i
 Using the command line, run the `generate` command from your project's base directory. Here we create a command called `bundle`.
 
 ~~~ sh
-$  bin/strata generate command bundle
+$  ./strata generate command bundle
 ~~~
 
 The command will create a new class in the `src/Shell` directory.
@@ -28,7 +28,7 @@ Scaffolding command BundleCommand
 Custom commands are being auto-loaded when you call the script. Therefore, the previous `bundle` script can be called using:
 
 ~~~ sh
-$  bin/strata bundle
+$  ./strata bundle
 ~~~
 
 ## Requirements

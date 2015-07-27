@@ -17,7 +17,7 @@ Look at [automated custom post type models](/docs/models/customposttypes/) for i
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
 
 ~~~ sh
-$ bin/strata generate model Artist
+$ ./strata generate model Artist
 ~~~
 
 It will generate a couple of files for you, including the actual model file and test suites for the generated class.

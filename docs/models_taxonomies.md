@@ -12,7 +12,7 @@ To generate a taxonomy definition, you should use the automated generator provid
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a taxonomy called `ProfileType` that will eventually helper categorize a `Profile` model:
 
 ~~~ sh
-$ bin/strata generate taxonomy ProfileType
+$ ./strata generate taxonomy ProfileType
 ~~~
 
 

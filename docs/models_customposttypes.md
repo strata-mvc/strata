@@ -15,7 +15,7 @@ Because of the adoption of Wordpress' methods, every model requests will return 
 You can generate models that will allow database operations in that they map to custom post types. To do do, you should use the automated generator provided by Strata. It will validate your object's name and ensure it will be correctly defined.
 
 ~~~ sh
-$ bin/strata generate customposttype Song
+$ ./strata generate customposttype Song
 ~~~
 
 It will generate a couple of files for you, including the actual model file and test suites for the generated class. The model will extend `App\Model\AppCustomPostType` and gain access to DB manipulation objects and methods.

@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * configuration between a Vagrant environment and cases when it runs using the current
  * computer's binaries.
  *
- * Intended use is <code>bin/strata server</code>
+ * Intended use is <code>./strata server</code>
  */
 class ServerCommand extends StrataCommand
 {

@@ -10,8 +10,8 @@ use Strata\Strata;
  * file locations based on the set of guidelines promoted by Strata.
  *
  * Intended use include:
- *     <code>bin/strata generate controller User</code>
- *     <code>bin/strata generate customposttype Task</code>
+ *     <code>./strata generate controller User</code>
+ *     <code>./strata generate customposttype Task</code>
  *     ...
  */
 class ClassWriter extends GeneratorBase {

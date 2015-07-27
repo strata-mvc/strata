@@ -11,7 +11,7 @@ To generate a `ViewHelper`, you should use the automated generator provided by S
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a view helper for the `Artist` object:
 
 ~~~ sh
-$ bin/strata generate viewhelper Artist
+$ ./strata generate helper Artist
 ~~~
 
 ## Use case

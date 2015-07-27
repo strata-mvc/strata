@@ -14,8 +14,8 @@ use InvalidArgumentException;
  * Automates Strata self-maintaining scripts.
  *
  * Intended use include:
- *     <code>bin/strata strata install</code>
- *     <code>bin/strata strata uninstall</code>
+ *     <code>./strata strata install</code>
+ *     <code>./strata strata uninstall</code>
  */
 class EnvCommand extends StrataCommand
 {
@@ -363,7 +363,7 @@ The documentation for Strata can be found on the [official website](http://strat
             $this->output->writeLn("========================================================================");
             $this->nl();
             $this->output->writeLn("                      Installation completed!");
-            $this->output->writeLn("              Run '<info>bin/strata server</info>' to start your app.");
+            $this->output->writeLn("              Run '<info>./strata server</info>' to start your app.");
             $this->nl();
             $this->output->writeLn("========================================================================");
         } else {

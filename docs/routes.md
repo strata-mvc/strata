@@ -130,7 +130,7 @@ To generate a route, you should use the automated generator provided by Strata. 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a route to `SongController`'s `view()` function.
 
 ~~~ sh
-$ bin/strata generate route 'GET' '/music-page/[*:slug]/' 'SongController#view'
+$ ./strata generate route 'GET' '/music-page/[*:slug]/' 'SongController#view'
 ~~~
 
 -->

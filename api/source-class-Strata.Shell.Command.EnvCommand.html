@@ -268,8 +268,8 @@
 </span></span><span id="14" class="l"><span class="php-comment"> * Automates Strata self-maintaining scripts.
 </span></span><span id="15" class="l"><span class="php-comment"> *
 </span></span><span id="16" class="l"><span class="php-comment"> * Intended use include:
-</span></span><span id="17" class="l"><span class="php-comment"> *     &lt;code&gt;bin/strata strata install&lt;/code&gt;
-</span></span><span id="18" class="l"><span class="php-comment"> *     &lt;code&gt;bin/strata strata uninstall&lt;/code&gt;
+</span></span><span id="17" class="l"><span class="php-comment"> *     &lt;code&gt;./strata strata install&lt;/code&gt;
+</span></span><span id="18" class="l"><span class="php-comment"> *     &lt;code&gt;./strata strata uninstall&lt;/code&gt;
 </span></span><span id="19" class="l"><span class="php-comment"> */</span>
 </span><span id="20" class="l"><span class="php-keyword1">class</span> EnvCommand <span class="php-keyword1">extends</span> StrataCommand
 </span><span id="21" class="l">{
@@ -548,7 +548,7 @@
 </span><span id="294" class="l">            <span class="php-var">$this</span>-&gt;output-&gt;writeLn(<span class="php-quote">&quot;========================================================================&quot;</span>);
 </span><span id="295" class="l">            <span class="php-var">$this</span>-&gt;nl();
 </span><span id="296" class="l">            <span class="php-var">$this</span>-&gt;output-&gt;writeLn(<span class="php-quote">&quot;                      Installation completed!&quot;</span>);
-</span><span id="297" class="l">            <span class="php-var">$this</span>-&gt;output-&gt;writeLn(<span class="php-quote">&quot;              Run '&lt;info&gt;bin/strata server&lt;/info&gt;' to start your app.&quot;</span>);
+</span><span id="297" class="l">            <span class="php-var">$this</span>-&gt;output-&gt;writeLn(<span class="php-quote">&quot;              Run '&lt;info&gt;./strata server&lt;/info&gt;' to start your app.&quot;</span>);
 </span><span id="298" class="l">            <span class="php-var">$this</span>-&gt;nl();
 </span><span id="299" class="l">            <span class="php-var">$this</span>-&gt;output-&gt;writeLn(<span class="php-quote">&quot;========================================================================&quot;</span>);
 </span><span id="300" class="l">        } <span class="php-keyword1">else</span> {

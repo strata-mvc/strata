@@ -8,7 +8,7 @@ Strata uses [PHPUnit](https://phpunit.de/) as test suite for Test Driven Develop
 
 Each time you generate a class using the [generator](/docs/generator/) a corresponding test file is created. It is your duty to update it with assertions so your application's files are fully tested.
 
-To run the test suite, run `bin/strata test`. A PHPUnit output will describe the details of the tests.
+To run the test suite, run `./strata test`. A PHPUnit output will describe the details of the tests.
 
 One could add this command to a `grunt watch` script so that your application is always tested as you add to or modify your project files.
 

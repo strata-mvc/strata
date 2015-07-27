@@ -15,9 +15,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Automates Strata's database manipulation operations.
  *
  * Intended use include:
- *     <code>bin/strata db migrate</code>
- *     <code>bin/strata db import</code>
- *     <code>bin/strata db dump</code>
+ *     <code>./strata db migrate</code>
+ *     <code>./strata db import</code>
+ *     <code>./strata db dump</code>
  */
 class DBCommand extends StrataCommand
 {

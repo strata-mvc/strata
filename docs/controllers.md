@@ -15,7 +15,7 @@ To generate a Controller, you should use the automated generator provided by Str
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
 ~~~ bash
-$ bin/strata generate controller Artist
+$ ./strata generate controller Artist
 ~~~
 
 It will generate a couple of files for you, including the actual controller file and test suites for the generated class.

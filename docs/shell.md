@@ -7,7 +7,7 @@ permalink: /docs/shell/
 Strata ships with multiple CLI tools that allow you to automate actions. The basic call to trigger the command line interface is:
 
 ~~~ sh
-$ bin/strata _command_ _arguments_
+$ ./strata _command_ _arguments_
 ~~~
 
 ## Bundled tools

@@ -12,7 +12,7 @@ You should not be creating the files by hand when building a Strata app. We have
 Generates a new Controller class.
 
 ~~~ sh
-$ bin/strata generate controller MyController
+$ ./strata generate controller MyController
 ~~~
 
 ## Model
@@ -20,7 +20,7 @@ $ bin/strata generate controller MyController
 Generates a new model class.
 
 ~~~ sh
-$ bin/strata generate model MyModel
+$ ./strata generate model MyModel
 ~~~
 
 ## Custom Post Type
@@ -28,7 +28,7 @@ $ bin/strata generate model MyModel
 Generates a new custom post type model class.
 
 ~~~ sh
-$ bin/strata generate customposttype MyModel
+$ ./strata generate customposttype MyModel
 ~~~
 
 ## Taxonomy class
@@ -36,7 +36,7 @@ $ bin/strata generate customposttype MyModel
 Generates a new taxonomy model class.
 
 ~~~ sh
-$ bin/strata generate taxonomy MyClass
+$ ./strata generate taxonomy MyClass
 ~~~
 
 ## Form object
@@ -44,7 +44,7 @@ $ bin/strata generate taxonomy MyClass
 Generates a new form class.
 
 ~~~ sh
-$ bin/strata generate form MyForm
+$ ./strata generate form MyForm
 ~~~
 
 ## View helper class
@@ -52,7 +52,7 @@ $ bin/strata generate form MyForm
 Generates a new view helper class.
 
 ~~~ sh
-$ bin/strata generate helper MyClass
+$ ./strata generate helper MyClass
 ~~~
 
 ## Validator class
@@ -60,7 +60,7 @@ $ bin/strata generate helper MyClass
 Generates a new form validator class.
 
 ~~~ sh
-$ bin/strata generate validator MyClass
+$ ./strata generate validator MyClass
 ~~~
 
 ## CLI command
@@ -68,7 +68,7 @@ $ bin/strata generate validator MyClass
 Generates a new shell command class.
 
 ~~~ sh
-$ bin/strata generate command MyClass
+$ ./strata generate command MyClass
 ~~~
 
 <!--
@@ -77,6 +77,6 @@ $ bin/strata generate command MyClass
 Generates a new route.
 
 ~~~ sh
-$ bin/strata generate route GET|POST /[.*] AppController#index
+$ ./strata generate route GET|POST /[.*] AppController#index
 ~~~
 -->

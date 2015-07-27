@@ -11,7 +11,7 @@ Strata ships with a server on which you can test your application. This server i
 Using the command line, run the `server` command from your project's base directory.
 
 ~~~ sh
-$ bin/strata server
+$ ./strata server
 ~~~
 
 It will kickoff a running instance of your Wordpress installation available at `http://127.0.0.1:5454/`. There is no way of changing this url for the moment.
