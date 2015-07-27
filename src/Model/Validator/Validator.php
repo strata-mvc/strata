@@ -2,6 +2,7 @@
 namespace Strata\Model\Validator;
 
 use Strata\Strata;
+use Strata\Utility\Inflector;
 use Exception;
 
 /**

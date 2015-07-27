@@ -10,7 +10,7 @@ class TestStateless extends \Strata\Model\Model {
         "lengthtest"    => array("validations" => array("length" => array("min" => 3, "max" => 5))),
         "numerictest"   => array("validations" => array("numeric")),
         "postalcodetest"   => array("validations" => array("postalcode")),
-        "postexiststest" => array("validations" => array("postexists")),
+        "postexiststest" => array("validations" => array("postexist")),
         "sametest"      => array("validations" => array("same" => array("as" => "comparetest"))),
         "emailtest"      => array("validations" => array("email"))
     );

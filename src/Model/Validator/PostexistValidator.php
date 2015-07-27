@@ -2,7 +2,7 @@
 
 namespace Strata\Model\Validator;
 
-class PostexistsValidator extends Validator {
+class PostexistValidator extends Validator {
 
     protected $_errorMessage = "This post could not be found.";
 
