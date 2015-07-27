@@ -75,14 +75,23 @@ class DBCommand extends StrataCommand
     protected function _createDB()
     {
         $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
-        $command = sprintf("%s db create", $this->_getWpCliPhar());
+        $command = sprintf("%s db create", $this->getWpCliPath());
         system($command);
     }
 
-    protected function _getWpCliPhar()
+    protected function getWpCliPath()
     {
-        return sprintf("php %swp-cli.phar", Strata::getBinPath());
+        $filename = sprintf("vendor/bin/wp", Strata::getBinPath());
+
+        if (!is_executable($filename)) {
+            if (!chmod($filename, 755)) {
+                $this->output->writeLn(sprintf("Could not grant execute permissions to %s. Command will fail.", $filename));
+            }
+        }
+
+        return $filename;
     }
+
 
     /**
      * Dumps the current environment's database to an .sql file in /db/
@@ -92,7 +101,7 @@ class DBCommand extends StrataCommand
     {
         date_default_timezone_set("Etc/UTC");
         $relativeFilename = sprintf("export_%s_%s.sql", date('m-d-Y'), time());
-        $command = sprintf("%s db export %s%s --add-drop-table", $this->_getWpCliPhar(), Strata::getDbPath(), $relativeFilename);
+        $command = sprintf("%s db export %s%s --add-drop-table", $this->getWpCliPath(), Strata::getDbPath(), $relativeFilename);
         $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);
     }
@@ -105,7 +114,7 @@ class DBCommand extends StrataCommand
     {
         if (!is_null($file)) {
             $this->output->writeLn("Applying migration for <info>$file</info>");
-            $command = sprintf("%s db import %s", $this->_getWpCliPhar(), $file);
+            $command = sprintf("%s db import %s", $this->getWpCliPath(), $file);
             system($command);
             return;
         }

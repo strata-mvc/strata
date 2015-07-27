@@ -61,7 +61,7 @@ class EnvCommand extends StrataCommand
      * @todo This needs to be a composer dependency.
      * @var string
      */
-    protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-template-files/master/src/";
+    protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
 
     /**
      * Strata's empty project files and their destination.
@@ -69,14 +69,14 @@ class EnvCommand extends StrataCommand
      * @var array
      */
     protected $_starterFiles = array(
-        'AppController.php' => 'src/Controller/AppController.php',
-        'AppModel.php'      => 'src/Model/AppModel.php',
-        'AppCustomPostType.php'      => 'src/Model/AppCustomPostType.php',
-        'AppHelper.php'     => 'src/View/Helper/AppHelper.php',
-        'strata.php'        => 'config/strata.php',
-        'strata-bootstraper.php'        => 'web/app/mu-plugins/strata-bootstraper.php',
-        'strata-test-bootstraper.php'   => 'test/strata-test-bootstraper.php',
-        'wordpress-bootstraper.php'     => 'test/Fixture/Wordpress/wordpress-bootstraper.php',
+        'src/Controller/AppController.php' => 'src/Controller/AppController.php',
+        'src/Model/AppModel.php'      => 'src/Model/AppModel.php',
+        'src/Model/AppCustomPostType.php'      => 'src/Model/AppCustomPostType.php',
+        'src/View/Helper/AppHelper.php'     => 'src/View/Helper/AppHelper.php',
+        'config/strata.php'        => 'config/strata.php',
+        'web/app/mu-plugins/strata-bootstraper.php'        => 'web/app/mu-plugins/strata-bootstraper.php',
+        'test/strata-test-bootstraper.php'   => 'test/strata-test-bootstraper.php',
+        'test/Fixture/Wordpress/wordpress-bootstraper.php'     => 'test/Fixture/Wordpress/wordpress-bootstraper.php',
     );
 
     /**
@@ -86,11 +86,11 @@ class EnvCommand extends StrataCommand
     {
         $this
             ->setName('env')
-            ->setDescription('Manages the Strata installation on your Bedrock Wordpress stack')
+            ->setDescription('Manages the Strata installation.')
             ->addArgument(
                 'mode',
                 InputArgument::REQUIRED,
-                'One of install or uninstall.'
+                'repair'
             );
     }
 
@@ -102,14 +102,8 @@ class EnvCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('mode')) {
-            case "install":
-                $this->_install();
-                break;
-            case "destructivecleanup":
-                $this->_removeUnrequiredBedrockfiles();
-                break;
-            case "uninstall":
-                $this->_uninstall();
+            case "repair":
+                $this->repair();
                 break;
             default : throw new InvalidArgumentException("That is not a valid command.");
         }
@@ -121,58 +115,11 @@ class EnvCommand extends StrataCommand
      * Installs Strata files and directories
      * @return null
      */
-    protected function _install()
+    protected function repair()
     {
-        $this->_createDirectoryStructure();
-        $this->_createStarterFiles();
-        $this->_getPhpunit();
-        $this->_getWpCLI();
-        $this->_installDone();
-    }
-
-    /**
-     * Uninstalls Strata files and directories
-     * @return null
-     */
-    protected function _uninstall()
-    {
-        $this->_removeStarterFiles();
-        $this->_removeDirectoryStructure();
-        $this->_uninstallDone();
-    }
-
-    protected function _removeUnrequiredBedrockfiles()
-    {
-        if (!file_exists('.env') && file_exists('.env.example')) {
-            rename(".env.example", ".env");
-        }
-
-        $trash = array(
-            '.travis.yml',
-            'CHANGELOG.md',
-            'CONTRIBUTING.md',
-            'LICENSE.md',
-            'ruleset.xml'
-        );
-
-        foreach ($trash as $file) {
-            if (file_exists($file)) {
-                unlink($file);
-            }
-        }
-
-        if (file_exists('README.md')) {
-            unlink('README.md');
-        }
-
-        $readme = fopen('README.md', 'w');
-        fwrite($readme, "
-## A new Strata project
-
-The documentation for Strata can be found on the [official website](http://strata.francoisfaubert.com/). Feel free to ask questions to the community on the [Help and support](http://strata-community.francoisfaubert.com/) forums.
-");
-        fclose($readme);
-
+        $this->createDirectoryStructure();
+        $this->createStarterFiles();
+        $this->_nstallDone();
     }
 
     /**
@@ -180,7 +127,7 @@ The documentation for Strata can be found on the [official website](http://strat
      * directories.
      * @return null
      */
-    protected function _createDirectoryStructure()
+    protected function createDirectoryStructure()
     {
         $this->output->writeLn("Ensuring correct directory structure.");
 
@@ -192,7 +139,7 @@ The documentation for Strata can be found on the [official website](http://strat
                     $this->output->writeLn($label . $this->ok($dir));
                 } else {
                     $this->output->writeLn($label . $this->fail($dir));
-                    $this->_flagFailing();
+                    $this->flagFailing();
                 }
             } else {
                 $this->output->writeLn($label . $this->skip($dir));
@@ -202,39 +149,13 @@ The documentation for Strata can be found on the [official website](http://strat
         $this->nl();
     }
 
-    /**
-     * Removes the directory structure. Does not delete non-empty
-     * directories.
-     * @return null
-     */
-    protected function _removeDirectoryStructure()
-    {
-        $this->output->writeLn("Attempting to remove directory structure.");
-
-        $count = 0;
-        foreach (array_reverse($this->_directoryStructure) as $dir) {
-            $label = $this->tree(++$count >= count($this->_directoryStructure));
-            if (is_dir($dir)) {
-                if (@rmdir($dir)) {
-                    $this->output->writeLn($label . $this->ok($dir));
-                } else {
-                    $this->output->writeLn($label . $this->fail($dir). " <fg=yellow>Is it empty?</fg=yellow>");
-                    $this->_flagFailing();
-                }
-            } else {
-                $this->output->writeLn($label . $this->skip($dir));
-            }
-        }
-
-        $this->nl();
-    }
 
     /**
      * Adds the starter file to a new project. Does not overwrite existing
      * files.
      * @return null
      */
-    protected function _createStarterFiles()
+    protected function createStarterFiles()
     {
         $this->output->writeLn("Ensuring project files are present.");
 
@@ -246,7 +167,7 @@ The documentation for Strata can be found on the [official website](http://strat
                     $this->output->writeLn($label . $this->ok($file));
                 } else {
                     $this->output->writeLn($label . $this->fail($file));
-                    $this->_flagFailing();
+                    $this->flagFailing();
                 }
             } else {
                 $this->output->writeLn($label . $this->skip($file));
@@ -256,25 +177,7 @@ The documentation for Strata can be found on the [official website](http://strat
         $this->nl();
     }
 
-    protected function _getWpCLI()
-    {
-        $file = "bin/wp-cli.phar";
-        $this->output->writeLn("Fetching WP CLI");
-        $label = $this->tree(true);
 
-         if (!file_exists($file)) {
-            if (file_put_contents($file, fopen("https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", 'r')) > 0) {
-                $this->output->writeLn($label . $this->ok($file));
-            } else {
-                $this->output->writeLn($label . $this->fail($file));
-                $this->_flagFailing();
-            }
-        } else {
-            $this->output->writeLn($label . $this->skip($file));
-        }
-
-        $this->nl();
-    }
     protected function _getPhpunit()
     {
         $file = "bin/phpunit.phar";
@@ -286,7 +189,7 @@ The documentation for Strata can be found on the [official website](http://strat
                 $this->output->writeLn($label . $this->ok($file));
             } else {
                 $this->output->writeLn($label . $this->fail($file));
-                $this->_flagFailing();
+                $this->flagFailing();
             }
         } else {
             $this->output->writeLn($label . $this->skip($file));
@@ -295,68 +198,22 @@ The documentation for Strata can be found on the [official website](http://strat
         $this->nl();
     }
 
-    /**
-     * Removes the starter file from a new project.
-     * @return null
-     */
-    protected function _removeStarterFiles()
-    {
-        $this->output->writeLn("Attempting to remove starter files.");
-
-        $count = 0;
-        foreach ($this->_starterFiles as $file) {
-            $label = $this->tree(++$count >= count($this->_starterFiles));
-            if (file_exists($file)) {
-                if (unlink($file)) {
-                    $this->output->writeLn($label . $this->ok($file));
-                } else {
-                    $this->output->writeLn($label . $this->fail($file));
-                    $this->_flagFailing();
-                }
-            } else {
-                $this->output->writeLn($label . $this->skip($file));
-            }
-        }
-
-        $this->nl();
-    }
 
     /**
      * Flag the current process is not behaving as we expected.
      * @return null
      */
-    protected function _flagFailing()
+    protected function flagFailing()
     {
         $this->_seemsFine = false;
     }
 
-    /**
-     * Presents a summary of the operation to the user.
-     * @return
-     */
-    protected function _uninstallDone()
-    {
-        $this->nl();
-        if ($this->_seemsFine) {
-            $this->output->writeLn("========================================================================");
-            $this->nl();
-            $this->output->writeLn("                      Uninstallation completed!");
-            $this->output->writeLn("             Please remember to remove the composer dependency.");
-            $this->nl();
-            $this->output->writeLn("========================================================================");
-        } else {
-            $this->output->writeLn("Automatic uninstallation failed to complete cleanly.");
-            $this->output->writeLn("This is often due to directories not being empty.");
-            $this->output->writeLn("Based on the output above, you can delete the directories manually.");
-        }
-        $this->nl();
-    }
 
     /**
      * Presents a summary of the operation to the user.
      * @return
      */
-    protected function _installDone()
+    protected function installDone()
     {
         $this->nl();
         if ($this->_seemsFine) {
