@@ -7,6 +7,7 @@ use Strata\Utility\Hash;
 use Strata\Utility\ErrorMessenger;
 use Strata\Context\StrataContext;
 use Strata\Model\CustomPostType\CustomPostTypeLoader;
+use Strata\Middleware\MiddlewareLoader;
 
 use Composer\Autoload\ClassLoader;
 use Exception;
