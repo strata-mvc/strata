@@ -67,7 +67,7 @@ class Strata extends StrataContext {
 
         $this->_configureCustomPostType();
         $this->_configureRouter();
-        $this->_initializeStrataMuPlugins();
+        $this->loadMiddleware();
     }
 
     public function loadConfiguration()
@@ -122,20 +122,12 @@ class Strata extends StrataContext {
 
     /**
      * Looks through all the packages in composer and if they
-     * are in our Strata\MuPlugin namespace, we try to autoload them.
+     * are in our Strata\Middleware namespace, we try to autoload them.
      */
-    protected function _initializeStrataMuPlugins()
+    protected function loadMiddleware()
     {
-        $loader = $this->getLoader();
-        foreach($loader->getPrefixesPsr4() as $prefix => $path) {
-            if (preg_match("/^Strata\\\\MuPlugin\\\\(.+?)\\\\$/", $prefix)) {
-                $className = $prefix . "PluginInitializer";
-                if (class_exists($className)) {
-                    $initializer = new $className();
-                    $initializer::initialize();
-                }
-            }
-        }
+        $loader = new MiddlewareLoader($this->getLoader());
+        $loader->initialize();
     }
 
     protected function _configureLogger()
