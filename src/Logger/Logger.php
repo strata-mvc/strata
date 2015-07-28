@@ -16,6 +16,9 @@ class Logger {
     function __construct()
     {
         $this->logfile = Strata::getLogPath() . "strata.log";
+        if (!file_exists($this->logfile)) {
+            @touch($this->logfile);
+        }
     }
 
     public function log($message, $context = "[Strata::Log]")
@@ -36,6 +39,8 @@ class Logger {
     {
         $isDev = !defined("WP_ENV") || WP_ENV == 'development';
         $isWritable = is_writable($this->logfile);
+
+        return $isDev && $isWritable;
     }
 
     protected function write($message, $context)
