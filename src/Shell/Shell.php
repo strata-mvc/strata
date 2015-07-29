@@ -28,6 +28,9 @@ class Shell
         $registrar = new ProjectCommandRegistrar($application);
         $registrar->assign();
 
+        $registrar = new MiddlewareCommandRegistrar($application);
+        $registrar->assign();
+
         $application->add(new \Strata\Shell\Command\ServerCommand());
         $application->add(new \Strata\Shell\Command\GenerateCommand());
         $application->add(new \Strata\Shell\Command\DBCommand());

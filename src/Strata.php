@@ -41,6 +41,7 @@ class Strata extends StrataContext {
     protected $_loader = null;
 
     protected $_logger = null;
+    private $middlewareLoader = null;
 
     /**
      * Prepares the object for its run.
@@ -127,8 +128,13 @@ class Strata extends StrataContext {
      */
     protected function loadMiddleware()
     {
-        $loader = new MiddlewareLoader($this->getLoader());
-        $loader->initialize();
+        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
+        $this->middlewareLoader->initialize();
+    }
+
+    public function getMiddlewares()
+    {
+        return $this->middlewareLoader->getMiddlewares();
     }
 
     protected function _configureLogger()

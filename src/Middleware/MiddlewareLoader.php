@@ -40,6 +40,11 @@ class MiddlewareLoader {
         }
     }
 
+    public function getMiddlewares()
+    {
+        return $this->middlewares;
+    }
+
     private function findAvailableMiddlewares()
     {
         foreach($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
