@@ -10,6 +10,7 @@ if (file_exists($ourVendor)) {
 
 use Symfony\Component\Console\Application;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
+use Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar;
 
 /**
  * A factory that build the Strata command line application.

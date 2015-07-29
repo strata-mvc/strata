@@ -51,9 +51,14 @@ class Strata extends StrataContext {
     {
         $this->_ready = false;
 
+        // This will have to be improved and dynamized.
+        date_default_timezone_set('America/New_York');
+
         $this->_configureLogger();
         $this->_includeUtils();
         $this->loadConfiguration();
+
+        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
 
         $this->_ready = true;
     }
@@ -128,7 +133,6 @@ class Strata extends StrataContext {
      */
     protected function loadMiddleware()
     {
-        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
         $this->middlewareLoader->initialize();
     }
 
