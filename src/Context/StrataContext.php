@@ -303,4 +303,13 @@ class StrataContext {
     {
         return implode(DIRECTORY_SEPARATOR, array(self::getConfigurationPath(), 'strata.php'));
     }
+
+    /**
+     * Returns the path to Strata's locale infos.
+     * @return string Path
+     */
+    public static function getLocalePath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getConfigurationPath(), 'locale')) . DIRECTORY_SEPARATOR;
+    }
 }
