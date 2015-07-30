@@ -8,6 +8,7 @@ class Locale {
     protected $nativeLabel;
     protected $code;
     protected $isDefault;
+    protected $url;
 
     function __construct($code, $config = array())
     {
@@ -16,9 +17,11 @@ class Locale {
         // Apply defaults
         $config += array(
             "nativeLabel" => $code,
-            "default" => false
+            "default" => false,
+            "url" => null
         );
 
+        $this->url = $config["url"];
         $this->nativeLabel = $config["nativeLabel"];
         $this->isDefault = (bool)$config["default"];
     }
@@ -31,6 +34,15 @@ class Locale {
     public function getCode()
     {
         return $this->code;
+    }
+
+    public function getUrl()
+    {
+        if (is_null($this->url)) {
+            return $this->getCode();
+        }
+
+        return $this->url;
     }
 
     public function isDefault()

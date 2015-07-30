@@ -20,6 +20,21 @@ class i18n {
     public function initialize()
     {
         $this->resetLocaleCache();
+
+        add_action('init', array($this, "addLocaleEndpoints"));
+        add_action('wp_head', array($this, "setCurrentLanguageByContext"));
+    }
+
+    public function addLocaleEndpoints()
+    {
+        foreach ($this->getLocales() as $locale) {
+            add_rewrite_endpoint($locale->getUrl(), EP_PERMALINK);
+        }
+    }
+
+    protected function registerLanguageSwitcherHooks()
+    {
+
     }
 
     public function resetLocaleCache()
@@ -27,8 +42,14 @@ class i18n {
         if ($this->hasLocalizationSettings()) {
             $this->createLocalesFromConfig();
         } else {
-            $this->$locales = array();
+            $this->locales = array();
         }
+    }
+
+    public function setCurrentLanguageByContext()
+    {
+    // global $wp_query;
+    // debug($wp_query->query_vars);
     }
 
     public function hasLocalizationSettings()
@@ -111,13 +132,7 @@ class i18n {
         // if() {
             // Assuming we'll pull the current locale out of somewhere
         //}
-        $id = get_the_id();
-        foreach ($locales as $locale) {
-            if ($locale->wasLocalized() && $locale->getObjId() == $id) {
-                return $locale;
-            }
-        }
-
+        //
         return $this->getDefaultLocale();
     }
 
@@ -133,7 +148,6 @@ class i18n {
 
         return array_pop($locales);
     }
-
 }
 
 
