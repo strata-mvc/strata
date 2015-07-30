@@ -135,7 +135,9 @@ class Strata extends StrataContext {
      */
     protected function loadMiddleware()
     {
-        $this->middlewareLoader->initialize();
+        if (!is_null($this->middlewareLoader)) {
+            $this->middlewareLoader->initialize();
+        }
     }
 
     public function getMiddlewares()
