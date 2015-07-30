@@ -21,8 +21,10 @@ class i18n {
     {
         $this->resetLocaleCache();
 
-        add_action('init', array($this, "addLocaleEndpoints"));
-        add_action('wp_head', array($this, "setCurrentLanguageByContext"));
+        if (function_exists('add_action')) {
+            add_action('init', array($this, "addLocaleEndpoints"));
+            add_action('wp_head', array($this, "setCurrentLanguageByContext"));
+        }
     }
 
     public function addLocaleEndpoints()
