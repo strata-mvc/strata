@@ -265,13 +265,11 @@ class Query
 
     private function logQueryStart()
     {
-        $app = Strata::app();
         $this->executionStart = microtime(true);
     }
 
     private function logQueryCompletion($sql)
     {
-        $app = Strata::app();
         $executionTime = microtime(true) - $this->executionStart;
         $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
 

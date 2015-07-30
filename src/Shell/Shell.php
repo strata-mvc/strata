@@ -38,6 +38,7 @@ class Shell
         $application->add(new \Strata\Shell\Command\DocumentationCommand());
         $application->add(new \Strata\Shell\Command\EnvCommand());
         $application->add(new \Strata\Shell\Command\TestCommand());
+        $application->add(new \Strata\Shell\Command\I18nCommand());
 
         return $application;
     }

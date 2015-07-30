@@ -42,6 +42,7 @@ class Strata extends StrataContext {
 
     protected $_logger = null;
     private $middlewareLoader = null;
+    public $i18n = null;
 
     /**
      * Prepares the object for its run.
@@ -58,6 +59,7 @@ class Strata extends StrataContext {
         $this->_includeUtils();
         $this->loadConfiguration();
 
+        $this->localize();
         $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
 
         $this->_ready = true;
@@ -152,6 +154,13 @@ class Strata extends StrataContext {
             return $this->_logger->log($message, $context);
         }
     }
+
+    protected function localize()
+    {
+        $this->i18n = new I18n\I18n();
+        $this->i18n->initialize();
+    }
+
 
     /**
      * Configures the default router object to ensure that URL mapping
