@@ -26,6 +26,69 @@ Scaffolding model Song
   └── [ OK ] tests/model/SongTest.php
 ~~~
 
+## Enabling
+
+By default, custom post types are not automatically instantiated in Wordpress. To inform Strata it needs to load a new post type, you must add the declaration to `config/strata.php` under the `custom-post-types` key.
+
+~~~ php
+<?php
+$strata = array(
+
+    "routes" => array(
+        array('GET|POST', "/([:controller]/([:action]/([:params]/)?)?)?"),
+        array('POST',     '/wp/wp-admin/admin-ajax.php',    'AjaxController'),
+        array('GET|POST',   '/[.*]',       'AppController#index')
+    ),
+
+    "custom-post-types" => array(
+        "Song",
+        "Event"
+    )
+
+);
+?>
+~~~
+
+This allows you to create wrapper classes against post types that have not been created by your code. For instance, you could map BBPress topics by creating a model similar to the following example. You would gain all the functionality of a Strata Custom Post Type event if you do not declare the model yourself.
+
+~~~ php
+<?php
+namespace App\Model;
+
+class ForumPost extends AppCustomPostType {
+
+    public function getWordpressKey()
+    {
+        return "reply";
+    }
+}
+?>
+~~~
+
+# Configuring the declaration
+
+You can further customize the post type's instantiation by passing an array along with the post type. This is how you would declare [automated admin menus]({{ site.baseurl }}/docs/models/adminmenus/) or [resource-based routes]({{ site.baseurl }}/docs/routes/).
+
+~~~ php
+<?php
+$strata = array(
+
+    "custom-post-types" => array(
+        "Song" => array(
+            "routed",
+            "admin" => array(
+                "extraSongInfo" => array(
+                    "title" => "Extra song information",
+                    "menu-title" => "Extra song information"
+                )
+            )
+        ),
+        "Event" => array("routed")
+    )
+
+);
+?>
+~~~
 ## Customizing the CustomPostType Model
 
 The generated entity will be only accessible through Wordpress' backend. The intend of the Model entity is not to be displayed on the front end using the default Wordpress Loop.

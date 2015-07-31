@@ -17,25 +17,23 @@ There are 3 types of routes :
 
 ## Resourced-based routing
 
-When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by adding it to the `resources` array.
+When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by adding a `routed` key to the post's declaration.
 
 ~~~ php
 <?php
 $strata = array(
-    "routes" => array(
 
-        array('resources' => array(
-            'Poll',
-        ))
-
+    "custom-post-types" => array(
+        "Poll" => array("routed")
     )
+
 );
 ?>
 ~~~
 
 This will create 2 routes : one pointing to `PollController::index()` and a second one pointing to the `PollController::show($slug)` action.
 
-The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post Type's `$configuration` array. Should it not have been customized, it will try to match using the URL keys, which in this case would be `cpt_poll/` and `cpt_poll/[.*]/`.
+The actual matched URL is decided by the `slug` key of the `rewrite` setting of the Custom Post Type's `$configuration` array. Should it not have been customized, it will try to match using the unique key used when registering the post type in Wordpress, which in this case would be `cpt_poll/` and `cpt_poll/[.*]/`.
 
 ## Matched routing
 
