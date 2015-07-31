@@ -39,7 +39,7 @@ class Router {
      * @param  array  $routes A list of available routes and callbacks
      * @return Strata\Router\RouteParser\Alto\AltoRouteParser  The parser that generates a valid route
      */
-    public static function automateURLRoutes($routes = array())
+    public static function urlRouting($routes = array())
     {
         return AltoRouteParser::factory($routes);
     }

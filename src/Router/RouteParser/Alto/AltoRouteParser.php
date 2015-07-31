@@ -17,10 +17,11 @@ class AltoRouteParser extends Router {
         $router = new self();
         if (count($routes)) {
             $router->addRoutes($routes);
-            $router->registerWordpressAction();
         }
         return $router;
     }
+
+    private $registered = false;
 
     function __construct()
     {
@@ -32,6 +33,10 @@ class AltoRouteParser extends Router {
      */
     public function addRoutes($routes = array())
     {
+        if (!$this->isRegistered()) {
+            $this->registerWordpressAction();
+        }
+
         $this->route->addPossibilities($routes);
     }
 
@@ -63,6 +68,13 @@ class AltoRouteParser extends Router {
         } else {
             add_action('wp', array($this, "onWordpressInit"));
         }
+
+        $this->registered = true;
+    }
+
+    protected function isRegistered()
+    {
+        return $this->registered;
     }
 
     /**

@@ -22,6 +22,7 @@ class CustomPostTypeLoader
         foreach ($this->config as $cpt => $config) {
 
             $this->addWordpressRegisteringAction($cpt);
+            $config = Hash::normalize($config);
 
             if ($this->shouldAddAdminMenus($config)) {
                 $this->addWordpressMenusRegisteringAction($cpt, $config);
@@ -42,18 +43,18 @@ class CustomPostTypeLoader
 
     private function shouldAddAdminMenus($config)
     {
-        return is_admin() && !is_null($config) && Hash::check($config, 'admin');
+        return is_admin() && is_array($config) && array_key_exists('admin', $config);
     }
 
     private function addWordpressMenusRegisteringAction($ctpName, $config)
     {
         $obj = Model::factory($ctpName);
-        $obj->registerAdminMenus(Hash::extract($config, 'admin'));
+        $obj->registerAdminMenus($config['admin']);
     }
 
     private function shouldAddRoutes($config)
     {
-        return !is_admin() && !is_null($config) && Hash::check($config, 'routed');
+        return !is_admin() && is_array($config) && array_key_exists('routed', $config);
     }
 
     private function addResourceRoute($ctpName, $config)

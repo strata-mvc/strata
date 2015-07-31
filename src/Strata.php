@@ -77,7 +77,8 @@ class Strata extends StrataContext {
         }
 
         $this->configureRouter();
-        $this->_configureCustomPostType();
+        $this->configureCustomPostType();
+        $this->addAppRoutes();
         $this->loadMiddleware();
     }
 
@@ -165,7 +166,6 @@ class Strata extends StrataContext {
         $this->i18n->initialize();
     }
 
-
     /**
      * Configures the default router object to ensure that URL mapping
      * is automated.
@@ -173,7 +173,12 @@ class Strata extends StrataContext {
      */
     protected function configureRouter()
     {
-        $this->router = Router::automateURLRoutes($this->getConfig('routes'));
+        $this->router = Router::urlRouting();
+    }
+
+    protected function addAppRoutes()
+    {
+        $this->router->addRoutes($this->getConfig('routes'));
     }
 
     /**
@@ -181,7 +186,7 @@ class Strata extends StrataContext {
      * is automated.
      * @return null
      */
-    protected function _configureCustomPostType()
+    protected function configureCustomPostType()
     {
         $loader = new CustomPostTypeLoader($this->getConfig('custom-post-types'));
         $loader->load();
