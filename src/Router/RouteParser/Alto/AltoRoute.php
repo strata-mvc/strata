@@ -22,7 +22,6 @@ class AltoRoute extends Route
     private $altoRouter = null;
 
     const DYNAMIC_PARSE = "__strata_dynamic_parse__";
-    const RESOURCE = "resources";
 
     public function __construct()
     {
@@ -32,12 +31,34 @@ class AltoRoute extends Route
     /**
      * {@inheritdoc}
      */
-    public function addPossibilities($routes)
+    public function addPossibilities(array $routes)
     {
         foreach ($routes as $route) {
             $this->addRouteConfig($route);
         }
     }
+
+    public function addResource(array $route)
+    {
+        foreach (Hash::normalize($route) as $customPostType => $config) {
+            $model = Model::factory($customPostType);
+
+            $slug = Hash::check($model->configuration, "rewrite.slug")
+                ? Hash::get($model->configuration, "rewrite.slug")
+                : $model->getWordpressKey();
+
+            $hasMultipleLevels = explode("/", $slug);
+            if (count($hasMultipleLevels) > 1) {
+                $controller = Controller::generateClassName($hasMultipleLevels[0]);
+            } else {
+                $controller = Controller::generateClassName($slug);
+            }
+
+            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
+        }
+    }
+
 
     /**
      * {@inheritdoc}
@@ -59,44 +80,16 @@ class AltoRoute extends Route
             throw new Exception("Strata configuration file contains an invalid route.");
         }
 
-        if ($this->isResourced($route)) {
-            $this->addResourceRoute($route);
-        } elseif ($this->isDynamic($route)) {
+        if ($this->isDynamic($route)) {
             $this->addDynamicRoute($route);
         } else {
             $this->addMatchedRoute($route);
         }
     }
 
-    private function isResourced($route)
-    {
-        return array_key_exists(self::RESOURCE, $route);
-    }
-
     private function isDynamic($route)
     {
         return count($route) < 3;
-    }
-
-    private function addResourceRoute($route)
-    {
-        foreach (Hash::normalize($route[self::RESOURCE]) as $customPostType => $config) {
-            $model = Model::factory($customPostType);
-
-            $slug = Hash::check($model->configuration, "rewrite.slug")
-                ? Hash::get($model->configuration, "rewrite.slug")
-                : $model->getWordpressKey();
-
-            $hasMultipleLevels = explode("/", $slug);
-            if (count($hasMultipleLevels) > 1) {
-                $controller = Controller::generateClassName($hasMultipleLevels[0]);
-            } else {
-                $controller = Controller::generateClassName($slug);
-            }
-
-            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
-            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
-        }
     }
 
     private function addDynamicRoute($route)

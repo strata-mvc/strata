@@ -42,7 +42,9 @@ class Strata extends StrataContext {
 
     protected $_logger = null;
     private $middlewareLoader = null;
+
     public $i18n = null;
+    public $router = null;
 
     /**
      * Prepares the object for its run.
@@ -74,8 +76,8 @@ class Strata extends StrataContext {
             $this->init();
         }
 
+        $this->configureRouter();
         $this->_configureCustomPostType();
-        $this->_configureRouter();
         $this->loadMiddleware();
     }
 
@@ -169,9 +171,9 @@ class Strata extends StrataContext {
      * is automated.
      * @return null
      */
-    protected function _configureRouter()
+    protected function configureRouter()
     {
-        Router::automateURLRoutes($this->getConfig('routes'));
+        $this->router = Router::automateURLRoutes($this->getConfig('routes'));
     }
 
     /**
@@ -209,7 +211,7 @@ class Strata extends StrataContext {
     protected function _saveCurrentPID()
     {
         $pid = getmypid();
-        $this->log(sprintf("Loaded and running with process ID %s", $pid));
+        $this->log("", sprintf("[Strata] Loaded and running with process ID %s", $pid));
         $filename = self::getTmpPath() . "pid";
 
         if (is_writable($filename)) {

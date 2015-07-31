@@ -26,6 +26,10 @@ class CustomPostTypeLoader
             if ($this->shouldAddAdminMenus($config)) {
                 $this->addWordpressMenusRegisteringAction($cpt, $config);
             }
+
+            if ($this->shouldAddRoutes($config)) {
+                $this->addResourceRoute($cpt, $config);
+            }
         }
     }
 
@@ -45,6 +49,17 @@ class CustomPostTypeLoader
     {
         $obj = Model::factory($ctpName);
         $obj->registerAdminMenus(Hash::extract($config, 'admin'));
+    }
+
+    private function shouldAddRoutes($config)
+    {
+        return !is_admin() && !is_null($config) && Hash::check($config, 'routed');
+    }
+
+    private function addResourceRoute($ctpName, $config)
+    {
+        $app = Strata::app();
+        $app->router->route->addResource(array($ctpName => $config['routed']));
     }
 
     private function addWordpressRegisteringAction($ctpName)
