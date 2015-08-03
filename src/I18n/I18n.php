@@ -17,6 +17,7 @@ use Gettext\Translation;
 class i18n {
 
     const DOMAIN = "strata_i18n";
+    const REDIRECT_KEY = "disable_redirect";
 
     protected $locales = array();
     protected $currentLocale = null;
@@ -33,8 +34,25 @@ class i18n {
             add_action('generate_rewrite_rules', array($this, 'addLocalePrefixes'));
             add_filter('locale', array($this, "setAndApplyCurrentLanguageByContext"), 999);
             add_action('after_setup_theme', array($this, "applyLocale"));
+            add_filter('wp_redirect',  array($this, 'disableRedirect'));
+            add_filter('query_vars', array($this, 'addQueryVars'));
         };
     }
+
+    public function addQueryVars($qv)
+    {
+        $qv[] = self::REDIRECT_KEY;
+        return $qv;
+    }
+
+
+    function disableRedirect($location)
+    {
+        $disable_redirect = get_query_var(self::REDIRECT_KEY);
+        if(!empty($disable_redirect)) return false;
+        return $location;
+    }
+
 
     public function setAndApplyCurrentLanguageByContext()
     {
@@ -60,6 +78,43 @@ class i18n {
         }
     }
 
+    public function addLocalePrefixes($wpRewrite)
+    {
+        $keys = array();
+        foreach ($this->getLocales() as $locale) {
+            $keys[] = $locale->getUrl();
+        }
+
+        $wpRewrite->pagination_base = __('page', self::DOMAIN);
+        $wpRewrite->author_base = __('author', self::DOMAIN);
+        $wpRewrite->comments_base = __('comments', self::DOMAIN);
+        $wpRewrite->feed_base = __('feed', self::DOMAIN);
+        $wpRewrite->search_base = __('search', self::DOMAIN);
+        $wpRewrite->set_category_base( __('category', self::DOMAIN) . "/");
+        $wpRewrite->set_tag_base( __('tag', self::DOMAIN) . "/" );
+
+        $newrules = array();
+        foreach ($wpRewrite->rules as $key => $rule) {
+
+            if (strstr($key, "index.php/")) {
+                $newKey = str_replace('index.php/', 'index.php/(' . implode("|", $keys)  . ")/", $key);
+            } else {
+                $newKey = '(' . implode("|", $keys)  . ')/' . $key;
+            }
+
+            $bumpedString = preg_replace_callback("/matches\[(\d+)\]/", function($matches) {
+                return "matches[".((int)$matches[1]+1)."]";
+            }, $rule);
+
+
+            $newRule = str_replace('index.php?', 'index.php?locale=$matches[1]&'.self::REDIRECT_KEY.'=1&', $bumpedString);
+            $newrules[$newKey] = $newRule;
+        }
+
+        $wpRewrite->rules = $newrules + $wpRewrite->rules;
+        return $wpRewrite->rules;
+    }
+
     public function setCurrentLanguageByContext()
     {
         $request = new Request();
@@ -82,7 +137,6 @@ class i18n {
             }
             return;
         }
-
 
         if ($this->hasDefaultLocale()) {
             $this->setLocale($this->getDefaultLocale());
