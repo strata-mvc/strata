@@ -3,6 +3,7 @@ namespace Strata\Model\CustomPostType;
 
 use Strata\Model\WordpressEntity;
 use Strata\Model\CustomPostType\Query;
+use Strata\Model\CustomPostType\ModelEntity;
 
 class QueriableEntity extends WordpressEntity
 {
@@ -118,6 +119,8 @@ class QueriableEntity extends WordpressEntity
 
         $this->resetCurrentQuery();
 
+        return $this->wrapInEntities($results);
+
         return $results;
     }
 
@@ -157,12 +160,34 @@ class QueriableEntity extends WordpressEntity
 
     public function findById($id)
     {
-        return get_post($id);
+        $EntityClass = $this->getEntityWrapperClass();
+        $post = get_post($id);
+
+        if (!is_null($post)) {
+            return new $EntityClass($post);
+        }
     }
 
     public function count()
     {
         return wp_count_posts($this->getWordpressKey());
+    }
+
+    private function wrapInEntities(array $entities)
+    {
+        $EntityClass = $this->getEntityWrapperClass();
+        $results = array();
+        foreach ($entities as $entity) {
+            $results[] = new $EntityClass($entity);
+        }
+
+        return $results;
+    }
+
+    private function getEntityWrapperClass()
+    {
+        $original = ModelEntity::generateClassPath(get_called_class());
+        return class_exists($original) ? $original : "\\Strata\\Model\\CustomPostType\\ModelEntity";
     }
 
 }

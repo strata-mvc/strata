@@ -66,4 +66,15 @@ class Locale {
         return $localeDir . $this->getCode() . '.po';
     }
 
+    public function hasMoFile()
+    {
+        return file_exists($this->getMoFilePath());
+    }
+
+    public function getMoFilePath()
+    {
+        $localeDir = Strata::getLocalePath();
+        return $localeDir . $this->getCode() . '.mo';
+    }
+
 }

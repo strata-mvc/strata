@@ -4,6 +4,7 @@ namespace Strata\I18n;
 use Strata\Strata;
 use Strata\Utility\Hash;
 use Strata\I18n\Locale;
+use Strata\Controller\Request;
 
 use Gettext\Translations;
 use Gettext\Translation;
@@ -15,28 +16,47 @@ use Gettext\Translation;
  */
 class i18n {
 
+    const DOMAIN = "strata_i18n";
+
     protected $locales = array();
+    protected $currentLocale = null;
 
     public function initialize()
     {
         $this->resetLocaleCache();
-
-        if (function_exists('add_action')) {
-            add_action('init', array($this, "addLocaleEndpoints"));
-            add_action('wp_head', array($this, "setCurrentLanguageByContext"));
-        }
+        $this->addLocaleEvents();
     }
 
-    public function addLocaleEndpoints()
+    public function addLocaleEvents()
+    {
+
+        if (function_exists('add_action')) {
+            //$this->addLocaleEndpoints();
+            add_filter('locale', array($this, "setAndApplyCurrentLanguageByContext"), 999);
+            add_action('after_setup_theme', array($this, "applyLocale"));
+        };
+    }
+
+    protected function addLocaleEndpoints()
     {
         foreach ($this->getLocales() as $locale) {
             add_rewrite_endpoint($locale->getUrl(), EP_PERMALINK);
         }
     }
 
-    protected function registerLanguageSwitcherHooks()
+    public function setAndApplyCurrentLanguageByContext()
     {
+        $this->setCurrentLanguageByContext();
+        $locale = $this->getCurrentLocale();
 
+        if (!is_null($locale)) {
+            return $locale->getCode();
+        }
+    }
+
+    public function applyLocale()
+    {
+        load_theme_textdomain(self::DOMAIN, Strata::getLocalePath());
     }
 
     public function resetLocaleCache()
@@ -50,8 +70,19 @@ class i18n {
 
     public function setCurrentLanguageByContext()
     {
-    // global $wp_query;
-    // debug($wp_query->query_vars);
+        $request = new Request();
+
+        if ($request->hasGet("locale")) {
+            $locale = $this->getLocaleByCode($request->get("locale"));
+            if (!is_null($locale)) {
+                $this->setLocale($locale);
+                return;
+            }
+        }
+
+        if ($this->hasDefaultLocale()) {
+            $this->setLocale($this->getDefaultLocale());
+        }
     }
 
     public function hasLocalizationSettings()
@@ -66,6 +97,11 @@ class i18n {
         foreach ($locales as $key => $config) {
             $this->locales[$key] = new Locale($key, $config);
         }
+    }
+
+    protected function setLocale(Locale $locale)
+    {
+        $this->currentLocale = $locale;
     }
 
     public function hasActiveLocales()
@@ -95,7 +131,6 @@ class i18n {
 
         return Translations::fromPoFile($locale->getPoFilePath());
     }
-
 
     public function saveTranslations(Locale $locale, array $postedTranslations)
     {
@@ -129,13 +164,20 @@ class i18n {
 
     public function getCurrentLocale()
     {
-        $locales = $this->getLocales();
+        return $this->currentLocale;
+    }
 
-        // if() {
-            // Assuming we'll pull the current locale out of somewhere
-        //}
-        //
-        return $this->getDefaultLocale();
+    public function getCurrentLocaleCode()
+    {
+        $locale = $this->getCurrentLocale();
+        if (!is_null($locale)) {
+            return $locale->getCode();
+        }
+    }
+
+    public function hasDefaultLocale()
+    {
+        return !is_null($this->getDefaultLocale());
     }
 
     public function getDefaultLocale()

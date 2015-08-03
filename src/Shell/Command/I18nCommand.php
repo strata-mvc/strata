@@ -3,6 +3,7 @@ namespace Strata\Shell\Command;
 
 use Strata\Strata;
 use Strata\Utility\Hash;
+use Strata\I18n\i18n;
 use Strata\I18n\Locale;
 
 use Symfony\Component\Console\Command\Command;
@@ -60,6 +61,7 @@ class I18nCommand extends StrataCommand
         PhpCode::$functions = array_merge(PhpCode::$functions, array(
             '_e' => '__',
             '_n' => 'n__',
+            //'_x' => 'p__' -> parameters are reversed
         ));
     }
 
@@ -94,10 +96,14 @@ class I18nCommand extends StrataCommand
         // Merge with an existing .po
         if ($locale->hasPoFile()) {
             $poTranslations = Translations::fromPoFile($poFilename);
-            $translation->mergeWith($poTranslations, Translations::MERGE_HEADERS | Translations::MERGE_COMMENTS | Translations::MERGE_ADD);
+            $translation->mergeWith($poTranslations);
         }
 
+        $translation->setDomain(I18n::DOMAIN);
+        $translation->setHeader('Text Domain', I18n::DOMAIN);
+
         $translation->toPoFile($poFilename);
+        $translation->toMoFile($locale->getMoFilePath());
     }
 
     private function extractGettextStrings()
@@ -105,15 +111,14 @@ class I18nCommand extends StrataCommand
         $translation = null;
         $translationObjects = array();
         $lookupDirectories = array(
+            Strata::getVendorPath() . 'francoisfaubert' . DIRECTORY_SEPARATOR . 'strata' . DIRECTORY_SEPARATOR . 'src',
             Strata::getSrcPath(),
-            Strata::getThemesPath()
+            Strata::getThemesPath(),
         );
 
         foreach ($lookupDirectories as $directory) {
             $translationObjects = $this->recurseThroughDirectory($directory);
         }
-
-        $translationObjects = array_merge($translationObjects, $this->buildImpliedString());
 
         // Merge all translation objects into a bigger one
         foreach ($translationObjects as $t) {
@@ -125,16 +130,6 @@ class I18nCommand extends StrataCommand
         }
 
         return $translation;
-    }
-
-    /**
-     * Implied translations are the custom post type labels and the language label themselves
-     * as well as other database-oriented values within Wordpress.
-     */
-    private function buildImpliedString()
-    {
-        // TBD
-        return array();
     }
 
     private function recurseThroughDirectory($baseDir, $lookingFor = "/(.*)\.php$/i")

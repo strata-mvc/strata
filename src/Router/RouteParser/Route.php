@@ -6,7 +6,7 @@ use Exception;
 /**
  * A route is an object that can be mapped out to a MVC request.
  */
-class Route
+abstract class Route
 {
 
     /**
@@ -31,20 +31,14 @@ class Route
      * @throws Exception When it is not implemented by inheriting classes.
      * @return null
      */
-    public function process()
-    {
-
-    }
+    abstract public function process();
 
     /**
      * Adds a mixed type of possibility against which the route will be validating during the process() step.
      * @param mixed $routes Any type of data that is useful in the case of the class.
      * @return  null
      */
-    public function addPossibilities($routes)
-    {
-
-    }
+    abstract function addPossibilities(array $routes);
 
     /**
      * Verifies that the current values can be ran by the router.

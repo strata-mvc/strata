@@ -29,22 +29,21 @@ class CustomPostTypeRegistrar extends Registrar
 
         $singular   = $this->_labelParser->singular();
         $plural     = $this->_labelParser->plural();
-        $projectKey = Strata::getNamespace();
 
         $customizedOptions['labels'] += array(
-            'name'                => _x( $plural, 'Post Type General Name', $projectKey ),
-            'singular_name'       => _x( $singular, 'Post Type Singular Name', $projectKey ),
-            'menu_name'           => __( $plural, $projectKey ),
-            'parent_item_colon'   => __( $singular. ' Item:', $projectKey ),
-            'all_items'           => __( 'All ' . $plural, $projectKey ),
-            'view_item'           => __( 'View ' . $singular. ' Item', $projectKey ),
-            'add_new_item'        => __( 'Add New', $projectKey ),
-            'add_new'             => __( 'Add New', $projectKey ),
-            'edit_item'           => __( 'Edit ' . $singular, $projectKey ),
-            'update_item'         => __( 'Update ' . $singular, $projectKey ),
-            'search_items'        => __( 'Search ' . $plural, $projectKey ),
-            'not_found'           => __( 'Not found', $projectKey ),
-            'not_found_in_trash'  => __( 'Not found in Trash', $projectKey ),
+            'name'                => _x( $plural, 'Post Type General Name', 'strata' ),
+            'singular_name'       => _x( $singular, 'Post Type Singular Name', 'strata' ),
+            'menu_name'           => __( $plural, 'strata' ),
+            'parent_item_colon'   => __( $singular. ' Item:', 'strata' ),
+            'all_items'           => __( 'All ' . $plural, 'strata' ),
+            'view_item'           => __( 'View ' . $singular. ' Item', 'strata' ),
+            'add_new_item'        => __( 'Add New', 'strata' ),
+            'add_new'             => __( 'Add New', 'strata' ),
+            'edit_item'           => __( 'Edit ' . $singular, 'strata' ),
+            'update_item'         => __( 'Update ' . $singular, 'strata' ),
+            'search_items'        => __( 'Search ' . $plural, 'strata' ),
+            'not_found'           => __( 'Not found', 'strata' ),
+            'not_found_in_trash'  => __( 'Not found in Trash', 'strata' ),
         );
 
         return register_post_type($this->_wordpressKey, $customizedOptions);
