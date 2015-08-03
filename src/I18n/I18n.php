@@ -29,19 +29,11 @@ class i18n {
 
     public function addLocaleEvents()
     {
-
-        if (function_exists('add_action')) {
-            //$this->addLocaleEndpoints();
+        if (function_exists('add_action') && $this->hasLocalizationSettings()) {
+            add_action('generate_rewrite_rules', array($this, 'addLocalePrefixes'));
             add_filter('locale', array($this, "setAndApplyCurrentLanguageByContext"), 999);
             add_action('after_setup_theme', array($this, "applyLocale"));
         };
-    }
-
-    protected function addLocaleEndpoints()
-    {
-        foreach ($this->getLocales() as $locale) {
-            add_rewrite_endpoint($locale->getUrl(), EP_PERMALINK);
-        }
     }
 
     public function setAndApplyCurrentLanguageByContext()
@@ -71,7 +63,6 @@ class i18n {
     public function setCurrentLanguageByContext()
     {
         $request = new Request();
-
         if ($request->hasGet("locale")) {
             $locale = $this->getLocaleByCode($request->get("locale"));
             if (!is_null($locale)) {
@@ -79,6 +70,19 @@ class i18n {
                 return;
             }
         }
+
+        $keys = array();
+        foreach ($this->getLocales() as $locale) {
+            $keys[] = $locale->getUrl();
+        }
+        if (preg_match('/\/('.implode('|', $keys).')\//i', $_SERVER['REQUEST_URI'], $match)) {
+            $locale = $this->getLocaleByUrl($match[1]);
+            if (!is_null($locale)) {
+                $this->setLocale($locale);
+            }
+            return;
+        }
+
 
         if ($this->hasDefaultLocale()) {
             $this->setLocale($this->getDefaultLocale());
@@ -118,6 +122,15 @@ class i18n {
     {
         if (array_key_exists($code, $this->locales)) {
             return $this->locales[$code];
+        }
+    }
+
+    public function getLocaleByUrl($url)
+    {
+        foreach ($this->getLocales() as $locale) {
+            if ($locale->getUrl() === $url) {
+                return $locale;
+            }
         }
     }
 
@@ -193,5 +206,3 @@ class i18n {
         return array_pop($locales);
     }
 }
-
-
