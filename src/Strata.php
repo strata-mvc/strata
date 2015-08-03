@@ -178,7 +178,10 @@ class Strata extends StrataContext {
 
     protected function addAppRoutes()
     {
-        $this->router->addRoutes($this->getConfig('routes'));
+        $routes = $this->getConfig('routes');
+        if (is_array($routes)) {
+            $this->router->addRoutes($routes);
+        }
     }
 
     /**

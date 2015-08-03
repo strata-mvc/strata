@@ -20,9 +20,11 @@ class CustomPostTypeLoader
         $this->logAutoloadedEntities();
 
         foreach ($this->config as $cpt => $config) {
+            if (is_array($config)) {
+                $config = Hash::normalize($config);
+            }
 
             $this->addWordpressRegisteringAction($cpt);
-            $config = Hash::normalize($config);
 
             if ($this->shouldAddAdminMenus($config)) {
                 $this->addWordpressMenusRegisteringAction($cpt, $config);

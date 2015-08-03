@@ -18,7 +18,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->wordpress->reset();
 
         $this->callback = Router::callback("TestController", "returnTrue");
-        $this->alto = Router::automateURLRoutes(array(
+        $this->alto = Router::urlRouting(array(
             array("GET", "/test1/", "TestController#returnTrue")
         ));
 

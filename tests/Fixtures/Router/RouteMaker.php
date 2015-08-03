@@ -2,14 +2,14 @@
 namespace Tests\Fixtures\Router;
 
 use Strata\Router\Router;
-use Strata\Router\RouteParser\Route;
+use Tests\Fixtures\Router\FakeRoute;
 use Tests\Fixtures\Controller\TestController;
 
 class RouteMaker {
 
     public static function routeToTest()
     {
-        $route = new Route();
+        $route = new FakeRoute();
         $route->controller = new TestController();
         $route->action = "returnTrue";
 
