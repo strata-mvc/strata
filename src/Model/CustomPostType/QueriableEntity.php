@@ -8,6 +8,12 @@ use Strata\Model\CustomPostType\ModelEntity;
 class QueriableEntity extends WordpressEntity
 {
 
+    public static function getEntity($associatedObj)
+    {
+        $ActualEntity = ModelEntity::generateClassPath(get_called_class());
+        return class_exists($ActualEntity) ? new $ActualEntity($associatedObj) : new ModelEntity($associatedObj);
+    }
+
     /**
      * Returns an instantiated object to access the repository.
      * @return QueriableEntity
@@ -160,11 +166,9 @@ class QueriableEntity extends WordpressEntity
 
     public function findById($id)
     {
-        $EntityClass = $this->getEntityWrapperClass();
         $post = get_post($id);
-
         if (!is_null($post)) {
-            return new $EntityClass($post);
+            return self::getEntity($post);
         }
     }
 
@@ -175,19 +179,11 @@ class QueriableEntity extends WordpressEntity
 
     private function wrapInEntities(array $entities)
     {
-        $EntityClass = $this->getEntityWrapperClass();
         $results = array();
         foreach ($entities as $entity) {
-            $results[] = new $EntityClass($entity);
+            $results[] = self::getEntity($entity);
         }
 
         return $results;
     }
-
-    private function getEntityWrapperClass()
-    {
-        $original = ModelEntity::generateClassPath(get_called_class());
-        return class_exists($original) ? $original : "\\Strata\\Model\\CustomPostType\\ModelEntity";
-    }
-
 }
