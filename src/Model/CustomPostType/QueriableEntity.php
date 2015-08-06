@@ -112,6 +112,18 @@ class QueriableEntity extends WordpressEntity
         return $this;
     }
 
+    public function count()
+    {
+        $this->throwIfContextInvalid();
+
+        $this->reloadQueryAdapter();
+        $results = $this->activeQuery->fetch();
+
+        $this->resetCurrentQuery();
+
+        return count($results);
+    }
+
     /**
      * Executes the query and resets it anew.
      * @return array posts
@@ -126,8 +138,6 @@ class QueriableEntity extends WordpressEntity
         $this->resetCurrentQuery();
 
         return $this->wrapInEntities($results);
-
-        return $results;
     }
 
     /**
@@ -172,7 +182,7 @@ class QueriableEntity extends WordpressEntity
         }
     }
 
-    public function count()
+    public function countTotal()
     {
         return wp_count_posts($this->getWordpressKey());
     }
