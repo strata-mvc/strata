@@ -10,7 +10,9 @@ class QueriableEntity extends WordpressEntity
 
     public static function getEntity($associatedObj)
     {
-        $ActualEntity = ModelEntity::generateClassPath(get_called_class());
+        $EntityClass = get_called_class();
+        $entityClassRef = new $EntityClass();
+        $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
         return class_exists($ActualEntity) ? new $ActualEntity($associatedObj) : new ModelEntity($associatedObj);
     }
 

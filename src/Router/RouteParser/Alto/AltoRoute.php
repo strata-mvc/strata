@@ -170,7 +170,7 @@ class AltoRoute extends Route
             return lcfirst(Inflector::camelize($action));
         }
 
-        if (!array_key_exists("controller", $match["params"]) && !array_key_exists("action", $match["params"])) {
+        if (array_key_exists("controller", $match["params"]) && !array_key_exists("action", $match["params"])) {
             return "index";
         }
 
