@@ -20,7 +20,6 @@ class WordpressEntity extends Model
     function __construct()
     {
         $this->normalizeConfiguration();
-        parent::__construct();
     }
 
     /**

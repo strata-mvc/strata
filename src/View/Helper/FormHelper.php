@@ -2,243 +2,41 @@
 
 namespace Strata\View\Helper;
 
+use Strata\Model\ModelEntity;
 use Strata\Controller\Request;
-use Strata\Utility\Hash;
-use Strata\Utility\Inflector;
-use Strata\Model\Form\ValidationCollector;
+use Exception;
 
-class FormHelper extends \Strata\View\Helper\Helper {
+class FormHelper extends Helper {
 
-    public static function generateClassPath($name)
-    {
-        return Strata::getNamespace() . "\\View\\" . self::generateClassName($name);
-    }
+    private $request = null;
+    protected $configuration = array();
+    protected $associatedEntity = null;
+    public $validationErrors = null;
 
-    public static function generateClassName($name)
-    {
-        $name = str_replace("-", "_", $name);
-        $name = Inflector::classify($name);
-
-        if (preg_match("/Form$/", $name)) {
-            $name .= "Helper";
-        } elseif (!preg_match("/FormHelper$/", $name)) {
-            $name .= "FormHelper";
-        }
-
-        return $name;
-    }
-
-
-    const POST_KEY_CURRENT      = "mvc-current-step";
-    const POST_KEY_NEXT_PAGE    = "mvc-next-step";
-    const POST_KEY_PREVIOUS_PAGE = "mvc-previous-step";
-    const POST_KEY_GO_TO_STEP   = "mvc-goto-step";
-    const POST_KEY_SUBMIT       = "mvc-submit";
-    const POST_WRAP             = "data";
-    const FIELD_PREFIX          = "input_";
-
-    // @todo: consider adding getters/setters and making this private
-    public $currentStep = 1;
-    public $stepsQty = 1;
-    public $errors = array();
-    public $assigned = array();
-
-    protected $_request = null;
-
-    private $_wpReserved = array(
-        'attachment',
-        'attachment_id',
-        'author',
-        'author_name',
-        'calendar',
-        'cat',
-        'category',
-        'category__and',
-        'category__in',
-        'category__not_in',
-        'category_name',
-        'comments_per_page',
-        'comments_popup',
-        'customize_messenger_channel',
-        'customized',
-        'cpage',
-        'day',
-        'debug',
-        'error',
-        'exact',
-        'feed',
-        'hour',
-        'link_category',
-        'm',
-        'minute',
-        'monthnum',
-        'more',
-        'name',
-        'nav_menu',
-        'nonce',
-        'nopaging',
-        'offset',
-        'order',
-        'orderby',
-        'p',
-        'page',
-        'page_id',
-        'paged',
-        'pagename',
-        'pb',
-        'perm',
-        'post',
-        'post__in',
-        'post__not_in',
-        'post_format',
-        'post_mime_type',
-        'post_status',
-        'post_tag',
-        'post_type',
-        'posts',
-        'posts_per_archive_page',
-        'posts_per_page',
-        'preview',
-        'robots',
-        's',
-        'search',
-        'second',
-        'sentence',
-        'showposts',
-        'static',
-        'subpost',
-        'subpost_id',
-        'tag',
-        'tag__and',
-        'tag__in',
-        'tag__not_in',
-        'tag_id',
-        'tag_slug__and',
-        'tag_slug__in',
-        'taxonomy',
-        'tb',
-        'term',
-        'theme',
-        'type',
-        'w',
-        'withcomments',
-        'withoutcomments',
-        'year',
+    public $keys = array(
+        'POST_KEY_SUBMIT'       => "strata-submit",
+        'POST_WRAP'             => "data"
     );
 
-    public function __construct(\Strata\Controller\Request  $request)
+    public function create($mixed = null, $options = array())
     {
-        $this->_linkToRequest($request);
-        $this->_setStepContext();
-    }
+        $this->request = new Request();
 
-    public function getCurrentStep()
-    {
-        return $this->currentStep;
-    }
-
-    public function hasSteps()
-    {
-        return (int)$this->stepsQty > 1;
-    }
-
-    public function contextWantsToSubmit()
-    {
-        return $this->hasPostedValue(self::POST_KEY_SUBMIT);
-    }
-
-    public function contextWantsToGoForward()
-    {
-        return $this->hasPostedValue(self::POST_KEY_NEXT_PAGE);
-    }
-
-    public function contextWantsToGoBackwards()
-    {
-        return $this->hasPostedValue(self::POST_KEY_PREVIOUS_PAGE);
-    }
-
-    public function contextWantsToGoToStep()
-    {
-        return $this->hasPostedValue(self::POST_KEY_GO_TO_STEP);
-    }
-
-    public function getPostedValue($key)
-    {
-        $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return $this->_request->post($this->_removeBrackets($this->name($key)));
-    }
-
-    public function hasPostedValue($key)
-    {
-        $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return $this->_request->hasPost($this->_removeBrackets($this->name($key)));
-    }
-
-    public function applyValidationCollection(\Strata\Model\Form\ValidationCollector $collector)
-    {
-        $this->errors = $collector->getErrors();
-        $this->assignments = $collector->getAssignments();
-    }
-
-    public function hasErrors($key = null)
-    {
-        if (is_null($key)) {
-            return count($this->errors) > 0;
+        if (!is_null($mixed) && !in_array('Strata\\Model\\CustomPostType\\ModelEntity', class_parents($mixed))) {
+            throw new Exception("A form can only be linked to either an object inheriting ModelEntity or nothing at all.");
         }
 
-        $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return count(Hash::get($this->errors, $key)) > 0;
-    }
-
-    public function getError($key)
-    {
-        $key = str_replace('[]', '', $key); // posted arrays (ex: 'users[]') didn't match.
-        return Hash::get($this->errors, $key);
-    }
-
-    public function error($key, $options = array())
-    {
-        $errorTag = "";
-        $errorObj = $this->getError($key);
-
-        if (!is_null($errorObj)) {
-            $errorTag .= '<ul class="inline-errors">';
-            foreach ($errorObj as $key => $message) {
-                $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
-            }
-            $errorTag .= '</ul>';
+        if (is_object($mixed)) {
+            $this->associatedEntity = $mixed;
         }
 
-        return $errorTag;
-    }
+        $this->configuration = $this->parseFormConfiguration($options);
 
-    public function create($options = array())
-    {
-        $options += array(
-            "type" => "POST",
-            "action" => $_SERVER['REQUEST_URI']
-        );
+        $formAttributes = $this->configuration;
+        unset($formAttributes['hasSteps']);
+        unset($formAttributes['type']);
 
-        if ($options['type'] === "file") {
-            $options["method"] = "POST";
-            $options["enctype"] = "multipart/form-data";
-        } else {
-            $options["method"] = strtoupper($options['type']);
-        }
-        // Remove the unsupported attributes once were have mapped them to real html ones.
-        unset($options['type']);
-
-        //$additional = wp_nonce_field($this->_formKey, "mvc-nonce", true, false);
-        $additional = "";
-
-        if ($this->hasSteps()) {
-            // Keep a backlog of previously set values.
-            $additional .= $this->_createBacklog();
-            // And the current step
-            $additional .= $this->input(self::POST_KEY_CURRENT, array("type" => "hidden", "value" => $this->currentStep));
-        }
-
-        return sprintf('<form %s>', $this->_arrayToAttributes($options)) . $additional;
+        return sprintf('<form %s>', $this->arrayToHtmlAttributes($formAttributes));
     }
 
     public function end()
@@ -249,128 +47,42 @@ class FormHelper extends \Strata\View\Helper\Helper {
     public function id($name)
     {
         $keepIdx = preg_replace('/\[(\d+)\]/', "_$1", $name);
-        $unbracketted = $this->_removeBrackets($keepIdx, '_');
+        $unbracketted = $this->removeBrackets($keepIdx, '_');
         $nothingWeird = preg_replace('/[^\w\d\_]+?/', "", $unbracketted);
         $noTrail = preg_replace('/_$/', "", $nothingWeird);
 
-        return self::FIELD_PREFIX . $noTrail;
+        $clean = $noTrail;
+
+        if (!is_null($this->associatedEntity) && in_array($name, array_keys($this->associatedEntity->attributes))) {
+            $clean = $this->associatedEntity->getInputName() . "_" . $clean;
+        }
+
+        return $this->keys['POST_WRAP'] . "_" . $clean;
     }
 
     public function name($name)
     {
-        // To ensure our parameters don't bump in wordpress' get parameters (notably the custom
-        // post types slugs), wrap the inputs in a data[] wrapper
+        $prefix = !is_null($this->associatedEntity) && in_array($name, array_keys($this->associatedEntity->attributes)) ?
+            $this->keys['POST_WRAP'] . '[' . $this->associatedEntity->getInputName() . ']' :
+            $this->keys['POST_WRAP'];
 
         // Transforms user[name] to data[user][name];
         if (preg_match('/^(.+?)\[(.+)?/', $name, $matches)) {
-            return self::POST_WRAP . '[' . $matches[1].'][' . $matches[2];
+            return $prefix . '[' . $matches[1].'][' . $matches[2];
         }
 
         // Transforms user to data[user]
-        return self::POST_WRAP . '[' . $name . ']';
-    }
-
-    public function input($name, $options = array())
-    {
-        $this->_validatePostName($name);
-
-        $options += array(
-            "type"  => "text",
-            "id"    => $this->id($name),
-            "name"  => $this->name($name),
-            "inline-errors" => array(),
-            "class" => ""
-        );
-
-        $prefixing = "";
-        $suffixing = "";
-        $value = $this->getPostedValue($name);
-
-        // Display errors if there are any
-        if ($options["inline-errors"] !== false) {
-            $suffixing .= $this->error($name, $options["inline-errors"]);
-        }
-        unset($options["inline-errors"]);
-
-        if($this->hasErrors($name)) {
-            $options["class"] .= " error ";
-        }
-
-        // Display the input control wrapped in predefined html should
-        // it have been necessary.
-        switch ($options['type']) {
-            case "textarea" :
-                unset($options["type"]);
-                return $prefixing . sprintf('<textarea %s>%s</textarea>', $this->_arrayToAttributes($options), stripslashes($value)) . $suffixing;
-
-            case "select" :
-                $choices = "";
-                if (array_key_exists("choices", $options) && is_array($options["choices"])) {
-                    foreach ($options["choices"] as $key => $val) {
-                        $choices .= sprintf('<option%s value="%s">%s</option>', $key.'' === $value.'' ? ' selected="selected"' : '', $key, $val);
-                    }
-                    unset($options["choices"]);
-                }
-                unset($options["type"]);
-                return $prefixing . sprintf('<select %s>%s</select>', $this->_arrayToAttributes($options), $choices) . $suffixing;
-
-            case "radio" :
-                $choices = "";
-                $choices .= sprintf('<input %s%s>', $this->_arrayToAttributes($options), "".$options['value'] === $value ? ' checked="checked"' : '' );
-                return $prefixing . $choices . $suffixing;
-
-            case "checkbox" :
-                $hidden = sprintf('<input type="hidden" name="%s" value="0">', $options['name']);
-                $chk = sprintf('<input %s %s>', $this->_arrayToAttributes($options),  $options['value'] == $value ? ' checked="checked"' : '');
-                return $prefixing . $hidden . $chk . $suffixing;
-
-            case 'hidden' :
-                unset($options["id"]);
-                if (is_array($value)) {
-                    $return = "";
-                    foreach ($value as $key => $val) {
-                        $return .= sprintf('<input %s value="%s">', $this->_arrayToAttributes($options), $val);
-                    }
-                    return $prefixing . $return . $suffixing;
-                } else {
-                    return $prefixing . sprintf('<input %s value="%s">', $this->_arrayToAttributes($options), $value) . $suffixing;
-                }
-
-
-            default :
-                return $prefixing . sprintf('<input %s value="%s">', $this->_arrayToAttributes($options), $value) . $suffixing;
-        }
+        return $prefix . '[' . $name . ']';
     }
 
     public function submit($options = array())
     {
         $options["type"] = "submit";
-        return $this->button(self::POST_KEY_SUBMIT, $options);
-    }
-
-    public function previous($options = array())
-    {
-        $options["type"] = "submit";
-        return $this->button(self::POST_KEY_PREVIOUS_PAGE, $options);
-    }
-
-    public function next($options = array())
-    {
-        $options["type"] = "submit";
-        return $this->button(self::POST_KEY_NEXT_PAGE, $options);
-    }
-
-    public function gotostep($stepIdx = 1, $options = array())
-    {
-        $options["type"] = "submit";
-        $options["value"] = $stepIdx;
-        return $this->button(self::POST_KEY_GO_TO_STEP, $options);
+        return $this->button($this->keys['POST_KEY_SUBMIT'], $options);
     }
 
     public function button($name, $options = array())
     {
-        $this->_validatePostName($name);
-
         $options += array(
             "type" => "button",
             "label" => "Button",
@@ -381,100 +93,171 @@ class FormHelper extends \Strata\View\Helper\Helper {
         $label = $options["label"];
         unset($options["label"]);
 
-        return sprintf('<button %s>%s</button>', $this->_arrayToAttributes($options), $label);
+        return sprintf('<button %s>%s</button>', $this->arrayToHtmlAttributes($options), $label);
     }
 
-    public function getStepsHtml($options = array())
+    public function input($name, $options = array())
     {
-        if (!$this->hasSteps()) {
-            return "";
-        }
-
-        $currentStep = $this->getCurrentStep();
         $options += array(
-            'wrapperTpl'    => '<ul class="steps">%s</ul>',
-            'stepTpl'       => '<li class="%s"><span class="step-number">%s</span>%s</li>',
-            'stepTextTpl'   => '<span class="step-text">%s</span>',
-            'titles'        => null,
-            'allow-step-nav'  => true
+            "type"  => "text",
+            "id"    => $this->id($name),
+            "name"  => $this->name($name),
+            "error" => true,
+            "class" => "",
+            "value" => "",
+            "label" => null
         );
 
-        $stepsHtml = "";
-        $idx = 0;
-        while ($idx++ < $this->stepsQty) {
-            $classnames = array();
-            $label = $idx;
+        $currentValue = $this->getCurrentValue($options['name']);
 
-            if ($currentStep === $idx) {
-                $classnames[] = "active";
-            } elseif ($idx < $currentStep) {
-                $classnames[] = "completed";
-                if ($options['allow-step-nav']) {
-                    $label = $this->gotostep($idx, array("label" => $idx));
-                }
-
-            } elseif ($idx > $currentStep) {
-                $classnames[] = "future";
-            }
-
-            $stepDetails = "";
-            if (is_array($options['titles'])) {
-                $stepDetails = sprintf($options['stepTextTpl'], $options['titles'][$idx-1]);
-            }
-
-            $stepsHtml .= sprintf($options['stepTpl'], implode(" ", $classnames), $label, $stepDetails);
+        $errorHtml = "";
+        if ((bool)$options['error'] && !is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
+            $this->validationErrors = $this->associatedEntity->getValidationErrors();
+            $errorHtml = $this->generateInlineErrors($name);
+            $options['class'] .= " error ";
         }
+        unset($options["error"]);
 
-        return sprintf($options['wrapperTpl'], $stepsHtml);
-    }
+        $label = "";
+        if (!is_null($options['label'])) {
+            $label .= $this->generateLabel($options);
+        }
+        unset($options['label']);
 
-    private function _linkToRequest(\Strata\Controller\Request $request)
-    {
-        $this->_request = $request;
-    }
-
-    private function _setStepContext()
-    {
-        $postedStep = (int)$this->getPostedValue(self::POST_KEY_CURRENT);
-        if($postedStep > 0) {
-            $this->currentStep = $postedStep;
+        switch (strtolower($options['type'])) {
+            case "textarea" :   return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
+            case "select" :     return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
+            case "radio" :      return $label . "\n" . $this->generateRadio($options, $currentValue) . $errorHtml . "\n";
+            case "checkbox" :   return $label . "\n" . $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n";
+            case "hidden" :     return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
+            default :           return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
         }
     }
 
-    protected function _arrayToAttributes($attributes)
+    public function generateInlineErrors($postName)
+    {
+        if (array_key_exists($postName, $this->validationErrors)) {
+            $errorTag = '<ul class="inline-errors">';
+            foreach ($this->validationErrors[$postName] as $key => $message) {
+                $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
+            }
+            return $errorTag . '</ul>';
+        }
+        return "";
+    }
+
+    protected function parseFormConfiguration($options)
+    {
+        $options += array(
+            "type" => "POST",
+            "hasSteps" => false,
+            "action" => $_SERVER['REQUEST_URI']
+        );
+
+        if (strtolower($options['type']) === "file") {
+            $options["method"] = "POST";
+            $options["enctype"] = "multipart/form-data";
+        } else {
+            $options["method"] = strtoupper($options['type']);
+        }
+
+        return $options;
+    }
+
+    protected function generateTextarea($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options['value']);
+        unset($options["type"]);
+
+        return sprintf('<textarea %s>%s</textarea>', $this->arrayToHtmlAttributes($options), stripslashes($value));
+    }
+
+    protected function generateSelect($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options["type"]);
+        unset($options["value"]);
+
+        $optionsHtml = "";
+        if (array_key_exists("choices", $options) && is_array($options["choices"])) {
+            foreach ($options["choices"] as $key => $val) {
+                $optionsHtml .= sprintf('<option%s value="%s">%s</option>', "$key" === "$value" ? ' selected="selected"' : '', $key, $val);
+            }
+            unset($options["choices"]);
+        }
+
+        return sprintf('<select %s>%s</select>', $this->arrayToHtmlAttributes($options), $optionsHtml);
+    }
+
+    protected function generateRadio($options, $currentValue = null)
+    {
+        return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked="checked"' : '' );
+    }
+
+    protected function generateCheckbox($options, $currentValue = null)
+    {
+        $hidden = sprintf('<input type="hidden" name="%s" value="0">', $options['name']);
+        $chk = sprintf('<input %s %s>', $this->arrayToHtmlAttributes($options),  $options['value'] == $currentValue ? ' checked="checked"' : '');
+        return $hidden . $chk;
+    }
+
+    protected function generateHidden($options, $currentValue)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options["id"]);
+        unset($options["value"]);
+
+        if (is_array($value)) {
+            $returnHtml = "";
+            foreach ($value as $key => $val) {
+                $returnHtml .= sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $val);
+            }
+            return $returnHtml;
+        } else {
+            return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);
+        }
+    }
+
+    protected function generateTextinput($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        $options["type"] = "text";
+        unset($options["value"]);
+
+        return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);
+    }
+
+    protected function generateLabel($options)
+    {
+        return sprintf('<label for="%s">%s</label>', $options['id'], $options['label']);
+    }
+
+    protected function arrayToHtmlAttributes(array $values)
     {
         $output = "";
-        foreach($attributes as $key => $value){
-            $output .=  sprintf('%s="%s" ', $key, $value);
+
+        foreach($values as $key => $value){
+            $output .=  sprintf('%s="%s" ', htmlentities($key), htmlentities($value));
         }
+
         return $output;
     }
 
-    protected function _createBacklog()
-    {
-        $backlogHtml = "";
-        foreach ($this->assignments as $key => $value) {
-            if (!is_array($value)) {
-                $backlogHtml .= $this->input($key, array("type" => "hidden", "value" => $value));
-            } else {
-                foreach($value as $idx => $singleValue) {
-                    $backlogHtml .= $this->input($key . "[".$idx."]", array("type" => "hidden", "value" => $singleValue));
-                }
-            }
-        }
-        return $backlogHtml;
-    }
-
-    protected function _validatePostName($name)
-    {
-        if (in_array($name, $this->_wpReserved)) {
-            throw new \Exception(sprintf("Using Wordpress reserved POST/GET name %s in form.", $name));
-        }
-    }
-
-    protected function _removeBrackets($key, $replacement = '.')
+    protected function removeBrackets($key, $replacement = '.')
     {
         return str_replace(array('[', ']'), array($replacement, ''), $key);
     }
 
+    protected function getCurrentValue($key)
+    {
+        if ($this->configuration['type'] === "GET") {
+            return $this->request->get($key);
+        }
+        return $this->request->post($key);
+    }
 }

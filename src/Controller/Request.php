@@ -101,6 +101,17 @@ class Request {
         return Hash::get($this->_POST, $key);
     }
 
+
+    /**
+     * Returns the posted form parameters
+     * @return mixed
+     */
+    public function data()
+    {
+        return Hash::get($this->_POST, "data");
+    }
+
+
     /**
      * Returns the cookie parameter matching $key.
      * @param string $key The name of the cookie value

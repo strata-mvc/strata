@@ -4,6 +4,7 @@ namespace Strata\View\Helper;
 use Strata\Strata;
 use Strata\Utility\Inflector;
 use Exception;
+use ReflectionClass;
 
 /**
  * A base class for ViewHelper objects
@@ -18,9 +19,17 @@ class Helper {
      */
     public static function factory($name, $config = array())
     {
-        $classpath = self::generateClassPath($name);
-        if (class_exists($classpath)) {
-            return new $classpath($config);
+        // Check for custom validators in the Strata scope as well as in
+        // the project scope. Project scope has priority.
+        $scopes = array(
+            self::generateClassPath($name),
+            self::generateClassPath($name, false)
+        );
+
+        foreach ($scopes as $HelperName) {
+            if (class_exists($HelperName)) {
+                return new $HelperName($config);
+            }
         }
 
         throw new Exception("Strata : No file matched the view helper '$classpath'.");
@@ -31,20 +40,30 @@ class Helper {
      * Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\'
      * string everywhere.
      * @param  string $name The class name of the helper
-     * @return string       A fully namespaced helper name
+     * @param  boolean $local Generated a path that is relative to the current project. Default to false.
+     * @return string       A fulle namespaced view helper name
      */
-    public static function generateClassPath($name)
+    public static function generateClassPath($name, $local = true)
     {
+        $namespace = $local ? Strata::getNamespace() : 'Strata';
+        return $namespace . "\\View\\Helper\\" . self::generateClassName($name);
+    }
+
+    public static function generateClassName($name)
+    {
+        $name = str_replace("-", "_", $name);
+        $name = Inflector::classify($name);
+
         if (!preg_match("/Helper$/", $name)) {
             $name .= "Helper";
         }
-        $name = str_replace("-", "_", $name);
-        return Strata::getNamespace() . "\\View\\Helper\\" . Inflector::classify($name);
+
+        return $name;
     }
 
     public function getShortName()
     {
-        $rc = new \ReflectionClass($this);
+        $rc = new ReflectionClass($this);
         return $rc->getShortName();
     }
 

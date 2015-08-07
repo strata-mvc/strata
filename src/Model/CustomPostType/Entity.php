@@ -30,6 +30,7 @@ class Entity extends QueriableEntity
         return array($obj, "registerPostType");
     }
 
+
     public $wpPrefix = "cpt_";
 
     /**
