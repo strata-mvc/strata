@@ -25,19 +25,21 @@ class Template {
 
         // Print debug info in the the logs
         if (Strata::isDev()) {
-            $partialFilePath = str_replace(ABSPATH, "", $templateFilePath);
+            $partialFilePath = str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath);
             $vars = array_keys($variables);
-            $debugComment = sprintf("Template '%s' with variables: %s", $templateFilePath, implode(", ", $vars));
             $app = Strata::app();
-            $app->log($debugComment, "[Strata::Template]");
-
+            $app->log(sprintf("Template '%s' with variables: %s", $partialFilePath, implode(", ", $vars)), "[Strata::Template]");
             // also print in the html as a comment
-            echo "<!-- " . $debugComment . " -->";
+            echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", $vars)."\n -->\n";
         }
-
 
         extract($variables);
         include($templateFilePath);
+
+        if (Strata::isDev()) {
+            echo "\n<!-- [Strata::Template:End] -->";
+        }
+
         return ob_get_clean();
     }
 }

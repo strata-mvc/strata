@@ -235,7 +235,7 @@ class Strata extends StrataContext {
     }
 
     /**
-     * Adds the current project namespace to the projet's class loader.
+     * Adds the current project namespace to the project's class loader.
      * @return null
      */
     protected function _addProjectNamespace()
