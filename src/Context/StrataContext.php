@@ -40,6 +40,11 @@ class StrataContext {
         }
     }
 
+    public static function isDev()
+    {
+        return !defined("WP_ENV") || WP_ENV == 'development';
+    }
+
     /**
      * Returns the current project's namespace key
      * @return  string A namespace

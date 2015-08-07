@@ -37,10 +37,7 @@ class Logger {
 
     protected function canPrintLogs()
     {
-        $isDev = !defined("WP_ENV") || WP_ENV == 'development';
-        $isWritable = is_writable($this->logfile);
-
-        return $isDev && $isWritable;
+        return Strata::isDev() && is_writable($this->logfile);
     }
 
     protected function write($message, $context)

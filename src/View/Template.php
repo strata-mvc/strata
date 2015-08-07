@@ -21,14 +21,23 @@ class Template {
 
     public static function parseFile($templateFilePath, $variables = array())
     {
-        $app = Strata::app();
-        $vars = array_keys($variables);
-        $app->log(sprintf("Parsing template file '%s' with variables: %s", $templateFilePath, implode(", ", $vars)), "[Strata::Template]");
-
         ob_start();
+
+        // Print debug info in the the logs
+        if (Strata::isDev()) {
+            $partialFilePath = str_replace(ABSPATH, "", $templateFilePath);
+            $vars = array_keys($variables);
+            $debugComment = sprintf("Template '%s' with variables: %s", $templateFilePath, implode(", ", $vars));
+            $app = Strata::app();
+            $app->log($debugComment, "[Strata::Template]");
+
+            // also print in the html as a comment
+            echo "<!-- " . $debugComment . " -->";
+        }
+
+
         extract($variables);
         include($templateFilePath);
         return ob_get_clean();
     }
-
 }
