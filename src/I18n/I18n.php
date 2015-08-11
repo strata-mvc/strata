@@ -83,21 +83,23 @@ class i18n {
         if ($request->hasGet("locale")) {
             $locale = $this->getLocaleByCode($request->get("locale"));
             if (!is_null($locale)) {
-                $this->setLocale($locale);
-                return;
+                return $this->setLocale($locale);
             }
         }
 
         if (preg_match('/\/('.implode('|', $this->getLocaleUrls()).')\//i', $_SERVER['REQUEST_URI'], $match)) {
             $locale = $this->getLocaleByUrl($match[1]);
             if (!is_null($locale)) {
-                $this->setLocale($locale);
+                return $this->setLocale($locale);
             }
-            return;
+        }
+
+        if ($this->hasLocaleInSession()) {
+            return $this->setLocale($this->getLocaleInSession());
         }
 
         if ($this->hasDefaultLocale()) {
-            $this->setLocale($this->getDefaultLocale());
+            return $this->setLocale($this->getDefaultLocale());
         }
     }
 
@@ -203,6 +205,59 @@ class i18n {
     }
 
     /**
+     * Checks whether a locale has been store in the user's session.
+     * @return boolean
+     */
+    public function hasLocaleInSession()
+    {
+        $this->startSession();
+        return array_key_exists(self::DOMAIN, $_SESSION);
+    }
+
+    /**
+     * Returns the locale that is saved in the session array.
+     * @return Locale
+     */
+    public function getLocaleInSession()
+    {
+        $this->startSession();
+        $localeCode = $_SESSION[self::DOMAIN];
+
+        return $this->getLocaleByCode($localeCode);
+    }
+
+    /**
+     * Starts a PHP session if there was none.
+     * @return int Session id
+     */
+    private function startSession()
+    {
+        $sessionId = session_id();
+
+        if (!$sessionId) {
+            return session_start();
+        }
+
+        return $sessionId;
+    }
+
+    /**
+     * The goal of dumping the code in the session vars is only to
+     * keep a fallback value when someone (for instance) renders a 404
+     * when browsing in a locale. Having the value in session prevents the 404
+     * to be rendered with the default locale.
+     *
+     * The value in session should not have more weight then the other methods
+     * in setCurrentLocaleByContext();
+     * @see setCurrentLocaleByContext
+     */
+    private function saveCurrentLocaleToSession()
+    {
+        $this->startSession();
+        $_SESSION[self::DOMAIN] = $this->getCurrentLocaleCode();
+    }
+
+    /**
      * Loads the translations from the locale's PO file and returns the list.
      * @param  string $localeCode
      * @return array
@@ -297,6 +352,7 @@ class i18n {
     protected function setLocale(Locale $locale)
     {
         $this->currentLocale = $locale;
+        $this->saveCurrentLocaleToSession();
     }
 
     /**
