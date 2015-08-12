@@ -47,7 +47,7 @@ class ViewTest extends PHPUnit_Framework_TestCase
     public function testReplacesTemplateVariables()
     {
         $parsed = $this->view->loadTemplate("test");
-        $expected = "The result of this test is true"; // where 'true' is the view var we set in setUp()
-        $this->assertEquals($expected, $parsed);
+        // where 'true' is the view var we set in setUp()
+        $this->assertRegExp('/The result of this test is true/', $parsed);
     }
 }

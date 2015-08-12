@@ -21,6 +21,8 @@ class Entity extends QueriableEntity
     {
         $this->admin_menus = Hash::normalize($this->admin_menus);
         $this->belongs_to = Hash::normalize($this->belongs_to);
+
+        parent::__construct();
     }
 
     /**

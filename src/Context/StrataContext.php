@@ -40,11 +40,6 @@ class StrataContext {
         }
     }
 
-    public static function isDev()
-    {
-        return !defined("WP_ENV") || WP_ENV == 'development';
-    }
-
     /**
      * Returns the current project's namespace key
      * @return  string A namespace
@@ -68,7 +63,7 @@ class StrataContext {
      */
     public static function bootstrap(ClassLoader $loader)
     {
-        $app = new \Strata\Strata();
+        $app = new Strata();
 
         // Expose the app context to the current process.
         $GLOBALS['__Strata__'] = $app;
@@ -78,24 +73,6 @@ class StrataContext {
         return $app;
     }
 
-    /**
-     * Bootstraps Strata in test mode
-     * @param  \Composer\Autoload\ClassLoader Current project's Composer autoloader.
-     * @return \Strata\Strata The current application
-     */
-    public static function bootstrapTest(ClassLoader $loader)
-    {
-        // Require the Fixtures' paths.
-        $loader->setPsr4("Tests\\", \Strata\Strata::getTestPath());
-
-        // Expose the app context to the current process.
-        $app = new \Strata\Strata();
-        $app->setLoader($loader);
-
-        $GLOBALS['__Strata__'] = $app;
-
-        return $app;
-    }
 
     /**
      * Loads strata.php, cleans up the data and saves it as config to the current instance of the Strata object.
@@ -125,12 +102,12 @@ class StrataContext {
 
     public static function requireVendorAutoload()
     {
-        return require \Strata\Strata::getVendorPath() . 'autoload.php';
+        return require Strata::getVendorPath() . 'autoload.php';
     }
 
     public static function includeWordpressFixture()
     {
-        $path = array(\Strata\Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
+        $path = array(Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
         $file =  include(implode(DIRECTORY_SEPARATOR, $path));
 
         // Wordpress registers callbacks in the global scope.
@@ -141,6 +118,12 @@ class StrataContext {
         );
 
         return $file;
+    }
+
+
+    public static function isDev()
+    {
+        return !defined("WP_ENV") || WP_ENV == 'development';
     }
 
     /**

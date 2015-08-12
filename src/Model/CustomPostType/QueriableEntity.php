@@ -8,6 +8,11 @@ use Strata\Model\CustomPostType\ModelEntity;
 class QueriableEntity extends WordpressEntity
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public static function getEntity($associatedObj = null)
     {
         $EntityClass = get_called_class();

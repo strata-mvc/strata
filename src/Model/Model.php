@@ -12,6 +12,8 @@ use ReflectionClass;
  */
 class Model {
 
+
+
     /**
      * Generates a possible namespace and classname combination of a
      * Strata controller. Mainly used to avoid hardcoding the '\\Controller\\'
@@ -44,6 +46,11 @@ class Model {
     {
         $class = get_called_class();
         return new $class();
+    }
+
+    function __construct()
+    {
+
     }
 
     public function getShortName()

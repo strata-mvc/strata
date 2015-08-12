@@ -1,7 +1,6 @@
 <?php
 
-use Tests\Fixtures\Strata\Strata;
-
+use Strata\Strata;
 use Strata\Model\Model;
 use Strata\View\View;
 use Strata\Model\CustomPostType\Registrar\Registrar;
@@ -40,30 +39,20 @@ class ModelTest extends PHPUnit_Framework_TestCase
     {
         $this->wordpress->reset();
 
-        $strata = $GLOBALS['__Strata__'];
-        $strata->configure(array(
-            "namespace" => "Tests\Fixtures",
-            "custom-post-types" => array(
-                "TestCustomPostType"
-            )
-        ));
+        $strata = Strata::app();
+        $strata->setConfig("custom-post-types", array("TestCustomPostType"));
         $strata->run();
 
         $this->assertArrayHasKey('init', $this->wordpress->actions);
-        $this->assertEquals('registerPostType', $this->wordpress->actions['init'][0][1]);
+        $this->assertEquals('register', $this->wordpress->actions['init'][0][1]);
     }
 
     public function testCtpAdminMenuRegistered()
     {
         $this->wordpress->reset();
 
-        $strata = $GLOBALS['__Strata__'];
-        $strata->configure(array(
-            "namespace" => "Tests\Fixtures",
-            "custom-post-types" => array(
-                "TestCustomPostType" => array("admin" => array("exportprofiles" => array("route" => "TestController", "title" => "Export", "menu-title" => "Export"))),
-            )
-        ));
+        $strata = Strata::app();
+        $strata->setConfig("custom-post-types", array("TestCustomPostType"));
         $strata->run();
 
         $this->assertArrayHasKey('admin_menu', $this->wordpress->actions);

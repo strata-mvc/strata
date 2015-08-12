@@ -1,6 +1,6 @@
 <?php
 
-use Tests\Fixtures\Strata\Strata;
+use Strata\Strata;
 
 class StrataTest extends PHPUnit_Framework_TestCase
 {
@@ -12,12 +12,7 @@ class StrataTest extends PHPUnit_Framework_TestCase
     public function testCanBeConfigured()
     {
         $strata = new Strata();
-        $strata->configure(array(
-            "first_level" => array(
-                "second_level" => true
-            )
-        ));
-
+        $strata->setConfig("first_level", array("second_level" => true));
         $value = $strata->getConfig("first_level.second_level");
         $this->assertTrue($value);
     }

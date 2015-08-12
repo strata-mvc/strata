@@ -22,6 +22,7 @@ class WordpressEntity extends Model
     function __construct()
     {
         $this->configuration = Hash::normalize($this->configuration);
+        parent::__construct();
     }
 
     /**

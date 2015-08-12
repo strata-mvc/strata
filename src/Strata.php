@@ -12,12 +12,6 @@ use Strata\Middleware\MiddlewareLoader;
 use Composer\Autoload\ClassLoader;
 use Exception;
 
-// Use our own set of dependencies.
-$ourVendor = dirname(__DIR__) . '/vendor/autoload.php';
-if (file_exists($ourVendor)) {
-    require $ourVendor;
-}
-
 /**
  * Running Strata instance
  *
@@ -57,7 +51,7 @@ class Strata extends StrataContext {
         // This will have to be improved and dynamized.
         date_default_timezone_set('America/New_York');
 
-        $this->_configureLogger();
+        $this->configureLogger();
         $this->_includeUtils();
         $this->loadConfiguration();
 
@@ -148,7 +142,7 @@ class Strata extends StrataContext {
         return $this->middlewareLoader->getMiddlewares();
     }
 
-    protected function _configureLogger()
+    protected function configureLogger()
     {
         $this->_logger = new Logger();
     }
@@ -191,7 +185,8 @@ class Strata extends StrataContext {
      */
     protected function configureCustomPostType()
     {
-        $loader = new CustomPostTypeLoader($this->getConfig('custom-post-types'));
+        $postTypes = (array)$this->getConfig('custom-post-types');
+        $loader = new CustomPostTypeLoader($postTypes);
         $loader->load();
     }
 
@@ -231,7 +226,11 @@ class Strata extends StrataContext {
 
     protected function _includeDebug()
     {
-        return include_once(self::getUtilityPath() . "Debug.php");
+        $debug = self::getUtilityPath() . "Debug.php";
+
+        if (file_exists($debug)) {
+            return include_once($debug);
+        }
     }
 
     /**
