@@ -7,7 +7,8 @@ class Template {
 
     /**
      * Parses a template file and declares view variables in this scope for the
-     * template to have access to them.
+     * template to have access to them. Loads localized templates based on the current
+     * active locale.
      * @param string The name of the template to load
      * @param array an associative array of values to assign in the template
      * @param string The file extension of the template to be loaded
@@ -15,8 +16,17 @@ class Template {
      */
     public static function parse($name, $variables = array(), $extension = '.php')
     {
-        $templateFilePath = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name . $extension));
-        return Template::parseFile($templateFilePath, $variables);
+        $app = Strata::app();
+        $templateFilePrefix = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name));// . $extension));
+
+        if ($app->i18n->hasActiveLocales()) {
+            $localizedFilename = $templateFilePrefix . "." . $app->i18n->getCurrentLocaleCode() . $extension;
+            if (file_exists($localizedFilename)) {
+                return Template::parseFile($localizedFilename, $variables);
+            }
+        }
+
+        return Template::parseFile($templateFilePrefix . $extension, $variables);
     }
 
     public static function parseFile($templateFilePath, $variables = array())
