@@ -13,7 +13,6 @@ use Strata\Utility\Hash;
 class Entity extends QueriableEntity
 {
     public $wpPrefix = "cpt_";
-
     public $admin_menus = array();
     public $belongs_to  = array();
     public $routed      = false;
@@ -48,6 +47,14 @@ class Entity extends QueriableEntity
         $registration->register();
     }
 
+    /**
+     * Returns the model's menu icon
+     * @return string
+     */
+    public function getIcon()
+    {
+        return 'dashicons-admin-post';
+    }
 
     /**
      * Returns whether or not the current model supports and has taxonomies.

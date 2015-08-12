@@ -2,23 +2,17 @@
 namespace Strata\Model;
 
 use Strata\Model\CustomPostType\LabelParser;
-use Strata\Model\CustomPostType\QueriableEntity;
+use Strata\Model\CustomPostType\Entity;
 
 /**
  * Wraps Post default objects.
  */
-class Post extends QueriableEntity {
+class Post extends Entity {
 
-    public static function wordpressKey()
-    {
-        return "post";
-    }
-
-    public $configuration = array(
-        "has" => array(
-            "Strata\Model\Taxonomy\Category"
-        )
-    );
+    public $routed = false;
+    public $wpPrefix = "";
+    public $belongs_to = array("Strata\Model\Taxonomy\Category");
+    public $configuration = array();
 
     /**
      * The permission level required for editing by the model
@@ -26,22 +20,10 @@ class Post extends QueriableEntity {
      */
     public $permissionLevel = 'edit_posts';
 
-    /**
-     * Returns the model's menu icon
-     * @return string
-     */
-    public function getIcon()
+    function __construct()
     {
-        return 'dashicons-admin-post';
-    }
-
-    /**
-     * Returns the key Wordpress uses to identify this model.
-     * @return string
-     */
-    public function getWordpressKey()
-    {
-        return Post::wordpressKey();
+        $this->admin_menus = Hash::normalize($this->admin_menus);
+        $this->belongs_to = Hash::normalize($this->belongs_to);
     }
 
     /**
