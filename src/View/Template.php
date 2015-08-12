@@ -35,7 +35,11 @@ class Template {
 
         // Print debug info in the the logs
         if (Strata::isDev()) {
-            $partialFilePath = str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath);
+
+            $partialFilePath = defined('ABSPATH') ?
+                str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath) :
+                $templateFilePath;
+
             $vars = array_keys($variables);
             $app = Strata::app();
             $app->log(sprintf("Template '%s' with variables: %s", $partialFilePath, implode(", ", $vars)), "[Strata::Template]");
