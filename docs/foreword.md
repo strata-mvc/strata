@@ -14,11 +14,9 @@ Additionally, the documentation is not written with as much care as it deserves.
 
 ## What's next
 
-Improvements to the way View Helpers are handled are to be expected.
-
-Data submission against Custom Post Type models needs to be re-factored into something cleaner and more intuitive.
+Localization of dynamic objects are handled by the [Polyglot](https://github.com/francoisfaubert/polyglot) plugin, which is currently being completed.
 
 Features such as the email manager and SQLite support will be bundled as Strata plugins to be required manually with Composer.
 
 ~ Frank
-July 7th, 2015
+August 12th, 2015

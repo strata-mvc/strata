@@ -17,17 +17,19 @@ There are 3 types of routes :
 
 ## Resourced-based routing
 
-When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by adding a `routed` key to the post's declaration.
+When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by setting the `routed` attribute to `true` in the model's declaration.
 
 ~~~ php
 <?php
-$strata = array(
+namespace App\Model;
 
-    "custom-post-types" => array(
-        "Poll" => array("routed")
-    )
+class Poll extends AppCustomPostType {
 
-);
+    public $routed = true;
+
+    //...
+
+}
 ?>
 ~~~
 

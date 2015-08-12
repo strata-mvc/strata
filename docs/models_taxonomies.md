@@ -18,7 +18,7 @@ $ ./strata generate taxonomy ProfileType
 
 ## Models with special taxonomy
 
-Should you wish to link a taxonomy to created models you can do so using the `has` attribute in the Model's `$configuration` array.
+Should you wish to link a taxonomy to created models you can do so using the `$belongs_to` attribute in the Model's class.
 
 ~~~ php
 <?php
@@ -26,8 +26,11 @@ namespace App\Model;
 
 class Profile extends AppCustomPostType
 {
+
+    public $belongs_to = array('App\Model\ProfileType');
+
     public $configuration = array(
-        'has' => array('App\Model\ProfileType')
+        //...
     );
 }
 ?>

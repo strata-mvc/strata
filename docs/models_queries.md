@@ -88,3 +88,5 @@ There are conventions when building your model's queries. Following them will ma
 * Functions prefixed with `find` will execute a database lookup
 * All other querying functions must be chainable
 * Functions are not expected to be static as to not break inheritance
+* Queries made within Strata are expected to return ModelEntities
+* ModelEntities are expected to work transparently as a WP_Post or whichever default Wordpress object class.

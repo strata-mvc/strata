@@ -8,7 +8,9 @@ In regular MVC frameworks a model can (but is not required to) map to a table in
 
 Instead our models may link to a custom post type entity. We can then leverage Wordpress' tools to read the data related to this object and ensure the model is accessible across the whole environment. This method work especially well when using [Advanced Custom Fields](http://www.advancedcustomfields.com/) so you can add different object attributes than those available by default to the post object.
 
-Because of the adoption of Wordpress' methods, every model requests will return __an array of posts__. Something to keep in mind when manipulating the received data.
+Semantically, the Model can be simplified as being a representation of a database table. It should contain the model definition (what is needs for Wordpress to load it) and queries or very general concepts related to the model.
+
+On the other hand, ModelEntities can be seen as a database row. Model entities can be used to code functions based on the current values of the entity. Database queries will always return sets of Entities. Either the entity matching the current model, or the general one from which all entities inherit.
 
 ## Creating a Custom Post Type
 
@@ -23,6 +25,7 @@ It will generate a couple of files for you, including the actual model file and 
 ~~~ sh
 Scaffolding model Song
   ├── [ OK ] src/model/Song.php
+  ├── [ OK ] src/model/Entity/SongEntity.php
   └── [ OK ] tests/model/SongTest.php
 ~~~
 
@@ -49,7 +52,9 @@ $strata = array(
 ?>
 ~~~
 
-This allows you to create wrapper classes against post types that have not been created by your code. For instance, you could map BBPress topics by creating a model similar to the following example. You would gain all the functionality of a Strata Custom Post Type event if you do not declare the model yourself.
+This explicit inclusion allows for distinction between wrapper models and actual dynamic post types.
+
+You could create wrapper classes against post types that have not been created by your code. For instance, you could map BBPress topics by creating a model similar to the following example. You would gain all the functionality of a Strata Custom Post Type event if you do not declare the model yourself.
 
 ~~~ php
 <?php
@@ -69,26 +74,7 @@ class ForumPost extends AppCustomPostType {
 
 You can further customize the post type's instantiation by passing an array along with the post type. This is how you would declare [automated admin menus]({{ site.baseurl }}/docs/models/adminmenus/) or [resource-based routes]({{ site.baseurl }}/docs/routes/).
 
-~~~ php
-<?php
-$strata = array(
 
-    "custom-post-types" => array(
-        "Song" => array(
-            "routed",
-            "admin" => array(
-                "extraSongInfo" => array(
-                    "title" => "Extra song information",
-                    "menu-title" => "Extra song information"
-                )
-            )
-        ),
-        "Event" => array("routed")
-    )
-
-);
-?>
-~~~
 ## Customizing the CustomPostType Model
 
 The generated entity will be only accessible through Wordpress' backend. The intend of the Model entity is not to be displayed on the front end using the default Wordpress Loop.
@@ -133,19 +119,17 @@ $data = new WP_Query(array(
 ~~~
 
 
-## Entity attributes validation
+## EntityModels attributes validation
 
-If you supply entity attributes, you will be able to pass this entity through our [FormHelper object]({{ site.baseurl }}/docs/helpers/formhelper/) and automatically validate posted data. Read more on how to use custom and default [validators]({{ site.baseurl }}/docs/validators/).
+If you supply attributes in the ModelEntity, you will be able to pass this entity through our [FormHelper object]({{ site.baseurl }}/docs/helpers/formhelper/) and automatically validate posted data. Read more on how to use custom and default [validators]({{ site.baseurl }}/docs/validators/).
 
 This is useful when you want to take user-submitted information, validate the data and save the info as custom post types with additional business logic applied to and implied from the saved information.
 
-Here is a lengthy, but complete, example of how attributes and the FormHelper can be implemented in a Model:
-
 ~~~ php
 <?php
-namespace App\Model;
+namespace App\Model\Entity;
 
-class CustomerDetail extends AppCustomPostType {
+class CustomerDetailEntity extends AppCustomPostType {
 {
     public $attributes = array(
         "telephone_area"            => array("validations" => array("required", "numeric", "length" => array("min" => 3, "max" => 3))),
@@ -171,11 +155,15 @@ class CustomerDetail extends AppCustomPostType {
         );
     }
 
-    public function saveForm($formHelper)
+    // The posted value is expected to come from a Controller.
+    // $posted == $this->request->data();
+    public function save($posted)
     {
+        $ourData = $posted[$this->getInputName()];
+
         // Create the post type entity
         $postId = self::create(array(
-            'post_title'    => $formHelper->getPostedValue('customer.firstname') . " " . $formHelper->getPostedValue('customer.lastname'),
+            'post_title'    => $ourData['firstname'] . " " . $ourData["lastname"],
             'post_status'   => 'publish',
         ));
 
@@ -184,10 +172,10 @@ class CustomerDetail extends AppCustomPostType {
             // A good method is to declare fields using the same name as the attributes
             // in the Advanced Custom Fields plugin.
             // and calling something like :
-            //  update_field($attribute, $formHelper->getPostedValue("customer." . $attribute), $guardianId);
+            //  update_field($attribute, $ourData[$attribute], $postId);
 
             // In the meantime, we can print the posted value to the screen.
-            debug($formHelper->getPostedValue("customer." . $attribute));
+            debug($ourData[$attribute]);
         }
 
         return $postId;

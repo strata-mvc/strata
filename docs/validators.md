@@ -6,17 +6,17 @@ permalink: /docs/validators/
 
 Should you require to save the post data of your custom models, you may automate the validation of the entity's known attributes.
 
-Validators should be passed as configuration arrays to the `validations` key of the model's attributes declaration:
+Validators should be passed as configuration arrays to the `validations` key of the model entity's attributes declaration:
 
 ~~~ php
 <?php
-namespace App\Model;
+namespace App\Model\Entity;
 
-class Song extends AppCustomPostType {
+class SongEntity extends AppCustomPostType {
 {
     public $attributes = array(
         "artist"            => array("validations" => array("required", "postexist")),
-        'genre'             => array("validations" => array("in" => array("App\Model\Song::genreListing"))),
+        'genre'             => array("validations" => array("in" => array("App\Model\Entity\SongEntity::genreListing"))),
         "lyrics"            => array("validations" => array("required")),
         "year_active"       => array("validations" => array("required", "numeric", "length" => array("min" => 2, "max" => 4))),
         "email"             => array("validations" => array("required", "email", "same" => array("as" => "email_confirm"))),
@@ -59,7 +59,7 @@ This is to help creating form controls making it easier to look in value/labels 
 ~~~ php
 <?php
 public $attributes = array(
-    "attributename"      => array("validations" => array("in" => array("App\Model\Song::genreListing"))),
+    "attributename"      => array("validations" => array("in" => array("App\Model\Entity\Song::genreListing"))),
 );
 
 public static function genreListing()

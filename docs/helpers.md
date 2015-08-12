@@ -33,13 +33,15 @@ class ThumbnailHelper extends AppHelper
 {
     private $config = null;
 
+    // Constructor is optional when it looks like the following.
+    // The base helper class will do it for you.
     function __construct($config = array())
     {
         $this->config = $config;
     }
 
     /**
-     * Renders the ACF Header
+     * Renders the thumbnail
      * @param  integer
      * @return string
      */
@@ -133,4 +135,4 @@ Once the helpers are planned to automatically be instantiated by your controller
 
 ## Pre-packaged Helpers
 
-Strata currently ships with the [FormHelper](/docs/helpers/formhelper/), from which you can derive to create your own forms.
+Strata currently ships with the [FormHelper](/docs/helpers/formhelper/), which you can use directly or derive from to create your own forms.

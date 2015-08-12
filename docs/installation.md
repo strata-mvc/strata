@@ -7,7 +7,7 @@ permalink: /docs/installation/
 ## Requirements
 
  - Linux, Mac OS, Cygwin (untested)
- - PHP >= 5.3
+ - PHP >= 5.4
  - MySQL
  - Composer
 

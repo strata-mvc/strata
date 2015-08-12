@@ -38,6 +38,8 @@ return $strata;
 ~~~
 
 ~~~ php
+<?php
 echo \Strata\Strata::config('i-want-to');
 // ~ "rock"
+?>
 ~~~

@@ -25,6 +25,7 @@ It will generate a couple of files for you, including the actual model file and 
 ~~~ sh
 Scaffolding model Artist
   ├── [ OK ] src/model/Artist.php
+  ├── [ OK ] src/model/Entity/ArtistEntity.php
   └── [ OK ] tests/model/ArtistTest.php
 ~~~
 
