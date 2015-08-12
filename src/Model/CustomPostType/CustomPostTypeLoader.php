@@ -20,18 +20,17 @@ class CustomPostTypeLoader
         $this->logAutoloadedEntities();
 
         foreach ($this->config as $cpt => $config) {
-            if (is_array($config)) {
-                $config = Hash::normalize($config);
+
+            $obj = Model::factory($cpt);
+
+            $this->addWordpressRegisteringAction($obj);
+
+            if ($this->shouldAddAdminMenus($obj)) {
+                $this->addWordpressMenusRegisteringAction($obj);
             }
 
-            $this->addWordpressRegisteringAction($cpt);
-
-            if ($this->shouldAddAdminMenus($config)) {
-                $this->addWordpressMenusRegisteringAction($cpt, $config);
-            }
-
-            if ($this->shouldAddRoutes($config)) {
-                $this->addResourceRoute($cpt, $config);
+            if ($this->shouldAddRoutes($obj)) {
+                $this->addResourceRoute($obj);
             }
         }
     }
@@ -43,30 +42,29 @@ class CustomPostTypeLoader
         $app->log(sprintf("Found %s custom post types : %s", count($cpts), implode(", ", $cpts)), "[Strata::CustomPostTypeLoader]");
     }
 
-    private function shouldAddAdminMenus($config)
+    private function shouldAddAdminMenus(Entity $customPostType)
     {
-        return is_admin() && is_array($config) && array_key_exists('admin', $config);
+        return is_admin() && count($customPostType->admin_menus) > 0;
     }
 
-    private function addWordpressMenusRegisteringAction($ctpName, $config)
+    private function addWordpressMenusRegisteringAction(Entity $customPostType)
     {
-        $obj = Model::factory($ctpName);
-        $obj->registerAdminMenus($config['admin']);
+        $customPostType->registerAdminMenus();
     }
 
-    private function shouldAddRoutes($config)
+    private function shouldAddRoutes(Entity $customPostType)
     {
-        return !is_admin() && is_array($config) && array_key_exists('routed', $config);
+        return !is_admin() && $customPostType->routed === true;
     }
 
-    private function addResourceRoute($ctpName, $config)
+    private function addResourceRoute(Entity $customPostType)
     {
         $app = Strata::app();
-        $app->router->route->addResource(array($ctpName => $config['routed']));
+        $app->router->route->addResource($customPostType);
     }
 
-    private function addWordpressRegisteringAction($ctpName)
+    private function addWordpressRegisteringAction(Entity $customPostType)
     {
-        add_action('init', Entity::buildRegisteringCall($ctpName));
+        add_action('init', array($customPostType, "register"));
     }
 }

@@ -7,6 +7,7 @@ use Strata\Router\RouteParser\Route;
 use Strata\Controller\Controller;
 use Strata\Controller\Request;
 use Strata\Model\Model;
+use Strata\Model\CustomPostType\Entity;
 
 use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
@@ -38,20 +39,16 @@ class AltoRoute extends Route
         }
     }
 
-    public function addResource(array $route)
+    public function addResource(Entity $customPostType)
     {
-        foreach (Hash::normalize($route) as $customPostType => $config) {
-            $model = Model::factory($customPostType);
+        $slug = Hash::check($customPostType->configuration, "rewrite.slug")
+            ? Hash::get($customPostType->configuration, "rewrite.slug")
+            : $customPostType->getWordpressKey();
 
-            $slug = Hash::check($model->configuration, "rewrite.slug")
-                ? Hash::get($model->configuration, "rewrite.slug")
-                : $model->getWordpressKey();
+        $controller = Controller::generateClassName($customPostType->getShortName());
 
-            $controller = Controller::generateClassName($model->getShortName());
-
-            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
-            $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
-        }
+        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
     }
 
 
