@@ -162,6 +162,10 @@ class i18n {
      */
     public function getCurrentLocale()
     {
+        if (is_null($this->currentLocale)) {
+            $this->currentLocale = $this->getDefaultLocale();
+        }
+
         return $this->currentLocale;
     }
 
@@ -310,6 +314,16 @@ class i18n {
     }
 
     /**
+     * Sets the active locale
+     * @param Locale $locale
+     */
+    public function setLocale(Locale $locale)
+    {
+        $this->currentLocale = $locale;
+        $this->saveCurrentLocaleToSession();
+    }
+
+    /**
      * Registers Wordpress hooks required by the class.
      */
     protected function registerHooks()
@@ -343,16 +357,6 @@ class i18n {
         }
 
         return $locales;
-    }
-
-    /**
-     * Sets the active locale
-     * @param Locale $locale
-     */
-    protected function setLocale(Locale $locale)
-    {
-        $this->currentLocale = $locale;
-        $this->saveCurrentLocaleToSession();
     }
 
     /**
