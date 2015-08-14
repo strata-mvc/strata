@@ -66,7 +66,9 @@ class ModelEntity
             throw new Exception('ModelEntity was not linked to a Wordpress object.');
         }
 
-        return $this->associatedObject->{$var};
+        if (property_exists($this->associatedObject, $var)) {
+            return $this->associatedObject->{$var};
+        }
     }
 
     function __set($var, $value)
@@ -77,6 +79,12 @@ class ModelEntity
 
         return $this->associatedObject->{$var} = $value;
     }
+
+    public function __isset($name)
+    {
+        return isset($this->associatedObject->{$name});
+    }
+
 
     public function bindToObject($associatedObject)
     {
