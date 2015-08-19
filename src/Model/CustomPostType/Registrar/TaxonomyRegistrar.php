@@ -9,8 +9,8 @@ class TaxonomyRegistrar extends Registrar
     public function register()
     {
         $status = true;
-        if ($this->_hasTaxonomyConfiguration()) {
-            foreach ($this->_getTaxonomyConfiguration() as $taxonomy) {
+        if ($this->_entity->hasTaxonomies()) {
+            foreach ($this->_entity->getTaxonomies() as $taxonomy) {
                 $status = $status && $this->_registerTaxonomy($taxonomy);
             }
         }
@@ -69,12 +69,12 @@ class TaxonomyRegistrar extends Registrar
 
     private function _hasTaxonomyConfiguration()
     {
-        return array_key_exists('has', $this->_entity->configuration) && count($this->_getTaxonomyConfiguration()) > 0;
+        return count($this->_getTaxonomyConfiguration()) > 0;
     }
 
     private function _getTaxonomyConfiguration()
     {
-        return $this->_entity->configuration['has'];
+        return $this->belongs_to;
     }
 
 }

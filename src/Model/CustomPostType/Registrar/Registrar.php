@@ -12,11 +12,9 @@ class Registrar
     function __construct(\Strata\Model\CustomPostType\Entity $entity)
     {
         $this->_entity = $entity;
+        $this->_wordpressKey = $entity->getWordpressKey();
 
-        $class = get_class($entity);
-        $this->_wordpressKey = $class::wordpressKey();
-
-        $this->_labelParser = new LabelParser($this->_entity);
+        $this->_labelParser = new LabelParser($entity);
         $this->_labelParser->parse();
     }
 }

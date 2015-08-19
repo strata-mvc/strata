@@ -74,8 +74,13 @@ class Entity extends QueriableEntity
     public function getTaxonomies()
     {
         $tax = array();
-        foreach ($this->belongs_to  as $taxonomyName) {
-            $tax[] = Model::factory($taxonomyName);
+        foreach ($this->belongs_to  as $taxonomyName => $taxonomyConfig) {
+            if (class_exists($taxonomyName)) {
+                $tax[] = new $taxonomyName();
+            }
+            else {
+                $tax[] = Model::factory($taxonomyName);
+            }
         }
         return $tax;
     }

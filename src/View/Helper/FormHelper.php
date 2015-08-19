@@ -226,7 +226,9 @@ class FormHelper extends Helper {
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
 
-        $options["type"] = "text";
+        if (!array_key_exists("type", $options)) {
+            $options["type"] = "text";
+        }
         unset($options["value"]);
 
         return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);
@@ -255,9 +257,12 @@ class FormHelper extends Helper {
 
     protected function getCurrentValue($key)
     {
+        $key = $this->removeBrackets($key);
+
         if ($this->configuration['type'] === "GET") {
             return $this->request->get($key);
         }
+
         return $this->request->post($key);
     }
 }

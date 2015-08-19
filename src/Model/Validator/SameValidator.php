@@ -2,6 +2,8 @@
 
 namespace Strata\Model\Validator;
 
+use Strata\Controller\Request;
+
 class SameValidator extends Validator {
 
     protected $_errorMessage = "The two values do not match.";
@@ -12,12 +14,19 @@ class SameValidator extends Validator {
 
     public function test($value, $context)
     {
-        $comparedWith = $context->request->post($this->_config['as']);
+        $request = new Request();
+
+        if ($request->isPost($this->_config['as'])) {
+            $comparedWith = $request->post($this->_config['as']);
+        } elseif ($request->isGet($this->_config['as'])) {
+            $comparedWith = $request->get($this->_config['as']);
+        } else {
+            return false;
+        }
 
         // When the value compared is null (instead of empty string), it means
         // it was not posted. Imply that if the post value is null, then we do not have to compare
         // values.
-        // Ex: email is compared on step1, but not in future steps.
         return is_null($comparedWith) || $value === $comparedWith;
     }
 }
