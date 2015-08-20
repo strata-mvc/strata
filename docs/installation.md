@@ -17,7 +17,7 @@ permalink: /docs/installation/
 
 Strata uses [Composer](http://getcomposer.org/) to manage it's dependencies. You must therefore have Composer installed on your machine.
 
-### Creating the project
+### Creating a project
 
 Use Composer's default `create-project` command to create a new empty Strata project. The empty template package is named `strata-env` and you must specify the final directory as second parameter.
 
@@ -32,5 +32,5 @@ Should your installation be broken, Strata bundles a script that will check if a
 From the root of the project, use `env repair` to inspect the project.
 
 ~~~ bash
-$ strata env repair
+$ ./strata env repair
 ~~~

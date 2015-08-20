@@ -4,7 +4,7 @@ title: Controllers
 permalink: /docs/controllers/
 ---
 
-Controllers allow easy to understand entry points in modern web applications. Once you have set up at least one [application route]({{ site.baseurl }}/docs/routes/) in your project's [configuration file]({{ site.baseurl }}/docs/configuring/#strata-configuration) you will have to write the corresponding controller endpoints.
+Controllers allow entry points that make sense for humans in modern web applications because they are built around the application's URLs. Once you have set up at least one [application route]({{ site.baseurl }}/docs/routes/) in your project's [configuration file]({{ site.baseurl }}/docs/configuring/#strata-configuration) you will have to write the corresponding controller endpoints.
 
 The main use case of Controllers in Strata is to replace the need of placing pure code in template file. Instead of instantiating queries and various variables inside the template file, you should place the code in a controller. The biggest gain is the ability to use the same business logic code multiple times as well as improving code testability.
 
@@ -68,12 +68,12 @@ In the earlier example, a shortcode named `list_songs` is generated and will poi
 
 Note that the permalink of this page must be caught by a route in order for the controller to be instantiated and the shortcode to be declared and applied.
 
-In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can be routed to a controller using [\Strata\Router::callback()]({{ site.baserl }}/docs/routes/).
+In other words, you wouldn't have access to this shortcode if another controller was called (or if the request did not match any controller). Shortcodes that need to be applied in multiple areas much be declared the regular Wordpress way to make it aware of the shortcode, but can still be routed to a controller using [\Strata\Router::callback()]({{ site.baserl }}/docs/routes/).
 
 
 ## Before and after
 
-Upon each successful route match the router will call the `before()` and `after()` functions. These functions can be useful when setting up objects or adding validation :
+Upon each successful route matches the router will call the `before()` and `after()` functions. These functions can be useful when setting up objects or adding validation :
 
 ~~~ php
 <?php
@@ -104,7 +104,7 @@ class AdminController extends AppController {
 
 ## On ajax
 
-Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In your controllers, you can specify the rending method along side a content type and various options to ease request capture.
+Ajax in Wordpress can be difficult to achieve and we tailored a way to help. In your controllers, you can specify a way to `render` content while setting a content type and various options to ease request capture.
 
 Assuming we have the following routing path in `config/strata.php`:
 
@@ -112,7 +112,7 @@ Assuming we have the following routing path in `config/strata.php`:
 array('POST',       '/wp/wp-admin/admin-ajax.php', 'AjaxController'),
 ~~~
 
-Notice here that no method has been entered as action of the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and do not use distinct urls. Therefore Strata will call the method matching the value of the posted `$_POST['action']` value implicitly.
+Notice here that no method has been entered as action to the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and does not use distinct urls. Therefore Strata will call the method matching the value of the posted `$_POST['action']` value implicitly.
 
 The controller file could look like :
 
@@ -140,7 +140,7 @@ class AjaxController extends AppController {
 ?>
 ~~~
 
-And the javascript call could be :
+And the javascript call look like be :
 
 ~~~ js
 <script>

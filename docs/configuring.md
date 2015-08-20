@@ -6,9 +6,9 @@ permalink: /docs/configuring/
 
 ## General configuration
 
-### Wordpress
+### Wordpress globals
 
-Bedrock handles most of the declaration of global configuration variables. They are declared in files found in the `config` directory. They offer guidelines on the best way of using these in [their wiki](https://github.com/roots/bedrock/wiki/Configuration-files).
+Our starter Composer package, `strata-env`, is a fork of Bedrock. They handle most of the declaration of Wordpress global configuration variables and setup. These values are declared in files found in the `config` directory. The maintainers of Bedrock offer guidelines on the best way of using those in [their wiki](https://github.com/roots/bedrock/wiki/Configuration-files).
 
 ### Environment dependent values
 
@@ -16,7 +16,7 @@ Strata will have access to every environment variables declared in the `.env` fi
 
 For less sensitive configuration settings, you will find a special `.php` configuration file for each environments under `config/environments/`. The file that is loaded is chosen using the value of `WP_ENV`, which needs to be set as a server variable.
 
-By default, the loaded environment is always `development`. This is something to keep in mind when publishing your project because this level allows logging and errors to be displayed.
+By default, the loaded environment is always `development`. This is something to keep in mind when publishing your project because this particular setting allows logging and errors to be displayed.
 
 ## Strata configuration
 
@@ -41,9 +41,6 @@ $strata = array(
         array('GET', '/song-listing/', 'SongController#view'),
         array('GET', '/song-listing/[*:slug]/', 'SongController#view'),
 
-        // Resource based routing (see the declared custom post types)
-        array('resources' => array('Poll', 'Song')),
-
         // Dynamic routing
         array('GET|POST|PATCH|PUT|DELETE', "/([:controller]/([:action]/([:params]/)?)?)?"),
     ),
@@ -56,8 +53,8 @@ $strata = array(
 
     // Declare custom project variables
     "project_email_list" => array(
-        "info" => "info@mydomain.ca",
-        "no-reply" => "no-reply@mydomain.ca",
+        "info" => "info@mydomain.com",
+        "no-reply" => "no-reply@mydomain.com",
     )
 );
 
@@ -85,5 +82,5 @@ By default, your project classes will be created in the `App` namespace. If you 
 ~~~
 
 <p class="warning">
-    Should you change the namespace mid-project you will have to change the namespace value of the all previously generated project files.
+    Should you change the namespace mid-project you will have to change the namespace value of the all previously generated project files manually.
 </p>

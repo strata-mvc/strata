@@ -101,9 +101,11 @@ class FileController extends AppController {
 ?>
 ~~~
 
-## On rendering in the admin
+## On rendering exists
 
 Hooks into the backend will be rendered mid-page and not before the first line of HTML is printed because of how Wordpress allows integration. This means that if your action needs to print something, it is important that you do not stop the original page rendering when calling the controller's `render()` method. Passing `false` to the `end` parameter of the function will allow the request to complete normally.
+
+This boolean is handled automatically, but should you choose to trigger (or not) an exit of the PHP parser, you can do the following:
 
 ~~~ php
 <?php

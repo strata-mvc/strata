@@ -32,6 +32,6 @@ Scaffolding model Artist
 
 ## Insert, Create, Delete
 
-Models extending `\Strata\Model\CustomPostType\Entity` will inherit static functions named `create`, `update` and `delete` that map to `wp_insert_post`, `wp_update_post` and `wp_delete_post`. They supports the same arguments as their Wordpress counterparts.
+Models extending `\Strata\Model\CustomPostType\Entity` will inherit methods named `create`, `update` and `delete` that map to `wp_insert_post`, `wp_update_post` and `wp_delete_post`. They supports the same arguments as their Wordpress counterparts.
 
 They exist as entry point for data manipulation but are not intended to replace core Wordpress functions.

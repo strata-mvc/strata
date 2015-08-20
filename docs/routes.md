@@ -6,7 +6,7 @@ permalink: /docs/routes/
 
 ## Configuring
 
-Routes are declared inside `/config/strata.php`. They are tested in the order that they appear in the configuration file.
+Routing rules are declared inside `/config/strata.php`. They are tested in the order that they appear in the configuration file.
 
 There are 3 types of routes :
 
@@ -17,7 +17,7 @@ There are 3 types of routes :
 
 ## Resourced-based routing
 
-When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by setting the `routed` attribute to `true` in the model's declaration.
+When you have created [Custom Post Types](/docs/models/customposttypes/), you may do automated routing on the object by setting the `routed` attribute to `true` in the model's declaration. Because the routing is implicitly declared, it does not need to be added to `/config/strata.php`.
 
 ~~~ php
 <?php
@@ -65,7 +65,7 @@ $strata = array(
 
 You can dynamically declare controllers and actions using regular expression keys in the permalink. If you go as far as dynamically setting the controller and action, you no longer have to set the third destination parameter.
 
-Note that it is the parsing of the route that is dynamic and not the creation of the page. Wordpress needs to know the URL exists as post or page slug. Otherwise you will always be forwarded to the 404 page.
+Note that it is the parsing of the route that is dynamic and not the creation of the page. Wordpress needs to know the URL exists as post or page slug. Otherwise you will always be forwarded to a 404.
 
 ~~~ php
 <?php
@@ -109,7 +109,7 @@ class SongController extends AppController {
     public function show($slug = null)
     {
         if (!is_null($slug)) {
-            $this->set("song", Song::findBySlug($slug));
+            $this->set("song", Song::repo()->findBySlug($slug));
         }
     }
 
