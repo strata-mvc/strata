@@ -17,14 +17,6 @@ class Entity extends QueriableEntity
     public $belongs_to  = array();
     public $routed      = false;
 
-    function __construct()
-    {
-        $this->admin_menus = Hash::normalize($this->admin_menus);
-        $this->belongs_to = Hash::normalize($this->belongs_to);
-
-        parent::__construct();
-    }
-
     /**
      * Registers the custom post type in Wordpress. A Custom post type
      * must trigger this during the 'init' state for it to be recognized
@@ -45,7 +37,7 @@ class Entity extends QueriableEntity
     public function registerAdminMenus()
     {
         $registration = new CustomPostTypeAdminMenuRegistrar($this);
-        $registration->configure($this->admin_menus);
+        $registration->configure(Hash::normalize($this->admin_menus));
         $registration->register();
     }
 
@@ -74,7 +66,8 @@ class Entity extends QueriableEntity
     public function getTaxonomies()
     {
         $tax = array();
-        foreach ($this->belongs_to  as $taxonomyName => $taxonomyConfig) {
+
+        foreach (Hash::normalize($this->belongs_to) as $taxonomyName => $taxonomyConfig) {
             if (class_exists($taxonomyName)) {
                 $tax[] = new $taxonomyName();
             }
