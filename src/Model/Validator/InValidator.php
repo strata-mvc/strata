@@ -13,12 +13,12 @@ class InValidator extends Validator {
             return true;
         }
 
-        if (is_array($this->_config)) {
-            $allowed = $this->_config;
-        } elseif (is_callable($this->_config[0])) {
-            $allowed = call_user_func($this->_config[0]);
+        if(is_callable($this->_config)) {
+            $allowed = call_user_func($this->_config);
         }
-
-        return in_array($value, array_keys($allowed));
+        elseif(is_array($this->_config)) {
+            $allowed = $this->_config;
+        }
+        return in_array((int)$value, array_keys($allowed));
     }
 }
