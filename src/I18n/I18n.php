@@ -167,7 +167,7 @@ class i18n {
     public function getCurrentLocale()
     {
         if (is_null($this->currentLocale)) {
-            $this->setCurrentLocaleByContext();
+            $this->currentLocale = $this->getDefaultLocale();
         }
 
         return $this->currentLocale;
@@ -372,7 +372,7 @@ class i18n {
     {
         $urls = array();
         foreach ($this->getLocales() as $locale) {
-            $urls[] = $locale->getUrl();
+            $urls[] =  $locale->getUrl();
         }
         return $urls;
     }
