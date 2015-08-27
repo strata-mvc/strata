@@ -47,6 +47,10 @@ class Entity extends QueriableEntity
      */
     public function getIcon()
     {
+        if (array_key_exists('menu_icon', $this->configuration)) {
+            return $this->configuration['menu_icon'];
+        }
+
         return 'dashicons-admin-post';
     }
 

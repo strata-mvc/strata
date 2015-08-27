@@ -87,7 +87,10 @@ class i18n {
             }
         }
 
-        if (preg_match('/\/('.implode('|', $this->getLocaleUrls()).')\//i', $_SERVER['REQUEST_URI'], $match)) {
+        $urls = implode('|', $this->getLocaleUrls());
+        $regexedUrls = preg_quote($urls, '/');
+
+        if (preg_match('/\/('.$regexedUrls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
             $locale = $this->getLocaleByUrl($match[1]);
             if (!is_null($locale)) {
                 return $this->setLocale($locale);
@@ -138,8 +141,9 @@ class i18n {
      */
     public function getLocaleByCode($code)
     {
-        if (array_key_exists($code, $this->locales)) {
-            return $this->locales[$code];
+        $locales = $this->getLocales();
+        if (array_key_exists($code, $locales)) {
+            return $locales[$code];
         }
     }
     /**
@@ -163,7 +167,7 @@ class i18n {
     public function getCurrentLocale()
     {
         if (is_null($this->currentLocale)) {
-            $this->currentLocale = $this->getDefaultLocale();
+            $this->setCurrentLocaleByContext();
         }
 
         return $this->currentLocale;

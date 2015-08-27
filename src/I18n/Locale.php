@@ -9,6 +9,7 @@ class Locale {
     protected $code;
     protected $isDefault;
     protected $url;
+    protected $config = array();
 
     function __construct($code, $config = array())
     {
@@ -24,6 +25,16 @@ class Locale {
         $this->url = $config["url"];
         $this->nativeLabel = $config["nativeLabel"];
         $this->isDefault = (bool)$config["default"];
+
+        // Save the rest
+        $this->config = $config;
+    }
+
+    public function getConfig($key)
+    {
+        if (array_key_exists($key, $this->config)) {
+            return $this->config[$key];
+        }
     }
 
     public function getNativeLabel()
