@@ -136,7 +136,7 @@ class FormHelper extends Helper {
 
     public function generateInlineErrors($postName)
     {
-        if (array_key_exists($postName, $this->validationErrors)) {
+        if (array_key_exists($postName, (array)$this->validationErrors)) {
             $errorTag = '<ul class="inline-errors">';
             foreach ($this->validationErrors[$postName] as $key => $message) {
                 $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
