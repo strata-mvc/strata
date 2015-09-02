@@ -9,6 +9,12 @@ class TaxonomyQuery extends Query {
     protected $_filters = array();
     protected $_taxnomonies = array();
 
+    public function type($type = null)
+    {
+        $this->_taxnomonies[] = $type;
+        return $this;
+    }
+
     /**
      * Adds a taxonomy to filter terms from
      * @param  string $taxonomy
@@ -16,8 +22,7 @@ class TaxonomyQuery extends Query {
      */
     public function in($taxonomy)
     {
-        $this->_taxnomonies[] = $taxonomy->wordpressKey();
-        return $this;
+        return $this->type($taxonomy->wordpressKey());
     }
 
     /**
@@ -26,6 +31,7 @@ class TaxonomyQuery extends Query {
      */
     public function fetch()
     {
+        debug($this->_filters);
         return get_terms($this->_taxnomonies, $this->_filters);
     }
 }
