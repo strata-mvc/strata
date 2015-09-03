@@ -31,7 +31,6 @@ class TaxonomyQuery extends Query {
      */
     public function fetch()
     {
-        debug($this->_filters);
         return get_terms($this->_taxnomonies, $this->_filters);
     }
 }
