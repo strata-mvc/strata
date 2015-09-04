@@ -53,7 +53,7 @@ class FormHelper extends Helper {
 
         $clean = $noTrail;
 
-        if (!is_null($this->associatedEntity) && in_array($name, array_keys($this->associatedEntity->attributes))) {
+        if (!is_null($this->associatedEntity) && $this->associatedEntity->isSupportedAttribute($name)) {
             $clean = $this->associatedEntity->getInputName() . "_" . $clean;
         }
 
@@ -62,7 +62,7 @@ class FormHelper extends Helper {
 
     public function name($name)
     {
-        $prefix = !is_null($this->associatedEntity) && in_array($name, array_keys($this->associatedEntity->attributes)) ?
+        $prefix = !is_null($this->associatedEntity) && $this->associatedEntity->isSupportedAttribute($name) ?
             $this->keys['POST_WRAP'] . '[' . $this->associatedEntity->getInputName() . ']' :
             $this->keys['POST_WRAP'];
 
@@ -259,10 +259,21 @@ class FormHelper extends Helper {
     {
         $key = $this->removeBrackets($key);
 
-        if ($this->configuration['type'] === "GET") {
+        if ($this->configuration['type'] === "GET" && $this->request->hasGet($key)) {
             return $this->request->get($key);
         }
 
-        return $this->request->post($key);
+        if ($this->configuration['type'] === "POST" && $this->request->hasPost($key)) {
+            return $this->request->post($key);
+        }
+
+
+        if (!is_null($this->associatedEntity)) {
+            $prefix = $this->keys['POST_WRAP'] . '.' . $this->associatedEntity->getInputName() . ".";
+            $attributeName = str_replace($prefix, "", $key);
+            if (isset($this->associatedEntity->{$attributeName})) {
+                return $this->associatedEntity->{$attributeName};
+            }
+        }
     }
 }
