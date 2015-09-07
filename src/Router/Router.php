@@ -3,7 +3,6 @@ namespace Strata\Router;
 
 use Exception;
 
-use Strata\Strata;
 use Strata\Router\RouteParser\Alto\AltoRouteParser;
 use Strata\Router\RouteParser\Callback\CallbackRouter;
 
@@ -20,7 +19,6 @@ class Router {
      */
     public $route = null;
 
-    private $executionStart = 0;
 
     /**
      * Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.
@@ -54,44 +52,26 @@ class Router {
      * @return mixed Returns what the action function will have returned.
      * @throws  Exception when the route is not instantiated.
      */
-    public function run()
+    public function run($url = null)
     {
         if (is_null($this->route)) {
             throw new Exception("This is an invalid route.");
         }
 
-        $this->route->process();
+        $this->route->process($url);
 
         if ($this->route->isValid()) {
-            $this->logRouteStart();
+            $this->route->start();
             $this->route->controller->init();
             $this->route->controller->before();
             $returnData = call_user_func_array(array($this->route->controller, $this->route->action), $this->route->arguments);
             $this->route->controller->after();
-            $this->logRouteCompletion();
+            $this->route->end();
 
             return $returnData;
         } else {
             $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
         }
-    }
-
-    private function logRouteStart()
-    {
-        $this->executionStart = microtime(true);
-        $this->log(sprintf("Routing to -> %s#%s", get_class($this->route->controller), $this->route->action));
-    }
-
-    private function logRouteCompletion()
-    {
-        $executionTime = microtime(true) - $this->executionStart;
-        $this->log(sprintf("Done in %s seconds", round($executionTime, 4)));
-    }
-
-    private function log($msg, $type = "[Strata::Router]")
-    {
-        $app = Strata::app();
-        $app->log($msg, $type);
     }
 }
 

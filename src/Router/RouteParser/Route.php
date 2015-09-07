@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Router\RouteParser;
 
+use Strata\Strata;
 use Exception;
 
 /**
@@ -8,6 +9,7 @@ use Exception;
  */
 abstract class Route
 {
+    private $executionStart = 0;
 
     /**
      * @var Strata\Controller\Controller An instance of the controller linked to the route
@@ -47,5 +49,59 @@ abstract class Route
     public function isValid()
     {
         return !is_null($this->controller) && method_exists($this->controller, $this->action);
+    }
+
+    public function start()
+    {
+        $this->logRouteStart();
+    }
+
+    public function end()
+    {
+        $this->assignViewVars();
+        $this->logRouteCompletion();
+    }
+
+
+    /**
+     * This function is required to send variables in Wordpress' scope.
+     * Unlike the templating using Controller#view->render() which allow
+     * passing variables, Wordpress's load_template extracts variables in
+     * $wp_query only.
+     */
+    protected function assignViewVars()
+    {
+        global $wp_query;
+
+        if (!is_null($this->controller) && !is_null($this->controller->view)) {
+            foreach ($this->controller->view->getVariables() as $key => $value) {
+                if (array_key_exists($key, $wp_query->query_vars)) {
+                    error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
+                } else {
+                    $wp_query->set($key, $value);
+
+                    // I don't think the following is actually necessary.
+                    $GLOBALS[$key] = $value;
+                }
+            }
+        }
+    }
+
+    private function logRouteStart()
+    {
+        $this->executionStart = microtime(true);
+        $this->log(sprintf("Routing to -> %s#%s", get_class($this->controller), $this->action));
+    }
+
+    private function logRouteCompletion()
+    {
+        $executionTime = microtime(true) - $this->executionStart;
+        $this->log(sprintf("Done in %s seconds", round($executionTime, 4)));
+    }
+
+    private function log($msg, $type = "[Strata::Router]")
+    {
+        $app = Strata::app();
+        $app->log($msg, $type);
     }
 }

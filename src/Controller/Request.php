@@ -30,6 +30,13 @@ class Request {
      */
     private $_POST = array();
 
+    /**
+     * A cache of the parsed Files values in the current request.
+     *
+     * @var array
+     */
+    private $_FILES = array();
+
     function __construct()
     {
         // Parse the request data upon each instantiation.
@@ -101,6 +108,21 @@ class Request {
         return Hash::get($this->_POST, $key);
     }
 
+    /**
+     * Returns the file parameter matching $key.
+     * @param string $key The name of the posted value
+     * @return mixed
+     */
+    public function file($key)
+    {
+        return array(
+            "name" => Hash::get($this->_FILES, "data.name." .$key),
+            "type" => Hash::get($this->_FILES, "data.type." . $key),
+            "tmp_name" => Hash::get($this->_FILES, "data.tmp_name." . $key),
+            "error" => Hash::get($this->_FILES, "data.error." . $key),
+            "size" => Hash::get($this->_FILES, "data.size." . $key),
+        );
+    }
 
     /**
      * Returns the posted form parameters
@@ -153,6 +175,16 @@ class Request {
     }
 
     /**
+     * Explains whether the file parameter matching $key has a value.
+     * @param string $key The name of the file value
+     * @return boolean
+     */
+    public function hasFile($key)
+    {
+        return Hash::check($this->_FILES, "data.name." . $key);
+    }
+
+    /**
      * Goes through the posted data and strips additional characters added
      * along the way.
      * @return null
@@ -165,6 +197,7 @@ class Request {
         $this->_GET = array_map($strip_slashes_deep, $_GET);
         $this->_POST = array_map($strip_slashes_deep, $_POST);
         $this->_COOKIE = array_map($strip_slashes_deep, $_COOKIE);
+        $this->_FILES = array_map($strip_slashes_deep, $_FILES);
     }
 
 }

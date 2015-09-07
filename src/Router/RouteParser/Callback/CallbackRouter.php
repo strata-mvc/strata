@@ -19,7 +19,7 @@ class CallbackRouter extends Router
         return array($this, "run");
     }
 
-    public function run()
+    public function run($url = null)
     {
         $this->route->arguments = func_get_args();
         return parent::run();

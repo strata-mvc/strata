@@ -259,11 +259,11 @@ class FormHelper extends Helper {
     {
         $key = $this->removeBrackets($key);
 
-        if ($this->configuration['type'] === "GET" && $this->request->hasGet($key)) {
+        if ($this->configuration['method'] === "GET" && $this->request->hasGet($key)) {
             return $this->request->get($key);
         }
 
-        if ($this->configuration['type'] === "POST" && $this->request->hasPost($key)) {
+        if ($this->configuration['method'] === "POST" && $this->request->hasPost($key)) {
             return $this->request->post($key);
         }
 

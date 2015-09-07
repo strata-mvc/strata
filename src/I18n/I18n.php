@@ -44,10 +44,14 @@ class i18n {
     public function setAndApplyCurrentLanguageByContext()
     {
         $this->setCurrentLocaleByContext();
-        $locale = $this->getCurrentLocale();
 
-        if (!is_null($locale)) {
-            return $locale->getCode();
+        // In the backend, though we need to know the locale of an object,
+        // we don't have to set the locale based on the current post.
+        if (!is_admin()) {
+            $locale = $this->getCurrentLocale();
+            if (!is_null($locale)) {
+                return $locale->getCode();
+            }
         }
     }
 
@@ -87,10 +91,8 @@ class i18n {
             }
         }
 
-        $urls = implode('|', $this->getLocaleUrls());
-        $regexedUrls = preg_quote($urls, '/');
-
-        if (preg_match('/\/('.$regexedUrls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
+        $urls = implode('|', $this->getLocaleRegexUrls());
+        if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
             $locale = $this->getLocaleByUrl($match[1]);
             if (!is_null($locale)) {
                 return $this->setLocale($locale);
@@ -167,7 +169,7 @@ class i18n {
     public function getCurrentLocale()
     {
         if (is_null($this->currentLocale)) {
-            $this->currentLocale = $this->getDefaultLocale();
+            $this->currentLocale = $this->setCurrentLocaleByContext();
         }
 
         return $this->currentLocale;
@@ -325,6 +327,7 @@ class i18n {
     {
         $this->currentLocale = $locale;
         $this->saveCurrentLocaleToSession();
+        return $this->currentLocale;
     }
 
     /**
@@ -368,11 +371,11 @@ class i18n {
      * active locales
      * @return array
      */
-    private function getLocaleUrls()
+    private function getLocaleRegexUrls()
     {
         $urls = array();
         foreach ($this->getLocales() as $locale) {
-            $urls[] =  $locale->getUrl();
+            $urls[] =  preg_quote($locale->getUrl(), '/');
         }
         return $urls;
     }

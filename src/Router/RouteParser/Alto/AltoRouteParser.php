@@ -46,20 +46,22 @@ class AltoRouteParser extends Router {
      * passing variables, Wordpress's load_template extracts variables in
      * $wp_query only.
      */
-    public function assignViewVars()
-    {
-        global $wp_query;
+    // public function assignViewVars()
+    // {
+    //     global $wp_query;
 
-        if (!is_null($this->route->controller) && !is_null($this->route->controller->view)) {
-            foreach ($this->route->controller->view->getVariables() as $key => $value) {
-                if (array_key_exists($key, $wp_query->query_vars)) {
-                    error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
-                } else {
-                    $wp_query->set($key, $value);
-                }
-            }
-        }
-    }
+    //     if (!is_null($this->route->controller) && !is_null($this->route->controller->view)) {
+    //         foreach ($this->route->controller->view->getVariables() as $key => $value) {
+    //             if (array_key_exists($key, $wp_query->query_vars)) {
+    //                 error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
+    //             } else {
+    //                 $wp_query->set($key, $value);
+    //             }
+    //         }
+    //     }
+    // }
+
+
 
     protected function registerWordpressAction()
     {
@@ -74,7 +76,7 @@ class AltoRouteParser extends Router {
 
     protected function isRegistered()
     {
-        return $this->registered;
+        return (bool)$this->registered;
     }
 
     /**
@@ -84,7 +86,7 @@ class AltoRouteParser extends Router {
     public function onWordpressInit()
     {
         $this->run();
-        $this->assignViewVars();
+        // $this->assignViewVars();
     }
 
     public function onWordpressEarlyInit()

@@ -6,8 +6,14 @@ if (!function_exists('debug')) {
      * This echo directly where it is called.
      * @ignore
      */
-    function debug($mixed)
+    function debug()
     {
+
+        $mixed = func_get_args();
+        if (count($mixed) === 1) {
+            $mixed = $mixed[0];
+        }
+
         $header =  "=======[Debug]=======";
         $debug =  "(".gettype($mixed) . ") " . var_export($mixed, true);
         $footer =  "=======[Debug]=======";

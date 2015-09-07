@@ -51,13 +51,12 @@ class AltoRoute extends Route
         $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
     }
 
-
     /**
      * {@inheritdoc}
      */
-    public function process()
+    public function process($url = null)
     {
-        $match = $this->altoRouter->match();
+        $match = $this->altoRouter->match($url);
 
         if (!is_array($match)) {
             return;

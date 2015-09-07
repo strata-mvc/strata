@@ -53,10 +53,6 @@ class View {
     public function set($name, $value)
     {
         $this->_templateVars[$name] = $value;
-
-        // Not super pretty, but this is the only way I could think
-        // of for reaching WP's scope.
-        $GLOBALS[$name] = $value;
     }
 
     /**
