@@ -87,19 +87,19 @@ abstract class Route
         }
     }
 
-    private function logRouteStart()
+    protected function logRouteStart()
     {
         $this->executionStart = microtime(true);
         $this->log(sprintf("Routing to -> %s#%s", get_class($this->controller), $this->action));
     }
 
-    private function logRouteCompletion()
+    protected function logRouteCompletion()
     {
         $executionTime = microtime(true) - $this->executionStart;
         $this->log(sprintf("Done in %s seconds", round($executionTime, 4)));
     }
 
-    private function log($msg, $type = "[Strata::Router]")
+    protected function log($msg, $type = "[Strata::Router]")
     {
         $app = Strata::app();
         $app->log($msg, $type);
