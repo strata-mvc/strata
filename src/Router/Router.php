@@ -3,6 +3,7 @@ namespace Strata\Router;
 
 use Exception;
 
+use Strata\Strata;
 use Strata\Router\RouteParser\Alto\AltoRouteParser;
 use Strata\Router\RouteParser\Callback\CallbackRouter;
 
