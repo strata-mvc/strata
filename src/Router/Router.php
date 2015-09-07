@@ -73,6 +73,12 @@ class Router {
             $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
         }
     }
+
+    private function log($msg, $type = "[Strata::Router]")
+    {
+        $app = Strata::app();
+        $app->log($msg, $type);
+    }
 }
 
 
