@@ -48,6 +48,26 @@ class Router {
         return defined('DOING_AJAX') && DOING_AJAX;
     }
 
+    // @thanks to https://snippets.khromov.se/determine-if-wordpress-ajax-request-is-a-backend-of-frontend-request/
+    public static function isFrontendAjax()
+    {
+
+        if(self::isAjax()) {
+              $referer = '';
+              $filename = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+
+              if (!empty($_REQUEST['_wp_http_referer'])) {
+                  $referer = wp_unslash( $_REQUEST['_wp_http_referer'] );
+              } elseif(!empty($_SERVER['HTTP_REFERER'])) {
+                  $referer = wp_unslash($_SERVER['HTTP_REFERER']);
+              }
+
+              return strpos($referer, admin_url()) === false && basename($filename) === 'admin-ajax.php';
+        }
+
+        return false;
+    }
+
     /**
      * Attemps to run the currently loaded route object.
      * @return mixed Returns what the action function will have returned.

@@ -70,11 +70,12 @@ class i18n {
      */
     public function resetLocaleCache()
     {
-        $this->locales = array();
+        $this->setLocaleSet($this->isLocalized() ? array() : $this->parseLocalesFromConfig());
+    }
 
-        if ($this->isLocalized()) {
-            $this->locales = $this->parseLocalesFromConfig();
-        }
+    public function setLocaleSet($localeList)
+    {
+        $this->locales = $localeList;
     }
 
     /**
@@ -100,7 +101,10 @@ class i18n {
         }
 
         if ($this->hasLocaleInSession()) {
-            return $this->setLocale($this->getLocaleInSession());
+            $locale = $this->getLocaleInSession();
+            if (!is_null($locale)) {
+                return $this->setLocale($locale);
+            }
         }
 
         if ($this->hasDefaultLocale()) {
