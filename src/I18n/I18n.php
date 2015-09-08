@@ -360,7 +360,7 @@ class i18n {
      */
     protected function parseLocalesFromConfig()
     {
-        $localeInfos = Hash::normalize(Strata::config("i18n.locales"));
+        $localeInfos = Hash::normalize((array)Strata::config("i18n.locales"));
         $locales = array();
 
         foreach ($localeInfos as $key => $config) {
