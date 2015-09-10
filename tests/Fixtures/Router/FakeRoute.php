@@ -10,7 +10,17 @@ class FakeRoute extends Route {
 
     }
 
-    function addPossibilities(array $routes)
+    public function addPossibilities(array $routes)
+    {
+
+    }
+
+    public function start()
+    {
+
+    }
+
+    public function end()
     {
 
     }
