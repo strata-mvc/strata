@@ -82,16 +82,32 @@ class Router {
         $this->route->process($url);
 
         if ($this->route->isValid()) {
+            return $this->loopCurrentRequest();
+        }
+
+        $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
+    }
+
+    public function abandonCurrent()
+    {
+        $this->route->cancel();
+    }
+
+    private function loopCurrentRequest()
+    {
+        while (!$this->route->isCancelled()) {
+
             $this->route->start();
+
             $this->route->controller->init();
             $this->route->controller->before();
+
             $returnData = call_user_func_array(array($this->route->controller, $this->route->action), $this->route->arguments);
+
             $this->route->controller->after();
             $this->route->end();
 
             return $returnData;
-        } else {
-            $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
         }
     }
 

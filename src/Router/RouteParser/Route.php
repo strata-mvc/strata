@@ -27,6 +27,8 @@ abstract class Route
      */
     public $arguments = array();
 
+    protected $cancelled = false;
+
     /**
      * This is the entry point of all routers. The inheriting classes will handle
      * how they handle the management of their route type from this function.
@@ -42,6 +44,10 @@ abstract class Route
      */
     abstract function addPossibilities(array $routes);
 
+    abstract function start();
+
+    abstract function end();
+
     /**
      * Verifies that the current values can be ran by the router.
      * @return boolean True is the route is considered working and valid.
@@ -51,40 +57,20 @@ abstract class Route
         return !is_null($this->controller) && method_exists($this->controller, $this->action);
     }
 
-    public function start()
+    public function cancel()
     {
-        $this->logRouteStart();
+        $this->cancelled = true;
+        $this->logRouteCancellation();
     }
 
-    public function end()
+    public function isCancelled()
     {
-        $this->assignViewVars();
-        $this->logRouteCompletion();
+        return $this->cancelled;
     }
 
-
-    /**
-     * This function is required to send variables in Wordpress' scope.
-     * Unlike the templating using Controller#view->render() which allow
-     * passing variables, Wordpress's load_template extracts variables in
-     * $wp_query only.
-     */
-    protected function assignViewVars()
+    protected function logRouteCancellation()
     {
-        global $wp_query;
-
-        if (!is_null($this->controller) && !is_null($this->controller->view)) {
-            foreach ($this->controller->view->getVariables() as $key => $value) {
-                if (array_key_exists($key, $wp_query->query_vars)) {
-                    error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
-                } else {
-                    $wp_query->set($key, $value);
-
-                    // I don't think the following is actually necessary.
-                    $GLOBALS[$key] = $value;
-                }
-            }
-        }
+        $this->log(sprintf("[Cancel] Routing to -> %s#%s", get_class($this->controller), $this->action));
     }
 
     protected function logRouteStart()

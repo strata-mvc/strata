@@ -51,6 +51,41 @@ class AltoRoute extends Route
         $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
     }
 
+    public function start()
+    {
+        $this->logRouteStart();
+    }
+
+    public function end()
+    {
+        $this->assignViewVars();
+        $this->logRouteCompletion();
+    }
+
+    /**
+     * This function is required to send variables in Wordpress' scope.
+     * Unlike the templating using Controller#view->render() which allow
+     * passing variables, Wordpress's load_template extracts variables in
+     * $wp_query only.
+     */
+    protected function assignViewVars()
+    {
+        global $wp_query;
+
+        if (!is_null($this->controller) && !is_null($this->controller->view)) {
+            foreach ($this->controller->view->getVariables() as $key => $value) {
+                if (array_key_exists($key, $wp_query->query_vars)) {
+                    error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
+                } else {
+                    $wp_query->set($key, $value);
+
+                    // I don't think the following is actually necessary.
+                    $GLOBALS[$key] = $value;
+                }
+            }
+        }
+    }
+
     /**
      * {@inheritdoc}
      */

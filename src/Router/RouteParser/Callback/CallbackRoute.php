@@ -20,6 +20,11 @@ class CallbackRoute extends Route
 
     }
 
+    public function start()
+    {
+        $this->logRouteStart();
+    }
+
     public function end()
     {
         $this->logRouteCompletion();
