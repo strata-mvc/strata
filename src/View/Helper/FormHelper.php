@@ -127,8 +127,8 @@ class FormHelper extends Helper {
         switch (strtolower($options['type'])) {
             case "textarea" :   return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
             case "select" :     return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
-            case "radio" :      return $label . "\n" . $this->generateRadio($options, $currentValue) . $errorHtml . "\n";
-            case "checkbox" :   return $label . "\n" . $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n";
+            case "radio" :      return $this->generateRadio($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
+            case "checkbox" :   return $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
             case "hidden" :     return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
             default :           return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
         }
