@@ -35,16 +35,15 @@ class Template {
 
         // Print debug info in the the logs
         if (Strata::isDev()) {
+            $app = Strata::app();
+            $startedAt = microtime(true);
 
+            // Print in the html as a comment
             $partialFilePath = defined('ABSPATH') ?
                 str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath) :
                 $templateFilePath;
 
-            $vars = array_keys($variables);
-            $app = Strata::app();
-            $app->log(sprintf("Template '%s' with variables: %s", $partialFilePath, implode(", ", $vars)), "[Strata::Template]");
-            // also print in the html as a comment
-            echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", $vars)."\n -->\n";
+            echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", array_keys($variables))."\n -->\n";
         }
 
         extract($variables);
@@ -52,6 +51,10 @@ class Template {
 
         if (Strata::isDev()) {
             echo "\n<!-- [Strata::Template:End] -->";
+
+            $executionTime = microtime(true) - $startedAt;
+            $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
+            $app->log($partialFilePath . $timer, "[Strata:Template]");
         }
 
         return ob_get_clean();
