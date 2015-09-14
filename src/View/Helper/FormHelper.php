@@ -36,6 +36,11 @@ class FormHelper extends Helper {
         unset($formAttributes['hasSteps']);
         unset($formAttributes['type']);
 
+        if (!is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
+            $this->validationErrors = $this->associatedEntity->getValidationErrors();
+            $formAttributes['class'] .= " has-errors ";
+        }
+
         return sprintf('<form %s>', $this->arrayToHtmlAttributes($formAttributes));
     }
 
@@ -111,8 +116,7 @@ class FormHelper extends Helper {
         $currentValue = $this->getCurrentValue($options['name']);
 
         $errorHtml = "";
-        if ((bool)$options['error'] && !is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
-            $this->validationErrors = $this->associatedEntity->getValidationErrors();
+        if ((bool)$options['error'] && array_key_exists($name, (array)$this->validationErrors)) {
             $errorHtml = $this->generateInlineErrors($name);
             $options['class'] .= " error ";
         }
