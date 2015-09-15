@@ -47,7 +47,8 @@ class CustomPostTypeAdminMenuRegistrar extends Registrar
                 $route = Router::callback($config['route'][0], $config['route'][1]);
             }
 
-            add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $func, $route, $config['icon'], $config['position']);
+            $uniquePage = $this->_wordpressKey . "_" . $func;
+            add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $uniquePage, $route, $config['icon'], $config['position']);
         }
     }
 }
