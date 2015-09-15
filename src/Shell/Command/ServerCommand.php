@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * configuration between a Vagrant environment and cases when it runs using the current
  * computer's binaries.
  *
- * Intended use is <code>bin/strata server</code>
+ * Intended use is <code>./strata server</code>
  */
 class ServerCommand extends StrataCommand
 {
@@ -35,7 +35,7 @@ class ServerCommand extends StrataCommand
     {
         $this->startup($input, $output);
 
-        $output->writeln('A webserver is now availlable at <info>http://127.0.0.1:5454/</info>');
+        $output->writeln('A webserver is now available at <info>http://127.0.0.1:5454/</info>');
         $output->writeln('Press <info>CTRL + C</info> to exit');
 
         $this->nl();
