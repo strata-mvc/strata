@@ -111,7 +111,7 @@ class Router {
         }
     }
 
-    private function log($msg, $type = "[Strata::Router]")
+    private function log($msg, $type = "[Strata:Router]")
     {
         $app = Strata::app();
         $app->log($msg, $type);
