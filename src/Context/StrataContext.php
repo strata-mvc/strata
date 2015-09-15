@@ -120,6 +120,11 @@ class StrataContext {
         return $file;
     }
 
+    public static function isCommandLineInterface()
+    {
+        return php_sapi_name() === 'cli';
+    }
+
 
     public static function isDev()
     {

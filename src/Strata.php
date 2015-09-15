@@ -211,12 +211,19 @@ class Strata extends StrataContext {
         return $this->_saveCurrentPID() && $this->_includeDebug();
     }
 
+    /**
+     * Save the latest PHP process ID as a temp file in case an infinite loop
+     * or any unexpected error breaks the server, but doesn't close it.
+     */
     protected function _saveCurrentPID()
     {
         $pid = getmypid();
-        $this->log("", sprintf("[Strata] Loaded and running with process ID %s", $pid));
-        $filename = self::getTmpPath() . "pid";
 
+        if (!self::isCommandLineInterface()) {
+            $this->log("", sprintf("[Strata] Loaded and running with process ID %s", $pid));
+        }
+
+        $filename = self::getTmpPath() . "pid";
         if (is_writable($filename)) {
             file_put_contents($filename, $pid);
         }
