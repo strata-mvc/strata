@@ -21,14 +21,14 @@ class Logger {
         }
     }
 
-    public function log($message, $context = "[Strata::Log]")
+    public function log($message, $context = "[Strata:Log]")
     {
         if ($this->canPrintLogs()) {
             $this->write($message, $context);
         }
     }
 
-    public function debug($message, $context = "[Strata::Debug]")
+    public function debug($message, $context = "[Strata:Debug]")
     {
         if ($this->canPrintLogs()) {
             $this->write($message, $context);
@@ -42,8 +42,11 @@ class Logger {
 
     protected function write($message, $context)
     {
-        error_log($this->buildSimpleLine($context, $message), 3, $this->logfile);
-        error_log($this->buildRichLine($context, $message));
+        file_put_contents($this->logfile, $this->buildSimpleLine($context, $message), FILE_APPEND | LOCK_EX);
+
+        if (Strata::isBundledServer()) {
+            error_log($this->buildRichLine($context, $message), 4);
+        }
     }
 
     protected function buildRichLine($context, $message)

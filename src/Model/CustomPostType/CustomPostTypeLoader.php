@@ -39,7 +39,7 @@ class CustomPostTypeLoader
     {
         $app = Strata::app();
         $cpts = array_keys($this->config);
-        $app->log(sprintf("Found %s custom post types : %s", count($cpts), implode(", ", $cpts)), "[Strata::CustomPostTypeLoader]");
+        $app->log(sprintf("Found %s custom post types : %s", count($cpts), implode(", ", $cpts)), "[Strata:CustomPostTypeLoader]");
     }
 
     private function shouldAddAdminMenus(Entity $customPostType)

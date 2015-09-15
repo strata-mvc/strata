@@ -125,6 +125,10 @@ class StrataContext {
         return php_sapi_name() === 'cli';
     }
 
+    public static function isBundledServer()
+    {
+        return php_sapi_name() === 'cli-server';
+    }
 
     public static function isDev()
     {

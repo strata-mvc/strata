@@ -55,6 +55,6 @@ class HelperLoader {
     {
         $app = Strata::app();
         $names = array_keys($this->helpers);
-        $app->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)), "[Strata::HelperLoader]");
+        $app->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)), "[Strata:HelperLoader]");
     }
 }
