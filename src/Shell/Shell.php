@@ -1,16 +1,12 @@
 <?php
 namespace Strata\Shell;
 
-// Use our own set of dependencies.
-$ourVendor = dirname(dirname(__DIR__)) . '/vendor/autoload.php';
-if (file_exists($ourVendor)) {
-    require $ourVendor;
-}
-
-
 use Symfony\Component\Console\Application;
+
+use Strata\Strata;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
 use Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar;
+
 
 /**
  * A factory that build the Strata command line application.
@@ -49,6 +45,9 @@ class Shell
      */
     public static function run()
     {
+        // Ensures environment variables are set.
+        require_once(Strata::getConfigurationPath() . 'application.php');
+
         $shell = self::getApplication();
         $shell->run();
     }
