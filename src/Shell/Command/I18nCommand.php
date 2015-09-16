@@ -4,6 +4,7 @@ namespace Strata\Shell\Command;
 use Strata\Strata;
 use Strata\Utility\Hash;
 use Strata\I18n\i18n;
+use Strata\I18n\WpCode;
 use Strata\I18n\Locale;
 
 use Symfony\Component\Console\Command\Command;
@@ -14,7 +15,6 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Gettext\Translations;
-use Gettext\Extractors\PhpCode;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -42,8 +42,7 @@ class I18nCommand extends StrataCommand
     {
         $this->startup($input, $output);
 
-        if ($this->projectHasLocales()) {
-            $this->customizeForWordpres();
+        if ($this->projectHasActiveLocales()) {
             $this->ensureFolderStructure();
             $this->saveStringToLocales();
 
@@ -56,19 +55,14 @@ class I18nCommand extends StrataCommand
         $this->shutdown();
     }
 
-    private function customizeForWordpres()
+    protected function getLocales()
     {
-        PhpCode::$functions = array_merge(PhpCode::$functions, array(
-            '_e' => '__',
-            '_n' => 'n__',
-            //'_x' => 'p__' -> parameters are reversed
-        ));
+        return Strata::app()->i18n->getLocales();
     }
 
-    private function projectHasLocales()
+    protected function projectHasActiveLocales()
     {
-        $app = Strata::app();
-        return $app->i18n->hasActiveLocales();
+        return Strata::app()->i18n->hasActiveLocales();
     }
 
     private function ensureFolderStructure()
@@ -82,9 +76,8 @@ class I18nCommand extends StrataCommand
     private function saveStringToLocales()
     {
         $tanslation = $this->extractGettextStrings();
-        $app = Strata::app();
 
-        foreach ($app->i18n->getLocales() as $locale) {
+        foreach ($this->getLocales() as $locale) {
             $this->saveStringToLocale($locale, $tanslation);
         }
     }
@@ -99,8 +92,12 @@ class I18nCommand extends StrataCommand
             $translation->mergeWith($poTranslations);
         }
 
-        $translation->setDomain(I18n::DOMAIN);
-        $translation->setHeader('Text Domain', I18n::DOMAIN);
+        $app = Strata::app();
+        $configValue = $app->getConfig("i18n.textdomain");
+        $textDomain = is_null($configValue) ? I18n::DOMAIN : $configValue;
+
+        $translation->setDomain($textDomain);
+        $translation->setHeader('Text Domain', $textDomain);
 
         $translation->toPoFile($poFilename);
         $translation->toMoFile($locale->getMoFilePath());
@@ -111,7 +108,6 @@ class I18nCommand extends StrataCommand
         $translation = null;
         $translationObjects = array();
         $lookupDirectories = array(
-            Strata::getVendorPath() . 'francoisfaubert' . DIRECTORY_SEPARATOR . 'strata' . DIRECTORY_SEPARATOR . 'src',
             Strata::getSrcPath(),
             Strata::getThemesPath(),
         );
@@ -150,7 +146,7 @@ class I18nCommand extends StrataCommand
 
     private function extractFrom($filename)
     {
-        return Translations::fromPhpCodeFile($filename);
+        return WpCode::fromFile($filename);
     }
 
 }

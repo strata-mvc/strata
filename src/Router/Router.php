@@ -79,6 +79,10 @@ class Router {
             throw new Exception("This is an invalid route.");
         }
 
+        // Allow plugins and code outside the MVC to cancel
+        // a route.
+        $url = do_action('strata_on_before_url_routing', $url);
+
         $this->route->process($url);
 
         if ($this->route->isValid()) {

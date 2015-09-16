@@ -9,6 +9,8 @@ use Strata\Controller\Request;
 use Gettext\Translations;
 use Gettext\Translation;
 
+use Exception;
+
 /**
  * Handles  localization
  *
@@ -70,7 +72,7 @@ class i18n {
      */
     public function resetLocaleCache()
     {
-        $this->setLocaleSet($this->isLocalized() ? array() : $this->parseLocalesFromConfig());
+        $this->setLocaleSet(!$this->isLocalized() ? array() : $this->parseLocalesFromConfig());
     }
 
     public function setLocaleSet($localeList)
@@ -128,7 +130,7 @@ class i18n {
      */
     public function hasActiveLocales()
     {
-        return count($this->locales) > 0;
+        return count($this->getLocales()) > 0;
     }
 
     /**
@@ -281,7 +283,7 @@ class i18n {
         $locale = $this->getLocaleByCode($localeCode);
 
         if (!$locale->hasPoFile()) {
-            throw new Exception("$localeCode is not a supported locale.");
+            throw new Exception(sprintf(__("The project has never been scanned for %s.", 'polyglot'), $locale->getNativeLabel()));
         }
 
         return Translations::fromPoFile($locale->getPoFilePath());
