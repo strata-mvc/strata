@@ -5,6 +5,7 @@ use Strata\Strata;
 use Strata\Utility\Hash;
 use Strata\I18n\Locale;
 use Strata\Controller\Request;
+use Strata\Router\Router;
 
 use Gettext\Translations;
 use Gettext\Translation;
@@ -33,7 +34,10 @@ class i18n {
      */
     public function initialize()
     {
+        $this->startSession();
         $this->resetLocaleCache();
+        $this->setCurrentLocaleByContext();
+
         if ($this->shouldAddWordpressHooks()) {
             $this->registerHooks();
         }
@@ -43,17 +47,11 @@ class i18n {
      * Sets the locale based on the current process' context.
      * @return string|null The locale code
      */
-    public function setAndApplyCurrentLanguageByContext()
+    public function applyCurrentLanguageByContext()
     {
-        $this->setCurrentLocaleByContext();
-
-        // In the backend, though we need to know the locale of an object,
-        // we don't have to set the locale based on the current post.
-        if (!is_admin()) {
-            $locale = $this->getCurrentLocale();
-            if (!is_null($locale)) {
-                return $locale->getCode();
-            }
+        $locale = $this->getCurrentLocale();
+        if (!is_null($locale)) {
+            return $locale->getCode();
         }
     }
 
@@ -86,31 +84,50 @@ class i18n {
      */
     public function setCurrentLocaleByContext()
     {
-        $request = new Request();
-        if ($request->hasGet("locale")) {
-            $locale = $this->getLocaleByCode($request->get("locale"));
+        if (function_exists('apply_filters')) {
+            // Give a chance for plugins to override this decision
+            $locale = apply_filters('strata_i18n_set_current_locale_by_context', null);
             if (!is_null($locale)) {
                 return $this->setLocale($locale);
             }
         }
 
-        $urls = implode('|', $this->getLocaleRegexUrls());
-        if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
-            $locale = $this->getLocaleByUrl($match[1]);
-            if (!is_null($locale)) {
-                return $this->setLocale($locale);
-            }
-        }
+        if (Router::isAjax() || (function_exists('is_admin') && !is_admin())) {
 
-        if ($this->hasLocaleInSession()) {
-            $locale = $this->getLocaleInSession();
-            if (!is_null($locale)) {
-                return $this->setLocale($locale);
+            $request = new Request();
+            if ($request->hasGet("locale")) {
+                $locale = $this->getLocaleByCode($request->get("locale"));
+                if (!is_null($locale)) {
+                    return $this->setLocale($locale);
+                }
             }
-        }
 
-        if ($this->hasDefaultLocale()) {
-            return $this->setLocale($this->getDefaultLocale());
+            // This validates all locales but the default one
+            $urls = implode('|', $this->getLocaleRegexUrls());
+            if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
+                $locale = $this->getLocaleByUrl($match[1]);
+                if (!is_null($locale)) {
+                    return $this->setLocale($locale);
+                }
+            // While that one validates for lack of locale code, meaning
+            // a possible default locale match
+            } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
+                $locale = $this->getDefaultLocale();
+                if (!is_null($locale)) {
+                    return $this->setLocale($locale);
+                }
+            }
+
+            if ($this->hasLocaleInSession()) {
+                $locale = $this->getLocaleInSession();
+                if (!is_null($locale)) {
+                    return $this->setLocale($locale);
+                }
+            }
+
+            if ($this->hasDefaultLocale()) {
+                return $this->setLocale($this->getDefaultLocale());
+            }
         }
     }
 
@@ -174,10 +191,6 @@ class i18n {
      */
     public function getCurrentLocale()
     {
-        if (is_null($this->currentLocale)) {
-            $this->currentLocale = $this->setCurrentLocaleByContext();
-        }
-
         return $this->currentLocale;
     }
 
@@ -226,19 +239,19 @@ class i18n {
      */
     public function hasLocaleInSession()
     {
-        $this->startSession();
-        return array_key_exists(self::DOMAIN, $_SESSION);
+        return array_key_exists(self::DOMAIN . is_admin() ? "admin" : "", $_SESSION);
     }
 
     /**
      * Returns the locale that is saved in the session array.
+     * This only return a value the first time it's called because we don't want to
+     * save the session permanently. It's used only to go through 1 page transition.
+     * ex: when saving a post in the backend, we lose the locale in the process.
      * @return Locale
      */
     public function getLocaleInSession()
     {
-        $this->startSession();
-        $localeCode = $_SESSION[self::DOMAIN];
-
+        $localeCode = $_SESSION[self::DOMAIN . is_admin() ? "admin" : ""];
         return $this->getLocaleByCode($localeCode);
     }
 
@@ -267,10 +280,9 @@ class i18n {
      * in setCurrentLocaleByContext();
      * @see setCurrentLocaleByContext
      */
-    private function saveCurrentLocaleToSession()
+    public function saveCurrentLocaleToSession()
     {
-        $this->startSession();
-        $_SESSION[self::DOMAIN] = $this->getCurrentLocaleCode();
+        $_SESSION[self::DOMAIN . is_admin() ? "admin" : ""] = $this->getCurrentLocaleCode();
     }
 
     /**
@@ -332,7 +344,6 @@ class i18n {
     public function setLocale(Locale $locale)
     {
         $this->currentLocale = $locale;
-        $this->saveCurrentLocaleToSession();
         return $this->currentLocale;
     }
 
@@ -342,7 +353,12 @@ class i18n {
     protected function registerHooks()
     {
         add_action('after_setup_theme', array($this, "applyLocale"));
-        add_filter('locale', array($this, "setAndApplyCurrentLanguageByContext"), 999);
+
+        if (Router::isAjax() || !is_admin()) {
+            add_filter('locale', array($this, "applyCurrentLanguageByContext"), 999);
+        }
+
+        add_action('shutdown', array($this, "saveCurrentLocaleToSession"));
     }
 
     /**
@@ -381,7 +397,9 @@ class i18n {
     {
         $urls = array();
         foreach ($this->getLocales() as $locale) {
-            $urls[] =  preg_quote($locale->getUrl(), '/');
+            if (!$locale->isDefault()) {
+                $urls[] =  preg_quote($locale->getUrl(), '/');
+            }
         }
         return $urls;
     }
