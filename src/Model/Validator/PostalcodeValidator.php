@@ -1,10 +1,12 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 class PostalcodeValidator extends Validator {
 
-    protected $_errorMessage = "Only Canadian postal codes are supported (ex: H0H 0H0).";
+    function __construct()
+    {
+        $this->setMessage(__("Only Canadian postal codes are supported (ex: H0H 0H0).", "strata"));
+    }
 
     public function test($value, $context)
     {

@@ -1,10 +1,12 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 class InValidator extends Validator {
 
-    protected $_errorMessage = "This is not a valid selection.";
+    function __construct()
+    {
+        $this->setMessage(__("This is not a valid selection.", "strata"));
+    }
 
     public function test($value, $context)
     {

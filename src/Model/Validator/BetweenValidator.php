@@ -1,14 +1,17 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 class BetweenValidator extends Validator {
 
-    protected $_errorMessage = "This is not a valid selection.";
     protected $_config = array(
         "min" => null,
         "max" => null
     );
+
+    function __construct()
+    {
+        $this->setMessage(__("This is not a valid selection.", "strata"));
+    }
 
     public function test($value, $context)
     {

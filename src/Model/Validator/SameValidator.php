@@ -1,16 +1,18 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 use Strata\Controller\Request;
 
 class SameValidator extends Validator {
 
-    protected $_errorMessage = "The two values do not match.";
-
     protected $_config = array(
         "as" => null,
     );
+
+    function __construct()
+    {
+        $this->setMessage(__("The two values do not match.", "strata"));
+    }
 
     public function test($value, $context)
     {

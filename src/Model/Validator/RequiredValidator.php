@@ -1,14 +1,16 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 class RequiredValidator extends Validator {
 
-    protected $_errorMessage = "This is a required field.";
-
     protected $_config = array(
         "if" => null
     );
+
+    function __construct()
+    {
+        $this->setMessage(__("This is a required field.", "strata"));
+    }
 
     public function test($value, $context)
     {

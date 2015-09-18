@@ -1,10 +1,12 @@
 <?php
-
 namespace Strata\Model\Validator;
 
 class PostexistValidator extends Validator {
 
-    protected $_errorMessage = "This post could not be found.";
+    function __construct()
+    {
+        $this->setMessage(__("This post could not be found.", "strata"));
+    }
 
     public function test($value, $context)
     {
@@ -17,5 +19,4 @@ class PostexistValidator extends Validator {
 
         return true;
     }
-
 }
