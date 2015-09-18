@@ -38,6 +38,7 @@ class FormHelper extends Helper {
 
         if (!is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
             $this->validationErrors = $this->associatedEntity->getValidationErrors();
+
             if (array_key_exists('class', $formAttributes)) {
                 $formAttributes['class'] .= " has-errors ";
             } else {
