@@ -81,8 +81,8 @@ class Router {
 
         // Allow plugins and code outside the MVC to cancel
         // a route.
-        if (function_exists('do_action')) {
-          $url = do_action('strata_on_before_url_routing', $url);
+        if (function_exists('apply_filters')) {
+          $url = apply_filters('strata_on_before_url_routing', $url);
         }
 
         $this->route->process($url);
