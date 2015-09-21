@@ -35,6 +35,7 @@ class FormHelper extends Helper {
         $formAttributes = $this->configuration;
         unset($formAttributes['hasSteps']);
         unset($formAttributes['type']);
+        unset($formAttributes['nonce']);
 
         if (!is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
             $this->validationErrors = $this->associatedEntity->getValidationErrors();
@@ -46,7 +47,8 @@ class FormHelper extends Helper {
             }
         }
 
-        return sprintf('<form %s>', $this->arrayToHtmlAttributes($formAttributes));
+        $htmlAttributes = $this->arrayToHtmlAttributes($formAttributes);
+        return sprintf("<form %s>\n%s", $htmlAttributes, $this->generateNonce());
     }
 
     public function end()
@@ -160,7 +162,8 @@ class FormHelper extends Helper {
         $options += array(
             "type" => "POST",
             "hasSteps" => false,
-            "action" => $_SERVER['REQUEST_URI']
+            "action" => $_SERVER['REQUEST_URI'],
+            "nonce" => null
         );
 
         if (strtolower($options['type']) === "file") {
@@ -284,5 +287,24 @@ class FormHelper extends Helper {
                 return $this->associatedEntity->{$attributeName};
             }
         }
+    }
+
+    protected function generateNonce()
+    {
+        $nonceSalt = "";
+        $fieldName = "authenticity_token";
+
+        // Allow users to set their own nonce
+        if (!is_null($this->configuration['nonce'])) {
+            $nonceSalt = $this->request->generateNonceKey($this->configuration['nonce']);
+        // Use the entity if it is present
+        } elseif (!is_null($this->associatedEntity)) {
+            $nonceSalt = $this->request->generateNonceKey($this->associatedEntity);
+        // Fallback to something custom for the Helper
+        } else {
+            $nonceSalt = $this->request->generateNonceKey();
+        }
+
+        return wp_nonce_field($nonceSalt, $fieldName, true, false);
     }
 }

@@ -184,6 +184,39 @@ class Request {
         return Hash::check($this->_FILES, "data.name." . $key);
     }
 
+    public function nonceValidates($mixedNonceSalt)
+    {
+        $token = null;
+
+        if ($this->hasPost("authenticity_token")) {
+            $token = $this->post("authenticity_token");
+        } elseif($this->hasGet("authenticity_token")) {
+            $token = $this->get("authenticity_token");
+        }
+
+        if (is_null($token)) {
+            return false;
+        }
+
+        $key = $this->generateNonceKey($mixedNonceSalt);
+        return wp_verify_nonce($token, $key);
+    }
+
+    public function generateNonceKey($mixedNonceSalt)
+    {
+        if (is_string($mixedNonceSalt)) {
+            return $mixedNonceSalt;
+        }
+
+        if (is_a($mixedNonceSalt, "Strata\\Model\\CustomPostType\\ModelEntity")) {
+            $distinction =  $mixedNonceSalt->isBound() ? $mixedNonceSalt->ID : "strata_request";
+            return get_class($mixedNonceSalt) . $distinction;
+        }
+
+        return "strata_nonce";
+    }
+
+
     /**
      * Goes through the posted data and strips additional characters added
      * along the way.

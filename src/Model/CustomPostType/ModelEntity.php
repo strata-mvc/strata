@@ -91,6 +91,11 @@ class ModelEntity
         $this->associatedObject = $associatedObject;
     }
 
+    public function isBound()
+    {
+        return !is_null($this->associatedObject);
+    }
+
     public function validates(array $requestData)
     {
         $ourData = Hash::extract($requestData, $this->getInputName());
