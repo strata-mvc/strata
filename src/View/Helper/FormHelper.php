@@ -56,6 +56,21 @@ class FormHelper extends Helper {
         return "</form>";
     }
 
+    public function honeypot($name)
+    {
+        $input = $this->input($name, array("name" => $name));
+        $wrapperStyles = array(
+            "height: 1px",
+            "overflow: hidden",
+            "padding:1px 0 0 1px",
+            "position: absolute",
+            "width: 1px",
+            "z-index: -1"
+        );
+
+        return sprintf('<div class="validation" style="%s">%s</div>', implode("; ", $wrapperStyles), $input);
+    }
+
     public function id($name)
     {
         $keepIdx = preg_replace('/\[(\d+)\]/', "_$1", $name);
@@ -278,7 +293,6 @@ class FormHelper extends Helper {
         if ($this->configuration['method'] === "POST" && $this->request->hasPost($key)) {
             return $this->request->post($key);
         }
-
 
         if (!is_null($this->associatedEntity)) {
             $prefix = $this->keys['POST_WRAP'] . '.' . $this->associatedEntity->getInputName() . ".";

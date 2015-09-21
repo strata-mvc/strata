@@ -184,6 +184,25 @@ class Request {
         return Hash::check($this->_FILES, "data.name." . $key);
     }
 
+    public function requestValidates($nonce = "", $honeypot = "")
+    {
+        return $this->nonceValidates($nonce) && $this->honeypotValidates($honeypot);
+    }
+
+
+    public function honeypotValidates($name)
+    {
+        $value = "";
+
+        if ($this->hasPost($name)) {
+            $value = $this->post($name);
+        } elseif($this->hasGet($name)) {
+            $value = $this->get($name);
+        }
+
+        return empty($value);
+    }
+
     public function nonceValidates($mixedNonceSalt)
     {
         $token = null;
