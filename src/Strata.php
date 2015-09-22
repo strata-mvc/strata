@@ -8,6 +8,7 @@ use Strata\Utility\ErrorMessenger;
 use Strata\Context\StrataContext;
 use Strata\Model\CustomPostType\CustomPostTypeLoader;
 use Strata\Middleware\MiddlewareLoader;
+use Strata\Security\Security;
 
 use Composer\Autoload\ClassLoader;
 use Exception;
@@ -48,12 +49,10 @@ class Strata extends StrataContext {
     {
         $this->_ready = false;
 
-        // This will have to be improved and dynamized.
-        date_default_timezone_set('America/New_York');
-
         $this->configureLogger();
         $this->_includeUtils();
         $this->loadConfiguration();
+        $this->setTimeZone();
 
         $this->localize();
         $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
@@ -74,6 +73,7 @@ class Strata extends StrataContext {
         $this->configureCustomPostType();
         $this->addAppRoutes();
         $this->loadMiddleware();
+        $this->improveSecurity();
     }
 
     public function loadConfiguration()
@@ -250,5 +250,20 @@ class Strata extends StrataContext {
         $namespace = self::getNamespace() . "\\";
 
         $this->_loader->setPsr4($namespace, $srcPath);
+    }
+
+    protected function setTimeZone()
+    {
+        $timezone = Strata::app()->getConfig("timezone");
+        if (is_null($timezone)) {
+            $timezone = 'America/New_York';
+        }
+        date_default_timezone_set($timezone);
+    }
+
+    protected function improveSecurity()
+    {
+        $security = new Security();
+        $security->addMesures();
     }
 }
