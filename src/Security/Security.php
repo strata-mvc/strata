@@ -10,7 +10,9 @@ class Security {
 
     public function addMesures()
     {
-        $this->handleComments();
+        if (function_exists('add_filter')) {
+            $this->handleComments();
+        }
     }
 
     protected function handleComments()
