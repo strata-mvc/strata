@@ -194,7 +194,7 @@ class QueriableEntity extends WordpressEntity
         return wp_count_posts($this->getWordpressKey());
     }
 
-    private function wrapInEntities(array $entities)
+    protected function wrapInEntities(array $entities)
     {
         $results = array();
         foreach ($entities as $entity) {
