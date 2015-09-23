@@ -52,6 +52,7 @@ class Helper {
     public static function generateClassName($name)
     {
         $name = str_replace("-", "_", $name);
+        $name = Inflector::underscore($name);
         $name = Inflector::classify($name);
 
         if (!preg_match("/Helper$/", $name)) {
