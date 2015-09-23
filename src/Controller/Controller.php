@@ -9,6 +9,7 @@ use Strata\View\View;
 use Strata\Strata;
 use Strata\Utility\Inflector;
 use Exception;
+use ReflectionClass;
 
 /**
  * Base controller class.
@@ -45,8 +46,18 @@ class Controller {
     public static function generateClassName($name)
     {
         $name = str_replace("-", "_", $name);
-        $name = Inflector::underscore($name);
-        $name = Inflector::classify($name);
+
+        if (strstr($name, "\\")) {
+            $composedName = "";
+            foreach (explode("\\", $name) as $namespace) {
+                $namespace = Inflector::underscore($namespace);
+                $namespace = Inflector::classify($namespace);
+                $composedName .= $namespace . "\\";
+            }
+        } else {
+            $name = Inflector::underscore($name);
+            $name = Inflector::classify($name);
+        }
 
         if (!preg_match("/Controller$/", $name)) {
             $name .= "Controller";
@@ -55,6 +66,11 @@ class Controller {
         return $name;
     }
 
+    public function getShortName()
+    {
+        $rc = new ReflectionClass($this);
+        return $rc->getShortName();
+    }
 
     /**
      * The current request

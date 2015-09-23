@@ -175,13 +175,17 @@ class ModelEntity
         return $rc->getShortName();
     }
 
-    public function getWordpressKey()
+    public function getModel()
     {
         $name = $this->getShortName();
         $name = str_replace("Entity", "", $name);
 
-        $table = Entity::factory($name);
-        return $table->getWordpressKey();
+        return Entity::factory($name);
+    }
+
+    public function getWordpressKey()
+    {
+        return $this->getModel()->getWordpressKey();
     }
 
     private function extractNormalizedValidations($attr)
