@@ -2,6 +2,7 @@
 namespace Strata\Model;
 
 use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Model\Model;
 
 class WordpressEntity extends Model
@@ -47,7 +48,9 @@ class WordpressEntity extends Model
 
     public function getWordpressKey()
     {
-        return $this->wpPrefix . strtolower($this->getShortName());
-    }
+        $name = $this->getShortName();
+        $name = Inflector::underscore($name);
 
+        return $this->wpPrefix . $name;
+    }
 }
