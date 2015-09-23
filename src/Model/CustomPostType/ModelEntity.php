@@ -175,6 +175,15 @@ class ModelEntity
         return $rc->getShortName();
     }
 
+    public function getWordpressKey()
+    {
+        $name = $this->getShortName();
+        $name = str_replace("Entity", "", $name);
+
+        $table = Entity::factory($name);
+        return $table->getWordpressKey();
+    }
+
     private function extractNormalizedValidations($attr)
     {
         return Hash::normalize(Hash::extract($this->getAttributes(), "$attr.validations"));
