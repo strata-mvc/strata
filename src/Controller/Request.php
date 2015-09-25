@@ -221,7 +221,7 @@ class Request {
         return wp_verify_nonce($token, $key);
     }
 
-    public function generateNonceKey($mixedNonceSalt)
+    public function generateNonceKey($mixedNonceSalt = null)
     {
         if (is_string($mixedNonceSalt)) {
             return $mixedNonceSalt;
