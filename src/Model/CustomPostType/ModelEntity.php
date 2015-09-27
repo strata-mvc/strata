@@ -185,7 +185,8 @@ class ModelEntity
 
     public function getWordpressKey()
     {
-        return $this->getModel()->getWordpressKey();
+        $model = $this->getModel();
+        return $model::wordpressKey();
     }
 
     private function extractNormalizedValidations($attr)
