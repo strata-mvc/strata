@@ -224,11 +224,7 @@ class Strata extends StrataContext {
         }
 
         $filename = self::getTmpPath() . "pid";
-        if (is_writable($filename)) {
-            file_put_contents($filename, $pid);
-        }
-
-        return true;
+        return @file_put_contents($filename, $pid);
     }
 
     protected function _includeDebug()
