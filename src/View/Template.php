@@ -29,7 +29,7 @@ class Template {
         return Template::parseFile($templateFilePrefix . $extension, $variables);
     }
 
-    public static function parseFile($templateFilePath, $variables = array())
+    public static function parseFile($templateFilePath, $variables = array(), $viewComments = true)
     {
         ob_start();
 
@@ -43,14 +43,18 @@ class Template {
                 str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath) :
                 $templateFilePath;
 
-            echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", array_keys($variables))."\n -->\n";
+            if ($viewComments) {
+                echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", array_keys($variables))."\n -->\n";
+            }
         }
 
         extract($variables);
         include($templateFilePath);
 
         if (Strata::isDev()) {
-            echo "\n<!-- [Strata::Template:End] -->";
+            if ($viewComments) {
+                echo "\n<!-- [Strata::Template:End] -->";
+            }
 
             $executionTime = microtime(true) - $startedAt;
             $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
