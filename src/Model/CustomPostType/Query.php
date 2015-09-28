@@ -127,6 +127,24 @@ class Query
         return $this;
     }
 
+    public function paginate()
+    {
+        $totalPages = $this->query()->max_num_pages;
+        if ($totalPages > 1) {
+            return paginate_links(array(
+                'base' => add_query_arg('paged','%#%'),
+                'format' => '?paged=%#%',
+                'mid-size' => 1,
+                'current' => (get_query_var('paged')) ? get_query_var('paged') : 1,
+                'total' => $totalPages,
+                'prev_next' => true,
+                'prev_text' => __('Previous', 'strata'),
+                'next_text' => __('Next', 'strata')
+            ));
+        }
+
+        return "";
+    }
 
     public function limit($qty)
     {
@@ -148,7 +166,6 @@ class Query
 
         return $this;
     }
-
 
     // If previous meta queries are set, they may prevent the combination of
     // both 'AND' and 'OR' relation. Carries over the exclusive fields as a list of

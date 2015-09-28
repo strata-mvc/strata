@@ -194,6 +194,12 @@ class QueriableEntity extends WordpressEntity
         return wp_count_posts($this->getWordpressKey());
     }
 
+    public function paginate()
+    {
+        $this->reloadQueryAdapter();
+        return $this->activeQuery->paginate();
+    }
+
     protected function wrapInEntities(array $entities)
     {
         $results = array();
