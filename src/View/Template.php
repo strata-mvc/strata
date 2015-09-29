@@ -14,7 +14,7 @@ class Template {
      * @param string The file extension of the template to be loaded
      * @return  string The parsed html.
      */
-    public static function parse($name, $variables = array(), $extension = '.php')
+    public static function parse($name, $variables = array(), $extension = '.php', $viewComments = true)
     {
         $app = Strata::app();
         $templateFilePrefix = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name));// . $extension));
@@ -26,7 +26,7 @@ class Template {
             }
         }
 
-        return Template::parseFile($templateFilePrefix . $extension, $variables);
+        return Template::parseFile($templateFilePrefix . $extension, $variables, $viewComments);
     }
 
     public static function parseFile($templateFilePath, $variables = array(), $viewComments = true)
