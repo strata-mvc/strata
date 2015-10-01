@@ -19,21 +19,13 @@ class View {
      * Rendering options, used when explicitly rendering a view from a controller.
      * @var array
      */
-    protected $_options = array();
+    protected $options = array();
 
     /**
      * The list of variables to be declared when loading the view
      * @var array
      */
-    protected $_templateVars = array();
-
-    /**
-     * The constructor of the View class populates the default options.
-     */
-    function __construct()
-    {
-
-    }
+    protected $templateVars = array();
 
     public function loadTemplate($path)
     {
@@ -52,7 +44,7 @@ class View {
      */
     public function set($name, $value)
     {
-        $this->_templateVars[$name] = $value;
+        $this->templateVars[$name] = $value;
     }
 
     /**
@@ -61,7 +53,7 @@ class View {
      */
     public function getVariables()
     {
-        return $this->_templateVars;
+        return $this->templateVars;
     }
 
     /**
@@ -70,7 +62,7 @@ class View {
      */
     public function get($name)
     {
-        return $this->_templateVars[$name];
+        return $this->templateVars[$name];
     }
 
     /**
@@ -79,7 +71,7 @@ class View {
      */
     public function check($name)
     {
-        return array_key_exists($name, $this->_templateVars);
+        return array_key_exists($name, $this->templateVars);
     }
 
     /**
@@ -89,7 +81,7 @@ class View {
      */
     public function render($options = array())
     {
-        $this->_options = $options + array(
+        $this->options = $options + array(
             "Content-type" => "text/html",
             "Content-disposition" => null,
             "content" => "",
@@ -98,12 +90,12 @@ class View {
             "end" =>  is_admin() && !Router::isAjax() ? false : true
         );
 
-        $content = $this->_parseCurrentContent();
+        $content = $this->parseCurrentContent();
 
-        if ((bool)$this->_options['end']) {
+        if ((bool)$this->options['end']) {
             // Only play with headers when we know we will
             // kill the process.
-            $this->_applyHeaders();
+            $this->applyHeaders();
 
             echo $content;
             exit();
@@ -118,13 +110,13 @@ class View {
      * is encoded to a json string. Otherwise, the content simply cast into string.
      * @return string The content of the view
      */
-    protected function _parseCurrentContent()
+    protected function parseCurrentContent()
     {
-        if (is_array($this->_options['content']) || is_object($this->_options['content'])) {
-            return json_encode($this->_options['content']);
+        if (is_array($this->options['content']) || is_object($this->options['content'])) {
+            return json_encode($this->options['content']);
         }
 
-        return "" . $this->_options['content'];
+        return "" . $this->options['content'];
     }
 
     /**
@@ -132,14 +124,14 @@ class View {
      * are supported.
      * @return null
      */
-    protected function _applyHeaders()
+    protected function applyHeaders()
     {
-        if ($this->_options['Content-type'] != "text/html") {
-            header('Content-type: ' . $this->_options['Content-type']);
+        if ($this->options['Content-type'] != "text/html") {
+            header('Content-type: ' . $this->options['Content-type']);
         }
 
-        if (!is_null($this->_options['Content-disposition'])) {
-            header('Content-disposition: ' . $this->_options['Content-disposition']);
+        if (!is_null($this->options['Content-disposition'])) {
+            header('Content-disposition: ' . $this->options['Content-disposition']);
         }
     }
 

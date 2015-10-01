@@ -1,63 +1,36 @@
 <?php
 namespace Strata\Model;
 
-use Strata\Utility\Inflector;
-use Strata\Strata;
-
-use Exception;
-use ReflectionClass;
+use Strata\Core\StrataObjectTrait;
+use Strata\Model\CustomPostType\ModelEntity;
 
 /**
  * A base class for model objects
  */
 class Model {
 
+    use StrataObjectTrait;
 
-
-    /**
-     * Generates a possible namespace and classname combination of a
-     * Strata controller. Mainly used to avoid hardcoding the '\\Controller\\'
-     * string everywhere.
-     * @param  string $name The class name of the controller
-     * @return string       A fulle namespaced controller name
-     */
-    public static function generateClassPath($name)
+    public static function getNamespaceStringInStrata()
     {
-        return Strata::getNamespace() . "\\Model\\" . self::generateClassName($name);
+        return "Model";
     }
 
-    public static function generateClassName($name)
+    public static function getClassNameSuffix()
     {
-        $name = str_replace("-", "_", $name);
-        $name = Inflector::underscore($name);
-        return Inflector::classify($name);
+        return "";
     }
 
-    public static function factory($name)
+    public static function getEntity($associatedObj = null)
     {
-        $classpath = self::generateClassPath($name);
-        if (class_exists($classpath)) {
-            return new $classpath();
-        }
-
-        throw new Exception("Strata : No file matched the model '$classpath'.");
+        $EntityClass = get_called_class();
+        $entityClassRef = new $EntityClass();
+        $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
+        return class_exists($ActualEntity) ? new $ActualEntity($associatedObj) : new ModelEntity($associatedObj);
     }
 
-    public static function staticFactory()
-    {
-        $class = get_called_class();
-        return new $class();
-    }
-
-    function __construct()
+    public function __construct()
     {
 
     }
-
-    public function getShortName()
-    {
-        $rc = new ReflectionClass($this);
-        return $rc->getShortName();
-    }
-
 }

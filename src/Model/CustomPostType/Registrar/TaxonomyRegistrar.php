@@ -9,22 +9,22 @@ class TaxonomyRegistrar extends Registrar
     public function register()
     {
         $status = true;
-        if ($this->_entity->hasTaxonomies()) {
-            foreach ($this->_entity->getTaxonomies() as $taxonomy) {
-                $status = $status && $this->_registerTaxonomy($taxonomy);
+        if ($this->entity->hasTaxonomies()) {
+            foreach ($this->entity->getTaxonomies() as $taxonomy) {
+                $status = $status && $this->registerTaxonomy($taxonomy);
             }
         }
         return $status;
     }
 
-    private function _registerTaxonomy($taxonomyClassname)
+    private function registerTaxonomy($taxonomyClassname)
     {
-        $singular   = $this->_labelParser->singular();
-        $plural     = $this->_labelParser->plural();
+        $singular   = $this->labelParser->singular();
+        $plural     = $this->labelParser->plural();
 
         $taxonomyKey = $taxonomyClassname::wordpressKey();
-        $taxonomy = new $taxonomyClassname();
-        $key = $this->_wordpressKey . "_" . $taxonomyKey;
+        $taxonomy = $taxonomyClassname::staticFactory();
+        $key = $this->entity->getWordpressKey() . "_" . $taxonomyKey;
 
         $customizedOptions = $taxonomy->configuration + array(
             'hierarchical'               => false,
@@ -64,15 +64,15 @@ class TaxonomyRegistrar extends Registrar
             'not_found_in_trash'  => __( 'Not found in Trash', 'strata' ),
         );
 
-        return register_taxonomy($taxonomyKey, array($this->_wordpressKey), $customizedOptions);
+        return register_taxonomy($taxonomyKey, array($this->entity->getWordpressKey()), $customizedOptions);
     }
 
-    private function _hasTaxonomyConfiguration()
+    private function hasTaxonomyConfiguration()
     {
-        return count($this->_getTaxonomyConfiguration()) > 0;
+        return count($this->getTaxonomyConfiguration()) > 0;
     }
 
-    private function _getTaxonomyConfiguration()
+    private function getTaxonomyConfiguration()
     {
         return $this->belongs_to;
     }

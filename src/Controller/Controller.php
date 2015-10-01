@@ -1,75 +1,28 @@
 <?php
-
 namespace Strata\Controller;
 
 use Strata\Controller\Request;
-use Strata\Controller\ShortcodeLoader;
-use Strata\Controller\HelperLoader;
+use Strata\Controller\Loader\ShortcodeLoader;
+use Strata\Controller\Loader\HelperLoader;
 use Strata\View\View;
-use Strata\Strata;
-use Strata\Utility\Inflector;
-use Exception;
-use ReflectionClass;
+
+use Strata\Core\StrataObjectTrait;
 
 /**
  * Base controller class.
  */
 class Controller {
 
-    /**
-     *
-     * @param  string $name The class name of the controller
-     * @return mixed       A controller
-     */
-    public static function factory($name)
-    {
-        $classpath = self::generateClassPath($name);
-        if (class_exists($classpath)) {
-            return new $classpath();
-        }
+    use StrataObjectTrait;
 
-        throw new Exception("Strata : No file matched the controller '$classpath'.");
+    public static function getNamespaceStringInStrata()
+    {
+        return "Controller";
     }
 
-    /**
-     * Generates a possible namespace and classname combination of a
-     * Strata controller. Mainly used to avoid hardcoding the '\\Controller\\'
-     * string everywhere.
-     * @param  string $name The class name of the controller
-     * @return string       A fully namespaced controller name
-     */
-    public static function generateClassPath($name)
+    public static function getClassNameSuffix()
     {
-        return Strata::getNamespace() . "\\Controller\\" . self::generateClassName($name);
-    }
-
-    public static function generateClassName($name)
-    {
-        $name = str_replace("-", "_", $name);
-
-        if (strstr($name, "\\")) {
-            $composedName = "";
-            foreach (explode("\\", $name) as $namespace) {
-                $namespace = Inflector::underscore($namespace);
-                $namespace = Inflector::classify($namespace);
-                $composedName .= $namespace . "\\";
-            }
-        } else {
-            $name = Inflector::underscore($name);
-            $name = Inflector::classify($name);
-        }
-
-        if (!preg_match("/Controller$/", $name)) {
-            $name .= "Controller";
-        }
-
-        return $name;
-    }
-
-    public function getShortName()
-    {
-        $rc = new ReflectionClass($this);
-        return $rc->getShortName();
+        return "Controller";
     }
 
     /**
@@ -100,6 +53,9 @@ class Controller {
      * @var array
      */
     public $helpers = array();
+
+    public function __construct()
+    {}
 
     /**
      * Initiate the controller.

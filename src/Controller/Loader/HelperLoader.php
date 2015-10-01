@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Controller;
+namespace Strata\Controller\Loader;
 
 use Strata\Controller\Controller;
 use Strata\Strata;
@@ -44,17 +44,16 @@ class HelperLoader {
     public function register()
     {
         if ($this->hasHelpers()) {
-            $this->log();
             foreach ($this->helpers as $helper => $config) {
                 $this->controller->view->loadHelper($helper, $config);
             }
+            $this->log();
         }
     }
 
     private function log()
     {
-        $app = Strata::app();
         $names = array_keys($this->helpers);
-        $app->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)), "[Strata:HelperLoader]");
+        Strata::app()->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)), "[Strata:HelperLoader]");
     }
 }

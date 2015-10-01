@@ -6,10 +6,11 @@ use Strata\Model\CustomPostType\Registrar\Registrar;
 
 class CustomPostTypeRegistrar extends Registrar
 {
+
     function register()
     {
         // Ensure the default options have been set.
-        $customizedOptions = $this->_entity->configuration + array(
+        $customizedOptions = $this->entity->configuration + array(
             'labels'              => array(),
             'supports'            => array( 'title' ),
             'hierarchical'        => false,
@@ -27,8 +28,8 @@ class CustomPostTypeRegistrar extends Registrar
             'capability_type'     => 'post',
         );
 
-        $singular   = $this->_labelParser->singular();
-        $plural     = $this->_labelParser->plural();
+        $singular   = $this->labelParser->singular();
+        $plural     = $this->labelParser->plural();
 
         $customizedOptions['labels'] += array(
             'name'                => _x( $plural, 'Post Type General Name', 'strata' ),
@@ -46,6 +47,6 @@ class CustomPostTypeRegistrar extends Registrar
             'not_found_in_trash'  => __( 'Not found in Trash', 'strata' ),
         );
 
-        return register_post_type($this->_wordpressKey, $customizedOptions);
+        return register_post_type($this->entity->getWordpressKey(), $customizedOptions);
     }
 }

@@ -1,7 +1,9 @@
 <?php
 namespace Tests\Fixtures\Model;
 
-class TestStatelessEntity extends \Strata\Model\CustomPostType\ModelEntity {
+use Strata\Model\CustomPostType\ModelEntity;
+
+class TestStatelessEntity extends ModelEntity {
 
      public $attributes = array(
         "firstname"     => array("validations" => array("required")),

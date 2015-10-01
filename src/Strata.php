@@ -4,8 +4,10 @@ namespace Strata;
 use Strata\Logger\Logger;
 use Strata\Router\Router;
 use Strata\Utility\Hash;
-use Strata\Utility\ErrorMessenger;
-use Strata\Context\StrataContext;
+
+use Strata\Core\StrataContext;
+use Strata\Core\StrataConfigurableTrait;
+
 use Strata\Model\CustomPostType\CustomPostTypeLoader;
 use Strata\Middleware\MiddlewareLoader;
 use Strata\Security\Security;
@@ -20,22 +22,20 @@ use Exception;
  * @link          http://strata.francoisfaubert.com/docs/
  */
 class Strata extends StrataContext {
-    /**
-     * @var array The configuration array specified in the theme's app.php
-     */
-    protected $_config = array();
+
+    use StrataConfigurableTrait;
 
     /**
      * @var bool Specifies the requirements have been met from the current configuration
      */
-    protected $_ready = false;
+    protected $ready = false;
 
     /**
      * @var \Composer\Autoload\ClassLoader Keeps a reference to the current project's Composer autoloader file.
      */
-    protected $_loader = null;
+    protected $loader = null;
 
-    protected $_logger = null;
+    protected $logger = null;
     private $middlewareLoader = null;
 
     public $i18n = null;
@@ -47,17 +47,17 @@ class Strata extends StrataContext {
      */
     public function init()
     {
-        $this->_ready = false;
+        $this->ready = false;
 
         $this->configureLogger();
-        $this->_includeUtils();
+        $this->includeUtils();
         $this->loadConfiguration();
         $this->setTimeZone();
 
         $this->localize();
         $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
 
-        $this->_ready = true;
+        $this->ready = true;
     }
 
     /**
@@ -65,7 +65,7 @@ class Strata extends StrataContext {
      */
     public function run()
     {
-        if (!$this->_ready) {
+        if (!$this->ready) {
             $this->init();
         }
 
@@ -78,13 +78,13 @@ class Strata extends StrataContext {
 
     public function loadConfiguration()
     {
-        $this->_saveConfigValues(self::parseProjectConfigFile());
+        $this->saveConfigurationFileSettings(self::parseProjectConfigFile());
 
-        if (is_null($this->_config)) {
+        if (!$this->containsConfigurations()) {
             throw new Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
         }
 
-        $this->_addProjectNamespace();
+        $this->addProjectNamespace();
     }
 
 
@@ -94,7 +94,7 @@ class Strata extends StrataContext {
      */
     public function setLoader(ClassLoader $loader)
     {
-        $this->_loader = $loader;
+        $this->loader = $loader;
     }
 
     /**
@@ -103,27 +103,7 @@ class Strata extends StrataContext {
      */
     public function getLoader()
     {
-        return $this->_loader;
-    }
-
-    /**
-     * Fetches a value in the app's configuration array for the duration of the runtime.
-     * @param string $key In dot-notation format
-     * @return mixed
-     */
-    public function getConfig($key)
-    {
-        return Hash::get($this->_config, $key);
-    }
-
-    /**
-     * Saves a value in the app's configuration array for the duration of the runtime.
-     * @param string $key In dot-notation format
-     * @return mixed
-     */
-    public function setConfig($key, $value)
-    {
-        $this->_config = Hash::merge($this->_config, array($key => $value));
+        return $this->loader;
     }
 
     /**
@@ -144,13 +124,13 @@ class Strata extends StrataContext {
 
     protected function configureLogger()
     {
-        $this->_logger = new Logger();
+        $this->logger = new Logger();
     }
 
     public function log($message, $context = "[Strata]")
     {
-        if (!is_null($this->_logger)) {
-            return $this->_logger->log($message, $context);
+        if (!is_null($this->logger)) {
+            return $this->logger->log($message, $context);
         }
     }
 
@@ -185,20 +165,21 @@ class Strata extends StrataContext {
      */
     protected function configureCustomPostType()
     {
-        $postTypes = (array)$this->getConfig('custom-post-types');
-        $loader = new CustomPostTypeLoader($postTypes);
+        $loader = new CustomPostTypeLoader();
+        $loader->configure((array)$this->getConfig('custom-post-types'));
         $loader->load();
     }
 
     /**
-     * Saves an array of options to the _config attribute.
+     * Saves an array of options to the configuration attribute.
      * @param  array $values A list of project values.
      * @return null
      */
-    protected function _saveConfigValues($values = array())
+    protected function saveConfigurationFileSettings($values = array())
     {
         if (count($values) > 0) {
-            $this->_config = Hash::normalize($values);
+            $this->configure($values);
+            $this->normalizeConfiguration();
         }
     }
 
@@ -206,16 +187,16 @@ class Strata extends StrataContext {
      * Includes the debugger classes.
      * @return boolean True if the file was correctly included.
      */
-    protected function _includeUtils()
+    protected function includeUtils()
     {
-        return $this->_saveCurrentPID() && $this->_includeDebug();
+        return $this->saveCurrentPID() && $this->includeDebug();
     }
 
     /**
      * Save the latest PHP process ID as a temp file in case an infinite loop
      * or any unexpected error breaks the server, but doesn't close it.
      */
-    protected function _saveCurrentPID()
+    protected function saveCurrentPID()
     {
         $pid = getmypid();
 
@@ -227,7 +208,7 @@ class Strata extends StrataContext {
         return @file_put_contents($filename, $pid);
     }
 
-    protected function _includeDebug()
+    protected function includeDebug()
     {
         $debug = self::getUtilityPath() . "Debug.php";
 
@@ -240,12 +221,12 @@ class Strata extends StrataContext {
      * Adds the current project namespace to the project's class loader.
      * @return null
      */
-    protected function _addProjectNamespace()
+    protected function addProjectNamespace()
     {
         $srcPath = self::getSRCPath();
         $namespace = self::getNamespace() . "\\";
 
-        $this->_loader->setPsr4($namespace, $srcPath);
+        $this->loader->setPsr4($namespace, $srcPath);
     }
 
     protected function setTimeZone()

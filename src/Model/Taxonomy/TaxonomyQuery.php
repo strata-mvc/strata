@@ -6,12 +6,12 @@ use Exception;
 
 class TaxonomyQuery extends Query {
 
-    protected $_filters = array();
-    protected $_taxnomonies = array();
+    protected $filters = array();
+    protected $taxnomonies = array();
 
     public function type($type = null)
     {
-        $this->_taxnomonies[] = $type;
+        $this->taxnomonies[] = $type;
         return $this;
     }
 
@@ -31,6 +31,6 @@ class TaxonomyQuery extends Query {
      */
     public function fetch()
     {
-        return get_terms($this->_taxnomonies, $this->_filters);
+        return get_terms($this->taxnomonies, $this->filters);
     }
 }

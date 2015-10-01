@@ -28,6 +28,9 @@ class i18n {
     /** @var Locale The locale that is currently active. */
     protected $currentLocale = null;
 
+    public function __construct()
+    {}
+
     /**
      * The class initializer is meant to be called only once during the
      * Strata kickoff.

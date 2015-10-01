@@ -6,8 +6,7 @@ use Strata\Router\RouteParser\Route;
 
 use Strata\Controller\Controller;
 use Strata\Controller\Request;
-use Strata\Model\Model;
-use Strata\Model\CustomPostType\Entity;
+use Strata\Model\CustomPostType\CustomPostType;
 
 use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
@@ -39,10 +38,10 @@ class AltoRoute extends Route
         }
     }
 
-    public function addResource(Entity $customPostType)
+    public function addResource(CustomPostType $customPostType)
     {
-        $slug = Hash::check($customPostType->configuration, "rewrite.slug")
-            ? Hash::get($customPostType->configuration, "rewrite.slug")
+        $slug = $customPostType->hasConfig("rewrite.slug")
+            ? $customPostType->getConfig("rewrite.slug")
             : $customPostType->getWordpressKey();
 
         $controller = Controller::generateClassName($customPostType->getShortName());

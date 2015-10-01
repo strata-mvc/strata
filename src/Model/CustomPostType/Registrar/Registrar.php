@@ -2,19 +2,19 @@
 namespace Strata\Model\CustomPostType\Registrar;
 
 use Strata\Model\CustomPostType\LabelParser;
+use Strata\Model\CustomPostType\CustomPostType;
 
 class Registrar
 {
-    protected $_entity;
-    protected $_wordpressKey;
-    protected $_labelParser;
+    protected $entity;
+    protected $wordpressKey;
+    protected $labelParser;
 
-    function __construct(\Strata\Model\CustomPostType\Entity $entity)
+    function __construct(CustomPostType $entity)
     {
-        $this->_entity = $entity;
-        $this->_wordpressKey = $entity->getWordpressKey();
+        $this->entity = $entity;
 
-        $this->_labelParser = new LabelParser($entity);
-        $this->_labelParser->parse();
+        $this->labelParser = new LabelParser($entity);
+        $this->labelParser->parse();
     }
 }

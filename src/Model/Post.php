@@ -2,14 +2,16 @@
 namespace Strata\Model;
 
 use Strata\Model\CustomPostType\LabelParser;
-use Strata\Model\CustomPostType\Entity;
+use Strata\Model\CustomPostType\CustomPostType;
+use Exception;
 
 /**
  * Wraps Post default objects.
  */
-class Post extends Entity {
+class Post extends CustomPostType {
 
     public $wpPrefix = "";
+
     public $belongs_to = array("Strata\Model\Taxonomy\Category");
 
     /**
@@ -17,6 +19,9 @@ class Post extends Entity {
      * @var string
      */
     public $permissionLevel = 'edit_posts';
+
+    public function __construct()
+    {}
 
     /**
      * Returns a label object that exposes singular and plural labels
@@ -27,5 +32,10 @@ class Post extends Entity {
         $labelParser = new LabelParser($this);
         $labelParser->parse();
         return $labelParser;
+    }
+
+    public function register()
+    {
+        throw new Exception("Posts cannot be registered.");
     }
 }

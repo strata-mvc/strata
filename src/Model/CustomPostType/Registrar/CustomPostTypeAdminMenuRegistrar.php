@@ -2,21 +2,17 @@
 namespace Strata\Model\CustomPostType\Registrar;
 
 use Strata\Router\Router;
+use Strata\Controller\Controller;
 use Strata\Model\CustomPostType\Registrar\Registrar;
-use Strata\Utility\Inflector;
+use Strata\Core\StrataConfigurableTrait;
 
 class CustomPostTypeAdminMenuRegistrar extends Registrar
 {
-    private $_config = array();
-
-    public function configure($config)
-    {
-        $this->_config = $config;
-    }
+    use StrataConfigurableTrait;
 
     public function register()
     {
-        if (count($this->_config)) {
+        if (count($this->getConfiguration())) {
             add_action('admin_menu', array($this, 'action_addAdminMenus'));
         }
     }
@@ -24,10 +20,10 @@ class CustomPostTypeAdminMenuRegistrar extends Registrar
     public function action_addAdminMenus()
     {
         // Default to the model's likely controller.
-        $defaultController = Inflector::classify($this->_entity->getShortName() . 'Controller');
-        $parentSlug = 'edit.php?post_type=' . $this->_wordpressKey;
+        $defaultController = Controller::generateClassName($this->entity->getShortName());
+        $parentSlug = 'edit.php?post_type=' . $this->entity->getWordpressKey();
 
-        foreach ($this->_config as $func => $config) {
+        foreach ($this->getConfiguration() as $func => $config) {
             $config += array(
                 'title'         => ucfirst($func),
                 'menu-title'    => ucfirst($func),
@@ -47,7 +43,7 @@ class CustomPostTypeAdminMenuRegistrar extends Registrar
                 $route = Router::callback($config['route'][0], $config['route'][1]);
             }
 
-            $uniquePage = $this->_wordpressKey . "_" . $func;
+            $uniquePage = $this->entity->getWordpressKey() . "_" . $func;
             add_submenu_page($parentSlug, $config['title'], $config['menu-title'], $config['capability'], $uniquePage, $route, $config['icon'], $config['position']);
         }
     }

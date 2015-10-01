@@ -1,23 +1,37 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
-use Strata\Model\Model;
-
-use Strata\Model\CustomPostType\QueriableEntity;
+use Strata\Utility\Hash;
+use Strata\Model\WordpressEntity;
+use Strata\Model\Taxonomy\TaxonomyEntity;
+use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
 use Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar;
 
-use Strata\Utility\Hash;
+use Strata\Model\CustomPostType\QueriableEntityTrait;
 
-class Entity extends QueriableEntity
+class CustomPostType extends WordpressEntity
 {
+    use QueriableEntityTrait;
+
     public $wpPrefix = "cpt_";
     public $admin_menus = array();
     public $belongs_to  = array();
     public $routed      = false;
 
     /**
+     * Returns a label object that exposes singular and plural labels
+     * @return LabelParser
+     */
+    public function getLabel()
+    {
+        $labelParser = new LabelParser($this);
+        $labelParser->parse();
+        return $labelParser;
+    }
+
+   /**
      * Registers the custom post type in Wordpress. A Custom post type
      * must trigger this during the 'init' state for it to be recognized
      * automatically by Wordpress.
@@ -76,9 +90,10 @@ class Entity extends QueriableEntity
                 $tax[] = new $taxonomyName();
             }
             else {
-                $tax[] = Model::factory($taxonomyName);
+                $tax[] = TaxonomyEntity::factory($taxonomyName);
             }
         }
+
         return $tax;
     }
 
@@ -90,7 +105,7 @@ class Entity extends QueriableEntity
     public function create($options)
     {
         $options += array(
-            'post_type'         => self::wordpressKey(),
+            'post_type'         => $this->getWordpressKey(),
             'ping_status'       => false,
             'comment_status'    => false
         );
@@ -100,12 +115,12 @@ class Entity extends QueriableEntity
 
     public function update($options)
     {
-        return wp_update_post( $options );
+        return wp_update_post($options);
     }
 
     public function delete($postId, $force = false)
     {
-        return wp_delete_post( $postId, $force);
+        return wp_delete_post($postId, $force);
     }
 
 }

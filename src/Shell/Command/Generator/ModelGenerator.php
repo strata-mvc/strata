@@ -20,9 +20,9 @@ class ModelGenerator extends ClassWriter {
         $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
 
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "Model", "Entity", $this->classname . "Entity.php"));
-        $this->_createFile($destination, "$namespace\Model\Entity", $this->classname, "\Strata\Model\CustomPostType\ModelEntity");
+        $this->_createFile($destination, "$namespace\Model\Entity", $this->classname . "Entity", "\Strata\Model\CustomPostType\ModelEntity");
 
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", "Entity", $this->classname . "Test.php"));
-        $this->_createFile($destination, "$namespace\Test\Model\Entity", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $this->_createFile($destination, "$namespace\Test\Model\Entity", "Test{$this->classname}Entity", "\Strata\Test\Test", true);
     }
 }

@@ -1,26 +1,10 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
-use Strata\Model\WordpressEntity;
 use Strata\Model\CustomPostType\Query;
-use Strata\Model\CustomPostType\ModelEntity;
 
-class QueriableEntity extends WordpressEntity
+trait QueriableEntityTrait
 {
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public static function getEntity($associatedObj = null)
-    {
-        $EntityClass = get_called_class();
-        $entityClassRef = new $EntityClass();
-        $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
-        return class_exists($ActualEntity) ? new $ActualEntity($associatedObj) : new ModelEntity($associatedObj);
-    }
-
     /**
      * Returns an instantiated object to access the repository.
      * @return QueriableEntity

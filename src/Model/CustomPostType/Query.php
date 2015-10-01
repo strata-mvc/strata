@@ -7,7 +7,7 @@ use WP_Query;
 class Query
 {
     // Set defaults: return a list of published posts ordered by name
-    protected $_filters = array(
+    protected $filters = array(
         'orderby'          => 'title',
         'order'            => 'ASC',
         'post_status'      => 'any',
@@ -24,6 +24,9 @@ class Query
     );
 
     private $executionStart = 0;
+
+    public function __construct()
+    {}
 
     public function fetch()
     {
@@ -47,7 +50,7 @@ class Query
     private function executeFilteredQuery()
     {
         $this->logQueryStart();
-        $result = new WP_Query($this->_filters);
+        $result = new WP_Query($this->filters);
         $this->logQueryCompletion($result->request);
 
         return $result;
@@ -64,28 +67,28 @@ class Query
 
     public function date($dateQuery)
     {
-        $this->_filters['date_query'] = $dateQuery;
+        $this->filters['date_query'] = $dateQuery;
         return $this;
     }
 
     public function orderby($orderBy)
     {
-        $this->_filters['orderby'] = $orderBy;
+        $this->filters['orderby'] = $orderBy;
         return $this;
     }
 
     public function direction($order)
     {
-        $this->_filters['order'] = $order;
+        $this->filters['order'] = $order;
         return $this;
     }
 
     public function type($type = null)
     {
         if (is_null($type)) {
-            unset($this->_filters['post_type']);
+            unset($this->filters['post_type']);
         } else {
-            $this->_filters['post_type'] = $type;
+            $this->filters['post_type'] = $type;
         }
         return $this;
     }
@@ -93,9 +96,9 @@ class Query
     public function status($status = null)
     {
         if (is_null($status)) {
-            unset($this->_filters['post_status']);
+            unset($this->filters['post_status']);
         } else {
-            $this->_filters['post_status'] = $status;
+            $this->filters['post_status'] = $status;
         }
 
         return $this;
@@ -110,7 +113,7 @@ class Query
             return $this->taxWhere($field, $value);
         }
 
-        $this->_filters[$field] = $value;
+        $this->filters[$field] = $value;
         return $this;
     }
 
@@ -123,7 +126,7 @@ class Query
             return $this->taxWhere($field, $value, 'OR');
         }
 
-        $this->_filters[$field] = $value;
+        $this->filters[$field] = $value;
         return $this;
     }
 
@@ -148,20 +151,20 @@ class Query
 
     public function limit($qty)
     {
-        $this->_filters['posts_per_page']   = $qty;
-        $this->_filters['nopaging']         = false;
+        $this->filters['posts_per_page']   = $qty;
+        $this->filters['nopaging']         = false;
         return $this;
     }
 
     public function getFilters()
     {
-        return $this->_filters;
+        return $this->filters;
     }
 
     public function applyFilters($filters)
     {
         foreach($filters as $key => $value) {
-            $this->_filters[$key] = $value;
+            $this->filters[$key] = $value;
         }
 
         return $this;
@@ -172,7 +175,7 @@ class Query
     // IDs to apply in a Query with a new meta_query relation type.
     protected function carryOverIncompatibleQueries()
     {
-        foreach($this->_filters['strata_relations'] as $queryType => $queryDetails) {
+        foreach($this->filters['strata_relations'] as $queryType => $queryDetails) {
 
             if ($this->hasRelationQuery($queryType, 'AND') && $this->hasRelationQuery($queryType, 'OR')) {
                 $this->andRelationToPostIn($queryType);
@@ -184,7 +187,7 @@ class Query
 
     protected function relationsToQueries()
     {
-        foreach($this->_filters['strata_relations'] as $queryType => $queryDetails) {
+        foreach($this->filters['strata_relations'] as $queryType => $queryDetails) {
             // At this point, there should only be exclusive AND or OR query groups
             $metaQueries = null;
             $relationTypes = array_keys($queryDetails);
@@ -213,7 +216,7 @@ class Query
         // Copy the current Query but remove the OR conditions.
         // They will be looked up as this instance goes on with
         // the process.
-        $andQuery->applyFilters($this->_filters);
+        $andQuery->applyFilters($this->filters);
         $andQuery->resetQueryRelation($query_type, 'OR');
 
         // This forces the AND relationships to be loaded before
@@ -227,13 +230,13 @@ class Query
 
     public function resetQueryRelation($which, $type)
     {
-        $this->_filters['strata_relations'][$which][$type] = array();
+        $this->filters['strata_relations'][$which][$type] = array();
         return $this;
     }
 
     public function getRelationQuery($which, $type)
     {
-        return $this->_filters['strata_relations'][$which][$type];
+        return $this->filters['strata_relations'][$which][$type];
     }
 
     public function hasRelationQuery($which, $type)
@@ -244,14 +247,14 @@ class Query
     public function setQueryRelation($type, $which)
     {
         $this->prepareRelationFilter($type);
-        $this->_filters[$type]['relation'] = $which;
+        $this->filters[$type]['relation'] = $which;
         return $this;
     }
 
     public function prepareRelationFilter($type)
     {
-        if (!array_key_exists($type, $this->_filters) || !is_array($this->_filters[$type])) {
-            $this->_filters[$type] = array();
+        if (!array_key_exists($type, $this->filters) || !is_array($this->filters[$type])) {
+            $this->filters[$type] = array();
         }
         return $this;
     }
@@ -260,7 +263,7 @@ class Query
     // used to build a more complex AND/OR logical fetch.
     protected function metaWhere($field, $value, $compare = 'AND')
     {
-        $this->_filters['strata_relations']['meta_query'][$compare][] = $value;
+        $this->filters['strata_relations']['meta_query'][$compare][] = $value;
         return $this;
     }
 
@@ -268,7 +271,7 @@ class Query
     // used to build a more complex AND/OR logical fetch.
     protected function taxWhere($field, $value, $compare = 'AND')
     {
-        $this->_filters['strata_relations']['tax_query'][$compare][] = $value;
+        $this->filters['strata_relations']['tax_query'][$compare][] = $value;
         return $this;
     }
 
@@ -276,7 +279,7 @@ class Query
     private function addRelationQuery($type, $value)
     {
         $this->prepareRelationFilter($type);
-        $this->_filters[$type][] = $value;
+        $this->filters[$type][] = $value;
         return $this;
     }
 

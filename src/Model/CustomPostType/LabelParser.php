@@ -1,56 +1,52 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
-use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
-use Strata\Strata;
-use Strata\Model\Model;
 
 class LabelParser
 {
-    private $_plural = "";
-    private $_singular = "";
-    private $_entity;
+    private $plural = "";
+    private $singular = "";
+    private $entity;
 
     function __construct($entity)
     {
-        $this->_entity = $entity;
+        $this->entity = $entity;
     }
 
     public function plural()
     {
-        return $this->_plural;
+        return $this->plural;
     }
 
     public function singular()
     {
-        return $this->_singular;
+        return $this->singular;
     }
 
     public function parse()
     {
         // Fetch the basic values from possible user defined values.
-       // $object = self::factory();
-        if (Hash::check($this->_entity->configuration, "labels")) {
-            if (Hash::check($this->_entity->configuration, "labels.singular_name")) {
-                $this->_singular = Hash::get($this->_entity->configuration, "labels.singular_name");
-            } elseif (Hash::check($this->_entity->configuration, "labels.name")) {
-                $this->_plural = Hash::get($this->_entity->configuration, "labels.name");
+        if ($this->entity->hasConfig("labels")) {
+            if ($this->entity->hasConfig("labels.singular_name")) {
+                $this->singular = $this->entity->getConfig("labels.singular_name");
+            } elseif ($this->entity->hasConfig("labels.name")) {
+                $this->plural = $this->entity->getConfig("labels.name");
             }
         }
 
-        if (!empty($this->_singular) && empty($this->_plural)) {
-            $this->_plural = Inflector::pluralize($this->_singular);
+        if (!empty($this->singular) && empty($this->plural)) {
+            $this->plural = Inflector::pluralize($this->singular);
         }
 
-        if (!empty($this->_plural) && empty($this->_singular)) {
-            $this->_singular = Inflector::singularize($this->_plural);
+        if (!empty($this->plural) && empty($this->singular)) {
+            $this->singular = Inflector::singularize($this->plural);
         }
 
         // If nothing is sent in, guess the name from the object name.
-        if (empty($this->_plural) && empty($this->_singular)) {
-            $this->_singular   = ucfirst(Inflector::singularize($this->_entity->getShortName()));
-            $this->_plural     = ucfirst(Inflector::pluralize($this->_entity->getShortName()));
+        if (empty($this->plural) && empty($this->singular)) {
+            $this->singular   = ucfirst(Inflector::singularize($this->entity->getShortName()));
+            $this->plural     = ucfirst(Inflector::pluralize($this->entity->getShortName()));
         }
     }
 }

@@ -1,7 +1,9 @@
 <?php
 namespace Tests\Fixtures\Model;
 
-class TestCustomPostType extends \Strata\Model\CustomPostType\Entity {
+use Strata\Model\CustomPostType\CustomPostType;
+
+class TestCustomPostType extends CustomPostType {
 
     public $admin_menus = array(
         "exportprofiles" => array(

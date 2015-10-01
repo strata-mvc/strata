@@ -1,7 +1,8 @@
 <?php
 
-namespace Strata\Controller;
+namespace Strata\Controller\Loader;
 
+use Strata\Controller\Controller;
 use Exception;
 
 /**
@@ -13,22 +14,22 @@ class ShortcodeLoader {
      * A list of wordpress shortcode mapped in a array("shortcodename" => "functionname") way.
      * @var  array
      */
-    private $_shortcodes = array();
+    private $shortcodes = array();
 
     /**
      * A Strata Controller instance to which shortcodes callbacks will be forwarded
      * @var null
      */
-    private $_controller = null;
+    private $controller = null;
 
-    public function __construct(\Strata\Controller\Controller $controller)
+    public function __construct(Controller $controller)
     {
         if (is_null($controller)) {
             throw new Exception("No controller has been defined for shortcode callback.");
         }
 
-        $this->_controller = $controller;
-        $this->_shortcodes = $controller->shortcodes;
+        $this->controller = $controller;
+        $this->shortcodes = $controller->shortcodes;
     }
 
     /**
@@ -37,7 +38,7 @@ class ShortcodeLoader {
      */
     public function hasShortcodes()
     {
-        return count($this->_shortcodes) > 0;
+        return count($this->shortcodes) > 0;
     }
 
     /**
@@ -49,9 +50,9 @@ class ShortcodeLoader {
     public function register()
     {
         if ($this->hasShortcodes()) {
-            foreach ($this->_shortcodes as $shortcode => $methodName) {
-                if(method_exists($this->_controller, $methodName)) {
-                    add_shortcode($shortcode, array($this->_controller, $methodName));
+            foreach ($this->shortcodes as $shortcode => $methodName) {
+                if(method_exists($this->controller, $methodName)) {
+                    add_shortcode($shortcode, array($this->controller, $methodName));
                 }
             }
         }
@@ -64,7 +65,7 @@ class ShortcodeLoader {
     public function unregister()
     {
         if ($this->hasShortcodes()) {
-            foreach ($this->_shortcodes as $shortcode => $methodName) {
+            foreach ($this->shortcodes as $shortcode => $methodName) {
                 remove_shortcode($shortcode);
             }
         }

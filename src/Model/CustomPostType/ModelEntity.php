@@ -6,46 +6,22 @@ use Strata\Utility\Inflector;
 use Strata\Utility\Hash;
 
 use Strata\Model\Validator\Validator;
+use Strata\Core\StrataObjectTrait;
 
 use Exception;
-use ReflectionClass;
 
 class ModelEntity
 {
+    use StrataObjectTrait;
 
-    /**
-     * Generates a possible namespace and classname combination of a
-     * Strata controller. Mainly used to avoid hardcoding the '\\Model\\Entity\\'
-     * string everywhere.
-     * @param  string $name The class name of the model entity
-     * @return string       A fully namespaced model entity name
-     */
-    public static function generateClassPath($name)
+    public static function getNamespaceStringInStrata()
     {
-        return Strata::getNamespace() . "\\Model\\Entity\\" . self::generateClassName($name);
+        return "Model\\Entity";
     }
 
-    public static function generateClassName($name)
+    public static function getClassNameSuffix()
     {
-        $name = str_replace("-", "_", $name);
-        $name = Inflector::underscore($name);
-        $name = Inflector::classify($name);
-
-        if (!preg_match("/Entity$/", $name)) {
-            $name .= "Entity";
-        }
-
-        return $name;
-    }
-
-    public static function factory($name)
-    {
-        $classpath = self::generateClassPath($name);
-        if (class_exists($classpath)) {
-            return new $classpath();
-        }
-
-        throw new Exception("Strata : No file matched the model entity '$classpath'.");
+        return "Entity";
     }
 
     public $attributes  = array();
@@ -169,24 +145,18 @@ class ModelEntity
         return strtolower($this->getShortName());
     }
 
-    public function getShortName()
-    {
-        $rc = new ReflectionClass($this);
-        return $rc->getShortName();
-    }
-
     public function getModel()
     {
         $name = $this->getShortName();
         $name = str_replace("Entity", "", $name);
 
-        return Entity::factory($name);
+        return CustomPostType::factory($name);
     }
 
     public function getWordpressKey()
     {
         $model = $this->getModel();
-        return $model::wordpressKey();
+        return $model->getWordpressKey();
     }
 
     private function extractNormalizedValidations($attr)

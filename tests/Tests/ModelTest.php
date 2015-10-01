@@ -2,7 +2,7 @@
 
 use Strata\Strata;
 use Strata\Model\Model;
-use Strata\View\View;
+use Strata\Model\CustomPostType\CustomPostType;
 use Strata\Model\CustomPostType\Registrar\Registrar;
 
 class ModelTest extends PHPUnit_Framework_TestCase
@@ -17,13 +17,13 @@ class ModelTest extends PHPUnit_Framework_TestCase
         $this->wordpress->reset();
 
         $this->model = Model::factory("TestStateless");
-        $this->customPostType = Model::factory("TestCustomPostType");
+        $this->customPostType = CustomPostType::factory("TestCustomPostType");
     }
 
     public function testCanBeInstanciated()
     {
         $this->assertTrue($this->model instanceof Model);
-        $this->assertTrue($this->customPostType instanceof Model);
+        $this->assertTrue($this->customPostType instanceof CustomPostType);
     }
 
     /**
@@ -33,7 +33,6 @@ class ModelTest extends PHPUnit_Framework_TestCase
     {
         Model::factory("I_dont_exist");
     }
-
 
     public function testCtpRegistered()
     {
