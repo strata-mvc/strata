@@ -2,6 +2,7 @@
 namespace Strata\Model\CustomPostType;
 
 use Strata\Model\CustomPostType\Query;
+use Exception;
 
 trait QueriableEntityTrait
 {
