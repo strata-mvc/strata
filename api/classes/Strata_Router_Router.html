@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Router\Router</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router">Strata\Router</a>
+          </li>
+          <li class="separator">Router</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Router/Router.php.html#line16">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Router\</small>Router</h1>
+        <h4>Assigns callback handlers on demand and from the URL context.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Router
+            {<br/><ul class="none"><li>// members</li><li>public <span title="Strata\Router\Strata\Router\RouteParser\Route">Route</span> <a href="#members">$route</a> =
+                        null;
+                    </li></ul><ul class="none"><li>// methods</li><li>public static array <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/callback.html">callback</a>()
+                    </li><li>public static AltoRouteParser <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/urlRouting.html">urlRouting</a>()
+                    </li><li>public static void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax</a>()
+                    </li><li>public static void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax</a>()
+                    </li><li>public mixed <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/run.html">run</a>()
+                    </li><li>public void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/abandonCurrent.html">abandonCurrent</a>()
+                    </li><li>private void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/loopCurrentRequest.html">loopCurrentRequest</a>()
+                    </li><li>private void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/log.html">log</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>public</h4>
+          <ul class="members">
+            <li id="route"><strong>$route</strong>
+                —
+                <a title="Strata\Router\Strata\Router\RouteParser\Route" href="../classes/Strata_Router_Strata_Router_RouteParser_Route.html">Strata\Router\Strata\Router\RouteParser\Route</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="log">
+              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/log.html">log()</a>
+            </li>
+            <li id="loopCurrentRequest">
+              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/loopCurrentRequest.html">loopCurrentRequest()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="abandonCurrent">
+              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/abandonCurrent.html">abandonCurrent()</a>
+            </li>
+            <li id="callback"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/callback.html">callback()</a>
+                — Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.</li>
+            <li id="isAjax">
+              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax()</a>
+            </li>
+            <li id="isFrontendAjax">
+              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax()</a>
+            </li>
+            <li id="run"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/run.html">run()</a>
+                — Attemps to run the currently loaded route object.</li>
+            <li id="urlRouting"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/urlRouting.html">urlRouting()</a>
+                — Generates a parser for URL based rules, as one may be used to in the world of Model View Controller programming.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-09-21T16:49:30+00:00 (commit #<span title="28ebf30dd4222cc72e441185ee84b87d945b24a9">28ebf30</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">replaced do_action for apply_filters to obtain a return value</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-16T19:40:13+00:00 (commit #<span title="d8accace9dcdc23b321329780d72fca98fa04420">d8accac</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">validated for do_action</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-16T19:35:24+00:00 (commit #<span title="a3acfde38a7b610a18065b815d72516fd3d0a23b">a3acfde</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved code parsing to find wordpress gettext functions</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-15T15:48:48+00:00 (commit #<span title="559b67d82138d75a8cfd9419ec4e4064c8b3197b">559b67d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">we only want one ":" because two is one char too many in the long run</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-10T20:46:37+00:00 (commit #<span title="02e377bb96a5e15efaed199656105740d6c4e67e">02e377b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added a way of exiting a routing process</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-08T14:36:27+00:00 (commit #<span title="f5b9b38d015c2a5e0f380e906c6d3eee0e77ebce">f5b9b38</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed more flexibility to setting locales</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T17:23:43+00:00 (commit #<span title="c65f7bbf6adc301939cb5a73909dfb450a51ab5a">c65f7bb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">missing log output function</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T17:20:44+00:00 (commit #<span title="70261a68604b40386a3c71a508c7dd2cfced54e8">70261a6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">missing log output function</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T16:47:04+00:00 (commit #<span title="595d21eebcfdc78621fd6477ecad4d8f35e37f89">595d21e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed dynamic parameter lengths in debug; modified the routing process to allow for localization; general fixes based on polyglot dev</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-31T15:39:24+00:00 (commit #<span title="e36e39f8fd3c40698b54e86160a00e31f2104697">e36e39f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">custom post types should have been loaded first to win the routing race</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-09T15:01:49+00:00 (commit #<span title="433e238aabcbb80d845730f73f9f8182cf4cd251">433e238</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple enhencements of the query object; updated Cakes utilities</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T19:48:57+00:00 (commit #<span title="d895a97bd751eb1f8312c05af0ddb0b86204ae3b">d895a97</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Added resource based routing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T17:38:44+00:00 (commit #<span title="ff4e216c36454ac77e3e05da961c768add9114a1">ff4e216</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bug fixes, controller name validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-30T15:41:14+00:00 (commit #<span title="6893c14dfc4fc1b4a5d4fd923998720e1b273f76">6893c14</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added logs; fixed strata config access; improved access to cpt repo</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-08T14:46:53+00:00 (commit #<span title="fc8e2344e251120076ad8dedc8e131f2adc8e280">fc8e234</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">completed the basic list of tests</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-06T20:06:36+00:00 (commit #<span title="377fea8a0ed98f27ddbf7c8dcfd5c72da004d14d">377fea8</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">renamed app to Strata</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

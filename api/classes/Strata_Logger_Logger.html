@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Logger\Logger</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Logger">Strata\Logger</a>
+          </li>
+          <li class="separator">Logger</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Logger/Logger.php.html#line11">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Logger\</small>Logger</h1>
+        <h4>Logs strings</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Logger
+            {<br/><ul class="none"><li>// members</li><li>public  <a href="#members">$logfile</a>;
+                    </li><li>public string <a href="#members">$color</a> =
+                        "\e[0;36m";
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/log.html">log</a>()
+                    </li><li>public void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/debug.html">debug</a>()
+                    </li><li>protected void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/canPrintLogs.html">canPrintLogs</a>()
+                    </li><li>protected void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/write.html">write</a>()
+                    </li><li>protected void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/buildRichLine.html">buildRichLine</a>()
+                    </li><li>protected void <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/buildSimpleLine.html">buildSimpleLine</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>public</h4>
+          <ul class="members">
+            <li id="color">
+              <strong>$color</strong>
+            </li>
+            <li id="logfile">
+              <strong>$logfile</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="buildRichLine">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/buildRichLine.html">buildRichLine()</a>
+            </li>
+            <li id="buildSimpleLine">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/buildSimpleLine.html">buildSimpleLine()</a>
+            </li>
+            <li id="canPrintLogs">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/canPrintLogs.html">canPrintLogs()</a>
+            </li>
+            <li id="write">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/write.html">write()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/__construct.html">__construct()</a>
+            </li>
+            <li id="debug">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/debug.html">debug()</a>
+            </li>
+            <li id="log">
+              <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger/log.html">log()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-09-15T17:21:39+00:00 (commit #<span title="5a7a2b8651c130fa6e10a5fb7302c365522c1994">5a7a2b8</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logs</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-07T13:41:57+00:00 (commit #<span title="14e8c686002b5f0587f9db84c4ba5f4133bcea82">14e8c68</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logging when importing templates</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-28T15:39:58+00:00 (commit #<span title="6e55e69e7adc9122f66506b8acc2ac2d2a4bb92e">6e55e69</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed logging messages</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-24T14:12:19+00:00 (commit #<span title="0d8d6fb73992c85236be7e6a8a65274106adf7ad">0d8d6fb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">prevent logs when log file is not created (ex: while installing strata)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-30T16:55:22+00:00 (commit #<span title="16265fe201babbdb4116a80e91a70c06d466185a">16265fe</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logging; added timer on queries</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-30T15:41:14+00:00 (commit #<span title="6893c14dfc4fc1b4a5d4fd923998720e1b273f76">6893c14</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added logs; fixed strata config access; improved access to cpt repo</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

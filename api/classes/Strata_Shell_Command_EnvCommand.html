@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Shell\Command\EnvCommand</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Shell_Command">Strata\Shell\Command</a>
+          </li>
+          <li class="separator">EnvCommand</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Shell/Command/EnvCommand.php.html#line20">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Shell\Command\</small>EnvCommand</h1>
+        <h4>Automates Strata self-maintaining scripts.</h4>
+        <p>Intended use include:<br/>&lt;code&gt;bin/strata strata install&lt;/code&gt;<br/>    &lt;code&gt;bin/strata strata uninstall&lt;/code&gt;</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class EnvCommand
+                extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
+            {<br/><ul class="none"><li>// members</li><li>protected boolean <a href="#members">$_seemsFine</a> =
+                        true;
+                    </li><li>protected array <a href="#members">$_directoryStructure</a> =
+                        ;
+                    </li><li>protected string <a href="#members">$_srcUrl</a> =
+                        "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
+                    </li><li>protected array <a href="#members">$_starterFiles</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
+                        </li><li>protected string <a href="#members">$_tree_end</a>;
+                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/execute.html">execute</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createDirectoryStructure.html">createDirectoryStructure</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createStarterFiles.html">createStarterFiles</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/_getPhpunit.html">_getPhpunit</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/flagFailing.html">flagFailing</a>()
+                    </li><li>protected  <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/installDone.html">installDone</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
+                        </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/ok.html">ok</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/skip.html">skip</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/fail.html">fail</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/nl.html">nl</a>()
+                        </li><li>public null <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/startup.html">startup</a>()
+                        </li><li>public null <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/shutdown.html">shutdown</a>()
+                        </li><li>protected void <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/configure.html">configure</a>()
+                        </li><li>protected null|int <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/execute.html">execute</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">+</td>
+            <td>This needs to be a composer dependency.</td>
+          </tr>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="_directoryStructure"><strong>$_directoryStructure</strong>
+                —
+                array<br/><span class="indent">Strata's directory structure</span></li>
+            <li id="_seemsFine"><strong>$_seemsFine</strong>
+                —
+                boolean<br/><span class="indent">A flag that is maintain through a process to advise the user should something happen.</span></li>
+            <li id="_srcUrl"><strong>$_srcUrl</strong>
+                —
+                string<br/><span class="indent">The source URL for stater app files</span></li>
+            <li id="_starterFiles"><strong>$_starterFiles</strong>
+                —
+                array<br/><span class="indent">Strata's empty project files and their destination.</span></li>
+            <li id="_tree_end"><strong>$_tree_end</strong>
+                —
+                string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
+            <li id="_tree_line"><strong>$_tree_line</strong>
+                —
+                string<br/><span class="indent">A tree representation prefix.</span></li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="input"><strong>$input</strong>
+                —
+                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+            <li id="output"><strong>$output</strong>
+                —
+                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="_getPhpunit">
+              <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/_getPhpunit.html">_getPhpunit()</a>
+            </li>
+            <li id="configure"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure()</a>
+                — {@inheritdoc}</li>
+            <li id="createDirectoryStructure"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createDirectoryStructure.html">createDirectoryStructure()</a>
+                — Creates the directory structure. Does not overwrite existing directories.</li>
+            <li id="createStarterFiles"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createStarterFiles.html">createStarterFiles()</a>
+                — Adds the starter file to a new project. Does not overwrite existing files.</li>
+            <li id="execute"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/execute.html">execute()</a>
+                — {@inheritdoc}</li>
+            <li id="flagFailing"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/flagFailing.html">flagFailing()</a>
+                — Flag the current process is not behaving as we expected.</li>
+            <li id="installDone"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/installDone.html">installDone()</a>
+                — Presents a summary of the operation to the user.</li>
+            <li id="repair"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair()</a>
+                — Installs Strata files and directories</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="configure"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/configure.html">configure()</a>
+                — Configures the current command.</li>
+            <li id="execute"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/execute.html">execute()</a>
+                — Executes the current command.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="factory">
+              <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory()</a>
+            </li>
+            <li id="fail"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/fail.html">fail()</a>
+                — Creates a visual representation of a failed status. This is useful when performing an action that can be skipped or succeed.</li>
+            <li id="generateClassPath"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata controller. Mainly used to avoid hardcoding the '\\Shell\\Command\\' string everywhere.</li>
+            <li id="nl"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/nl.html">nl()</a>
+                — Return a new line.</li>
+            <li id="ok"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/ok.html">ok()</a>
+                — Creates a visual representation of an OK status. This is useful when performing an action that can fail or be skipped.</li>
+            <li id="shutdown"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/shutdown.html">shutdown()</a>
+                — The shutdown function should be called each time a command has completed execution.</li>
+            <li id="skip"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/skip.html">skip()</a>
+                — Creates a visual representation of a skipped status. This is useful when performing an action that can fail or succeed.</li>
+            <li id="startup"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/startup.html">startup()</a>
+                — The startup function should be called each time a command is being executed. It saves the Input and Output interfaces to allow the command to use it further down the process.</li>
+            <li id="tree"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree()</a>
+                — Creates a visual representation of a tree branch. This is useful when generating a list of files.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-07-27T13:50:51+00:00 (commit #<span title="5329df7bee494dd02fd0529a2111112151bcd770">5329df7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">rephrased the message</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-27T13:45:09+00:00 (commit #<span title="0dab40795d6c399654e7c5e7a85a612cc39a13d7">0dab407</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">changed the env command to suit the use of the new strata-env repo; using composer for phpunit and wp-cli</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-29T15:53:32+00:00 (commit #<span title="8544916dff28863dae5f25f6804fdf851f5cbb02">8544916</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added a new CPT class to projects</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T18:09:29+00:00 (commit #<span title="025df9e27b7989c30add9605c4a79cacc801ea77">025df9e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed fopen type</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T18:01:55+00:00 (commit #<span title="60bd0a7bab7c703268edcdb407b1a3aa80df6046">60bd0a7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added text to the readme that is automatically generated</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T17:53:49+00:00 (commit #<span title="7976b89518a6ba7e205646eedcda26bc51f864c6">7976b89</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">now removing unwanted bedrock files when creating a strata project</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T14:13:50+00:00 (commit #<span title="c5fc227b47f3b45110efac102e55ee106010f1ac">c5fc227</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">debugged the process</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T13:47:34+00:00 (commit #<span title="c26866492a6707a806238f4780135ff28cb40d80">c268664</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">starting work on DB migrations using wp-cli</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-13T17:10:23+00:00 (commit #<span title="869500ae908769bc68f765bbbd2de2a38bfdac2e">869500a</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added back the default strata configuration file</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-13T14:02:45+00:00 (commit #<span title="ab021c8d4220f8d59ecd5d1b0bcfd8e5e4c0bb77">ab021c8</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added bootstrap files in the intallation process</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-12T20:23:40+00:00 (commit #<span title="05e255d5dadf2ee87d2899e276f5487c64c1b7b0">05e255d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">timezone fix, removed vagrant form repo</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-11T17:27:22+00:00 (commit #<span title="12c91b73ab3629604cd41b269bea34260ca469f8">12c91b7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fix dependency includes in the context of an app</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-06T20:06:36+00:00 (commit #<span title="377fea8a0ed98f27ddbf7c8dcfd5c72da004d14d">377fea8</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">renamed app to Strata</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-01T17:15:18+00:00 (commit #<span title="f4966ba2991993ec38a37ebe529cd330802381e0">f4966ba</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">finish integrating phpunit testing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-29T19:58:32+00:00 (commit #<span title="6e6b6cb04b4a401064ce9af9731b047d41a63d60">6e6b6cb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved documentation</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

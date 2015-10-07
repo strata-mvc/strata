@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\I18n\i18n</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_I18n">Strata\I18n</a>
+          </li>
+          <li class="separator">i18n</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/I18n/I18n.php.html#line20">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\I18n\</small>i18n</h1>
+        <h4>Handles  localization</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class i18n
+            {<br/><ul class="none"><li>// constants</li><li>const DOMAIN = "strata_i18n";</li></ul><ul class="none"><li>// members</li><li>protected array <a href="#members">$locales</a> =
+                        ;
+                    </li><li>protected <a href="#members">$currentLocale</a> =
+                        null;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/initialize.html">initialize</a>()
+                    </li><li>public string|null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyCurrentLanguageByContext.html">applyCurrentLanguageByContext</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyLocale.html">applyLocale</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/resetLocaleCache.html">resetLocaleCache</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocaleSet.html">setLocaleSet</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setCurrentLocaleByContext.html">setCurrentLocaleByContext</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isLocalized.html">isLocalized</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasActiveLocales.html">hasActiveLocales</a>()
+                    </li><li>public array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocales.html">getLocales</a>()
+                    </li><li>public Locale|null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByCode.html">getLocaleByCode</a>()
+                    </li><li>public Locale|null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByUrl.html">getLocaleByUrl</a>()
+                    </li><li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocale.html">getCurrentLocale</a>()
+                    </li><li>public string|null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocaleCode.html">getCurrentLocaleCode</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasDefaultLocale.html">hasDefaultLocale</a>()
+                    </li><li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getDefaultLocale.html">getDefaultLocale</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasLocaleInSession.html">hasLocaleInSession</a>()
+                    </li><li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleInSession.html">getLocaleInSession</a>()
+                    </li><li>private int <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/startSession.html">startSession</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveCurrentLocaleToSession.html">saveCurrentLocaleToSession</a>()
+                    </li><li>public array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTranslations.html">getTranslations</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveTranslations.html">saveTranslations</a>()
+                    </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isCurrentlyActive.html">isCurrentlyActive</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocale.html">setLocale</a>()
+                    </li><li>protected void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/registerHooks.html">registerHooks</a>()
+                    </li><li>private boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks</a>()
+                    </li><li>protected array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/parseLocalesFromConfig.html">parseLocalesFromConfig</a>()
+                    </li><li>private array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleRegexUrls.html">getLocaleRegexUrls</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="DOMAIN">DOMAIN</td>
+              <td>"strata_i18n"</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="currentLocale">
+              <strong>$currentLocale</strong>
+              <br/>
+              <span class="indent">@var Locale The locale that is currently active.</span>
+            </li>
+            <li id="locales">
+              <strong>$locales</strong>
+              <br/>
+              <span class="indent">@var array The list of instanciated locales in the application</span>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="getLocaleRegexUrls"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleRegexUrls.html">getLocaleRegexUrls()</a>
+                — Returns the list of urls identifiers of all the active locales</li>
+            <li id="shouldAddWordpressHooks"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks()</a>
+                — Specifies whether the class should be registering the Wordpress hooks.</li>
+            <li id="startSession"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/startSession.html">startSession()</a>
+                — Starts a PHP session if there was none.</li>
+          </ul>
+          <h4>protected</h4>
+          <ul>
+            <li id="parseLocalesFromConfig"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/parseLocalesFromConfig.html">parseLocalesFromConfig()</a>
+                — Goes through the list of localization configurations values in Strata's configuration file.</li>
+            <li id="registerHooks"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/registerHooks.html">registerHooks()</a>
+                — Registers Wordpress hooks required by the class.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/__construct.html">__construct()</a>
+            </li>
+            <li id="applyCurrentLanguageByContext"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyCurrentLanguageByContext.html">applyCurrentLanguageByContext()</a>
+                — Sets the locale based on the current process' context.</li>
+            <li id="applyLocale"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyLocale.html">applyLocale()</a>
+                — Assigns the theme textdomain to Wordpress using 'load_theme_textdomain'.</li>
+            <li id="getCurrentLocale"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocale.html">getCurrentLocale()</a>
+                — Returns the locale that is currently used.</li>
+            <li id="getCurrentLocaleCode"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocaleCode.html">getCurrentLocaleCode()</a>
+                — Returns the code of the locale that is currently used.</li>
+            <li id="getDefaultLocale"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getDefaultLocale.html">getDefaultLocale()</a>
+                — Returns the default locale based off the localization documentation specified in the Strata configuration file.</li>
+            <li id="getLocaleByCode"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByCode.html">getLocaleByCode()</a>
+                — Returns a locale object by code</li>
+            <li id="getLocaleByUrl"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByUrl.html">getLocaleByUrl()</a>
+                — Returns a locale object by locale url key</li>
+            <li id="getLocaleInSession"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleInSession.html">getLocaleInSession()</a>
+                — Returns the locale that is saved in the session array.</li>
+            <li id="getLocales"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocales.html">getLocales()</a>
+                — Returns the list of Locale objects</li>
+            <li id="getTranslations"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTranslations.html">getTranslations()</a>
+                — Loads the translations from the locale's PO file and returns the list.</li>
+            <li id="hasActiveLocales"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasActiveLocales.html">hasActiveLocales()</a>
+                — Specifies if the list of active locales has elements</li>
+            <li id="hasDefaultLocale"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasDefaultLocale.html">hasDefaultLocale()</a>
+                — Specifies whether the application has a default locale defined.</li>
+            <li id="hasLocaleInSession"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasLocaleInSession.html">hasLocaleInSession()</a>
+                — Checks whether a locale has been store in the user's session.</li>
+            <li id="initialize"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/initialize.html">initialize()</a>
+                — The class initializer is meant to be called only once during the Strata kickoff.</li>
+            <li id="isCurrentlyActive"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isCurrentlyActive.html">isCurrentlyActive()</a>
+                — Compares two locales to see if $locale is the one currently active.</li>
+            <li id="isLocalized"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isLocalized.html">isLocalized()</a>
+                — Specifies whether localization settings are present in Strata's configuration array.</li>
+            <li id="resetLocaleCache"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/resetLocaleCache.html">resetLocaleCache()</a>
+                — Clears the current locale cache and rebuilds it based on the loaded configuration.</li>
+            <li id="saveCurrentLocaleToSession"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveCurrentLocaleToSession.html">saveCurrentLocaleToSession()</a>
+                — The goal of dumping the code in the session vars is only to keep a fallback value when someone (for instance) renders a 404 when browsing in a locale. Having the value in session prevents the 404 to be rendered with the default locale.</li>
+            <li id="saveTranslations">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveTranslations.html">saveTranslations()</a>
+            </li>
+            <li id="setCurrentLocaleByContext"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setCurrentLocaleByContext.html">setCurrentLocaleByContext()</a>
+                — Sets the current locale based on either a GET parameter or the locale URL prefix.</li>
+            <li id="setLocale"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocale.html">setLocale()</a>
+                — Sets the active locale</li>
+            <li id="setLocaleSet">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocaleSet.html">setLocaleSet()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-17T21:20:49+00:00 (commit #<span title="9b139d97ad55d04a5437ca2588217e7925227d92">9b139d9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved language selection by context</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-16T19:35:24+00:00 (commit #<span title="a3acfde38a7b610a18065b815d72516fd3d0a23b">a3acfde</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved code parsing to find wordpress gettext functions</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-08T15:34:50+00:00 (commit #<span title="62eba759bcca5bddec2a46e961128a06494368aa">62eba75</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improving travis build validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-08T14:36:27+00:00 (commit #<span title="f5b9b38d015c2a5e0f380e906c6d3eee0e77ebce">f5b9b38</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed more flexibility to setting locales</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T16:47:04+00:00 (commit #<span title="595d21eebcfdc78621fd6477ecad4d8f35e37f89">595d21e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed dynamic parameter lengths in debug; modified the routing process to allow for localization; general fixes based on polyglot dev</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-27T21:27:05+00:00 (commit #<span title="f5d894117abd1030d7fe59ae2f6d111e657af2fe">f5d8941</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">using the get function allows for inheriting classes to modify the return</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-27T19:59:08+00:00 (commit #<span title="524417810f65f75f8ab415bc8728c61ffb8713b8">5244178</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">locale fixes based on real lifke use cases</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-13T19:58:47+00:00 (commit #<span title="1956e70e9441f7a8486bdee9c725f5967f1dd676">1956e70</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">made setting locale a public thing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-11T15:51:41+00:00 (commit #<span title="49278984d5065ef727650eae6f99a0131c489707">4927898</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">saving the locale in session for last resort fallback</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-05T21:08:00+00:00 (commit #<span title="7b3d783f0b1021d948ad4938c18f93d0b16da925">7b3d783</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed routing and documented</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-03T21:06:35+00:00 (commit #<span title="3e62f15b190f59e0db3cc4468622560a85865a3e">3e62f15</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">prevent redirect on successful match</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-03T17:55:14+00:00 (commit #<span title="98c9a4b40d5473f0dc4a7bffea915a821cad74c4">98c9a4b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed url based rewrites</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-03T15:07:47+00:00 (commit #<span title="d39eced27a37aafa4974cbed6ef7f88a36cca834">d39eced</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">completed internationalization (static)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-30T18:00:07+00:00 (commit #<span title="be5b25e044a0cb90c5554fc77d946c5f7a33524d">be5b25e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added a lookup to see if wordpress is available</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-30T17:31:31+00:00 (commit #<span title="b799c354dec3836ecb38b4f67cdfe88691a9313c">b799c35</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">taking a break of setting up the dynamic translation urls</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

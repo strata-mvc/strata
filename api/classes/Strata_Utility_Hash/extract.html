@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">
+            <a title="Strata\Utility\Hash" href="../../classes/Strata_Utility_Hash.html">Hash</a>
+          </li>
+          <li class="separator">extract</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/Utility/Hash.php.html#line102">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>Strata\Utility\Hash::</small>extract</h1>
+        <h4>Gets the values from an array matching the $path expression.</h4>
+        <p>The path expression is a dot separated expression, that can contain a set
+of patterns and expressions:
+
+- `{n}` Matches any numeric key, or integer.
+- `{s}` Matches any string key.
+- `{*}` Matches any value.
+- `Foo` Matches any key with the exact same value.
+
+There are a number of attribute operators:
+
+ - `=`, `!=` Equality.
+ - `&gt;`, `&lt;`, `&gt;=`, `&lt;=` Value comparison.
+ - `=/.../` Regular expression pattern match.
+
+Given a set of User array data, from a `$User-&gt;find('all')` call:
+
+- `1.User.name` Get the name of the user at index 1.
+- `{n}.User.name` Get the name of every user in the set of users.
+- `{n}.User[id]` Get the name of every user with an id key.
+- `{n}.User[id&gt;=2]` Get the name of every user with an id key greater than or equal to 2.
+- `{n}.User[username=/^paul/]` Get User elements with username matching `^paul`.</p>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function extract(array
+        $data,
+            string
+        $path )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$data</code>
+                —
+                array</dt>
+          <dd>The data to extract from.</dd>
+          <dt><code>$path</code>
+                —
+                string</dt>
+          <dd>The path to extract.</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>array</dt>
+          <dd>An array of the extracted values. Returns an empty array<br/>if there are no matches.</dd>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

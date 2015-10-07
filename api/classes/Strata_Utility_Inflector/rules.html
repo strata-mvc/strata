@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">
+            <a title="Strata\Utility\Inflector" href="../../classes/Strata_Utility_Inflector.html">Inflector</a>
+          </li>
+          <li class="separator">rules</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/Utility/Inflector.php.html#line328">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>Strata\Utility\Inflector::</small>rules</h1>
+        <h4>Adds custom inflection $rules, of either 'plural', 'singular' or 'transliteration' $type.</h4>
+        <p>### Usage:
+
+```
+Inflector::rules('plural', array('/^(inflect)or$/i' =&gt; '\1ables'));
+Inflector::rules('plural', array(
+    'rules' =&gt; array('/^(inflect)ors$/i' =&gt; '\1ables'),
+    'uninflected' =&gt; array('dontinflectme'),
+    'irregular' =&gt; array('red' =&gt; 'redlings')
+));
+Inflector::rules('transliteration', array('/å/' =&gt; 'aa'));
+```</p>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function rules(string
+        $type,
+            array
+        $rules,
+            [boolean
+        $reset = false] )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$type</code>
+                —
+                string</dt>
+          <dd>The type of inflection, either 'plural', 'singular' or 'transliteration'</dd>
+          <dt><code>$rules</code>
+                —
+                array</dt>
+          <dd>Array of rules to be added.</dd>
+          <dt><code>$reset</code>
+                —
+                boolean</dt>
+          <dd>If true, will unset default inflections for all<br/>new rules that are being defined in $rules.</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>void</dt>
+          <dd><br/>
+        </dd>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

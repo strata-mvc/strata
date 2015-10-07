@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Utility\Hash</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">Hash</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Utility/Hash.php.html#line30">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Utility\</small>Hash</h1>
+        <h4>Library of array functions for manipulating and extracting data from arrays or 'sets' of data.</h4>
+        <p>`Hash` provides an improved interface, more consistent and<br/>predictable set of features over `Set`. While it lacks the spotty<br/>support for pseudo Xpath, its more fully featured dot notation provides<br/>similar features in a more consistent implementation.</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Hash
+            {<br/><ul class="none"><li>// methods</li><li>public static mixed <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/get.html">get</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/extract.html">extract</a>()
+                    </li><li>protected static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_splitConditions.html">_splitConditions</a>()
+                    </li><li>protected static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_matchToken.html">_matchToken</a>()
+                    </li><li>protected static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_matches.html">_matches</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/insert.html">insert</a>()
+                    </li><li>protected static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_simpleOp.html">_simpleOp</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/remove.html">remove</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/combine.html">combine</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/format.html">format</a>()
+                    </li><li>public static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/contains.html">contains</a>()
+                    </li><li>public static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/check.html">check</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/filter.html">filter</a>()
+                    </li><li>protected static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_filter.html">_filter</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/flatten.html">flatten</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/expand.html">expand</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/merge.html">merge</a>()
+                    </li><li>public static bool <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/numeric.html">numeric</a>()
+                    </li><li>public static int <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/dimensions.html">dimensions</a>()
+                    </li><li>public static int <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/maxDimensions.html">maxDimensions</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/map.html">map</a>()
+                    </li><li>public static mixed <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/reduce.html">reduce</a>()
+                    </li><li>public static mixed <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/apply.html">apply</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/sort.html">sort</a>()
+                    </li><li>protected static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_squash.html">_squash</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/diff.html">diff</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/mergeDiff.html">mergeDiff</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/normalize.html">normalize</a>()
+                    </li><li>public static array <a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/nest.html">nest</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="_filter"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_filter.html">_filter()</a>
+                — Callback function for filtering.</li>
+            <li id="_matchToken"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_matchToken.html">_matchToken()</a>
+                — Check a key against a token.</li>
+            <li id="_matches"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_matches.html">_matches()</a>
+                — Checks whether or not $data matches the attribute patterns</li>
+            <li id="_simpleOp"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_simpleOp.html">_simpleOp()</a>
+                — Perform a simple insert/remove operation.</li>
+            <li id="_splitConditions"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_splitConditions.html">_splitConditions()</a>
+                — Split token conditions</li>
+            <li id="_squash"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/_squash.html">_squash()</a>
+                — Helper method for sort() Squashes an array to a single hash so it can be sorted.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="apply"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/apply.html">apply()</a>
+                — Apply a callback to a set of extracted values using `$function`.</li>
+            <li id="check"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/check.html">check()</a>
+                — Test whether or not a given path exists in $data.</li>
+            <li id="combine"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/combine.html">combine()</a>
+                — Creates an associative array using `$keyPath` as the path to build its keys, and optionally `$valuePath` as path to get the values. If `$valuePath` is not specified, all values will be initialized to null (useful for Hash::merge). You can optionally group the values by what is obtained when following the path specified in `$groupPath`.</li>
+            <li id="contains"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/contains.html">contains()</a>
+                — Determines if one array contains the exact keys and values of another.</li>
+            <li id="diff"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/diff.html">diff()</a>
+                — Computes the difference between two complex arrays.</li>
+            <li id="dimensions"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/dimensions.html">dimensions()</a>
+                — Counts the dimensions of an array.</li>
+            <li id="expand"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/expand.html">expand()</a>
+                — Expands a flat array to a nested array.</li>
+            <li id="extract"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/extract.html">extract()</a>
+                — Gets the values from an array matching the $path expression.</li>
+            <li id="filter"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/filter.html">filter()</a>
+                — Recursively filters a data set.</li>
+            <li id="flatten"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/flatten.html">flatten()</a>
+                — Collapses a multi-dimensional array into a single dimension, using a delimited array path for each array element's key, i.e. array(array('Foo' =&gt; array('Bar' =&gt; 'Far'))) becomes array('0.Foo.Bar' =&gt; 'Far').)</li>
+            <li id="format"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/format.html">format()</a>
+                — Returns a formatted series of values extracted from `$data`, using `$format` as the format and `$paths` as the values to extract.</li>
+            <li id="get"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/get.html">get()</a>
+                — Get a single value specified by $path out of $data.</li>
+            <li id="insert"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/insert.html">insert()</a>
+                — Insert $values into an array with the given $path. You can use `{n}` and `{s}` elements to insert $data multiple times.</li>
+            <li id="map"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/map.html">map()</a>
+                — Map a callback across all elements in a set.</li>
+            <li id="maxDimensions"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/maxDimensions.html">maxDimensions()</a>
+                — Counts the dimensions of *all* array elements. Useful for finding the maximum number of dimensions in a mixed array.</li>
+            <li id="merge"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/merge.html">merge()</a>
+                — This function can be thought of as a hybrid between PHP's `array_merge` and `array_merge_recursive`.</li>
+            <li id="mergeDiff"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/mergeDiff.html">mergeDiff()</a>
+                — Merges the difference between $data and $compare onto $data.</li>
+            <li id="nest"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/nest.html">nest()</a>
+                — Takes in a flat array and returns a nested array</li>
+            <li id="normalize"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/normalize.html">normalize()</a>
+                — Normalizes an array, and converts it to a standard format.</li>
+            <li id="numeric"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/numeric.html">numeric()</a>
+                — Checks to see if all the values in the array are numeric</li>
+            <li id="reduce"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/reduce.html">reduce()</a>
+                — Reduce a set of extracted values using `$function`.</li>
+            <li id="remove"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/remove.html">remove()</a>
+                — Remove data matching $path from the $data array.</li>
+            <li id="sort"><a title="Strata\Utility\Hash" href="../classes/Strata_Utility_Hash/sort.html">sort()</a>
+                — Sorts an array by any value, determined by a Set-compatible path</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-07-09T15:01:49+00:00 (commit #<span title="433e238aabcbb80d845730f73f9f8182cf4cd251">433e238</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple enhencements of the query object; updated Cakes utilities</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2014-12-17T15:44:50+00:00 (commit #<span title="68c757462505a66acecb7122daf9f8a886426098">68c7574</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (francois.faubert@iprospect.com) /
+                        Commiter: François Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">testing composer autoload. This should be one of many commits</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2014-12-17T14:51:23+00:00 (commit #<span title="85ad363497ae965903bd80cb42d0a89d4886d1be">85ad363</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (francois.faubert@iprospect.com) /
+                        Commiter: François Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added the untested package in preparation of building the composer package.</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

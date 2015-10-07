@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Model\CustomPostType\Query</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Model_CustomPostType">Strata\Model\CustomPostType</a>
+          </li>
+          <li class="separator">Query</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Model/CustomPostType/Query.php.html#line7">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Model\CustomPostType\</small>Query</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Query
+            {<br/><ul class="none"><li>// members</li><li>protected array <a href="#members">$filters</a> =
+                        ;
+                    </li><li>private integer <a href="#members">$executionStart</a> =
+                        0;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/fetch.html">fetch</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/first.html">first</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/query.html">query</a>()
+                    </li><li>private void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/executeFilteredQuery.html">executeFilteredQuery</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/listing.html">listing</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/date.html">date</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orderby.html">orderby</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/direction.html">direction</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/type.html">type</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/status.html">status</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/where.html">where</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orWhere.html">orWhere</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/paginate.html">paginate</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/limit.html">limit</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getFilters.html">getFilters</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/applyFilters.html">applyFilters</a>()
+                    </li><li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/carryOverIncompatibleQueries.html">carryOverIncompatibleQueries</a>()
+                    </li><li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/relationsToQueries.html">relationsToQueries</a>()
+                    </li><li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/andRelationToPostIn.html">andRelationToPostIn</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/resetQueryRelation.html">resetQueryRelation</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getRelationQuery.html">getRelationQuery</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/hasRelationQuery.html">hasRelationQuery</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/setQueryRelation.html">setQueryRelation</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/prepareRelationFilter.html">prepareRelationFilter</a>()
+                    </li><li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/metaWhere.html">metaWhere</a>()
+                    </li><li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/taxWhere.html">taxWhere</a>()
+                    </li><li>private void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/addRelationQuery.html">addRelationQuery</a>()
+                    </li><li>private void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryStart.html">logQueryStart</a>()
+                    </li><li>private void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryCompletion.html">logQueryCompletion</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="executionStart">
+              <strong>$executionStart</strong>
+            </li>
+          </ul>
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="filters">
+              <strong>$filters</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="addRelationQuery">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/addRelationQuery.html">addRelationQuery()</a>
+            </li>
+            <li id="executeFilteredQuery">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/executeFilteredQuery.html">executeFilteredQuery()</a>
+            </li>
+            <li id="logQueryCompletion">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryCompletion.html">logQueryCompletion()</a>
+            </li>
+            <li id="logQueryStart">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryStart.html">logQueryStart()</a>
+            </li>
+          </ul>
+          <h4>protected</h4>
+          <ul>
+            <li id="andRelationToPostIn">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/andRelationToPostIn.html">andRelationToPostIn()</a>
+            </li>
+            <li id="carryOverIncompatibleQueries">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/carryOverIncompatibleQueries.html">carryOverIncompatibleQueries()</a>
+            </li>
+            <li id="metaWhere">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/metaWhere.html">metaWhere()</a>
+            </li>
+            <li id="relationsToQueries">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/relationsToQueries.html">relationsToQueries()</a>
+            </li>
+            <li id="taxWhere">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/taxWhere.html">taxWhere()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/__construct.html">__construct()</a>
+            </li>
+            <li id="applyFilters">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/applyFilters.html">applyFilters()</a>
+            </li>
+            <li id="date">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/date.html">date()</a>
+            </li>
+            <li id="direction">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/direction.html">direction()</a>
+            </li>
+            <li id="fetch">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/fetch.html">fetch()</a>
+            </li>
+            <li id="first">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/first.html">first()</a>
+            </li>
+            <li id="getFilters">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getFilters.html">getFilters()</a>
+            </li>
+            <li id="getRelationQuery">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getRelationQuery.html">getRelationQuery()</a>
+            </li>
+            <li id="hasRelationQuery">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/hasRelationQuery.html">hasRelationQuery()</a>
+            </li>
+            <li id="limit">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/limit.html">limit()</a>
+            </li>
+            <li id="listing">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/listing.html">listing()</a>
+            </li>
+            <li id="orWhere">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orWhere.html">orWhere()</a>
+            </li>
+            <li id="orderby">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orderby.html">orderby()</a>
+            </li>
+            <li id="paginate">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/paginate.html">paginate()</a>
+            </li>
+            <li id="prepareRelationFilter">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/prepareRelationFilter.html">prepareRelationFilter()</a>
+            </li>
+            <li id="query">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/query.html">query()</a>
+            </li>
+            <li id="resetQueryRelation">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/resetQueryRelation.html">resetQueryRelation()</a>
+            </li>
+            <li id="setQueryRelation">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/setQueryRelation.html">setQueryRelation()</a>
+            </li>
+            <li id="status">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/status.html">status()</a>
+            </li>
+            <li id="type">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/type.html">type()</a>
+            </li>
+            <li id="where">
+              <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/where.html">where()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-28T19:24:07+00:00 (commit #<span title="e989fcd44b4bdc4fa44891ee5e170fdbe889b73d">e989fcd</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added query pagination</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-30T13:46:16+00:00 (commit #<span title="bc46239eca3907d1b116a49bb58957e8c5ed605c">bc46239</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added localizations</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-21T17:05:59+00:00 (commit #<span title="928abad050aef4e478f12838229917a5cc0a4eb0">928abad</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the way queries are premade</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-21T16:07:41+00:00 (commit #<span title="848dfa09a798abdfbc251423e38dced7e5be4d87">848dfa0</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Added the possibility of doing where() and orWhere() in the same query.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-14T13:23:49+00:00 (commit #<span title="5a058c6670fc9d322f7baff4f5c4bd18b9ba6b13">5a058c6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed queries on taxonomies improved routes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-09T15:01:49+00:00 (commit #<span title="433e238aabcbb80d845730f73f9f8182cf4cd251">433e238</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple enhencements of the query object; updated Cakes utilities</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T15:13:34+00:00 (commit #<span title="bd6b987cce7fd6b4148916db56d334a4242b6afc">bd6b987</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added first() selector</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-30T16:55:22+00:00 (commit #<span title="16265fe201babbdb4116a80e91a70c06d466185a">16265fe</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logging; added timer on queries</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-30T15:41:14+00:00 (commit #<span title="6893c14dfc4fc1b4a5d4fd923998720e1b273f76">6893c14</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added logs; fixed strata config access; improved access to cpt repo</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-29T20:02:56+00:00 (commit #<span title="694b9a331eda21a33c3ecebd87ea775cf452897c">694b9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added logging of our queries</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-29T14:10:34+00:00 (commit #<span title="faefa2aff074361f56a579c190cf14c5a6853c04">faefa2a</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">removed static queries to be more modular</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-21T19:31:45+00:00 (commit #<span title="f3b1614c6467929fe81809de82ebff264a9f4ec0">f3b1614</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added limit to Query functions, allow view variables to be declared in Wordpresss templating properly</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-20T17:11:37+00:00 (commit #<span title="52bc0e4b66a15a78f345f4da33c03d29f6118f48">52bc0e4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">various bug fixes found while testing in first project</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-10T18:48:37+00:00 (commit #<span title="05a2e0b9c919857ce728395b6a9c9ae8f3b41dbd">05a2e0b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple bug fixes on the recent reorganization of the code</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

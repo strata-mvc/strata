@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">
+            <a title="Strata\Utility\Hash" href="../../classes/Strata_Utility_Hash.html">Hash</a>
+          </li>
+          <li class="separator">nest</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="#throws">Throws</a>
+          </li>
+          <li>
+            <a href="../../source/Utility/Hash.php.html#line1044">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>Strata\Utility\Hash::</small>nest</h1>
+        <h4>Takes in a flat array and returns a nested array</h4>
+        <p>### Options:
+
+- `children` The key name to use in the resultset for children.
+- `idPath` The path to a key that identifies each entry. Should be
+  compatible with Hash::extract(). Defaults to `{n}.$alias.id`
+- `parentPath` The path to a key that identifies the parent of each entry.
+  Should be compatible with Hash::extract(). Defaults to `{n}.$alias.parent_id`
+- `root` The id of the desired top-most result.</p>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function nest(array
+        $data,
+            [array
+        $options = ] )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$data</code>
+                —
+                array</dt>
+          <dd>The data to nest.</dd>
+          <dt><code>$options</code>
+                —
+                array</dt>
+          <dd>Options are:</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>array</dt>
+          <dd>of results, nested</dd>
+        </dl>
+        <h2 id="throws">Errors/Exceptions</h2>
+        <dl class="styled">
+          <dt>
+            <code>
+              <a title="Strata\Utility\InvalidArgumentException" href="../../classes/Strata_Utility_InvalidArgumentException.html">InvalidArgumentException</a>
+            </code>
+          </dt>
+          <dd>When providing invalid data.</dd>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

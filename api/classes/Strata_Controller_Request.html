@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Controller\Request</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Controller">Strata\Controller</a>
+          </li>
+          <li class="separator">Request</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Controller/Request.php.html#line10">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Controller\</small>Request</h1>
+        <h4>Handles access to request data, whether from post, get or cookies. It encodes data accordingly and does simple data integrity validation.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Request
+            {<br/><ul class="none"><li>// members</li><li>private array <a href="#members">$_GET</a> =
+                        ;
+                    </li><li>private array <a href="#members">$_COOKIE</a> =
+                        ;
+                    </li><li>private array <a href="#members">$_POST</a> =
+                        ;
+                    </li><li>private array <a href="#members">$_FILES</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/__construct.html">__construct</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPost.html">isPost</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isGet.html">isGet</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPut.html">isPut</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPatch.html">isPatch</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isDelete.html">isDelete</a>()
+                    </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/get.html">get</a>()
+                    </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/post.html">post</a>()
+                    </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/file.html">file</a>()
+                    </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/data.html">data</a>()
+                    </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/cookie.html">cookie</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasPost.html">hasPost</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasCookie.html">hasCookie</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile</a>()
+                    </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates</a>()
+                    </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/honeypotValidates.html">honeypotValidates</a>()
+                    </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/nonceValidates.html">nonceValidates</a>()
+                    </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/generateNonceKey.html">generateNonceKey</a>()
+                    </li><li>private null <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/_buildRequestData.html">_buildRequestData</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="_COOKIE"><strong>$_COOKIE</strong>
+                —
+                array<br/><span class="indent">A cache of the parsed Cookie values in the current request.</span></li>
+            <li id="_FILES"><strong>$_FILES</strong>
+                —
+                array<br/><span class="indent">A cache of the parsed Files values in the current request.</span></li>
+            <li id="_GET"><strong>$_GET</strong>
+                —
+                array<br/><span class="indent">A cache of the parsed Get values in the current request.</span></li>
+            <li id="_POST"><strong>$_POST</strong>
+                —
+                array<br/><span class="indent">A cache of the parsed Post values in the current request.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="_buildRequestData"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/_buildRequestData.html">_buildRequestData()</a>
+                — Goes through the posted data and strips additional characters added along the way.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/__construct.html">__construct()</a>
+            </li>
+            <li id="cookie"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/cookie.html">cookie()</a>
+                — Returns the cookie parameter matching $key.</li>
+            <li id="data"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/data.html">data()</a>
+                — Returns the posted form parameters</li>
+            <li id="file"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/file.html">file()</a>
+                — Returns the file parameter matching $key.</li>
+            <li id="generateNonceKey">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/generateNonceKey.html">generateNonceKey()</a>
+            </li>
+            <li id="get"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/get.html">get()</a>
+                — Returns the get parameter matching $key.</li>
+            <li id="hasCookie"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasCookie.html">hasCookie()</a>
+                — Explains whether the cookie parameter matching $key has a value.</li>
+            <li id="hasFile"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile()</a>
+                — Explains whether the file parameter matching $key has a value.</li>
+            <li id="hasGet"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet()</a>
+                — Explains whether the get parameter matching $key has a value.</li>
+            <li id="hasPost"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasPost.html">hasPost()</a>
+                — Explains whether the post parameter matching $key has a value.</li>
+            <li id="honeypotValidates">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/honeypotValidates.html">honeypotValidates()</a>
+            </li>
+            <li id="isDelete"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isDelete.html">isDelete()</a>
+                — Checks if the current value is of type DELETE.</li>
+            <li id="isGet"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isGet.html">isGet()</a>
+                — Checks if the current value is of type GET.</li>
+            <li id="isPatch"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPatch.html">isPatch()</a>
+                — Checks if the current value is of type PATCH.</li>
+            <li id="isPost"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPost.html">isPost()</a>
+                — Checks if the current value is of type POST.</li>
+            <li id="isPut"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPut.html">isPut()</a>
+                — Checks if the current value is of type PUT.</li>
+            <li id="nonceValidates">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/nonceValidates.html">nonceValidates()</a>
+            </li>
+            <li id="post"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/post.html">post()</a>
+                — Returns the post parameter matching $key.</li>
+            <li id="requestValidates">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-25T18:33:13+00:00 (commit #<span title="26cada1c30c8ea8df76b601e9a56413c2065609c">26cada1</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allow empty nonce</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-21T19:42:04+00:00 (commit #<span title="d9556323dfc4f4795d9120f42097711a36407a36">d955632</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added honeypot validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-21T17:55:18+00:00 (commit #<span title="019e02439f4493c4a5ae3a8c37fa9a2f58873835">019e024</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Automated the management of form nonces in strata</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T16:47:04+00:00 (commit #<span title="595d21eebcfdc78621fd6477ecad4d8f35e37f89">595d21e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed dynamic parameter lengths in debug; modified the routing process to allow for localization; general fixes based on polyglot dev</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-07T20:55:48+00:00 (commit #<span title="4648579c60895ef5e26ca590739c6433c018bbe6">4648579</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">reworked the forms and how they are validated. It should be simpler</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-05T18:31:05+00:00 (commit #<span title="15a347b484bf2adb59ba28096db9f7821323c851">15a347b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">cleaned up code a little</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-06T15:12:45+00:00 (commit #<span title="baecacb085c24a2556e2930a1dbd23a963210fcf">baecacb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved the form object, multiple refactoring fixed and improvements as we near v1</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T21:08:45+00:00 (commit #<span title="658614cbb83b0b40f4c66937d987237975183901">658614c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added more documentation, added more generators</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-03-12T19:59:08+00:00 (commit #<span title="a18d160976415ec02a906d95f5a7df9345451157">a18d160</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">moved the template load to its own class</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-03-11T15:40:21+00:00 (commit #<span title="51ab7acbfdc409d938c89c6ad7e8e06ed4539fa8">51ab7ac</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">singularized everyhting, moved classes where they made more sense, packaged static functions, stopped using the global post , get and cookie scope, bug fixes with the server launch process</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

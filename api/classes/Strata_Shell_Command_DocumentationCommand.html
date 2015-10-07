@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Shell\Command\DocumentationCommand</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Shell_Command">Strata\Shell\Command</a>
+          </li>
+          <li class="separator">DocumentationCommand</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Shell/Command/DocumentationCommand.php.html#line19">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Shell\Command\</small>DocumentationCommand</h1>
+        <h4>Automates Strata's Documentation.</h4>
+        <p>Intended use:<br/>    &lt;code&gt;bin/strata document&lt;/code&gt;</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class DocumentationCommand
+                extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
+                        </li><li>protected string <a href="#members">$_tree_end</a>;
+                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/configure.html">configure</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/execute.html">execute</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getDestination.html">_getDestination</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getApiDestination.html">_getApiDestination</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getWpdocDestination.html">_getWpdocDestination</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getWpApiDestination.html">_getWpApiDestination</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getPhpDocumentorBin.html">_getPhpDocumentorBin</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_summary.html">_summary</a>()
+                    </li><li>protected [type] <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_deletePrevious.html">_deletePrevious</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateAPI.html">_generateAPI</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateThemesAPI.html">_generateThemesAPI</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateThemesDocumentation.html">_generateThemesDocumentation</a>()
+                    </li><li>protected bool <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_writeThemesDocumentation.html">_writeThemesDocumentation</a>()
+                    </li><li>protected array <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_scanThemeDirectories.html">_scanThemeDirectories</a>()
+                    </li><li>protected [type] <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getFileData.html">_getFileData</a>()
+                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_rrmdir.html">_rrmdir</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
+                        </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/ok.html">ok</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/skip.html">skip</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/fail.html">fail</a>()
+                        </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/nl.html">nl</a>()
+                        </li><li>public null <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/startup.html">startup</a>()
+                        </li><li>public null <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/shutdown.html">shutdown</a>()
+                        </li><li>protected void <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/configure.html">configure</a>()
+                        </li><li>protected null|int <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/execute.html">execute</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">186+</td>
+            <td>This will do for now, but the template shouldn't be hardcoded.</td>
+          </tr>
+          <tr>
+            <td class="nummeric">302+</td>
+            <td>Allow a way for Strata to load Wordpress on demand.</td>
+          </tr>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="_tree_end"><strong>$_tree_end</strong>
+                —
+                string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
+            <li id="_tree_line"><strong>$_tree_line</strong>
+                —
+                string<br/><span class="indent">A tree representation prefix.</span></li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="input"><strong>$input</strong>
+                —
+                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+            <li id="output"><strong>$output</strong>
+                —
+                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="_deletePrevious"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_deletePrevious.html">_deletePrevious()</a>
+                — Deletes the previous generated output in the destination folders.</li>
+            <li id="_generateAPI"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateAPI.html">_generateAPI()</a>
+                — Generates the API documentation contents</li>
+            <li id="_generateThemesAPI"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateThemesAPI.html">_generateThemesAPI()</a>
+                — Generates the API documentation contents</li>
+            <li id="_generateThemesDocumentation"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_generateThemesDocumentation.html">_generateThemesDocumentation()</a>
+                — Generates the Wordpress themes documentation contents</li>
+            <li id="_getApiDestination"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getApiDestination.html">_getApiDestination()</a>
+                — Gets the api documentation's destination</li>
+            <li id="_getDestination"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getDestination.html">_getDestination()</a>
+                — Gets the documentation's destination, either from an argument passed as option or from the default path.</li>
+            <li id="_getFileData"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getFileData.html">_getFileData()</a>
+                — This is a lightly modified copy of Wordpress get_file_data() found in wp-includes/functions.php.</li>
+            <li id="_getPhpDocumentorBin"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getPhpDocumentorBin.html">_getPhpDocumentorBin()</a>
+                — Return the path to the phpDocumentor binary</li>
+            <li id="_getWpApiDestination"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getWpApiDestination.html">_getWpApiDestination()</a>
+                — Gets the Wordpress themes API documentation's destination</li>
+            <li id="_getWpdocDestination"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_getWpdocDestination.html">_getWpdocDestination()</a>
+                — Gets the Wordpress themes documentation's destination</li>
+            <li id="_rrmdir"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_rrmdir.html">_rrmdir()</a>
+                — Recurses through a directory and deletes sub-directories.</li>
+            <li id="_scanThemeDirectories"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_scanThemeDirectories.html">_scanThemeDirectories()</a>
+                — Scans the theme directories of the current Wordpress installation and looks for things useful for a programmer.</li>
+            <li id="_summary"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_summary.html">_summary()</a>
+                — Outputs a summary of the operation.</li>
+            <li id="_writeThemesDocumentation"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/_writeThemesDocumentation.html">_writeThemesDocumentation()</a>
+                — Render the theme documentation file based on known $info fields.</li>
+            <li id="configure"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/configure.html">configure()</a>
+                — {@inheritdoc}</li>
+            <li id="execute"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/execute.html">execute()</a>
+                — {@inheritdoc}</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="configure"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/configure.html">configure()</a>
+                — Configures the current command.</li>
+            <li id="execute"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/execute.html">execute()</a>
+                — Executes the current command.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="factory">
+              <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory()</a>
+            </li>
+            <li id="fail"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/fail.html">fail()</a>
+                — Creates a visual representation of a failed status. This is useful when performing an action that can be skipped or succeed.</li>
+            <li id="generateClassPath"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata controller. Mainly used to avoid hardcoding the '\\Shell\\Command\\' string everywhere.</li>
+            <li id="nl"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/nl.html">nl()</a>
+                — Return a new line.</li>
+            <li id="ok"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/ok.html">ok()</a>
+                — Creates a visual representation of an OK status. This is useful when performing an action that can fail or be skipped.</li>
+            <li id="shutdown"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/shutdown.html">shutdown()</a>
+                — The shutdown function should be called each time a command has completed execution.</li>
+            <li id="skip"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/skip.html">skip()</a>
+                — Creates a visual representation of a skipped status. This is useful when performing an action that can fail or succeed.</li>
+            <li id="startup"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/startup.html">startup()</a>
+                — The startup function should be called each time a command is being executed. It saves the Input and Output interfaces to allow the command to use it further down the process.</li>
+            <li id="tree"><a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree()</a>
+                — Creates a visual representation of a tree branch. This is useful when generating a list of files.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-06-25T13:26:32+00:00 (commit #<span title="2b2e496538a1013dbcf16fffd86df7cbc7e366f0">2b2e496</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">APIGen broke their composer include and therefore are demoted</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-20T17:11:37+00:00 (commit #<span title="52bc0e4b66a15a78f345f4da33c03d29f6118f48">52bc0e4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">various bug fixes found while testing in first project</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-01T17:15:18+00:00 (commit #<span title="f4966ba2991993ec38a37ebe529cd330802381e0">f4966ba</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">finish integrating phpunit testing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-30T19:45:52+00:00 (commit #<span title="fdc8a4b6908dd77362a8ca3418ae9fefc7a31897">fdc8a4b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Refactored the Router to minimize static calls and allow multiple router types somewhat dynamically</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-29T19:58:32+00:00 (commit #<span title="6e6b6cb04b4a401064ce9af9731b047d41a63d60">6e6b6cb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T21:08:45+00:00 (commit #<span title="658614cbb83b0b40f4c66937d987237975183901">658614c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added more documentation, added more generators</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T15:43:54+00:00 (commit #<span title="966adeea66456bbc35f3171151ff204e5db238b1">966adee</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">documentated shell files and improved naming</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T13:37:45+00:00 (commit #<span title="0725939e87c99c414d97b39de300ae573addd7a8">0725939</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Instead of using my own so-so command line class, I switched to symphonies command class</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

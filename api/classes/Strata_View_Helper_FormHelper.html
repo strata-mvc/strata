@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\View\Helper\FormHelper</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_View_Helper">Strata\View\Helper</a>
+          </li>
+          <li class="separator">FormHelper</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/View/Helper/FormHelper.php.html#line9">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\View\Helper\</small>FormHelper</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class FormHelper
+                extends <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Helper</a>
+            {<br/><ul class="none"><li>// members</li><li>private <a href="#members">$request</a> =
+                        null;
+                    </li><li>protected array <a href="#members">$configuration</a> =
+                        ;
+                    </li><li>protected <a href="#members">$associatedEntity</a> =
+                        null;
+                    </li><li>public <a href="#members">$validationErrors</a> =
+                        null;
+                    </li><li>public array <a href="#members">$keys</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input</a>()
+                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue</a>()
+                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonce.html">generateNonce</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\View\Helper\Helper">Helper</span></li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/__construct.html">__construct</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Strata\View\Helper\Helper</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="request">
+              <strong>$request</strong>
+            </li>
+          </ul>
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="associatedEntity">
+              <strong>$associatedEntity</strong>
+            </li>
+            <li id="configuration">
+              <strong>$configuration</strong>
+            </li>
+            <li id="configuration">
+              <strong>$configuration</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="keys">
+              <strong>$keys</strong>
+            </li>
+            <li id="validationErrors">
+              <strong>$validationErrors</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="arrayToHtmlAttributes">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes()</a>
+            </li>
+            <li id="generateCheckbox">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox()</a>
+            </li>
+            <li id="generateHidden">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden()</a>
+            </li>
+            <li id="generateLabel">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel()</a>
+            </li>
+            <li id="generateNonce">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonce.html">generateNonce()</a>
+            </li>
+            <li id="generateRadio">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio()</a>
+            </li>
+            <li id="generateSelect">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect()</a>
+            </li>
+            <li id="generateTextarea">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea()</a>
+            </li>
+            <li id="generateTextinput">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput()</a>
+            </li>
+            <li id="getCurrentValue">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue()</a>
+            </li>
+            <li id="parseFormConfiguration">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration()</a>
+            </li>
+            <li id="removeBrackets">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="button">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button()</a>
+            </li>
+            <li id="create">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create()</a>
+            </li>
+            <li id="end">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end()</a>
+            </li>
+            <li id="generateInlineErrors">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors()</a>
+            </li>
+            <li id="honeypot">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot()</a>
+            </li>
+            <li id="id">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id()</a>
+            </li>
+            <li id="input">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input()</a>
+            </li>
+            <li id="name">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name()</a>
+            </li>
+            <li id="submit">
+              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Strata\View\Helper\Helper</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="getClassNameSuffix">
+              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getFactoryScopes">
+              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
+                — Instantiates an object of inheriting the current class or of the current class that matches a particular string.</li>
+            <li id="generateClassName">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+            </li>
+            <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere.</li>
+            <li id="getClassNameSuffix">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getFactoryScopes">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="getShortName">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+            </li>
+            <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
+                — Instantiates an object of the current class.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="normalizeConfiguration">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="configure">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+            </li>
+            <li id="containsConfigurations">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+            </li>
+            <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+            </li>
+            <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-09-21T19:42:04+00:00 (commit #<span title="d9556323dfc4f4795d9120f42097711a36407a36">d955632</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added honeypot validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-21T17:55:18+00:00 (commit #<span title="019e02439f4493c4a5ae3a8c37fa9a2f58873835">019e024</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Automated the management of form nonces in strata</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-18T15:27:28+00:00 (commit #<span title="970151441c02beb28861349b68b67bc79def7184">9701514</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">testing compsoer refresh</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-17T13:42:26+00:00 (commit #<span title="7569ae57e1fa69490da927becb068ed3e638f17c">7569ae5</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed class name</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-14T14:31:05+00:00 (commit #<span title="39f90d24f89716183aab10ce58b3bb654b86a606">39f90d2</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed issue where error class was being added on all fields</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-10T19:38:51+00:00 (commit #<span title="fdeac07c5f73902a94c520e00b58cdff20b1e011">fdeac07</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">moved teh checkboxes and radio labels after the input by default</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T16:47:04+00:00 (commit #<span title="595d21eebcfdc78621fd6477ecad4d8f35e37f89">595d21e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed dynamic parameter lengths in debug; modified the routing process to allow for localization; general fixes based on polyglot dev</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-04T17:21:17+00:00 (commit #<span title="3895e92e63a7b05330365de6091f61f3ab67da06">3895e92</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed default values for associated entities</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-31T18:18:13+00:00 (commit #<span title="702f7659401743fccd4f4901c17220a1db245d74">702f765</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed issue when form had no errors</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-19T19:24:50+00:00 (commit #<span title="8392922e5753d37fe73ef76db37418d4dbbd52f4">8392922</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bug fixes on taxonomy registration</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-07T20:55:48+00:00 (commit #<span title="4648579c60895ef5e26ca590739c6433c018bbe6">4648579</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">reworked the forms and how they are validated. It should be simpler</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-20T13:53:46+00:00 (commit #<span title="0c6b9faa0a8485d07384bf69288b61b89cf36a5f">0c6b9fa</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bugfixes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T15:17:56+00:00 (commit #<span title="283e63a50d9b0ff6bdc14f51c94cf8d8d70c7fb7">283e63a</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Belated the wordpress hook in order for controllers to have access to the current page variables</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-06T15:12:45+00:00 (commit #<span title="baecacb085c24a2556e2930a1dbd23a963210fcf">baecacb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved the form object, multiple refactoring fixed and improvements as we near v1</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-10T18:48:37+00:00 (commit #<span title="05a2e0b9c919857ce728395b6a9c9ae8f3b41dbd">05a2e0b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple bug fixes on the recent reorganization of the code</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

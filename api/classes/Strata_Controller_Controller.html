@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Controller\Controller</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Controller">Strata\Controller</a>
+          </li>
+          <li class="separator">Controller</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Controller/Controller.php.html#line14">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Controller\</small>Controller</h1>
+        <h4>Base controller class.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Controller
+            {<br/><ul class="none"><li>// members</li><li>public <span title="Strata\Controller\Strata\Controller\Request">Request</span> <a href="#members">$request</a> =
+                        null;
+                    </li><li>public <span title="Strata\Controller\Strata\View\View">View</span> <a href="#members">$view</a> =
+                        null;
+                    </li><li>public array <a href="#members">$shortcodes</a> =
+                        ;
+                    </li><li>public array <a href="#members">$helpers</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                    </li><li>public static void <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getClassNameSuffix.html">getClassNameSuffix</a>()
+                    </li><li>public void <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/__construct.html">__construct</a>()
+                    </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/init.html">init</a>()
+                    </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/after.html">after</a>()
+                    </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/before.html">before</a>()
+                    </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/index.html">index</a>()
+                    </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/noActionMatch.html">noActionMatch</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Uses</h4>
+          <ul>
+            <li>
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>public</h4>
+          <ul class="members">
+            <li id="helpers"><strong>$helpers</strong>
+                —
+                array<br/><span class="indent">Helpers that will need to be loaded across all the actions of the Controller.</span></li>
+            <li id="request"><strong>$request</strong>
+                —
+                <a title="Strata\Controller\Strata\Controller\Request" href="../classes/Strata_Controller_Strata_Controller_Request.html">Strata\Controller\Strata\Controller\Request</a><br/><span class="indent">The current request</span></li>
+            <li id="shortcodes"><strong>$shortcodes</strong>
+                —
+                array<br/><span class="indent">These hooks allow views to use Wordpress nicely, but still trigger items in the current controller.</span></li>
+            <li id="view"><strong>$view</strong>
+                —
+                <a title="Strata\Controller\Strata\View\View" href="../classes/Strata_Controller_Strata_View_View.html">Strata\Controller\Strata\View\View</a><br/><span class="indent">The associated view template</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/__construct.html">__construct()</a>
+            </li>
+            <li id="after"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/after.html">after()</a>
+                — Executed after each calls to a controller action.</li>
+            <li id="before"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/before.html">before()</a>
+                — Executed before each calls to a controller action.</li>
+            <li id="getClassNameSuffix">
+              <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="index"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/index.html">index()</a>
+                — Base action.</li>
+            <li id="init"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/init.html">init()</a>
+                — Initiate the controller.</li>
+            <li id="noActionMatch"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/noActionMatch.html">noActionMatch()</a>
+                — Base action when no action is found. This is used mainly as a precautionary fallback.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
+                — Instantiates an object of inheriting the current class or of the current class that matches a particular string.</li>
+            <li id="generateClassName">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+            </li>
+            <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere.</li>
+            <li id="getClassNameSuffix">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getFactoryScopes">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="getShortName">
+              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+            </li>
+            <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
+                — Instantiates an object of the current class.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-23T19:19:07+00:00 (commit #<span title="573e75fc98f8ec08ef7ab90d6bec5de985a68174">573e75f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allow controller to have slashes in their namespaces; entities can now describe their wordpress key</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-23T14:14:51+00:00 (commit #<span title="d8b98410dd0b595e14f850d7ef6105083bc6e4aa">d8b9841</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved camel case validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-22T14:36:36+00:00 (commit #<span title="5141d4a146c108b65f80b6e3bbcf1605b369d294">5141d4a</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added fallback route when a controller is found but not the action</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-20T17:31:04+00:00 (commit #<span title="2637cba8d93fd9b9d5f7fda60a5b07df68867cf3">2637cba</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved namespace validation; enforcing ending of view rendering for templates</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T19:48:57+00:00 (commit #<span title="d895a97bd751eb1f8312c05af0ddb0b86204ae3b">d895a97</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Added resource based routing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T17:38:44+00:00 (commit #<span title="ff4e216c36454ac77e3e05da961c768add9114a1">ff4e216</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bug fixes, controller name validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T16:45:08+00:00 (commit #<span title="40536d26f25761d51e847e84a799b308d95b5b76">40536d2</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added support for dynamic controller and action params in routes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T13:13:01+00:00 (commit #<span title="6bea56fa7bc952f14b3db4df11e4fb2576bd0cee">6bea56f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved helper support</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-05T18:31:05+00:00 (commit #<span title="15a347b484bf2adb59ba28096db9f7821323c851">15a347b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">cleaned up code a little</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-07T15:26:22+00:00 (commit #<span title="26e85fabbf75327d32be21084c748cb1c4e78f0a">26e85fa</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">I should have started with that, but at least now we have a decent setup for testing Strata</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-06T15:12:45+00:00 (commit #<span title="baecacb085c24a2556e2930a1dbd23a963210fcf">baecacb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved the form object, multiple refactoring fixed and improvements as we near v1</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-30T19:45:52+00:00 (commit #<span title="fdc8a4b6908dd77362a8ca3418ae9fefc7a31897">fdc8a4b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Refactored the Router to minimize static calls and allow multiple router types somewhat dynamically</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-29T19:58:32+00:00 (commit #<span title="6e6b6cb04b4a401064ce9af9731b047d41a63d60">6e6b6cb</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T21:08:45+00:00 (commit #<span title="658614cbb83b0b40f4c66937d987237975183901">658614c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added more documentation, added more generators</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

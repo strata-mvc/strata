@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Router\RouteParser\Alto\AltoRoute</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router_RouteParser_Alto">Strata\Router\RouteParser\Alto</a>
+          </li>
+          <li class="separator">AltoRoute</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Router/RouteParser/Alto/AltoRoute.php.html#line16">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Router\RouteParser\Alto\</small>AltoRoute</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class AltoRoute
+                extends <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Route</a>
+            {<br/><ul class="none"><li>// constants</li><li>const DYNAMIC_PARSE = "__strata_dynamic_parse__";</li></ul><ul class="none"><li>// members</li><li>private <span title="AltoRouter">AltoRouter</span> <a href="#members">$altoRouter</a> =
+                        null;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public <span title="Strata\Router\RouteParser\Strata\Controller\Controller">Controller</span> <a href="#members">$controller</a>;
+                        </li><li>public string <a href="#members">$action</a>;
+                        </li><li>public array <a href="#members">$arguments</a>;
+                        </li><li>protected boolean <a href="#members">$cancelled</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addPossibilities.html">addPossibilities</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addResource.html">addResource</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/start.html">start</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/end.html">end</a>()
+                    </li><li>protected void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/assignViewVars.html">assignViewVars</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/process.html">process</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addRouteConfig.html">addRouteConfig</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addDynamicRoute.html">addDynamicRoute</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addMatchedRoute.html">addMatchedRoute</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleRouterAnswer.html">handleRouterAnswer</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch</a>()
+                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/patchBuiltInServerPrefix.html">patchBuiltInServerPrefix</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
+                        </li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
+                        </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start</a>()
+                        </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
+                        </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="DYNAMIC_PARSE">DYNAMIC_PARSE</td>
+              <td>"__strata_dynamic_parse__"</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="altoRouter"><strong>$altoRouter</strong>
+                —
+                <a title="AltoRouter" href="../classes/AltoRouter.html">AltoRouter</a><br/><span class="indent">Altorouter is the library that does the heavy lifting for us.</span></li>
+          </ul>
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="cancelled">
+              <strong>$cancelled</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="action"><strong>$action</strong>
+                —
+                string</li>
+            <li id="arguments"><strong>$arguments</strong>
+                —
+                array</li>
+            <li id="controller"><strong>$controller</strong>
+                —
+                <a title="Strata\Router\RouteParser\Strata\Controller\Controller" href="../classes/Strata_Router_RouteParser_Strata_Controller_Controller.html">Strata\Router\RouteParser\Strata\Controller\Controller</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="addDynamicRoute">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addDynamicRoute.html">addDynamicRoute()</a>
+            </li>
+            <li id="addMatchedRoute">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addMatchedRoute.html">addMatchedRoute()</a>
+            </li>
+            <li id="addRouteConfig">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addRouteConfig.html">addRouteConfig()</a>
+            </li>
+            <li id="getActionFromDynamicMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch()</a>
+            </li>
+            <li id="getActionFromMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch()</a>
+            </li>
+            <li id="getArgumentsFromDynamicMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch()</a>
+            </li>
+            <li id="getArgumentsFromMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch()</a>
+            </li>
+            <li id="getControllerFromDynamicMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch()</a>
+            </li>
+            <li id="getControllerFromMatch">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch()</a>
+            </li>
+            <li id="handleDynamicRouterAnswer">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer()</a>
+            </li>
+            <li id="handleMatchedRouterAnswer">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer()</a>
+            </li>
+            <li id="handleRouterAnswer">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleRouterAnswer.html">handleRouterAnswer()</a>
+            </li>
+            <li id="isDynamic">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic()</a>
+            </li>
+            <li id="patchBuiltInServerPrefix"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/patchBuiltInServerPrefix.html">patchBuiltInServerPrefix()</a>
+                — Built in server will generate links with index.php because it doesn't have access to mod_rewrite. This function appends index to the route sent in.</li>
+          </ul>
+          <h4>protected</h4>
+          <ul>
+            <li id="assignViewVars"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/assignViewVars.html">assignViewVars()</a>
+                — This function is required to send variables in Wordpress' scope.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/__construct.html">__construct()</a>
+            </li>
+            <li id="addPossibilities"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addPossibilities.html">addPossibilities()</a>
+                — {@inheritdoc}</li>
+            <li id="addResource">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addResource.html">addResource()</a>
+            </li>
+            <li id="end">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/end.html">end()</a>
+            </li>
+            <li id="process"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/process.html">process()</a>
+                — {@inheritdoc}</li>
+            <li id="start">
+              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/start.html">start()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="log">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log()</a>
+            </li>
+            <li id="logRouteCancellation">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation()</a>
+            </li>
+            <li id="logRouteCompletion">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion()</a>
+            </li>
+            <li id="logRouteStart">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="addPossibilities"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
+                — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
+            <li id="cancel">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
+            </li>
+            <li id="end">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
+            </li>
+            <li id="isCancelled">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled()</a>
+            </li>
+            <li id="isValid"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid()</a>
+                — Verifies that the current values can be ran by the router.</li>
+            <li id="process"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
+                — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
+            <li id="start">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-10T20:46:37+00:00 (commit #<span title="02e377bb96a5e15efaed199656105740d6c4e67e">02e377b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added a way of exiting a routing process</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T16:47:04+00:00 (commit #<span title="595d21eebcfdc78621fd6477ecad4d8f35e37f89">595d21e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">allowed dynamic parameter lengths in debug; modified the routing process to allow for localization; general fixes based on polyglot dev</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-12T14:22:00+00:00 (commit #<span title="7f0abf6710bf446637039e3205af93357499c1c5">7f0abf6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">with the advent of model entities, it did not make sense to throw every custom post type config in the config array. Moved most of the configuration related to strata as their own class attributes. $configuration now only hold data for Wordpress</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-07T15:28:26+00:00 (commit #<span title="8ee556f0612564199392021c2d683a3194a4dba9">8ee556f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed issue with entity autoloading</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-05T21:08:00+00:00 (commit #<span title="7b3d783f0b1021d948ad4938c18f93d0b16da925">7b3d783</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed routing and documented</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-31T15:39:24+00:00 (commit #<span title="e36e39f8fd3c40698b54e86160a00e31f2104697">e36e39f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">custom post types should have been loaded first to win the routing race</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-31T15:17:08+00:00 (commit #<span title="b9d39d7ccdfddb52ed233354def3e362e8adc471">b9d39d7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved custom pose type routing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-22T14:36:36+00:00 (commit #<span title="5141d4a146c108b65f80b6e3bbcf1605b369d294">5141d4a</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added fallback route when a controller is found but not the action</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-20T13:53:46+00:00 (commit #<span title="0c6b9faa0a8485d07384bf69288b61b89cf36a5f">0c6b9fa</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bugfixes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-14T13:23:49+00:00 (commit #<span title="5a058c6670fc9d322f7baff4f5c4bd18b9ba6b13">5a058c6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed queries on taxonomies improved routes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-08T16:30:14+00:00 (commit #<span title="cfd803476026658c201dd44cb7444c11a7044a91">cfd8034</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved wp hook for ajax</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-08T15:24:18+00:00 (commit #<span title="4bfcdddfa71cd563a910826aca2eac03e58e50ce">4bfcddd</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added missing Exception use; catching cases where dynamically routed controllers do not exist</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T19:48:57+00:00 (commit #<span title="d895a97bd751eb1f8312c05af0ddb0b86204ae3b">d895a97</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Added resource based routing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T17:38:44+00:00 (commit #<span title="ff4e216c36454ac77e3e05da961c768add9114a1">ff4e216</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bug fixes, controller name validation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-06T16:45:08+00:00 (commit #<span title="40536d26f25761d51e847e84a799b308d95b5b76">40536d2</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added support for dynamic controller and action params in routes</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

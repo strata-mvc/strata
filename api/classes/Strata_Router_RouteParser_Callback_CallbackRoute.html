@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Router\RouteParser\Callback\CallbackRoute</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router_RouteParser_Callback">Strata\Router\RouteParser\Callback</a>
+          </li>
+          <li class="separator">CallbackRoute</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Router/RouteParser/Callback/CallbackRoute.php.html#line7">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Router\RouteParser\Callback\</small>CallbackRoute</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class CallbackRoute
+                extends <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Route</a>
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public <span title="Strata\Router\RouteParser\Strata\Controller\Controller">Controller</span> <a href="#members">$controller</a>;
+                        </li><li>public string <a href="#members">$action</a>;
+                        </li><li>public array <a href="#members">$arguments</a>;
+                        </li><li>protected boolean <a href="#members">$cancelled</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/addPossibilities.html">addPossibilities</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/process.html">process</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/start.html">start</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/end.html">end</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
+                        </li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
+                        </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start</a>()
+                        </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
+                        </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion</a>()
+                        </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="cancelled">
+              <strong>$cancelled</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="action"><strong>$action</strong>
+                —
+                string</li>
+            <li id="arguments"><strong>$arguments</strong>
+                —
+                array</li>
+            <li id="controller"><strong>$controller</strong>
+                —
+                <a title="Strata\Router\RouteParser\Strata\Controller\Controller" href="../classes/Strata_Router_RouteParser_Strata_Controller_Controller.html">Strata\Router\RouteParser\Strata\Controller\Controller</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="addPossibilities"><a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/addPossibilities.html">addPossibilities()</a>
+                — {@inheritdoc}</li>
+            <li id="end">
+              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/end.html">end()</a>
+            </li>
+            <li id="process">
+              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/process.html">process()</a>
+            </li>
+            <li id="start">
+              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/start.html">start()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="log">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log()</a>
+            </li>
+            <li id="logRouteCancellation">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation()</a>
+            </li>
+            <li id="logRouteCompletion">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion()</a>
+            </li>
+            <li id="logRouteStart">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="addPossibilities"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
+                — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
+            <li id="cancel">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
+            </li>
+            <li id="end">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
+            </li>
+            <li id="isCancelled">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled()</a>
+            </li>
+            <li id="isValid"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid()</a>
+                — Verifies that the current values can be ran by the router.</li>
+            <li id="process"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
+                — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
+            <li id="start">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-09-10T20:46:37+00:00 (commit #<span title="02e377bb96a5e15efaed199656105740d6c4e67e">02e377b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added a way of exiting a routing process</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-07T19:53:27+00:00 (commit #<span title="9ba4c3e749dac1e553f0609c699eaa8e77ec89cd">9ba4c3e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">removed global view vars on callbacks</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-08-03T15:07:47+00:00 (commit #<span title="d39eced27a37aafa4974cbed6ef7f88a36cca834">d39eced</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">completed internationalization (static)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-27T17:57:00+00:00 (commit #<span title="b7d7ca6ad535d444d9e58d2a1b0c6aa2285e5c34">b7d7ca6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed weird cases where callbacks where not always being called in a true MVC way</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-30T19:45:52+00:00 (commit #<span title="fdc8a4b6908dd77362a8ca3418ae9fefc7a31897">fdc8a4b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Refactored the Router to minimize static calls and allow multiple router types somewhat dynamically</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Utility\Inflector</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">Inflector</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Utility/Inflector.php.html#line29">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Utility\</small>Inflector</h1>
+        <h4>Pluralize and singularize English words.</h4>
+        <p>Inflector pluralizes and singularizes English nouns.<br/>Used by CakePHP's naming conventions throughout the framework.</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Inflector
+            {<br/><ul class="none"><li>// members</li><li>protected static array <a href="#members">$_plural</a> =
+                        ;
+                    </li><li>protected static array <a href="#members">$_singular</a> =
+                        ;
+                    </li><li>protected static array <a href="#members">$_uninflected</a> =
+                        ;
+                    </li><li>protected static array <a href="#members">$_transliteration</a> =
+                        ;
+                    </li><li>protected static array <a href="#members">$_cache</a> =
+                        ;
+                    </li><li>protected static array <a href="#members">$_initialState</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>protected static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/_cache.html">_cache</a>()
+                    </li><li>public static void <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/reset.html">reset</a>()
+                    </li><li>public static void <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/rules.html">rules</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/pluralize.html">pluralize</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/singularize.html">singularize</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/camelize.html">camelize</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/underscore.html">underscore</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/humanize.html">humanize</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/tableize.html">tableize</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/classify.html">classify</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/variable.html">variable</a>()
+                    </li><li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/slug.html">slug</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="_cache"><strong>$_cache</strong>
+                —
+                array<br/><span class="indent">Method cache array.</span></li>
+            <li id="_initialState"><strong>$_initialState</strong>
+                —
+                array<br/><span class="indent">The initial state of Inflector so reset() works.</span></li>
+            <li id="_plural"><strong>$_plural</strong>
+                —
+                array<br/><span class="indent">Plural inflector rules</span></li>
+            <li id="_singular"><strong>$_singular</strong>
+                —
+                array<br/><span class="indent">Singular inflector rules</span></li>
+            <li id="_transliteration"><strong>$_transliteration</strong>
+                —
+                array<br/><span class="indent">Default map of accented and special characters to ASCII characters</span></li>
+            <li id="_uninflected"><strong>$_uninflected</strong>
+                —
+                array<br/><span class="indent">Words that should not be inflected</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="_cache"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/_cache.html">_cache()</a>
+                — Cache inflected values, and return if already available</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="camelize"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/camelize.html">camelize()</a>
+                — Returns the given lower_case_and_underscored_word as a CamelCased word.</li>
+            <li id="classify"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/classify.html">classify()</a>
+                — Returns Cake model class name ("Person" for the database table "people".) for given database table.</li>
+            <li id="humanize"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/humanize.html">humanize()</a>
+                — Returns the given underscored_word_group as a Human Readable Word Group.</li>
+            <li id="pluralize"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/pluralize.html">pluralize()</a>
+                — Return $word in plural form.</li>
+            <li id="reset"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/reset.html">reset()</a>
+                — Clears Inflectors inflected value caches. And resets the inflection rules to the initial values.</li>
+            <li id="rules"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/rules.html">rules()</a>
+                — Adds custom inflection $rules, of either 'plural', 'singular' or 'transliteration' $type.</li>
+            <li id="singularize"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/singularize.html">singularize()</a>
+                — Return $word in singular form.</li>
+            <li id="slug"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/slug.html">slug()</a>
+                — Returns a string with all spaces converted to underscores (by default), accented characters converted to non-accented characters, and non word characters removed.</li>
+            <li id="tableize"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/tableize.html">tableize()</a>
+                — Returns corresponding table name for given model $className. ("people" for the model class "Person").</li>
+            <li id="underscore"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/underscore.html">underscore()</a>
+                — Returns the given camelCasedWord as an underscored_word.</li>
+            <li id="variable"><a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/variable.html">variable()</a>
+                — Returns camelBacked version of an underscored string.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-07-09T15:01:49+00:00 (commit #<span title="433e238aabcbb80d845730f73f9f8182cf4cd251">433e238</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">multiple enhencements of the query object; updated Cakes utilities</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-01-12T21:07:19+00:00 (commit #<span title="db7718c625fe2e31024a1aa2b9285458dcbd032c">db7718c</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (francois.faubert@iprospect.com) /
+                        Commiter: François Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved automated CTP and Taxonomy creation</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

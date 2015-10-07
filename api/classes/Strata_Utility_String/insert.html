@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">
+            <a title="Strata\Utility\String" href="../../classes/Strata_Utility_String.html">String</a>
+          </li>
+          <li class="separator">insert</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/Utility/String.php.html#line181">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>Strata\Utility\String::</small>insert</h1>
+        <h4>Replaces variable placeholders inside a $str with any given $data. Each key in the $data array corresponds to a variable placeholder name in $str.</h4>
+        <p>Example: `String::insert(':name is :age years old.', array('name' =&gt; 'Bob', '65'));`
+Returns: Bob is 65 years old.
+
+Available $options are:
+
+- before: The character or string in front of the name of the variable placeholder (Defaults to `:`)
+- after: The character or string after the name of the variable placeholder (Defaults to null)
+- escape: The character or string used to escape the before character / string (Defaults to `\`)
+- format: A regex to use for matching variable placeholders. Default is: `/(?&lt;!\\)\:%s/`
+  (Overwrites before, after, breaks escape / clean)
+- clean: A boolean or array with instructions for String::cleanInsert</p>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function insert(string
+        $str,
+            array
+        $data,
+            [array
+        $options = ] )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$str</code>
+                —
+                string</dt>
+          <dd>A string containing variable placeholders</dd>
+          <dt><code>$data</code>
+                —
+                array</dt>
+          <dd>A key =&gt; val array where each key stands for a placeholder variable name<br/>to be replaced with val</dd>
+          <dt><code>$options</code>
+                —
+                array</dt>
+          <dd>An array of options, see description above</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>string</dt>
+          <dd/>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Controller\Loader\HelperLoader</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Controller_Loader">Strata\Controller\Loader</a>
+          </li>
+          <li class="separator">HelperLoader</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Controller/Loader/HelperLoader.php.html#line13">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Controller\Loader\</small>HelperLoader</h1>
+        <h4>Allows the automation of Helpers loading.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class HelperLoader
+            {<br/><ul class="none"><li>// members</li><li>private null <a href="#members">$controller</a> =
+                        null;
+                    </li><li>private <a href="#members">$helpers</a> =
+                        null;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/__construct.html">__construct</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers</a>()
+                    </li><li>public null <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/register.html">register</a>()
+                    </li><li>private void <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/log.html">log</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="controller"><strong>$controller</strong>
+                —
+                null<br/><span class="indent">A Strata Controller instance to which shortcodes callbacks will be forwarded</span></li>
+            <li id="helpers">
+              <strong>$helpers</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="log">
+              <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/log.html">log()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/__construct.html">__construct()</a>
+            </li>
+            <li id="hasHelpers"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers()</a>
+                — Specifies if a number of helpers have been defined.</li>
+            <li id="register"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/register.html">register()</a>
+                — Registers helpers</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored repeating concepts as Core; added untested UserQuery object; preparing general cleanup for first release</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-09-15T17:21:39+00:00 (commit #<span title="5a7a2b8651c130fa6e10a5fb7302c365522c1994">5a7a2b8</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logs</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T13:54:02+00:00 (commit #<span title="67a36b7469cc20694272259eea40f8ee810f6f74">67a36b7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bugfixes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T13:47:31+00:00 (commit #<span title="815dd43029f585d8621d384081c428d1205ddd81">815dd43</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">bugfixes</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T13:18:30+00:00 (commit #<span title="85d104e8576e63c61f0f0ae94587dcd265c2a57a">85d104e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved logs, returning reference to helper</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-03T13:13:01+00:00 (commit #<span title="6bea56fa7bc952f14b3db4df11e4fb2576bd0cee">6bea56f</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved helper support</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

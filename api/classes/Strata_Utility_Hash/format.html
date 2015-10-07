@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">
+            <a title="Strata\Utility\Hash" href="../../classes/Strata_Utility_Hash.html">Hash</a>
+          </li>
+          <li class="separator">format</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/Utility/Hash.php.html#line463">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>Strata\Utility\Hash::</small>format</h1>
+        <h4>Returns a formatted series of values extracted from `$data`, using `$format` as the format and `$paths` as the values to extract.</h4>
+        <p>Usage:
+
+```
+$result = Hash::format($users, array('{n}.User.id', '{n}.User.name'), '%s : %s');
+```
+
+The `$format` string can use any format options that `vsprintf()` and `sprintf()` do.</p>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function format(array
+        $data,
+            array
+        $paths,
+            string
+        $format )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$data</code>
+                —
+                array</dt>
+          <dd>Source array from which to extract the data</dd>
+          <dt><code>$paths</code>
+                —
+                array</dt>
+          <dd>An array containing one or more Hash::extract()-style key paths</dd>
+          <dt><code>$format</code>
+                —
+                string</dt>
+          <dd>Format string into which values will be inserted, see sprintf()</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>array</dt>
+          <dd>An array of strings extracted from `$path` and formatted with `$format`</dd>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Shell\Shell</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Shell">Strata\Shell</a>
+          </li>
+          <li class="separator">Shell</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Shell/Shell.php.html#line14">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Shell\</small>Shell</h1>
+        <h4>A factory that build the Strata command line application.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Shell
+            {<br/><ul class="none"><li>// methods</li><li>public static Application <a title="Strata\Shell\Shell" href="../classes/Strata_Shell_Shell/getApplication.html">getApplication</a>()
+                    </li><li>public static null; <a title="Strata\Shell\Shell" href="../classes/Strata_Shell_Shell/run.html">run</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">21+</td>
+            <td>Account for commands to be loaded by the project namespace (ex: for cron commands).</td>
+          </tr>
+        </table>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="getApplication"><a title="Strata\Shell\Shell" href="../classes/Strata_Shell_Shell/getApplication.html">getApplication()</a>
+                — Returns a application allowing for known commands.</li>
+            <li id="run"><a title="Strata\Shell\Shell" href="../classes/Strata_Shell_Shell/run.html">run()</a>
+                — Generates an application and runs it in one swift swoop.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2015-09-15T21:05:29+00:00 (commit #<span title="fbaa12c3d8b5333010f2d30e84780d586c00c55b">fbaa12c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">loading global variables in shell mode too. Allows us to have the env value</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-30T13:46:16+00:00 (commit #<span title="bc46239eca3907d1b116a49bb58957e8c5ed605c">bc46239</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added localizations</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-29T14:53:23+00:00 (commit #<span title="a8919cdc7bfc55c3c11504ec4665a75d52102283">a8919cd</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added more paths, changed boot order</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-07-29T13:48:52+00:00 (commit #<span title="5d4dfaa3186d6cd043d55c4fe786d37c80425b6f">5d4dfaa</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved middle ware support, allowing access to sheel from the middleware</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T17:56:19+00:00 (commit #<span title="fd47fa60d0fec8814cb600c671f968b148c7e655">fd47fa6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">removed global constants</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-26T17:40:49+00:00 (commit #<span title="0a0355716596a8e70238a16ff3fc41bf66c59db8">0a03557</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">removed sqlite support, include server vars in shell mode</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-11T17:27:22+00:00 (commit #<span title="12c91b73ab3629604cd41b269bea34260ca469f8">12c91b7</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fix dependency includes in the context of an app</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-01T17:15:18+00:00 (commit #<span title="f4966ba2991993ec38a37ebe529cd330802381e0">f4966ba</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">finish integrating phpunit testing</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T15:43:54+00:00 (commit #<span title="966adeea66456bbc35f3171151ff204e5db238b1">966adee</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">documentated shell files and improved naming</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-28T13:37:45+00:00 (commit #<span title="0725939e87c99c414d97b39de300ae573addd7a8">0725939</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Instead of using my own so-so command line class, I switched to symphonies command class</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-24T16:33:23+00:00 (commit #<span title="e8e284be98cd846c566e59cb2f21910c1f500f3b">e8e284b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">modifications to make it work in Bedrock</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-09T21:01:47+00:00 (commit #<span title="1c5ce40b7650c88139a19d61be9806aebae1b3df">1c5ce40</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">server now runs using the packaged php binary</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-03-12T17:22:28+00:00 (commit #<span title="06aec3ed8d3f1b9097fe8d3e499d51fccd70cbac">06aec3e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">because of grub errors, the concept seems to work better with suspend instead of halt</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-03-11T17:11:20+00:00 (commit #<span title="1252da01ba1dc821054f6a80fd8d24131acabda3">1252da0</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Changed the port to a starcraft easter egg</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>
