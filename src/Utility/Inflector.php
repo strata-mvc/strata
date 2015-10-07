@@ -274,7 +274,7 @@ class Inflector
  * @param  string $value Inflected value
  * @return string Inflected value, from cache
  */
-    protected static function _cache($type, $key, $value = false) 
+    protected static function _cache($type, $key, $value = false)
     {
         $key = '_' . $key;
         $type = '_' . $type;
@@ -294,7 +294,7 @@ class Inflector
  *
  * @return void
  */
-    public static function reset() 
+    public static function reset()
     {
         if (empty(self::$_initialState)) {
             self::$_initialState = get_class_vars('Inflector');
@@ -328,43 +328,43 @@ class Inflector
  *        new rules that are being defined in $rules.
  * @return void
  */
-    public static function rules($type, $rules, $reset = false) 
+    public static function rules($type, $rules, $reset = false)
     {
         $var = '_' . $type;
 
         switch ($type) {
-        case 'transliteration':
-            if ($reset) {
-                self::$_transliteration = $rules;
-            } else {
-                self::$_transliteration = $rules + self::$_transliteration;
-            }
-            break;
+            case 'transliteration':
+                if ($reset) {
+                    self::$_transliteration = $rules;
+                } else {
+                    self::$_transliteration = $rules + self::$_transliteration;
+                }
+                break;
 
-        default:
-            foreach ($rules as $rule => $pattern) {
-                if (is_array($pattern)) {
-                    if ($reset) {
-                        self::${$var}[$rule] = $pattern;
-                    } else {
-                        if ($rule === 'uninflected') {
-                            self::${$var}[$rule] = array_merge($pattern, self::${$var}[$rule]);
+            default:
+                foreach ($rules as $rule => $pattern) {
+                    if (is_array($pattern)) {
+                        if ($reset) {
+                            self::${$var}[$rule] = $pattern;
                         } else {
-                            self::${$var}[$rule] = $pattern + self::${$var}[$rule];
+                            if ($rule === 'uninflected') {
+                                self::${$var}[$rule] = array_merge($pattern, self::${$var}[$rule]);
+                            } else {
+                                self::${$var}[$rule] = $pattern + self::${$var}[$rule];
+                            }
+                        }
+                        unset($rules[$rule], self::${$var}['cache' . ucfirst($rule)]);
+                        if (isset(self::${$var}['merged'][$rule])) {
+                            unset(self::${$var}['merged'][$rule]);
+                        }
+                        if ($type === 'plural') {
+                            self::$_cache['pluralize'] = self::$_cache['tableize'] = array();
+                        } elseif ($type === 'singular') {
+                            self::$_cache['singularize'] = array();
                         }
                     }
-                    unset($rules[$rule], self::${$var}['cache' . ucfirst($rule)]);
-                    if (isset(self::${$var}['merged'][$rule])) {
-                        unset(self::${$var}['merged'][$rule]);
-                    }
-                    if ($type === 'plural') {
-                        self::$_cache['pluralize'] = self::$_cache['tableize'] = array();
-                    } elseif ($type === 'singular') {
-                        self::$_cache['singularize'] = array();
-                    }
                 }
-            }
-            self::${$var}['rules'] = $rules + self::${$var}['rules'];
+                self::${$var}['rules'] = $rules + self::${$var}['rules'];
         }
     }
 
@@ -375,7 +375,7 @@ class Inflector
  * @return string Word in plural
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::pluralize
  */
-    public static function pluralize($word) 
+    public static function pluralize($word)
     {
         if (isset(self::$_cache['pluralize'][$word])) {
             return self::$_cache['pluralize'][$word];
@@ -421,7 +421,7 @@ class Inflector
  * @return string Word in singular
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::singularize
  */
-    public static function singularize($word) 
+    public static function singularize($word)
     {
         if (isset(self::$_cache['singularize'][$word])) {
             return self::$_cache['singularize'][$word];
@@ -475,7 +475,7 @@ class Inflector
  * @return string Camelized word. LikeThis.
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::camelize
  */
-    public static function camelize($lowerCaseAndUnderscoredWord) 
+    public static function camelize($lowerCaseAndUnderscoredWord)
     {
         if (!($result = self::_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord))) {
             $result = str_replace(' ', '', Inflector::humanize($lowerCaseAndUnderscoredWord));
@@ -491,7 +491,7 @@ class Inflector
  * @return string Underscore-syntaxed version of the $camelCasedWord
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::underscore
  */
-    public static function underscore($camelCasedWord) 
+    public static function underscore($camelCasedWord)
     {
         if (!($result = self::_cache(__FUNCTION__, $camelCasedWord))) {
             $underscoredWord = preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $camelCasedWord);
@@ -509,7 +509,7 @@ class Inflector
  * @return string Human-readable string
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::humanize
  */
-    public static function humanize($lowerCaseAndUnderscoredWord) 
+    public static function humanize($lowerCaseAndUnderscoredWord)
     {
         if (!($result = self::_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord))) {
             $result = explode(' ', str_replace('_', ' ', $lowerCaseAndUnderscoredWord));
@@ -529,7 +529,7 @@ class Inflector
  * @return string Name of the database table for given class
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::tableize
  */
-    public static function tableize($className) 
+    public static function tableize($className)
     {
         if (!($result = self::_cache(__FUNCTION__, $className))) {
             $result = Inflector::pluralize(Inflector::underscore($className));
@@ -545,7 +545,7 @@ class Inflector
  * @return string Class name
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::classify
  */
-    public static function classify($tableName) 
+    public static function classify($tableName)
     {
         if (!($result = self::_cache(__FUNCTION__, $tableName))) {
             $result = Inflector::camelize(Inflector::singularize($tableName));
@@ -561,7 +561,7 @@ class Inflector
  * @return string in variable form
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::variable
  */
-    public static function variable($string) 
+    public static function variable($string)
     {
         if (!($result = self::_cache(__FUNCTION__, $string))) {
             $camelized = Inflector::camelize(Inflector::underscore($string));
@@ -581,7 +581,7 @@ class Inflector
  * @return string
  * @link   http://book.cakephp.org/2.0/en/core-utility-libraries/inflector.html#Inflector::slug
  */
-    public static function slug($string, $replacement = '_') 
+    public static function slug($string, $replacement = '_')
     {
         $quotedReplacement = preg_quote($replacement, '/');
 
@@ -594,7 +594,6 @@ class Inflector
         $map = self::$_transliteration + $merge;
         return preg_replace(array_keys($map), array_values($map), $string);
     }
-
 }
 
 // Store the initial state

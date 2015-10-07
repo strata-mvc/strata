@@ -13,5 +13,4 @@ class PostalcodeValidator extends Validator
     {
         return preg_match("/\w\d\w\s?\d\w\d/i", trim($value));
     }
-
 }

@@ -149,5 +149,4 @@ class I18nCommand extends StrataCommand
     {
         return WpCode::fromFile($filename);
     }
-
 }

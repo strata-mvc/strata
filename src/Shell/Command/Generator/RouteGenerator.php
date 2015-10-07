@@ -33,7 +33,7 @@ class RouteGenerator extends GeneratorBase
         $target = explode("#", $this->destination);
         $controllerName = Strata::getNamespace() . "\\Controller\\" . $target[0];
 
-        if(!class_exists($controllerName)) {
+        if (!class_exists($controllerName)) {
             $this->command->output->writeLn($this->command->tree(true) . $this->command->fail('No file matched the controller handled by this route. Looked for ' . $controllerName. '.'));
             return;
         }

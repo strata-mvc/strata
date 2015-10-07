@@ -1,7 +1,8 @@
 <?php
 namespace Tests\Fixtures\Controller;
 
-class TestController extends \Strata\Controller\Controller {
+class TestController extends \Strata\Controller\Controller
+{
 
     public $stackorder;
 
@@ -43,7 +44,4 @@ class TestController extends \Strata\Controller\Controller {
     {
         return $this->stackorder;
     }
-
 }
-
-

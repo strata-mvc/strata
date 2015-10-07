@@ -3,7 +3,8 @@ namespace Tests\Fixtures\Core;
 
 use Strata\Core\StrataObjectTrait;
 
-class TestStrataObjectTrait  {
+class TestStrataObjectTrait
+{
 
     use StrataObjectTrait;
 
@@ -11,8 +12,4 @@ class TestStrataObjectTrait  {
     {
         return "Testing";
     }
-
-
 }
-
-

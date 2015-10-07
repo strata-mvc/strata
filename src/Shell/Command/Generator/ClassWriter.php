@@ -67,7 +67,6 @@ class {CLASSNAME} extends {EXTENDS} {
     protected function _createFile($destination, $namespace, $classname, $extends, $last = false)
     {
         if (!file_exists($destination)) {
-
             $dir = dirname($destination);
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);

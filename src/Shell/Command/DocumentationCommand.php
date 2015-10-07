@@ -328,12 +328,11 @@ class DocumentationCommand extends StrataCommand
          * @param array $extra_context_headers Empty array by default.
          */
 
-        foreach ( $all_headers as $field => $regex ) {
-            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $file_data, $match) && $match[1] ) {
-                $all_headers[ $field ] = $match[1]; 
-            }
-            else {
-                $all_headers[ $field ] = ''; 
+        foreach ($all_headers as $field => $regex) {
+            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $file_data, $match) && $match[1]) {
+                $all_headers[ $field ] = $match[1];
+            } else {
+                $all_headers[ $field ] = '';
             }
         }
 
@@ -352,8 +351,10 @@ class DocumentationCommand extends StrataCommand
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (filetype($dir."/".$object) == "dir") { $this->_rrmdir($dir."/".$object); 
-                    } else { unlink($dir."/".$object); 
+                    if (filetype($dir."/".$object) == "dir") {
+                        $this->_rrmdir($dir."/".$object);
+                    } else {
+                        unlink($dir."/".$object);
                     }
                 }
             }

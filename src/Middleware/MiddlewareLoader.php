@@ -48,7 +48,7 @@ class MiddlewareLoader
 
     private function findAvailableMiddlewares()
     {
-        foreach($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
+        foreach ($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
             if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
                 $className = $prefix . "Initializer";
                 if (class_exists($className)) {

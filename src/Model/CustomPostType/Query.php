@@ -109,8 +109,7 @@ class Query
     {
         if (strtolower($field) === "meta_query") {
             return $this->metaWhere($field, $value);
-        }
-        elseif (strtolower($field) === "tax_query") {
+        } elseif (strtolower($field) === "tax_query") {
             return $this->taxWhere($field, $value);
         }
 
@@ -122,8 +121,7 @@ class Query
     {
         if (strtolower($field) === "meta_query") {
             return $this->metaWhere($field, $value, 'OR');
-        }
-        elseif (strtolower($field) === "tax_query") {
+        } elseif (strtolower($field) === "tax_query") {
             return $this->taxWhere($field, $value, 'OR');
         }
 
@@ -166,7 +164,7 @@ class Query
 
     public function applyFilters($filters)
     {
-        foreach($filters as $key => $value) {
+        foreach ($filters as $key => $value) {
             $this->filters[$key] = $value;
         }
 
@@ -178,8 +176,7 @@ class Query
     // IDs to apply in a Query with a new meta_query relation type.
     protected function carryOverIncompatibleQueries()
     {
-        foreach($this->filters['strata_relations'] as $queryType => $queryDetails) {
-
+        foreach ($this->filters['strata_relations'] as $queryType => $queryDetails) {
             if ($this->hasRelationQuery($queryType, 'AND') && $this->hasRelationQuery($queryType, 'OR')) {
                 $this->andRelationToPostIn($queryType);
             }
@@ -190,11 +187,11 @@ class Query
 
     protected function relationsToQueries()
     {
-        foreach($this->filters['strata_relations'] as $queryType => $queryDetails) {
+        foreach ($this->filters['strata_relations'] as $queryType => $queryDetails) {
             // At this point, there should only be exclusive AND or OR query groups
             $metaQueries = null;
             $relationTypes = array_keys($queryDetails);
-            foreach ($relationTypes as $relationType)  {
+            foreach ($relationTypes as $relationType) {
                 if ($this->hasRelationQuery($queryType, $relationType)) {
                     $metaQueries = $this->getRelationQuery($queryType, $relationType);
                     $this->setQueryRelation($queryType, $relationType);
@@ -203,7 +200,7 @@ class Query
             }
 
             if (!is_null($metaQueries)) {
-                foreach($metaQueries as $query) {
+                foreach ($metaQueries as $query) {
                     $this->addRelationQuery($queryType, $query);
                 }
             }
@@ -300,5 +297,4 @@ class Query
         $app = Strata::app();
         $app->log($oneLine . $timer, "[Strata:Query]");
     }
-
 }

@@ -22,5 +22,3 @@ class Security
         $parser->register();
     }
 }
-
-

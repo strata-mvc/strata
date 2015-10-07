@@ -168,5 +168,4 @@ class ModelEntity
     {
         $this->attributes = Hash::normalize($this->attributes);
     }
-
 }

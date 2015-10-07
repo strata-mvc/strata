@@ -61,6 +61,4 @@ trait StrataConfigurableTrait
             $this->configuration = Hash::normalize($this->configuration);
         }
     }
-
-
 }

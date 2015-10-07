@@ -197,7 +197,7 @@ class Request
 
         if ($this->hasPost($name)) {
             $value = $this->post($name);
-        } elseif($this->hasGet($name)) {
+        } elseif ($this->hasGet($name)) {
             $value = $this->get($name);
         }
 
@@ -210,7 +210,7 @@ class Request
 
         if ($this->hasPost("authenticity_token")) {
             $token = $this->post("authenticity_token");
-        } elseif($this->hasGet("authenticity_token")) {
+        } elseif ($this->hasGet("authenticity_token")) {
             $token = $this->get("authenticity_token");
         }
 
@@ -252,5 +252,4 @@ class Request
         $this->_COOKIE = array_map($strip_slashes_deep, $_COOKIE);
         $this->_FILES = array_map($strip_slashes_deep, $_FILES);
     }
-
 }

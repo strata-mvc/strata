@@ -39,5 +39,4 @@ class StrataTest extends PHPUnit_Framework_TestCase
         $obj = TestStrataObjectTrait::staticFactory();
         $this->assertEquals("TestStrataObjectTrait", $obj->getShortName());
     }
-
 }

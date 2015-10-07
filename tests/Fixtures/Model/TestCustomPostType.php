@@ -3,7 +3,8 @@ namespace Tests\Fixtures\Model;
 
 use Strata\Model\CustomPostType\CustomPostType;
 
-class TestCustomPostType extends CustomPostType {
+class TestCustomPostType extends CustomPostType
+{
 
     public $admin_menus = array(
         "exportprofiles" => array(
@@ -12,5 +13,4 @@ class TestCustomPostType extends CustomPostType {
             "menu-title" => "Export"
         )
     );
-
 }

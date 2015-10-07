@@ -9,6 +9,7 @@ error_reporting(-1);
 require_once getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use Strata\Strata;
+
 $app = Strata::bootstrap(Strata::requireVendorAutoload());
 $app->init();
 

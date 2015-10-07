@@ -51,21 +51,21 @@ class DBCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('type')) {
-        case "create" :
-            $this->_createDB();
-            break;
+            case "create":
+                $this->_createDB();
+                break;
 
-        case "migrate" :
-            $this->_importSqlFile($this->_getSqlFile());
-            break;
+            case "migrate":
+                $this->_importSqlFile($this->_getSqlFile());
+                break;
 
-        case "import" :
-            $output->writeLn("Importing from an environment is not yet available.");
-            break;
+            case "import":
+                $output->writeLn("Importing from an environment is not yet available.");
+                break;
 
-        case "export" :
-            $this->_dumpCurrentDB();
-            break;
+            case "export":
+                $this->_dumpCurrentDB();
+                break;
         }
 
         $this->nl();

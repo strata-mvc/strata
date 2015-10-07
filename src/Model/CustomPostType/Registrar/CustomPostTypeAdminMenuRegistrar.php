@@ -39,7 +39,7 @@ class CustomPostTypeAdminMenuRegistrar extends Registrar
             // Allow them to send the controller string name and take care of the rest.
             if (is_string($config['route'])) {
                 $route = Router::callback($config['route'], $func);
-            }  else {
+            } else {
                 $route = Router::callback($config['route'][0], $config['route'][1]);
             }
 

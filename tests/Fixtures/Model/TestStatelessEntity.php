@@ -3,9 +3,10 @@ namespace Tests\Fixtures\Model;
 
 use Strata\Model\CustomPostType\ModelEntity;
 
-class TestStatelessEntity extends ModelEntity {
+class TestStatelessEntity extends ModelEntity
+{
 
-     public $attributes = array(
+    public $attributes = array(
         "firstname"     => array("validations" => array("required")),
         "lastname"      => array("validations" => array("required")),
         "mixedtest"     => array("validations" => array("in" => array("Tests\Fixtures\Model\TestStatelessEntity::mixedTest"))),
@@ -27,5 +28,4 @@ class TestStatelessEntity extends ModelEntity {
             4 => "choice 4",
         );
     }
-
 }

@@ -5,7 +5,8 @@ use Strata\Router\Router;
 use Tests\Fixtures\Router\FakeRoute;
 use Tests\Fixtures\Controller\TestController;
 
-class RouteMaker {
+class RouteMaker
+{
 
     public static function routeToTest()
     {
@@ -18,5 +19,4 @@ class RouteMaker {
 
         return $router;
     }
-
 }

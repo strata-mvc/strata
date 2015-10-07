@@ -12,5 +12,4 @@ class Test extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this instanceof PHPUnit_Framework_TestCase);
     }
-
 }

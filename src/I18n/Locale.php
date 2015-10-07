@@ -88,5 +88,4 @@ class Locale
         $localeDir = Strata::getLocalePath();
         return $localeDir . $this->getCode() . '.mo';
     }
-
 }

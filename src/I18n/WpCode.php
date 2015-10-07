@@ -8,8 +8,6 @@ use Gettext\Extractors\PhpCode;
 use Gettext\Extractors\ExtractorInterface;
 use Gettext\Translations;
 
-
-
 /**
  * Class to get gettext strings from php files returning arrays
  */

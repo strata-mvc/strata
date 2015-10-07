@@ -1,6 +1,5 @@
 <?php
 if (!function_exists('debug')) {
-
     /**
      * Prints out better looking debug information about a variable.
      * This echoes directly where it is called.

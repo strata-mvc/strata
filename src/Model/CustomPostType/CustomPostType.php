@@ -88,8 +88,7 @@ class CustomPostType extends WordpressEntity
         foreach (Hash::normalize($this->belongs_to) as $taxonomyName => $taxonomyConfig) {
             if (class_exists($taxonomyName)) {
                 $tax[] = new $taxonomyName();
-            }
-            else {
+            } else {
                 $tax[] = TaxonomyEntity::factory($taxonomyName);
             }
         }
@@ -122,5 +121,4 @@ class CustomPostType extends WordpressEntity
     {
         return wp_delete_post($postId, $force);
     }
-
 }

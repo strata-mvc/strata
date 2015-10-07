@@ -76,5 +76,4 @@ class TaxonomyRegistrar extends Registrar
     {
         return $this->belongs_to;
     }
-
 }

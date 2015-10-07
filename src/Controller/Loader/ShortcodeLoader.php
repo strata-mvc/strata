@@ -52,7 +52,7 @@ class ShortcodeLoader
     {
         if ($this->hasShortcodes()) {
             foreach ($this->shortcodes as $shortcode => $methodName) {
-                if(method_exists($this->controller, $methodName)) {
+                if (method_exists($this->controller, $methodName)) {
                     add_shortcode($shortcode, array($this->controller, $methodName));
                 }
             }

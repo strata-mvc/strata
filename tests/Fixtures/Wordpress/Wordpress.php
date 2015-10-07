@@ -3,7 +3,8 @@ namespace Tests\Fixtures\Wordpress;
 
 use Exception;
 
-class Wordpress {
+class Wordpress
+{
 
     public $actions = array();
     public $filters = array();
@@ -33,5 +34,4 @@ class Wordpress {
 
         $this->shortcodes[$tag] = $func;
     }
-
 }

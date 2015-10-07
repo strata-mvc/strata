@@ -31,7 +31,4 @@ class CommentParser
 
         return $commentData;
     }
-
 }
-
-

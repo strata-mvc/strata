@@ -53,13 +53,13 @@ class Router
     public static function isFrontendAjax()
     {
 
-        if(self::isAjax()) {
+        if (self::isAjax()) {
               $referer = '';
               $filename = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
 
             if (!empty($_REQUEST['_wp_http_referer'])) {
                 $referer = wp_unslash($_REQUEST['_wp_http_referer']);
-            } elseif(!empty($_SERVER['HTTP_REFERER'])) {
+            } elseif (!empty($_SERVER['HTTP_REFERER'])) {
                 $referer = wp_unslash($_SERVER['HTTP_REFERER']);
             }
 
@@ -103,7 +103,6 @@ class Router
     private function loopCurrentRequest()
     {
         while (!$this->route->isCancelled()) {
-
             $this->route->start();
 
             $this->route->controller->init();
@@ -124,5 +123,3 @@ class Router
         $app->log($msg, $type);
     }
 }
-
-

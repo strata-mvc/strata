@@ -60,5 +60,3 @@ class Logger
         return sprintf("%s %s\n", $context, $message);
     }
 }
-
-

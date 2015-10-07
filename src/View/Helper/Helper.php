@@ -35,5 +35,4 @@ class Helper
     {
         $this->configure($config);
     }
-
 }

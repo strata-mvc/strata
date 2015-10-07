@@ -40,8 +40,8 @@ class RouterTest extends PHPUnit_Framework_TestCase
 
     public function testCanGenerateACallback()
     {
-       $this->assertTrue(is_array($this->callback));
-       $this->assertCount(2, $this->callback);
+        $this->assertTrue(is_array($this->callback));
+        $this->assertCount(2, $this->callback);
     }
 
     public function testGeneratesARouter()

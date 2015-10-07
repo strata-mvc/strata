@@ -15,7 +15,6 @@ class CustomPostTypeLoader
         $this->logAutoloadedEntities();
 
         foreach ($this->getConfiguration() as $cpt => $config) {
-
             $obj = CustomPostType::factory($cpt);
 
             $this->addWordpressRegisteringAction($obj);

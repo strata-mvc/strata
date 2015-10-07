@@ -20,5 +20,4 @@ class RegisterPostTypesTest extends PHPUnit_Framework_TestCase
         ));
         $loader->load();
     }
-
 }

@@ -135,5 +135,4 @@ class View
             header('Content-disposition: ' . $this->options['Content-disposition']);
         }
     }
-
 }

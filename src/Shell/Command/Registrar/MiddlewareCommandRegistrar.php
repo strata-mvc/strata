@@ -36,7 +36,7 @@ class MiddlewareCommandRegistrar
             if (class_exists($path)) {
                 $this->application->add(new $path());
             }
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             echo "Unable to autoload the '$path' command.";
         }
     }

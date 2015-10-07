@@ -60,5 +60,4 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $helper = $controller->view->get("customName");
         $this->assertEquals($helper->getConfig("extraConfig"), "testconfigvalue");
     }
-
 }

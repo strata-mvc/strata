@@ -21,17 +21,17 @@ class i18n
 {
 
     /**
- * The default text domain used buy the class 
+ * The default text domain used buy the class
 */
     const DOMAIN = "strata_i18n";
 
     /**
- * @var array The list of instanciated locales in the application 
+ * @var array The list of instanciated locales in the application
 */
     protected $locales = array();
 
     /**
- * @var Locale The locale that is currently active. 
+ * @var Locale The locale that is currently active.
 */
     protected $currentLocale = null;
 
@@ -104,7 +104,6 @@ class i18n
         }
 
         if (Router::isAjax() || (function_exists('is_admin') && !is_admin())) {
-
             $request = new Request();
             if ($request->hasGet("locale")) {
                 $locale = $this->getLocaleByCode($request->get("locale"));
@@ -415,5 +414,4 @@ class i18n
         }
         return $urls;
     }
-
 }

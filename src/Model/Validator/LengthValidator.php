@@ -50,5 +50,4 @@ class LengthValidator extends Validator
 
         return sprintf(__("The length must be between %s and %s.", "strata"), $this->_config['min'], $this->_config['max']);
     }
-
 }

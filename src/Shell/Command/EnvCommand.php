@@ -102,11 +102,11 @@ class EnvCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('mode')) {
-        case "repair":
-            $this->repair();
-            break;
-        default : 
-            throw new InvalidArgumentException("That is not a valid command.");
+            case "repair":
+                $this->repair();
+                break;
+            default:
+                throw new InvalidArgumentException("That is not a valid command.");
         }
 
         $this->shutdown();

@@ -152,18 +152,18 @@ class FormHelper extends Helper
         unset($options['label']);
 
         switch (strtolower($options['type'])) {
-        case "textarea" :   
-            return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
-        case "select" :     
-            return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
-        case "radio" :      
-            return $this->generateRadio($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
-        case "checkbox" :   
-            return $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
-        case "hidden" :     
-            return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
-        default :           
-            return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
+            case "textarea":
+                return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
+            case "select":
+                return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
+            case "radio":
+                return $this->generateRadio($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
+            case "checkbox":
+                return $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
+            case "hidden":
+                return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
+            default:
+                return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
         }
     }
 
@@ -234,7 +234,7 @@ class FormHelper extends Helper
     protected function generateCheckbox($options, $currentValue = null)
     {
         $hidden = sprintf('<input type="hidden" name="%s" value="0">', $options['name']);
-        $chk = sprintf('<input %s %s>', $this->arrayToHtmlAttributes($options),  $options['value'] == $currentValue ? ' checked="checked"' : '');
+        $chk = sprintf('<input %s %s>', $this->arrayToHtmlAttributes($options), $options['value'] == $currentValue ? ' checked="checked"' : '');
         return $hidden . $chk;
     }
 
@@ -277,7 +277,7 @@ class FormHelper extends Helper
     {
         $output = "";
 
-        foreach($values as $key => $value){
+        foreach ($values as $key => $value) {
             $output .=  sprintf('%s="%s" ', htmlentities($key), htmlentities($value));
         }
 

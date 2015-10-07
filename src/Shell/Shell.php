@@ -7,7 +7,6 @@ use Strata\Strata;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
 use Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar;
 
-
 /**
  * A factory that build the Strata command line application.
  */

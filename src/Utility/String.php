@@ -31,13 +31,15 @@ class String
  * @see    http://www.ietf.org/rfc/rfc4122.txt
  * @return RFC 4122 UUID
  */
-    public static function uuid() 
+    public static function uuid()
     {
         $node = env('SERVER_ADDR');
         if (strpos($node, ':') !== false) {
             if (substr_count($node, '::')) {
                 $node = str_replace(
-                    '::', str_repeat(':0000', 8 - substr_count($node, ':')) . ':', $node
+                    '::',
+                    str_repeat(':0000', 8 - substr_count($node, ':')) . ':',
+                    $node
                 );
             }
             $node = explode(':', $node);
@@ -84,8 +86,14 @@ class String
         }
         list($timeMid, $timeLow) = explode(' ', microtime());
         return sprintf(
-            "%08x-%04x-%04x-%02x%02x-%04x%08x", (int)$timeLow, (int)substr($timeMid, 2) & 0xffff,
-            mt_rand(0, 0xfff) | 0x4000, mt_rand(0, 0x3f) | 0x80, mt_rand(0, 0xff), $pid, $node
+            "%08x-%04x-%04x-%02x%02x-%04x%08x",
+            (int)$timeLow,
+            (int)substr($timeMid, 2) & 0xffff,
+            mt_rand(0, 0xfff) | 0x4000,
+            mt_rand(0, 0x3f) | 0x80,
+            mt_rand(0, 0xff),
+            $pid,
+            $node
         );
     }
     /**
@@ -98,7 +106,7 @@ class String
  * @param  string $rightBound The right boundary to ignore separators in.
  * @return mixed Array of tokens in $data or original input if empty.
  */
-    public static function tokenize($data, $separator = ',', $leftBound = '(', $rightBound = ')') 
+    public static function tokenize($data, $separator = ',', $leftBound = '(', $rightBound = ')')
     {
         if (empty($data)) {
             return array();
@@ -181,7 +189,7 @@ class String
  * @param  array  $options An array of options, see description above
  * @return string
  */
-    public static function insert($str, $data, $options = array()) 
+    public static function insert($str, $data, $options = array())
     {
         $defaults = array(
             'before' => ':', 'after' => null, 'escape' => '\\', 'format' => null, 'clean' => false
@@ -239,7 +247,7 @@ class String
  * @return string
  * @see    String::insert()
  */
-    public static function cleanInsert($str, $options) 
+    public static function cleanInsert($str, $options)
     {
         $clean = $options['clean'];
         if (!$clean) {
@@ -252,47 +260,49 @@ class String
             $clean = array('method' => $options['clean']);
         }
         switch ($clean['method']) {
-        case 'html':
-            $clean = array_merge(
-                array(
-                'word' => '[\w,.]+',
-                'andText' => true,
-                'replacement' => '',
-                    ), $clean
-            );
-            $kleenex = sprintf(
-                '/[\s]*[a-z]+=(")(%s%s%s[\s]*)+\\1/i',
-                preg_quote($options['before'], '/'),
-                $clean['word'],
-                preg_quote($options['after'], '/')
-            );
-            $str = preg_replace($kleenex, $clean['replacement'], $str);
-            if ($clean['andText']) {
-                $options['clean'] = array('method' => 'text');
-                $str = String::cleanInsert($str, $options);
-            }
-            break;
-        case 'text':
-            $clean = array_merge(
-                array(
-                'word' => '[\w,.]+',
-                'gap' => '[\s]*(?:(?:and|or)[\s]*)?',
-                'replacement' => '',
-                    ), $clean
-            );
-            $kleenex = sprintf(
-                '/(%s%s%s%s|%s%s%s%s)/',
-                preg_quote($options['before'], '/'),
-                $clean['word'],
-                preg_quote($options['after'], '/'),
-                $clean['gap'],
-                $clean['gap'],
-                preg_quote($options['before'], '/'),
-                $clean['word'],
-                preg_quote($options['after'], '/')
-            );
-            $str = preg_replace($kleenex, $clean['replacement'], $str);
-            break;
+            case 'html':
+                $clean = array_merge(
+                    array(
+                    'word' => '[\w,.]+',
+                    'andText' => true,
+                    'replacement' => '',
+                    ),
+                    $clean
+                );
+                $kleenex = sprintf(
+                    '/[\s]*[a-z]+=(")(%s%s%s[\s]*)+\\1/i',
+                    preg_quote($options['before'], '/'),
+                    $clean['word'],
+                    preg_quote($options['after'], '/')
+                );
+                $str = preg_replace($kleenex, $clean['replacement'], $str);
+                if ($clean['andText']) {
+                    $options['clean'] = array('method' => 'text');
+                    $str = String::cleanInsert($str, $options);
+                }
+                break;
+            case 'text':
+                $clean = array_merge(
+                    array(
+                    'word' => '[\w,.]+',
+                    'gap' => '[\s]*(?:(?:and|or)[\s]*)?',
+                    'replacement' => '',
+                    ),
+                    $clean
+                );
+                $kleenex = sprintf(
+                    '/(%s%s%s%s|%s%s%s%s)/',
+                    preg_quote($options['before'], '/'),
+                    $clean['word'],
+                    preg_quote($options['after'], '/'),
+                    $clean['gap'],
+                    $clean['gap'],
+                    preg_quote($options['before'], '/'),
+                    $clean['word'],
+                    preg_quote($options['after'], '/')
+                );
+                $str = preg_replace($kleenex, $clean['replacement'], $str);
+                break;
         }
         return $str;
     }
@@ -310,7 +320,7 @@ class String
  * @param  array|int $options Array of options to use, or an integer to wrap the text to.
  * @return string Formatted text.
  */
-    public static function wrap($text, $options = array()) 
+    public static function wrap($text, $options = array())
     {
         if (is_numeric($options)) {
             $options = array('width' => $options);
@@ -339,7 +349,7 @@ class String
  * @param  bool   $cut   If the cut is set to true, the string is always wrapped at the specified width.
  * @return string Formatted text.
  */
-    public static function wordWrap($text, $width = 72, $break = "\n", $cut = false) 
+    public static function wordWrap($text, $width = 72, $break = "\n", $cut = false)
     {
         if ($cut) {
             $parts = array();
@@ -391,7 +401,7 @@ class String
  * @return string The highlighted text
  * @link   http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::highlight
  */
-    public static function highlight($text, $phrase, $options = array()) 
+    public static function highlight($text, $phrase, $options = array())
     {
         if (empty($phrase)) {
             return $text;
@@ -429,7 +439,7 @@ class String
  * @return string The text without links
  * @link   http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::stripLinks
  */
-    public static function stripLinks($text) 
+    public static function stripLinks($text)
     {
         return preg_replace('|<a\s+[^>]+>|im', '', preg_replace('|<\/a>|im', '', $text));
     }
@@ -449,7 +459,7 @@ class String
  * @param  array  $options An array of options.
  * @return string Trimmed string.
  */
-    public static function tail($text, $length = 100, $options = array()) 
+    public static function tail($text, $length = 100, $options = array())
     {
         $defaults = array(
             'ellipsis' => '...', 'exact' => true
@@ -487,7 +497,7 @@ class String
  * @return string Trimmed string.
  * @link   http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::truncate
  */
-    public static function truncate($text, $length = 100, $options = array()) 
+    public static function truncate($text, $length = 100, $options = array())
     {
         $defaults = array(
             'ellipsis' => '...', 'exact' => true, 'html' => false
@@ -600,7 +610,7 @@ class String
  * @return string Modified string
  * @link   http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt
  */
-    public static function excerpt($text, $phrase, $radius = 100, $ellipsis = '...') 
+    public static function excerpt($text, $phrase, $radius = 100, $ellipsis = '...')
     {
         if (empty($text) || empty($phrase)) {
             return self::truncate($text, $radius * 2, array('ellipsis' => $ellipsis));
@@ -635,7 +645,7 @@ class String
  * @return string The glued together string.
  * @link   http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::toList
  */
-    public static function toList($list, $and = 'and', $separator = ', ') 
+    public static function toList($list, $and = 'and', $separator = ', ')
     {
         if (count($list) > 1) {
             return implode($separator, array_slice($list, null, -1)) . ' ' . $and . ' ' . array_pop($list);
