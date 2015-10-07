@@ -17,8 +17,8 @@ Feel free to ask questions to the Strata community on the [Help and support](htt
 
 1. Fork and clone the repository.
 1. Run `composer update`.
-1. Run tests using `vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/Tests`.
-1. Update the docs using `vendor/bin/phpdoc -p -d src/ --template zend`.
+1. Run tests using `sh src/Scripts/test_strata`.
+1. Update the docs using `sh src/Scripts/build_documentation`.
 
 ### Submitting Code
 

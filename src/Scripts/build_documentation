@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+cwd=$(pwd)
+
+if [[ ! -d "api" ]] ; then
+    mkdir ${cwd}/api
+fi
+
+${cwd}/vendor/bin/phploc --log-xml ${cwd}/api/phploc.xml tests/
+echo ""
+
+${cwd}/vendor/bin/phpcs src --standard=PSR2 --report-xml=${cwd}/api/phpcs.xml
+echo ""
+
+${cwd}/vendor/bin/phpdox
+echo ""

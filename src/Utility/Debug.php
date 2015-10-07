@@ -3,12 +3,11 @@ if (!function_exists('debug')) {
 
     /**
      * Prints out better looking debug information about a variable.
-     * This echo directly where it is called.
-     * @ignore
+     * This echoes directly where it is called.
+     * @param $mixed1, [$mixed2, $mixed3, ...]
      */
     function debug()
     {
-
         $mixed = func_get_args();
         if (count($mixed) === 1) {
             $mixed = $mixed[0];

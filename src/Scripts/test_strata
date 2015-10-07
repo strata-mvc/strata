@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cwd=$(pwd)
+
+${cwd}/vendor/bin/phpunit --bootstrap ${cwd}/tests/bootstrap.php tests/Tests
