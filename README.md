@@ -19,6 +19,7 @@ Feel free to ask questions to the Strata community on the [Help and support](htt
 1. Run `composer update`.
 1. Run tests using `sh src/Scripts/test_strata`.
 1. Update the docs using `sh src/Scripts/build_documentation`.
+1. Fix your syntax using `vendor/bin/phpcbf --standard=PSR2 src`.
 
 ### Submitting Code
 
