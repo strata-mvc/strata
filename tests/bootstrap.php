@@ -10,5 +10,5 @@ $loader->setPsr4("Tests\\", 'tests');
 include('tests/Fixtures/Wordpress/bootstrap.php');
 
 $app = Strata::bootstrap($loader);
-$app->setConfig("namespace", "Tests\Fixtures");
+$app->setConfig("namespace", "Tests\\Fixtures");
 $app->run();

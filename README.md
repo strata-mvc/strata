@@ -17,9 +17,7 @@ Feel free to ask questions to the Strata community on the [Help and support](htt
 
 1. Fork and clone the repository.
 1. Run `composer update`.
-1. Run `npm install`.
-
-While coding, it's useful to have the test suite always running. You can do so by running our `grunt watch` task.
+1. Run tests using `vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/Tests`.
 
 ### Submitting Code
 

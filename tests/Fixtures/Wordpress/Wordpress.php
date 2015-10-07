@@ -34,8 +34,4 @@ class Wordpress {
         $this->shortcodes[$tag] = $func;
     }
 
-    /**
-     * @todo: Improve fixture by returning WP_query values too, somehow.
-     */
-
 }

@@ -2,6 +2,7 @@
 namespace Strata\View\Helper;
 
 use Strata\Core\StrataObjectTrait;
+use Strata\Core\StrataConfigurableTrait;
 
 /**
  * A base class for ViewHelper objects
@@ -9,6 +10,7 @@ use Strata\Core\StrataObjectTrait;
 class Helper {
 
     use StrataObjectTrait;
+    use StrataConfigurableTrait;
 
     public static function getNamespaceStringInStrata()
     {
@@ -26,6 +28,11 @@ class Helper {
     public static function getClassNameSuffix()
     {
         return "Helper";
+    }
+
+    public function __construct($config = array())
+    {
+        $this->configure($config);
     }
 
 }

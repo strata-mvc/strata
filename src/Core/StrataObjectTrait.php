@@ -61,8 +61,12 @@ trait StrataObjectTrait {
             self::generateClassName($name)
         );
 
-
         return implode("\\", $paths);
+    }
+
+    public static function getClassNameSuffix()
+    {
+        return "";
     }
 
     public static function getNamespaceStringInStrata()
@@ -89,6 +93,10 @@ trait StrataObjectTrait {
         $suffix = self::getClassNameSuffix();
         if (!preg_match("/$suffix$/", $name)) {
             $name .= $suffix;
+        }
+
+        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name)) {
+            throw new Exception(sprintf("We could not generate a valid PHP classname from %s", $name));
         }
 
         return $name;

@@ -9,6 +9,14 @@ class TestController extends \Strata\Controller\Controller {
         "test_shortcode" => "returnTrue"
     );
 
+    public $helpers = array(
+        "Test",
+        "SecondTest" => array(
+            "name" => "customName",
+            "extraConfig" => "testconfigvalue"
+        )
+    );
+
     public function init()
     {
         parent::init();
