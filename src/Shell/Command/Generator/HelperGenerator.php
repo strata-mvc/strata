@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class HelperGenerator extends ClassWriter {
+class HelperGenerator extends ClassWriter
+{
 
 
     /**

@@ -4,7 +4,7 @@ if (!function_exists('debug')) {
     /**
      * Prints out better looking debug information about a variable.
      * This echoes directly where it is called.
-     * @param $mixed1, [$mixed2, $mixed3, ...]
+     * @param mixed1, [ $mixed2, $mixed3, ...]
      */
     function debug()
     {

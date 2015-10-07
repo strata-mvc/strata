@@ -15,21 +15,29 @@ use Exception;
 /**
  * Handles  localization
  *
- * @package       Strata.i18n
+ * @package Strata.i18n
  */
-class i18n {
+class i18n
+{
 
-    /** The default text domain used buy the class */
+    /**
+ * The default text domain used buy the class 
+*/
     const DOMAIN = "strata_i18n";
 
-    /** @var array The list of instanciated locales in the application */
+    /**
+ * @var array The list of instanciated locales in the application 
+*/
     protected $locales = array();
 
-    /** @var Locale The locale that is currently active. */
+    /**
+ * @var Locale The locale that is currently active. 
+*/
     protected $currentLocale = null;
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * The class initializer is meant to be called only once during the
@@ -112,8 +120,8 @@ class i18n {
                 if (!is_null($locale)) {
                     return $this->setLocale($locale);
                 }
-            // While that one validates for lack of locale code, meaning
-            // a possible default locale match
+                // While that one validates for lack of locale code, meaning
+                // a possible default locale match
             } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
                 $locale = $this->getDefaultLocale();
                 if (!is_null($locale)) {
@@ -281,6 +289,7 @@ class i18n {
      *
      * The value in session should not have more weight then the other methods
      * in setCurrentLocaleByContext();
+     *
      * @see setCurrentLocaleByContext
      */
     public function saveCurrentLocaleToSession()
@@ -331,7 +340,7 @@ class i18n {
     /**
      * Compares two locales to see if $locale is the one currently
      * active.
-     * @param  Locale  $locale
+     * @param  Locale $locale
      * @return boolean
      */
     public function isCurrentlyActive(Locale $locale)

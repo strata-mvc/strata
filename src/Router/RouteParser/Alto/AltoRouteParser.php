@@ -7,10 +7,11 @@ use Strata\Router\RouteParser\Alto\AltoRoute;
 /**
  * Maps wordpress urls to Strata classes
  *
- * @package       Strata.Router
- * @link          http://strata.francoisfaubert.com/docs/routes/
+ * @package Strata.Router
+ * @link    http://strata.francoisfaubert.com/docs/routes/
  */
-class AltoRouteParser extends Router {
+class AltoRouteParser extends Router
+{
 
     public static function factory($routes = array())
     {

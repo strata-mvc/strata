@@ -3,7 +3,8 @@ namespace Strata\Model\Validator;
 
 use Strata\Controller\Request;
 
-class SameValidator extends Validator {
+class SameValidator extends Validator
+{
 
     protected $_config = array(
         "as" => null,

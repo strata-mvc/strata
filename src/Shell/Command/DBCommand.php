@@ -30,16 +30,17 @@ class DBCommand extends StrataCommand
             ->setName('db')
             ->setDescription('Executes SQL migrations.')
             ->setDefinition(
-                new InputDefinition(array(
+                new InputDefinition(
+                    array(
                     new InputOption('filename', 'f', InputOption::VALUE_OPTIONAL),
-                ))
+                    )
+                )
             )
             ->addArgument(
                 'type',
                 InputArgument::REQUIRED,
                 'One of the following: migrate, import or dump.'
-            )
-        ;
+            );
     }
 
     /**
@@ -50,21 +51,21 @@ class DBCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('type')) {
-            case "create" :
-                $this->_createDB();
-                break;
+        case "create" :
+            $this->_createDB();
+            break;
 
-            case "migrate" :
-                $this->_importSqlFile( $this->_getSqlFile() );
-                break;
+        case "migrate" :
+            $this->_importSqlFile($this->_getSqlFile());
+            break;
 
-            case "import" :
-                $output->writeLn("Importing from an environment is not yet available.");
-                break;
+        case "import" :
+            $output->writeLn("Importing from an environment is not yet available.");
+            break;
 
-            case "export" :
-                $this->_dumpCurrentDB();
-                break;
+        case "export" :
+            $this->_dumpCurrentDB();
+            break;
         }
 
         $this->nl();
@@ -149,11 +150,11 @@ class DBCommand extends StrataCommand
 
         $d = dir($path);
         while (false !== ($entry = $d->read())) {
-          $filepath = "{$path}/{$entry}";
-          // could do also other checks than just checking whether the entry is a file
-          if (is_file($filepath) && filectime($filepath) > $latestCtime) {
-            $latestFilename = $entry;
-          }
+            $filepath = "{$path}/{$entry}";
+            // could do also other checks than just checking whether the entry is a file
+            if (is_file($filepath) && filectime($filepath) > $latestCtime) {
+                $latestFilename = $entry;
+            }
         }
         return $path . $latestFilename;
     }

@@ -3,7 +3,8 @@ namespace Strata\I18n;
 
 use Strata\Strata;
 
-class Locale {
+class Locale
+{
 
     protected $nativeLabel;
     protected $code;

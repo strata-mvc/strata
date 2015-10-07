@@ -6,7 +6,8 @@ use Strata\Model\ModelEntity;
 use Strata\Controller\Request;
 use Exception;
 
-class FormHelper extends Helper {
+class FormHelper extends Helper
+{
 
     private $request = null;
     protected $configuration = array();
@@ -151,12 +152,18 @@ class FormHelper extends Helper {
         unset($options['label']);
 
         switch (strtolower($options['type'])) {
-            case "textarea" :   return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
-            case "select" :     return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
-            case "radio" :      return $this->generateRadio($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
-            case "checkbox" :   return $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
-            case "hidden" :     return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
-            default :           return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
+        case "textarea" :   
+            return $label . "\n" . $this->generateTextarea($options, $currentValue) . $errorHtml . "\n";
+        case "select" :     
+            return $label . "\n" . $this->generateSelect($options, $currentValue) . $errorHtml . "\n";
+        case "radio" :      
+            return $this->generateRadio($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
+        case "checkbox" :   
+            return $this->generateCheckbox($options, $currentValue) . $errorHtml . "\n" . $label . "\n";
+        case "hidden" :     
+            return $label . "\n" . $this->generateHidden($options, $currentValue) . $errorHtml . "\n";
+        default :           
+            return $label . "\n" . $this->generateTextinput($options, $currentValue) . $errorHtml . "\n";
         }
     }
 
@@ -221,7 +228,7 @@ class FormHelper extends Helper {
 
     protected function generateRadio($options, $currentValue = null)
     {
-        return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked="checked"' : '' );
+        return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked="checked"' : '');
     }
 
     protected function generateCheckbox($options, $currentValue = null)
@@ -311,10 +318,10 @@ class FormHelper extends Helper {
         // Allow users to set their own nonce
         if (!is_null($this->configuration['nonce'])) {
             $nonceSalt = $this->request->generateNonceKey($this->configuration['nonce']);
-        // Use the entity if it is present
+            // Use the entity if it is present
         } elseif (!is_null($this->associatedEntity)) {
             $nonceSalt = $this->request->generateNonceKey($this->associatedEntity);
-        // Fallback to something custom for the Helper
+            // Fallback to something custom for the Helper
         } else {
             $nonceSalt = $this->request->generateNonceKey();
         }

@@ -8,7 +8,8 @@ use Exception;
 /**
  * Allows bridging between Strata and Wordpress for declaring shortcodes.
  */
-class ShortcodeLoader {
+class ShortcodeLoader
+{
 
     /**
      * A list of wordpress shortcode mapped in a array("shortcodename" => "functionname") way.

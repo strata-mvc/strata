@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class ValidatorGenerator extends ClassWriter {
+class ValidatorGenerator extends ClassWriter
+{
 
     /**
      * Creates a Validator class file

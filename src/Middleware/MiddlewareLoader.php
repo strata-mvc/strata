@@ -7,7 +7,8 @@ use Composer\Autoload\ClassLoader;
 /**
  * Allows bridging between Strata and its middlewares.
  */
-class MiddlewareLoader {
+class MiddlewareLoader
+{
 
     private $classLoader;
     private $middlewares = array();

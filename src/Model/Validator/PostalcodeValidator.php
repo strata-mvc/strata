@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Model\Validator;
 
-class PostalcodeValidator extends Validator {
+class PostalcodeValidator extends Validator
+{
 
     function __construct()
     {

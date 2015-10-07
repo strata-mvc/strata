@@ -164,7 +164,7 @@ class StrataCommand extends Command
      * execute() method, you set the code to execute by passing
      * a Closure to the setCode() method.
      *
-     * @param Symfony\Component\Console\Input\InputInterface  $input  An InputInterface instance
+     * @param Symfony\Component\Console\Input\InputInterface   $input  An InputInterface instance
      * @param Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
      *
      * @return null|int null or 0 if everything went fine, or an error code

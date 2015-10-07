@@ -18,10 +18,11 @@ use Exception;
 /**
  * Running Strata instance
  *
- * @package       Strata
- * @link          http://strata.francoisfaubert.com/docs/
+ * @package Strata
+ * @link    http://strata.francoisfaubert.com/docs/
  */
-class Strata extends StrataContext {
+class Strata extends StrataContext
+{
 
     use StrataConfigurableTrait;
 
@@ -213,7 +214,7 @@ class Strata extends StrataContext {
         $debug = self::getUtilityPath() . "Debug.php";
 
         if (file_exists($debug)) {
-            return include_once($debug);
+            return include_once $debug;
         }
     }
 

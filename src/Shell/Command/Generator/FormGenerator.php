@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class FormGenerator extends ClassWriter {
+class FormGenerator extends ClassWriter
+{
 
     /**
      * Creates a Model class file

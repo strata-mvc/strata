@@ -6,9 +6,10 @@ use Strata\Strata;
 /**
  * Logs strings
  *
- * @package       Strata.Logger
+ * @package Strata.Logger
  */
-class Logger {
+class Logger
+{
 
     public $logfile;
     public $color = "\e[0;36m";

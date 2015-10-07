@@ -31,7 +31,7 @@ class CustomPostType extends WordpressEntity
         return $labelParser;
     }
 
-   /**
+    /**
      * Registers the custom post type in Wordpress. A Custom post type
      * must trigger this during the 'init' state for it to be recognized
      * automatically by Wordpress.
@@ -110,7 +110,7 @@ class CustomPostType extends WordpressEntity
             'comment_status'    => false
         );
 
-        return wp_insert_post( $options );
+        return wp_insert_post($options);
     }
 
     public function update($options)

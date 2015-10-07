@@ -3,7 +3,8 @@ namespace Strata\Core;
 
 use Strata\Utility\Hash;
 
-trait StrataConfigurableTrait {
+trait StrataConfigurableTrait
+{
 
     protected $configuration = array();
     private $isConfigurableNormalized = false;

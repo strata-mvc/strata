@@ -10,7 +10,8 @@ use Exception;
 /**
  * Allows the automation of Helpers loading.
  */
-class HelperLoader {
+class HelperLoader
+{
     /**
      * A Strata Controller instance to which shortcodes callbacks will be forwarded
      * @var null

@@ -59,7 +59,7 @@ class EnvCommand extends StrataCommand
      * The source URL for stater app files
      *
      * @todo This needs to be a composer dependency.
-     * @var string
+     * @var  string
      */
     protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
 
@@ -102,10 +102,11 @@ class EnvCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('mode')) {
-            case "repair":
-                $this->repair();
-                break;
-            default : throw new InvalidArgumentException("That is not a valid command.");
+        case "repair":
+            $this->repair();
+            break;
+        default : 
+            throw new InvalidArgumentException("That is not a valid command.");
         }
 
         $this->shutdown();
@@ -184,7 +185,7 @@ class EnvCommand extends StrataCommand
         $label = $this->tree(true);
         $this->output->writeLn("Fetching PHPUnit");
 
-         if (!file_exists($file)) {
+        if (!file_exists($file)) {
             if (file_put_contents($file, fopen("https://phar.phpunit.de/phpunit.phar", 'r')) > 0) {
                 $this->output->writeLn($label . $this->ok($file));
             } else {
@@ -211,6 +212,7 @@ class EnvCommand extends StrataCommand
 
     /**
      * Presents a summary of the operation to the user.
+     *
      * @return
      */
     protected function installDone()

@@ -7,7 +7,8 @@ use Strata\Core\StrataConfigurableTrait;
 /**
  * A base class for ViewHelper objects
  */
-class Helper {
+class Helper
+{
 
     use StrataObjectTrait;
     use StrataConfigurableTrait;

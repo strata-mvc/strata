@@ -2,7 +2,8 @@
 
 namespace Strata\Model\Validator;
 
-class EmailValidator extends Validator {
+class EmailValidator extends Validator
+{
 
     function __construct()
     {

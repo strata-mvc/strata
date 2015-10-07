@@ -11,7 +11,8 @@ use Strata\Core\StrataObjectTrait;
 /**
  * Base controller class.
  */
-class Controller {
+class Controller
+{
 
     use StrataObjectTrait;
 
@@ -43,7 +44,7 @@ class Controller {
      * These hooks allow views to use Wordpress nicely, but still trigger
      * items in the current controller.
      *
-     * @var  array
+     * @var array
      */
     public $shortcodes = array();
 
@@ -53,9 +54,6 @@ class Controller {
      * @var array
      */
     public $helpers = array();
-
-    public function __construct()
-    {}
 
     /**
      * Initiate the controller.

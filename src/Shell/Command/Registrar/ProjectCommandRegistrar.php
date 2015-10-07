@@ -38,7 +38,7 @@ class ProjectCommandRegistrar
         try {
             $this->application->add(StrataCommand::factory($name));
         } catch(Exception $e) {
-           echo "Unable to autoload the '$name' command.";
+            echo "Unable to autoload the '$name' command.";
         }
     }
 

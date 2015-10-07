@@ -9,7 +9,8 @@ use Composer\Autoload\ClassLoader;
 /**
  * Contains all the static methods related to the Strata app object.
  */
-class StrataContext {
+class StrataContext
+{
 
     /**
      * Because the processing is called asynchronously using wordpress' hooks,
@@ -82,7 +83,7 @@ class StrataContext {
     {
         $configFile = self::getProjectConfigurationFilePath();
         if (file_exists($configFile)) {
-            $strata = include($configFile);
+            $strata = include $configFile;
             if (isset($strata) && count($strata)) {
                 return Hash::normalize($strata);
             }
@@ -102,13 +103,13 @@ class StrataContext {
 
     public static function requireVendorAutoload()
     {
-        return require Strata::getVendorPath() . 'autoload.php';
+        return include Strata::getVendorPath() . 'autoload.php';
     }
 
     public static function includeWordpressFixture()
     {
         $path = array(Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
-        $file =  include(implode(DIRECTORY_SEPARATOR, $path));
+        $file =  include implode(DIRECTORY_SEPARATOR, $path);
 
         // Wordpress registers callbacks in the global scope.
         // Remove them. We'll have to keep an eye on what needs to

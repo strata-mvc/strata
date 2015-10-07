@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Model\Validator;
 
-class PostexistValidator extends Validator {
+class PostexistValidator extends Validator
+{
 
     function __construct()
     {

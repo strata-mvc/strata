@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Model\Validator;
 
-class NumericValidator extends Validator {
+class NumericValidator extends Validator
+{
 
     function __construct()
     {

@@ -46,7 +46,7 @@ class Shell
     public static function run()
     {
         // Ensures environment variables are set.
-        require_once(Strata::getConfigurationPath() . 'application.php');
+        include_once Strata::getConfigurationPath() . 'application.php';
 
         $shell = self::getApplication();
         $shell->run();

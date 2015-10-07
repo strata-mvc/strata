@@ -26,7 +26,8 @@ class Query
     private $executionStart = 0;
 
     public function __construct()
-    {}
+    {
+    }
 
     public function fetch()
     {
@@ -134,8 +135,9 @@ class Query
     {
         $totalPages = $this->query()->max_num_pages;
         if ($totalPages > 1) {
-            return paginate_links(array(
-                'base' => add_query_arg('paged','%#%'),
+            return paginate_links(
+                array(
+                'base' => add_query_arg('paged', '%#%'),
                 'format' => '?paged=%#%',
                 'mid-size' => 1,
                 'current' => (get_query_var('paged')) ? get_query_var('paged') : 1,
@@ -143,7 +145,8 @@ class Query
                 'prev_next' => true,
                 'prev_text' => __('Previous', 'strata'),
                 'next_text' => __('Next', 'strata')
-            ));
+                )
+            );
         }
 
         return "";

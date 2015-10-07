@@ -4,7 +4,8 @@ namespace Strata\Shell\Command\Generator;
 use Strata\Strata;
 use Strata\Utility\Hash;
 
-class RouteGenerator extends GeneratorBase {
+class RouteGenerator extends GeneratorBase
+{
 
     private $type;
     private $url;

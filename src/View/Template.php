@@ -3,7 +3,8 @@ namespace Strata\View;
 
 use Strata\Strata;
 
-class Template {
+class Template
+{
 
     /**
      * Parses a template file and declares view variables in this scope for the
@@ -49,7 +50,7 @@ class Template {
         }
 
         extract($variables);
-        include($templateFilePath);
+        include $templateFilePath;
 
         if (Strata::isDev()) {
             if ($viewComments) {

@@ -7,7 +7,8 @@ use Strata\Model\CustomPostType\ModelEntity;
 /**
  * A base class for model objects
  */
-class Model {
+class Model
+{
 
     use StrataObjectTrait;
 

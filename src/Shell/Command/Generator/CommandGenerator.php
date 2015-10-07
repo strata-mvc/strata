@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class CommandGenerator extends ClassWriter {
+class CommandGenerator extends ClassWriter
+{
 
     /**
      * Creates a Command class file

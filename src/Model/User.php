@@ -8,13 +8,15 @@ use Exception;
 /**
  * Wraps User default objects.
  */
-class User extends Model {
+class User extends Model
+{
 
     use StrataObjectTrait;
     use QueriableEntityTrait;
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * Returns a label object that exposes singular and plural labels

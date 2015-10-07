@@ -13,7 +13,8 @@ class TaxonomyEntity extends WordpressEntity
     public $wpPrefix = "tax_";
 
     public function __construct()
-    {}
+    {
+    }
 
     public function getQueryAdapter()
     {

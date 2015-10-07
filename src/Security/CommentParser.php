@@ -6,9 +6,10 @@ use Strata\Strata;
 /**
  * Assigns callback to common WP functions that needs additional security
  *
- * @package       Strata.Security
+ * @package Strata.Security
  */
-class CommentParser {
+class CommentParser
+{
 
     public function register()
     {

@@ -37,7 +37,7 @@ class MiddlewareCommandRegistrar
                 $this->application->add(new $path());
             }
         } catch(Exception $e) {
-           echo "Unable to autoload the '$path' command.";
+            echo "Unable to autoload the '$path' command.";
         }
     }
 }

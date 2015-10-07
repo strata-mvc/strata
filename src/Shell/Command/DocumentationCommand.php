@@ -27,9 +27,11 @@ class DocumentationCommand extends StrataCommand
             ->setName('document')
             ->setDescription('Documents the current app')
             ->setDefinition(
-                new InputDefinition(array(
+                new InputDefinition(
+                    array(
                     new InputOption('destination', 'c', InputOption::VALUE_OPTIONAL),
-                ))
+                    )
+                )
             );
     }
 
@@ -198,10 +200,11 @@ class DocumentationCommand extends StrataCommand
             $content .= "<caption>This theme defines " . count($theme["templates"]) . " template files.</caption><tbody>";
 
             foreach ($theme["templates"] as $template) {
-                $content .= sprintf($htmlTpl,
-                        empty($template["Template Name"]) ? 'Name not specified' : $template["Template Name"],
-                        $template["filename"],
-                        empty($template["Description"]) ? 'Missing description.' : $template["Description"]
+                $content .= sprintf(
+                    $htmlTpl,
+                    empty($template["Template Name"]) ? 'Name not specified' : $template["Template Name"],
+                    $template["filename"],
+                    empty($template["Description"]) ? 'Missing description.' : $template["Description"]
                 );
             }
             $content .= "</tbody></table>";
@@ -209,10 +212,11 @@ class DocumentationCommand extends StrataCommand
             $content .= '<table class="summary" id="libs" style="width:45%; margin-left:2%; float:left;">';
             $content .= "<caption>This theme uses " . count($theme["libs"]) . " obvious library files.</caption><tbody>";
             foreach ($theme["libs"] as $lib) {
-                $content .= sprintf($htmlTpl,
-                        empty($lib["Name"]) ? 'Name not specified' : $lib["Name"],
-                        $lib["filename"],
-                        empty($lib["Description"]) ? 'Missing description.' : $lib["Description"]
+                $content .= sprintf(
+                    $htmlTpl,
+                    empty($lib["Name"]) ? 'Name not specified' : $lib["Name"],
+                    $lib["filename"],
+                    empty($lib["Description"]) ? 'Missing description.' : $lib["Description"]
                 );
             }
             $content .= "</tbody></table>";
@@ -302,16 +306,16 @@ class DocumentationCommand extends StrataCommand
     protected function _getFileData($file, $all_headers = array(), $context = '')
     {
         // We don't need to write to the file, so just open for reading.
-        $fp = fopen( $file, 'r' );
+        $fp = fopen($file, 'r');
 
         // Pull only the first 8kiB of the file in.
-        $file_data = fread( $fp, 8192 );
+        $file_data = fread($fp, 8192);
 
         // PHP will close file handle, but we are good citizens.
-        fclose( $fp );
+        fclose($fp);
 
         // Make sure we catch CR-only line endings.
-        $file_data = str_replace( "\r", "\n", $file_data );
+        $file_data = str_replace("\r", "\n", $file_data);
 
         /**
          * Filter extra file headers by context.
@@ -325,10 +329,12 @@ class DocumentationCommand extends StrataCommand
          */
 
         foreach ( $all_headers as $field => $regex ) {
-            if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, $match ) && $match[1] )
-                $all_headers[ $field ] = $match[1];
-            else
-                $all_headers[ $field ] = '';
+            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $file_data, $match) && $match[1] ) {
+                $all_headers[ $field ] = $match[1]; 
+            }
+            else {
+                $all_headers[ $field ] = ''; 
+            }
         }
 
         return $all_headers;
@@ -346,7 +352,9 @@ class DocumentationCommand extends StrataCommand
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (filetype($dir."/".$object) == "dir") $this->_rrmdir($dir."/".$object); else unlink($dir."/".$object);
+                    if (filetype($dir."/".$object) == "dir") { $this->_rrmdir($dir."/".$object); 
+                    } else { unlink($dir."/".$object); 
+                    }
                 }
             }
             reset($objects);

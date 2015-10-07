@@ -8,7 +8,8 @@ use Exception;
 /**
  * Wraps Post default objects.
  */
-class Post extends CustomPostType {
+class Post extends CustomPostType
+{
 
     public $wpPrefix = "";
 
@@ -21,7 +22,8 @@ class Post extends CustomPostType {
     public $permissionLevel = 'edit_posts';
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * Returns a label object that exposes singular and plural labels

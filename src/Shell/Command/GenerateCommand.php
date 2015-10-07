@@ -80,52 +80,53 @@ class {CLASSNAME} extends {EXTENDS} {
         $classname = Inflector::classify($options[0]);
 
         switch ($input->getArgument('type')) {
-            case "controller" :
-                $generator = new ControllerGenerator($this);
-                $generator->setClassName($classname."Controller");
-                break;
+        case "controller" :
+            $generator = new ControllerGenerator($this);
+            $generator->setClassName($classname."Controller");
+            break;
 
-            case "model" :
-                $generator = new ModelGenerator($this);
-                $generator->setClassName($classname);
-                break;
+        case "model" :
+            $generator = new ModelGenerator($this);
+            $generator->setClassName($classname);
+            break;
 
-            case "form" :
-                $generator = new FormGenerator($this);
-                $generator->setClassName($classname."Form");
-                break;
+        case "form" :
+            $generator = new FormGenerator($this);
+            $generator->setClassName($classname."Form");
+            break;
 
-            case "customposttype" :
-                $generator = new CustomPostTypeGenerator($this);
-                $generator->setClassName($classname);
-                break;
+        case "customposttype" :
+            $generator = new CustomPostTypeGenerator($this);
+            $generator->setClassName($classname);
+            break;
 
-            case "helper" :
-                $generator = new HelperGenerator($this);
-                $generator->setClassName($classname."Helper");
-                break;
+        case "helper" :
+            $generator = new HelperGenerator($this);
+            $generator->setClassName($classname."Helper");
+            break;
 
-            case "taxonomy" :
-                $generator = new TaxonomyGenerator($this);
-                $generator->setClassName($classname);
-                break;
+        case "taxonomy" :
+            $generator = new TaxonomyGenerator($this);
+            $generator->setClassName($classname);
+            break;
 
-            case "validator" :
-                $generator = new ValidatorGenerator($this);
-                $generator->setClassName($classname."Validator");
-                break;
+        case "validator" :
+            $generator = new ValidatorGenerator($this);
+            $generator->setClassName($classname."Validator");
+            break;
 
-            case "command" :
-                $generator = new CommandGenerator($this);
-                $generator->setClassName($classname."Command");
-                break;
+        case "command" :
+            $generator = new CommandGenerator($this);
+            $generator->setClassName($classname."Command");
+            break;
 
-            case "route" :
-                $generator = new RouteGenerator($this);
-                $generator->configure($options);
-                break;
+        case "route" :
+            $generator = new RouteGenerator($this);
+            $generator->configure($options);
+            break;
 
-            default : throw new InvalidArgumentException("That is not a valid command.");
+        default : 
+            throw new InvalidArgumentException("That is not a valid command.");
         }
 
         $generator->generate();

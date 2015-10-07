@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class CustomPostTypeGenerator extends ClassWriter {
+class CustomPostTypeGenerator extends ClassWriter
+{
 
     /**
      * Creates a Model class file

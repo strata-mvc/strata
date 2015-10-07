@@ -2,7 +2,8 @@
 
 namespace Strata\Model\Validator;
 
-class LengthValidator extends Validator {
+class LengthValidator extends Validator
+{
 
     protected $_config = array(
         "min" => null,

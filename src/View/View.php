@@ -13,7 +13,8 @@ use Strata\Router\Router;
  * This class is used when a controller is printing the view object itself, as it is often the
  * case for AJAX, file downloads and numeric returns.
  */
-class View {
+class View
+{
 
     /**
      * Rendering options, used when explicitly rendering a view from a controller.

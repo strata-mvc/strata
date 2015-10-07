@@ -7,7 +7,8 @@ use Strata\Utility\Hash;
  * Handles access to request data, whether from post, get or cookies. It encodes data accordingly and
  * does simple data integrity validation.
  */
-class Request {
+class Request
+{
 
     /**
      * A cache of the parsed Get values in the current request.

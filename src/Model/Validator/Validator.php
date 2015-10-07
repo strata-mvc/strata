@@ -8,7 +8,8 @@ use Exception;
 /**
  * A base class for Validator objects
  */
-class Validator {
+class Validator
+{
 
     /**
      * Generate an instanciate Validator object from a possible string name.
@@ -37,7 +38,7 @@ class Validator {
      * Generates a possible namespace and classname combination of a
      * Strata validator. Mainly used to avoid hardcoding the '\\Validator\\'
      * string everywhere.
-     * @param  string $name The class name of the validator
+     * @param  string  $name  The class name of the validator
      * @param  boolean $local Generated a path that is relative to the current project. Default to false.
      * @return string       A fulle namespaced controller name
      */
@@ -82,7 +83,7 @@ class Validator {
 
     /**
      * The actual test function.
-     * @param  mixed $value   [description]
+     * @param  mixed                          $value   [description]
      * @param  \Strata\View\Helper\FormHelper $context The form context upon which the tests are being done
      * @return boolean          True if the test passes
      */

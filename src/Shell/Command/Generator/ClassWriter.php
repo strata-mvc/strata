@@ -14,7 +14,8 @@ use Strata\Strata;
  *     <code>bin/strata generate customposttype Task</code>
  *     ...
  */
-class ClassWriter extends GeneratorBase {
+class ClassWriter extends GeneratorBase
+{
 
     protected $classname = "";
 
@@ -57,10 +58,10 @@ class {CLASSNAME} extends {EXTENDS} {
     /**
      * Generates and writes a file in the file system
      * @param  string  $destination The file's destination
-     * @param  string $namespace The class' namespace
-     * @param  string $classname The class name
-     * @param  string $extends   The extending class
-     * @param  boolean $last     Specifies if this is the last file in a queue
+     * @param  string  $namespace   The class' namespace
+     * @param  string  $classname   The class name
+     * @param  string  $extends     The extending class
+     * @param  boolean $last        Specifies if this is the last file in a queue
      * @return null
      */
     protected function _createFile($destination, $namespace, $classname, $extends, $last = false)

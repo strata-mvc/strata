@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Model\Validator;
 
-class BetweenValidator extends Validator {
+class BetweenValidator extends Validator
+{
 
     protected $_config = array(
         "min" => null,

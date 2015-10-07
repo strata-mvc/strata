@@ -1,7 +1,8 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class TaxonomyGenerator extends ClassWriter {
+class TaxonomyGenerator extends ClassWriter
+{
 
     /**
      * Creates a Taxonomy Model class file

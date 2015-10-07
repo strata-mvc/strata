@@ -186,7 +186,7 @@ class AltoRoute extends Route
         $this->controller->request = new Request();
         if (is_admin() && $this->controller->request->hasGet('page')) {
             return $this->controller->request->get('page');
-        // When no method is sent, guesstimate from the action post value (basic ajax)
+            // When no method is sent, guesstimate from the action post value (basic ajax)
         } elseif ($this->controller->request->hasPost('action')) {
             return $this->controller->request->post('action');
         }

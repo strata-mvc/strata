@@ -7,13 +7,14 @@ use Strata\Strata;
 use Exception;
 use ReflectionClass;
 
-trait StrataObjectTrait {
+trait StrataObjectTrait
+{
 
     /**
      * Instantiates an object of inheriting the current class or of the current class
      * that matches a particular string.
-     * @param  string $name The class name of the object
-     * @param  array $config Optional configuration array passed to the object constructor
+     * @param  string $name   The class name of the object
+     * @param  array  $config Optional configuration array passed to the object constructor
      * @return mixed An object of the current class
      * @throws Exception
      */
@@ -49,7 +50,7 @@ trait StrataObjectTrait {
      * Generates a possible namespace and classname combination of a
      * Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\'
      * string everywhere.
-     * @param  string $name The class name of the object
+     * @param  string  $name  The class name of the object
      * @param  boolean $local Generated a path that is relative to the current project. Default to false.
      * @return string       A fully namespaced name
      */

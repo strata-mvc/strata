@@ -4,7 +4,8 @@ namespace Strata\Model\Taxonomy;
 use Strata\Model\CustomPostType\Query;
 use Exception;
 
-class TaxonomyQuery extends Query {
+class TaxonomyQuery extends Query
+{
 
     protected $filters = array();
     protected $taxnomonies = array();
