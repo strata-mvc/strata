@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Strata\Controller\Loader;
+
+use Strata\Controller\Controller;
+use Exception;
+
+/**
+ * Allows bridging between Strata and Wordpress for declaring shortcodes.
+ */
+class ShortcodeLoader {
+
+    /**
+     * A list of wordpress shortcode mapped in a array(&quot;shortcodename&quot; =&gt; &quot;functionname&quot;) way.
+     * @var  array
+     */
+    private $shortcodes = array();
+
+    /**
+     * A Strata Controller instance to which shortcodes callbacks will be forwarded
+     * @var null
+     */
+    private $controller = null;
+
+    public function __construct(Controller $controller)
+    {
+        if (is_null($controller)) {
+            throw new Exception(&quot;No controller has been defined for shortcode callback.&quot;);
+        }
+
+        $this-&gt;controller = $controller;
+        $this-&gt;shortcodes = $controller-&gt;shortcodes;
+    }
+
+    /**
+     * Specifies if a number of shortcodes have been defined.
+     * @return boolean True if some are defined.
+     */
+    public function hasShortcodes()
+    {
+        return count($this-&gt;shortcodes) &gt; 0;
+    }
+
+    /**
+     * Registers dynamic shortcodes hooks to the instantiated controller.
+     * Note that these are not available when this instance of the controller
+     * is not being loaded.
+     * @return  null
+     */
+    public function register()
+    {
+        if ($this-&gt;hasShortcodes()) {
+            foreach ($this-&gt;shortcodes as $shortcode =&gt; $methodName) {
+                if(method_exists($this-&gt;controller, $methodName)) {
+                    add_shortcode($shortcode, array($this-&gt;controller, $methodName));
+                }
+            }
+        }
+    }
+
+    /**
+     * Unregisters the list of shortcodes in Wordpress.
+     * @return null
+     */
+    public function unregister()
+    {
+        if ($this-&gt;hasShortcodes()) {
+            foreach ($this-&gt;shortcodes as $shortcode =&gt; $methodName) {
+                remove_shortcode($shortcode);
+            }
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

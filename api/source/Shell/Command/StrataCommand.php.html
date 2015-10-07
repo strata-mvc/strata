@@ -1,0 +1,223 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Shell\Command;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Exception;
+
+use Strata\Strata;
+
+/**
+ * Base class for Shell Command reflection.
+ * This class contains a basic toolset to perform repetitive visual outputs.
+ * It is also the interface between Strata and Symfony's codebase.
+ */
+class StrataCommand extends Command
+{
+    /**
+     *
+     * @param  string $name The class name of the controller
+     * @return mixed       A controller
+     */
+    public static function factory($name)
+    {
+        $classpath = self::generateClassPath($name);
+        if (class_exists($classpath)) {
+            return new $classpath();
+        }
+
+        throw new Exception(&quot;Strata : No file matched the command '$classpath'.&quot;);
+    }
+
+    /**
+     * Generates a possible namespace and classname combination of a
+     * Strata controller. Mainly used to avoid hardcoding the '\\Shell\\Command\\'
+     * string everywhere.
+     * @param  string $name The class name of the controller
+     * @return string       A fulle namespaced controller name
+     */
+    public static function generateClassPath($name)
+    {
+        return Strata::getNamespace() . &quot;\\Shell\\Command\\&quot; . ucfirst($name);
+    }
+
+    /**
+     * A tree representation prefix.
+     *
+     * @var string
+     */
+    protected $_tree_line = &quot;  ├── &quot;;
+
+    /**
+     * The bottom part of a tree representation prefix.
+     *
+     * @var string
+     */
+    protected $_tree_end = &quot;  └── &quot;;
+
+    /**
+     * A reference to the current input interface object
+     *
+     * @var Symfony\Component\Console\Input\InputInterface
+     */
+    public $input = null;
+
+    /**
+     * A reference to the current output interface object
+     *
+     * @var Symfony\Component\Console\Output\OutputInterface
+     */
+    public $output = null;
+
+    /**
+     * Creates a visual representation of a tree branch. This is useful when
+     * generating a list of files.
+     * @param  boolean $isEnd Specifies if we are at the end of a list
+     * @return string         The correct characters based on the &lt;code&gt;$isEnd&lt;/code&gt; context.
+     */
+    public function tree($isEnd = false)
+    {
+        return $isEnd ? $this-&gt;_tree_end : $this-&gt;_tree_line;
+    }
+
+    /**
+     * Creates a visual representation of an OK status. This is useful when performing
+     * an action that can fail or be skipped.
+     * @param  string $msg The optional message associated to the status.
+     * @return string      A colored string
+     */
+    public function ok($msg = &quot;&quot;)
+    {
+        return &quot;&lt;info&gt;[ OK ]&lt;/info&gt; &quot; . $msg;
+    }
+
+    /**
+     * Creates a visual representation of a skipped status. This is useful when performing
+     * an action that can fail or succeed.
+     * @param  string $msg The optional message associated to the status.
+     * @return string      A colored string
+     */
+    public function skip($msg = &quot;&quot;)
+    {
+        return &quot;&lt;fg=cyan&gt;[SKIP]&lt;/fg=cyan&gt; &quot; . $msg;
+    }
+
+    /**
+     * Creates a visual representation of a failed status. This is useful when performing
+     * an action that can be skipped or succeed.
+     * @param  string $msg The optional message associated to the status.
+     * @return string      A colored string
+     */
+    public function fail($msg = &quot;&quot;)
+    {
+        return &quot;&lt;error&gt;[FAIL]&lt;/error&gt; &quot; . $msg;
+    }
+
+    /**
+     * Return a new line.
+     * @return string      An empty line break.
+     */
+    public function nl()
+    {
+        return $this-&gt;output-&gt;writeLn('');
+    }
+
+    /**
+     * The startup function should be called each time a command is being executed. It
+     * saves the Input and Output interfaces to allow the command to use it further down
+     * the process.
+     * @param  InputInterface  $input  The current input interface
+     * @param  OutputInterface $output The current output interface
+     * @return null
+     */
+    public function startup(InputInterface $input, OutputInterface $output)
+    {
+        $this-&gt;input = $input;
+        $this-&gt;output = $output;
+    }
+
+    /**
+     * The shutdown function should be called each time a command has completed execution.
+     * @return null
+     */
+    public function shutdown()
+    {
+
+    }
+
+    /**
+     * Configures the current command.
+     */
+    protected function configure()
+    {
+        return parent::configure();
+    }
+
+    /**
+     * Executes the current command.
+     *
+     * This method is not abstract because you can use this class
+     * as a concrete class. In this case, instead of defining the
+     * execute() method, you set the code to execute by passing
+     * a Closure to the setCode() method.
+     *
+     * @param Symfony\Component\Console\Input\InputInterface  $input  An InputInterface instance
+     * @param Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
+     *
+     * @return null|int null or 0 if everything went fine, or an error code
+     *
+     * @throws \LogicException When this abstract method is not implemented
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        return parent::execute($input, $output);
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

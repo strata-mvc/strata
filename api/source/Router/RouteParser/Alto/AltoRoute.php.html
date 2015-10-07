@@ -1,0 +1,288 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Router\RouteParser\Alto;
+
+use AltoRouter;
+use Strata\Router\RouteParser\Route;
+
+use Strata\Controller\Controller;
+use Strata\Controller\Request;
+use Strata\Model\CustomPostType\CustomPostType;
+
+use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
+
+use Exception;
+
+class AltoRoute extends Route
+{
+    /**
+     * Altorouter is the library that does the heavy lifting for us.
+     * @var AltoRouter
+     */
+    private $altoRouter = null;
+
+    const DYNAMIC_PARSE = &quot;__strata_dynamic_parse__&quot;;
+
+    public function __construct()
+    {
+        $this-&gt;altoRouter = new AltoRouter();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addPossibilities(array $routes)
+    {
+        foreach ($routes as $route) {
+            $this-&gt;addRouteConfig($route);
+        }
+    }
+
+    public function addResource(CustomPostType $customPostType)
+    {
+        $slug = $customPostType-&gt;hasConfig(&quot;rewrite.slug&quot;)
+            ? $customPostType-&gt;getConfig(&quot;rewrite.slug&quot;)
+            : $customPostType-&gt;getWordpressKey();
+
+        $controller = Controller::generateClassName($customPostType-&gt;getShortName());
+
+        $this-&gt;addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', &quot;/$slug/?&quot;, &quot;$controller#index&quot;));
+        $this-&gt;addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', &quot;/$slug/[.*]/?&quot;, &quot;$controller#show&quot;));
+    }
+
+    public function start()
+    {
+        $this-&gt;logRouteStart();
+    }
+
+    public function end()
+    {
+        $this-&gt;assignViewVars();
+        $this-&gt;logRouteCompletion();
+    }
+
+    /**
+     * This function is required to send variables in Wordpress' scope.
+     * Unlike the templating using Controller#view-&gt;render() which allow
+     * passing variables, Wordpress's load_template extracts variables in
+     * $wp_query only.
+     */
+    protected function assignViewVars()
+    {
+        global $wp_query;
+
+        if (!is_null($this-&gt;controller) &amp;&amp; !is_null($this-&gt;controller-&gt;view)) {
+            foreach ($this-&gt;controller-&gt;view-&gt;getVariables() as $key =&gt; $value) {
+                if (array_key_exists($key, $wp_query-&gt;query_vars)) {
+                    error_log(sprintf(&quot;[STRATA] : Wordpress has already reserved the view variable %s.&quot;, $key));
+                } else {
+                    $wp_query-&gt;set($key, $value);
+
+                    // I don't think the following is actually necessary.
+                    $GLOBALS[$key] = $value;
+                }
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function process($url = null)
+    {
+        $match = $this-&gt;altoRouter-&gt;match($url);
+
+        if (!is_array($match)) {
+            return;
+        }
+
+        $this-&gt;handleRouterAnswer($match);
+    }
+
+    private function addRouteConfig($route)
+    {
+        if (!is_array($route)) {
+            throw new Exception(&quot;Strata configuration file contains an invalid route.&quot;);
+        }
+
+        if ($this-&gt;isDynamic($route)) {
+            $this-&gt;addDynamicRoute($route);
+        } else {
+            $this-&gt;addMatchedRoute($route);
+        }
+    }
+
+    private function isDynamic($route)
+    {
+        return count($route) &lt; 3;
+    }
+
+    private function addDynamicRoute($route)
+    {
+        $this-&gt;addMatchedRoute(array($route[0], $route[1], self::DYNAMIC_PARSE));
+    }
+
+    private function addMatchedRoute($route)
+    {
+        $route = $this-&gt;patchBuiltInServerPrefix($route);
+        $this-&gt;altoRouter-&gt;map($route[0], $route[1], $route[2]);
+    }
+
+    private function handleRouterAnswer($match)
+    {
+        if ($match[&quot;target&quot;] === self::DYNAMIC_PARSE) {
+            $this-&gt;handleDynamicRouterAnswer($match);
+        } else {
+            $this-&gt;handleMatchedRouterAnswer($match);
+        }
+
+        if (!method_exists($this-&gt;controller, $this-&gt;action)) {
+            $this-&gt;action = &quot;noActionMatch&quot;;
+        }
+    }
+
+    private function handleDynamicRouterAnswer($match)
+    {
+        $this-&gt;controller   = $this-&gt;getControllerFromDynamicMatch($match);
+        $this-&gt;action       = $this-&gt;getActionFromDynamicMatch($match);
+        $this-&gt;arguments    = $this-&gt;getArgumentsFromDynamicMatch($match);
+    }
+
+    private function handleMatchedRouterAnswer($match)
+    {
+        $this-&gt;controller   = $this-&gt;getControllerFromMatch($match);
+        $this-&gt;action       = $this-&gt;getActionFromMatch($match);
+        $this-&gt;arguments    = $this-&gt;getArgumentsFromMatch($match);
+    }
+
+    private function getControllerFromMatch($match = array())
+    {
+        $target = explode(&quot;#&quot;, $match[&quot;target&quot;]);
+        return Controller::factory($target[0]);
+    }
+
+    private function getControllerFromDynamicMatch($match = array())
+    {
+        try {
+            if (array_key_exists(&quot;controller&quot;, $match[&quot;params&quot;])) {
+                return Controller::factory($match[&quot;params&quot;][&quot;controller&quot;]);
+            }
+        } catch (Exception $e) {
+            // The controller did not exist, we don't care at this point.
+            // We'll just ignore the route.
+        }
+
+        return Controller::factory(&quot;App&quot;);
+    }
+
+    private function getActionFromMatch($match = array())
+    {
+        $target = explode(&quot;#&quot;, $match[&quot;target&quot;]);
+
+        if (count($target) &gt; 1) {
+            return $target[1];
+        }
+
+        $this-&gt;controller-&gt;request = new Request();
+        if (is_admin() &amp;&amp; $this-&gt;controller-&gt;request-&gt;hasGet('page')) {
+            return $this-&gt;controller-&gt;request-&gt;get('page');
+        // When no method is sent, guesstimate from the action post value (basic ajax)
+        } elseif ($this-&gt;controller-&gt;request-&gt;hasPost('action')) {
+            return $this-&gt;controller-&gt;request-&gt;post('action');
+        }
+    }
+
+    private function getActionFromDynamicMatch($match)
+    {
+        if (array_key_exists(&quot;action&quot;, $match[&quot;params&quot;])) {
+            $action = $match[&quot;params&quot;][&quot;action&quot;];
+            $action = str_replace(&quot;-&quot;, &quot;_&quot;, $action);
+            return lcfirst(Inflector::camelize($action));
+        }
+
+        if (array_key_exists(&quot;controller&quot;, $match[&quot;params&quot;]) &amp;&amp; !array_key_exists(&quot;action&quot;, $match[&quot;params&quot;])) {
+            return &quot;index&quot;;
+        }
+
+        return &quot;noActionMatch&quot;;
+    }
+
+    private function getArgumentsFromMatch($match = array())
+    {
+        if (is_array($match['params']) &amp;&amp; count($match['params'])) {
+            $params = $match['params'];
+            return is_array($params) ? $params : array($params);
+        }
+
+        return array();
+    }
+
+    private function getArgumentsFromDynamicMatch($match = array())
+    {
+        if (array_key_exists(&quot;params&quot;, $match[&quot;params&quot;])) {
+            $params = $match[&quot;params&quot;][&quot;params&quot;];
+            return is_array($params) ? $params : array($params);
+        }
+
+        return array();
+    }
+
+    /**
+     * Built in server will generate links with index.php because
+     * it doesn't have access to mod_rewrite. This function appends
+     * index to the route sent in.
+     */
+    private function patchBuiltInServerPrefix($route)
+    {
+        if (!preg_match(&quot;/^\/index.php/i&quot;, $route[1])) {
+            $route[1] = &quot;(/index.php)?&quot; . $route[1];
+        }
+
+        return $route;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

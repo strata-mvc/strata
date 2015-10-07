@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Shell\Command\Registrar;
+
+use Strata\Strata;
+use Strata\Shell\Command\StrataCommand;
+
+class ProjectCommandRegistrar
+{
+    private $application = null;
+    private $validProjectCommands = array();
+
+    function __construct(\Symfony\Component\Console\Application $application)
+    {
+        $this-&gt;application = $application;
+    }
+
+    public function assign()
+    {
+        $cmdPath = Strata::getCommandPath();
+        if (is_dir($cmdPath)) {
+            $this-&gt;parseDirectoryForCommandFiles($cmdPath);
+        }
+
+        return $this-&gt;validProjectCommands;
+    }
+
+    private function parseDirectoryForCommandFiles($path)
+    {
+        foreach (glob($path . &quot;*Command.php&quot;) as $filename) {
+            if (preg_match(&quot;/(\w+?Command).php$/&quot;, $filename, $matches)) {
+                $this-&gt;attemptRegistration($matches[1]);
+            }
+        }
+    }
+
+    private function attemptRegistration($name)
+    {
+        try {
+            $this-&gt;application-&gt;add(StrataCommand::factory($name));
+        } catch(Exception $e) {
+           echo &quot;Unable to autoload the '$name' command.&quot;;
+        }
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

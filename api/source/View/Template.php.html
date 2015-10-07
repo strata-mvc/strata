@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\View;
+
+use Strata\Strata;
+
+class Template {
+
+    /**
+     * Parses a template file and declares view variables in this scope for the
+     * template to have access to them. Loads localized templates based on the current
+     * active locale.
+     * @param string The name of the template to load
+     * @param array an associative array of values to assign in the template
+     * @param string The file extension of the template to be loaded
+     * @return  string The parsed html.
+     */
+    public static function parse($name, $variables = array(), $extension = '.php', $viewComments = true)
+    {
+        $app = Strata::app();
+        $templateFilePrefix = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name));// . $extension));
+
+        if ($app-&gt;i18n-&gt;hasActiveLocales()) {
+            $localizedFilename = $templateFilePrefix . &quot;.&quot; . $app-&gt;i18n-&gt;getCurrentLocaleCode() . $extension;
+            if (file_exists($localizedFilename)) {
+                return Template::parseFile($localizedFilename, $variables);
+            }
+        }
+
+        return Template::parseFile($templateFilePrefix . $extension, $variables, $viewComments);
+    }
+
+    public static function parseFile($templateFilePath, $variables = array(), $viewComments = true)
+    {
+        ob_start();
+
+        // Print debug info in the the logs
+        if (Strata::isDev()) {
+            $app = Strata::app();
+            $startedAt = microtime(true);
+
+            // Print in the html as a comment
+            $partialFilePath = defined('ABSPATH') ?
+                str_replace(dirname(dirname(ABSPATH)), &quot;&quot;, $templateFilePath) :
+                $templateFilePath;
+
+            if ($viewComments) {
+                echo &quot;\n&lt;!-- [Strata::Template:Begin] --&gt;\n&lt;!--\n     Source    : .$partialFilePath \n     Variables : &quot;.implode(&quot;, &quot;, array_keys($variables)).&quot;\n --&gt;\n&quot;;
+            }
+        }
+
+        extract($variables);
+        include($templateFilePath);
+
+        if (Strata::isDev()) {
+            if ($viewComments) {
+                echo &quot;\n&lt;!-- [Strata::Template:End] --&gt;&quot;;
+            }
+
+            $executionTime = microtime(true) - $startedAt;
+            $timer = sprintf(&quot; (Done in %s seconds)&quot;, round($executionTime, 4));
+            $app-&gt;log($partialFilePath . $timer, &quot;[Strata:Template]&quot;);
+        }
+
+        return ob_get_clean();
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

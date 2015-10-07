@@ -1,0 +1,242 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Model\CustomPostType;
+
+use Strata\Model\CustomPostType\Query;
+use Exception;
+
+trait QueriableEntityTrait
+{
+    /**
+     * Returns an instantiated object to access the repository.
+     * @return QueriableEntity
+     */
+    public static function repo()
+    {
+        $ref = self::staticFactory();
+        return $ref-&gt;query();
+    }
+
+    protected $activeQuery = null;
+
+    /**
+     * Return an object inheriting from Query on which requests
+     * will be ran. Inheriting classes can modify this to suit their needs.
+     * @return Strata\Model\CustomPostType\Query
+     */
+    public function getQueryAdapter()
+    {
+        return new Query();
+    }
+
+    public function resetCurrentQuery()
+    {
+        $this-&gt;activeQuery = null;
+    }
+
+    private function reloadQueryAdapter()
+    {
+        if (is_null($this-&gt;activeQuery)) {
+            $this-&gt;activeQuery = $this-&gt;getQueryAdapter();
+            $this-&gt;activeQuery-&gt;type($this-&gt;getWordpressKey());
+        }
+
+        return $this-&gt;activeQuery;
+    }
+
+    /**
+     * Starts a wrapped wp_query pattern object. Used to chain parameters
+     * It resets the query.
+     * @return (Query) $query;
+     */
+    public function query()
+    {
+        $this-&gt;resetCurrentQuery();
+        $this-&gt;reloadQueryAdapter();
+        return $this;
+    }
+
+    public function date($dateQuery)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;date($dateQuery);
+        return $this;
+    }
+
+    public function orderby($orderBy)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;orderby($orderBy);
+        return $this;
+    }
+
+    public function direction($order)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;direction($order);
+        return $this;
+    }
+
+    public function status($status = null)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;status($status);
+        return $this;
+    }
+
+    public function where($field, $value)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;where($field, $value);
+        return $this;
+    }
+
+    public function orWhere($field, $value)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;orWhere($field, $value);
+        return $this;
+    }
+
+    public function limit($qty)
+    {
+        $this-&gt;reloadQueryAdapter();
+        $this-&gt;activeQuery-&gt;limit($qty);
+        return $this;
+    }
+
+    public function count()
+    {
+        $this-&gt;throwIfContextInvalid();
+
+        $this-&gt;reloadQueryAdapter();
+        $results = $this-&gt;activeQuery-&gt;fetch();
+
+        $this-&gt;resetCurrentQuery();
+
+        return count($results);
+    }
+
+    /**
+     * Executes the query and resets it anew.
+     * @return array posts
+     */
+    public function fetch()
+    {
+        $this-&gt;throwIfContextInvalid();
+
+        $this-&gt;reloadQueryAdapter();
+        $results = $this-&gt;activeQuery-&gt;fetch();
+
+        $this-&gt;resetCurrentQuery();
+
+        return $this-&gt;wrapInEntities($results);
+    }
+
+    /**
+     * Executes the query and resets it anew.
+     * @return hash of key =&gt; label values
+     */
+    public function listing($key, $label)
+    {
+        $this-&gt;throwIfContextInvalid();
+
+        $this-&gt;reloadQueryAdapter();
+        $results = $this-&gt;activeQuery-&gt;listing($key, $label);
+
+        $this-&gt;resetCurrentQuery();
+
+        return $results;
+    }
+
+    public function first()
+    {
+        $result = $this-&gt;fetch();
+        return array_shift($result);
+    }
+
+    private function throwIfContextInvalid()
+    {
+        if (is_null($this-&gt;activeQuery)) {
+            throw new Exception(&quot;No active query to fetch.&quot;);
+        }
+    }
+
+    public function findAll()
+    {
+        return $this-&gt;query()-&gt;fetch();
+    }
+
+    public function findById($id)
+    {
+        $post = get_post($id);
+        if (!is_null($post)) {
+            return self::getEntity($post);
+        }
+    }
+
+    public function countTotal()
+    {
+        return wp_count_posts($this-&gt;getWordpressKey());
+    }
+
+    public function paginate()
+    {
+        $this-&gt;reloadQueryAdapter();
+        return $this-&gt;activeQuery-&gt;paginate();
+    }
+
+    protected function wrapInEntities(array $entities)
+    {
+        $results = array();
+        foreach ($entities as $entity) {
+            $results[] = self::getEntity($entity);
+        }
+
+        return $results;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

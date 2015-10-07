@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Strata\Middleware;
+
+use Composer\Autoload\ClassLoader;
+
+/**
+ * Allows bridging between Strata and its middlewares.
+ */
+class MiddlewareLoader {
+
+    private $classLoader;
+    private $middlewares = array();
+
+    public function __construct(ClassLoader $loader)
+    {
+        if (is_null($loader)) {
+            throw new Exception(&quot;MiddlewareLoader requires Composer's ClassLoader object.&quot;);
+        }
+
+        $this-&gt;classLoader = $loader;
+        $this-&gt;findAvailableMiddlewares();
+    }
+
+    /**
+     * Specifies if a number of middlewares have been defined.
+     * @return boolean True if some are defined.
+     */
+    public function hasMiddlewares()
+    {
+        return count($this-&gt;middlewares) &gt; 0;
+    }
+
+    public function initialize()
+    {
+        if ($this-&gt;hasMiddlewares()) {
+            foreach ($this-&gt;middlewares as $middleware) {
+                $middleware-&gt;initialize();
+            }
+        }
+    }
+
+    public function getMiddlewares()
+    {
+        return $this-&gt;middlewares;
+    }
+
+    private function findAvailableMiddlewares()
+    {
+        foreach($this-&gt;classLoader-&gt;getPrefixesPsr4() as $prefix =&gt; $path) {
+            if (preg_match(&quot;/^Strata\\\\Middleware\\\\(.+?)\\\\$/&quot;, $prefix)) {
+                $className = $prefix . &quot;Initializer&quot;;
+                if (class_exists($className)) {
+                    $this-&gt;middlewares[] = new $className();
+                }
+            }
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

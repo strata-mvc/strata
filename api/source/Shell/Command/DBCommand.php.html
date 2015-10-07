@@ -1,0 +1,205 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Shell\Command;
+
+use Strata\Strata;
+use Strata\Shell\Command\StrataCommand;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Automates Strata's database manipulation operations.
+ *
+ * Intended use include:
+ *     &lt;code&gt;bin/strata db migrate&lt;/code&gt;
+ *     &lt;code&gt;bin/strata db import&lt;/code&gt;
+ *     &lt;code&gt;bin/strata db dump&lt;/code&gt;
+ */
+class DBCommand extends StrataCommand
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected function configure()
+    {
+        $this
+            -&gt;setName('db')
+            -&gt;setDescription('Executes SQL migrations.')
+            -&gt;setDefinition(
+                new InputDefinition(array(
+                    new InputOption('filename', 'f', InputOption::VALUE_OPTIONAL),
+                ))
+            )
+            -&gt;addArgument(
+                'type',
+                InputArgument::REQUIRED,
+                'One of the following: migrate, import or dump.'
+            )
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this-&gt;startup($input, $output);
+
+        switch ($input-&gt;getArgument('type')) {
+            case &quot;create&quot; :
+                $this-&gt;_createDB();
+                break;
+
+            case &quot;migrate&quot; :
+                $this-&gt;_importSqlFile( $this-&gt;_getSqlFile() );
+                break;
+
+            case &quot;import&quot; :
+                $output-&gt;writeLn(&quot;Importing from an environment is not yet available.&quot;);
+                break;
+
+            case &quot;export&quot; :
+                $this-&gt;_dumpCurrentDB();
+                break;
+        }
+
+        $this-&gt;nl();
+
+        $this-&gt;shutdown();
+    }
+
+    protected function _createDB()
+    {
+        $this-&gt;output-&gt;writeLn(&quot;Generating MySQL database based on the environment's configuration.&quot;);
+        $command = sprintf(&quot;%s db create&quot;, $this-&gt;getWpCliPath());
+        system($command);
+    }
+
+    protected function getWpCliPath()
+    {
+        $filename = sprintf(&quot;vendor/bin/wp&quot;, Strata::getBinPath());
+
+        if (!is_executable($filename)) {
+            if (!chmod($filename, 755)) {
+                $this-&gt;output-&gt;writeLn(sprintf(&quot;Could not grant execute permissions to %s. Command will fail.&quot;, $filename));
+            }
+        }
+
+        return $filename;
+    }
+
+
+    /**
+     * Dumps the current environment's database to an .sql file in /db/
+     * @todo Ensure this works in and outside of Vagrant.
+     */
+    protected function _dumpCurrentDB()
+    {
+        date_default_timezone_set(&quot;Etc/UTC&quot;);
+        $relativeFilename = sprintf(&quot;export_%s_%s.sql&quot;, date('m-d-Y'), time());
+        $command = sprintf(&quot;%s db export %s%s --add-drop-table&quot;, $this-&gt;getWpCliPath(), Strata::getDbPath(), $relativeFilename);
+        $this-&gt;output-&gt;writeLn(&quot;Generating MySQL export dump to ./$relativeFilename&quot;);
+        system($command);
+    }
+
+    /**
+     * Imports an .sql file to the current environment's database.
+     * @todo Ensure this works in an outside of Vagrant.
+     */
+    protected function _importSqlFile($file)
+    {
+        if (!is_null($file)) {
+            $this-&gt;output-&gt;writeLn(&quot;Applying migration for &lt;info&gt;$file&lt;/info&gt;&quot;);
+            $command = sprintf(&quot;%s db import %s&quot;, $this-&gt;getWpCliPath(), $file);
+            system($command);
+            return;
+        }
+
+        $this-&gt;output-&gt;writeLn(&quot;&lt;error&gt;We could not find a valid SQL file.&lt;/error&gt;&quot;);
+    }
+
+    /**
+     * Gets the working .sql file either from an option passed to the command or
+     * by returning the most recent sql file in /db/.
+     * @return string Filepath
+     */
+    protected function _getSqlFile()
+    {
+        if (!is_null($this-&gt;input-&gt;getOption('filename'))) {
+            return $this-&gt;input-&gt;getOption('filename');
+        }
+
+        $this-&gt;output-&gt;writeLn('No file passed as migration. Loading most recent .sql file in &lt;info&gt;./db/&lt;/info&gt;');
+        return $this-&gt;_getMostRecent(Strata::getDbPath());
+    }
+
+    /**
+     * Returns the most recent file in $path.
+     * @param  string $path Where to look
+     * @return string       Most recent file
+     */
+    protected function _getMostRecent($path)
+    {
+        $latestFilename = null;
+        $latestCtime = 0;
+
+        $d = dir($path);
+        while (false !== ($entry = $d-&gt;read())) {
+          $filepath = &quot;{$path}/{$entry}&quot;;
+          // could do also other checks than just checking whether the entry is a file
+          if (is_file($filepath) &amp;&amp; filectime($filepath) &gt; $latestCtime) {
+            $latestFilename = $entry;
+          }
+        }
+        return $path . $latestFilename;
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

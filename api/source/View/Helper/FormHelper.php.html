@@ -1,0 +1,369 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace Strata\View\Helper;
+
+use Strata\Model\ModelEntity;
+use Strata\Controller\Request;
+use Exception;
+
+class FormHelper extends Helper {
+
+    private $request = null;
+    protected $configuration = array();
+    protected $associatedEntity = null;
+    public $validationErrors = null;
+
+    public $keys = array(
+        'POST_KEY_SUBMIT'       =&gt; &quot;strata-submit&quot;,
+        'POST_WRAP'             =&gt; &quot;data&quot;
+    );
+
+    public function create($mixed = null, $options = array())
+    {
+        $this-&gt;request = new Request();
+
+        if (!is_null($mixed) &amp;&amp; !in_array('Strata\\Model\\CustomPostType\\ModelEntity', class_parents($mixed))) {
+            throw new Exception(&quot;A form can only be linked to either an object inheriting ModelEntity or nothing at all.&quot;);
+        }
+
+        if (is_object($mixed)) {
+            $this-&gt;associatedEntity = $mixed;
+        }
+
+        $this-&gt;configuration = $this-&gt;parseFormConfiguration($options);
+
+        $formAttributes = $this-&gt;configuration;
+        unset($formAttributes['hasSteps']);
+        unset($formAttributes['type']);
+        unset($formAttributes['nonce']);
+
+        if (!is_null($this-&gt;associatedEntity) &amp;&amp; $this-&gt;associatedEntity-&gt;hasValidationErrors()) {
+            $this-&gt;validationErrors = $this-&gt;associatedEntity-&gt;getValidationErrors();
+
+            if (array_key_exists('class', $formAttributes)) {
+                $formAttributes['class'] .= &quot; has-errors &quot;;
+            } else {
+                $formAttributes['class'] = &quot;has-errors&quot;;
+            }
+        }
+
+        $htmlAttributes = $this-&gt;arrayToHtmlAttributes($formAttributes);
+        return sprintf(&quot;&lt;form %s&gt;\n%s&quot;, $htmlAttributes, $this-&gt;generateNonce());
+    }
+
+    public function end()
+    {
+        return &quot;&lt;/form&gt;&quot;;
+    }
+
+    public function honeypot($name)
+    {
+        $input = $this-&gt;input($name, array(&quot;name&quot; =&gt; $name));
+        $wrapperStyles = array(
+            &quot;height: 1px&quot;,
+            &quot;overflow: hidden&quot;,
+            &quot;padding:1px 0 0 1px&quot;,
+            &quot;position: absolute&quot;,
+            &quot;width: 1px&quot;,
+            &quot;z-index: -1&quot;
+        );
+
+        return sprintf('&lt;div class=&quot;validation&quot; style=&quot;%s&quot;&gt;%s&lt;/div&gt;', implode(&quot;; &quot;, $wrapperStyles), $input);
+    }
+
+    public function id($name)
+    {
+        $keepIdx = preg_replace('/\[(\d+)\]/', &quot;_$1&quot;, $name);
+        $unbracketted = $this-&gt;removeBrackets($keepIdx, '_');
+        $nothingWeird = preg_replace('/[^\w\d\_]+?/', &quot;&quot;, $unbracketted);
+        $noTrail = preg_replace('/_$/', &quot;&quot;, $nothingWeird);
+
+        $clean = $noTrail;
+
+        if (!is_null($this-&gt;associatedEntity) &amp;&amp; $this-&gt;associatedEntity-&gt;isSupportedAttribute($name)) {
+            $clean = $this-&gt;associatedEntity-&gt;getInputName() . &quot;_&quot; . $clean;
+        }
+
+        return $this-&gt;keys['POST_WRAP'] . &quot;_&quot; . $clean;
+    }
+
+    public function name($name)
+    {
+        $prefix = !is_null($this-&gt;associatedEntity) &amp;&amp; $this-&gt;associatedEntity-&gt;isSupportedAttribute($name) ?
+            $this-&gt;keys['POST_WRAP'] . '[' . $this-&gt;associatedEntity-&gt;getInputName() . ']' :
+            $this-&gt;keys['POST_WRAP'];
+
+        // Transforms user[name] to data[user][name];
+        if (preg_match('/^(.+?)\[(.+)?/', $name, $matches)) {
+            return $prefix . '[' . $matches[1].'][' . $matches[2];
+        }
+
+        // Transforms user to data[user]
+        return $prefix . '[' . $name . ']';
+    }
+
+    public function submit($options = array())
+    {
+        $options[&quot;type&quot;] = &quot;submit&quot;;
+        return $this-&gt;button($this-&gt;keys['POST_KEY_SUBMIT'], $options);
+    }
+
+    public function button($name, $options = array())
+    {
+        $options += array(
+            &quot;type&quot; =&gt; &quot;button&quot;,
+            &quot;label&quot; =&gt; &quot;Button&quot;,
+            &quot;id&quot;    =&gt; $this-&gt;id($name),
+            &quot;name&quot;  =&gt; $this-&gt;name($name),
+        );
+
+        $label = $options[&quot;label&quot;];
+        unset($options[&quot;label&quot;]);
+
+        return sprintf('&lt;button %s&gt;%s&lt;/button&gt;', $this-&gt;arrayToHtmlAttributes($options), $label);
+    }
+
+    public function input($name, $options = array())
+    {
+        $options += array(
+            &quot;type&quot;  =&gt; &quot;text&quot;,
+            &quot;id&quot;    =&gt; $this-&gt;id($name),
+            &quot;name&quot;  =&gt; $this-&gt;name($name),
+            &quot;error&quot; =&gt; true,
+            &quot;class&quot; =&gt; &quot;&quot;,
+            &quot;value&quot; =&gt; &quot;&quot;,
+            &quot;label&quot; =&gt; null
+        );
+
+        $currentValue = $this-&gt;getCurrentValue($options['name']);
+
+        $errorHtml = &quot;&quot;;
+        if ((bool)$options['error'] &amp;&amp; array_key_exists($name, (array)$this-&gt;validationErrors)) {
+            $errorHtml = $this-&gt;generateInlineErrors($name);
+            $options['class'] .= &quot; error &quot;;
+        }
+        unset($options[&quot;error&quot;]);
+
+        $label = &quot;&quot;;
+        if (!is_null($options['label'])) {
+            $label .= $this-&gt;generateLabel($options);
+        }
+        unset($options['label']);
+
+        switch (strtolower($options['type'])) {
+            case &quot;textarea&quot; :   return $label . &quot;\n&quot; . $this-&gt;generateTextarea($options, $currentValue) . $errorHtml . &quot;\n&quot;;
+            case &quot;select&quot; :     return $label . &quot;\n&quot; . $this-&gt;generateSelect($options, $currentValue) . $errorHtml . &quot;\n&quot;;
+            case &quot;radio&quot; :      return $this-&gt;generateRadio($options, $currentValue) . $errorHtml . &quot;\n&quot; . $label . &quot;\n&quot;;
+            case &quot;checkbox&quot; :   return $this-&gt;generateCheckbox($options, $currentValue) . $errorHtml . &quot;\n&quot; . $label . &quot;\n&quot;;
+            case &quot;hidden&quot; :     return $label . &quot;\n&quot; . $this-&gt;generateHidden($options, $currentValue) . $errorHtml . &quot;\n&quot;;
+            default :           return $label . &quot;\n&quot; . $this-&gt;generateTextinput($options, $currentValue) . $errorHtml . &quot;\n&quot;;
+        }
+    }
+
+    public function generateInlineErrors($postName)
+    {
+        if (array_key_exists($postName, (array)$this-&gt;validationErrors)) {
+            $errorTag = '&lt;ul class=&quot;inline-errors&quot;&gt;';
+            foreach ($this-&gt;validationErrors[$postName] as $key =&gt; $message) {
+                $errorTag .= sprintf('&lt;li class=&quot;%s&quot;&gt;%s&lt;/li&gt;', $key, $message);
+            }
+            return $errorTag . '&lt;/ul&gt;';
+        }
+        return &quot;&quot;;
+    }
+
+    protected function parseFormConfiguration($options)
+    {
+        $options += array(
+            &quot;type&quot; =&gt; &quot;POST&quot;,
+            &quot;hasSteps&quot; =&gt; false,
+            &quot;action&quot; =&gt; $_SERVER['REQUEST_URI'],
+            &quot;nonce&quot; =&gt; null
+        );
+
+        if (strtolower($options['type']) === &quot;file&quot;) {
+            $options[&quot;method&quot;] = &quot;POST&quot;;
+            $options[&quot;enctype&quot;] = &quot;multipart/form-data&quot;;
+        } else {
+            $options[&quot;method&quot;] = strtoupper($options['type']);
+        }
+
+        return $options;
+    }
+
+    protected function generateTextarea($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options['value']);
+        unset($options[&quot;type&quot;]);
+
+        return sprintf('&lt;textarea %s&gt;%s&lt;/textarea&gt;', $this-&gt;arrayToHtmlAttributes($options), stripslashes($value));
+    }
+
+    protected function generateSelect($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options[&quot;type&quot;]);
+        unset($options[&quot;value&quot;]);
+
+        $optionsHtml = &quot;&quot;;
+        if (array_key_exists(&quot;choices&quot;, $options) &amp;&amp; is_array($options[&quot;choices&quot;])) {
+            foreach ($options[&quot;choices&quot;] as $key =&gt; $val) {
+                $optionsHtml .= sprintf('&lt;option%s value=&quot;%s&quot;&gt;%s&lt;/option&gt;', &quot;$key&quot; === &quot;$value&quot; ? ' selected=&quot;selected&quot;' : '', $key, $val);
+            }
+            unset($options[&quot;choices&quot;]);
+        }
+
+        return sprintf('&lt;select %s&gt;%s&lt;/select&gt;', $this-&gt;arrayToHtmlAttributes($options), $optionsHtml);
+    }
+
+    protected function generateRadio($options, $currentValue = null)
+    {
+        return sprintf('&lt;input %s%s&gt;', $this-&gt;arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked=&quot;checked&quot;' : '' );
+    }
+
+    protected function generateCheckbox($options, $currentValue = null)
+    {
+        $hidden = sprintf('&lt;input type=&quot;hidden&quot; name=&quot;%s&quot; value=&quot;0&quot;&gt;', $options['name']);
+        $chk = sprintf('&lt;input %s %s&gt;', $this-&gt;arrayToHtmlAttributes($options),  $options['value'] == $currentValue ? ' checked=&quot;checked&quot;' : '');
+        return $hidden . $chk;
+    }
+
+    protected function generateHidden($options, $currentValue)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        unset($options[&quot;id&quot;]);
+        unset($options[&quot;value&quot;]);
+
+        if (is_array($value)) {
+            $returnHtml = &quot;&quot;;
+            foreach ($value as $key =&gt; $val) {
+                $returnHtml .= sprintf('&lt;input %s value=&quot;%s&quot;&gt;', $this-&gt;arrayToHtmlAttributes($options), $val);
+            }
+            return $returnHtml;
+        } else {
+            return sprintf('&lt;input %s value=&quot;%s&quot;&gt;', $this-&gt;arrayToHtmlAttributes($options), $value);
+        }
+    }
+
+    protected function generateTextinput($options, $currentValue = null)
+    {
+        $value = is_null($currentValue) ? $options['value'] : $currentValue;
+
+        if (!array_key_exists(&quot;type&quot;, $options)) {
+            $options[&quot;type&quot;] = &quot;text&quot;;
+        }
+        unset($options[&quot;value&quot;]);
+
+        return sprintf('&lt;input %s value=&quot;%s&quot;&gt;', $this-&gt;arrayToHtmlAttributes($options), $value);
+    }
+
+    protected function generateLabel($options)
+    {
+        return sprintf('&lt;label for=&quot;%s&quot;&gt;%s&lt;/label&gt;', $options['id'], $options['label']);
+    }
+
+    protected function arrayToHtmlAttributes(array $values)
+    {
+        $output = &quot;&quot;;
+
+        foreach($values as $key =&gt; $value){
+            $output .=  sprintf('%s=&quot;%s&quot; ', htmlentities($key), htmlentities($value));
+        }
+
+        return $output;
+    }
+
+    protected function removeBrackets($key, $replacement = '.')
+    {
+        return str_replace(array('[', ']'), array($replacement, ''), $key);
+    }
+
+    protected function getCurrentValue($key)
+    {
+        $key = $this-&gt;removeBrackets($key);
+
+        if ($this-&gt;configuration['method'] === &quot;GET&quot; &amp;&amp; $this-&gt;request-&gt;hasGet($key)) {
+            return $this-&gt;request-&gt;get($key);
+        }
+
+        if ($this-&gt;configuration['method'] === &quot;POST&quot; &amp;&amp; $this-&gt;request-&gt;hasPost($key)) {
+            return $this-&gt;request-&gt;post($key);
+        }
+
+        if (!is_null($this-&gt;associatedEntity)) {
+            $prefix = $this-&gt;keys['POST_WRAP'] . '.' . $this-&gt;associatedEntity-&gt;getInputName() . &quot;.&quot;;
+            $attributeName = str_replace($prefix, &quot;&quot;, $key);
+            if (isset($this-&gt;associatedEntity-&gt;{$attributeName})) {
+                return $this-&gt;associatedEntity-&gt;{$attributeName};
+            }
+        }
+    }
+
+    protected function generateNonce()
+    {
+        $nonceSalt = &quot;&quot;;
+        $fieldName = &quot;authenticity_token&quot;;
+
+        // Allow users to set their own nonce
+        if (!is_null($this-&gt;configuration['nonce'])) {
+            $nonceSalt = $this-&gt;request-&gt;generateNonceKey($this-&gt;configuration['nonce']);
+        // Use the entity if it is present
+        } elseif (!is_null($this-&gt;associatedEntity)) {
+            $nonceSalt = $this-&gt;request-&gt;generateNonceKey($this-&gt;associatedEntity);
+        // Fallback to something custom for the Helper
+        } else {
+            $nonceSalt = $this-&gt;request-&gt;generateNonceKey();
+        }
+
+        return wp_nonce_field($nonceSalt, $fieldName, true, false);
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

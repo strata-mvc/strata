@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Shell\Command;
+
+use Strata\Shell\Command\StrataCommand;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Starts the Strata Server Shell. This server is expected to understand the differences in
+ * configuration between a Vagrant environment and cases when it runs using the current
+ * computer's binaries.
+ *
+ * Intended use is &lt;code&gt;./strata server&lt;/code&gt;
+ */
+class ServerCommand extends StrataCommand
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected function configure()
+    {
+        $this
+            -&gt;setName('server')
+            -&gt;setDescription('Starts a server instance');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this-&gt;startup($input, $output);
+
+        $output-&gt;writeln('A webserver is now available at &lt;info&gt;http://127.0.0.1:5454/&lt;/info&gt;');
+        $output-&gt;writeln('Press &lt;info&gt;CTRL + C&lt;/info&gt; to exit');
+
+        $this-&gt;nl();
+
+        system(&quot;WP_ENV=development php -S 0.0.0.0:5454 -t web/&quot;);
+
+        $this-&gt;shutdown();
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

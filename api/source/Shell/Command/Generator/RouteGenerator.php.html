@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Shell\Command\Generator;
+
+use Strata\Strata;
+use Strata\Utility\Hash;
+
+class RouteGenerator extends GeneratorBase {
+
+    private $type;
+    private $url;
+    private $destination;
+
+    public function configure($options)
+    {
+        if (count($options) &lt; 3) {
+            throw new InvalidArgumentException(&quot;A route requires 3 parameters: The request type, the url to match and the MVC destination.&quot;);
+        }
+
+        $this-&gt;type = $options[0];
+        $this-&gt;url = $options[1];
+        $this-&gt;destination = $options[2];
+    }
+
+    /**
+     * Creates a route entry
+     * @return null
+     */
+    public function generate()
+    {
+        $this-&gt;command-&gt;output-&gt;writeLn(&quot;Add new route to &lt;info&gt;{$this-&gt;destination}&lt;/info&gt;&quot;);
+
+        $target = explode(&quot;#&quot;, $this-&gt;destination);
+        $controllerName = Strata::getNamespace() . &quot;\\Controller\\&quot; . $target[0];
+
+        if(!class_exists($controllerName)) {
+            $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree(true) . $this-&gt;command-&gt;fail('No file matched the controller handled by this route. Looked for ' . $controllerName. '.'));
+            return;
+        }
+
+        if (count($target) &gt; 1 &amp;&amp; !method_exists($controllerName, $target[1])) {
+            $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree(true) . $this-&gt;command-&gt;fail('No method named '. $target[1] .' is declared by '. $controllerName .'.'));
+            return;
+        }
+
+        // This is not very robust...
+
+        $line = sprintf(&quot;array(\&quot;%s\&quot;,\t\&quot;%s\&quot;,\t\&quot;%s\&quot;),&quot;, strtoupper($this-&gt;type), $this-&gt;url, $this-&gt;destination);
+        $contents = file_get_contents(Strata::getProjectConfigurationFilePath());
+        if (preg_match(&quot;/\&quot;routes\&quot;.*?array\(/&quot;, $contents, $matches)) {
+            $contents = preg_replace(&quot;/\&quot;routes\&quot;.*?array\(/&quot;, $matches[0] . &quot;\n\t\t&quot; . $line, $contents);
+        }
+        if (file_put_contents(Strata::getProjectConfigurationFilePath(), $contents)) {
+            $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree(true) . $this-&gt;command-&gt;ok(&quot;Added route : {$this-&gt;type} | {$this-&gt;url} -&gt; {$this-&gt;destination}.&quot;));
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

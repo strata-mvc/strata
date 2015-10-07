@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Controller;
+
+use Strata\Controller\Request;
+use Strata\Controller\Loader\ShortcodeLoader;
+use Strata\Controller\Loader\HelperLoader;
+use Strata\View\View;
+
+use Strata\Core\StrataObjectTrait;
+
+/**
+ * Base controller class.
+ */
+class Controller {
+
+    use StrataObjectTrait;
+
+    public static function getNamespaceStringInStrata()
+    {
+        return &quot;Controller&quot;;
+    }
+
+    public static function getClassNameSuffix()
+    {
+        return &quot;Controller&quot;;
+    }
+
+    /**
+     * The current request
+     *
+     * @var Strata\Controller\Request
+     */
+    public $request = null;
+
+    /**
+     * The associated view template
+     *
+     * @var Strata\View\View
+     */
+    public $view = null;
+
+    /**
+     * These hooks allow views to use Wordpress nicely, but still trigger
+     * items in the current controller.
+     *
+     * @var  array
+     */
+    public $shortcodes = array();
+
+
+    /**
+     * Helpers that will need to be loaded across all the actions of the Controller.
+     * @var array
+     */
+    public $helpers = array();
+
+    public function __construct()
+    {}
+
+    /**
+     * Initiate the controller.
+     * @return null
+     */
+    public function init()
+    {
+        $this-&gt;request = new Request();
+        $this-&gt;view = new View();
+
+        $shortcodes = new ShortcodeLoader($this);
+        $shortcodes-&gt;register();
+
+        $helpers = new HelperLoader($this);
+        $helpers-&gt;register();
+    }
+
+    /**
+     * Executed after each calls to a controller action.
+     * @return null
+     */
+    public function after()
+    {
+
+    }
+
+    /**
+     * Executed before each calls to a controller action.
+     * @return null
+     */
+    public function before()
+    {
+
+    }
+
+    /**
+     * Base action.
+     * @return  null
+     */
+    public function index()
+    {
+
+    }
+
+    /**
+     * Base action when no action is found. This is used mainly as a precautionary fallback.
+     * @return  null
+     */
+    public function noActionMatch()
+    {
+
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

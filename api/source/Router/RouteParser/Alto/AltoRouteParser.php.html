@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Router\RouteParser\Alto;
+
+use Strata\Router\Router;
+use Strata\Router\RouteParser\Alto\AltoRoute;
+
+/**
+ * Maps wordpress urls to Strata classes
+ *
+ * @package       Strata.Router
+ * @link          http://strata.francoisfaubert.com/docs/routes/
+ */
+class AltoRouteParser extends Router {
+
+    public static function factory($routes = array())
+    {
+        $router = new self();
+        if (count($routes)) {
+            $router-&gt;addRoutes($routes);
+        }
+        return $router;
+    }
+
+    private $registered = false;
+
+    function __construct()
+    {
+        $this-&gt;route = new AltoRoute();
+    }
+
+    /**
+     * Configures the router instance
+     */
+    public function addRoutes($routes = array())
+    {
+        if (!$this-&gt;isRegistered()) {
+            $this-&gt;registerWordpressAction();
+        }
+
+        $this-&gt;route-&gt;addPossibilities($routes);
+    }
+
+    protected function registerWordpressAction()
+    {
+        if (Router::isAjax() || is_admin()) {
+            add_action('init', array($this, &quot;onWordpressEarlyInit&quot;));
+        } else {
+            add_action('wp', array($this, &quot;onWordpressInit&quot;));
+        }
+
+        $this-&gt;registered = true;
+    }
+
+    protected function isRegistered()
+    {
+        return (bool)$this-&gt;registered;
+    }
+
+    /**
+     * The callback sent to Wordpress' 'init' action. It understands the current
+     * url context and calls the current controller's method, if applicable.
+     */
+    public function onWordpressInit()
+    {
+        $this-&gt;run();
+    }
+
+    public function onWordpressEarlyInit()
+    {
+        $this-&gt;onWordpressInit();
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

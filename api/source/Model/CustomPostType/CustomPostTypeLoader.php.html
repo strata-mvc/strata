@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Model\CustomPostType;
+
+use Strata\Strata;
+use Strata\Utility\Hash;
+use Strata\Model\CustomPostType\CustomPostType;
+use Strata\Core\StrataConfigurableTrait;
+
+class CustomPostTypeLoader
+{
+    use StrataConfigurableTrait;
+
+    public function load()
+    {
+        $this-&gt;logAutoloadedEntities();
+
+        foreach ($this-&gt;getConfiguration() as $cpt =&gt; $config) {
+
+            $obj = CustomPostType::factory($cpt);
+
+            $this-&gt;addWordpressRegisteringAction($obj);
+
+            if ($this-&gt;shouldAddAdminMenus($obj)) {
+                $this-&gt;addWordpressMenusRegisteringAction($obj);
+            }
+
+            if ($this-&gt;shouldAddRoutes($obj)) {
+                $this-&gt;addResourceRoute($obj);
+            }
+        }
+    }
+
+    private function logAutoloadedEntities()
+    {
+        $app = Strata::app();
+        $cpts = array_keys($this-&gt;getConfiguration());
+        $app-&gt;log(sprintf(&quot;Found %s custom post types : %s&quot;, count($cpts), implode(&quot;, &quot;, $cpts)), &quot;[Strata:CustomPostTypeLoader]&quot;);
+    }
+
+    private function shouldAddAdminMenus(CustomPostType $customPostType)
+    {
+        return is_admin() &amp;&amp; count($customPostType-&gt;admin_menus) &gt; 0;
+    }
+
+    private function addWordpressMenusRegisteringAction(CustomPostType $customPostType)
+    {
+        $customPostType-&gt;registerAdminMenus();
+    }
+
+    private function shouldAddRoutes(CustomPostType $customPostType)
+    {
+        return !is_admin() &amp;&amp; $customPostType-&gt;routed === true;
+    }
+
+    private function addResourceRoute(CustomPostType $customPostType)
+    {
+        Strata::app()-&gt;router-&gt;route-&gt;addResource($customPostType);
+    }
+
+    private function addWordpressRegisteringAction(CustomPostType $customPostType)
+    {
+        add_action('init', array($customPostType, &quot;register&quot;));
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

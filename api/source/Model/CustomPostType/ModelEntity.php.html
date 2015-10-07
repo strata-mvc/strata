@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Model\CustomPostType;
+
+use Strata\Strata;
+use Strata\Utility\Inflector;
+use Strata\Utility\Hash;
+
+use Strata\Model\Validator\Validator;
+use Strata\Core\StrataObjectTrait;
+
+use Exception;
+
+class ModelEntity
+{
+    use StrataObjectTrait;
+
+    public static function getNamespaceStringInStrata()
+    {
+        return &quot;Model\\Entity&quot;;
+    }
+
+    public static function getClassNameSuffix()
+    {
+        return &quot;Entity&quot;;
+    }
+
+    public $attributes  = array();
+    private $associatedObject;
+    private $validationErrors = array();
+
+    function __construct($associatedObject = null)
+    {
+        if (!is_null($associatedObject)) {
+            $this-&gt;bindToObject($associatedObject);
+        }
+
+        $this-&gt;normalizeAttributes();
+    }
+
+    function __get($var)
+    {
+        if (is_null($this-&gt;associatedObject)) {
+            throw new Exception('ModelEntity was not linked to a Wordpress object.');
+        }
+
+        if (property_exists($this-&gt;associatedObject, $var)) {
+            return $this-&gt;associatedObject-&gt;{$var};
+        }
+    }
+
+    function __set($var, $value)
+    {
+        if (is_null($this-&gt;associatedObject)) {
+            return $this-&gt;{$var} = $value;
+        }
+
+        return $this-&gt;associatedObject-&gt;{$var} = $value;
+    }
+
+    public function __isset($name)
+    {
+        return isset($this-&gt;associatedObject-&gt;{$name});
+    }
+
+
+    public function bindToObject($associatedObject)
+    {
+        $this-&gt;associatedObject = $associatedObject;
+    }
+
+    public function isBound()
+    {
+        return !is_null($this-&gt;associatedObject);
+    }
+
+    public function validates(array $requestData)
+    {
+        $ourData = Hash::extract($requestData, $this-&gt;getInputName());
+
+        $entityErrors = array();
+        foreach ($this-&gt;getAttributeNames() as $name) {
+            $entityErrors[$name] = array();
+            $validations = $this-&gt;extractNormalizedValidations($name);
+
+            foreach ($validations as $validationKey =&gt; $validatorConfig) {
+                $validator = Validator::factory($validationKey);
+                $validator-&gt;configure($validatorConfig);
+
+                if (!$validator-&gt;test($ourData[$name], $this)) {
+                    $entityErrors[$name][$validationKey] = $validator-&gt;getMessage();
+                }
+            }
+            if (!count($entityErrors[$name])) {
+                unset($entityErrors[$name]); // this is pretty ugly.
+            }
+        }
+
+        $this-&gt;validationErrors = $entityErrors;
+        return count($this-&gt;validationErrors) &lt; 1;
+    }
+
+    public function getValidationErrors()
+    {
+        return $this-&gt;validationErrors;
+    }
+
+    public function hasValidationErrors()
+    {
+        return count($this-&gt;getValidationErrors()) &gt; 0;
+    }
+
+    public function getErrors($name)
+    {
+        $errors = $this-&gt;getValidationErrors();
+
+        if (array_key_exists($name, $errors)) {
+            return $errors[$name];
+        }
+
+        return array();
+    }
+
+    public function getAttributes()
+    {
+        return $this-&gt;attributes;
+    }
+
+    protected function getAttributeNames()
+    {
+        return array_keys($this-&gt;getAttributes());
+    }
+
+    public function isSupportedAttribute($attr)
+    {
+        return in_array($attr, array_keys($this-&gt;getAttributes()));
+    }
+
+    protected function hasAttributeValidation($attr)
+    {
+        return Hash::check($this-&gt;getAttributes(), &quot;$attr.validations&quot;);
+    }
+
+    public function getInputName()
+    {
+        return strtolower($this-&gt;getShortName());
+    }
+
+    public function getModel()
+    {
+        $name = $this-&gt;getShortName();
+        $name = str_replace(&quot;Entity&quot;, &quot;&quot;, $name);
+
+        return CustomPostType::factory($name);
+    }
+
+    public function getWordpressKey()
+    {
+        $model = $this-&gt;getModel();
+        return $model-&gt;getWordpressKey();
+    }
+
+    private function extractNormalizedValidations($attr)
+    {
+        return Hash::normalize(Hash::extract($this-&gt;getAttributes(), &quot;$attr.validations&quot;));
+    }
+
+    private function normalizeAttributes()
+    {
+        $this-&gt;attributes = Hash::normalize($this-&gt;attributes);
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

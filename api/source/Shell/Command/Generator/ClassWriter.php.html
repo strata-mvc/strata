@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ */
+namespace Strata\Shell\Command\Generator;
+
+use Strata\Strata;
+
+/**
+ * Automates repetitive creation of code files. It validates the class names and
+ * file locations based on the set of guidelines promoted by Strata.
+ *
+ * Intended use include:
+ *     &lt;code&gt;bin/strata generate controller User&lt;/code&gt;
+ *     &lt;code&gt;bin/strata generate customposttype Task&lt;/code&gt;
+ *     ...
+ */
+class ClassWriter extends GeneratorBase {
+
+    protected $classname = &quot;&quot;;
+
+    /**
+     * The base string template for creating empty class files.
+     *
+     * @var string
+     */
+    protected $_classTemplate = &quot;&lt;?php
+namespace {NAMESPACE};
+
+class {CLASSNAME} extends {EXTENDS} {
+
+
+}&quot;;
+
+    public function setClassName($classname)
+    {
+        $this-&gt;classname = $classname;
+    }
+
+    /**
+     * Generates a file string content based on the global template.
+     * @param  string $namespace The class' namespace
+     * @param  string $classname The class name
+     * @param  string $extends   The extending class
+     * @return string            The generated class string
+     */
+    protected function _generateFileContents($namespace, $classname, $extends)
+    {
+        $data = $this-&gt;_classTemplate;
+
+        $data = str_replace(&quot;{EXTENDS}&quot;, $extends, $data);
+        $data = str_replace(&quot;{NAMESPACE}&quot;, $namespace, $data);
+        $data = str_replace(&quot;{CLASSNAME}&quot;, $classname, $data);
+
+        return $data;
+    }
+
+    /**
+     * Generates and writes a file in the file system
+     * @param  string  $destination The file's destination
+     * @param  string $namespace The class' namespace
+     * @param  string $classname The class name
+     * @param  string $extends   The extending class
+     * @param  boolean $last     Specifies if this is the last file in a queue
+     * @return null
+     */
+    protected function _createFile($destination, $namespace, $classname, $extends, $last = false)
+    {
+        if (!file_exists($destination)) {
+
+            $dir = dirname($destination);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
+
+            $contents = $this-&gt;_generateFileContents($namespace, $classname, $extends);
+            if (@file_put_contents($destination, $contents) &gt; 0) {
+                $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree($last) . $this-&gt;command-&gt;ok($destination));
+            } else {
+                $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree($last) . $this-&gt;command-&gt;fail($destination));
+            }
+        } else {
+            $this-&gt;command-&gt;output-&gt;writeLn($this-&gt;command-&gt;tree($last) . $this-&gt;command-&gt;skip($destination));
+        }
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

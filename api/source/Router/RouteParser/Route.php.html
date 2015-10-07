@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Router\RouteParser;
+
+use Strata\Strata;
+use Exception;
+
+/**
+ * A route is an object that can be mapped out to a MVC request.
+ */
+abstract class Route
+{
+    private $executionStart = 0;
+
+    /**
+     * @var Strata\Controller\Controller An instance of the controller linked to the route
+     */
+    public $controller = null;
+
+
+    /**
+     * @var string The action name
+     */
+    public $action = null;
+
+    /**
+     * @var array A list of arguments to pass through to the controller's action
+     */
+    public $arguments = array();
+
+    protected $cancelled = false;
+
+    /**
+     * This is the entry point of all routers. The inheriting classes will handle
+     * how they handle the management of their route type from this function.
+     * @throws Exception When it is not implemented by inheriting classes.
+     * @return null
+     */
+    abstract public function process();
+
+    /**
+     * Adds a mixed type of possibility against which the route will be validating during the process() step.
+     * @param mixed $routes Any type of data that is useful in the case of the class.
+     * @return  null
+     */
+    abstract function addPossibilities(array $routes);
+
+    abstract function start();
+
+    abstract function end();
+
+    /**
+     * Verifies that the current values can be ran by the router.
+     * @return boolean True is the route is considered working and valid.
+     */
+    public function isValid()
+    {
+        return !is_null($this-&gt;controller) &amp;&amp; method_exists($this-&gt;controller, $this-&gt;action);
+    }
+
+    public function cancel()
+    {
+        $this-&gt;cancelled = true;
+        $this-&gt;logRouteCancellation();
+    }
+
+    public function isCancelled()
+    {
+        return $this-&gt;cancelled;
+    }
+
+    protected function logRouteCancellation()
+    {
+        $this-&gt;log(sprintf(&quot;[Cancel] Routing to -&gt; %s#%s&quot;, get_class($this-&gt;controller), $this-&gt;action));
+    }
+
+    protected function logRouteStart()
+    {
+        $this-&gt;executionStart = microtime(true);
+        $this-&gt;log(sprintf(&quot;Routing to -&gt; %s#%s&quot;, get_class($this-&gt;controller), $this-&gt;action));
+    }
+
+    protected function logRouteCompletion()
+    {
+        $executionTime = microtime(true) - $this-&gt;executionStart;
+        $this-&gt;log(sprintf(&quot;Done in %s seconds&quot;, round($executionTime, 4)));
+    }
+
+    protected function log($msg, $type = &quot;[Strata::Router]&quot;)
+    {
+        $app = Strata::app();
+        $app-&gt;log($msg, $type);
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

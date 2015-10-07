@@ -1,0 +1,300 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\Controller;
+
+use Strata\Utility\Hash;
+
+/**
+ * Handles access to request data, whether from post, get or cookies. It encodes data accordingly and
+ * does simple data integrity validation.
+ */
+class Request {
+
+    /**
+     * A cache of the parsed Get values in the current request.
+     *
+     * @var array
+     */
+    private $_GET = array();
+
+    /**
+     * A cache of the parsed Cookie values in the current request.
+     *
+     * @var array
+     */
+    private $_COOKIE = array();
+
+    /**
+     * A cache of the parsed Post values in the current request.
+     *
+     * @var array
+     */
+    private $_POST = array();
+
+    /**
+     * A cache of the parsed Files values in the current request.
+     *
+     * @var array
+     */
+    private $_FILES = array();
+
+    function __construct()
+    {
+        // Parse the request data upon each instantiation.
+        $this-&gt;_buildRequestData();
+    }
+
+    /**
+     * Checks if the current value is of type POST.
+     * @return boolean
+     */
+    public function isPost()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
+    }
+
+    /**
+     * Checks if the current value is of type GET.
+     * @return boolean
+     */
+    public function isGet()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'GET';
+    }
+
+    /**
+     * Checks if the current value is of type PUT.
+     * @return boolean
+     */
+    public function isPut()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'PUT';
+    }
+
+    /**
+     * Checks if the current value is of type PATCH.
+     * @return boolean
+     */
+    public function isPatch()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'PATCH';
+    }
+
+    /**
+     * Checks if the current value is of type DELETE.
+     * @return boolean
+     */
+    public function isDelete()
+    {
+        return strtoupper($_SERVER['REQUEST_METHOD']) === 'DELETE';
+    }
+
+    /**
+     * Returns the get parameter matching $key.
+     * @param string $key The name of the posted value
+     * @return mixed
+     */
+    public function get($key)
+    {
+        return Hash::get($this-&gt;_GET, $key);
+    }
+
+    /**
+     * Returns the post parameter matching $key.
+     * @param string $key The name of the posted value
+     * @return mixed
+     */
+    public function post($key)
+    {
+        return Hash::get($this-&gt;_POST, $key);
+    }
+
+    /**
+     * Returns the file parameter matching $key.
+     * @param string $key The name of the posted value
+     * @return mixed
+     */
+    public function file($key)
+    {
+        return array(
+            &quot;name&quot; =&gt; Hash::get($this-&gt;_FILES, &quot;data.name.&quot; .$key),
+            &quot;type&quot; =&gt; Hash::get($this-&gt;_FILES, &quot;data.type.&quot; . $key),
+            &quot;tmp_name&quot; =&gt; Hash::get($this-&gt;_FILES, &quot;data.tmp_name.&quot; . $key),
+            &quot;error&quot; =&gt; Hash::get($this-&gt;_FILES, &quot;data.error.&quot; . $key),
+            &quot;size&quot; =&gt; Hash::get($this-&gt;_FILES, &quot;data.size.&quot; . $key),
+        );
+    }
+
+    /**
+     * Returns the posted form parameters
+     * @return mixed
+     */
+    public function data()
+    {
+        return Hash::get($this-&gt;_POST, &quot;data&quot;);
+    }
+
+
+    /**
+     * Returns the cookie parameter matching $key.
+     * @param string $key The name of the cookie value
+     * @return mixed
+     */
+    public function cookie($key)
+    {
+        return Hash::get($this-&gt;_COOKIE, $key);
+    }
+
+    /**
+     * Explains whether the post parameter matching $key has a value.
+     * @param string $key The name of the cookie value
+     * @return boolean
+     */
+    public function hasPost($key)
+    {
+        return Hash::check($this-&gt;_POST, $key);
+    }
+
+    /**
+     * Explains whether the get parameter matching $key has a value.
+     * @param string $key The name of the cookie value
+     * @return boolean
+     */
+    public function hasGet($key)
+    {
+        return Hash::check($this-&gt;_GET, $key);
+    }
+
+    /**
+     * Explains whether the cookie parameter matching $key has a value.
+     * @param string $key The name of the cookie value
+     * @return boolean
+     */
+    public function hasCookie($key)
+    {
+        return Hash::check($this-&gt;_COOKIE, $key);
+    }
+
+    /**
+     * Explains whether the file parameter matching $key has a value.
+     * @param string $key The name of the file value
+     * @return boolean
+     */
+    public function hasFile($key)
+    {
+        return Hash::check($this-&gt;_FILES, &quot;data.name.&quot; . $key);
+    }
+
+    public function requestValidates($nonce = &quot;&quot;, $honeypot = &quot;&quot;)
+    {
+        return $this-&gt;nonceValidates($nonce) &amp;&amp; $this-&gt;honeypotValidates($honeypot);
+    }
+
+
+    public function honeypotValidates($name)
+    {
+        $value = &quot;&quot;;
+
+        if ($this-&gt;hasPost($name)) {
+            $value = $this-&gt;post($name);
+        } elseif($this-&gt;hasGet($name)) {
+            $value = $this-&gt;get($name);
+        }
+
+        return empty($value);
+    }
+
+    public function nonceValidates($mixedNonceSalt)
+    {
+        $token = null;
+
+        if ($this-&gt;hasPost(&quot;authenticity_token&quot;)) {
+            $token = $this-&gt;post(&quot;authenticity_token&quot;);
+        } elseif($this-&gt;hasGet(&quot;authenticity_token&quot;)) {
+            $token = $this-&gt;get(&quot;authenticity_token&quot;);
+        }
+
+        if (is_null($token)) {
+            return false;
+        }
+
+        $key = $this-&gt;generateNonceKey($mixedNonceSalt);
+        return wp_verify_nonce($token, $key);
+    }
+
+    public function generateNonceKey($mixedNonceSalt = null)
+    {
+        if (is_string($mixedNonceSalt)) {
+            return $mixedNonceSalt;
+        }
+
+        if (is_a($mixedNonceSalt, &quot;Strata\\Model\\CustomPostType\\ModelEntity&quot;)) {
+            $distinction =  $mixedNonceSalt-&gt;isBound() ? $mixedNonceSalt-&gt;ID : &quot;strata_request&quot;;
+            return get_class($mixedNonceSalt) . $distinction;
+        }
+
+        return &quot;strata_nonce&quot;;
+    }
+
+
+    /**
+     * Goes through the posted data and strips additional characters added
+     * along the way.
+     * @return null
+     */
+    private function _buildRequestData()
+    {
+        $strip_slashes_deep = function ($value) use (&amp;$strip_slashes_deep) {
+            return is_array($value) ? array_map($strip_slashes_deep, $value) : sanitize_text_field(stripslashes($value));
+        };
+        $this-&gt;_GET = array_map($strip_slashes_deep, $_GET);
+        $this-&gt;_POST = array_map($strip_slashes_deep, $_POST);
+        $this-&gt;_COOKIE = array_map($strip_slashes_deep, $_COOKIE);
+        $this-&gt;_FILES = array_map($strip_slashes_deep, $_FILES);
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

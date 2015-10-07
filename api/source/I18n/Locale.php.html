@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+namespace Strata\I18n;
+
+use Strata\Strata;
+
+class Locale {
+
+    protected $nativeLabel;
+    protected $code;
+    protected $isDefault;
+    protected $url;
+    protected $config = array();
+
+    function __construct($code, $config = array())
+    {
+        $this-&gt;code = $code;
+
+        // Apply defaults
+        $config += array(
+            &quot;nativeLabel&quot; =&gt; $code,
+            &quot;default&quot; =&gt; false,
+            &quot;url&quot; =&gt; null
+        );
+
+        $this-&gt;url = $config[&quot;url&quot;];
+        $this-&gt;nativeLabel = $config[&quot;nativeLabel&quot;];
+        $this-&gt;isDefault = (bool)$config[&quot;default&quot;];
+
+        // Save the rest
+        $this-&gt;config = $config;
+    }
+
+    public function getConfig($key)
+    {
+        if (array_key_exists($key, $this-&gt;config)) {
+            return $this-&gt;config[$key];
+        }
+    }
+
+    public function getNativeLabel()
+    {
+        return $this-&gt;nativeLabel;
+    }
+
+    public function getCode()
+    {
+        return $this-&gt;code;
+    }
+
+    public function getUrl()
+    {
+        if (is_null($this-&gt;url)) {
+            return $this-&gt;getCode();
+        }
+
+        return $this-&gt;url;
+    }
+
+    public function isDefault()
+    {
+        return (bool)$this-&gt;isDefault;
+    }
+
+    public function hasANativeLabel()
+    {
+        return $this-&gt;nativeLabel !== $this-&gt;code;
+    }
+
+    public function hasPoFile()
+    {
+        return file_exists($this-&gt;getPoFilePath());
+    }
+
+    public function getPoFilePath()
+    {
+        $localeDir = Strata::getLocalePath();
+        return $localeDir . $this-&gt;getCode() . '.po';
+    }
+
+    public function hasMoFile()
+    {
+        return file_exists($this-&gt;getMoFilePath());
+    }
+
+    public function getMoFilePath()
+    {
+        $localeDir = Strata::getLocalePath();
+        return $localeDir . $this-&gt;getCode() . '.mo';
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
