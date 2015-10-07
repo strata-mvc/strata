@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Strata.html">\Strata</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">697</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-45490170"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-45490170" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-256665501"></a>
+                                <a href="../namespaces/Strata.html" style="margin-left: 30px; padding-left: 0">Strata</a>
+            </div>
+            <div id="namespace-256665501" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1409150047"></a>
+                                <a href="../namespaces/Strata.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1409150047" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1253628604"></a>
+                                <a href="../namespaces/Strata.Controller.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-1253628604" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Controller.Loader.HelperLoader.html">HelperLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.Loader.ShortcodeLoader.html">ShortcodeLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Controller.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.Request.html">Request</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-583584237"></a>
+                                <a href="../namespaces/Strata.Core.html" style="margin-left: 30px; padding-left: 0">Core</a>
+            </div>
+            <div id="namespace-583584237" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Strata.Core.StrataConfigurableTrait.html">StrataConfigurableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Strata.Core.StrataObjectTrait.html">StrataObjectTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Strata.Core.StrataContext.html">StrataContext</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-908105887"></a>
+                                <a href="../namespaces/Strata.I18n.html" style="margin-left: 30px; padding-left: 0">I18n</a>
+            </div>
+            <div id="namespace-908105887" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.I18n.i18n.html">i18n</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.Locale.html">Locale</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.WpCode.html">WpCode</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.WpPhpFunctionsScanner.html">WpPhpFunctionsScanner</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1432102881"></a>
+                                <a href="../namespaces/Strata.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1432102881" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Logger.Logger.html">Logger</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2109078245"></a>
+                                <a href="../namespaces/Strata.Middleware.html" style="margin-left: 30px; padding-left: 0">Middleware</a>
+            </div>
+            <div id="namespace-2109078245" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Middleware.Middleware.html">Middleware</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Middleware.MiddlewareLoader.html">MiddlewareLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-834188614"></a>
+                                <a href="../namespaces/Strata.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-834188614" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1278608625"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.html" style="margin-left: 30px; padding-left: 0">CustomPostType</a>
+            </div>
+            <div id="namespace-1278608625" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-713065735"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+            </div>
+            <div id="namespace-713065735" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">CustomPostTypeAdminMenuRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">CustomPostTypeRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.Registrar.html">Registrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">TaxonomyRegistrar</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Strata.Model.CustomPostType.QueriableEntityTrait.html">QueriableEntityTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Strata.Model.CustomPostType.CustomPostType.html">CustomPostType</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.CustomPostTypeLoader.html">CustomPostTypeLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.LabelParser.html">LabelParser</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.ModelEntity.html">ModelEntity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Query.html">Query</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2079422732"></a>
+                                <a href="../namespaces/Strata.Model.Taxonomy.html" style="margin-left: 30px; padding-left: 0">Taxonomy</a>
+            </div>
+            <div id="namespace-2079422732" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.Category.html">Category</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.TaxonomyEntity.html">TaxonomyEntity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.TaxonomyQuery.html">TaxonomyQuery</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1043843063"></a>
+                                <a href="../namespaces/Strata.Model.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+            </div>
+            <div id="namespace-1043843063" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Validator.BetweenValidator.html">BetweenValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.EmailValidator.html">EmailValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.InValidator.html">InValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.LengthValidator.html">LengthValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.NumericValidator.html">NumericValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostalcodeValidator.html">PostalcodeValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostexistValidator.html">PostexistValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.RequiredValidator.html">RequiredValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.SameValidator.html">SameValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Post.html">Post</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.User.html">User</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.UserQuery.html">UserQuery</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.WordpressEntity.html">WordpressEntity</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-29560291"></a>
+                                <a href="../namespaces/Strata.Router.html" style="margin-left: 30px; padding-left: 0">Router</a>
+            </div>
+            <div id="namespace-29560291" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-300615676"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.html" style="margin-left: 30px; padding-left: 0">RouteParser</a>
+            </div>
+            <div id="namespace-300615676" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1356539771"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Alto.html" style="margin-left: 30px; padding-left: 0">Alto</a>
+            </div>
+            <div id="namespace-1356539771" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRoute.html">AltoRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRouteParser.html">AltoRouteParser</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1691771048"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Callback.html" style="margin-left: 30px; padding-left: 0">Callback</a>
+            </div>
+            <div id="namespace-1691771048" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRoute.html">CallbackRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRouter.html">CallbackRouter</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.Router.html">Router</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-888558673"></a>
+                                <a href="../namespaces/Strata.Security.html" style="margin-left: 30px; padding-left: 0">Security</a>
+            </div>
+            <div id="namespace-888558673" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Security.CommentParser.html">CommentParser</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Security.Security.html">Security</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-122194137"></a>
+                                <a href="../namespaces/Strata.Shell.html" style="margin-left: 30px; padding-left: 0">Shell</a>
+            </div>
+            <div id="namespace-122194137" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1410683738"></a>
+                                <a href="../namespaces/Strata.Shell.Command.html" style="margin-left: 30px; padding-left: 0">Command</a>
+            </div>
+            <div id="namespace-1410683738" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-386633606"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
+            </div>
+            <div id="namespace-386633606" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ClassWriter.html">ClassWriter</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CommandGenerator.html">CommandGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ControllerGenerator.html">ControllerGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CustomPostTypeGenerator.html">CustomPostTypeGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.FormGenerator.html">FormGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.GeneratorBase.html">GeneratorBase</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.HelperGenerator.html">HelperGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ModelGenerator.html">ModelGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.RouteGenerator.html">RouteGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.TaxonomyGenerator.html">TaxonomyGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ValidatorGenerator.html">ValidatorGenerator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1044894680"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+            </div>
+            <div id="namespace-1044894680" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Registrar.MiddlewareCommandRegistrar.html">MiddlewareCommandRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Registrar.ProjectCommandRegistrar.html">ProjectCommandRegistrar</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DBCommand.html">DBCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DocumentationCommand.html">DocumentationCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.EnvCommand.html">EnvCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.GenerateCommand.html">GenerateCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.I18nCommand.html">I18nCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.ServerCommand.html">ServerCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.StrataCommand.html">StrataCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.TestCommand.html">TestCommand</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Shell.html">Shell</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1794169231"></a>
+                                <a href="../namespaces/Strata.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+            </div>
+            <div id="namespace-1794169231" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Test.Test.html">Test</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1455532638"></a>
+                                <a href="../namespaces/Strata.Utility.html" style="margin-left: 30px; padding-left: 0">Utility</a>
+            </div>
+            <div id="namespace-1455532638" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Utility.Hash.html">Hash</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.Inflector.html">Inflector</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.String.html">String</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1354102799"></a>
+                                <a href="../namespaces/Strata.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+            </div>
+            <div id="namespace-1354102799" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1126529507"></a>
+                                <a href="../namespaces/Strata.View.Helper.html" style="margin-left: 30px; padding-left: 0">Helper</a>
+            </div>
+            <div id="namespace-1126529507" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Helper.FormHelper.html">FormHelper</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.Helper.Helper.html">Helper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Strata.html">Strata</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Strata.I18n.html">\Strata\I18n</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Strata\I18n</small>i18n</h1>
+                    <p><em>Handles  localization</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_initialize" class="">initialize()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_applyCurrentLanguageByContext" class="">applyCurrentLanguageByContext()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_applyLocale" class="">applyLocale()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_resetLocaleCache" class="">resetLocaleCache()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_setLocaleSet" class="">setLocaleSet()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_setCurrentLocaleByContext" class="">setCurrentLocaleByContext()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_isLocalized" class="">isLocalized()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_hasActiveLocales" class="">hasActiveLocales()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getLocales" class="">getLocales()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getLocaleByCode" class="">getLocaleByCode()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getLocaleByUrl" class="">getLocaleByUrl()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getCurrentLocale" class="">getCurrentLocale()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getCurrentLocaleCode" class="">getCurrentLocaleCode()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_hasDefaultLocale" class="">hasDefaultLocale()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getDefaultLocale" class="">getDefaultLocale()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_hasLocaleInSession" class="">hasLocaleInSession()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getLocaleInSession" class="">getLocaleInSession()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_saveCurrentLocaleToSession" class="">saveCurrentLocaleToSession()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getTranslations" class="">getTranslations()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_saveTranslations" class="">saveTranslations()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_isCurrentlyActive" class="">isCurrentlyActive()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_setLocale" class="">setLocale()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.I18n.i18n.html#constant_DOMAIN" class="">DOMAIN</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_registerHooks" class="">registerHooks()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_parseLocalesFromConfig" class="">parseLocalesFromConfig()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.I18n.i18n.html#property_locales" class="">$locales</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#property_currentLocale" class="">$currentLocale</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_startSession" class="">startSession()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_shouldAddWordpressHooks" class="">shouldAddWordpressHooks()</a><br />
+                                                                    <a href="../classes/Strata.I18n.i18n.html#method_getLocaleRegexUrls" class="">getLocaleRegexUrls()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/I18n.I18n.html"><div class="path-wrapper">I18n/I18n.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Strata.i18n</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Strata\I18n\i18n</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DOMAIN" name="constant_DOMAIN" class="anchor"></a>
+            <article id="constant_DOMAIN" class="constant">
+                <h3 class="">DOMAIN</h3>
+                <pre class="signature">DOMAIN</pre>
+                <p><em>The default text domain used buy the class</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_locales" name="property_locales" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$locales</h3>
+                <pre class="signature">$locales : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; The list of instanciated locales in the application                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_currentLocale" name="property_currentLocale" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$currentLocale</h3>
+                <pre class="signature">$currentLocale : \Strata\I18n\Locale</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>
+                &mdash; The locale that is currently active.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initialize" name="method_initialize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initialize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">initialize() </pre>
+                <p><em>The class initializer is meant to be called only once during the
+Strata kickoff.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_applyCurrentLanguageByContext" name="method_applyCurrentLanguageByContext" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">applyCurrentLanguageByContext()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">applyCurrentLanguageByContext() : string|null</pre>
+                <p><em>Sets the locale based on the current process&#039; context.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                            &mdash; <p>The locale code</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_applyLocale" name="method_applyLocale" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">applyLocale()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">applyLocale() : boolean</pre>
+                <p><em>Assigns the theme textdomain to Wordpress using &#039;load_theme_textdomain&#039;.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>The result of load_theme_textdomain</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resetLocaleCache" name="method_resetLocaleCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resetLocaleCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resetLocaleCache() </pre>
+                <p><em>Clears the current locale cache and rebuilds it based
+on the loaded configuration.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLocaleSet" name="method_setLocaleSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLocaleSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLocaleSet(  <span class="argument">$localeList</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$localeList </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCurrentLocaleByContext" name="method_setCurrentLocaleByContext" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCurrentLocaleByContext()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCurrentLocaleByContext() </pre>
+                <p><em>Sets the current locale based on either a GET parameter or the locale URL prefix.</em></p>
+                <p>If none is found, it will return the default locale.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isLocalized" name="method_isLocalized" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isLocalized()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isLocalized() : boolean</pre>
+                <p><em>Specifies whether localization settings are present in Strata&#039;s configuration array.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasActiveLocales" name="method_hasActiveLocales" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasActiveLocales()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasActiveLocales() : boolean</pre>
+                <p><em>Specifies if the list of active locales
+has elements</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLocales" name="method_getLocales" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLocales()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLocales() : array</pre>
+                <p><em>Returns the list of Locale objects</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLocaleByCode" name="method_getLocaleByCode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLocaleByCode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLocaleByCode(string  <span class="argument">$code</span>) : \Strata\I18n\Locale|null</pre>
+                <p><em>Returns a locale object by code</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$code </td>
+                                <td><p>The same code used when declaring the locale in the configuration value</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLocaleByUrl" name="method_getLocaleByUrl" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLocaleByUrl()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLocaleByUrl(string  <span class="argument">$url</span>) : \Strata\I18n\Locale|null</pre>
+                <p><em>Returns a locale object by locale url key</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>The locale url as set when configuring (defaults to the locale code).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCurrentLocale" name="method_getCurrentLocale" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCurrentLocale()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCurrentLocale() : \Strata\I18n\Locale</pre>
+                <p><em>Returns the locale that is currently used.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCurrentLocaleCode" name="method_getCurrentLocaleCode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCurrentLocaleCode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCurrentLocaleCode() : string|null</pre>
+                <p><em>Returns the code of the locale that is currently used.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasDefaultLocale" name="method_hasDefaultLocale" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasDefaultLocale()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasDefaultLocale() : boolean</pre>
+                <p><em>Specifies whether the application has a default locale defined.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefaultLocale" name="method_getDefaultLocale" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDefaultLocale()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefaultLocale() : \Strata\I18n\Locale</pre>
+                <p><em>Returns the default locale based off the localization documentation
+specified in the Strata configuration file.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasLocaleInSession" name="method_hasLocaleInSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasLocaleInSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasLocaleInSession() : boolean</pre>
+                <p><em>Checks whether a locale has been store in the user&#039;s session.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLocaleInSession" name="method_getLocaleInSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLocaleInSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLocaleInSession() : \Strata\I18n\Locale</pre>
+                <p><em>Returns the locale that is saved in the session array.</em></p>
+                <p>This only return a value the first time it's called because we don't want to
+save the session permanently. It's used only to go through 1 page transition.
+ex: when saving a post in the backend, we lose the locale in the process.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveCurrentLocaleToSession" name="method_saveCurrentLocaleToSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">saveCurrentLocaleToSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveCurrentLocaleToSession() </pre>
+                <p><em>The goal of dumping the code in the session vars is only to
+keep a fallback value when someone (for instance) renders a 404
+when browsing in a locale. Having the value in session prevents the 404
+to be rendered with the default locale.</em></p>
+                <p>The value in session should not have more weight then the other methods
+in setCurrentLocaleByContext();</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTranslations" name="method_getTranslations" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTranslations()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTranslations(string  <span class="argument">$localeCode</span>) : array</pre>
+                <p><em>Loads the translations from the locale&#039;s PO file and returns the list.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$localeCode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveTranslations" name="method_saveTranslations" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">saveTranslations()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveTranslations(\Strata\I18n\Locale  <span class="argument">$locale</span>, array  <span class="argument">$postedTranslations</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a></td>
+                                <td>$locale </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$postedTranslations </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isCurrentlyActive" name="method_isCurrentlyActive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isCurrentlyActive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isCurrentlyActive(\Strata\I18n\Locale  <span class="argument">$locale</span>) : boolean</pre>
+                <p><em>Compares two locales to see if $locale is the one currently
+active.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a></td>
+                                <td>$locale </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLocale" name="method_setLocale" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLocale()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLocale(\Strata\I18n\Locale  <span class="argument">$locale</span>) </pre>
+                <p><em>Sets the active locale</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Strata.I18n.Locale.html">\Strata\I18n\Locale</a></td>
+                                <td>$locale </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerHooks" name="method_registerHooks" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">registerHooks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerHooks() </pre>
+                <p><em>Registers Wordpress hooks required by the class.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseLocalesFromConfig" name="method_parseLocalesFromConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">parseLocalesFromConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseLocalesFromConfig() : array</pre>
+                <p><em>Goes through the list of localization configurations values in Strata&#039;s
+configuration file.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>A list of instanciated Locale object.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_startSession" name="method_startSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">startSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">startSession() : integer</pre>
+                <p><em>Starts a PHP session if there was none.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>Session id</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_shouldAddWordpressHooks" name="method_shouldAddWordpressHooks" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">shouldAddWordpressHooks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">shouldAddWordpressHooks() : boolean</pre>
+                <p><em>Specifies whether the class should be registering the Wordpress hooks.</em></p>
+                <p>Based on Wordpress existence (to account for Shell) and locale presence.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLocaleRegexUrls" name="method_getLocaleRegexUrls" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getLocaleRegexUrls()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLocaleRegexUrls() : array</pre>
+                <p><em>Returns the list of urls identifiers of all the
+active locales</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">I18n.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/I18n/I18n.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Strata.html">\Strata</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on 
+Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/ffaubert01/Documents/projects/strata/strata/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
+October 7th, 2015 at 17:25.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

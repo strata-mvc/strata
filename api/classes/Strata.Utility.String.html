@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Strata.html">\Strata</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">697</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1565713190"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1565713190" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-418740390"></a>
+                                <a href="../namespaces/Strata.html" style="margin-left: 30px; padding-left: 0">Strata</a>
+            </div>
+            <div id="namespace-418740390" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1601151822"></a>
+                                <a href="../namespaces/Strata.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1601151822" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1959759573"></a>
+                                <a href="../namespaces/Strata.Controller.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-1959759573" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Controller.Loader.HelperLoader.html">HelperLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.Loader.ShortcodeLoader.html">ShortcodeLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Controller.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Controller.Request.html">Request</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1650771405"></a>
+                                <a href="../namespaces/Strata.Core.html" style="margin-left: 30px; padding-left: 0">Core</a>
+            </div>
+            <div id="namespace-1650771405" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Strata.Core.StrataConfigurableTrait.html">StrataConfigurableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Strata.Core.StrataObjectTrait.html">StrataObjectTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Strata.Core.StrataContext.html">StrataContext</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1109323178"></a>
+                                <a href="../namespaces/Strata.I18n.html" style="margin-left: 30px; padding-left: 0">I18n</a>
+            </div>
+            <div id="namespace-1109323178" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.I18n.i18n.html">i18n</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.Locale.html">Locale</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.WpCode.html">WpCode</a></li>
+                                                    <li class="class"><a href="../classes/Strata.I18n.WpPhpFunctionsScanner.html">WpPhpFunctionsScanner</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1518837406"></a>
+                                <a href="../namespaces/Strata.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1518837406" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Logger.Logger.html">Logger</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-746728123"></a>
+                                <a href="../namespaces/Strata.Middleware.html" style="margin-left: 30px; padding-left: 0">Middleware</a>
+            </div>
+            <div id="namespace-746728123" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Middleware.Middleware.html">Middleware</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Middleware.MiddlewareLoader.html">MiddlewareLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1741364597"></a>
+                                <a href="../namespaces/Strata.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1741364597" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-436143808"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.html" style="margin-left: 30px; padding-left: 0">CustomPostType</a>
+            </div>
+            <div id="namespace-436143808" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2001612652"></a>
+                                <a href="../namespaces/Strata.Model.CustomPostType.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+            </div>
+            <div id="namespace-2001612652" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeAdminMenuRegistrar.html">CustomPostTypeAdminMenuRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.CustomPostTypeRegistrar.html">CustomPostTypeRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.Registrar.html">Registrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Registrar.TaxonomyRegistrar.html">TaxonomyRegistrar</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Strata.Model.CustomPostType.QueriableEntityTrait.html">QueriableEntityTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Strata.Model.CustomPostType.CustomPostType.html">CustomPostType</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.CustomPostTypeLoader.html">CustomPostTypeLoader</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.LabelParser.html">LabelParser</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.ModelEntity.html">ModelEntity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.CustomPostType.Query.html">Query</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1257627938"></a>
+                                <a href="../namespaces/Strata.Model.Taxonomy.html" style="margin-left: 30px; padding-left: 0">Taxonomy</a>
+            </div>
+            <div id="namespace-1257627938" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.Category.html">Category</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.TaxonomyEntity.html">TaxonomyEntity</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Taxonomy.TaxonomyQuery.html">TaxonomyQuery</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-316342289"></a>
+                                <a href="../namespaces/Strata.Model.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+            </div>
+            <div id="namespace-316342289" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Validator.BetweenValidator.html">BetweenValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.EmailValidator.html">EmailValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.InValidator.html">InValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.LengthValidator.html">LengthValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.NumericValidator.html">NumericValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostalcodeValidator.html">PostalcodeValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.PostexistValidator.html">PostexistValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.RequiredValidator.html">RequiredValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.SameValidator.html">SameValidator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Validator.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Model.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.Post.html">Post</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.User.html">User</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.UserQuery.html">UserQuery</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Model.WordpressEntity.html">WordpressEntity</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-312325179"></a>
+                                <a href="../namespaces/Strata.Router.html" style="margin-left: 30px; padding-left: 0">Router</a>
+            </div>
+            <div id="namespace-312325179" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1575591107"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.html" style="margin-left: 30px; padding-left: 0">RouteParser</a>
+            </div>
+            <div id="namespace-1575591107" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-889537546"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Alto.html" style="margin-left: 30px; padding-left: 0">Alto</a>
+            </div>
+            <div id="namespace-889537546" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRoute.html">AltoRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Alto.AltoRouteParser.html">AltoRouteParser</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2126450988"></a>
+                                <a href="../namespaces/Strata.Router.RouteParser.Callback.html" style="margin-left: 30px; padding-left: 0">Callback</a>
+            </div>
+            <div id="namespace-2126450988" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRoute.html">CallbackRoute</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Callback.CallbackRouter.html">CallbackRouter</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.RouteParser.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Router.Router.html">Router</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-336176634"></a>
+                                <a href="../namespaces/Strata.Security.html" style="margin-left: 30px; padding-left: 0">Security</a>
+            </div>
+            <div id="namespace-336176634" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Security.CommentParser.html">CommentParser</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Security.Security.html">Security</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1622460835"></a>
+                                <a href="../namespaces/Strata.Shell.html" style="margin-left: 30px; padding-left: 0">Shell</a>
+            </div>
+            <div id="namespace-1622460835" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-19437428"></a>
+                                <a href="../namespaces/Strata.Shell.Command.html" style="margin-left: 30px; padding-left: 0">Command</a>
+            </div>
+            <div id="namespace-19437428" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-119844320"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
+            </div>
+            <div id="namespace-119844320" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ClassWriter.html">ClassWriter</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CommandGenerator.html">CommandGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ControllerGenerator.html">ControllerGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.CustomPostTypeGenerator.html">CustomPostTypeGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.FormGenerator.html">FormGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.GeneratorBase.html">GeneratorBase</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.HelperGenerator.html">HelperGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ModelGenerator.html">ModelGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.RouteGenerator.html">RouteGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.TaxonomyGenerator.html">TaxonomyGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Generator.ValidatorGenerator.html">ValidatorGenerator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-339443466"></a>
+                                <a href="../namespaces/Strata.Shell.Command.Registrar.html" style="margin-left: 30px; padding-left: 0">Registrar</a>
+            </div>
+            <div id="namespace-339443466" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Registrar.MiddlewareCommandRegistrar.html">MiddlewareCommandRegistrar</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.Registrar.ProjectCommandRegistrar.html">ProjectCommandRegistrar</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DBCommand.html">DBCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.DocumentationCommand.html">DocumentationCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.EnvCommand.html">EnvCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.GenerateCommand.html">GenerateCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.I18nCommand.html">I18nCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.ServerCommand.html">ServerCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.StrataCommand.html">StrataCommand</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Shell.Command.TestCommand.html">TestCommand</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Shell.Shell.html">Shell</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-863872185"></a>
+                                <a href="../namespaces/Strata.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+            </div>
+            <div id="namespace-863872185" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Test.Test.html">Test</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1091409950"></a>
+                                <a href="../namespaces/Strata.Utility.html" style="margin-left: 30px; padding-left: 0">Utility</a>
+            </div>
+            <div id="namespace-1091409950" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Utility.Hash.html">Hash</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.Inflector.html">Inflector</a></li>
+                                                    <li class="class"><a href="../classes/Strata.Utility.String.html">String</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-444980764"></a>
+                                <a href="../namespaces/Strata.View.html" style="margin-left: 30px; padding-left: 0">View</a>
+            </div>
+            <div id="namespace-444980764" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-8966659"></a>
+                                <a href="../namespaces/Strata.View.Helper.html" style="margin-left: 30px; padding-left: 0">Helper</a>
+            </div>
+            <div id="namespace-8966659" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Helper.FormHelper.html">FormHelper</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.Helper.Helper.html">Helper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.View.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Strata.View.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Strata.Strata.html">Strata</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Strata.Utility.html">\Strata\Utility</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Strata\Utility</small>String</h1>
+                    <p><em>String handling methods.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Strata.Utility.String.html#method_uuid" class="">uuid()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_tokenize" class="">tokenize()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_insert" class="">insert()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_cleanInsert" class="">cleanInsert()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_wrap" class="">wrap()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_wordWrap" class="">wordWrap()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_highlight" class="">highlight()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_stripLinks" class="">stripLinks()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_tail" class="">tail()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_truncate" class="">truncate()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_excerpt" class="">excerpt()</a><br />
+                                                                    <a href="../classes/Strata.Utility.String.html#method_toList" class="">toList()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Utility.String.html"><div class="path-wrapper">Utility/String.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Cake.Utility</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Strata\Utility\String</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_uuid" name="method_uuid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">uuid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">uuid() : \Strata\Utility\RFC</pre>
+                <p><em>Generate a random UUID</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Strata\Utility\RFC
+                                            &mdash; <p>4122 UUID</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.ietf.org/rfc/rfc4122.txt"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_tokenize" name="method_tokenize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">tokenize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">tokenize(string  <span class="argument">$data</span>, string  <span class="argument">$separator = &#039;,&#039;</span>, string  <span class="argument">$leftBound = &#039;(&#039;</span>, string  <span class="argument">$rightBound = &#039;)&#039;</span>) : mixed</pre>
+                <p><em>Tokenizes a string using $separator, ignoring any instance of $separator that appears between
+$leftBound and $rightBound.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$data </td>
+                                <td><p>The data to tokenize.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$separator </td>
+                                <td><p>The token to split the data on.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$leftBound </td>
+                                <td><p>The left boundary to ignore separators in.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$rightBound </td>
+                                <td><p>The right boundary to ignore separators in.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>Array of tokens in $data or original input if empty.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_insert" name="method_insert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">insert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">insert(string  <span class="argument">$str</span>, array  <span class="argument">$data</span>, array  <span class="argument">$options = array()</span>) : string</pre>
+                <p><em>Replaces variable placeholders inside a $str with any given $data. Each key in the $data array
+corresponds to a variable placeholder name in $str.</em></p>
+                <p>Example: <code>String::insert(':name is :age years old.', array('name' =&gt; 'Bob', '65'));</code>
+Returns: Bob is 65 years old.</p>
+<p>Available $options are:</p>
+<ul>
+<li>before: The character or string in front of the name of the variable placeholder (Defaults to <code>:</code>)</li>
+<li>after: The character or string after the name of the variable placeholder (Defaults to null)</li>
+<li>escape: The character or string used to escape the before character / string (Defaults to <code>\</code>)</li>
+<li>format: A regex to use for matching variable placeholders. Default is: <code>/(?&lt;!\\)\:%s/</code>
+(Overwrites before, after, breaks escape / clean)</li>
+<li>clean: A boolean or array with instructions for String::cleanInsert</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$str </td>
+                                <td><p>A string containing variable placeholders</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>A key =&gt; val array where each key stands for a placeholder variable name
+to be replaced with val</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>An array of options, see description above</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cleanInsert" name="method_cleanInsert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cleanInsert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">cleanInsert(string  <span class="argument">$str</span>, array  <span class="argument">$options</span>) : string</pre>
+                <p><em>Cleans up a String::insert() formatted string with given $options depending on the &#039;clean&#039; key in
+$options. The default method used is text but html is also available. The goal of this function
+is to replace all whitespace and unneeded markup around placeholders that did not get replaced
+by String::insert().</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$str </td>
+                                <td><p>String to clean.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>Options list.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_wrap" name="method_wrap" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">wrap()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">wrap(string  <span class="argument">$text</span>, array|integer  <span class="argument">$options = array()</span>) : string</pre>
+                <p><em>Wraps text to a specific width, can optionally wrap at word breaks.</em></p>
+                <h3>Options</h3>
+<ul>
+<li><code>width</code> The width to wrap to. Defaults to 72.</li>
+<li><code>wordWrap</code> Only wrap on words breaks (spaces) Defaults to true.</li>
+<li><code>indent</code> String to indent with. Defaults to null.</li>
+<li><code>indentAt</code> 0 based index to start indenting at. Defaults to 0.</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>The text to format.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array|integer</td>
+                                <td>$options </td>
+                                <td><p>Array of options to use, or an integer to wrap the text to.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Formatted text.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_wordWrap" name="method_wordWrap" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">wordWrap()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">wordWrap(string  <span class="argument">$text</span>, integer  <span class="argument">$width = 72</span>, string  <span class="argument">$break = &quot;\n&quot;</span>, boolean  <span class="argument">$cut = false</span>) : string</pre>
+                <p><em>Unicode aware version of wordwrap.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>The text to format.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$width </td>
+                                <td><p>The width to wrap to. Defaults to 72.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$break </td>
+                                <td><p>The line is broken using the optional break parameter. Defaults to '\n'.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$cut </td>
+                                <td><p>If the cut is set to true, the string is always wrapped at the specified width.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Formatted text.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_highlight" name="method_highlight" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">highlight()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">highlight(string  <span class="argument">$text</span>, string|array  <span class="argument">$phrase</span>, array  <span class="argument">$options = array()</span>) : string</pre>
+                <p><em>Highlights a given phrase in a text. You can specify any expression in highlighter that
+may include the \1 expression to include the $phrase found.</em></p>
+                <h3>Options:</h3>
+<ul>
+<li><code>format</code> The piece of html with that the phrase will be highlighted</li>
+<li><code>html</code> If true, will ignore any HTML tags, ensuring that only the correct text is highlighted</li>
+<li><code>regex</code> a custom regex rule that is used to match words, default is '|$tag|iu'</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>Text to search the phrase in.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|array</td>
+                                <td>$phrase </td>
+                                <td><p>The phrase or phrases that will be searched.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>An array of html attributes and options.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The highlighted text</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::highlight"><span class="namespace-wrapper">http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::highlight</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_stripLinks" name="method_stripLinks" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">stripLinks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">stripLinks(string  <span class="argument">$text</span>) : string</pre>
+                <p><em>Strips given text of all links (&lt;a href=.</em></p>
+                <p>...).</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>Text</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The text without links</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::stripLinks"><span class="namespace-wrapper">http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::stripLinks</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_tail" name="method_tail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">tail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">tail(string  <span class="argument">$text</span>, integer  <span class="argument">$length = 100</span>, array  <span class="argument">$options = array()</span>) : string</pre>
+                <p><em>Truncates text starting from the end.</em></p>
+                <p>Cuts a string to the length of $length and replaces the first characters
+with the ellipsis if the text is longer than length.</p>
+<h3>Options:</h3>
+<ul>
+<li><code>ellipsis</code> Will be used as Beginning and prepended to the trimmed string</li>
+<li><code>exact</code> If false, $text will not be cut mid-word</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>String to truncate.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$length </td>
+                                <td><p>Length of returned string, including ellipsis.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>An array of options.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Trimmed string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_truncate" name="method_truncate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">truncate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">truncate(string  <span class="argument">$text</span>, integer  <span class="argument">$length = 100</span>, array  <span class="argument">$options = array()</span>) : string</pre>
+                <p><em>Truncates text.</em></p>
+                <p>Cuts a string to the length of $length and replaces the last characters
+with the ellipsis if the text is longer than length.</p>
+<h3>Options:</h3>
+<ul>
+<li><code>ellipsis</code> Will be used as Ending and appended to the trimmed string (<code>ending</code> is deprecated)</li>
+<li><code>exact</code> If false, $text will not be cut mid-word</li>
+<li><code>html</code> If true, HTML tags would be handled correctly</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>String to truncate.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$length </td>
+                                <td><p>Length of returned string, including ellipsis.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>An array of html attributes and options.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Trimmed string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::truncate"><span class="namespace-wrapper">http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::truncate</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_excerpt" name="method_excerpt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">excerpt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">excerpt(string  <span class="argument">$text</span>, string  <span class="argument">$phrase</span>, integer  <span class="argument">$radius = 100</span>, string  <span class="argument">$ellipsis = &#039;...&#039;</span>) : string</pre>
+                <p><em>Extracts an excerpt from the text surrounding the phrase with a number of characters on each side
+determined by radius.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$text </td>
+                                <td><p>String to search the phrase in</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$phrase </td>
+                                <td><p>Phrase that will be searched for</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$radius </td>
+                                <td><p>The amount of characters that will be returned on each side of the founded phrase</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ellipsis </td>
+                                <td><p>Ending that will be appended</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Modified string</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt"><span class="namespace-wrapper">http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::excerpt</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toList" name="method_toList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toList(array  <span class="argument">$list</span>, string  <span class="argument">$and = &#039;and&#039;</span>, string  <span class="argument">$separator = &#039;, &#039;</span>) : string</pre>
+                <p><em>Creates a comma separated list where the last two items are joined with &#039;and&#039;, forming natural English</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$list </td>
+                                <td><p>The list to be joined</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$and </td>
+                                <td><p>The word used to join the last and second last items together with. Defaults to 'and'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$separator </td>
+                                <td><p>The separator used to join all the other items together. Defaults to ', '</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The glued together string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::toList"><span class="namespace-wrapper">http://book.cakephp.org/2.0/en/core-libraries/helpers/text.html#TextHelper::toList</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">String.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Utility/String.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Strata.html">\Strata</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on 
+Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in /Users/ffaubert01/Documents/projects/strata/strata/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
+October 7th, 2015 at 17:25.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
