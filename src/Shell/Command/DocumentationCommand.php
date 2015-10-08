@@ -144,8 +144,12 @@ class DocumentationCommand extends StrataCommand
             touch($tmpPath . "phploc.xml");
         }
 
+        if (!file_exists($tmpPath . "phpcs.xml")) {
+            touch($tmpPath . "phpcs.xml");
+        }
+
         system(sprintf("%sbin/phploc  --log-xml %sphploc.xml test", $vendorPath, $tmpPath));
-        system(sprintf("%sbin/phpcs src --standard=PSR2 --report-xml= %sphpcs.xml", $vendorPath, $tmpPath));
+        system(sprintf("%sbin/phpcs src --standard=PSR2 --report-xml=%sphpcs.xml", $vendorPath, $tmpPath));
         system(sprintf("%sbin/phpdox", $vendorPath));
     }
 
@@ -347,7 +351,7 @@ class DocumentationCommand extends StrataCommand
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (filetype($dir."/".$object) == "dir") $this->_rrmdir($dir."/".$object); else unlink($dir."/".$object);
+                    if (filetype($dir."/".$object) == "dir") $this->rrmdir($dir."/".$object); else unlink($dir."/".$object);
                 }
             }
             reset($objects);
