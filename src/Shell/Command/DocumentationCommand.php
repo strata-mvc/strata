@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Shell\Command;
 
+use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
 
 use Symfony\Component\Console\Command\Command;
@@ -27,11 +28,9 @@ class DocumentationCommand extends StrataCommand
             ->setName('document')
             ->setDescription('Documents the current app')
             ->setDefinition(
-                new InputDefinition(
-                    array(
+                new InputDefinition(array(
                     new InputOption('destination', 'c', InputOption::VALUE_OPTIONAL),
-                    )
-                )
+                ))
             );
     }
 
@@ -42,18 +41,18 @@ class DocumentationCommand extends StrataCommand
     {
         $this->startup($input, $output);
 
-        $this->_deletePrevious();
+        $this->deletePrevious();
 
-        $this->_generateAPI();
+        $this->generateAPI();
         $this->nl();
 
-        $this->_generateThemesApi();
+        $this->generateThemesApi();
         $this->nl();
 
-        $this->_generateThemesDocumentation();
+        $this->generateThemesDocumentation();
         $this->nl();
 
-        $this->_summary();
+        $this->summary();
         $this->nl();
 
         $this->shutdown();
@@ -64,105 +63,105 @@ class DocumentationCommand extends StrataCommand
      * argument passed as option or from the default path.
      * @return string Destination path.
      */
-    protected function _getDestination()
+    protected function getDestination()
     {
         if (!is_null($this->input->getOption('destination'))) {
             return $this->input->getOption('destination');
         }
 
-        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR));
+        return implode(DIRECTORY_SEPARATOR, array(Strata::getRootPath(), "doc", DIRECTORY_SEPARATOR));
     }
 
     /**
      * Gets the api documentation's destination
      * @return string Destination path.
      */
-    protected function _getApiDestination()
+    protected function getApiDestination()
     {
-        return $this->_getDestination() . 'api';
+        return $this->getDestination() . 'api';
     }
 
     /**
      * Gets the Wordpress themes documentation's destination
      * @return string Destination path.
      */
-    protected function _getWpdocDestination()
+    protected function getWpdocDestination()
     {
-        return $this->_getDestination() . 'wpdoc';
+        return $this->getDestination() . 'wpdoc';
     }
 
     /**
      * Gets the Wordpress themes API documentation's destination
      * @return string Destination path.
      */
-    protected function _getWpApiDestination()
+    protected function getWpApiDestination()
     {
-        return $this->_getDestination() . 'wpapi';
+        return $this->getDestination() . 'wpapi';
     }
 
-    /**
-     * Return the path to the phpDocumentor binary
-     * @return string phpDocumentor binary path
-     */
-    protected function _getPhpDocumentorBin()
-    {
-        return implode(DIRECTORY_SEPARATOR, array(\Strata\Strata::getVendorPath(), "bin", "phpDocumentor"));
-    }
 
     /**
      * Outputs a summary of the operation.
      * @return null
      */
-    protected function _summary()
+    protected function summary()
     {
         $this->output->writeLn("The project documentation has been generated at the following URLs: ");
         $this->nl();
 
-        $destination = $this->_getDestination();
-        $this->output->writeLn("<info>API               :</info> ". $this->_getApiDestination()   ."/index.html");
-        $this->output->writeLn("<info>Theme API         :</info> ". $this->_getWpApiDestination()   ."/index.html");
-        $this->output->writeLn("<info>Theme Information :</info> ". $this->_getWpdocDestination() ."/index.html");
+        $destination = $this->getDestination();
+        $this->output->writeLn("<info>API               :</info> ". $this->getApiDestination()   ."/index.html");
+        // $this->output->writeLn("<info>Theme API         :</info> ". $this->getWpApiDestination()   ."/index.html");
+        $this->output->writeLn("<info>Theme Information :</info> ". $this->getWpdocDestination() ."/index.html");
     }
 
     /**
      * Deletes the previous generated output in the destination folders.
      * @return [type] [description]
      */
-    protected function _deletePrevious()
+    protected function deletePrevious()
     {
-        $this->_rrmdir($this->_getApiDestination());
-        $this->_rrmdir($this->_getWpApiDestination());
-        $this->_rrmdir($this->_getWpdocDestination());
+        $this->rrmdir($this->getApiDestination());
+        $this->rrmdir($this->getWpApiDestination());
+        $this->rrmdir($this->getWpdocDestination());
     }
 
     /**
      * Generates the API documentation contents
      * @return null
      */
-    protected function _generateAPI()
+    protected function generateAPI()
     {
-        $srcPath = \Strata\Strata::getSRCPath();
+        $srcPath = Strata::getSRCPath();
+        $vendorPath = Strata::getVendorPath();
+        $tmpPath = Strata::getTmpPath();
 
         $this->output->writeLn("<info>Generating API</info>");
         $this->output->writeLn($this->tree(true) . "Scanning $srcPath");
         $this->nl();
 
-        system(sprintf("%s -d %s -t %s", $this->_getPhpDocumentorBin(), $srcPath, $this->_getApiDestination()));
+        if (!file_exists($tmpPath . "phploc.xml")) {
+            touch($tmpPath . "phploc.xml");
+        }
+
+        system(sprintf("%sbin/phploc  --log-xml %sphploc.xml test", $vendorPath, $tmpPath));
+        system(sprintf("%sbin/phpcs src --standard=PSR2 --report-xml= %sphpcs.xml", $vendorPath, $tmpPath));
+        system(sprintf("%sbin/phpdox", $vendorPath));
     }
 
     /**
      * Generates the API documentation contents
      * @return null
      */
-    protected function _generateThemesAPI()
+    protected function generateThemesAPI()
     {
-        $themesPath = \Strata\Strata::getThemesPath();
+        // $themesPath = Strata::getThemesPath();
 
-        $this->output->writeLn("<info>Generating Wordpress theme API</info>");
-        $this->output->writeLn($this->tree(true) . "Scanning $themesPath");
-        $this->nl();
+        // $this->output->writeLn("<info>Generating Wordpress theme API</info>");
+        // $this->output->writeLn($this->tree(true) . "Scanning $themesPath");
+        // $this->nl();
 
-        system(sprintf("%s -d %s -t %s", $this->_getPhpDocumentorBin(), $themesPath, $this->_getWpApiDestination()));
+        // system(sprintf("%s -d %s -t %s", $this->getPhpDocumentorBin(), $themesPath, $this->getWpApiDestination()));
     }
 
 
@@ -170,13 +169,13 @@ class DocumentationCommand extends StrataCommand
      * Generates the Wordpress themes documentation contents
      * @return null
      */
-    protected function _generateThemesDocumentation()
+    protected function generateThemesDocumentation()
     {
         $this->output->writeLn("<info>Generating Wordpress theme documentation</info>");
 
-        $themesPath = \Strata\Strata::getThemesPath();
-        $info = $this->_scanThemeDirectories($themesPath);
-        $this->_writeThemesDocumentation($info);
+        $themesPath = Strata::getThemesPath();
+        $info = $this->scanThemeDirectories($themesPath);
+        $this->writeThemesDocumentation($info);
     }
 
     /**
@@ -185,7 +184,7 @@ class DocumentationCommand extends StrataCommand
      * @param  array $info The parsed theme data
      * @return bool       True is the file was successfully created.
      */
-    protected function _writeThemesDocumentation($info)
+    protected function writeThemesDocumentation($info)
     {
         $header = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Overview</title>';
         $header .= '<link rel="stylesheet" href="../api/resources/style.css">';
@@ -200,11 +199,10 @@ class DocumentationCommand extends StrataCommand
             $content .= "<caption>This theme defines " . count($theme["templates"]) . " template files.</caption><tbody>";
 
             foreach ($theme["templates"] as $template) {
-                $content .= sprintf(
-                    $htmlTpl,
-                    empty($template["Template Name"]) ? 'Name not specified' : $template["Template Name"],
-                    $template["filename"],
-                    empty($template["Description"]) ? 'Missing description.' : $template["Description"]
+                $content .= sprintf($htmlTpl,
+                        empty($template["Template Name"]) ? 'Name not specified' : $template["Template Name"],
+                        $template["filename"],
+                        empty($template["Description"]) ? 'Missing description.' : $template["Description"]
                 );
             }
             $content .= "</tbody></table>";
@@ -212,17 +210,16 @@ class DocumentationCommand extends StrataCommand
             $content .= '<table class="summary" id="libs" style="width:45%; margin-left:2%; float:left;">';
             $content .= "<caption>This theme uses " . count($theme["libs"]) . " obvious library files.</caption><tbody>";
             foreach ($theme["libs"] as $lib) {
-                $content .= sprintf(
-                    $htmlTpl,
-                    empty($lib["Name"]) ? 'Name not specified' : $lib["Name"],
-                    $lib["filename"],
-                    empty($lib["Description"]) ? 'Missing description.' : $lib["Description"]
+                $content .= sprintf($htmlTpl,
+                        empty($lib["Name"]) ? 'Name not specified' : $lib["Name"],
+                        $lib["filename"],
+                        empty($lib["Description"]) ? 'Missing description.' : $lib["Description"]
                 );
             }
             $content .= "</tbody></table>";
         }
 
-        $wpdocdir = $this->_getWpdocDestination();
+        $wpdocdir = $this->getWpdocDestination();
         if (!is_dir($wpdocdir)) {
             mkdir($wpdocdir);
         }
@@ -236,7 +233,7 @@ class DocumentationCommand extends StrataCommand
      * @param  string $base The base theme path.
      * @return array       A associative array of theme information
      */
-    protected function _scanThemeDirectories($base)
+    protected function scanThemeDirectories($base)
     {
         $tree = array("themes" => array());
 
@@ -264,7 +261,7 @@ class DocumentationCommand extends StrataCommand
                     $tree["themes"][$theme]["templates"][$template] = array();
 
                     $headerKeys = array("Template Name" => "Template Name", "Description" => "Description");
-                    $templateDetails = $this->_getFileData($filename, $headerKeys);
+                    $templateDetails = $this->getFileData($filename, $headerKeys);
 
                     $tree["themes"][$theme]["templates"][$template]["filename"] = $filename;
                     foreach ($headerKeys as $key) {
@@ -281,7 +278,7 @@ class DocumentationCommand extends StrataCommand
                     $tree["themes"][$theme]["libs"][$lib] = array();
 
                     $headerKeys = array("Name" => "Name", "Description" => "Description");
-                    $libDetails = $this->_getFileData($filename, $headerKeys);
+                    $libDetails = $this->getFileData($filename, $headerKeys);
 
                     $tree["themes"][$theme]["libs"][$lib]["filename"] = $filename;
                     foreach ($headerKeys as $key) {
@@ -303,19 +300,19 @@ class DocumentationCommand extends StrataCommand
      * @param  string $context         [description]
      * @return [type]                  [description]
      */
-    protected function _getFileData($file, $all_headers = array(), $context = '')
+    protected function getFileData($file, $all_headers = array(), $context = '')
     {
         // We don't need to write to the file, so just open for reading.
-        $fp = fopen($file, 'r');
+        $fp = fopen( $file, 'r' );
 
         // Pull only the first 8kiB of the file in.
-        $file_data = fread($fp, 8192);
+        $file_data = fread( $fp, 8192 );
 
         // PHP will close file handle, but we are good citizens.
-        fclose($fp);
+        fclose( $fp );
 
         // Make sure we catch CR-only line endings.
-        $file_data = str_replace("\r", "\n", $file_data);
+        $file_data = str_replace( "\r", "\n", $file_data );
 
         /**
          * Filter extra file headers by context.
@@ -328,12 +325,11 @@ class DocumentationCommand extends StrataCommand
          * @param array $extra_context_headers Empty array by default.
          */
 
-        foreach ($all_headers as $field => $regex) {
-            if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $file_data, $match) && $match[1]) {
+        foreach ( $all_headers as $field => $regex ) {
+            if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $file_data, $match ) && $match[1] )
                 $all_headers[ $field ] = $match[1];
-            } else {
+            else
                 $all_headers[ $field ] = '';
-            }
         }
 
         return $all_headers;
@@ -345,17 +341,13 @@ class DocumentationCommand extends StrataCommand
      * @param  string $dir A directory path to delete
      * @return null
      */
-    protected function _rrmdir($dir)
+    protected function rrmdir($dir)
     {
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (filetype($dir."/".$object) == "dir") {
-                        $this->_rrmdir($dir."/".$object);
-                    } else {
-                        unlink($dir."/".$object);
-                    }
+                    if (filetype($dir."/".$object) == "dir") $this->_rrmdir($dir."/".$object); else unlink($dir."/".$object);
                 }
             }
             reset($objects);
