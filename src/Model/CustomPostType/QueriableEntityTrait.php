@@ -16,6 +16,17 @@ trait QueriableEntityTrait
         return $ref->query();
     }
 
+    public static function getEntity($associatedObj = null)
+    {
+        $EntityClass = get_called_class();
+        $entityClassRef = new $EntityClass();
+        $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
+
+        $entityRef = class_exists($ActualEntity) ? new $ActualEntity() : new ModelEntity();
+        $entityRef->bindToObject($associatedObj);
+        return $entityRef;
+    }
+
     protected $activeQuery = null;
 
     /**
