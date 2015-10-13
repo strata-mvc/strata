@@ -53,7 +53,6 @@ class Query
         $this->logQueryStart();
         $result = new WP_Query($this->filters);
         $this->logQueryCompletion($result->request);
-
         return $result;
     }
 
@@ -283,12 +282,12 @@ class Query
         return $this;
     }
 
-    private function logQueryStart()
+    protected function logQueryStart()
     {
         $this->executionStart = microtime(true);
     }
 
-    private function logQueryCompletion($sql)
+    protected function logQueryCompletion($sql)
     {
         $executionTime = microtime(true) - $this->executionStart;
         $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
