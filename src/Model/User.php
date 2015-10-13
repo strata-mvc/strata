@@ -32,4 +32,14 @@ class User extends WordpressEntity
     {
         return new UserQuery();
     }
+
+    protected function wrapInEntities(array $entities)
+    {
+        $results = array();
+        foreach ($entities as $entity) {
+            $results[] = self::getEntity($entity->data);
+        }
+
+        return $results;
+    }
 }

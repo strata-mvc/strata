@@ -48,7 +48,7 @@ class Query
         return $this->executeFilteredQuery();
     }
 
-    private function executeFilteredQuery()
+    protected function executeFilteredQuery()
     {
         $this->logQueryStart();
         $result = new WP_Query($this->filters);

@@ -6,9 +6,12 @@ use WP_User_Query;
 
 class UserQuery extends Query
 {
-    protected $filters = array();
-
     public function fetch()
+    {
+        return (array)$this->query();
+    }
+
+    protected function executeFilteredQuery()
     {
         $this->logQueryStart();
         $query = new WP_User_Query($this->filters);
@@ -16,9 +19,9 @@ class UserQuery extends Query
         return $query->results;
     }
 
-    // WP_User_Query doesn't expose it's sql.
     private function toSql($query)
     {
+        // WP_User_Query doesn't expose it's sql.
         return "SELECT $query->query_fields $query->query_from $query->query_where $query->query_orderby $query->query_limit";
     }
 }
