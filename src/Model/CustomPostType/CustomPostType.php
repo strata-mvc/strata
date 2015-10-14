@@ -3,7 +3,7 @@ namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Hash;
 use Strata\Model\WordpressEntity;
-use Strata\Model\Taxonomy\TaxonomyEntity;
+use Strata\Model\Taxonomy\Taxonomy;
 use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
@@ -89,7 +89,7 @@ class CustomPostType extends WordpressEntity
             if (class_exists($taxonomyName)) {
                 $tax[] = new $taxonomyName();
             } else {
-                $tax[] = TaxonomyEntity::factory($taxonomyName);
+                $tax[] = Taxonomy::factory($taxonomyName);
             }
         }
 

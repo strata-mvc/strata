@@ -5,7 +5,7 @@ use Strata\Model\WordpressEntity;
 use Strata\Core\StrataObjectTrait;
 use Strata\Model\CustomPostType\QueriableEntityTrait;
 
-class TaxonomyEntity extends WordpressEntity
+class Taxonomy extends WordpressEntity
 {
     use StrataObjectTrait;
     use QueriableEntityTrait;

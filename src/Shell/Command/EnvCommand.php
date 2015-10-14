@@ -2,6 +2,7 @@
 namespace Strata\Shell\Command;
 
 use Strata\Shell\Command\StrataCommand;
+use Strata\Strata;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,8 +15,8 @@ use InvalidArgumentException;
  * Automates Strata self-maintaining scripts.
  *
  * Intended use include:
- *     <code>bin/strata strata install</code>
- *     <code>bin/strata strata uninstall</code>
+ *     <code>./strata env repair</code>
+ *     <code>./strata env psr4format</code>
  */
 class EnvCommand extends StrataCommand
 {
@@ -25,14 +26,14 @@ class EnvCommand extends StrataCommand
      *
      * @var boolean
      */
-    protected $_seemsFine = true;
+    protected $seemsFine = true;
 
     /**
      * Strata's directory structure
      *
      * @var array
      */
-    protected $_directoryStructure = array(
+    protected $directoryStructure = array(
         "bin",
         "config",
         "db",
@@ -61,14 +62,14 @@ class EnvCommand extends StrataCommand
      * @todo This needs to be a composer dependency.
      * @var  string
      */
-    protected $_srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
+    protected $srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
 
     /**
      * Strata's empty project files and their destination.
      *
      * @var array
      */
-    protected $_starterFiles = array(
+    protected $starterFiles = array(
         'src/Controller/AppController.php' => 'src/Controller/AppController.php',
         'src/Model/AppModel.php'      => 'src/Model/AppModel.php',
         'src/Model/AppCustomPostType.php'      => 'src/Model/AppCustomPostType.php',
@@ -88,9 +89,9 @@ class EnvCommand extends StrataCommand
             ->setName('env')
             ->setDescription('Manages the Strata installation.')
             ->addArgument(
-                'mode',
+                'action',
                 InputArgument::REQUIRED,
-                'repair'
+                'The action name. One of: "repair", "psr2format"'
             );
     }
 
@@ -101,9 +102,12 @@ class EnvCommand extends StrataCommand
     {
         $this->startup($input, $output);
 
-        switch ($input->getArgument('mode')) {
+        switch ($input->getArgument('action')) {
             case "repair":
                 $this->repair();
+                break;
+            case "psr2format":
+                $this->psr2format();
                 break;
             default:
                 throw new InvalidArgumentException("That is not a valid command.");
@@ -124,6 +128,23 @@ class EnvCommand extends StrataCommand
     }
 
     /**
+     * Formats Strata files in the PSR2 format
+     * using
+     * @return [type] [description]
+     */
+    protected function psr2format()
+    {
+        $phpcbf = 'vendor' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'phpcbf';
+
+        if (!file_exists($phpcbf)) {
+            throw new InvalidArgumentException("phpcbf is not present in the vendor directory. Are all the require-dev packages still present?");
+        }
+
+        system(sprintf("./%s -w src --standard=PSR2", $phpcbf));
+        system(sprintf("./%s -w test --standard=PSR2", $phpcbf));
+    }
+
+    /**
      * Creates the directory structure. Does not overwrite existing
      * directories.
      * @return null
@@ -133,8 +154,8 @@ class EnvCommand extends StrataCommand
         $this->output->writeLn("Ensuring correct directory structure.");
 
         $count = 0;
-        foreach ($this->_directoryStructure as $dir) {
-            $label = $this->tree(++$count >= count($this->_directoryStructure));
+        foreach ($this->directoryStructure as $dir) {
+            $label = $this->tree(++$count >= count($this->directoryStructure));
             if (!is_dir($dir)) {
                 if (mkdir($dir)) {
                     $this->output->writeLn($label . $this->ok($dir));
@@ -161,10 +182,10 @@ class EnvCommand extends StrataCommand
         $this->output->writeLn("Ensuring project files are present.");
 
         $count = 0;
-        foreach ($this->_starterFiles as $source => $file) {
-            $label = $this->tree(++$count >= count($this->_starterFiles));
+        foreach ($this->starterFiles as $source => $file) {
+            $label = $this->tree(++$count >= count($this->starterFiles));
             if (!file_exists($file)) {
-                if (file_put_contents($file, fopen($this->_srcUrl . $source, 'r')) > 0) {
+                if (file_put_contents($file, fopen($this->srcUrl . $source, 'r')) > 0) {
                     $this->output->writeLn($label . $this->ok($file));
                 } else {
                     $this->output->writeLn($label . $this->fail($file));
@@ -178,37 +199,14 @@ class EnvCommand extends StrataCommand
         $this->nl();
     }
 
-
-    protected function _getPhpunit()
-    {
-        $file = "bin/phpunit.phar";
-        $label = $this->tree(true);
-        $this->output->writeLn("Fetching PHPUnit");
-
-        if (!file_exists($file)) {
-            if (file_put_contents($file, fopen("https://phar.phpunit.de/phpunit.phar", 'r')) > 0) {
-                $this->output->writeLn($label . $this->ok($file));
-            } else {
-                $this->output->writeLn($label . $this->fail($file));
-                $this->flagFailing();
-            }
-        } else {
-            $this->output->writeLn($label . $this->skip($file));
-        }
-
-        $this->nl();
-    }
-
-
     /**
      * Flag the current process is not behaving as we expected.
      * @return null
      */
     protected function flagFailing()
     {
-        $this->_seemsFine = false;
+        $this->seemsFine = false;
     }
-
 
     /**
      * Presents a summary of the operation to the user.
@@ -218,7 +216,7 @@ class EnvCommand extends StrataCommand
     protected function installDone()
     {
         $this->nl();
-        if ($this->_seemsFine) {
+        if ($this->seemsFine) {
             $this->output->writeLn("========================================================================");
             $this->nl();
             $this->output->writeLn("                      Repair completed!");
