@@ -208,3 +208,38 @@ Song::delete($horribleSongId);
 
 ?>
 ~~~
+
+## Common concepts
+
+Strata ships with default models for repeating concepts. These classes help plug in automated queries and enforce similar default behavior.
+
+To gain an object able to query default Wordpress posts like a Strata CustomPostType, inherit `Strata\Model\Post`:
+
+~~~ php
+<?php
+namespace App\Model;
+
+use Strata\Model\Post as StrataPost;
+
+class Post extends StrataPost
+{
+
+}
+?>
+~~~
+
+To gain an object able to query Wordpress users like a Strata CustomPostType, inherit `Strata\Model\User`:
+
+~~~ php
+<?php
+namespace App\Model;
+
+use Strata\Model\User as StrataUser;
+
+class User extends StrataUser
+{
+
+}
+?>
+~~~
+

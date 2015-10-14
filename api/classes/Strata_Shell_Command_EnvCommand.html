@@ -68,25 +68,25 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/EnvCommand.php.html#line20">Source</a>
+            <a href="../source/Shell/Command/EnvCommand.php.html#line21">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Shell\Command\</small>EnvCommand</h1>
         <h4>Automates Strata self-maintaining scripts.</h4>
-        <p>Intended use include:<br/>&lt;code&gt;bin/strata strata install&lt;/code&gt;<br/>    &lt;code&gt;bin/strata strata uninstall&lt;/code&gt;</p>
+        <p>Intended use include:<br/>&lt;code&gt;./strata env repair&lt;/code&gt;<br/>    &lt;code&gt;./strata env psr4format&lt;/code&gt;</p>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class EnvCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// members</li><li>protected boolean <a href="#members">$_seemsFine</a> =
+            {<br/><ul class="none"><li>// members</li><li>protected boolean <a href="#members">$seemsFine</a> =
                         true;
-                    </li><li>protected array <a href="#members">$_directoryStructure</a> =
+                    </li><li>protected array <a href="#members">$directoryStructure</a> =
                         ;
-                    </li><li>protected string <a href="#members">$_srcUrl</a> =
+                    </li><li>protected string <a href="#members">$srcUrl</a> =
                         "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
-                    </li><li>protected array <a href="#members">$_starterFiles</a> =
+                    </li><li>protected array <a href="#members">$starterFiles</a> =
                         ;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
                         </li><li>protected string <a href="#members">$_tree_end</a>;
@@ -95,9 +95,9 @@
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/execute.html">execute</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair</a>()
+                    </li><li>protected [type] <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/psr2format.html">psr2format</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createDirectoryStructure.html">createDirectoryStructure</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createStarterFiles.html">createStarterFiles</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/_getPhpunit.html">_getPhpunit</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/flagFailing.html">flagFailing</a>()
                     </li><li>protected  <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/installDone.html">installDone</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
@@ -140,24 +140,24 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_directoryStructure"><strong>$_directoryStructure</strong>
-                —
-                array<br/><span class="indent">Strata's directory structure</span></li>
-            <li id="_seemsFine"><strong>$_seemsFine</strong>
-                —
-                boolean<br/><span class="indent">A flag that is maintain through a process to advise the user should something happen.</span></li>
-            <li id="_srcUrl"><strong>$_srcUrl</strong>
-                —
-                string<br/><span class="indent">The source URL for stater app files</span></li>
-            <li id="_starterFiles"><strong>$_starterFiles</strong>
-                —
-                array<br/><span class="indent">Strata's empty project files and their destination.</span></li>
             <li id="_tree_end"><strong>$_tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
             <li id="_tree_line"><strong>$_tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
+            <li id="directoryStructure"><strong>$directoryStructure</strong>
+                —
+                array<br/><span class="indent">Strata's directory structure</span></li>
+            <li id="seemsFine"><strong>$seemsFine</strong>
+                —
+                boolean<br/><span class="indent">A flag that is maintain through a process to advise the user should something happen.</span></li>
+            <li id="srcUrl"><strong>$srcUrl</strong>
+                —
+                string<br/><span class="indent">The source URL for stater app files</span></li>
+            <li id="starterFiles"><strong>$starterFiles</strong>
+                —
+                array<br/><span class="indent">Strata's empty project files and their destination.</span></li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -173,9 +173,6 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="_getPhpunit">
-              <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/_getPhpunit.html">_getPhpunit()</a>
-            </li>
             <li id="configure"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure()</a>
                 — {@inheritdoc}</li>
             <li id="createDirectoryStructure"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createDirectoryStructure.html">createDirectoryStructure()</a>
@@ -188,6 +185,8 @@
                 — Flag the current process is not behaving as we expected.</li>
             <li id="installDone"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/installDone.html">installDone()</a>
                 — Presents a summary of the operation to the user.</li>
+            <li id="psr2format"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/psr2format.html">psr2format()</a>
+                — Formats Strata files in the PSR2 format using</li>
             <li id="repair"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair()</a>
                 — Installs Strata files and directories</li>
           </ul>

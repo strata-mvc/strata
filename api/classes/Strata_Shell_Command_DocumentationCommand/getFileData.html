@@ -44,7 +44,7 @@
           <li class="separator">
             <a title="Strata\Shell\Command\DocumentationCommand" href="../../classes/Strata_Shell_Command_DocumentationCommand.html">DocumentationCommand</a>
           </li>
-          <li class="separator">_writeThemesDocumentation</li>
+          <li class="separator">getFileData</li>
         </ul>
       </div>
       <nav class="box">
@@ -65,32 +65,44 @@
             <a href="#tasks">Tasks</a>
           </li>
           <li>
-            <a href="../../source/Shell/Command/DocumentationCommand.php.html#line186">Source</a>
+            <a href="../../source/Shell/Command/DocumentationCommand.php.html#line307">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Strata\Shell\Command\DocumentationCommand::</small>_writeThemesDocumentation</h1>
-        <h4>Render the theme documentation file based on known $info fields.</h4>
-        <p/>
+        <h1><small>Strata\Shell\Command\DocumentationCommand::</small>getFileData</h1>
+        <h4>This is a lightly modified copy of Wordpress get_file_data() found in wp-includes/functions.php.</h4>
+        <p>Because we don't load Wordpress when executing Strata Shell, we don't have access to it.</p>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>protected function _writeThemesDocumentation(array
-        $info )
+          <code>protected function getFileData(<a title="Strata\Shell\Command\[type]" href="../../classes/Strata_Shell_Command_[type].html">[type]</a>
+        $file,
+            [array
+        $all_headers = ,
+            [string
+        $context = '']] )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$info</code>
+          <dt><code>$file</code>
+                —
+                object</dt>
+          <dd>[description]<br/><br/><br/>      </dd>
+          <dt><code>$all_headers</code>
                 —
                 array</dt>
-          <dd>The parsed theme data</dd>
+          <dd/>
+          <dt><code>$context</code>
+                —
+                string</dt>
+          <dd>[description]</dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt>bool</dt>
-          <dd>True is the file was successfully created.<br/>
+          <dt>[type]</dt>
+          <dd>[description]<br/>
         </dd>
         </dl>
         <table class="styled">
@@ -101,8 +113,8 @@
             </tr>
           </thead>
           <tr>
-            <td class="nummeric">186+</td>
-            <td>This will do for now, but the template shouldn't be hardcoded.</td>
+            <td class="nummeric">307+</td>
+            <td>Allow a way for Strata to load Wordpress on demand.</td>
           </tr>
         </table>
       </section>

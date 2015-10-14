@@ -13,6 +13,7 @@ $ ./strata _command_ _arguments_
 ## Bundled tools
 
 * [Documentation tool](/docs/shell/documenting)
+* [Environment management tool](/docs/shell/environment)
 * [Class Generator](/docs/shell/generator)
 * [Migration](/docs/shell/migrations)
 * [Bundled server](/docs/shell/server)

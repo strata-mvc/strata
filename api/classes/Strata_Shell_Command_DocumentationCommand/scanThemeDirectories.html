@@ -44,7 +44,7 @@
           <li class="separator">
             <a title="Strata\Shell\Command\DocumentationCommand" href="../../classes/Strata_Shell_Command_DocumentationCommand.html">DocumentationCommand</a>
           </li>
-          <li class="separator">_getFileData</li>
+          <li class="separator">scanThemeDirectories</li>
         </ul>
       </div>
       <nav class="box">
@@ -62,61 +62,33 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="#tasks">Tasks</a>
-          </li>
-          <li>
-            <a href="../../source/Shell/Command/DocumentationCommand.php.html#line302">Source</a>
+            <a href="../../source/Shell/Command/DocumentationCommand.php.html#line240">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Strata\Shell\Command\DocumentationCommand::</small>_getFileData</h1>
-        <h4>This is a lightly modified copy of Wordpress get_file_data() found in wp-includes/functions.php.</h4>
-        <p>Because we don't load Wordpress when executing Strata Shell, we don't have access to it.</p>
+        <h1><small>Strata\Shell\Command\DocumentationCommand::</small>scanThemeDirectories</h1>
+        <h4>Scans the theme directories of the current Wordpress installation and looks for things useful for a programmer.</h4>
+        <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>protected function _getFileData(<a title="Strata\Shell\Command\[type]" href="../../classes/Strata_Shell_Command_[type].html">[type]</a>
-        $file,
-            [array
-        $all_headers = ,
-            [string
-        $context = '']] )
+          <code>protected function scanThemeDirectories(string
+        $base )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$file</code>
-                —
-                object</dt>
-          <dd>[description]<br/><br/><br/>      </dd>
-          <dt><code>$all_headers</code>
-                —
-                array</dt>
-          <dd/>
-          <dt><code>$context</code>
+          <dt><code>$base</code>
                 —
                 string</dt>
-          <dd>[description]</dd>
+          <dd>The base theme path.</dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt>[type]</dt>
-          <dd>[description]<br/>
-        </dd>
+          <dt>array</dt>
+          <dd>A associative array of theme information</dd>
         </dl>
-        <table class="styled">
-          <thead>
-            <tr>
-              <th style="width:3em;">Line</th>
-              <th>Task</th>
-            </tr>
-          </thead>
-          <tr>
-            <td class="nummeric">302+</td>
-            <td>Allow a way for Strata to load Wordpress on demand.</td>
-          </tr>
-        </table>
       </section>
     </div>
     <footer>

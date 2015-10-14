@@ -42,9 +42,9 @@ This will look for a taxonomy definition called `ProfileType`, which can be conf
 <?php
 namespace App\Model;
 
-use Strata\Model\CustomPostType\TaxonomyEntity;
+use Strata\Model\CustomPostType\Taxonomy;
 
-class ProfileType extends TaxonomyEntity
+class ProfileType extends Taxonomy
 {
     public $configuration = array(
         'labels'      => array(
@@ -58,3 +58,23 @@ class ProfileType extends TaxonomyEntity
 ## Additional options
 
 Similarly to the model entities, the optional `$configuration` attribute allows you to customize the configuration array that is sent to `register_taxonomy` internally. As long as you follow the [conventions](http://codex.wordpress.org/Function_Reference/register_taxonomy) your taxonomy will be created using these customized values, filling the missing options with their default counterparts.
+
+
+## Common concepts
+
+Strata ships with default classes for repeating concepts. These classes help plug in automated queries and enforce similar default behavior.
+
+To gain an object able to query default Wordpress post categories, have your class inherit `Strata\Model\Taxonomy\Taxonomy`:
+
+~~~ php
+<?php
+namespace App\Model\Taxonomy;
+
+use Strata\Model\Taxonomy\Category as StrataCategory;
+
+class Category extends StrataCategory
+{
+
+}
+?>
+~~~
