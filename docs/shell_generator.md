@@ -39,14 +39,6 @@ Generates a new taxonomy model class.
 $ ./strata generate taxonomy MyClass
 ~~~
 
-## Form object
-
-Generates a new form class.
-
-~~~ sh
-$ ./strata generate form MyForm
-~~~
-
 ## View helper class
 
 Generates a new view helper class.

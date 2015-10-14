@@ -62,31 +62,27 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/Generator/GeneratorBase.php.html#line17">Source</a>
+            <a href="../source/Shell/Command/Generator/GeneratorBase.php.html#line18">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Shell\Command\Generator\</small>GeneratorBase</h1>
         <h4>Automates repetitive creation of code files. It validates the class names and file locations based on the set of guidelines promoted by Strata.</h4>
-        <p>Intended use include:<br/>&lt;code&gt;bin/strata generate controller User&lt;/code&gt;<br/>&lt;code&gt;bin/strata generate customposttype Task&lt;/code&gt;<br/>    ...</p>
+        <p>Intended use include:<br/>&lt;code&gt;./strata generate controller User&lt;/code&gt;<br/>&lt;code&gt;./strata generate customposttype Fruit&lt;/code&gt;<br/>    ...</p>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class GeneratorBase
-            {<br/><ul class="none"><li>// members</li><li>protected string <a href="#members">$classname</a> =
-                        "";
-                    </li><li>protected string <a href="#members">$_classTemplate</a> =
-                        "&lt;?php
-namespace {NAMESPACE};
-
-class {CLASSNAME} extends {EXTENDS} {
-
-
-}";
-                    </li><li>protected <span title="Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand">GenerateCommand</span> <a href="#members">$command</a> =
+            {<br/><ul class="none"><li>// members</li><li>protected <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span> <a href="#members">$command</a> =
+                        null;
+                    </li><li>protected  <a href="#members">$keyword</a>;
+                    </li><li>protected  <a href="#members">$classname</a>;
+                    </li><li>protected <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span> <a href="#members">$writer</a> =
                         null;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/__construct.html">__construct</a>()
-                    </li><li>protected string <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/_getNamespace.html">_getNamespace</a>()
+                    </li><li>public abstract void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/applyOptions.html">applyOptions</a>()
+                    </li><li>public abstract void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/generate.html">generate</a>()
+                    </li><li>protected ClassWriter <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/getWriter.html">getWriter</a>()
                     </li></ul>
 
             }<br/></div>
@@ -94,23 +90,36 @@ class {CLASSNAME} extends {EXTENDS} {
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_classTemplate"><strong>$_classTemplate</strong>
-                —
-                string<br/><span class="indent">The base string template for creating empty class files.</span></li>
             <li id="classname">
               <strong>$classname</strong>
             </li>
             <li id="command"><strong>$command</strong>
                 —
-                <a title="Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_Generator_Strata_Shell_Command_GenerateCommand.html">Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand</a><br/><span class="indent">A reference to the current command interface</span></li>
+                <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></li>
+            <li id="keyword">
+              <strong>$keyword</strong>
+            </li>
+            <li id="writer"><strong>$writer</strong>
+                —
+                <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">Strata\Shell\Command\Generator\ClassWriter</a></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="_getNamespace"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/_getNamespace.html">_getNamespace()</a>
-                — Returns the namespace of the current project.</li>
+            <li id="getWriter"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/getWriter.html">getWriter()</a>
+                — Obtain an instantiated ClassWriter object to create files.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/__construct.html">__construct()</a>
+            </li>
+            <li id="applyOptions"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/applyOptions.html">applyOptions()</a>
+                — Send option values to the generator so it can manipulate the information.</li>
+            <li id="generate"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/generate.html">generate()</a>
+                — Performs all the operations required by the generator.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

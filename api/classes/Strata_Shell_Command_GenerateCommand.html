@@ -56,6 +56,9 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
             <a href="#members">Members</a>
           </li>
           <li>
@@ -65,7 +68,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/GenerateCommand.php.html#line36">Source</a>
+            <a href="../source/Shell/Command/GenerateCommand.php.html#line38">Source</a>
           </li>
         </ul>
       </nav>
@@ -77,20 +80,13 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class GenerateCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// members</li><li>protected string <a href="#members">$_classTemplate</a> =
-                        "&lt;?php
-namespace {NAMESPACE};
-
-class {CLASSNAME} extends {EXTENDS} {
-
-
-}";
-                    </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_GenerateCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_GenerateCommand/execute.html">execute</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_GenerateCommand/getGenerator.html">getGenerator</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -114,17 +110,27 @@ class {CLASSNAME} extends {EXTENDS} {
             </li>
           </ul>
         </div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">38+</td>
+            <td>Route generation needs to be re-factored</td>
+          </tr>
+        </table>
         <h2 id="members">Members</h2>
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_classTemplate"><strong>$_classTemplate</strong>
-                —
-                string<br/><span class="indent">The base string template for creating empty class files.</span></li>
-            <li id="_tree_end"><strong>$_tree_end</strong>
+            <li id="tree_end"><strong>$tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
+            <li id="tree_line"><strong>$tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
@@ -146,6 +152,9 @@ class {CLASSNAME} extends {EXTENDS} {
                 — {@inheritdoc}</li>
             <li id="execute"><a title="Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_GenerateCommand/execute.html">execute()</a>
                 — {@inheritdoc}</li>
+            <li id="getGenerator">
+              <a title="Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_GenerateCommand/getGenerator.html">getGenerator()</a>
+            </li>
           </ul>
           <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
           <h4>protected</h4>
