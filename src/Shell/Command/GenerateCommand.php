@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 use Strata\Shell\Command\Generator\ControllerGenerator;
 use Strata\Shell\Command\Generator\ModelGenerator;
@@ -32,22 +32,11 @@ use Strata\Shell\Command\Generator\RouteGenerator;
  *     <code>bin/strata generate controller User</code>
  *     <code>bin/strata generate customposttype Task</code>
  *     ...
+ *
+ * @todo Route generation needs to be re-factored
  */
 class GenerateCommand extends StrataCommand
 {
-    /**
-     * The base string template for creating empty class files.
-     *
-     * @var string
-     */
-    protected $_classTemplate = "<?php
-namespace {NAMESPACE};
-
-class {CLASSNAME} extends {EXTENDS} {
-
-
-}";
-
     /**
      * {@inheritdoc}
      */
@@ -75,62 +64,50 @@ class {CLASSNAME} extends {EXTENDS} {
     {
         $this->startup($input, $output);
 
-        $options = $input->getArgument('options');
-        $classname = Inflector::classify($options[0]);
+        $type = strtolower($input->getArgument('type'));
+        $options = (array)$input->getArgument('options');
 
-        switch ($input->getArgument('type')) {
-            case "controller":
-                $generator = new ControllerGenerator($this);
-                $generator->setClassName($classname."Controller");
-                break;
-
-            case "model":
-                $generator = new ModelGenerator($this);
-                $generator->setClassName($classname);
-                break;
-
-            case "form":
-                $generator = new FormGenerator($this);
-                $generator->setClassName($classname."Form");
-                break;
-
-            case "customposttype":
-                $generator = new CustomPostTypeGenerator($this);
-                $generator->setClassName($classname);
-                break;
-
-            case "helper":
-                $generator = new HelperGenerator($this);
-                $generator->setClassName($classname."Helper");
-                break;
-
-            case "taxonomy":
-                $generator = new TaxonomyGenerator($this);
-                $generator->setClassName($classname);
-                break;
-
-            case "validator":
-                $generator = new ValidatorGenerator($this);
-                $generator->setClassName($classname."Validator");
-                break;
-
-            case "command":
-                $generator = new CommandGenerator($this);
-                $generator->setClassName($classname."Command");
-                break;
-
-            case "route":
-                $generator = new RouteGenerator($this);
-                $generator->configure($options);
-                break;
-
-            default:
-                throw new InvalidArgumentException("That is not a valid command.");
+        if (count($options)) {
+            $generator = $this->getGenerator($type);
+            $generator->applyOptions($options);
+            $generator->generate();
+        } else {
+            throw new InvalidArgumentException("Missing required option arguments.");
         }
-
-        $generator->generate();
 
         $this->nl();
         $this->shutdown();
+    }
+
+    protected function getGenerator($type)
+    {
+        switch ($type) {
+            case "controller":
+                return new ControllerGenerator($this);
+
+            case "model":
+                return new ModelGenerator($this);
+
+            case "customposttype":
+                return new CustomPostTypeGenerator($this);
+
+            case "viewhelper" :
+            case "helper":
+                return new HelperGenerator($this);
+
+            case "taxonomy":
+                return new TaxonomyGenerator($this);
+
+            case "validator":
+                return new ValidatorGenerator($this);
+
+            case "command":
+                return new CommandGenerator($this);
+
+            // case "route":
+            //     return new RouteGenerator($this);
+        }
+
+        throw new InvalidArgumentException("That is not a valid command.");
     }
 }

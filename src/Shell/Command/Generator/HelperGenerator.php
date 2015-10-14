@@ -1,24 +1,49 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class HelperGenerator extends ClassWriter
+use Strata\View\Helper\Helper;
+use Strata\Strata;
+
+class HelperGenerator extends GeneratorBase
 {
+    public function applyOptions(array $args)
+    {
+        $this->keyword = $args[0];
+        $this->classname = Helper::generateClassName($this->keyword);
+    }
 
-
-    /**
-     * Creates a View helper class file
-     * @return null
-     */
     public function generate()
     {
         $this->command->output->writeLn("Scaffolding view helper <info>{$this->classname}</info>");
 
-        $namespace = $this->_getNamespace();
+        $this->generateHelper();
+        $this->generateTest();
+    }
 
-        $destination = implode(DIRECTORY_SEPARATOR, array("src", "View", "Helper", $this->classname . ".php"));
-        $this->_createFile($destination, "$namespace\View\Helper", $this->classname, "AppHelper");
+    protected function generateHelper()
+    {
+        $namespace = Strata::getNamespace() . "\\View\\Helper";
+        $destination = implode(DIRECTORY_SEPARATOR, array("src", "View", "Helper", "{$this->classname}.php"));
 
+        $writer = $this->getWriter();
+        $writer->setClassname($this->classname);
+        $writer->setNamespace($namespace);
+        $writer->setDestination($destination);
+        $writer->setExtends("AppHelper");
+        $writer->create();
+    }
+
+    protected function generateTest()
+    {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "View", "Helper", $this->classname . "Test.php"));
-        $this->_createFile($destination, "$namespace\Tests\View\Helper", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $namespace = Strata::getNamespace() . "\\Test\\View\\Helper";
+
+        $writer = $this->getWriter();
+        $writer->setClassname($this->classname . "Test");
+        $writer->setNamespace($namespace);
+        $writer->setDestination($destination);
+        $writer->setUses("\nuse Strata\Test\Test as StrataTest;\n");
+        $writer->setExtends("StrataTest");
+        $writer->create(true);
     }
 }

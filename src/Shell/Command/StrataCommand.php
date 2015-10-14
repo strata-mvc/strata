@@ -24,7 +24,8 @@ class StrataCommand extends Command
      */
     public static function factory($name)
     {
-        $classpath = self::generateClassPath($name);
+        $classpath = StrataCommandNamer::generateClassPath($name);
+
         if (class_exists($classpath)) {
             return new $classpath();
         }
@@ -41,7 +42,7 @@ class StrataCommand extends Command
      */
     public static function generateClassPath($name)
     {
-        return Strata::getNamespace() . "\\Shell\\Command\\" . ucfirst($name);
+        return StrataCommandNamer::generateClassName($name);
     }
 
     /**
@@ -49,14 +50,14 @@ class StrataCommand extends Command
      *
      * @var string
      */
-    protected $_tree_line = "  ├── ";
+    protected $tree_line = "  ├── ";
 
     /**
      * The bottom part of a tree representation prefix.
      *
      * @var string
      */
-    protected $_tree_end = "  └── ";
+    protected $tree_end = "  └── ";
 
     /**
      * A reference to the current input interface object
@@ -80,7 +81,7 @@ class StrataCommand extends Command
      */
     public function tree($isEnd = false)
     {
-        return $isEnd ? $this->_tree_end : $this->_tree_line;
+        return $isEnd ? $this->tree_end : $this->tree_line;
     }
 
     /**

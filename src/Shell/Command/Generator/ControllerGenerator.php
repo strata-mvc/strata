@@ -1,19 +1,49 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class ControllerGenerator extends ClassWriter
+use Strata\Controller\Controller;
+use Strata\Strata;
+
+class ControllerGenerator extends GeneratorBase
 {
+    public function applyOptions(array $args)
+    {
+        $this->keyword = $args[0];
+        $this->classname = Controller::generateClassName($this->keyword);
+    }
 
     public function generate()
     {
         $this->command->output->writeLn("Scaffolding controller <info>{$this->classname}</info>");
 
-        $namespace = $this->_getNamespace();
+        $this->generateController();
+        $this->generateTest();
+    }
 
+    protected function generateController()
+    {
+        $namespace = Strata::getNamespace() . "\\Controller";
         $destination = implode(DIRECTORY_SEPARATOR, array("src", "Controller", "{$this->classname}.php"));
-        $this->_createFile($destination, "$namespace\Controller", $this->classname, "AppController");
 
+        $writer = $this->getWriter();
+        $writer->setClassname($this->classname);
+        $writer->setNamespace($namespace);
+        $writer->setDestination($destination);
+        $writer->setExtends("AppController");
+        $writer->create();
+    }
+
+    protected function generateTest()
+    {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Controller", $this->classname . "Test.php"));
-        $this->_createFile($destination, "$namespace\Test\Controller", "Test{$this->classname}", "\Strata\Test\Test", true);
+        $namespace = Strata::getNamespace() . "\\Test\\Controller";
+
+        $writer = $this->getWriter();
+        $writer->setClassname($this->classname . "Test");
+        $writer->setNamespace($namespace);
+        $writer->setDestination($destination);
+        $writer->setUses("\nuse Strata\Test\Test as StrataTest;\n");
+        $writer->setExtends("StrataTest");
+        $writer->create(true);
     }
 }

@@ -1,66 +1,26 @@
 <?php
 namespace Strata\Model\Validator;
 
-use Strata\Strata;
-use Strata\Utility\Inflector;
-use Exception;
+use Strata\Core\StrataObjectTrait;
 
 /**
  * A base class for Validator objects
+ * @todo Validator needs to use the configurable trait.
+ * @todo Validator needs to be refactored without underscores as scope indicators.
  */
 class Validator
 {
+    use StrataObjectTrait;
 
-    /**
-     * Generate an instanciate Validator object from a possible string name.
-     * @param  string $name The class name of the validator
-     * @return Strata\Model\Validator\Validator       A validator
-     */
-    public static function factory($name)
+    public static function getNamespaceStringInStrata()
     {
-        // Check for custom validators in the Strata scope as well as in
-        // the project scope. Project scope has priority.
-        $scopes = array(
-            self::generateClassPath($name),
-            self::generateClassPath($name, false)
-        );
-
-        foreach ($scopes as $validatorName) {
-            if (class_exists($validatorName)) {
-                return new $validatorName();
-            }
-        }
-
-        throw new Exception("Strata : No file matched the validator '$name'.");
+        return "Model\\Validator";
     }
 
-    /**
-     * Generates a possible namespace and classname combination of a
-     * Strata validator. Mainly used to avoid hardcoding the '\\Validator\\'
-     * string everywhere.
-     * @param  string  $name  The class name of the validator
-     * @param  boolean $local Generated a path that is relative to the current project. Default to false.
-     * @return string       A fulle namespaced controller name
-     */
-    public static function generateClassPath($name, $local = true)
+    public static function getClassNameSuffix()
     {
-        $namespace = $local ? Strata::getNamespace() : 'Strata';
-        return $namespace . "\\Model\\Validator\\" . self::generateClassName($name);
+        return "Validator";
     }
-
-    public static function generateClassName($name)
-    {
-        $name = str_replace("-", "_", $name);
-        $name = Inflector::underscore($name);
-        $name = Inflector::classify($name);
-
-        if (!preg_match("/Validator$/", $name)) {
-            $name .= "Validator";
-        }
-
-        return $name;
-    }
-
 
     /**
      * @var string An error message for this validation.

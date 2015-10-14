@@ -9,7 +9,6 @@ use Strata\Model\CustomPostType\ModelEntity;
  */
 class Model
 {
-
     use StrataObjectTrait;
 
     public static function getNamespaceStringInStrata()
@@ -28,10 +27,5 @@ class Model
         $entityClassRef = new $EntityClass();
         $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
         return class_exists($ActualEntity) ? new $ActualEntity($associatedObj) : new ModelEntity($associatedObj);
-    }
-
-    public function __construct()
-    {
-
     }
 }

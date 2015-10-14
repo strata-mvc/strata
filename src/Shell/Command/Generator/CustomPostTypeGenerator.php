@@ -1,23 +1,15 @@
 <?php
 namespace Strata\Shell\Command\Generator;
 
-class CustomPostTypeGenerator extends ClassWriter
+class CustomPostTypeGenerator extends ModelGenerator
 {
-
-    /**
-     * Creates a Model class file
-     * @return null
-     */
-    public function generate()
+    protected function getExtends()
     {
-        $this->command->output->writeLn("Scaffolding custom post type <info>{$this->classname}</info>");
+        return "AppCustomPostType";
+    }
 
-        $namespace = $this->_getNamespace();
-
-        $destination = implode(DIRECTORY_SEPARATOR, array("src", "Model", $this->classname . ".php"));
-        $this->_createFile($destination, "$namespace\Model", $this->classname, "AppCustomPostType");
-
-        $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", $this->classname . "Test.php"));
-        $this->_createFile($destination, "$namespace\Test\Model", "Test{$this->classname}", "\Strata\Test\Test", true);
+    protected function getScaffoldMessage()
+    {
+        return "Scaffolding custom post type <info>{$this->classname}</info>";
     }
 }

@@ -1,85 +1,127 @@
 <?php
-/**
- */
+
 namespace Strata\Shell\Command\Generator;
 
-use Strata\Strata;
-
-/**
- * Automates repetitive creation of code files. It validates the class names and
- * file locations based on the set of guidelines promoted by Strata.
- *
- * Intended use include:
- *     <code>bin/strata generate controller User</code>
- *     <code>bin/strata generate customposttype Task</code>
- *     ...
- */
-class ClassWriter extends GeneratorBase
+class ClassWriter
+{
+    /**
+     * @var string The base string template for creating empty class files.
+     */
+    private $classTemplate = "<?php
+namespace {NAMESPACE};
+{USES}
+class {CLASSNAME} extends {EXTENDS}
 {
 
-    protected $classname = "";
+{CONTENTS}
+
+}
+";
+
+    private $namespace;
+    private $classname;
+    private $extends;
+    private $contents = '';
+    private $uses = '';
+    private $destination;
 
     /**
-     * The base string template for creating empty class files.
-     *
-     * @var string
+     * Sets the class' namespace
+     * @param string $namespace
      */
-    protected $_classTemplate = "<?php
-namespace {NAMESPACE};
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+    }
 
-class {CLASSNAME} extends {EXTENDS} {
-
-
-}";
-
-    public function setClassName($classname)
+    /**
+     * Sets the class' class name
+     * @param string $classname
+     */
+    public function setClassname($classname)
     {
         $this->classname = $classname;
     }
 
     /**
+     * Sets the class' file destination
+     * @param string $destination
+     */
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
+    }
+
+    /**
+     * Sets the class' extend value
+     * @param string $extend
+     */
+    public function setExtends($extends)
+    {
+        $this->extends = $extends;
+    }
+
+    /**
+     * Sets the class' use modules
+     * @param string $uses
+     */
+    public function setUses($uses)
+    {
+        $this->uses = $uses;
+    }
+
+    /**
+     * Sets the class' contents
+     * @param string $contents
+     */
+    public function setContents($contents)
+    {
+        $this->contents = $contents;
+    }
+
+    public function setCommandContext($command)
+    {
+        $this->command = $command;
+    }
+
+    /**
      * Generates a file string content based on the global template.
-     * @param  string $namespace The class' namespace
-     * @param  string $classname The class name
-     * @param  string $extends   The extending class
      * @return string            The generated class string
      */
-    protected function _generateFileContents($namespace, $classname, $extends)
+    protected function generateFileContents()
     {
-        $data = $this->_classTemplate;
+        $data = $this->classTemplate;
 
-        $data = str_replace("{EXTENDS}", $extends, $data);
-        $data = str_replace("{NAMESPACE}", $namespace, $data);
-        $data = str_replace("{CLASSNAME}", $classname, $data);
+        $data = str_replace("{EXTENDS}", $this->extends, $data);
+        $data = str_replace("{NAMESPACE}", $this->namespace, $data);
+        $data = str_replace("{CLASSNAME}", $this->classname, $data);
+        $data = str_replace("{CONTENTS}", $this->contents, $data);
+        $data = str_replace("{USES}", $this->uses, $data);
 
         return $data;
     }
 
     /**
      * Generates and writes a file in the file system
-     * @param  string  $destination The file's destination
-     * @param  string  $namespace   The class' namespace
-     * @param  string  $classname   The class name
-     * @param  string  $extends     The extending class
      * @param  boolean $last        Specifies if this is the last file in a queue
-     * @return null
      */
-    protected function _createFile($destination, $namespace, $classname, $extends, $last = false)
+    public function create($last = false)
     {
-        if (!file_exists($destination)) {
-            $dir = dirname($destination);
+        if (!file_exists($this->destination)) {
+
+            $dir = dirname($this->destination);
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);
             }
 
-            $contents = $this->_generateFileContents($namespace, $classname, $extends);
-            if (@file_put_contents($destination, $contents) > 0) {
-                $this->command->output->writeLn($this->command->tree($last) . $this->command->ok($destination));
+            if (@file_put_contents($this->destination, $this->generateFileContents()) > 0) {
+                $this->command->output->writeLn($this->command->tree($last) . $this->command->ok($this->destination));
             } else {
-                $this->command->output->writeLn($this->command->tree($last) . $this->command->fail($destination));
+                $this->command->output->writeLn($this->command->tree($last) . $this->command->fail($this->destination));
             }
+
         } else {
-            $this->command->output->writeLn($this->command->tree($last) . $this->command->skip($destination));
+            $this->command->output->writeLn($this->command->tree($last) . $this->command->skip($this->destination));
         }
     }
 }

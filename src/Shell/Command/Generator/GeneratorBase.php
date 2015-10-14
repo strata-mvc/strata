@@ -4,52 +4,56 @@
 namespace Strata\Shell\Command\Generator;
 
 use Strata\Strata;
+use Strata\Shell\Command\StrataCommand;
 
 /**
  * Automates repetitive creation of code files. It validates the class names and
  * file locations based on the set of guidelines promoted by Strata.
  *
  * Intended use include:
- *     <code>bin/strata generate controller User</code>
- *     <code>bin/strata generate customposttype Task</code>
+ *     <code>./strata generate controller User</code>
+ *     <code>./strata generate customposttype Fruit</code>
  *     ...
  */
-class GeneratorBase
+abstract class GeneratorBase
 {
-
-    protected $classname = "";
-
     /**
-     * The base string template for creating empty class files.
-     *
-     * @var string
-     */
-    protected $_classTemplate = "<?php
-namespace {NAMESPACE};
-
-class {CLASSNAME} extends {EXTENDS} {
-
-
-}";
-
-    /**
-     * A reference to the current command interface
-     *
-     * @var Strata\Shell\Command\GenerateCommand
+     * @var StrataCommand A reference to the current command interface
      */
     protected $command = null;
+    protected $keyword;
+    protected $classname;
 
-    function __construct($command)
+    /**
+     * @var ClassWriter A reference to the current class writer
+     */
+    protected $writer = null;
+
+    function __construct(StrataCommand $command)
     {
         $this->command = $command;
     }
 
     /**
-     * Returns the namespace of the current project.
-     * @return string A valid namespace string.
+     * Send option values to the generator so it can manipulate
+     * the information.
+     * @param  array  $args
      */
-    protected function _getNamespace()
+    abstract public function applyOptions(array $args);
+
+    /**
+     * Performs all the operations required by the generator.
+     */
+    abstract public function generate();
+
+    /**
+     * Obtain an instantiated ClassWriter object to create files.
+     * @return ClassWriter
+     */
+    protected function getWriter()
     {
-        return Strata::getNamespace();
+        $writer = new ClassWriter();
+        $writer->setCommandContext($this->command);
+        return $writer;
     }
 }
