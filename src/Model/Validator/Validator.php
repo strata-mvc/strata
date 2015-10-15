@@ -22,6 +22,14 @@ class Validator
         return "Validator";
     }
 
+    public static function getFactoryScopes($name)
+    {
+        return array(
+            self::generateClassPath($name),
+            self::generateClassPath($name, false)
+        );
+    }
+
     /**
      * @var string An error message for this validation.
      */
