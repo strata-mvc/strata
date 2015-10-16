@@ -26,7 +26,7 @@ class TaxonomyRegistrar extends Registrar
         $taxonomy = $taxonomyClassname::staticFactory();
         $key = $this->entity->getWordpressKey() . "_" . $taxonomyKey;
 
-        $customizedOptions = $taxonomy->configuration + array(
+        $customizedOptions = $taxonomy->getConfiguration() + array(
             'hierarchical'               => false,
             'public'                     => true,
             'show_ui'                    => true,
