@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Controller;
+namespace Test\Fixture\Controller;
 
 class TestController extends \Strata\Controller\Controller
 {

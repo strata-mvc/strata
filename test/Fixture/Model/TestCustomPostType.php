@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Model;
+namespace Test\Fixture\Model;
 
 use Strata\Model\CustomPostType\CustomPostType;
 

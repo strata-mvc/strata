@@ -3,8 +3,8 @@
 use Strata\Router\Router;
 use Strata\Router\RouteParser\Alto\AltoRouteParser;
 
-use Tests\Fixtures\Controller\TestController;
-use Tests\Fixtures\Router\RouteMaker;
+use Test\Fixture\Controller\TestController;
+use Test\Fixture\Router\RouteMaker;
 
 class RouterTest extends PHPUnit_Framework_TestCase
 {

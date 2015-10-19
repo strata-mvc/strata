@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Core;
+namespace Test\Fixture\Core;
 
 use Strata\Core\StrataObjectTrait;
 

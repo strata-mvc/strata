@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Model;
+namespace Test\Fixture\Model;
 
 class TestStateless extends \Strata\Model\Model
 {

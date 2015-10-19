@@ -8,7 +8,7 @@ php:
 before_script:
   - "/home/travis/.phpenv/versions/5.4/bin/composer self-update"
   - "composer update --prefer-source"
-script: vendor/bin/phpunit --bootstrap tests/bootstrap.php --coverage-text tests/Tests
+script: sh src/Scripts/test_strata
 notifications:
   email:
     - frank@francoisfaubert.com

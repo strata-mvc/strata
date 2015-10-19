@@ -1,9 +1,9 @@
 <?php
-namespace Tests\Fixtures\Router;
+namespace Test\Fixture\Router;
 
 use Strata\Router\Router;
-use Tests\Fixtures\Router\FakeRoute;
-use Tests\Fixtures\Controller\TestController;
+use Test\Fixture\Router\FakeRoute;
+use Test\Fixture\Controller\TestController;
 
 class RouteMaker
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Wordpress;
+namespace Test\Fixture\Wordpress;
 
 use Exception;
 

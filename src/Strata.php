@@ -53,6 +53,7 @@ class Strata extends StrataContext
         $this->configureLogger();
         $this->includeUtils();
         $this->loadConfiguration();
+        $this->addProjectNamespaces();
         $this->setTimeZone();
 
         $this->localize();
@@ -84,8 +85,6 @@ class Strata extends StrataContext
         if (!$this->containsConfigurations()) {
             throw new Exception("Using the Strata bootstraper requires a file named 'config/strata.php' that declares a configuration array named \$strata.");
         }
-
-        $this->addProjectNamespace();
     }
 
 
@@ -121,6 +120,28 @@ class Strata extends StrataContext
     public function getMiddlewares()
     {
         return $this->middlewareLoader->getMiddlewares();
+    }
+
+    /**
+     * Loads up a fake Wordpress wrapper on which the tests will register things.
+     * Will only include the file under CLI mode.
+     */
+    public function includeWordpressFixture()
+    {
+        if (self::isCommandLineInterface()) {
+            include_once(self::getTestPath() . 'Fixture/Wordpress/bootstrap.php');
+        }
+    }
+
+    /**
+     * Loads up a fake gettext wrapper against which the tests will test.
+     * Will only include the file under CLI mode.
+     */
+    public function includeGettextFixture()
+    {
+        if (self::isCommandLineInterface()) {
+            include_once(self::getTestPath() . 'Fixture/Gettext/bootstrap.php');
+        }
     }
 
     protected function configureLogger()
@@ -222,12 +243,10 @@ class Strata extends StrataContext
      * Adds the current project namespace to the project's class loader.
      * @return null
      */
-    protected function addProjectNamespace()
+    public function addProjectNamespaces()
     {
-        $srcPath = self::getSRCPath();
-        $namespace = self::getNamespace() . "\\";
-
-        $this->loader->setPsr4($namespace, $srcPath);
+        $this->loader->setPsr4(self::getNamespace() . "\\", self::getSRCPath());
+        $this->loader->setPsr4("Test\\", self::getTestPath());
     }
 
     protected function setTimeZone()

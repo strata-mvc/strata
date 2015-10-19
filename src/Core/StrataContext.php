@@ -106,21 +106,6 @@ class StrataContext
         return include Strata::getVendorPath() . 'autoload.php';
     }
 
-    public static function includeWordpressFixture()
-    {
-        $path = array(Strata::getTestPath(), "Fixture", "Wordpress", "wordpress-bootstraper.php");
-        $file =  include implode(DIRECTORY_SEPARATOR, $path);
-
-        // Wordpress registers callbacks in the global scope.
-        // Remove them. We'll have to keep an eye on what needs to
-        // be included here.
-        $GLOBALS = array(
-            "_SERVER" => $GLOBALS["_SERVER"]
-        );
-
-        return $file;
-    }
-
     public static function isCommandLineInterface()
     {
         return php_sapi_name() === 'cli';

@@ -1,7 +1,7 @@
 <?php
 
-use Tests\Fixtures\Router\RouteMaker;
-use Tests\Fixtures\Controller\TestController;
+use Test\Fixture\Router\RouteMaker;
+use Test\Fixture\Controller\TestController;
 
 use Strata\Controller\Controller;
 use Strata\View\Helper\Helper;

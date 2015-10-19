@@ -2,7 +2,7 @@
 
 use Strata\Strata;
 
-use Tests\Fixtures\Core\TestStrataObjectTrait;
+use Test\Fixture\Core\TestStrataObjectTrait;
 
 class StrataTest extends PHPUnit_Framework_TestCase
 {
@@ -22,8 +22,8 @@ class StrataTest extends PHPUnit_Framework_TestCase
     public function testStrataObjectTrait()
     {
         $this->assertTrue(TestStrataObjectTrait::staticFactory() instanceof TestStrataObjectTrait);
-        $this->assertEquals("Tests\Fixtures\\\\TestWierdNameTesting", TestStrataObjectTrait::generateClassPath("Test--wierd name"));
-        $this->assertEquals("Tests\\Fixtures\\\\EndingWithTesting", TestStrataObjectTrait::generateClassPath("EndingWithTesting"));
+        $this->assertEquals("Test\Fixture\\\\TestWierdNameTesting", TestStrataObjectTrait::generateClassPath("Test--wierd name"));
+        $this->assertEquals("Test\\Fixture\\\\EndingWithTesting", TestStrataObjectTrait::generateClassPath("EndingWithTesting"));
     }
 
     /**

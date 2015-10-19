@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Fixtures\View\Helper;
+namespace Test\Fixture\View\Helper;
 
 use Strata\View\Helper\Helper;
 use Exception;

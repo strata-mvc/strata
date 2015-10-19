@@ -1,9 +1,6 @@
 <?php
 
-use Tests\Fixtures\Wordpress\Wordpress;
-
-$wordpress = new Wordpress();
-$GLOBALS['__Wordpress__'] = $wordpress;
+$GLOBALS['__Wordpress__'] = new \Test\Fixture\Wordpress\Wordpress();
 
 function wordpress()
 {
@@ -22,7 +19,7 @@ function add_shortcode($tag, $func)
 
 function get_template_directory()
 {
-    return 'tests/Fixtures';
+    return 'test/Fixture';
 }
 
 function get_post_status()

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Router;
+namespace Test\Fixture\Router;
 
 use Strata\Router\RouteParser\Route;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Fixtures\Model;
+namespace Test\Fixture\Model;
 
 use Strata\Model\CustomPostType\ModelEntity;
 
@@ -9,7 +9,7 @@ class TestStatelessEntity extends ModelEntity
     public $attributes = array(
         "firstname"     => array("validations" => array("required")),
         "lastname"      => array("validations" => array("required")),
-        "mixedtest"     => array("validations" => array("in" => array("Tests\Fixtures\Model\TestStatelessEntity::mixedTest"))),
+        "mixedtest"     => array("validations" => array("in" => array("Test\Fixture\Model\TestStatelessEntity::mixedTest"))),
         "lengthtest"    => array("validations" => array("length" => array("min" => 3, "max" => 5))),
         "numerictest"   => array("validations" => array("numeric")),
         "postalcodetest"   => array("validations" => array("postalcode")),

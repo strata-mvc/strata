@@ -2,4 +2,4 @@
 
 cwd=$(pwd)
 
-${cwd}/vendor/bin/phpunit --bootstrap ${cwd}/tests/bootstrap.php tests/Tests
+${cwd}/vendor/bin/phpunit --bootstrap ${cwd}/test/bootstrap.php --coverage-text test/Test
