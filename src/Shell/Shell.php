@@ -44,8 +44,6 @@ class Shell
      */
     public static function run()
     {
-        Strata::app()->includeWordpress();
-
         $shell = self::getApplication();
         $shell->run();
     }
