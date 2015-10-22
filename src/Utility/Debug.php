@@ -28,14 +28,18 @@ if (!function_exists('debug')) {
         $app = \Strata\Strata::app();
         $app->log($context, "[Strata::debug]");
         $app->log($debug, "[Strata::debug]");
-        $app->log("", "[Strata::debug]");
+        $app->log($context, "[Strata::debug]");
 
 
-        echo "<pre>".$header."\n";
-        echo $debug;
-        echo "\n\n<div style=\"overflow:auto; font-size: 12px; font-family: consolas; background:transparent; width:100%; height:80px;\">";
-        debug_print_backtrace();
-        echo "</div>";
-        echo "\n".$footer."</pre>";
+        if (\Strata\Strata::isCommandLineInterface()) {
+            echo $header."\n".$debug ."\n".$footer."\n";
+        } else {
+            echo "<pre>".$header."\n";
+            echo $debug;
+            echo "\n\n<div style=\"overflow:auto; font-size: 12px; font-family: consolas; background:transparent; width:100%; height:80px;\">";
+            debug_print_backtrace();
+            echo "</div>";
+            echo "\n".$footer."</pre>";
+        }
     }
 }
