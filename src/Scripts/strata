@@ -2,5 +2,8 @@
 
 echo ""
 cwd=$(pwd)
-exec php ${cwd}/vendor/francoisfaubert/strata/src/Scripts/runner.php $@
+comm="$cwd/vendor/francoisfaubert/strata/src/Scripts/runner.php"
+params=$@
+
+vendor/bin/wp eval-file --skip-themes --debug --color $comm $params
 exit;

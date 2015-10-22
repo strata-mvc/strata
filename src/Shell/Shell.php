@@ -44,8 +44,7 @@ class Shell
      */
     public static function run()
     {
-        // Ensures environment variables are set.
-        include_once Strata::getConfigurationPath() . 'application.php';
+        Strata::app()->includeWordpress();
 
         $shell = self::getApplication();
         $shell->run();

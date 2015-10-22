@@ -87,7 +87,6 @@ class Strata extends StrataContext
         }
     }
 
-
     /**
      * Assigns a class loader to the application
      * @param ClassLoader $loader The application's class loader.
@@ -132,6 +131,15 @@ class Strata extends StrataContext
             include_once(self::getTestPath() . 'Fixture/Wordpress/bootstrap.php');
         }
     }
+
+    public function takeOverWPCLIArgs()
+    {
+        $wpcliArgs = $_SERVER['argv'];
+        // The first 5 items are wpcli arguments that are needed
+        // for WP to exist in the context of the command line.
+        $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 5);
+    }
+
 
     /**
      * Loads up a fake gettext wrapper against which the tests will test.

@@ -1,4 +1,3 @@
-#!/usr/bin/php -q
 <?php
 
 ini_set('display_errors', 1);
@@ -12,6 +11,7 @@ use Strata\Strata;
 
 $app = Strata::bootstrap(Strata::requireVendorAutoload());
 $app->init();
+$app->takeOverWPCLIArgs();
 
 // Get and run the shell.
 \Strata\Shell\Shell::run();
