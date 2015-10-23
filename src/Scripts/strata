@@ -5,5 +5,15 @@ cwd=$(pwd)
 comm="$cwd/vendor/francoisfaubert/strata/src/Scripts/runner.php"
 params=$@
 
-vendor/bin/wp eval-file --skip-themes --debug --color $comm $params
+# There is a no mans land when we try to create a database where you can't
+# use both wp-cli and .env.
+# For now, in that case only, bypass the wp-cli env wrapper when
+# creating the database using ./strata.
+if [[ $params == 'db create' ]] ; then
+    php $cwd/vendor/francoisfaubert/strata/src/Scripts/runner.php $params
+else :
+    vendor/bin/wp eval-file --skip-themes --debug --color $comm $params
+fi
+
+echo ""
 exit;

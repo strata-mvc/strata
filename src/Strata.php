@@ -134,10 +134,14 @@ class Strata extends StrataContext
 
     public function takeOverWPCLIArgs()
     {
-        $wpcliArgs = $_SERVER['argv'];
-        // The first 5 items are wpcli arguments that are needed
-        // for WP to exist in the context of the command line.
-        $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 5);
+        if (self::isCommandLineInterface()) {
+            $wpcliArgs = $_SERVER['argv'];
+            if (strstr($wpcliArgs[0], 'wp-cli')) {
+                // The first 5 items are wpcli arguments that are needed
+                // for WP to exist in the context of the command line.
+                $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 5);
+            }
+        }
     }
 
 

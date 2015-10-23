@@ -6,10 +6,12 @@ error_reporting(-1);
 
 // Load the class loader
 require_once getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+require_once(getcwd() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'application.php');
 
 use Strata\Strata;
 
 $app = Strata::bootstrap(Strata::requireVendorAutoload());
+
 $app->init();
 $app->takeOverWPCLIArgs();
 

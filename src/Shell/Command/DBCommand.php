@@ -39,7 +39,7 @@ class DBCommand extends StrataCommand
             ->addArgument(
                 'type',
                 InputArgument::REQUIRED,
-                'One of the following: migrate, import or dump.'
+                'One of the following: migrate or export.'
             );
     }
 
@@ -51,20 +51,20 @@ class DBCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('type')) {
-            case "create":
-                $this->_createDB();
-                break;
+            // case "create":
+            //     $this->createDB();
+            //     break;
 
             case "migrate":
-                $this->_importSqlFile($this->_getSqlFile());
+                $this->importSqlFile($this->getSqlFile());
                 break;
 
-            case "import":
-                $output->writeLn("Importing from an environment is not yet available.");
-                break;
+            // case "import":
+            //     $output->writeLn("Importing from an environment is not yet available.");
+            //     break;
 
             case "export":
-                $this->_dumpCurrentDB();
+                $this->dumpCurrentDB();
                 break;
         }
 
@@ -73,32 +73,30 @@ class DBCommand extends StrataCommand
         $this->shutdown();
     }
 
-    protected function _createDB()
-    {
-        $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
-        $command = sprintf("%s db create", $this->getWpCliPath());
-        system($command);
-    }
+    // protected function createDB()
+    // {
+    //     $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
+    //     $command = sprintf("%s db create", $this->getWpCliPath());
+    //     system($command);
+    // }
 
-    protected function getWpCliPath()
-    {
-        $filename = sprintf("vendor/bin/wp", Strata::getBinPath());
+    // protected function getWpCliPath()
+    // {
+    //     $filename = sprintf("%sbin/wp", Strata::getVendorPath());
 
-        if (!is_executable($filename)) {
-            if (!chmod($filename, 755)) {
-                $this->output->writeLn(sprintf("Could not grant execute permissions to %s. Command will fail.", $filename));
-            }
-        }
+    //     if (!is_executable($filename) && !chmod($filename, 755)) {
+    //         $this->output->writeLn(sprintf("Could not grant execute permissions to %s. Command will fail.", $filename));
+    //     }
 
-        return $filename;
-    }
+    //     return $filename;
+    // }
 
 
     /**
      * Dumps the current environment's database to an .sql file in /db/
      * @todo Ensure this works in and outside of Vagrant.
      */
-    protected function _dumpCurrentDB()
+    protected function dumpCurrentDB()
     {
         date_default_timezone_set("Etc/UTC");
         $relativeFilename = sprintf("export_%s_%s.sql", date('m-d-Y'), time());
@@ -111,7 +109,7 @@ class DBCommand extends StrataCommand
      * Imports an .sql file to the current environment's database.
      * @todo Ensure this works in an outside of Vagrant.
      */
-    protected function _importSqlFile($file)
+    protected function importSqlFile($file)
     {
         if (!is_null($file)) {
             $this->output->writeLn("Applying migration for <info>$file</info>");
@@ -128,14 +126,14 @@ class DBCommand extends StrataCommand
      * by returning the most recent sql file in /db/.
      * @return string Filepath
      */
-    protected function _getSqlFile()
+    protected function getSqlFile()
     {
         if (!is_null($this->input->getOption('filename'))) {
             return $this->input->getOption('filename');
         }
 
         $this->output->writeLn('No file passed as migration. Loading most recent .sql file in <info>./db/</info>');
-        return $this->_getMostRecent(Strata::getDbPath());
+        return $this->getMostRecent(Strata::getDbPath());
     }
 
     /**
@@ -143,7 +141,7 @@ class DBCommand extends StrataCommand
      * @param  string $path Where to look
      * @return string       Most recent file
      */
-    protected function _getMostRecent($path)
+    protected function getMostRecent($path)
     {
         $latestFilename = null;
         $latestCtime = 0;
