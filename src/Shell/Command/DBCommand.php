@@ -39,7 +39,7 @@ class DBCommand extends StrataCommand
             ->addArgument(
                 'type',
                 InputArgument::REQUIRED,
-                'One of the following: migrate or export.'
+                'One of the following: create, migrate or export.'
             );
     }
 
@@ -51,17 +51,13 @@ class DBCommand extends StrataCommand
         $this->startup($input, $output);
 
         switch ($input->getArgument('type')) {
-            // case "create":
-            //     $this->createDB();
-            //     break;
+            case "create":
+                $this->createDB();
+                break;
 
             case "migrate":
                 $this->importSqlFile($this->getSqlFile());
                 break;
-
-            // case "import":
-            //     $output->writeLn("Importing from an environment is not yet available.");
-            //     break;
 
             case "export":
                 $this->dumpCurrentDB();
@@ -73,23 +69,39 @@ class DBCommand extends StrataCommand
         $this->shutdown();
     }
 
-    // protected function createDB()
-    // {
-    //     $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
-    //     $command = sprintf("%s db create", $this->getWpCliPath());
-    //     system($command);
-    // }
+    protected function createDB()
+    {
+        $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
+        $command = sprintf("%s db create", $this->getWpCliPath());
+        system($command);
 
-    // protected function getWpCliPath()
-    // {
-    //     $filename = sprintf("%sbin/wp", Strata::getVendorPath());
+        $this->nl();
 
-    //     if (!is_executable($filename) && !chmod($filename, 755)) {
-    //         $this->output->writeLn(sprintf("Could not grant execute permissions to %s. Command will fail.", $filename));
-    //     }
+        $title = 'StrataEnvironment';
+        $adminUser = "admin";
+        $adminPassword = "admin";
+        $adminEmail = "admin@yourdomain.com";
 
-    //     return $filename;
-    // }
+        $this->output->writeLn("Installing using the following administrator information:");
+        $this->output->writeLn("  Title:      $title");
+        $this->output->writeLn("  User:       $adminUser");
+        $this->output->writeLn("  Password:   $adminPassword");
+        $this->output->writeLn("  Email:      $adminEmail");
+
+        $command = sprintf("%s core install --url=%s --title=%s --admin_user=%s --admin_password=%s --admin_email=%s", $this->getWpCliPath(), WP_HOME, $title, $adminUser, $adminPassword, $adminEmail);
+        system($command);
+    }
+
+    protected function getWpCliPath()
+    {
+        $filename = sprintf("%sbin/wp", Strata::getVendorPath());
+
+        if (!is_executable($filename) && !chmod($filename, 755)) {
+            $this->output->writeLn(sprintf("Could not grant execute permissions to %s. Command will fail.", $filename));
+        }
+
+        return $filename;
+    }
 
 
     /**
