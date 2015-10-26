@@ -28,19 +28,24 @@ class ModelEntity
     private $associatedObject;
     private $validationErrors = array();
 
-    function __construct($associatedObject = null)
+    public function __construct($associatedObj = null)
     {
-        if (!is_null($associatedObject)) {
-            $this->bindToObject($associatedObject);
+        if (!is_null($associatedObj)) {
+            $this->bindToObject($associatedObj);
         }
 
         $this->normalizeAttributes();
+        $this->init();
     }
 
-    function __get($var)
+    public function init()
+    {
+    }
+
+    public function __get($var)
     {
         if (is_null($this->associatedObject)) {
-            throw new Exception('ModelEntity was not linked to a Wordpress object.');
+            throw new Exception( get_class($this) . ' was not linked to a Wordpress object.');
         }
 
         if (property_exists($this->associatedObject, $var)) {
@@ -48,7 +53,7 @@ class ModelEntity
         }
     }
 
-    function __set($var, $value)
+    public function __set($var, $value)
     {
         if (is_null($this->associatedObject)) {
             return $this->{$var} = $value;
@@ -63,9 +68,9 @@ class ModelEntity
     }
 
 
-    public function bindToObject($associatedObject)
+    public function bindToObject($obj)
     {
-        $this->associatedObject = $associatedObject;
+        $this->associatedObject = $obj;
     }
 
     public function isBound()
