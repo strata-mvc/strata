@@ -119,9 +119,9 @@ class i18n
                 if (!is_null($locale)) {
                     return $this->setLocale($locale);
                 }
-                // While that one validates for lack of locale code, meaning
-                // a possible default locale match
-            } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
+            // Also validates for lack of locale code, meaning
+            // a possible default locale match when no ajax-ing.
+            } elseif (!Router::isAjax() && preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
                 $locale = $this->getDefaultLocale();
                 if (!is_null($locale)) {
                     return $this->setLocale($locale);
