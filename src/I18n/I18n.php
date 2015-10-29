@@ -249,7 +249,7 @@ class i18n
      */
     public function hasLocaleInSession()
     {
-        return array_key_exists(self::DOMAIN . is_admin() ? "admin" : "", $_SESSION);
+        return array_key_exists($this->getSessionKey(), $_SESSION);
     }
 
     /**
@@ -261,7 +261,7 @@ class i18n
      */
     public function getLocaleInSession()
     {
-        $localeCode = $_SESSION[self::DOMAIN . is_admin() ? "admin" : ""];
+        $localeCode = $_SESSION[$this->getSessionKey()];
         return $this->getLocaleByCode($localeCode);
     }
 
@@ -293,7 +293,7 @@ class i18n
      */
     public function saveCurrentLocaleToSession()
     {
-        $_SESSION[self::DOMAIN . is_admin() ? "admin" : ""] = $this->getCurrentLocaleCode();
+        $_SESSION[$this->getSessionKey()] = $this->getCurrentLocaleCode();
     }
 
     /**
@@ -356,6 +356,15 @@ class i18n
     {
         $this->currentLocale = $locale;
         return $this->currentLocale;
+    }
+
+    private function getSessionKey()
+    {
+        if (is_admin() && !Router::isAjax()) {
+            return self::DOMAIN . "_admin";
+        }
+
+        return self::DOMAIN . "_front";
     }
 
     /**
