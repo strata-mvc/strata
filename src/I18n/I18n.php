@@ -112,19 +112,32 @@ class i18n
                 }
             }
 
-            // This validates all locales but the default one
-            $urls = implode('|', $this->getLocaleRegexUrls());
-            if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
-                $locale = $this->getLocaleByUrl($match[1]);
-                if (!is_null($locale)) {
-                    return $this->setLocale($locale);
+            // Under ajax, one could post the value.
+            if (Router::isAjax()) {
+                if ($request->hasPost("locale")) {
+                    $locale = $this->getLocaleByCode($request->post("locale"));
+                    if (!is_null($locale)) {
+                        return $this->setLocale($locale);
+                    }
                 }
-            // Also validates for lack of locale code, meaning
-            // a possible default locale match when no ajax-ing.
-            } elseif (!Router::isAjax() && preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
-                $locale = $this->getDefaultLocale();
-                if (!is_null($locale)) {
-                    return $this->setLocale($locale);
+
+            // when in Frontend and not in ajax, we can guestimate values
+            // from the url.
+            } else {
+                // This validates all locales but the default one
+                $urls = implode('|', $this->getLocaleRegexUrls());
+                if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
+                    $locale = $this->getLocaleByUrl($match[1]);
+                    if (!is_null($locale)) {
+                        return $this->setLocale($locale);
+                    }
+                // Also validates for lack of locale code, meaning
+                // a possible default locale match when no ajax-ing.
+                } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
+                    $locale = $this->getDefaultLocale();
+                    if (!is_null($locale)) {
+                        return $this->setLocale($locale);
+                    }
                 }
             }
 
