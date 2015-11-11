@@ -97,7 +97,9 @@ class I18nCommand extends StrataCommand
         $textDomain = is_null($configValue) ? I18n::DOMAIN : $configValue;
 
         $translation->setDomain($textDomain);
+        $translation->setHeader('Language', $locale->getCode());
         $translation->setHeader('Text Domain', $textDomain);
+        $translation->setHeader('X-Domain', $textDomain);
 
         $translation->toPoFile($poFilename);
         $translation->toMoFile($locale->getMoFilePath());

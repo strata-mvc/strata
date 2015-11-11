@@ -72,7 +72,13 @@ class i18n
      */
     public function applyLocale()
     {
-        return load_theme_textdomain("strata_i18n", Strata::getLocalePath());
+        return load_theme_textdomain($this->getTextdomain(), Strata::getLocalePath());
+    }
+
+    public function getTextdomain()
+    {
+        $textDomain = Strata::app()->getConfig("i18n.textdomain");
+        return is_null($textDomain) ? self::DOMAIN : $textDomain;
     }
 
     /**
