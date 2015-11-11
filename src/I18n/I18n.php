@@ -56,12 +56,14 @@ class i18n
 
     /**
      * Sets the locale based on the current process' context.
+     * @see http://stackoverflow.com/a/4976419
      * @return string|null The locale code
      */
     public function applyCurrentLanguageByContext()
     {
         $locale = $this->getCurrentLocale();
         if (!is_null($locale)) {
+            setlocale(LC_TIME, $locale->getCode() . '.UTF-8');
             return $locale->getCode();
         }
     }
@@ -72,6 +74,7 @@ class i18n
      */
     public function applyLocale()
     {
+
         return load_theme_textdomain($this->getTextdomain(), Strata::getLocalePath());
     }
 
