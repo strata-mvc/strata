@@ -13,7 +13,8 @@ use Gettext\Translation;
 use Exception;
 
 /**
- * Handles  localization
+ * Handles  localization.
+ * This requires a PHP that is compiled with extension=php_gettext.dll
  *
  * @package Strata.i18n
  */
@@ -34,6 +35,8 @@ class i18n
  * @var Locale The locale that is currently active.
 */
     protected $currentLocale = null;
+
+    private $notified = false;
 
     public function __construct()
     {
@@ -72,6 +75,28 @@ class i18n
      */
     public function applyLocale()
     {
+        $locale = $this->getCurrentLocale();
+        if (!is_null($locale)) {
+            // Set in PHP
+            if (setlocale(LC_ALL, $locale->getCode() .'.UTF-8')) {
+                Strata::app()->log("Localized to : " . $locale->getCode() . ".UTF-8", "[Strata:i18n]");
+            } else {
+                Strata::app()->log("Locale function is not available on this platform, or the given local does not exist in this environment. Attempted to set: " . $locale->getCode() . ".UTF-8", "[Strata:i18n]");
+            }
+        }
+
+        // Set in PHP
+        if (function_exists('bindtextdomain')) {
+            $bound = bindtextdomain($this->getTextdomain(), Strata::getLocalePath());
+            Strata::log("PHP text domain was bound to : " . $bound, "[Strata:i18n]");
+        }
+
+        if (function_exists('textdomain')) {
+            $bound = textdomain($domain);
+            Strata::log("PHP message domain was bound to : " . $bound, "[Strata:i18n]");
+        }
+
+        // Set in WP
         return load_theme_textdomain($this->getTextdomain(), Strata::getLocalePath());
     }
 
