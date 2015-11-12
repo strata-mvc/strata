@@ -117,14 +117,14 @@ class I18nCommand extends StrataCommand
 
         foreach ($lookupDirectories as $directory) {
             $translationObjects = $this->recurseThroughDirectory($directory);
-        }
 
-        // Merge all translation objects into a bigger one
-        foreach ($translationObjects as $t) {
-            if (is_null($translation)) {
-                $translation = $t;
-            } else {
-                $translation->mergeWith($t);
+            // Merge all translation objects into a bigger one
+            foreach ($translationObjects as $t) {
+                if (is_null($translation)) {
+                    $translation = $t;
+                } else {
+                    $translation->mergeWith($t);
+                }
             }
         }
 
