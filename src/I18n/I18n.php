@@ -88,12 +88,12 @@ class i18n
         // Set in PHP
         if (function_exists('bindtextdomain')) {
             $bound = bindtextdomain($this->getTextdomain(), Strata::getLocalePath());
-            Strata::log("PHP text domain was bound to : " . $bound, "[Strata:i18n]");
+            Strata::app()->log("PHP text domain was bound to : " . $bound, "[Strata:i18n]");
         }
 
         if (function_exists('textdomain')) {
             $bound = textdomain($domain);
-            Strata::log("PHP message domain was bound to : " . $bound, "[Strata:i18n]");
+            Strata::app()->log("PHP message domain was bound to : " . $bound, "[Strata:i18n]");
         }
 
         // Set in WP
