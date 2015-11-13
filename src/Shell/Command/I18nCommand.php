@@ -85,6 +85,7 @@ class I18nCommand extends StrataCommand
     private function saveStringToLocale(Locale $locale, Translations $translation)
     {
         $poFilename = $locale->getPoFilePath();
+        $poEnvFilename = $locale->getPoFilePath(WP_ENV);
 
         // Merge with an existing .po
         if ($locale->hasPoFile()) {
@@ -92,16 +93,21 @@ class I18nCommand extends StrataCommand
             $translation->mergeWith($poTranslations);
         }
 
-        $app = Strata::app();
-        $configValue = $app->getConfig("i18n.textdomain");
-        $textDomain = is_null($configValue) ? I18n::DOMAIN : $configValue;
+        // Merge with the current environment's changes
+        if ($locale->hasPoFile(WP_ENV)) {
+            $poTranslations = Translations::fromPoFile($poEnvFilename);
+            $translation->mergeWith($poTranslations);
+        }
 
+        $textDomain = Strata::app()->i18n->getTextdomain();
         $translation->setDomain($textDomain);
         $translation->setHeader('Language', $locale->getCode());
         $translation->setHeader('Text Domain', $textDomain);
         $translation->setHeader('X-Domain', $textDomain);
 
         $translation->toPoFile($poFilename);
+        $translation->toPoFile($poEnvFilename);
+
         $translation->toMoFile($locale->getMoFilePath());
     }
 

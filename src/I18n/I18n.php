@@ -378,6 +378,7 @@ class i18n
 
         $originalTranslations->mergeWith($newTranslations, Translations::MERGE_HEADERS | Translations::MERGE_COMMENTS | Translations::MERGE_ADD | Translations::MERGE_LANGUAGE);
         $originalTranslations->toPoFile($poFile);
+        $originalTranslations->toPoFile($locale->getPoFilePath(WP_ENV));
         $originalTranslations->toMoFile($locale->getMoFilePath());
     }
 

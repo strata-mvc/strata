@@ -67,25 +67,35 @@ class Locale
         return $this->nativeLabel !== $this->code;
     }
 
-    public function hasPoFile()
+    public function hasPoFile($env = null)
     {
-        return file_exists($this->getPoFilePath());
+        return file_exists($this->getPoFilePath($env));
     }
 
-    public function getPoFilePath()
+    public function getPoFilePath($env = null)
     {
         $localeDir = Strata::getLocalePath();
+
+        if (!is_null($env)) {
+            return $localeDir . $this->getCode() . '-' . $env . '.po';
+        }
+
         return $localeDir . $this->getCode() . '.po';
     }
 
-    public function hasMoFile()
+    public function hasMoFile($env = null)
     {
-        return file_exists($this->getMoFilePath());
+        return file_exists($this->getMoFilePath($env));
     }
 
-    public function getMoFilePath()
+    public function getMoFilePath($env)
     {
         $localeDir = Strata::getLocalePath();
+
+        if (!is_null($env)) {
+            return $localeDir . $this->getCode() . '-' . $env . '.mo';
+        }
+
         return $localeDir . $this->getCode() . '.mo';
     }
 }
