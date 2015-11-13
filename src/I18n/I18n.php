@@ -92,7 +92,7 @@ class i18n
         }
 
         if (function_exists('textdomain')) {
-            $bound = textdomain($domain);
+            $bound = textdomain($this->getTextdomain());
             Strata::app()->log("PHP message domain was bound to : " . $bound, "[Strata:i18n]");
         }
 
