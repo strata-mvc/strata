@@ -30,4 +30,3 @@ All code must be submit through pull requests. Obviously, you need to follow the
 1. Repeat until the tests do not fail and your feature/fix is complete.
 1. Update the documentation to reflect any changes. Be clear about what you have done.
 1. Push to your fork and submit a pull request.
-
