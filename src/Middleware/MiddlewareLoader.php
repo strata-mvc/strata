@@ -3,6 +3,7 @@
 namespace Strata\Middleware;
 
 use Composer\Autoload\ClassLoader;
+use Strata\Strata;
 
 /**
  * Allows bridging between Strata and its middlewares.
@@ -48,8 +49,10 @@ class MiddlewareLoader
 
     private function findAvailableMiddlewares()
     {
+        $namespace = Strata::getNamespace();
         foreach ($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
-            if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
+            if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix) ||
+                preg_match("/^$namespace\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
                 $className = $prefix . "Initializer";
                 if (class_exists($className)) {
                     $this->middlewares[] = new $className();
