@@ -2,6 +2,7 @@
 namespace Strata\Shell\Command;
 
 use Strata\Shell\Command\StrataCommand;
+use Strata\Strata;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,8 +41,20 @@ class ServerCommand extends StrataCommand
 
         $this->nl();
 
-        system("WP_ENV=development php -S 0.0.0.0:5454 -t web/");
+        $command = "WP_ENV=development php -S 0.0.0.0:5454 -t web/";
+
+        if ($this->hasIniFile()) {
+            $command .= " -c php.ini";
+        }
+
+        system($command);
 
         $this->shutdown();
     }
+
+    private function hasIniFile()
+    {
+        return file_exists(Strata::getRootPath() . "php.ini");
+    }
+
 }
