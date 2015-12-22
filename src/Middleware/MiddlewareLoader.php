@@ -49,10 +49,8 @@ class MiddlewareLoader
 
     private function findAvailableMiddlewares()
     {
-        $namespace = Strata::getNamespace();
         foreach ($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
-            if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix) ||
-                preg_match("/^$namespace\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
+            if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
                 $className = $prefix . "Initializer";
                 if (class_exists($className)) {
                     $this->middlewares[] = new $className();

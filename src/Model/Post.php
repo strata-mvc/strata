@@ -10,9 +10,7 @@ use Exception;
  */
 class Post extends CustomPostType
 {
-
     public $wpPrefix = "";
-
     public $belongs_to = array("Strata\Model\Taxonomy\Category");
 
     /**
@@ -39,5 +37,10 @@ class Post extends CustomPostType
     public function register()
     {
         throw new Exception("Posts cannot be registered.");
+    }
+
+    public function byAuthorID($authorID)
+    {
+        return $this->where('author', $authorID);
     }
 }
