@@ -10,7 +10,7 @@ class CustomPostTypeRegistrar extends Registrar
     function register()
     {
         // Ensure the default options have been set.
-        $customizedOptions = $this->entity->configuration + array(
+        $customizedOptions = $this->entity->getConfiguration() + array(
             'labels'              => array(),
             'supports'            => array( 'title' ),
             'hierarchical'        => false,
