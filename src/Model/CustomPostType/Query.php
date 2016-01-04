@@ -128,12 +128,12 @@ class Query
         return $this;
     }
 
-    public function paginate()
+    public function paginate($config = array())
     {
         $totalPages = $this->query()->max_num_pages;
+
         if ($totalPages > 1) {
-            return paginate_links(
-                array(
+            $config +=  array(
                 'base' => add_query_arg('paged', '%#%'),
                 'format' => '?paged=%#%',
                 'mid-size' => 1,
@@ -142,8 +142,9 @@ class Query
                 'prev_next' => true,
                 'prev_text' => __('Previous', 'strata'),
                 'next_text' => __('Next', 'strata')
-                )
             );
+
+            return paginate_links($config);
         }
 
         return "";
