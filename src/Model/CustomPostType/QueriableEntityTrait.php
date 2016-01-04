@@ -190,10 +190,10 @@ trait QueriableEntityTrait
         return wp_count_posts($this->getWordpressKey());
     }
 
-    public function paginate()
+    public function paginate($config = array())
     {
         $this->reloadQueryAdapter();
-        return $this->activeQuery->paginate();
+        return $this->activeQuery->paginate($config);
     }
 
     protected function wrapInEntities(array $entities)
