@@ -130,15 +130,19 @@ class Query
 
     public function paginate($config = array())
     {
-        $totalPages = $this->query()->max_num_pages;
+        $query = $this->query();
+        $count = $query->post_count;
+        $postsPerPage = $query->query_vars['posts_per_page'];
+        $offset = get_query_var('paged') ? (int)get_query_var('paged') : 1;
 
-        if ($totalPages > 1) {
+        $this->limit($postsPerPage);
+        $this->offset($offset);
+
+        if ($count > $postsPerPage) {
             $config +=  array(
-                'base' => add_query_arg('paged', '%#%'),
-                'format' => '?paged=%#%',
                 'mid-size' => 1,
-                'current' => (get_query_var('paged')) ? get_query_var('paged') : 1,
-                'total' => $totalPages,
+                'current' => $offset,
+                'total' => ceil($count / $postsPerPage),
                 'prev_next' => true,
                 'prev_text' => __('Previous', 'strata'),
                 'next_text' => __('Next', 'strata')
@@ -154,6 +158,12 @@ class Query
     {
         $this->filters['posts_per_page']   = $qty;
         $this->filters['nopaging']         = false;
+        return $this;
+    }
+
+    public function offset($idx)
+    {
+        $this->filters['offset']   = $idx;
         return $this;
     }
 

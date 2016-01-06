@@ -115,6 +115,14 @@ trait QueriableEntityTrait
         return $this;
     }
 
+
+    public function offset($index)
+    {
+        $this->reloadQueryAdapter();
+        $this->activeQuery->offset($index);
+        return $this;
+    }
+
     public function count()
     {
         $this->throwIfContextInvalid();
