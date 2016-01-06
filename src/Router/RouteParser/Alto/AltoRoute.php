@@ -47,6 +47,7 @@ class AltoRoute extends Route
         $controller = Controller::generateClassName($customPostType->getShortName());
 
         $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[.*]/?", "$controller#index"));
         $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[.*]/?", "$controller#show"));
     }
 
