@@ -49,7 +49,12 @@ class FormHelper extends Helper
         }
 
         $htmlAttributes = $this->arrayToHtmlAttributes($formAttributes);
-        return sprintf("<form %s>\n%s", $htmlAttributes, $this->generateNonce());
+
+        $salt = $this->getNonceSalt();
+        $nonceTag = $this->generateNonceTag($salt);
+        $nonceHidden = $this->generateHidden(array("name" => "auth_id"), wp_create_nonce($salt));
+
+        return sprintf("<form %s>\n%s\n%s\n", $htmlAttributes, $nonceHidden, $nonceTag);
     }
 
     public function end()
@@ -245,6 +250,10 @@ class FormHelper extends Helper
         unset($options["id"]);
         unset($options["value"]);
 
+        if (!array_key_exists("type", $options)) {
+            $options["type"] = "hidden";
+        }
+
         if (is_array($value)) {
             $returnHtml = "";
             foreach ($value as $key => $val) {
@@ -276,6 +285,7 @@ class FormHelper extends Helper
     protected function arrayToHtmlAttributes(array $values)
     {
         $output = "";
+        ksort($values);
 
         foreach ($values as $key => $value) {
             $output .=  sprintf('%s="%s" ', htmlentities($key), htmlentities($value));
@@ -310,22 +320,22 @@ class FormHelper extends Helper
         }
     }
 
-    protected function generateNonce()
+    protected function generateNonceTag($salt)
     {
-        $nonceSalt = "";
-        $fieldName = "authenticity_token";
+        return wp_nonce_field($salt, "authenticity_token", true, false);
+    }
 
+    protected function getNonceSalt()
+    {
         // Allow users to set their own nonce
         if (!is_null($this->configuration['nonce'])) {
-            $nonceSalt = $this->request->generateNonceKey($this->configuration['nonce']);
-            // Use the entity if it is present
+            return $this->request->generateNonceKey($this->configuration['nonce']);
+        // Use the entity if it is present
         } elseif (!is_null($this->associatedEntity)) {
-            $nonceSalt = $this->request->generateNonceKey($this->associatedEntity);
-            // Fallback to something custom for the Helper
-        } else {
-            $nonceSalt = $this->request->generateNonceKey();
+            return $this->request->generateNonceKey($this->associatedEntity);
         }
 
-        return wp_nonce_field($nonceSalt, $fieldName, true, false);
+        // Fallback to something custom for the Helper
+        return $this->request->generateNonceKey();
     }
 }
