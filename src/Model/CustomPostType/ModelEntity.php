@@ -91,7 +91,7 @@ class ModelEntity
                 $validator = Validator::factory($validationKey);
                 $validator->configure($validatorConfig);
 
-                if (!$validator->test($ourData[$name], $this)) {
+                if (!array_key_exists($name, $ourData) || !$validator->test($ourData[$name], $this)) {
                     $entityErrors[$name][$validationKey] = $validator->getMessage();
                 }
             }
