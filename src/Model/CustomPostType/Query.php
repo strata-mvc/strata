@@ -136,12 +136,12 @@ class Query
         $offset = (int)get_query_var('paged', 1);
 
         $this->limit($postsPerPage);
-        $this->offset($offset + 1);
+        $this->offset($offset);
 
         if ($count > $postsPerPage) {
             $config +=  array(
                 'mid-size' => 1,
-                'current' => $offset,
+                'current' => $offset === 0 ? 1 : $offset,
                 'total' => ceil($count / $postsPerPage),
                 'prev_next' => true,
                 'prev_text' => __('Previous', 'strata'),
