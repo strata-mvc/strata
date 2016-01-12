@@ -133,7 +133,7 @@ class Query
         $query = $this->query();
         $count = $query->post_count;
         $postsPerPage = $query->query_vars['posts_per_page'];
-        $offset = get_query_var('paged') ? (int)get_query_var('paged') : 1;
+        $offset = (int)get_query_var('paged', 1);
 
         $this->limit($postsPerPage);
         $this->offset($offset + 1);

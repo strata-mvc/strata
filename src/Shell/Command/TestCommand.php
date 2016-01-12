@@ -37,42 +37,43 @@ class TestCommand extends StrataCommand
         $output->writeln('Starting tests');
         $this->nl();
 
-        $phpunit = $this->_getPhpunitBin();
-        $arguments = $this->_preparePhpunitArguments();
+        $phpunit = $this->getPhpunitBin();
+        $arguments = $this->preparePhpunitArguments();
         system(sprintf("php %s %s %s", $phpunit, $arguments, Strata::getTestPath()));
 
         $this->shutdown();
     }
 
-
     /**
      * Return the path to the Apigen binary
      * @return string Apigen binary path
      */
-    protected function _getPhpunitBin()
+    protected function getPhpunitBin()
     {
         return "vendor/bin/phpunit";
     }
 
-    protected function _preparePhpunitArguments()
+    protected function preparePhpunitArguments()
     {
         $arguments = array("--colors");
 
-        if ($this->_hasBootstrapFile()) {
-            $arguments[] = "--bootstrap " . $this->_getBootstrapFile();
+        if ($this->hasBootstrapFile()) {
+            $arguments[] = "--bootstrap " . $this->getBootstrapFile();
         } else {
             $arguments[] = "--bootstrap " . Strata::getVendorPath() . "autoload.php";
         }
 
+        $arguments[] = sprintf("--log-junit %s/unittest/strata_test_results.xml", Strata::getTmpPath());
+
         return implode(" ", $arguments);
     }
 
-    private function _hasBootstrapFile()
+    private function hasBootstrapFile()
     {
-        return file_exists($this->_getBootstrapFile());
+        return file_exists($this->getBootstrapFile());
     }
 
-    protected function _getBootstrapFile()
+    protected function getBootstrapFile()
     {
         return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "strata-test-bootstraper.php"));
     }
