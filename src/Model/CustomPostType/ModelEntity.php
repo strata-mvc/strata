@@ -7,6 +7,7 @@ use Strata\Utility\Hash;
 
 use Strata\Model\Validator\Validator;
 use Strata\Core\StrataObjectTrait;
+use Strata\Controller\Request;
 
 use Exception;
 
@@ -78,6 +79,80 @@ class ModelEntity
         return !is_null($this->associatedObject);
     }
 
+    /**
+     * Assigns the entity data that may be found in the request
+     * to this entity.
+     * @param  Request $request
+     * @return bool True when entity data was found.
+     */
+    public function assignRequest(Request $request)
+    {
+        $extracted = $this->extractData($request);
+
+        if (count($extracted)) {
+            foreach ($this->getAttributeNames() as $key) {
+                if (array_key_exists($key, $extracted)) {
+                    $this->{$key} = $extracted[$key];
+                }
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Extracts the request values related to the entity
+     * from a supplied request object.
+     * @param  Request $request
+     * @return array
+     */
+    public function extractData(Request $request)
+    {
+        $data = $request->data();
+        $entityData = array();
+        $inputName = $this->getInputName();
+
+        if (!array_key_exists($inputName, $data)) {
+            return array();
+        }
+
+        $entityData = $data[$inputName];
+        $filteredData = array();
+
+        foreach ($this->getAttributeNames() as $key) {
+            if (array_key_exists($key, $entityData)) {
+                $filteredData[$key] = $entityData[$key];
+            }
+        }
+
+        return $filteredData;
+    }
+
+    /**
+     * Runs validation on the current entity values as declared
+     * by the entity's attributes.
+     * @return boolean True if validation passed
+     */
+    public function validate()
+    {
+        $currentAttributeValues = array();
+
+        foreach ($this->getAttributeNames() as $name) {
+            $currentAttributeValues[$name] = $this->{$name};
+        }
+
+        return $this->validates(array(
+            $this->getInputName() => $currentAttributeValues
+        ));
+    }
+
+    /**
+     * Runs validation in a hash object that may or may
+     * not be the result of request->data(), but has the same
+     * format.
+     * @return boolean True if validation passed
+     */
     public function validates(array $requestData)
     {
         $ourData = Hash::extract($requestData, $this->getInputName());
@@ -137,7 +212,7 @@ class ModelEntity
 
     public function isSupportedAttribute($attr)
     {
-        return in_array($attr, array_keys($this->getAttributes()));
+        return in_array($attr, $this->getAttributeNames());
     }
 
     protected function hasAttributeValidation($attr)

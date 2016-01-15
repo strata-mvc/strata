@@ -38,10 +38,10 @@ class Request
      */
     private $_FILES = array();
 
-    function __construct()
+    public function __construct()
     {
         // Parse the request data upon each instantiation.
-        $this->_buildRequestData();
+        $this->buildRequestData();
     }
 
     /**
@@ -131,7 +131,16 @@ class Request
      */
     public function data()
     {
-        return Hash::get($this->_POST, "data");
+        $workingWith = $this->isGet() ? $this->_GET : $this->_POST;
+        $data = (array)Hash::get($workingWith, "data");
+
+        // The previous line would ignored uploaded files.
+        // Added them to the array if we find something.
+        if ($this->hasFiles()) {
+            return $this->addFilesList($data);
+        }
+
+        return $data;
     }
 
 
@@ -185,11 +194,19 @@ class Request
         return Hash::check($this->_FILES, "data.name." . $key);
     }
 
+    /**
+     * Returns whether the request contains uploaded files
+     * @return boolean
+     */
+    public function hasFiles()
+    {
+        return Hash::check($this->_FILES, "data.name") && count($this->_FILES["data"]["name"]);
+    }
+
     public function requestValidates($nonce = "", $honeypot = "")
     {
         return $this->nonceValidates($nonce) && $this->honeypotValidates($honeypot);
     }
-
 
     public function honeypotValidates($name)
     {
@@ -242,7 +259,7 @@ class Request
      * along the way.
      * @return null
      */
-    private function _buildRequestData()
+    private function buildRequestData()
     {
         $strip_slashes_deep = function ($value) use (&$strip_slashes_deep) {
             return is_array($value) ? array_map($strip_slashes_deep, $value) : sanitize_text_field(stripslashes($value));
@@ -251,5 +268,20 @@ class Request
         $this->_POST = array_map($strip_slashes_deep, $_POST);
         $this->_COOKIE = array_map($strip_slashes_deep, $_COOKIE);
         $this->_FILES = array_map($strip_slashes_deep, $_FILES);
+    }
+
+    private function addFilesList($data)
+    {
+        foreach ($this->_FILES['data']['name'] as $key => $filenames) {
+            if (!array_key_exists($key, $data)) {
+                $data[$key] = array();
+            }
+
+            foreach ($filenames as $file => $filedata) {
+                $data[$key][$file] = $this->file("$key.$file");
+            }
+        }
+
+        return $data;
     }
 }
