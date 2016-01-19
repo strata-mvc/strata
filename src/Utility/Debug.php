@@ -13,7 +13,12 @@ if (!function_exists('debug')) {
         }
 
         $header =  "=======[Debug]=======";
-        $debug =  "(".gettype($mixed) . ") " . var_export($mixed, true);
+        $debug =  "(".gettype($mixed) . ") ";
+        ob_start();
+        var_dump($mixed);
+        $debug .= ob_get_clean();
+
+
         $footer =  "=======[Debug]=======";
 
         $context = "unknown context at unknown line";

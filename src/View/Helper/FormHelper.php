@@ -269,9 +269,14 @@ class FormHelper extends Helper
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
 
+        if (!is_string($value)) {
+            $value = "";
+        }
+
         if (!array_key_exists("type", $options)) {
             $options["type"] = "text";
         }
+
         unset($options["value"]);
 
         return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);

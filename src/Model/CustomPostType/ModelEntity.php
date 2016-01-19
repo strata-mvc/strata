@@ -9,6 +9,7 @@ use Strata\Model\Validator\Validator;
 use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;
 
+use stdClass;
 use Exception;
 
 class ModelEntity
@@ -31,9 +32,9 @@ class ModelEntity
 
     public function __construct($associatedObj = null)
     {
-        if (!is_null($associatedObj)) {
-            $this->bindToObject($associatedObj);
-        }
+        // We bind rather than assigning the properties to this entity because
+        // we don't want to inherit WP_Post.
+        $this->bindToObject(is_null($associatedObj) ? $associatedObj : new stdClass());
 
         $this->normalizeAttributes();
         $this->init();
@@ -138,8 +139,10 @@ class ModelEntity
     {
         $currentAttributeValues = array();
 
-        foreach ($this->getAttributeNames() as $name) {
-            $currentAttributeValues[$name] = $this->{$name};
+        if ($this->isBound()) {
+            foreach ($this->getAttributeNames() as $name) {
+                $currentAttributeValues[$name] = $this->{$name};
+            }
         }
 
         return $this->validates(array(
