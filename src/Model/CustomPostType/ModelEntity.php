@@ -34,7 +34,7 @@ class ModelEntity
     {
         // We bind rather than assigning the properties to this entity because
         // we don't want to inherit WP_Post.
-        $this->bindToObject(is_null($associatedObj) ? $associatedObj : new stdClass());
+        $this->bindToObject(!is_null($associatedObj) ? $associatedObj : new stdClass());
 
         $this->normalizeAttributes();
         $this->init();

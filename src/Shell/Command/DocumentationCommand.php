@@ -52,9 +52,6 @@ class DocumentationCommand extends StrataCommand
         $this->generateThemesDocumentation();
         $this->nl();
 
-        $this->summary();
-        $this->nl();
-
         $this->shutdown();
     }
 
@@ -97,22 +94,6 @@ class DocumentationCommand extends StrataCommand
     protected function getWpApiDestination()
     {
         return $this->getDestination() . 'wpapi';
-    }
-
-
-    /**
-     * Outputs a summary of the operation.
-     * @return null
-     */
-    protected function summary()
-    {
-        $this->output->writeLn("The project documentation has been generated at the following URLs: ");
-        $this->nl();
-
-        $destination = $this->getDestination();
-        $this->output->writeLn("<info>API               :</info> ". $this->getApiDestination()   ."/index.html");
-        // $this->output->writeLn("<info>Theme API         :</info> ". $this->getWpApiDestination()   ."/index.html");
-        $this->output->writeLn("<info>Theme Information :</info> ". $this->getWpdocDestination() ."/index.html");
     }
 
     /**
