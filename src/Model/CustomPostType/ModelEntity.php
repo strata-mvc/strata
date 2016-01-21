@@ -215,7 +215,8 @@ class ModelEntity
 
     public function isSupportedAttribute($attr)
     {
-        return in_array($attr, $this->getAttributeNames());
+        $simpleAttr = preg_replace("/\[\d+\]$/", "", $attr);
+        return in_array($simpleAttr, $this->getAttributeNames());
     }
 
     protected function hasAttributeValidation($attr)

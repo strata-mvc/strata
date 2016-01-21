@@ -15,7 +15,6 @@ use Strata\Router\RouteParser\Callback\CallbackRouter;
  */
 class Router
 {
-
     /**
      * @var Strata\Router\RouteParser\Route A route that this object will try to execute
      */
@@ -52,7 +51,6 @@ class Router
     // @thanks to https://snippets.khromov.se/determine-if-wordpress-ajax-request-is-a-backend-of-frontend-request/
     public static function isFrontendAjax()
     {
-
         if (self::isAjax()) {
               $referer = '';
               $filename = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
@@ -98,6 +96,20 @@ class Router
     public function abandonCurrent()
     {
         $this->route->cancel();
+    }
+
+    public function getCurrentController()
+    {
+        if ($this->route->isValid()) {
+            return $this->route->controller;
+        }
+    }
+
+    public function getCurrentAction()
+    {
+        if ($this->route->isValid()) {
+            return $this->route->action;
+        }
     }
 
     private function loopCurrentRequest()
