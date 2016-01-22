@@ -32,6 +32,7 @@ class View
         $tpl->injectVariables($this->getVariables());
         $tpl->setViewName($path);
         $tpl->setConfig("allow_debug", $this->getConfig("allow_debug"));
+        $tpl->setConfig("layout", $this->getConfig("layout"));
 
         return $tpl->compile();
     }
@@ -145,6 +146,7 @@ class View
             // because we hook in the middle of the page.
             "end" =>  is_admin() && !Router::isAjax() ? false : true,
             "allow_debug" => true,
+            "layout" => null,
         );
     }
 }

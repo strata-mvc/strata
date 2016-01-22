@@ -8,6 +8,8 @@ class Template
 {
     use StrataConfigurableTrait;
 
+    const TPL_YIELD = "__STRATA_YIELD__";
+
     /**
      * Parses a template file and declares view variables in this scope for the
      * template to have access to them. Loads localized templates based on the current
@@ -23,10 +25,13 @@ class Template
 
         $tpl->injectVariables($variables);
         $tpl->setViewName($path);
-
-        $tpl->setConfig("allow_debug", $tpl->getConfig("allow_debug"));
         $tpl->setConfig("file_extention", $extension);
-        $tpl->setConfig("allow_debug", $allowDebug);
+
+        if (!(bool)$tpl->getConfig("allow_debug")) {
+            $tpl->setConfig("allow_debug", false);
+        } else {
+            $tpl->setConfig("allow_debug", $allowDebug);
+        }
 
         return $tpl->compile();
     }
@@ -95,11 +100,23 @@ class Template
             $this->generateLocalizedViewPath() :
             $this->generateDefaultViewPath();
 
-        return self::parseFile(
+        $content = self::parseFile(
             $templateFilePrefix . $this->getConfig('file_extention'),
             $this->contextualVariables,
             (bool)$this->getConfig('allow_debug')
         );
+
+        if (is_null($this->getConfig("layout"))) {
+            return $content;
+        }
+
+        $layout = self::parseFile(
+            $this->generateDefaultLayoutPath() . $this->getConfig('file_extention'),
+            $this->contextualVariables,
+            (bool)$this->getConfig('allow_debug')
+        );
+
+        return str_replace(self::TPL_YIELD, $content, $layout);
     }
 
     protected function hasLocalizedVersion()
@@ -121,6 +138,16 @@ class Template
 
     protected function generateDefaultViewPath()
     {
-        return $this->getConfig("view_source_path") . DIRECTORY_SEPARATOR . $this->viewName;
+        return $this->generateDefaultViewLocation() . $this->viewName;
+    }
+
+    protected function generateDefaultLayoutPath()
+    {
+        return $this->generateDefaultViewLocation() . $this->getConfig("layout");
+    }
+
+    protected function generateDefaultViewLocation()
+    {
+        return $this->getConfig("view_source_path") . DIRECTORY_SEPARATOR;
     }
 }
