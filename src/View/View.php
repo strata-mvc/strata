@@ -6,6 +6,8 @@ use Strata\View\Helper\Helper;
 use Strata\Utility\Inflector;
 use Strata\Router\Router;
 
+use Strata\Core\StrataConfigurableTrait;
+
 /**
  * Handles the generation of view html. It is important to understand this is not used
  * when a request continues the regular Wordpress flow which generates its own templates.
@@ -15,12 +17,7 @@ use Strata\Router\Router;
  */
 class View
 {
-
-    /**
-     * Rendering options, used when explicitly rendering a view from a controller.
-     * @var array
-     */
-    protected $options = array();
+    use StrataConfigurableTrait;
 
     /**
      * The list of variables to be declared when loading the view
@@ -30,7 +27,13 @@ class View
 
     public function loadTemplate($path)
     {
-        return Template::parse($path, $this->getVariables());
+        $tpl = new Template();
+
+        $tpl->injectVariables($this->getVariables());
+        $tpl->setViewName($path);
+        $tpl->setConfig("allow_debug", $this->getConfig("allow_debug"));
+
+        return $tpl->compile();
     }
 
     public function loadHelper($helperName, $config = array())
@@ -82,18 +85,11 @@ class View
      */
     public function render($options = array())
     {
-        $this->options = $options + array(
-            "Content-type" => "text/html",
-            "Content-disposition" => null,
-            "content" => "",
-            // Only the admin does not end Wordpress' parsing of the views
-            // because we hook in the middle of the page.
-            "end" =>  is_admin() && !Router::isAjax() ? false : true
-        );
+        $this->configure($options + $this->getDefaultConfiguration());
 
         $content = $this->parseCurrentContent();
 
-        if ((bool)$this->options['end']) {
+        if ((bool)$this->getConfig('end')) {
             // Only play with headers when we know we will
             // kill the process.
             $this->applyHeaders();
@@ -105,6 +101,7 @@ class View
         echo $content;
     }
 
+
     /**
      * Takes the current value of the content option and ensure that it is
      * correctly formatted for output. If the content is an array or an object, the value.
@@ -113,11 +110,13 @@ class View
      */
     protected function parseCurrentContent()
     {
-        if (is_array($this->options['content']) || is_object($this->options['content'])) {
-            return json_encode($this->options['content']);
+        $content = $this->getConfig("content");
+
+        if (is_array($content) || is_object($content)) {
+            return json_encode($content);
         }
 
-        return "" . $this->options['content'];
+        return "" . $content;
     }
 
     /**
@@ -134,5 +133,18 @@ class View
         if (!is_null($this->options['Content-disposition'])) {
             header('Content-disposition: ' . $this->options['Content-disposition']);
         }
+    }
+
+    protected function getDefaultConfiguration()
+    {
+        return array(
+            "Content-type" => "text/html",
+            "Content-disposition" => null,
+            "content" => "",
+            // Only the admin does not end Wordpress' parsing of the views
+            // because we hook in the middle of the page.
+            "end" =>  is_admin() && !Router::isAjax() ? false : true,
+            "allow_debug" => true,
+        );
     }
 }

@@ -2,9 +2,11 @@
 namespace Strata\View;
 
 use Strata\Strata;
+use Strata\Core\StrataConfigurableTrait;
 
 class Template
 {
+    use StrataConfigurableTrait;
 
     /**
      * Parses a template file and declares view variables in this scope for the
@@ -15,22 +17,21 @@ class Template
      * @param string The file extension of the template to be loaded
      * @return  string The parsed html.
      */
-    public static function parse($name, $variables = array(), $extension = '.php', $viewComments = true)
+    public static function parse($path, $variables = array(), $extension = '.php', $allowDebug = true)
     {
-        $app = Strata::app();
-        $templateFilePrefix = implode(DIRECTORY_SEPARATOR, array(get_template_directory(), 'templates', $name));// . $extension));
+        $tpl = new self();
 
-        if ($app->i18n->hasActiveLocales()) {
-            $localizedFilename = $templateFilePrefix . "." . $app->i18n->getCurrentLocaleCode() . $extension;
-            if (file_exists($localizedFilename)) {
-                return Template::parseFile($localizedFilename, $variables);
-            }
-        }
+        $tpl->injectVariables($variables);
+        $tpl->setViewName($path);
 
-        return Template::parseFile($templateFilePrefix . $extension, $variables, $viewComments);
+        $tpl->setConfig("allow_debug", $tpl->getConfig("allow_debug"));
+        $tpl->setConfig("file_extention", $extension);
+        $tpl->setConfig("allow_debug", $allowDebug);
+
+        return $tpl->compile();
     }
 
-    public static function parseFile($templateFilePath, $variables = array(), $viewComments = true)
+    public static function parseFile($templateFilePath, $variables = array(), $allowDebug = true)
     {
         ob_start();
 
@@ -44,7 +45,7 @@ class Template
                 str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath) :
                 $templateFilePath;
 
-            if ($viewComments) {
+            if ($allowDebug) {
                 echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", array_keys($variables))."\n -->\n";
             }
         }
@@ -53,7 +54,7 @@ class Template
         include $templateFilePath;
 
         if (Strata::isDev()) {
-            if ($viewComments) {
+            if ($allowDebug) {
                 echo "\n<!-- [Strata::Template:End] -->";
             }
 
@@ -63,5 +64,63 @@ class Template
         }
 
         return ob_get_clean();
+    }
+
+    private $contextualVariables = array();
+    private $viewName = "index";
+
+    public function __construct()
+    {
+        $this->configure(array(
+            "view_source_path" => get_template_directory() . DIRECTORY_SEPARATOR . 'templates',
+            "use_localized_views" => true,
+            "file_extention" => ".php",
+            "allow_debug" => true,
+        ));
+    }
+
+    public function injectVariables(array $vars)
+    {
+        $this->contextualVariables = $vars;
+    }
+
+    public function setViewName($name)
+    {
+        $this->viewName = $name;
+    }
+
+    public function compile()
+    {
+        $templateFilePrefix = $this->hasLocalizedVersion() ?
+            $this->generateLocalizedViewPath() :
+            $this->generateDefaultViewPath();
+
+        return self::parseFile(
+            $templateFilePrefix . $this->getConfig('file_extention'),
+            $this->contextualVariables,
+            (bool)$this->getConfig('allow_debug')
+        );
+    }
+
+    protected function hasLocalizedVersion()
+    {
+        $app = Strata::app();
+        if ((bool)$this->getConfig("use_localized_views") && $app->i18n->hasActiveLocales()) {
+            $localizedFilename =  $this->generateLocalizedViewPath();
+            return file_exists($localizedFilename . $this->getConfig('file_extention'));
+        }
+
+        return false;
+    }
+
+    protected function generateLocalizedViewPath()
+    {
+        $app = Strata::app();
+        return $this->generateDefaultViewPath() . "." . $app->i18n->getCurrentLocaleCode();
+    }
+
+    protected function generateDefaultViewPath()
+    {
+        return $this->getConfig("view_source_path") . DIRECTORY_SEPARATOR . $this->viewName;
     }
 }
