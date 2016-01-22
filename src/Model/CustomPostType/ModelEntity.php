@@ -145,7 +145,7 @@ class ModelEntity
             }
         }
 
-        return $this->validates(array(
+        return $this->validate(array(
             $this->getInputName() => $currentAttributeValues
         ));
     }
