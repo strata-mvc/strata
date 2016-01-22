@@ -135,7 +135,7 @@ class ModelEntity
      * by the entity's attributes.
      * @return boolean True if validation passed
      */
-    public function validate()
+    public function validates()
     {
         $currentAttributeValues = array();
 
@@ -156,7 +156,7 @@ class ModelEntity
      * format.
      * @return boolean True if validation passed
      */
-    public function validates(array $requestData)
+    public function validate(array $requestData)
     {
         $ourData = Hash::extract($requestData, $this->getInputName());
 
