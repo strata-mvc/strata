@@ -141,6 +141,10 @@ class Strata extends StrataContext
                 // for WP to exist in the context of the command line.
                 $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 5);
             }
+
+            if (!array_key_exists('SERVER_NAME', $GLOBALS['_SERVER'])) {
+                $GLOBALS['_SERVER']['SERVER_NAME'] = "localhost";
+            }
         }
     }
 
