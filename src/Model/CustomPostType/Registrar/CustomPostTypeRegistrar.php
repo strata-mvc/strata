@@ -1,12 +1,11 @@
 <?php
 namespace Strata\Model\CustomPostType\Registrar;
 
-use \Strata\Strata;
+use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
 
 class CustomPostTypeRegistrar extends Registrar
 {
-
     function register()
     {
         // Ensure the default options have been set.
@@ -28,8 +27,10 @@ class CustomPostTypeRegistrar extends Registrar
             'capability_type'     => 'post',
         );
 
-        $singular   = $this->labelParser->singular();
-        $plural     = $this->labelParser->plural();
+        $labelParser = new LabelParser($this->entity);
+        $labelParser->parse();
+        $singular   = $labelParser->singular();
+        $plural     = $labelParser->plural();
 
         $customizedOptions['labels'] += array(
             'name'                => _x($plural, 'Post Type General Name', 'strata'),

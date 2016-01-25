@@ -1,30 +1,28 @@
 <?php
 namespace Strata\Model\CustomPostType\Registrar;
 
-use \Strata\Strata;
+use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
 
 class TaxonomyRegistrar extends Registrar
 {
     public function register()
     {
-        $status = true;
         if ($this->entity->hasTaxonomies()) {
             foreach ($this->entity->getTaxonomies() as $taxonomy) {
-                $status = $status && $this->registerTaxonomy($taxonomy);
+                $this->registerTaxonomy($taxonomy);
             }
         }
-        return $status;
     }
 
-    private function registerTaxonomy($taxonomyClassname)
+    private function registerTaxonomy($taxonomy)
     {
-        $singular   = $this->labelParser->singular();
-        $plural     = $this->labelParser->plural();
+        $labelParser = new LabelParser($taxonomy);
+        $labelParser->parse();
+        $singular   = $labelParser->singular();
+        $plural     = $labelParser->plural();
 
-        $taxonomyKey = $taxonomyClassname::wordpressKey();
-        $taxonomy = $taxonomyClassname::staticFactory();
-        $key = $this->entity->getWordpressKey() . "_" . $taxonomyKey;
+        $key = $this->entity->getWordpressKey() . "_" . $taxonomy->getWordpressKey();
 
         $customizedOptions = $taxonomy->getConfiguration() + array(
             'hierarchical'               => false,
@@ -64,7 +62,7 @@ class TaxonomyRegistrar extends Registrar
             'not_found_in_trash'  => __('Not found in Trash', 'strata'),
         );
 
-        return register_taxonomy($taxonomyKey, array($this->entity->getWordpressKey()), $customizedOptions);
+        return register_taxonomy($taxonomy->getWordpressKey(), array($this->entity->getWordpressKey()), $customizedOptions);
     }
 
     private function hasTaxonomyConfiguration()
