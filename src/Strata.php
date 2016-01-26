@@ -52,6 +52,9 @@ class Strata extends StrataContext
 
         $this->configureLogger();
         $this->includeUtils();
+        $this->setDefaultNamespace();
+        $this->configureRouter();
+
         $this->loadConfiguration();
         $this->addProjectNamespaces();
         $this->setTimeZone();
@@ -71,7 +74,6 @@ class Strata extends StrataContext
             $this->init();
         }
 
-        $this->configureRouter();
         $this->configureCustomPostType();
         $this->addAppRoutes();
         $this->loadMiddleware();
@@ -262,7 +264,12 @@ class Strata extends StrataContext
     public function addProjectNamespaces()
     {
         $this->loader->setPsr4(self::getNamespace() . "\\", self::getSRCPath());
-        $this->loader->setPsr4("Test\\", self::getTestPath());
+    }
+
+    public function setDefaultNamespace()
+    {
+        $this->loader->setPsr4(self::getDefaultNamespace() . "\\", self::getSRCPath());
+        $this->loader->setPsr4(self::getDefaultTestNamespace() . "\\", self::getTestPath());
     }
 
     protected function setTimeZone()

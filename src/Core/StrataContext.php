@@ -53,7 +53,17 @@ class StrataContext
             return $var;
         }
 
+        return self::getDefaultNamespace();
+    }
+
+    public static function getDefaultNamespace()
+    {
         return "App";
+    }
+
+    public static function getDefaultTestNamespace()
+    {
+        return "Test";
     }
 
     /**
