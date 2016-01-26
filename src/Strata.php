@@ -58,9 +58,7 @@ class Strata extends StrataContext
         $this->loadConfiguration();
         $this->addProjectNamespaces();
         $this->setTimeZone();
-
         $this->localize();
-        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
 
         $this->ready = true;
     }
@@ -73,10 +71,10 @@ class Strata extends StrataContext
         if (!$this->ready) {
             $this->init();
         }
-
         $this->configureCustomPostType();
         $this->addAppRoutes();
         $this->loadMiddleware();
+
         $this->improveSecurity();
     }
 
@@ -113,14 +111,17 @@ class Strata extends StrataContext
      */
     protected function loadMiddleware()
     {
-        if (!is_null($this->middlewareLoader)) {
-            $this->middlewareLoader->initialize();
-        }
+        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
+        $this->middlewareLoader->initialize();
     }
 
     public function getMiddlewares()
     {
-        return $this->middlewareLoader->getMiddlewares();
+        if (!is_null($this->middlewareLoader)) {
+            return $this->middlewareLoader->getMiddlewares();
+        }
+
+        return array();
     }
 
     /**

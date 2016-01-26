@@ -20,6 +20,14 @@ if ($cwd === dirname(__FILE__)) {
 
 // Because of the way we need to be in a running Strata instance before running
 // the shell script, there's a global reference already available (and configured).
+// The only case where it does not exist is when runnign db create.
+if (!class_exists('Strata\\Strata')) {
+    require_once $cwd . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+    require_once $cwd . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'application.php';
+    $app = \Strata\Strata::bootstrap(\Strata\Strata::requireVendorAutoload());
+    $app->init();
+}
+
 \Strata\Strata::app()->takeOverWPCLIArgs();
 
 // Get and run the shell.
