@@ -43,10 +43,12 @@ class AltoRouteParser extends Router
 
     protected function registerWordpressAction()
     {
-        if (Router::isAjax() || is_admin()) {
-            add_action('init', array($this, "onWordpressEarlyInit"));
-        } else {
-            add_action('wp', array($this, "onWordpressInit"));
+        if (function_exists('add_action')) {
+            if (Router::isAjax() || is_admin()) {
+                add_action('init', array($this, "onWordpressEarlyInit"));
+            } else {
+                add_action('wp', array($this, "onWordpressInit"));
+            }
         }
 
         $this->registered = true;
