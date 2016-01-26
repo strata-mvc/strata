@@ -18,16 +18,9 @@ if ($cwd === dirname(__FILE__)) {
     }
 }
 
-// Load the class loader
-require_once $cwd . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-require_once $cwd . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'application.php';
-
-use Strata\Strata;
-
-$app = Strata::bootstrap(Strata::requireVendorAutoload());
-
-$app->init();
-$app->takeOverWPCLIArgs();
+// Because of the way we need to be in a running Strata instance before running
+// the shell script, there's a global reference already available (and configured).
+\Strata\Strata::app()->takeOverWPCLIArgs();
 
 // Get and run the shell.
 \Strata\Shell\Shell::run();
