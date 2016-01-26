@@ -89,6 +89,24 @@ class Request
         return strtoupper($_SERVER['REQUEST_METHOD']) === 'DELETE';
     }
 
+
+    /**
+     * Sets a value in Strata's version of the POST array
+     */
+    public function setPost($key, $value)
+    {
+        $this->_POST = Hash::insert($this->_POST, array($key => $value));
+    }
+
+    /**
+     * Sets a value in Strata's version of the GET array
+     * @return boolean
+     */
+    public function setGet($key, $value)
+    {
+        $this->_GET = Hash::insert($this->_GET, array($key => $value));
+    }
+
     /**
      * Returns the get parameter matching $key.
      * @param string $key The name of the posted value
