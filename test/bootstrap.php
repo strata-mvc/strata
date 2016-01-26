@@ -1,5 +1,6 @@
 <?php
     $app = \Strata\Strata::bootstrap(include("vendor/autoload.php"));
+    $app->setDefaultNamespace();
     $app->addProjectNamespaces();
     $app->includeWordpressFixture();
     $app->includeGettextFixture();
