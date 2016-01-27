@@ -127,12 +127,12 @@ class View
      */
     protected function applyHeaders()
     {
-        if ($this->options['Content-type'] != "text/html") {
-            header('Content-type: ' . $this->options['Content-type']);
+        if ($this->getConfig('Content-type') != "text/html") {
+            header('Content-type: ' . $this->getConfig('Content-type'));
         }
 
-        if (!is_null($this->options['Content-disposition'])) {
-            header('Content-disposition: ' . $this->options['Content-disposition']);
+        if (!is_null($this->getConfig('Content-disposition'))) {
+            header('Content-disposition: ' . $this->getConfig('Content-disposition'));
         }
     }
 
