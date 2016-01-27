@@ -9,7 +9,8 @@ If you are (or wish to become) a Strata user please go to the [official website]
 
 ## Help and support
 
-Feel free to ask questions to the Strata community on the [Help and support](http://strata-community.francoisfaubert.com/) forum.
+Feel free to ask questions to the Strata community in [the chat](https://gitter.im/francoisfaubert/strata) or raise any problems in the [issue page](https://github.com/francoisfaubert/strata/issues).
+
 
 ## Contributing
 
