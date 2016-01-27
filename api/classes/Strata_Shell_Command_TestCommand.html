@@ -77,16 +77,16 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class TestCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/execute.html">execute</a>()
-                    </li><li>protected string <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_getPhpunitBin.html">_getPhpunitBin</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_preparePhpunitArguments.html">_preparePhpunitArguments</a>()
-                    </li><li>private void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_hasBootstrapFile.html">_hasBootstrapFile</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_getBootstrapFile.html">_getBootstrapFile</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/getPhpunitBin.html">getPhpunitBin</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/preparePhpunitArguments.html">preparePhpunitArguments</a>()
+                    </li><li>private void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/hasBootstrapFile.html">hasBootstrapFile</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/getBootstrapFile.html">getBootstrapFile</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -114,10 +114,10 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_tree_end"><strong>$_tree_end</strong>
+            <li id="tree_end"><strong>$tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
+            <li id="tree_line"><strong>$tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
@@ -135,24 +135,24 @@
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="_hasBootstrapFile">
-              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_hasBootstrapFile.html">_hasBootstrapFile()</a>
+            <li id="hasBootstrapFile">
+              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/hasBootstrapFile.html">hasBootstrapFile()</a>
             </li>
           </ul>
           <h4>protected</h4>
           <ul>
-            <li id="_getBootstrapFile">
-              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_getBootstrapFile.html">_getBootstrapFile()</a>
-            </li>
-            <li id="_getPhpunitBin"><a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_getPhpunitBin.html">_getPhpunitBin()</a>
-                — Return the path to the Apigen binary</li>
-            <li id="_preparePhpunitArguments">
-              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/_preparePhpunitArguments.html">_preparePhpunitArguments()</a>
-            </li>
             <li id="configure"><a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/configure.html">configure()</a>
                 — {@inheritdoc}</li>
             <li id="execute"><a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/execute.html">execute()</a>
                 — {@inheritdoc}</li>
+            <li id="getBootstrapFile">
+              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/getBootstrapFile.html">getBootstrapFile()</a>
+            </li>
+            <li id="getPhpunitBin"><a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/getPhpunitBin.html">getPhpunitBin()</a>
+                — Return the path to the Apigen binary</li>
+            <li id="preparePhpunitArguments">
+              <a title="Strata\Shell\Command\TestCommand" href="../classes/Strata_Shell_Command_TestCommand/preparePhpunitArguments.html">preparePhpunitArguments()</a>
+            </li>
           </ul>
           <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
           <h4>protected</h4>
@@ -251,7 +251,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

@@ -87,6 +87,8 @@
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPut.html">isPut</a>()
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPatch.html">isPatch</a>()
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isDelete.html">isDelete</a>()
+                    </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setPost.html">setPost</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setGet.html">setGet</a>()
                     </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/get.html">get</a>()
                     </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/post.html">post</a>()
                     </li><li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/file.html">file</a>()
@@ -96,11 +98,13 @@
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet</a>()
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasCookie.html">hasCookie</a>()
                     </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile</a>()
+                    </li><li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFiles.html">hasFiles</a>()
                     </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates</a>()
                     </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/honeypotValidates.html">honeypotValidates</a>()
                     </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/nonceValidates.html">nonceValidates</a>()
                     </li><li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/generateNonceKey.html">generateNonceKey</a>()
-                    </li><li>private null <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/_buildRequestData.html">_buildRequestData</a>()
+                    </li><li>private null <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/buildRequestData.html">buildRequestData</a>()
+                    </li><li>private void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/addFilesList.html">addFilesList</a>()
                     </li></ul>
 
             }<br/></div>
@@ -126,7 +130,10 @@
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="_buildRequestData"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/_buildRequestData.html">_buildRequestData()</a>
+            <li id="addFilesList">
+              <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/addFilesList.html">addFilesList()</a>
+            </li>
+            <li id="buildRequestData"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/buildRequestData.html">buildRequestData()</a>
                 — Goes through the posted data and strips additional characters added along the way.</li>
           </ul>
           <h4>public</h4>
@@ -149,6 +156,8 @@
                 — Explains whether the cookie parameter matching $key has a value.</li>
             <li id="hasFile"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile()</a>
                 — Explains whether the file parameter matching $key has a value.</li>
+            <li id="hasFiles"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFiles.html">hasFiles()</a>
+                — Returns whether the request contains uploaded files</li>
             <li id="hasGet"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet()</a>
                 — Explains whether the get parameter matching $key has a value.</li>
             <li id="hasPost"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasPost.html">hasPost()</a>
@@ -174,6 +183,10 @@
             <li id="requestValidates">
               <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates()</a>
             </li>
+            <li id="setGet"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setGet.html">setGet()</a>
+                — Sets a value in Strata's version of the GET array</li>
+            <li id="setPost"><a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setPost.html">setPost()</a>
+                — Sets a value in Strata's version of the POST array</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
@@ -302,7 +315,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

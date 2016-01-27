@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/CustomPostType/ModelEntity.php.html#line13">Source</a>
+            <a href="../source/Model/CustomPostType/ModelEntity.php.html#line15">Source</a>
           </li>
         </ul>
       </nav>
@@ -83,12 +83,16 @@
                     </li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                     </li><li>public static void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/getClassNameSuffix.html">getClassNameSuffix</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/init.html">init</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/__get.html">__get</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/__set.html">__set</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/__isset.html">__isset</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/bindToObject.html">bindToObject</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/isBound.html">isBound</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validates.html">validates</a>()
+                    </li><li>public bool <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/assignRequest.html">assignRequest</a>()
+                    </li><li>public array <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/extractData.html">extractData</a>()
+                    </li><li>public boolean <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validates.html">validates</a>()
+                    </li><li>public boolean <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validate.html">validate</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/getValidationErrors.html">getValidationErrors</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/hasValidationErrors.html">hasValidationErrors</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/getErrors.html">getErrors</a>()
@@ -173,9 +177,13 @@
             <li id="__set">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/__set.html">__set()</a>
             </li>
+            <li id="assignRequest"><a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/assignRequest.html">assignRequest()</a>
+                — Assigns the entity data that may be found in the request to this entity.</li>
             <li id="bindToObject">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/bindToObject.html">bindToObject()</a>
             </li>
+            <li id="extractData"><a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/extractData.html">extractData()</a>
+                — Extracts the request values related to the entity from a supplied request object.</li>
             <li id="getAttributes">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/getAttributes.html">getAttributes()</a>
             </li>
@@ -203,15 +211,19 @@
             <li id="hasValidationErrors">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/hasValidationErrors.html">hasValidationErrors()</a>
             </li>
+            <li id="init">
+              <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/init.html">init()</a>
+            </li>
             <li id="isBound">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/isBound.html">isBound()</a>
             </li>
             <li id="isSupportedAttribute">
               <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/isSupportedAttribute.html">isSupportedAttribute()</a>
             </li>
-            <li id="validates">
-              <a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validates.html">validates()</a>
-            </li>
+            <li id="validate"><a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validate.html">validate()</a>
+                — Runs validation in a hash object that may or may not be the result of request-&gt;data(), but has the same format.</li>
+            <li id="validates"><a title="Strata\Model\CustomPostType\ModelEntity" href="../classes/Strata_Model_CustomPostType_ModelEntity/validates.html">validates()</a>
+                — Runs validation on the current entity values as declared by the entity's attributes.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
           <h4>public</h4>
@@ -355,7 +367,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

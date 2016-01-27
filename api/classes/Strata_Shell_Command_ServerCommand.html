@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/ServerCommand.php.html#line19">Source</a>
+            <a href="../source/Shell/Command/ServerCommand.php.html#line20">Source</a>
           </li>
         </ul>
       </nav>
@@ -77,12 +77,13 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class ServerCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/execute.html">execute</a>()
+                    </li><li>private void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -110,10 +111,10 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_tree_end"><strong>$_tree_end</strong>
+            <li id="tree_end"><strong>$tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
+            <li id="tree_line"><strong>$tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
@@ -129,6 +130,12 @@
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="hasIniFile">
+              <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile()</a>
+            </li>
+          </ul>
           <h4>protected</h4>
           <ul>
             <li id="configure"><a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/configure.html">configure()</a>
@@ -223,7 +230,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

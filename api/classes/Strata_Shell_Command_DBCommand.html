@@ -80,18 +80,18 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class DBCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/execute.html">execute</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_createDB.html">_createDB</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/createDB.html">createDB</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_dumpCurrentDB.html">_dumpCurrentDB</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_importSqlFile.html">_importSqlFile</a>()
-                    </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_getSqlFile.html">_getSqlFile</a>()
-                    </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_getMostRecent.html">_getMostRecent</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/dumpCurrentDB.html">dumpCurrentDB</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/importSqlFile.html">importSqlFile</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getSqlFile.html">getSqlFile</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getMostRecent.html">getMostRecent</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -124,11 +124,11 @@
             </tr>
           </thead>
           <tr>
-            <td class="nummeric">101+</td>
+            <td class="nummeric">111+</td>
             <td>Ensure this works in and outside of Vagrant.</td>
           </tr>
           <tr>
-            <td class="nummeric">114+</td>
+            <td class="nummeric">124+</td>
             <td>Ensure this works in an outside of Vagrant.</td>
           </tr>
         </table>
@@ -136,10 +136,10 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_tree_end"><strong>$_tree_end</strong>
+            <li id="tree_end"><strong>$tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
+            <li id="tree_line"><strong>$tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
@@ -157,24 +157,24 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="_createDB">
-              <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_createDB.html">_createDB()</a>
-            </li>
-            <li id="_dumpCurrentDB"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_dumpCurrentDB.html">_dumpCurrentDB()</a>
-                — Dumps the current environment's database to an .sql file in /db/</li>
-            <li id="_getMostRecent"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_getMostRecent.html">_getMostRecent()</a>
-                — Returns the most recent file in $path.</li>
-            <li id="_getSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_getSqlFile.html">_getSqlFile()</a>
-                — Gets the working .sql file either from an option passed to the command or by returning the most recent sql file in /db/.</li>
-            <li id="_importSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/_importSqlFile.html">_importSqlFile()</a>
-                — Imports an .sql file to the current environment's database.</li>
             <li id="configure"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/configure.html">configure()</a>
                 — {@inheritdoc}</li>
+            <li id="createDB">
+              <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/createDB.html">createDB()</a>
+            </li>
+            <li id="dumpCurrentDB"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/dumpCurrentDB.html">dumpCurrentDB()</a>
+                — Dumps the current environment's database to an .sql file in /db/</li>
             <li id="execute"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/execute.html">execute()</a>
                 — {@inheritdoc}</li>
+            <li id="getMostRecent"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getMostRecent.html">getMostRecent()</a>
+                — Returns the most recent file in $path.</li>
+            <li id="getSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getSqlFile.html">getSqlFile()</a>
+                — Gets the working .sql file either from an option passed to the command or by returning the most recent sql file in /db/.</li>
             <li id="getWpCliPath">
               <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath()</a>
             </li>
+            <li id="importSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/importSqlFile.html">importSqlFile()</a>
+                — Imports an .sql file to the current environment's database.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
           <h4>protected</h4>
@@ -283,7 +283,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

@@ -44,7 +44,7 @@
           <li class="separator">
             <a title="Strata\Shell\Command\DBCommand" href="../../classes/Strata_Shell_Command_DBCommand.html">DBCommand</a>
           </li>
-          <li class="separator">_dumpCurrentDB</li>
+          <li class="separator">importSqlFile</li>
         </ul>
       </div>
       <nav class="box">
@@ -56,23 +56,34 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
             <a href="#tasks">Tasks</a>
           </li>
           <li>
-            <a href="../../source/Shell/Command/DBCommand.php.html#line101">Source</a>
+            <a href="../../source/Shell/Command/DBCommand.php.html#line124">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Strata\Shell\Command\DBCommand::</small>_dumpCurrentDB</h1>
-        <h4>Dumps the current environment's database to an .sql file in /db/</h4>
+        <h1><small>Strata\Shell\Command\DBCommand::</small>importSqlFile</h1>
+        <h4>Imports an .sql file to the current environment's database.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>protected function _dumpCurrentDB()
+          <code>protected function importSqlFile(
+        $file )
             </code>
         </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$file</code>
+                —
+                </dt>
+          <dd/>
+        </dl>
         <table class="styled">
           <thead>
             <tr>
@@ -81,14 +92,14 @@
             </tr>
           </thead>
           <tr>
-            <td class="nummeric">101+</td>
-            <td>Ensure this works in and outside of Vagrant.</td>
+            <td class="nummeric">124+</td>
+            <td>Ensure this works in an outside of Vagrant.</td>
           </tr>
         </table>
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

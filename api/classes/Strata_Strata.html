@@ -96,6 +96,9 @@
                     </li><li>public ClassLoader <a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/loadMiddleware.html">loadMiddleware</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares</a>()
+                    </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeWordpressFixture.html">includeWordpressFixture</a>()
+                    </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs</a>()
+                    </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureLogger.html">configureLogger</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/log.html">log</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize</a>()
@@ -106,17 +109,19 @@
                     </li><li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/includeDebug.html">includeDebug</a>()
-                    </li><li>protected null <a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespace.html">addProjectNamespace</a>()
+                    </li><li>public null <a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces</a>()
+                    </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/setTimeZone.html">setTimeZone</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/improveSecurity.html">improveSecurity</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataContext">StrataContext</span></li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app</a>()
                         </li><li>public static mixed <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config</a>()
                         </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace</a>()
+                        </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace</a>()
                         </li><li>public static Strata <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/bootstrap.html">bootstrap</a>()
                         </li><li>public static array <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile</a>()
                         </li><li>public static bool <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/writeProjectConfigFile.html">writeProjectConfigFile</a>()
                         </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/includeWordpressFixture.html">includeWordpressFixture</a>()
                         </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface</a>()
                         </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer</a>()
                         </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev</a>()
@@ -204,8 +209,6 @@
             <li id="addAppRoutes">
               <a title="Strata\Strata" href="../classes/Strata_Strata/addAppRoutes.html">addAppRoutes()</a>
             </li>
-            <li id="addProjectNamespace"><a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespace.html">addProjectNamespace()</a>
-                — Adds the current project namespace to the project's class loader.</li>
             <li id="configureCustomPostType"><a title="Strata\Strata" href="../classes/Strata_Strata/configureCustomPostType.html">configureCustomPostType()</a>
                 — Configures the post type loader is automated.</li>
             <li id="configureLogger">
@@ -236,11 +239,17 @@
           </ul>
           <h4>public</h4>
           <ul>
+            <li id="addProjectNamespaces"><a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces()</a>
+                — Adds the current project namespace to the project's class loader.</li>
             <li id="getLoader"><a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader()</a>
                 — Returns a class loader to the application</li>
             <li id="getMiddlewares">
               <a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares()</a>
             </li>
+            <li id="includeGettextFixture"><a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture()</a>
+                — Loads up a fake gettext wrapper against which the tests will test.</li>
+            <li id="includeWordpressFixture"><a title="Strata\Strata" href="../classes/Strata_Strata/includeWordpressFixture.html">includeWordpressFixture()</a>
+                — Loads up a fake Wordpress wrapper on which the tests will register things.</li>
             <li id="init"><a title="Strata\Strata" href="../classes/Strata_Strata/init.html">init()</a>
                 — Prepares the object for its run.</li>
             <li id="loadConfiguration">
@@ -251,8 +260,14 @@
             </li>
             <li id="run"><a title="Strata\Strata" href="../classes/Strata_Strata/run.html">run()</a>
                 — Kickstarts the router and preload the custom post types associated to the project.</li>
+            <li id="setDefaultNamespace">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace()</a>
+            </li>
             <li id="setLoader"><a title="Strata\Strata" href="../classes/Strata_Strata/setLoader.html">setLoader()</a>
                 — Assigns a class loader to the application</li>
+            <li id="takeOverWPCLIArgs">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs()</a>
+            </li>
           </ul>
           <h3>Inherited from <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">Strata\Core\StrataContext</a></h3>
           <h4>public</h4>
@@ -271,6 +286,12 @@
                 — Returns the path to the config folder.</li>
             <li id="getDbPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDbPath.html">getDbPath()</a>
                 — Returns the path to the db folder.</li>
+            <li id="getDefaultNamespace">
+              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace()</a>
+            </li>
+            <li id="getDefaultTestNamespace">
+              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace()</a>
+            </li>
             <li id="getLocalePath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLocalePath.html">getLocalePath()</a>
                 — Returns the path to Strata's locale infos.</li>
             <li id="getLogPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLogPath.html">getLogPath()</a>
@@ -303,9 +324,6 @@
                 — Returns the path to the project's vendor folder.</li>
             <li id="getWordpressPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getWordpressPath.html">getWordpressPath()</a>
                 — Returns the Wordpress path.</li>
-            <li id="includeWordpressFixture">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/includeWordpressFixture.html">includeWordpressFixture()</a>
-            </li>
             <li id="isBundledServer">
               <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer()</a>
             </li>
@@ -515,7 +533,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

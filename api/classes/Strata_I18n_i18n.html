@@ -65,14 +65,14 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/I18n/I18n.php.html#line20">Source</a>
+            <a href="../source/I18n/I18n.php.html#line21">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\I18n\</small>i18n</h1>
-        <h4>Handles  localization</h4>
-        <p/>
+        <h4>Handles  localization.</h4>
+        <p>This requires a PHP that is compiled with extension=php_gettext.dll</p>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class i18n
@@ -80,10 +80,13 @@
                         ;
                     </li><li>protected <span title="Strata\I18n\Locale">Locale</span> <a href="#members">$currentLocale</a> =
                         null;
+                    </li><li>private boolean <a href="#members">$notified</a> =
+                        false;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/__construct.html">__construct</a>()
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/initialize.html">initialize</a>()
                     </li><li>public string|null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyCurrentLanguageByContext.html">applyCurrentLanguageByContext</a>()
                     </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyLocale.html">applyLocale</a>()
+                    </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTextdomain.html">getTextdomain</a>()
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/resetLocaleCache.html">resetLocaleCache</a>()
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocaleSet.html">setLocaleSet</a>()
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setCurrentLocaleByContext.html">setCurrentLocaleByContext</a>()
@@ -104,6 +107,7 @@
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveTranslations.html">saveTranslations</a>()
                     </li><li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isCurrentlyActive.html">isCurrentlyActive</a>()
                     </li><li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocale.html">setLocale</a>()
+                    </li><li>private void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getSessionKey.html">getSessionKey</a>()
                     </li><li>protected void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/registerHooks.html">registerHooks</a>()
                     </li><li>private boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks</a>()
                     </li><li>protected array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/parseLocalesFromConfig.html">parseLocalesFromConfig</a>()
@@ -128,6 +132,12 @@
         </table>
         <h2 id="members">Members</h2>
         <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="notified">
+              <strong>$notified</strong>
+            </li>
+          </ul>
           <h4>protected</h4>
           <ul class="members">
             <li id="currentLocale"><strong>$currentLocale</strong>
@@ -144,6 +154,9 @@
           <ul>
             <li id="getLocaleRegexUrls"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleRegexUrls.html">getLocaleRegexUrls()</a>
                 — Returns the list of urls identifiers of all the active locales</li>
+            <li id="getSessionKey">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getSessionKey.html">getSessionKey()</a>
+            </li>
             <li id="shouldAddWordpressHooks"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks()</a>
                 — Specifies whether the class should be registering the Wordpress hooks.</li>
             <li id="startSession"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/startSession.html">startSession()</a>
@@ -179,6 +192,9 @@
                 — Returns the locale that is saved in the session array.</li>
             <li id="getLocales"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocales.html">getLocales()</a>
                 — Returns the list of Locale objects</li>
+            <li id="getTextdomain">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTextdomain.html">getTextdomain()</a>
+            </li>
             <li id="getTranslations"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTranslations.html">getTranslations()</a>
                 — Loads the translations from the locale's PO file and returns the list.</li>
             <li id="hasActiveLocales"><a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasActiveLocales.html">hasActiveLocales()</a>
@@ -375,7 +391,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>

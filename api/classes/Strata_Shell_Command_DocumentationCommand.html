@@ -80,8 +80,8 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class DocumentationCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/configure.html">configure</a>()
@@ -90,7 +90,6 @@
                     </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/getApiDestination.html">getApiDestination</a>()
                     </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/getWpdocDestination.html">getWpdocDestination</a>()
                     </li><li>protected string <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/getWpApiDestination.html">getWpApiDestination</a>()
-                    </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/summary.html">summary</a>()
                     </li><li>protected [type] <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/deletePrevious.html">deletePrevious</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/generateAPI.html">generateAPI</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/generateThemesAPI.html">generateThemesAPI</a>()
@@ -131,11 +130,11 @@
             </tr>
           </thead>
           <tr>
-            <td class="nummeric">191+</td>
+            <td class="nummeric">172+</td>
             <td>This will do for now, but the template shouldn't be hardcoded.</td>
           </tr>
           <tr>
-            <td class="nummeric">307+</td>
+            <td class="nummeric">288+</td>
             <td>Allow a way for Strata to load Wordpress on demand.</td>
           </tr>
         </table>
@@ -143,10 +142,10 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_tree_end"><strong>$_tree_end</strong>
+            <li id="tree_end"><strong>$tree_end</strong>
                 —
                 string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
+            <li id="tree_line"><strong>$tree_line</strong>
                 —
                 string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
@@ -190,8 +189,6 @@
                 — Recurses through a directory and deletes sub-directories.</li>
             <li id="scanThemeDirectories"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/scanThemeDirectories.html">scanThemeDirectories()</a>
                 — Scans the theme directories of the current Wordpress installation and looks for things useful for a programmer.</li>
-            <li id="summary"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/summary.html">summary()</a>
-                — Outputs a summary of the operation.</li>
             <li id="writeThemesDocumentation"><a title="Strata\Shell\Command\DocumentationCommand" href="../classes/Strata_Shell_Command_DocumentationCommand/writeThemesDocumentation.html">writeThemesDocumentation()</a>
                 — Render the theme documentation file based on known $info fields.</li>
           </ul>
@@ -332,7 +329,7 @@
       </section>
     </div>
     <footer>
-      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
     </footer>
   </body>
 </html>
