@@ -2,15 +2,16 @@
 namespace Strata\I18n;
 
 use Strata\Strata;
+use Strata\Core\StrataConfigurableTrait;
 
 class Locale
 {
+    use StrataConfigurableTrait;
 
     protected $nativeLabel;
     protected $code;
     protected $isDefault;
     protected $url;
-    protected $config = array();
 
     function __construct($code, $config = array())
     {
@@ -28,14 +29,7 @@ class Locale
         $this->isDefault = (bool)$config["default"];
 
         // Save the rest
-        $this->config = $config;
-    }
-
-    public function getConfig($key)
-    {
-        if (array_key_exists($key, $this->config)) {
-            return $this->config[$key];
-        }
+        $this->configure($config);
     }
 
     public function getNativeLabel()
@@ -88,7 +82,7 @@ class Locale
         return file_exists($this->getMoFilePath($env));
     }
 
-    public function getMoFilePath($env)
+    public function getMoFilePath($env = null)
     {
         $localeDir = Strata::getLocalePath();
 
