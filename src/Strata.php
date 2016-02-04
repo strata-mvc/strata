@@ -140,9 +140,9 @@ class Strata extends StrataContext
         if (self::isCommandLineInterface()) {
             $wpcliArgs = $_SERVER['argv'];
             if (strstr($wpcliArgs[0], 'wp-cli')) {
-                // The first 5 items are wpcli arguments that are needed
+                // The first 4 items are wpcli arguments that are needed
                 // for WP to exist in the context of the command line.
-                $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 5);
+                $GLOBALS['_SERVER']['argv'] = array_slice($wpcliArgs, 4);
             }
 
             if (!array_key_exists('SERVER_NAME', $GLOBALS['_SERVER'])) {
