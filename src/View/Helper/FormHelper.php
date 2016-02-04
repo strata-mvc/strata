@@ -3,15 +3,16 @@
 namespace Strata\View\Helper;
 
 use Strata\Model\ModelEntity;
-use Strata\Controller\Request;
+use Strata\Strata;
 use Exception;
 
 class FormHelper extends Helper
 {
-
     private $request = null;
+
     protected $configuration = array();
     protected $associatedEntity = null;
+
     public $validationErrors = null;
 
     public $keys = array(
@@ -21,7 +22,7 @@ class FormHelper extends Helper
 
     public function create($mixed = null, $options = array())
     {
-        $this->request = new Request();
+        $this->request = Strata::app()->router->getCurrentController()->request;
 
         if (!is_null($mixed) && !in_array('Strata\\Model\\CustomPostType\\ModelEntity', class_parents($mixed))) {
             throw new Exception("A form can only be linked to either an object inheriting ModelEntity or nothing at all.");
