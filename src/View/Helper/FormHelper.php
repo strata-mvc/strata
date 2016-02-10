@@ -145,8 +145,10 @@ class FormHelper extends Helper
         $currentValue = $this->getCurrentValue($options['name']);
 
         $errorHtml = "";
-        if ((bool)$options['error'] && array_key_exists($name, (array)$this->validationErrors)) {
-            $errorHtml = $this->generateInlineErrors($name);
+        if (array_key_exists($name, (array)$this->validationErrors)) {
+            if ((bool)$options['error']) {
+                $errorHtml = $this->generateInlineErrors($name);
+            }
             $options['class'] .= " error ";
         }
         unset($options["error"]);

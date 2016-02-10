@@ -160,26 +160,21 @@ class ModelEntity
     {
         $ourData = Hash::extract($requestData, $this->getInputName());
 
-        $entityErrors = array();
         foreach ($this->getAttributeNames() as $name) {
-            $entityErrors[$name] = array();
-            $validations = $this->extractNormalizedValidations($name);
 
+            $validations = $this->extractNormalizedValidations($name);
             foreach ($validations as $validationKey => $validatorConfig) {
+
                 $validator = Validator::factory($validationKey);
                 $validator->configure($validatorConfig);
 
                 if (!array_key_exists($name, $ourData) || !$validator->test($ourData[$name], $this)) {
-                    $entityErrors[$name][$validationKey] = $validator->getMessage();
+                    $this->setValidationError($name, $validationKey, $validator->getMessage());
                 }
-            }
-            if (!count($entityErrors[$name])) {
-                unset($entityErrors[$name]); // this is pretty ugly.
             }
         }
 
-        $this->validationErrors = $entityErrors;
-        return count($this->validationErrors) < 1;
+        return !$this->hasValidationErrors();
     }
 
     public function getValidationErrors()
@@ -190,6 +185,15 @@ class ModelEntity
     public function hasValidationErrors()
     {
         return count($this->getValidationErrors()) > 0;
+    }
+
+    public function setValidationError($fieldName, $validationName, $errorMessage)
+    {
+        $this->validationErrors = Hash::merge($this->getValidationErrors(), array(
+            $fieldName => array(
+                $validationName => $errorMessage
+            )
+        ));
     }
 
     public function getErrors($name)
