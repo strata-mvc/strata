@@ -19,9 +19,7 @@ class RequiredValidator extends Validator
         // Should one of the conditions be missing, the validator
         // will return a successful test.
         if (!is_null($this->_config['if'])) {
-
-            $request =  Strata::app()->getCurrentController()->request;
-
+            $request =  Strata::app()->router->getCurrentController()->request;
             foreach ($this->_config['if'] as $key => $expectedValue) {
                 $comparedValue = $request->isPost() ? $request->post($key) : $request->get($key);
                 if ($comparedValue !== $expectedValue) {

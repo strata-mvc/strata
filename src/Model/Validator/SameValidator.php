@@ -17,8 +17,7 @@ class SameValidator extends Validator
 
     public function test($value, $context)
     {
-        $request =  Strata::app()->getCurrentController()->request;
-
+        $request =  Strata::app()->router->getCurrentController()->request;
         if ($request->isPost($this->_config['as'])) {
             $comparedWith = $request->post($this->_config['as']);
         } elseif ($request->isGet($this->_config['as'])) {
