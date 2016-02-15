@@ -1,10 +1,10 @@
 <?php
 namespace Strata\Model\Validator;
 
+use Strata\Strata;
 
 class RequiredValidator extends Validator
 {
-
     protected $_config = array(
         "if" => null
     );
