@@ -1,7 +1,7 @@
 <?php
 namespace Strata\Model\Validator;
 
-use Strata\Controller\Request;
+use Strata\Strata;
 
 class SameValidator extends Validator
 {
@@ -17,7 +17,7 @@ class SameValidator extends Validator
 
     public function test($value, $context)
     {
-        $request = new Request();
+        $request =  Strata::app()->getCurrentController()->request;
 
         if ($request->isPost($this->_config['as'])) {
             $comparedWith = $request->post($this->_config['as']);

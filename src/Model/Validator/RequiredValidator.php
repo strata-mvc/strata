@@ -1,6 +1,7 @@
 <?php
 namespace Strata\Model\Validator;
 
+
 class RequiredValidator extends Validator
 {
 
@@ -18,14 +19,15 @@ class RequiredValidator extends Validator
         // Should one of the conditions be missing, the validator
         // will return a successful test.
         if (!is_null($this->_config['if'])) {
-            foreach ($this->_config['if'] as $key => $expectedValue) {
-                $comparedValue = $context->getPostedValue($key);
-                if (is_array($comparedValue) && count($comparedValue) === 1) {
-                    $comparedValue = $comparedValue[0];
-                }
 
+            $request =  Strata::app()->getCurrentController()->request;
+
+            foreach ($this->_config['if'] as $key => $expectedValue) {
+                $comparedValue = $request->isPost() ? $request->post($key) : $request->get($key);
                 if ($comparedValue !== $expectedValue) {
-                    return true; // ignore the validation, $expectedValue is not met
+                    // ignore the rest of the validations, $expectedValue is not met
+                    // therefore it's not a case when we need to validate the actual value.
+                    return true;
                 }
             }
         }
