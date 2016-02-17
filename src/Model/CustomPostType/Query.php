@@ -136,7 +136,10 @@ class Query
         $offset = (int)get_query_var('paged', 1);
 
         $this->limit($postsPerPage);
-        $this->offset($offset);
+
+        if ($offset > 1) {
+            $this->offset(($offset-1) * $postsPerPage);
+        }
 
         if ($count > $postsPerPage) {
             $config +=  array(
