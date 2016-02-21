@@ -90,13 +90,13 @@
                         </li><li>public [type] <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage</a>()
                         </li><li>public string <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
                         </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
                         </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
-                        </li><li>public void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
                         </li></ul>
 
             }<br/></div>
@@ -160,30 +160,55 @@
           <h4>public</h4>
           <ul>
             <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
-                — Instantiates an object of inheriting the current class or of the current class that matches a particular string.</li>
-            <li id="generateClassName">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
-            </li>
+                — Instantiates an object that uses the StrataObjectTrait which class name matches the $name value.</li>
+            <li id="generateClassName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+                — Generates a valid class name from the $name value.</li>
             <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
-                — Generates a possible namespace and classname combination of a Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere.</li>
-            <li id="getClassNameSuffix">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
-            </li>
-            <li id="getFactoryScopes">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
-            </li>
-            <li id="getNamespaceStringInStrata">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
-            </li>
-            <li id="getShortName">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
-            </li>
+                — Generates a possible namespace and classname combination of a Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere (or whatever else would the namespace have been).</li>
+            <li id="getClassNameSuffix"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+                — Returns scopes in which Strata will look in to load objects.</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — Returns the default namespace path.</li>
+            <li id="getShortName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+                — Returns this object's class name without the full namespace.</li>
             <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
                 — Instantiates an object of the current class.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-15T19:10:10+00:00 (commit #<span title="95325641f8bc5de6f7e191c196c7cb91e4ec6fc7">9532564</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added correct request path</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-02-15T19:04:23+00:00 (commit #<span title="d238f3576890dba530fc603a0b2365747ab3892a">d238f35</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the validators should be using the currently active request object</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-09-18T15:44:05+00:00 (commit #<span title="7b6d0143f75cc06f6e6737f8ace0db4d539cbcbd">7b6d014</span>)</h3>
             <div>

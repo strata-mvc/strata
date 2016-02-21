@@ -76,7 +76,7 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class Controller
-            {<br/><ul class="none"><li>// members</li><li>public <span title="Strata\Controller\Strata\Controller\Request">Request</span> <a href="#members">$request</a> =
+            {<br/><ul class="none"><li>// members</li><li>public <span title="Strata\Controller\Request">Request</span> <a href="#members">$request</a> =
                         null;
                     </li><li>public <span title="Strata\Controller\Strata\View\View">View</span> <a href="#members">$view</a> =
                         null;
@@ -92,13 +92,13 @@
                     </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/index.html">index</a>()
                     </li><li>public null <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/noActionMatch.html">noActionMatch</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
                         </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
                         </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
-                        </li><li>public static void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
-                        </li><li>public void <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
                         </li></ul>
 
             }<br/></div>
@@ -120,7 +120,7 @@
                 array<br/><span class="indent">Helpers that will need to be loaded across all the actions of the Controller.</span></li>
             <li id="request"><strong>$request</strong>
                 —
-                <a title="Strata\Controller\Strata\Controller\Request" href="../classes/Strata_Controller_Strata_Controller_Request.html">Strata\Controller\Strata\Controller\Request</a><br/><span class="indent">The current request</span></li>
+                <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request.html">Strata\Controller\Request</a><br/><span class="indent">The current active Request</span></li>
             <li id="shortcodes"><strong>$shortcodes</strong>
                 —
                 array<br/><span class="indent">These hooks allow views to use Wordpress nicely, but still trigger items in the current controller.</span></li>
@@ -134,9 +134,9 @@
           <h4>public</h4>
           <ul>
             <li id="after"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/after.html">after()</a>
-                — Executed after each calls to a controller action.</li>
+                — Executed after each call to a controller action.</li>
             <li id="before"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/before.html">before()</a>
-                — Executed before each calls to a controller action.</li>
+                — Executed before each call to a controller action.</li>
             <li id="getClassNameSuffix">
               <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getClassNameSuffix.html">getClassNameSuffix()</a>
             </li>
@@ -144,40 +144,55 @@
               <a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
             </li>
             <li id="index"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/index.html">index()</a>
-                — Base action.</li>
+                — Base entry action.</li>
             <li id="init"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/init.html">init()</a>
-                — Initiate the controller.</li>
+                — Initiates the Controller object by setting up the Request, the associated View and the various autoloaders.</li>
             <li id="noActionMatch"><a title="Strata\Controller\Controller" href="../classes/Strata_Controller_Controller/noActionMatch.html">noActionMatch()</a>
-                — Base action when no action is found. This is used mainly as a precautionary fallback.</li>
+                — Base action when no action is found. This is used mainly as a precautionary fallback when a route matches a controller but not a method.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
           <h4>public</h4>
           <ul>
             <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
-                — Instantiates an object of inheriting the current class or of the current class that matches a particular string.</li>
-            <li id="generateClassName">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
-            </li>
+                — Instantiates an object that uses the StrataObjectTrait which class name matches the $name value.</li>
+            <li id="generateClassName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+                — Generates a valid class name from the $name value.</li>
             <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
-                — Generates a possible namespace and classname combination of a Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere.</li>
-            <li id="getClassNameSuffix">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
-            </li>
-            <li id="getFactoryScopes">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
-            </li>
-            <li id="getNamespaceStringInStrata">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
-            </li>
-            <li id="getShortName">
-              <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
-            </li>
+                — Generates a possible namespace and classname combination of a Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere (or whatever else would the namespace have been).</li>
+            <li id="getClassNameSuffix"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+                — Returns scopes in which Strata will look in to load objects.</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — Returns the default namespace path.</li>
+            <li id="getShortName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+                — Returns this object's class name without the full namespace.</li>
             <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
                 — Instantiates an object of the current class.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-21T02:40:10+00:00 (commit #<span title="36d986cb7d41fc913f2c4f381b8b5b1ea547bb26">36d986c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improving class documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
             <div>
@@ -316,26 +331,6 @@
                         Commiter: Francois Faubert (francois.faubert@iprospect.com)
                     </p>
               <pre class="wrapped">improved documentation</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-04-28T21:08:45+00:00 (commit #<span title="658614cbb83b0b40f4c66937d987237975183901">658614c</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">added more documentation, added more generators</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
             </div>
           </li>
         </ul>

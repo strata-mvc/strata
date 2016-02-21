@@ -53,6 +53,9 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
             <a href="#methods">Methods</a>
           </li>
           <li>
@@ -70,18 +73,18 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class StrataContext
-            {<br/><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app</a>()
+            {<br/><ul class="none"><li>// constants</li><li>const STRATA_KEY = "__Strata__";</li></ul><ul class="none"><li>// methods</li><li>public static Strata <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app</a>()
                     </li><li>public static mixed <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace</a>()
+                    </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace</a>()
+                    </li><li>public static String <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace</a>()
                     </li><li>public static Strata <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/bootstrap.html">bootstrap</a>()
                     </li><li>public static array <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile</a>()
                     </li><li>public static bool <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/writeProjectConfigFile.html">writeProjectConfigFile</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer</a>()
-                    </li><li>public static void <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev</a>()
+                    </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload</a>()
+                    </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface</a>()
+                    </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer</a>()
+                    </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getRootPath.html">getRootPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getThemesPath.html">getThemesPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getPluginsPath.html">getPluginsPath</a>()
@@ -104,40 +107,53 @@
                     </li></ul>
 
             }<br/></div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="STRATA_KEY">STRATA_KEY</td>
+              <td>"__Strata__"</td>
+            </tr>
+          </tbody>
+        </table>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>public</h4>
           <ul>
             <li id="app"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app()</a>
-                — Because the processing is called asynchronously using wordpress' hooks, we will lose the referece to the kickstarter object.</li>
+                — Returns the global instantiated Strata object.</li>
             <li id="bootstrap"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/bootstrap.html">bootstrap()</a>
-                — Bootstraps Strata by creating an instance and saving it to the global scope.</li>
+                — Bootstraps Strata by creating a Strata instance and saving it to the global scope.</li>
             <li id="config"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config()</a>
                 — Fetches a value in the app's configuration array</li>
             <li id="getBinPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getBinPath.html">getBinPath()</a>
                 — Returns the path to the bin folder.</li>
             <li id="getCommandPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getCommandPath.html">getCommandPath()</a>
-                — Returns the path to the project command folder.</li>
+                — Returns the path to the project shell command folder.</li>
             <li id="getConfigurationPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getConfigurationPath.html">getConfigurationPath()</a>
-                — Returns the path to the config folder.</li>
+                — Returns the path to the configuration folder.</li>
             <li id="getDbPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDbPath.html">getDbPath()</a>
                 — Returns the path to the db folder.</li>
-            <li id="getDefaultNamespace">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace()</a>
-            </li>
-            <li id="getDefaultTestNamespace">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace()</a>
-            </li>
+            <li id="getDefaultNamespace"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace()</a>
+                — Returns the default application namespace within Strata</li>
+            <li id="getDefaultTestNamespace"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace()</a>
+                — Returns the default namespace for tests within Strata</li>
             <li id="getLocalePath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLocalePath.html">getLocalePath()</a>
-                — Returns the path to Strata's locale infos.</li>
+                — Returns the path to Strata's locale configurations.</li>
             <li id="getLogPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLogPath.html">getLogPath()</a>
                 — Returns the path to the log folder.</li>
             <li id="getMUPluginsPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMUPluginsPath.html">getMUPluginsPath()</a>
                 — Returns the Wordpress must-use plugins path of the project.</li>
             <li id="getNamespace"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace()</a>
-                — Returns the current project's namespace key</li>
+                — Returns the current project's root namespace key</li>
             <li id="getOurVendorPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getOurVendorPath.html">getOurVendorPath()</a>
-                — Returns the path to our vendor folder.</li>
+                — Returns the path to Strata's vendor folder.</li>
             <li id="getPluginsPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getPluginsPath.html">getPluginsPath()</a>
                 — Returns the Wordpress plugins path of the project.</li>
             <li id="getProjectConfigurationFilePath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getProjectConfigurationFilePath.html">getProjectConfigurationFilePath()</a>
@@ -160,26 +176,62 @@
                 — Returns the path to the project's vendor folder.</li>
             <li id="getWordpressPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getWordpressPath.html">getWordpressPath()</a>
                 — Returns the Wordpress path.</li>
-            <li id="isBundledServer">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer()</a>
-            </li>
-            <li id="isCommandLineInterface">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface()</a>
-            </li>
-            <li id="isDev">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev()</a>
-            </li>
+            <li id="isBundledServer"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer()</a>
+                — Returns whether Strata is running from the command line server</li>
+            <li id="isCommandLineInterface"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface()</a>
+                — Returns whether Strata is running from the CLI tool but not the bundled server.</li>
+            <li id="isDev"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev()</a>
+                — Returns if Strata is running in development mode.</li>
             <li id="parseProjectConfigFile"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile()</a>
-                — Loads strata.php, cleans up the data and saves it as config to the current instance of the Strata object.</li>
-            <li id="requireVendorAutoload">
-              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload()</a>
-            </li>
+                — Loads ~/config/strata.php, cleans up the data and saves it as the active configuration of the current instance of the Strata object.</li>
+            <li id="requireVendorAutoload"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload()</a>
+                — Includes Composer's generator autoloader from the vendor directory</li>
             <li id="writeProjectConfigFile"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/writeProjectConfigFile.html">writeProjectConfigFile()</a>
-                — Write the config object to the project's configuration file.</li>
+                — Write the configuration object to the project's configuration file.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-21T02:40:10+00:00 (commit #<span title="36d986cb7d41fc913f2c4f381b8b5b1ea547bb26">36d986c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improving class documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-26T15:54:56+00:00 (commit #<span title="d7144ab72a38587f78afa9e68956ef0ad35508b6">d7144ab</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">Allow at least the default namespace to be loaded before configuration is parsed in case additional programming needs to be done in there; hopefully inforced the automatically routed model by changing the alto regex</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-19T15:52:36+00:00 (commit #<span title="279d88e3f82803e958d7497cde7f3eb2f5936f09">279d88e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the tests in order for them to matche the singular nature present in the stata-env projects. It allows for the same loaders to be called and less duplication</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
             <div>
@@ -298,46 +350,6 @@
                         Commiter: Francois Faubert (francois.faubert@iprospect.com)
                     </p>
               <pre class="wrapped">typos, bug fixes, improvents to debug function (now prints in logs as well)</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-13T14:16:11+00:00 (commit #<span title="01bbf3d76981cbac6d0e94901189b8005d46df4b">01bbf3d</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">Starting the inclusion of Wordpress to the testing suite</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-13T14:06:33+00:00 (commit #<span title="8984be30d588518a12a4df4df886e345b890a47a">8984be3</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">duplicate functino name</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-13T14:02:45+00:00 (commit #<span title="ab021c8d4220f8d59ecd5d1b0bcfd8e5e4c0bb77">ab021c8</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">added bootstrap files in the intallation process</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
             </div>
           </li>
         </ul>

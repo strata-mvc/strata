@@ -92,9 +92,9 @@
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
-                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
-                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
-                        </li><li>protected void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li><li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
                         </li></ul>
 
             }<br/></div>
@@ -111,9 +111,9 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="configuration">
-              <strong>$configuration</strong>
-            </li>
+            <li id="configuration"><strong>$configuration</strong>
+                —
+                array<br/><span class="indent">The configuration cache.</span></li>
             <li id="templateVars"><strong>$templateVars</strong>
                 —
                 array<br/><span class="indent">The list of variables to be declared when loading the view</span></li>
@@ -153,23 +153,19 @@
           <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
           <h4>protected</h4>
           <ul>
-            <li id="normalizeConfiguration">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
-            </li>
+            <li id="normalizeConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="configure">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
-            </li>
-            <li id="containsConfigurations">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
-            </li>
+            <li id="configure"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
             <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
-            <li id="getConfiguration">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
-            </li>
+            <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
             <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
                 — Confirms the presence of a value in the custom post type's configuration array</li>
             <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
@@ -178,6 +174,56 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-01-27T15:43:24+00:00 (commit #<span title="205217960946f1943fadf45b4b78d451f32490a5">2052179</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">leftover from the change from $option to the use of configurable</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-22T20:16:28+00:00 (commit #<span title="92978399de1b738635be5847bfc2f5235cc994e0">9297839</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added support for layouts</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-01-22T18:49:38+00:00 (commit #<span title="e46520bf568b9cf29a63435e11f26e9626bcbd2a">e46520b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the templating engine to be more object oriented. Can now toggle debugging on and off on demand (ex: for emails)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:23:09+00:00 (commit #<span title="9cdb8b4b30a6cb11c9eb95f696a5452747660e61">9cdb8b4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf using the correct standard</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
             <div>
@@ -286,46 +332,6 @@
                         Commiter: Francois Faubert (francois.faubert@iprospect.com)
                     </p>
               <pre class="wrapped">various bug fixes found while testing in first project</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-13T16:41:39+00:00 (commit #<span title="6f4b7f1e4a0cfc48ce5a18ec20fec3cee6bd2f38">6f4b7f1</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">automated end parameter, fixed issues with gnerator namespace and { character</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-06T15:12:45+00:00 (commit #<span title="baecacb085c24a2556e2930a1dbd23a963210fcf">baecacb</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">improved the form object, multiple refactoring fixed and improvements as we near v1</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-04T17:09:07+00:00 (commit #<span title="b57e483b5d7dca783d4a5c9262e0f2cce86c5e8c">b57e483</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">replugged in template rendering</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-04-29T19:58:32+00:00 (commit #<span title="6e6b6cb04b4a401064ce9af9731b047d41a63d60">6e6b6cb</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">improved documentation</pre>
             </div>
           </li>
         </ul>

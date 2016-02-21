@@ -59,14 +59,18 @@
             <a href="#parameter">Parameter</a>
           </li>
           <li>
-            <a href="../../source/Controller/Request.php.html#line224">Source</a>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/Controller/Request.php.html#line230">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1><small>Strata\Controller\Request::</small>requestValidates</h1>
-        <h4/>
-        <p/>
+        <h4>Returns whether the request can validate it's nonce and it's honeypot.</h4>
+        <p>This function is expected to be used when the request isPost() mainly.</p>
+        <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
           <code>public function requestValidates([string
@@ -80,10 +84,15 @@
           <dt><code>$nonce</code>
                 —
                 string</dt>
-          <dd/>
+          <dd>A Wordpress nonce</dd>
           <dt><code>$honeypot</code>
                 —
                 string</dt>
+          <dd>A honeypot input name</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>boolean</dt>
           <dd/>
         </dl>
       </section>

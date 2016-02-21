@@ -62,14 +62,15 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Core/StrataConfigurableTrait.php.html#line6">Source</a>
+            <a href="../source/Core/StrataConfigurableTrait.php.html#line11">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Core\</small>StrataConfigurableTrait</h1>
-        <h4/>
+        <h4>Enhances objects with a configuration cache. Gives the ability to query and maintain a key =&gt; value hash that can be modified and manipulated easily using dot notation formatting.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">trait StrataConfigurableTrait
             {<br/><ul class="none"><li>// members</li><li>protected array <a href="#members">$configuration</a> =
@@ -80,9 +81,9 @@
                     </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                     </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
                     </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
-                    </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
-                    </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
-                    </li><li>protected void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                    </li><li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                    </li><li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                    </li><li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
                     </li></ul>
 
             }<br/></div>
@@ -90,6 +91,9 @@
         <div class="styled">
           <h4>Used by</h4>
           <ul>
+            <li>
+              <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale.html">Strata\I18n\Locale</a>
+            </li>
             <li>
               <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType.html">Strata\Model\CustomPostType\CustomPostType</a>
             </li>
@@ -100,13 +104,22 @@
               <a title="Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_CustomPostTypeAdminMenuRegistrar.html">Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar</a>
             </li>
             <li>
+              <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer.html">Strata\Model\Mailer</a>
+            </li>
+            <li>
               <a title="Strata\Model\Post" href="../classes/Strata_Model_Post.html">Strata\Model\Post</a>
             </li>
             <li>
               <a title="Strata\Model\Taxonomy\Category" href="../classes/Strata_Model_Taxonomy_Category.html">Strata\Model\Taxonomy\Category</a>
             </li>
             <li>
-              <a title="Strata\Model\Taxonomy\TaxonomyEntity" href="../classes/Strata_Model_Taxonomy_TaxonomyEntity.html">Strata\Model\Taxonomy\TaxonomyEntity</a>
+              <a title="Strata\Model\Taxonomy\Taxonomy" href="../classes/Strata_Model_Taxonomy_Taxonomy.html">Strata\Model\Taxonomy\Taxonomy</a>
+            </li>
+            <li>
+              <a title="Strata\Model\User" href="../classes/Strata_Model_User.html">Strata\Model\User</a>
+            </li>
+            <li>
+              <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity.html">Strata\Model\WordpressEntity</a>
             </li>
             <li>
               <a title="Strata\Strata" href="../classes/Strata_Strata.html">Strata\Strata</a>
@@ -118,7 +131,7 @@
               <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Strata\View\Helper\Helper</a>
             </li>
             <li>
-              <a title="Strata\Model\User" href="../classes/Strata_Model_User.html">Strata\Model\User</a>
+              <a title="Strata\View\Template" href="../classes/Strata_View_Template.html">Strata\View\Template</a>
             </li>
             <li>
               <a title="Strata\View\View" href="../classes/Strata_View_View.html">Strata\View\View</a>
@@ -129,38 +142,34 @@
         <div class="styled members">
           <h4>private</h4>
           <ul class="members">
-            <li id="isConfigurableNormalized">
-              <strong>$isConfigurableNormalized</strong>
-            </li>
+            <li id="isConfigurableNormalized"><strong>$isConfigurableNormalized</strong>
+                —
+                boolean<br/><span class="indent">Flag that confirms the configuration cache has been normalized.</span></li>
           </ul>
           <h4>protected</h4>
           <ul class="members">
-            <li id="configuration">
-              <strong>$configuration</strong>
-            </li>
+            <li id="configuration"><strong>$configuration</strong>
+                —
+                array<br/><span class="indent">The configuration cache.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="normalizeConfiguration">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
-            </li>
+            <li id="normalizeConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="configure">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
-            </li>
-            <li id="containsConfigurations">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
-            </li>
+            <li id="configure"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
             <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
-            <li id="getConfiguration">
-              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
-            </li>
+            <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
             <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
                 — Confirms the presence of a value in the custom post type's configuration array</li>
             <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
@@ -169,6 +178,36 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-21T02:40:10+00:00 (commit #<span title="36d986cb7d41fc913f2c4f381b8b5b1ea547bb26">36d986c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improving class documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:23:09+00:00 (commit #<span title="9cdb8b4b30a6cb11c9eb95f696a5452747660e61">9cdb8b4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf using the correct standard</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
             <div>

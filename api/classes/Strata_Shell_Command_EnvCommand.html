@@ -88,8 +88,8 @@
                         "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
                     </li><li>protected array <a href="#members">$starterFiles</a> =
                         ;
-                    </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$_tree_line</a>;
-                        </li><li>protected string <a href="#members">$_tree_end</a>;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
+                        </li><li>protected string <a href="#members">$tree_end</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
                         </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure</a>()
@@ -140,12 +140,6 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_tree_end"><strong>$_tree_end</strong>
-                —
-                string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
-            <li id="_tree_line"><strong>$_tree_line</strong>
-                —
-                string<br/><span class="indent">A tree representation prefix.</span></li>
             <li id="directoryStructure"><strong>$directoryStructure</strong>
                 —
                 array<br/><span class="indent">Strata's directory structure</span></li>
@@ -158,6 +152,12 @@
             <li id="starterFiles"><strong>$starterFiles</strong>
                 —
                 array<br/><span class="indent">Strata's empty project files and their destination.</span></li>
+            <li id="tree_end"><strong>$tree_end</strong>
+                —
+                string<br/><span class="indent">The bottom part of a tree representation prefix.</span></li>
+            <li id="tree_line"><strong>$tree_line</strong>
+                —
+                string<br/><span class="indent">A tree representation prefix.</span></li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -223,6 +223,36 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2015-10-14T14:30:40+00:00 (commit #<span title="3e55e46b3abedee9302d4865d2a793ad9c5c739f">3e55e46</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">renamed taxonomyentity to taxonomy because its not an entity</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:23:09+00:00 (commit #<span title="9cdb8b4b30a6cb11c9eb95f696a5452747660e61">9cdb8b4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf using the correct standard</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-07-27T13:50:51+00:00 (commit #<span title="5329df7bee494dd02fd0529a2111112151bcd770">5329df7</span>)</h3>
             <div>
@@ -351,36 +381,6 @@
                         Commiter: Francois Faubert (francois.faubert@iprospect.com)
                     </p>
               <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-06T20:06:36+00:00 (commit #<span title="377fea8a0ed98f27ddbf7c8dcfd5c72da004d14d">377fea8</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">renamed app to Strata</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-05-01T17:15:18+00:00 (commit #<span title="f4966ba2991993ec38a37ebe529cd330802381e0">f4966ba</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">finish integrating phpunit testing</pre>
-            </div>
-          </li>
-          <li>
-            <h3>2015-04-29T19:58:32+00:00 (commit #<span title="6e6b6cb04b4a401064ce9af9731b047d41a63d60">6e6b6cb</span>)</h3>
-            <div>
-              <p>
-                        Author: Francois Faubert (francois.faubert@iprospect.com) /
-                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
-                    </p>
-              <pre class="wrapped">improved documentation</pre>
             </div>
           </li>
         </ul>

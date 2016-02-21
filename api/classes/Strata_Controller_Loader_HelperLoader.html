@@ -62,25 +62,26 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Controller/Loader/HelperLoader.php.html#line13">Source</a>
+            <a href="../source/Controller/Loader/HelperLoader.php.html#line14">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Controller\Loader\</small>HelperLoader</h1>
-        <h4>Allows the automation of Helpers loading.</h4>
+        <h4>Allows the automation of Helpers loading on a specified Controller object.</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class HelperLoader
-            {<br/><ul class="none"><li>// members</li><li>private null <a href="#members">$controller</a> =
+            {<br/><ul class="none"><li>// members</li><li>private <span title="Strata\Controller\Loader\Controller;">Controller;</span> <a href="#members">$controller</a> =
                         null;
-                    </li><li>private <a href="#members">$helpers</a> =
-                        null;
+                    </li><li>private array <a href="#members">$helpers</a> =
+                        ;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/__construct.html">__construct</a>()
-                    </li><li>public boolean <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers</a>()
                     </li><li>public null <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/register.html">register</a>()
-                    </li><li>private void <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/log.html">log</a>()
+                    </li><li>protected boolean <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers</a>()
+                    </li><li>protected array <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/getNormalizedHelpers.html">getNormalizedHelpers</a>()
+                    </li><li>private null <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/logAvailableHelpers.html">logAvailableHelpers</a>()
                     </li></ul>
 
             }<br/></div>
@@ -90,33 +91,56 @@
           <ul class="members">
             <li id="controller"><strong>$controller</strong>
                 —
-                null<br/><span class="indent">A Strata Controller instance to which shortcodes callbacks will be forwarded</span></li>
-            <li id="helpers">
-              <strong>$helpers</strong>
-            </li>
+                <a title="Strata\Controller\Loader\Controller;" href="../classes/Strata_Controller_Loader_Controller;.html">Strata\Controller\Loader\Controller;</a><br/><span class="indent">The Strata Controller instance on which helpers will be loaded.</span></li>
+            <li id="helpers"><strong>$helpers</strong>
+                —
+                array<br/><span class="indent">A list of normalized helper names and configuration.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="log">
-              <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/log.html">log()</a>
-            </li>
+            <li id="logAvailableHelpers"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/logAvailableHelpers.html">logAvailableHelpers()</a>
+                — Logs the list of helpers the loader has attempted to register.</li>
+          </ul>
+          <h4>protected</h4>
+          <ul>
+            <li id="getNormalizedHelpers"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/getNormalizedHelpers.html">getNormalizedHelpers()</a>
+                — Returns a normalized array of the controller's helper names and configuration.</li>
+            <li id="hasHelpers"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers()</a>
+                — Specifies if a quantity of helpers have been defined by the controller.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="__construct">
-              <a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/__construct.html">__construct()</a>
-            </li>
-            <li id="hasHelpers"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/hasHelpers.html">hasHelpers()</a>
-                — Specifies if a number of helpers have been defined.</li>
+            <li id="__construct"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/__construct.html">__construct()</a>
+                — Helper loader constructor builds a list of helper objects associated to a controller and instantiates them as view variables.</li>
             <li id="register"><a title="Strata\Controller\Loader\HelperLoader" href="../classes/Strata_Controller_Loader_HelperLoader/register.html">register()</a>
-                — Registers helpers</li>
+                — Registers the controller's helpers within it's active view.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-21T02:40:10+00:00 (commit #<span title="36d986cb7d41fc913f2c4f381b8b5b1ea547bb26">36d986c</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improving class documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-01T19:25:33+00:00 (commit #<span title="9b532894f7dfad831d797fec2e06d23f84307bc4">9b53289</span>)</h3>
             <div>

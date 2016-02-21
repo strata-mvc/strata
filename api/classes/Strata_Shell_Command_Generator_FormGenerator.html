@@ -56,9 +56,6 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
-            <a href="#members">Members</a>
-          </li>
-          <li>
             <a href="#methods">Methods</a>
           </li>
           <li>
@@ -76,17 +73,16 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class FormGenerator
                 extends <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">ClassWriter</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span></li><li>protected string <a href="#members">$classname</a>;
-                        </li><li>protected string <a href="#members">$_classTemplate</a>;
-                        </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>protected string <a href="#members">$classname</a>;
-                        </li><li>protected string <a href="#members">$_classTemplate</a>;
-                        </li><li>protected <span title="Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand">GenerateCommand</span> <a href="#members">$command</a>;
-                        </li></ul><ul class="none"><li>// methods</li><li>public null <a title="Strata\Shell\Command\Generator\FormGenerator" href="../classes/Strata_Shell_Command_Generator_FormGenerator/generate.html">generate</a>()
-                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span></li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setClassName.html">setClassName</a>()
-                        </li><li>protected string <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/_generateFileContents.html">_generateFileContents</a>()
-                        </li><li>protected null <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/_createFile.html">_createFile</a>()
-                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>public void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/__construct.html">__construct</a>()
-                        </li><li>protected string <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/_getNamespace.html">_getNamespace</a>()
+            {<br/><ul class="none"><li>// methods</li><li>public null <a title="Strata\Shell\Command\Generator\FormGenerator" href="../classes/Strata_Shell_Command_Generator_FormGenerator/generate.html">generate</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span></li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setNamespace.html">setNamespace</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setClassname.html">setClassname</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setDestination.html">setDestination</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setExtends.html">setExtends</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setUses.html">setUses</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setContents.html">setContents</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setCommandContext.html">setCommandContext</a>()
+                        </li><li>protected string <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/generateFileContents.html">generateFileContents</a>()
+                        </li><li>public void <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/create.html">create</a>()
                         </li></ul>
 
             }<br/></div>
@@ -99,27 +95,6 @@
             </li>
           </ul>
         </div>
-        <h2 id="members">Members</h2>
-        <div class="styled members">
-          <h4>protected</h4>
-          <ul class="members">
-            <li id="_classTemplate"><strong>$_classTemplate</strong>
-                —
-                string<br/><span class="indent">The base string template for creating empty class files.</span></li>
-            <li id="_classTemplate"><strong>$_classTemplate</strong>
-                —
-                string<br/><span class="indent">The base string template for creating empty class files.</span></li>
-            <li id="classname">
-              <strong>$classname</strong>
-            </li>
-            <li id="classname">
-              <strong>$classname</strong>
-            </li>
-            <li id="command"><strong>$command</strong>
-                —
-                <a title="Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand" href="../classes/Strata_Shell_Command_Generator_Strata_Shell_Command_GenerateCommand.html">Strata\Shell\Command\Generator\Strata\Shell\Command\GenerateCommand</a><br/><span class="indent">A reference to the current command interface</span></li>
-          </ul>
-        </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>public</h4>
@@ -130,26 +105,42 @@
           <h3>Inherited from <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">Strata\Shell\Command\Generator\ClassWriter</a></h3>
           <h4>protected</h4>
           <ul>
-            <li id="_createFile"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/_createFile.html">_createFile()</a>
-                — Generates and writes a file in the file system</li>
-            <li id="_generateFileContents"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/_generateFileContents.html">_generateFileContents()</a>
+            <li id="generateFileContents"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/generateFileContents.html">generateFileContents()</a>
                 — Generates a file string content based on the global template.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="setClassName">
-              <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setClassName.html">setClassName()</a>
+            <li id="create"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/create.html">create()</a>
+                — Generates and writes a file in the file system</li>
+            <li id="setClassname"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setClassname.html">setClassname()</a>
+                — Sets the class' class name</li>
+            <li id="setCommandContext">
+              <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setCommandContext.html">setCommandContext()</a>
             </li>
-          </ul>
-          <h3>Inherited from <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">Strata\Shell\Command\Generator\GeneratorBase</a></h3>
-          <h4>protected</h4>
-          <ul>
-            <li id="_getNamespace"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/_getNamespace.html">_getNamespace()</a>
-                — Returns the namespace of the current project.</li>
+            <li id="setContents"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setContents.html">setContents()</a>
+                — Sets the class' contents</li>
+            <li id="setDestination"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setDestination.html">setDestination()</a>
+                — Sets the class' file destination</li>
+            <li id="setExtends"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setExtends.html">setExtends()</a>
+                — Sets the class' extend value</li>
+            <li id="setNamespace"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setNamespace.html">setNamespace()</a>
+                — Sets the class' namespace</li>
+            <li id="setUses"><a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter/setUses.html">setUses()</a>
+                — Sets the class' use modules</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
             <div>
