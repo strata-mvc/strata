@@ -4,16 +4,15 @@ namespace Strata\Controller;
 use Strata\Controller\Request;
 use Strata\Controller\Loader\ShortcodeLoader;
 use Strata\Controller\Loader\HelperLoader;
-use Strata\View\View;
-
 use Strata\Core\StrataObjectTrait;
+use Strata\View\View;
 
 /**
  * Base controller class.
+ * @see http://strata.francoisfaubert.com/docs/controllers/
  */
 class Controller
 {
-
     use StrataObjectTrait;
 
     public static function getNamespaceStringInStrata()
@@ -27,15 +26,13 @@ class Controller
     }
 
     /**
-     * The current request
-     *
-     * @var Strata\Controller\Request
+     * The current active Request
+     * @var Request
      */
     public $request = null;
 
     /**
      * The associated view template
-     *
      * @var Strata\View\View
      */
     public $view = null;
@@ -43,11 +40,10 @@ class Controller
     /**
      * These hooks allow views to use Wordpress nicely, but still trigger
      * items in the current controller.
-     *
+     * @see https://codex.wordpress.org/Shortcode_API
      * @var array
      */
     public $shortcodes = array();
-
 
     /**
      * Helpers that will need to be loaded across all the actions of the Controller.
@@ -56,7 +52,8 @@ class Controller
     public $helpers = array();
 
     /**
-     * Initiate the controller.
+     * Initiates the Controller object by setting up the Request, the associated
+     * View and the various autoloaders.
      * @return null
      */
     public function init()
@@ -72,7 +69,7 @@ class Controller
     }
 
     /**
-     * Executed after each calls to a controller action.
+     * Executed after each call to a controller action.
      * @return null
      */
     public function after()
@@ -81,7 +78,7 @@ class Controller
     }
 
     /**
-     * Executed before each calls to a controller action.
+     * Executed before each call to a controller action.
      * @return null
      */
     public function before()
@@ -90,7 +87,7 @@ class Controller
     }
 
     /**
-     * Base action.
+     * Base entry action.
      * @return  null
      */
     public function index()
@@ -99,7 +96,8 @@ class Controller
     }
 
     /**
-     * Base action when no action is found. This is used mainly as a precautionary fallback.
+     * Base action when no action is found. This is used mainly as a precautionary
+     * fallback when a route matches a controller but not a method.
      * @return  null
      */
     public function noActionMatch()

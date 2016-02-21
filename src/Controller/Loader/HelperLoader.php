@@ -8,17 +8,29 @@ use Strata\Utility\Hash;
 use Exception;
 
 /**
- * Allows the automation of Helpers loading.
+ * Allows the automation of Helpers loading on a specified Controller object.
+ * @see http://strata.francoisfaubert.com/docs/controllers/
  */
 class HelperLoader
 {
     /**
-     * A Strata Controller instance to which shortcodes callbacks will be forwarded
-     * @var null
+     * The Strata Controller instance on which helpers will be loaded.
+     * @var Controller;
      */
     private $controller = null;
-    private $helpers = null;
 
+    /**
+     * A list of normalized helper names and configuration.
+     * @var array
+     */
+    private $helpers = array();
+
+    /**
+     * Helper loader constructor builds a list of helper objects
+     * associated to a controller and instantiates them as view
+     * variables.
+     * @param Controller $controller
+     */
     public function __construct(Controller $controller)
     {
         if (is_null($controller)) {
@@ -26,21 +38,12 @@ class HelperLoader
         }
 
         $this->controller = $controller;
-        $this->helpers = Hash::normalize($this->controller->helpers);
+        $this->helpers = $this->getNormalizedHelpers();
     }
 
     /**
-     * Specifies if a number of helpers have been defined.
-     * @return boolean True if some are present.
-     */
-    public function hasHelpers()
-    {
-        return count($this->helpers) > 0;
-    }
-
-    /**
-     * Registers helpers
-     * @return  null
+     * Registers the controller's helpers within it's active view.
+     * @return null
      */
     public function register()
     {
@@ -48,13 +51,41 @@ class HelperLoader
             foreach ($this->helpers as $helper => $config) {
                 $this->controller->view->loadHelper($helper, $config);
             }
-            $this->log();
+
+            $this->logAvailableHelpers();
         }
     }
 
-    private function log()
+    /**
+     * Specifies if a quantity of helpers have been defined by the controller.
+     * @return boolean true when helpers are found
+     */
+    protected function hasHelpers()
+    {
+        return count((array)$this->helpers) > 0;
+    }
+
+    /**
+     * Returns a normalized array of the controller's helper names and configuration.
+     * @return array
+     */
+    protected function getNormalizedHelpers()
+    {
+        if (isset($this->controller->helpers)) {
+            return Hash::normalize((array)$this->controller->helpers);
+        }
+
+        return array();
+    }
+
+    /**
+     * Logs the list of helpers the loader has attempted to register.
+     * @return null
+     */
+    private function logAvailableHelpers()
     {
         $names = array_keys($this->helpers);
-        Strata::app()->log(sprintf("Autoloaded %s view helpers: %s", count($names), implode(", ", $names)), "[Strata:HelperLoader]");
+        $message = sprintf("Loaded %d helpers: %s", count($names), implode(", ", $names));
+        Strata::app()->log($message, "[Strata:HelperLoader]");
     }
 }

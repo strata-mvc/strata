@@ -3,24 +3,24 @@ namespace Strata\Core;
 
 use Strata\Strata;
 use Strata\Utility\Hash;
-
 use Composer\Autoload\ClassLoader;
+use Exception;
 
 /**
  * Contains all the static methods related to the Strata app object.
  */
 class StrataContext
 {
+    const STRATA_KEY = "__Strata__";
 
     /**
-     * Because the processing is called asynchronously using wordpress' hooks,
-     * we will lose the referece to the kickstarter object.
-     * we need to make sure the config values are availlable through global values.
+     * Returns the global instantiated Strata object.
+     * @return Strata
      */
     public static function app()
     {
-        if (array_key_exists('__Strata__', $GLOBALS)) {
-            return $GLOBALS['__Strata__'];
+        if (array_key_exists(self::STRATA_KEY, $GLOBALS)) {
+            return $GLOBALS[self::STRATA_KEY];
         }
     }
 
@@ -42,13 +42,12 @@ class StrataContext
     }
 
     /**
-     * Returns the current project's namespace key
-     * @return  string A namespace
+     * Returns the current project's root namespace key
+     * @return string
      */
     public static function getNamespace()
     {
         $var = self::config('namespace');
-
         if (!is_null($var)) {
             return $var;
         }
@@ -56,38 +55,44 @@ class StrataContext
         return self::getDefaultNamespace();
     }
 
+    /**
+     * Returns the default application namespace within Strata
+     * @return string
+     */
     public static function getDefaultNamespace()
     {
         return "App";
     }
 
+    /**
+     * Returns the default namespace for tests within Strata
+     * @return String
+     */
     public static function getDefaultTestNamespace()
     {
         return "Test";
     }
 
     /**
-     * Bootstraps Strata by creating an instance and
+     * Bootstraps Strata by creating a Strata instance and
      * saving it to the global scope.
-     * @param  \Composer\Autoload\ClassLoader Current project's Composer autoloader.
-     * @return \Strata\Strata The current application
+     * @param  ClassLoader Current project's Composer autoloader.
+     * @return Strata The current application
      */
     public static function bootstrap(ClassLoader $loader)
     {
         $app = new Strata();
-
-        // Expose the app context to the current process.
-        $GLOBALS['__Strata__'] = $app;
-
         $app->setLoader($loader);
 
+        // Expose the app context to the current process.
+        $GLOBALS[self::STRATA_KEY] = $app;
         return $app;
     }
 
-
     /**
-     * Loads strata.php, cleans up the data and saves it as config to the current instance of the Strata object.
-     * @return  array The configuration array
+     * Loads ~/config/strata.php, cleans up the data and saves it as
+     * the active configuration of the current instance of the Strata object.
+     * @return  array Configuration array
      */
     public static function parseProjectConfigFile()
     {
@@ -101,7 +106,8 @@ class StrataContext
     }
 
     /**
-     * Write the config object to the project's configuration file.
+     * Write the configuration object to the project's
+     * configuration file.
      * @param   array $config The new configuration array
      * @return  bool True is successful
      */
@@ -111,21 +117,40 @@ class StrataContext
         return file_put_contents($configFile, json_encode($config, JSON_PRETTY_PRINT));
     }
 
+    /**
+     * Includes Composer's generator autoloader from the vendor
+     * directory
+     * @return boolean
+     */
     public static function requireVendorAutoload()
     {
         return include Strata::getVendorPath() . 'autoload.php';
     }
 
+    /**
+     * Returns whether Strata is running from the
+     * CLI tool but not the bundled server.
+     * @return boolean
+     */
     public static function isCommandLineInterface()
     {
         return php_sapi_name() === 'cli';
     }
 
+    /**
+     * Returns whether Strata is running from the
+     * command line server
+     * @return boolean
+     */
     public static function isBundledServer()
     {
         return php_sapi_name() === 'cli-server';
     }
 
+    /**
+     * Returns if Strata is running in development mode.
+     * @return boolean [description]
+     */
     public static function isDev()
     {
         return !defined("WP_ENV") || WP_ENV == 'development';
@@ -140,6 +165,7 @@ class StrataContext
         if (defined('ABSPATH')) {
             return dirname(dirname(ABSPATH));
         }
+
         return getcwd();
     }
 
@@ -206,7 +232,6 @@ class StrataContext
         return implode(DIRECTORY_SEPARATOR, array(self::getRootPath(), "log")) . DIRECTORY_SEPARATOR;
     }
 
-
     /**
      * Returns the path to the test folder.
      * @return string Path
@@ -217,7 +242,7 @@ class StrataContext
     }
 
     /**
-     * Returns the path to the project command folder.
+     * Returns the path to the project shell command folder.
      * @return string Path
      */
     public static function getCommandPath()
@@ -262,7 +287,7 @@ class StrataContext
     }
 
     /**
-     * Returns the path to the config folder.
+     * Returns the path to the configuration folder.
      * @return string Path
      */
     public static function getConfigurationPath()
@@ -280,7 +305,7 @@ class StrataContext
     }
 
     /**
-     * Returns the path to our vendor folder.
+     * Returns the path to Strata's vendor folder.
      * @return string Path
      */
     public static function getOurVendorPath()
@@ -298,7 +323,7 @@ class StrataContext
     }
 
     /**
-     * Returns the path to Strata's locale infos.
+     * Returns the path to Strata's locale configurations.
      * @return string Path
      */
     public static function getLocalePath()

@@ -6,41 +6,30 @@ use Strata\Utility\Hash;
 use Strata\I18n\Locale;
 use Strata\Controller\Request;
 use Strata\Router\Router;
-
 use Gettext\Translations;
 use Gettext\Translation;
-
 use Exception;
 
 /**
- * Handles  localization.
- * This requires a PHP that is compiled with extension=php_gettext.dll
- *
- * @package Strata.i18n
+ * Handles code localization using Gettext for PHP.
+ * This requires a PHP installation that is compiled with extension=php_gettext.dll
  */
 class i18n
 {
-
     /**
- * The default text domain used buy the class
-*/
+     * @var string The default text domain used buy the class
+     */
     const DOMAIN = "strata_i18n";
 
     /**
- * @var array The list of instanciated locales in the application
-*/
+     * @var array The list of instantiated locales in the application
+     */
     protected $locales = array();
 
     /**
- * @var Locale The locale that is currently active.
-*/
+     * Locale @var Locale The locale that is currently active.
+     */
     protected $currentLocale = null;
-
-    private $notified = false;
-
-    public function __construct()
-    {
-    }
 
     /**
      * The class initializer is meant to be called only once during the
@@ -59,7 +48,7 @@ class i18n
 
     /**
      * Sets the locale based on the current process' context.
-     * @return string|null The locale code
+     * @return string The locale code
      */
     public function applyCurrentLanguageByContext()
     {
@@ -70,20 +59,21 @@ class i18n
     }
 
     /**
-     * Assigns the theme textdomain to Wordpress using 'load_theme_textdomain'.
+     * Assigns the theme's textdomain to Wordpress using 'load_theme_textdomain'.
      * @return boolean The result of load_theme_textdomain
+     * @see https://codex.wordpress.org/Function_Reference/load_theme_textdomain
      */
     public function applyLocale()
     {
         $locale = $this->getCurrentLocale();
-        if (!is_null($locale)) {
-            // Set in PHP
-            if (setlocale(LC_ALL, $locale->getCode() .'.UTF-8')) {
-                Strata::app()->log("Localized to : " . $locale->getCode() . ".UTF-8", "[Strata:i18n]");
-            } else {
-                Strata::app()->log("Locale function is not available on this platform, or the given local does not exist in this environment. Attempted to set: " . $locale->getCode() . ".UTF-8", "[Strata:i18n]");
-            }
-        }
+
+        $message = !is_null($locale) && setlocale(LC_ALL, $locale->getCode() .'.UTF-8') ?
+            "Localized to : " . $locale->getCode() . ".UTF-8" :
+            "Locale function is not available on this platform, or the given " .
+            "local does not exist in this environment. Attempted to set: " .
+            $locale->getCode() . ".UTF-8";
+
+        Strata::app()->log($message, "[Strata:i18n]");
 
         // Set in PHP
         if (function_exists('bindtextdomain')) {
@@ -100,6 +90,11 @@ class i18n
         return load_theme_textdomain($this->getTextdomain(), Strata::getLocalePath());
     }
 
+    /**
+     * Returns the current textdomain as defined either
+     * from Strata's configuration or the default value.
+     * @return string
+     */
     public function getTextdomain()
     {
         $textDomain = Strata::app()->getConfig("i18n.textdomain");
@@ -109,20 +104,27 @@ class i18n
     /**
      * Clears the current locale cache and rebuilds it based
      * on the loaded configuration.
+     * @return null
      */
     public function resetLocaleCache()
     {
         $this->setLocaleSet(!$this->isLocalized() ? array() : $this->parseLocalesFromConfig());
     }
 
+    /**
+     * Sets the set of available locales.
+     * @param array $localeList A list of Locale objects
+     */
     public function setLocaleSet($localeList)
     {
         $this->locales = $localeList;
     }
 
     /**
-     * Sets the current locale based on either a GET parameter or the locale URL prefix.
-     * If none is found, it will return the default locale.
+     * Sets the current locale based on either a GET parameter or the Locale URL prefix.
+     * If none is found it will return the default locale.
+     * @return Locale
+     * @filter strata_i18n_set_current_locale_by_context
      */
     public function setCurrentLocaleByContext()
     {
@@ -186,7 +188,8 @@ class i18n
     }
 
     /**
-     * Specifies whether localization settings are present in Strata's configuration array.
+     * Specifies whether localization settings are present in Strata's
+     * configuration array.
      * @return boolean
      */
     public function isLocalized()
@@ -196,7 +199,7 @@ class i18n
 
     /**
      * Specifies if the list of active locales
-     * has elements
+     * has possible elements
      * @return boolean
      */
     public function hasActiveLocales()
@@ -210,13 +213,13 @@ class i18n
      */
     public function getLocales()
     {
-        return $this->locales;
+        return (array)$this->locales;
     }
 
     /**
-     * Returns a locale object by code
+     * Returns a Locale object by code
      * @param  string $code The same code used when declaring the locale in the configuration value
-     * @return Locale|null
+     * @return Locale
      */
     public function getLocaleByCode($code)
     {
@@ -226,9 +229,9 @@ class i18n
         }
     }
     /**
-     * Returns a locale object by locale url key
+     * Returns a Locale object by locale url key
      * @param  string $url The locale url as set when configuring (defaults to the locale code).
-     * @return Locale|null
+     * @return Locale
      */
     public function getLocaleByUrl($url)
     {
@@ -250,7 +253,7 @@ class i18n
 
     /**
      * Returns the code of the locale that is currently used.
-     * @return string|null
+     * @return string
      */
     public function getCurrentLocaleCode()
     {
@@ -288,7 +291,7 @@ class i18n
     }
 
     /**
-     * Checks whether a locale has been store in the user's session.
+     * Checks whether a locale has been stored in the user's session.
      * @return boolean
      */
     public function hasLocaleInSession()
@@ -298,7 +301,7 @@ class i18n
 
     /**
      * Returns the locale that is saved in the session array.
-     * This only return a value the first time it's called because we don't want to
+     * This only returns a value the first time it's called because we don't want to
      * save the session permanently. It's used only to go through 1 page transition.
      * ex: when saving a post in the backend, we lose the locale in the process.
      * @return Locale
@@ -310,7 +313,7 @@ class i18n
     }
 
     /**
-     * Starts a PHP session if there was none.
+     * Starts a PHP session if there was none started already.
      * @return int Session id
      */
     private function startSession()
@@ -356,6 +359,12 @@ class i18n
         return Translations::fromPoFile($locale->getPoFilePath());
     }
 
+    /**
+     * Saves the translations to .po and .mo files.
+     * @param  Locale $locale The locale of the translations
+     * @param  array  $postedTranslations A list of translations
+     * @return null
+     */
     public function saveTranslations(Locale $locale, array $postedTranslations)
     {
         $poFile = $locale->getPoFilePath();
@@ -383,7 +392,7 @@ class i18n
     }
 
     /**
-     * Compares two locales to see if $locale is the one currently
+     * Compares $locale to the current locale to see if it is currently
      * active.
      * @param  Locale $locale
      * @return boolean
@@ -397,6 +406,7 @@ class i18n
     /**
      * Sets the active locale
      * @param Locale $locale
+     * @return Locale
      */
     public function setLocale(Locale $locale)
     {
@@ -404,6 +414,10 @@ class i18n
         return $this->currentLocale;
     }
 
+    /**
+     * Returns the localization key in the session array.
+     * @return string
+     */
     private function getSessionKey()
     {
         if (is_admin() && !Router::isAjax()) {
@@ -414,7 +428,8 @@ class i18n
     }
 
     /**
-     * Registers Wordpress hooks required by the class.
+     * Registers the Wordpress hooks required by this class.
+     * @return null
      */
     protected function registerHooks()
     {
@@ -440,7 +455,7 @@ class i18n
     /**
      * Goes through the list of localization configurations values in Strata's
      * configuration file.
-     * @return array A list of instanciated Locale object.
+     * @return array A list of instantiated Locale object.
      */
     protected function parseLocalesFromConfig()
     {

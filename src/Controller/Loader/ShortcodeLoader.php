@@ -2,27 +2,37 @@
 
 namespace Strata\Controller\Loader;
 
+use Strata\Utility\Hash;
+use Strata\Utility\Inflector;
 use Strata\Controller\Controller;
 use Exception;
 
 /**
- * Allows bridging between Strata and Wordpress for declaring shortcodes.
+ * Automated the declaration of Wordpress Shortcodes within a Strata Controller object.
+ * @see https://codex.wordpress.org/Shortcode_API
+ * @see http://strata.francoisfaubert.com/docs/controllers/
  */
 class ShortcodeLoader
 {
+    /**
+     * The Strata Controller instance towards which the shortcodes callbacks
+     * will route.
+     * @var Strata\Controller\Controller;
+     */
+    private $controller = null;
 
     /**
-     * A list of wordpress shortcode mapped in a array("shortcodename" => "functionname") way.
-     * @var  array
+     * A list of normalized shortcodes and shortcode configuration.
+     * Shortcode names should be all lowercase and use all letters, numbers and underscores.
+     * @var array
      */
     private $shortcodes = array();
 
     /**
-     * A Strata Controller instance to which shortcodes callbacks will be forwarded
-     * @var null
+     * Shortcode loader constructor builds a list of shortcode configurations
+     * associated to a controller and instantiates them as dynamic callbacks.
+     * @param Controller $controller
      */
-    private $controller = null;
-
     public function __construct(Controller $controller)
     {
         if (is_null($controller)) {
@@ -30,7 +40,7 @@ class ShortcodeLoader
         }
 
         $this->controller = $controller;
-        $this->shortcodes = $controller->shortcodes;
+        $this->shortcodes = $this->getNormalizedShortcodes();
     }
 
     /**
@@ -43,7 +53,7 @@ class ShortcodeLoader
     }
 
     /**
-     * Registers dynamic shortcodes hooks to the instantiated controller.
+     * Registers dynamic shortcode hooks to the instantiated controller.
      * Note that these are not available when this instance of the controller
      * is not being loaded.
      * @return  null
@@ -53,7 +63,7 @@ class ShortcodeLoader
         if ($this->hasShortcodes()) {
             foreach ($this->shortcodes as $shortcode => $methodName) {
                 if (method_exists($this->controller, $methodName)) {
-                    add_shortcode($shortcode, array($this->controller, $methodName));
+                    add_shortcode($this->formatCode($shortcode), array($this->controller, $methodName));
                 }
             }
         }
@@ -67,8 +77,32 @@ class ShortcodeLoader
     {
         if ($this->hasShortcodes()) {
             foreach ($this->shortcodes as $shortcode => $methodName) {
-                remove_shortcode($shortcode);
+                remove_shortcode($this->formatCode($shortcode));
             }
         }
+    }
+
+    /**
+     * Returns a normalized list of controller shortcodes.
+     * @return array
+     */
+    private function getNormalizedShortcodes()
+    {
+        if (isset($this->controller->shortcodes)) {
+            return (array)$this->controller->shortcodes;
+        }
+
+        return array();
+    }
+
+    /**
+     * Per Wordpress' configuration, shortcodes must be
+     * formatted roughly as underscored function names.
+     * @param  string $shortcode
+     * @return string Shortcode with enforced formatting
+     */
+    private function formatCode($shortcode)
+    {
+        return Inflector::underscore($shortcode);
     }
 }

@@ -3,10 +3,24 @@ namespace Strata\Core;
 
 use Strata\Utility\Hash;
 
+/**
+ * Enhances objects with a configuration cache. Gives the ability
+ * to query and maintain a key => value hash that can be modified
+ * and manipulated easily using dot notation formatting.
+ */
 trait StrataConfigurableTrait
 {
-
+    /**
+     * The configuration cache.
+     * @var array
+     */
     protected $configuration = array();
+
+    /**
+     * Flag that confirms the configuration cache
+     * has been normalized.
+     * @var boolean
+     */
     private $isConfigurableNormalized = false;
 
     /**
@@ -29,9 +43,13 @@ trait StrataConfigurableTrait
         $this->configuration = Hash::merge($this->getConfiguration(), array($key => $value));
     }
 
+    /**
+     * Instantiate the configuration cache to the state supplied by $config.
+     * @param  array $config
+     */
     public function configure($config)
     {
-        $this->configuration = $config;
+        $this->configuration = (array)$config;
     }
 
     /**
@@ -44,17 +62,31 @@ trait StrataConfigurableTrait
         return Hash::check($this->getConfiguration(), $key);
     }
 
+    /**
+     * Returns whether the configuration cache contains something.
+     * @return boolean
+     */
     public function containsConfigurations()
     {
-        return !is_null($this->configuration) && count($this->getConfiguration());
+        return !is_null($this->configuration) && count($this->getConfiguration()) > 0;
     }
 
+    /**
+     * Returns the object's complete configuration cache.
+     * @return array
+     */
     public function getConfiguration()
     {
         $this->normalizeConfiguration();
-        return $this->configuration;
+        return (array)$this->configuration;
     }
 
+    /**
+     * Normalizes the configuration cache. This will only run once
+     * on the object. It is mainly a safegard against a badly configured
+     * value cache.
+     * @return null
+     */
     protected function normalizeConfiguration()
     {
         if (!$this->isConfigurableNormalized) {

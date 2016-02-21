@@ -4,43 +4,41 @@ namespace Strata\Controller;
 use Strata\Utility\Hash;
 
 /**
- * Handles access to request data, whether from post, get or cookies. It encodes data accordingly and
- * does simple data integrity validation.
+ * Handles safe access to HTTP request data, whether from POST, GET, files or cookies.
+ * It encodes data accordingly and does basic data integrity validation.
+ * @see http://strata.francoisfaubert.com/docs/controllers/request/
  */
 class Request
 {
-
     /**
-     * A cache of the parsed Get values in the current request.
-     *
+     * A cache of the parsed GET values in the current request.
      * @var array
      */
     private $_GET = array();
 
     /**
      * A cache of the parsed Cookie values in the current request.
-     *
      * @var array
      */
     private $_COOKIE = array();
 
     /**
-     * A cache of the parsed Post values in the current request.
-     *
+     * A cache of the parsed POST values in the current request.
      * @var array
      */
     private $_POST = array();
 
     /**
      * A cache of the parsed Files values in the current request.
-     *
      * @var array
      */
     private $_FILES = array();
 
+    /**
+     * PHP request data is parsed upon each Request instantiation.
+     */
     public function __construct()
     {
-        // Parse the request data upon each instantiation.
         $this->buildRequestData();
     }
 
@@ -89,9 +87,10 @@ class Request
         return strtoupper($_SERVER['REQUEST_METHOD']) === 'DELETE';
     }
 
-
     /**
      * Sets a value in Strata's version of the POST array
+     * @param string $key Variable name
+     * @param mixed $value Variable value
      */
     public function setPost($key, $value)
     {
@@ -100,7 +99,8 @@ class Request
 
     /**
      * Sets a value in Strata's version of the GET array
-     * @return boolean
+     * @param string $key Variable name
+     * @param mixed $value Variable value
      */
     public function setGet($key, $value)
     {
@@ -108,8 +108,8 @@ class Request
     }
 
     /**
-     * Returns the get parameter matching $key.
-     * @param string $key The name of the posted value
+     * Returns the GET parameter matching $key.
+     * @param string $key The name of the GET value
      * @return mixed
      */
     public function get($key)
@@ -118,8 +118,8 @@ class Request
     }
 
     /**
-     * Returns the post parameter matching $key.
-     * @param string $key The name of the posted value
+     * Returns the POST parameter matching $key.
+     * @param string $key The name of the POST value
      * @return mixed
      */
     public function post($key)
@@ -129,8 +129,8 @@ class Request
 
     /**
      * Returns the file parameter matching $key.
-     * @param string $key The name of the posted value
-     * @return mixed
+     * @param string $key The name of the POST value
+     * @return array
      */
     public function file($key)
     {
@@ -144,15 +144,15 @@ class Request
     }
 
     /**
-     * Returns the posted form parameters
-     * @return mixed
+     * Returns the POST form parameters created using the FormHelper
+     * @return array
      */
     public function data()
     {
         $workingWith = $this->isGet() ? $this->_GET : $this->_POST;
         $data = (array)Hash::get($workingWith, "data");
 
-        // The previous line would ignored uploaded files.
+        // The previous line will have ignored uploaded files.
         // Added them to the array if we find something.
         if ($this->hasFiles()) {
             return $this->addFilesList($data);
@@ -160,7 +160,6 @@ class Request
 
         return $data;
     }
-
 
     /**
      * Returns the cookie parameter matching $key.
@@ -173,7 +172,7 @@ class Request
     }
 
     /**
-     * Explains whether the post parameter matching $key has a value.
+     * Informs whether the POST parameter matching $key has a value.
      * @param string $key The name of the cookie value
      * @return boolean
      */
@@ -183,7 +182,7 @@ class Request
     }
 
     /**
-     * Explains whether the get parameter matching $key has a value.
+     * Informs whether the GET parameter matching $key has a value.
      * @param string $key The name of the cookie value
      * @return boolean
      */
@@ -193,7 +192,7 @@ class Request
     }
 
     /**
-     * Explains whether the cookie parameter matching $key has a value.
+     * Informs whether the cookie parameter matching $key has a value.
      * @param string $key The name of the cookie value
      * @return boolean
      */
@@ -203,7 +202,7 @@ class Request
     }
 
     /**
-     * Explains whether the file parameter matching $key has a value.
+     * Informs whether the file parameter matching $key has a value.
      * @param string $key The name of the file value
      * @return boolean
      */
@@ -221,11 +220,24 @@ class Request
         return Hash::check($this->_FILES, "data.name") && count($this->_FILES["data"]["name"]);
     }
 
+    /**
+     * Returns whether the request can validate it's nonce and it's honeypot.
+     * This function is expected to be used when the request isPost() mainly.
+     * @param  string $nonce    A Wordpress nonce
+     * @param  string $honeypot A honeypot input name
+     * @return boolean
+     */
     public function requestValidates($nonce = "", $honeypot = "")
     {
         return $this->nonceValidates($nonce) && $this->honeypotValidates($honeypot);
     }
 
+    /**
+     * Returns whether the honeypots validates. It is expected that
+     * the $name input did not send any value when posting.
+     * @param  string $name A honeypot input name
+     * @return boolean
+     */
     public function honeypotValidates($name)
     {
         $value = "";
@@ -239,6 +251,12 @@ class Request
         return empty($value);
     }
 
+    /**
+     * Attempts to confirm the validation of the Wordpress nonce.
+     * @param  string $mixedNonceSalt
+     * @return boolean
+     * @see https://codex.wordpress.org/Function_Reference/wp_verify_nonce
+     */
     public function nonceValidates($mixedNonceSalt)
     {
         $token = null;
@@ -257,6 +275,11 @@ class Request
         return wp_verify_nonce($token, $key);
     }
 
+    /**
+     * Generated a Wordpress nonce value.
+     * @param  mixed $mixedNonceSalt Something to salt the nonce
+     * @return string
+     */
     public function generateNonceKey($mixedNonceSalt = null)
     {
         if (is_string($mixedNonceSalt)) {
@@ -271,9 +294,8 @@ class Request
         return "strata_nonce";
     }
 
-
     /**
-     * Goes through the posted data and strips additional characters added
+     * Goes through the PHP request data, sanitizes and strips additional characters added
      * along the way.
      * @return null
      */
@@ -288,6 +310,10 @@ class Request
         $this->_FILES = array_map($strip_slashes_deep, $_FILES);
     }
 
+    /**
+     * Adds uploaded files to the $data array.
+     * @param array $data
+     */
     private function addFilesList($data)
     {
         foreach ($this->_FILES['data']['name'] as $key => $filenames) {

@@ -3,16 +3,19 @@ namespace Strata\Core;
 
 use Strata\Utility\Inflector;
 use Strata\Strata;
-
-use Exception;
 use ReflectionClass;
+use Exception;
 
+/**
+ * Strata objects should all be using this Trait. It ensures
+ * classes can be declared and instantiated the same way.
+ * It also validates the naming conventions within Strata.
+ */
 trait StrataObjectTrait
 {
-
     /**
-     * Instantiates an object of inheriting the current class or of the current class
-     * that matches a particular string.
+     * Instantiates an object that uses the StrataObjectTrait which class name
+     * matches the $name value.
      * @param  string $name   The class name of the object
      * @param  array  $config Optional configuration array passed to the object constructor
      * @return mixed An object of the current class
@@ -31,6 +34,12 @@ trait StrataObjectTrait
         throw new Exception(sprintf("Strata : No object matched '%s'.", implode(", ", $classpaths)));
     }
 
+    /**
+     * Returns scopes in which Strata will look in
+     * to load objects.
+     * @param  string $name A class name
+     * @return array
+     */
     public static function getFactoryScopes($name)
     {
         return array(self::generateClassPath($name));
@@ -48,8 +57,8 @@ trait StrataObjectTrait
 
     /**
      * Generates a possible namespace and classname combination of a
-     * Strata view helper. Mainly used to avoid hardcoding the '\\View\\Helper\\'
-     * string everywhere.
+     * Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\'
+     * string everywhere (or whatever else would the namespace have been).
      * @param  string  $name  The class name of the object
      * @param  boolean $local Generated a path that is relative to the current project. Default to false.
      * @return string       A fully namespaced name
@@ -65,16 +74,29 @@ trait StrataObjectTrait
         return implode("\\", $paths);
     }
 
+    /**
+     * Returns the default class name suffix for this object.
+     * @return string
+     */
     public static function getClassNameSuffix()
     {
         return "";
     }
 
+    /**
+     * Returns the default namespace path.
+     * @return string
+     */
     public static function getNamespaceStringInStrata()
     {
         return "";
     }
 
+    /**
+     * Generates a valid class name from the $name value.
+     * @param  string $name A possible class name.
+     * @return string a Valid class name.
+     */
     public static function generateClassName($name)
     {
         $name = str_replace("-", "_", $name);
@@ -103,6 +125,10 @@ trait StrataObjectTrait
         return $name;
     }
 
+    /**
+     * Returns this object's class name without the full namespace.
+     * @return string
+     */
     public function getShortName()
     {
         $rc = new ReflectionClass($this);
