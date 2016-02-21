@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Controller;
 
 use Strata\Utility\Hash;

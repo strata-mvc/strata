@@ -1,17 +1,26 @@
 <?php
+
 namespace Strata\I18n;
 
 use Gettext\Utils\PhpFunctionsScanner;
 use Gettext\Translations;
-
 use Exception;
 
 /**
- * The list of these can be found in Wordpress' MakePot file
-    http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
+ * The list of these can be found in Wordpress' MakePot file.
+ *  http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
+ *  @see http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
  */
 class WpPhpFunctionsScanner extends PhpFunctionsScanner
 {
+    /**
+     * Attempts to filter custom Wordpress text function from the
+     * different class and template files.
+     * @param  array        $functions
+     * @param  Translations $translations
+     * @param  string       $file
+     * @return null
+     */
     public function saveWPGettextFunctions(array $functions, Translations $translations, $file = '')
     {
         foreach ($this->getFunctions() as $function) {

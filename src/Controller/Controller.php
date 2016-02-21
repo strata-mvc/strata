@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Controller;
 
 use Strata\Controller\Request;
@@ -33,7 +34,7 @@ class Controller
 
     /**
      * The associated view template
-     * @var Strata\View\View
+     * @var View
      */
     public $view = null;
 

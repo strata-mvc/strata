@@ -1,15 +1,24 @@
 <?php
+
 namespace Strata\Model\CustomPostType\Registrar;
 
 use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
 
+/**
+ * Registers a custom post type based on a Models' configuration.
+ */
 class CustomPostTypeRegistrar extends Registrar
 {
+    /**
+     * Attemps to register a post type.
+     * @see https://codex.wordpress.org/Function_Reference/register_post_type
+     * @return object Returns the result of register_post_type()
+     */
     function register()
     {
         // Ensure the default options have been set.
-        $customizedOptions = $this->entity->getConfiguration() + array(
+        $customizedOptions = $this->model->getConfiguration() + array(
             'labels'              => array(),
             'supports'            => array( 'title' ),
             'hierarchical'        => false,
@@ -27,7 +36,7 @@ class CustomPostTypeRegistrar extends Registrar
             'capability_type'     => 'post',
         );
 
-        $labelParser = new LabelParser($this->entity);
+        $labelParser = new LabelParser($this->model);
         $labelParser->parse();
         $singular   = $labelParser->singular();
         $plural     = $labelParser->plural();
@@ -48,6 +57,6 @@ class CustomPostTypeRegistrar extends Registrar
             'not_found_in_trash'  => __('Not found in Trash', 'strata'),
         );
 
-        return register_post_type($this->entity->getWordpressKey(), $customizedOptions);
+        return register_post_type($this->model->getWordpressKey(), $customizedOptions);
     }
 }

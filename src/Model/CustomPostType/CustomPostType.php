@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Hash;
@@ -8,17 +9,41 @@ use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeAdminMenuRegistrar;
 use Strata\Model\CustomPostType\Registrar\CustomPostTypeRegistrar;
 use Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar;
-
 use Strata\Model\CustomPostType\QueriableEntityTrait;
 
+/**
+ * A class that wraps around Wordpress' custom post types.
+ */
 class CustomPostType extends WordpressEntity
 {
     use QueriableEntityTrait;
 
+    /**
+     * The Wordpress custom post type identifier prefix
+     * @var string
+     */
     public $wpPrefix = "cpt_";
+
+    /**
+     * A list of administration sub-menus associated to the
+     * custom post type.
+     * @var array
+     */
     public $admin_menus = array();
-    public $belongs_to  = array();
-    public $routed      = false;
+
+    /**
+     * A list of taxonomies associated to the custom post type.
+     * @var array
+     */
+    public $belongs_to = array();
+
+    /**
+     * Specifies whether Strata should attempt to automate routing
+     * to the model's default controller when the custom post type's
+     * slug is matched in the URL.
+     * @var boolean
+     */
+    public $routed = false;
 
     /**
      * Returns a label object that exposes singular and plural labels
@@ -48,15 +73,20 @@ class CustomPostType extends WordpressEntity
         }
     }
 
+    /**
+     * Registers the custom post type's sub menus.
+     * @return boolean The result of the registration
+     */
     public function registerAdminMenus()
     {
         $registration = new CustomPostTypeAdminMenuRegistrar($this);
         $registration->configure(Hash::normalize($this->admin_menus));
-        $registration->register();
+        return $registration->register();
     }
 
     /**
-     * Returns the model's menu icon
+     * Returns the model's menu icon as specified by the 'menu_icon'
+     * configuration key.
      * @return string
      */
     public function getIcon()
@@ -97,9 +127,10 @@ class CustomPostType extends WordpressEntity
     }
 
     /**
-     * Creates a post of the current post type
-     * @param (array) options : Options to be sent to wp_insert_post()
-     * @return (int) postID
+     * Creates a post of the current post type based on the
+     * passed options.
+     * @param array $options Options to be sent to wp_insert_post()
+     * @return int The created post id
      */
     public function create($options)
     {
@@ -112,11 +143,23 @@ class CustomPostType extends WordpressEntity
         return wp_insert_post($options);
     }
 
+    /**
+     * Updates a post of the current post type based on the
+     * passed options.
+     * @param array $options Options to be sent to wp_update_post()
+     * @return boolean Whether something was updated
+     */
     public function update($options)
     {
         return wp_update_post($options);
     }
 
+    /**
+     * Deletes a post of the current post type by its ID
+     * @param  int  $postId
+     * @param  boolean $force  (optional)
+     * @return boolean Whether something was updated
+     */
     public function delete($postId, $force = false)
     {
         return wp_delete_post($postId, $force);

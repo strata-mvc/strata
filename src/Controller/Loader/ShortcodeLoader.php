@@ -17,7 +17,7 @@ class ShortcodeLoader
     /**
      * The Strata Controller instance towards which the shortcodes callbacks
      * will route.
-     * @var Strata\Controller\Controller;
+     * @var Controller;
      */
     private $controller = null;
 

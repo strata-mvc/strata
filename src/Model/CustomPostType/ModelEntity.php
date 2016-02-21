@@ -1,49 +1,85 @@
 <?php
 namespace Strata\Model\CustomPostType;
 
-use Strata\Strata;
-use Strata\Utility\Inflector;
 use Strata\Utility\Hash;
 
 use Strata\Model\Validator\Validator;
 use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;
-
 use stdClass;
 use Exception;
 
+/**
+ * A ModelEntity can vaguely be seen as a table row. It is a class
+ * that wraps around a Model instance.
+ */
 class ModelEntity
 {
     use StrataObjectTrait;
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getNamespaceStringInStrata()
     {
         return "Model\\Entity";
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getClassNameSuffix()
     {
         return "Entity";
     }
 
+    /**
+     * A list of model attributes used for automated form
+     * generation and validation.
+     * @var array
+     */
     public $attributes  = array();
+
+    /**
+     * The object being wrapped around by this class
+     * @var mixed Usually a WP_Post object, but can also be anything inheriting stdClass
+     */
     private $associatedObject;
+
+    /**
+     * Current validation errors on the entity.
+     * @var array
+     */
     private $validationErrors = array();
 
+    /**
+     * Upon construction, an entity is associated to an object
+     * if one is passed as parameter, the attributes are normalized
+     * and the class triggers the init() function.
+     * @var mixed (Optional) Usually a WP_Post object, but can also be anything inheriting stdClass
+     */
     public function __construct($associatedObj = null)
     {
-        // We bind rather than assigning the properties to this entity because
-        // we don't want to inherit WP_Post.
         $this->bindToObject(!is_null($associatedObj) ? $associatedObj : new stdClass());
 
         $this->normalizeAttributes();
         $this->init();
     }
 
+    /**
+     * Called each time a new object is declared.
+     */
     public function init()
     {
+
     }
 
+    /**
+     * Automated getter. It bridges properties between this object
+     * and the associated object.
+     * @param  string $var The property name
+     * @return mixed
+     */
     public function __get($var)
     {
         if (is_null($this->associatedObject)) {
@@ -55,6 +91,13 @@ class ModelEntity
         }
     }
 
+
+    /**
+     * Automated setter. It bridges properties between this object
+     * and the associated object.
+     * @param  string $var The property name
+     * @return mixed
+     */
     public function __set($var, $value)
     {
         if (is_null($this->associatedObject)) {
@@ -64,17 +107,32 @@ class ModelEntity
         return $this->associatedObject->{$var} = $value;
     }
 
+    /**
+     * Automated validator. It bridges properties between this object
+     * and the associated object.
+     * @param  string $var The property name
+     * @return boolean
+     */
     public function __isset($name)
     {
         return isset($this->associatedObject->{$name});
     }
 
-
+    /**
+     * Associates the entity to another object.
+     * We pass-through rather than directly assign the properties of the associated object
+     * because we don't want this object to inherit WP_Post.
+     * @var mixed Usually a WP_Post object, but can also be anything inheriting stdClass
+     */
     public function bindToObject($obj)
     {
         $this->associatedObject = $obj;
     }
 
+    /**
+     * Specifies whether this class has been associated to another object.
+     * @return boolean
+     */
     public function isBound()
     {
         return !is_null($this->associatedObject);
@@ -177,25 +235,45 @@ class ModelEntity
         return !$this->hasValidationErrors();
     }
 
+    /**
+     * Returns the current validation error list
+     * @return array
+     */
     public function getValidationErrors()
     {
-        return $this->validationErrors;
+        return (array)$this->validationErrors;
     }
 
+    /**
+     * Specifies whether there are validation errors currently
+     * declared on the entity.
+     * @return boolean
+     */
     public function hasValidationErrors()
     {
         return count($this->getValidationErrors()) > 0;
     }
 
-    public function setValidationError($fieldName, $validationName, $errorMessage)
+    /**
+     * Allows the declaration of a validation error on the current entity.
+     * @param string $attributeName      The name of a model attribute
+     * @param string $validationName A type of validation (ex: 'required')
+     * @param string $errorMessage   The error message
+     */
+    public function setValidationError($attributeName, $validationName, $errorMessage)
     {
         $this->validationErrors = Hash::merge($this->getValidationErrors(), array(
-            $fieldName => array(
+            $attributeName => array(
                 $validationName => $errorMessage
             )
         ));
     }
 
+    /**
+     * Lists the errors on a precise field.
+     * @param  string $name An attribute name
+     * @return array
+     */
     public function getErrors($name)
     {
         $errors = $this->getValidationErrors();
@@ -207,32 +285,60 @@ class ModelEntity
         return array();
     }
 
+    /**
+     * Returns the model entity's attributes list.
+     * @return array
+     */
     public function getAttributes()
     {
-        return $this->attributes;
+        return (array)$this->attributes;
     }
 
+    /**
+     * Lists the attributes name without their configuration.
+     * @return array
+     */
     protected function getAttributeNames()
     {
         return array_keys($this->getAttributes());
     }
 
+    /**
+     * Checks whether the attribute is an attribute that has
+     * been declared in the entity's attribute configuration.
+     * @param  string  $attr
+     * @return boolean
+     */
     public function isSupportedAttribute($attr)
     {
         $simpleAttr = preg_replace("/\[\d+\]$/", "", $attr);
         return in_array($simpleAttr, $this->getAttributeNames());
     }
 
+    /**
+     * Checks whether the specified attribute has declared any validations.
+     * @param  string  $attr
+     * @return boolean
+     */
     protected function hasAttributeValidation($attr)
     {
         return Hash::check($this->getAttributes(), "$attr.validations");
     }
 
+    /**
+     * Returns the input field suffix when the entity is being
+     * used to generate HTML forms.
+     * @return string
+     */
     public function getInputName()
     {
         return strtolower($this->getShortName());
     }
 
+    /**
+     * Returns the accompanying Model of this entity.
+     * @return Strata\Model
+     */
     public function getModel()
     {
         $name = $this->getShortName();
@@ -241,17 +347,29 @@ class ModelEntity
         return CustomPostType::factory($name);
     }
 
+    /**
+     * Returns the entity's unique wordpress key
+     * @return string
+     */
     public function getWordpressKey()
     {
         $model = $this->getModel();
         return $model->getWordpressKey();
     }
 
+    /**
+     * Normalizes the validations for a specified attribute.
+     * @param  string $attr
+     * @return array
+     */
     private function extractNormalizedValidations($attr)
     {
         return Hash::normalize(Hash::extract($this->getAttributes(), "$attr.validations"));
     }
 
+    /**
+     * Normalized the full list of attribute. This is not performed 'deep'.
+     */
     private function normalizeAttributes()
     {
         $this->attributes = Hash::normalize($this->attributes);

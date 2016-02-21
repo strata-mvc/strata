@@ -1,22 +1,21 @@
 <?php
+
 namespace Strata\I18n;
 
 use Strata\I18n\PhpFunctionsScanner;
-
-use Gettext\Extractors\Extractor;
 use Gettext\Extractors\PhpCode;
-use Gettext\Extractors\ExtractorInterface;
 use Gettext\Translations;
 
 /**
- * Class to get gettext strings from php files returning arrays
+ * Class to lookup Gettext strings from PHP files that are coded
+ * using the slightly different Wordpress translation scheme.
  */
 class WpCode extends PhpCode
 {
     /**
-     * These functions behave like the general Gettext implementation. Lets them
+     * These functions behave like the general Gettext implementation. We let them
      * fall back to the default behavior.
-     * @return array
+     * @var array
      */
     public static $functions = array(
         '_' => '__',
@@ -36,10 +35,10 @@ class WpCode extends PhpCode
     );
 
     /**
-     * These functions have been Wordpressed in that parameters
-     * may not be in the same order has the default Gettext functions.
+     * These functions have been "Wordpressed" -- meaning parameters
+     * may not be in the same order as the default Gettext functions.
      * They imply custom manipulation on our part.
-     * @return array
+     * @var array
      */
     public static $wp_functions = array(
         '_x' => 'wp_p__',
@@ -52,6 +51,9 @@ class WpCode extends PhpCode
         'comments_number_link' => 'wp_n__x',
     );
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromString($string, Translations $translations = null, $file = '')
     {
         if ($translations === null) {

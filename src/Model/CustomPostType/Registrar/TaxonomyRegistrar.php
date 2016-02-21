@@ -1,28 +1,42 @@
 <?php
+
 namespace Strata\Model\CustomPostType\Registrar;
 
 use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
+use Strata\Model\Taxonomy\Taxonomy;
 
+/**
+ * Registers a taxonomy based on a Models' configuration.
+ */
 class TaxonomyRegistrar extends Registrar
 {
+    /**
+     * Attemps to register a taxonomy on a post type.
+     * @see https://codex.wordpress.org/Function_Reference/register_taxonomy
+     */
     public function register()
     {
-        if ($this->entity->hasTaxonomies()) {
-            foreach ($this->entity->getTaxonomies() as $taxonomy) {
+        if ($this->model->hasTaxonomies()) {
+            foreach ($this->model->getTaxonomies() as $taxonomy) {
                 $this->registerTaxonomy($taxonomy);
             }
         }
     }
 
-    private function registerTaxonomy($taxonomy)
+    /**
+     * Registers a taxonomy
+     * @param  Taxonomy $taxonomy The taxonomy model
+     * @return object What is being returned by register_taxonomy
+     */
+    private function registerTaxonomy(Taxonomy $taxonomy)
     {
         $labelParser = new LabelParser($taxonomy);
         $labelParser->parse();
         $singular   = $labelParser->singular();
         $plural     = $labelParser->plural();
 
-        $key = $this->entity->getWordpressKey() . "_" . $taxonomy->getWordpressKey();
+        $key = $this->model->getWordpressKey() . "_" . $taxonomy->getWordpressKey();
 
         $customizedOptions = $taxonomy->getConfiguration() + array(
             'hierarchical'               => false,
@@ -62,16 +76,6 @@ class TaxonomyRegistrar extends Registrar
             'not_found_in_trash'  => __('Not found in Trash', 'strata'),
         );
 
-        return register_taxonomy($taxonomy->getWordpressKey(), array($this->entity->getWordpressKey()), $customizedOptions);
-    }
-
-    private function hasTaxonomyConfiguration()
-    {
-        return count($this->getTaxonomyConfiguration()) > 0;
-    }
-
-    private function getTaxonomyConfiguration()
-    {
-        return $this->belongs_to;
+        return register_taxonomy($taxonomy->getWordpressKey(), array($this->model->getWordpressKey()), $customizedOptions);
     }
 }

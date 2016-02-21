@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\I18n;
 
 use Strata\Strata;
