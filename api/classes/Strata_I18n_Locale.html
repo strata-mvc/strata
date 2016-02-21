@@ -53,6 +53,9 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
             <a href="#members">Members</a>
           </li>
           <li>
@@ -62,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/I18n/Locale.php.html#line6">Source</a>
+            <a href="../source/I18n/Locale.php.html#line7">Source</a>
           </li>
         </ul>
       </nav>
@@ -76,10 +79,7 @@
                     </li><li>protected  <a href="#members">$code</a>;
                     </li><li>protected  <a href="#members">$isDefault</a>;
                     </li><li>protected  <a href="#members">$url</a>;
-                    </li><li>protected array <a href="#members">$config</a> =
-                        ;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/__construct.html">__construct</a>()
-                    </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getConfig.html">getConfig</a>()
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getNativeLabel.html">getNativeLabel</a>()
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getCode.html">getCode</a>()
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getUrl.html">getUrl</a>()
@@ -89,9 +89,25 @@
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getPoFilePath.html">getPoFilePath</a>()
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/hasMoFile.html">hasMoFile</a>()
                     </li><li>public void <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getMoFilePath.html">getMoFilePath</a>()
-                    </li></ul>
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li></ul>
 
             }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Uses</h4>
+          <ul>
+            <li>
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a>
+            </li>
+          </ul>
+        </div>
         <h2 id="members">Members</h2>
         <div class="styled members">
           <h4>protected</h4>
@@ -99,8 +115,8 @@
             <li id="code">
               <strong>$code</strong>
             </li>
-            <li id="config">
-              <strong>$config</strong>
+            <li id="configuration">
+              <strong>$configuration</strong>
             </li>
             <li id="isDefault">
               <strong>$isDefault</strong>
@@ -122,9 +138,6 @@
             </li>
             <li id="getCode">
               <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getCode.html">getCode()</a>
-            </li>
-            <li id="getConfig">
-              <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getConfig.html">getConfig()</a>
             </li>
             <li id="getMoFilePath">
               <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/getMoFilePath.html">getMoFilePath()</a>
@@ -150,6 +163,31 @@
             <li id="isDefault">
               <a title="Strata\I18n\Locale" href="../classes/Strata_I18n_Locale/isDefault.html">isDefault()</a>
             </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="normalizeConfiguration">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="configure">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+            </li>
+            <li id="containsConfigurations">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+            </li>
+            <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration">
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+            </li>
+            <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>
