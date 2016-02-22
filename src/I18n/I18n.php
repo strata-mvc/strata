@@ -68,13 +68,15 @@ class i18n
     {
         $locale = $this->getCurrentLocale();
 
-        $message = !is_null($locale) && setlocale(LC_ALL, $locale->getCode() .'.UTF-8') ?
-            "Localized to : " . $locale->getCode() . ".UTF-8" :
-            "Locale function is not available on this platform, or the given " .
-            "local does not exist in this environment. Attempted to set: " .
-            $locale->getCode() . ".UTF-8";
+        if (!is_null($locale)) {
+            $message =  setlocale(LC_ALL, $locale->getCode() .'.UTF-8') ?
+                "Localized to : " . $locale->getCode() . ".UTF-8" :
+                "Locale function is not available on this platform, or the given " .
+                "local does not exist in this environment. Attempted to set: " .
+                $locale->getCode() . ".UTF-8";
 
-        Strata::app()->log($message, "[Strata:i18n]");
+            Strata::app()->log($message, "[Strata:i18n]");
+        }
 
         // Set in PHP
         if (function_exists('bindtextdomain')) {
