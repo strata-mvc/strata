@@ -6,11 +6,20 @@ use Strata\Model\CustomPostType\CustomPostType;
 use Exception;
 
 /**
- * Wraps Post default objects.
+ * Wraps Wordpress' default Post (of post_type 'post').
  */
 class Post extends CustomPostType
 {
+    /**
+     * The Wordpress custom post type identifier prefix
+     * @var string
+     */
     public $wpPrefix = "";
+
+    /**
+     * A list of taxonomies associated to the custom post type.
+     * @var array
+     */
     public $belongs_to = array("Strata\Model\Taxonomy\Category");
 
     /**
@@ -18,10 +27,6 @@ class Post extends CustomPostType
      * @var string
      */
     public $permissionLevel = 'edit_posts';
-
-    public function __construct()
-    {
-    }
 
     /**
      * Returns a label object that exposes singular and plural labels
@@ -37,10 +42,5 @@ class Post extends CustomPostType
     public function register()
     {
         throw new Exception("Posts cannot be registered.");
-    }
-
-    public function byAuthorID($authorID)
-    {
-        return $this->where('author', $authorID);
     }
 }

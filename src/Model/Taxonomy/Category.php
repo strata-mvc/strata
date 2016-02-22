@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Model\Taxonomy;
 
 /**
@@ -6,7 +7,6 @@ namespace Strata\Model\Taxonomy;
  */
 class Category extends Taxonomy
 {
-
     /**
      * {@inheritdoc}
      */

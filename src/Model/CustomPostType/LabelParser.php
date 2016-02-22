@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Inflector;

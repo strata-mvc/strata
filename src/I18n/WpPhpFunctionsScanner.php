@@ -8,8 +8,7 @@ use Exception;
 
 /**
  * The list of these can be found in Wordpress' MakePot file.
- *  http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
- *  @see http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
+ * @link http://develop.svn.wordpress.org/trunk/tools/i18n/makepot.php
  */
 class WpPhpFunctionsScanner extends PhpFunctionsScanner
 {

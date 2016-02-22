@@ -1,8 +1,8 @@
 <?php
+
 namespace Strata\Model\CustomPostType;
 
 use Strata\Utility\Hash;
-
 use Strata\Model\Validator\Validator;
 use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;

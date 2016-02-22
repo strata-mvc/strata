@@ -12,7 +12,7 @@ class CustomPostTypeRegistrar extends Registrar
 {
     /**
      * Attemps to register a post type.
-     * @see https://codex.wordpress.org/Function_Reference/register_post_type
+     * @link https://codex.wordpress.org/Function_Reference/register_post_type
      * @return object Returns the result of register_post_type()
      */
     function register()

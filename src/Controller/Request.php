@@ -7,7 +7,7 @@ use Strata\Utility\Hash;
 /**
  * Handles safe access to HTTP request data, whether from POST, GET, files or cookies.
  * It encodes data accordingly and does basic data integrity validation.
- * @see http://strata.francoisfaubert.com/docs/controllers/request/
+ * @link http://strata.francoisfaubert.com/docs/controllers/request/
  */
 class Request
 {
@@ -256,7 +256,7 @@ class Request
      * Attempts to confirm the validation of the Wordpress nonce.
      * @param  string $mixedNonceSalt
      * @return boolean
-     * @see https://codex.wordpress.org/Function_Reference/wp_verify_nonce
+     * @link https://codex.wordpress.org/Function_Reference/wp_verify_nonce
      */
     public function nonceValidates($mixedNonceSalt)
     {

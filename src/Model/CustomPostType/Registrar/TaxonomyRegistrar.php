@@ -13,7 +13,7 @@ class TaxonomyRegistrar extends Registrar
 {
     /**
      * Attemps to register a taxonomy on a post type.
-     * @see https://codex.wordpress.org/Function_Reference/register_taxonomy
+     * @link https://codex.wordpress.org/Function_Reference/register_taxonomy
      */
     public function register()
     {

@@ -62,7 +62,7 @@ class i18n
     /**
      * Assigns the theme's textdomain to Wordpress using 'load_theme_textdomain'.
      * @return boolean The result of load_theme_textdomain
-     * @see https://codex.wordpress.org/Function_Reference/load_theme_textdomain
+     * @link https://codex.wordpress.org/Function_Reference/load_theme_textdomain
      */
     public function applyLocale()
     {

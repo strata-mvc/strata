@@ -1,13 +1,19 @@
 <?php
+
 namespace Strata\Model\CustomPostType;
 
 use Strata\Model\CustomPostType\Query;
 use Exception;
 
+/**
+ * The QueriableEntity trait allows for more object-oriented database queries
+ * by adding a layer of abstraction with WP_Query.
+ * @link https://codex.wordpress.org/Class_Reference/WP_Query
+ */
 trait QueriableEntityTrait
 {
     /**
-     * Returns an instantiated object to access the repository.
+     * Returns an instantiated QueriableEntity to access the repository.
      * @return QueriableEntity
      */
     public static function repo()
@@ -16,48 +22,34 @@ trait QueriableEntityTrait
         return $ref->query();
     }
 
-    public static function getEntity($associatedObj = null)
-    {
-        $EntityClass = get_called_class();
-        $entityClassRef = new $EntityClass();
-        $ActualEntity = ModelEntity::generateClassPath($entityClassRef->getShortName());
-
-        $entityRef = class_exists($ActualEntity) ? new $ActualEntity() : new ModelEntity();
-        $entityRef->bindToObject($associatedObj);
-        return $entityRef;
-    }
-
+    /**
+     * Saves a pointer to the currently active query adapter.
+     * @var Query
+     */
     protected $activeQuery = null;
 
     /**
      * Return an object inheriting from Query on which requests
      * will be ran. Inheriting classes can modify this to suit their needs.
-     * @return Strata\Model\CustomPostType\Query
+     * @return Query
      */
     public function getQueryAdapter()
     {
         return new Query();
     }
 
+    /**
+     * Resets (forgets) the active query.
+     */
     public function resetCurrentQuery()
     {
         $this->activeQuery = null;
     }
 
-    private function reloadQueryAdapter()
-    {
-        if (is_null($this->activeQuery)) {
-            $this->activeQuery = $this->getQueryAdapter();
-            $this->activeQuery->type($this->getWordpressKey());
-        }
-
-        return $this->activeQuery;
-    }
-
     /**
      * Starts a wrapped wp_query pattern object. Used to chain parameters
      * It resets the query.
-     * @return (Query) $query;
+     * @return QueriableEntity;
      */
     public function query()
     {
@@ -66,6 +58,12 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * Applies a date query to the querier.
+     * @link https://codex.wordpress.org/Class_Reference/WP_Query#Date_Parameters
+     * @param  array $dateQuery An array of the date query parameters for WP_Query
+     * @return QueriableEntity
+     */
     public function date($dateQuery)
     {
         $this->reloadQueryAdapter();
@@ -73,6 +71,11 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * Defines fields on which to order the current query.
+     * @param  string $orderBy
+     * @return QueriableEntity
+     */
     public function orderby($orderBy)
     {
         $this->reloadQueryAdapter();
@@ -80,13 +83,25 @@ trait QueriableEntityTrait
         return $this;
     }
 
-    public function direction($order)
+    /**
+     * Defines the direction on which the orderby() field
+     * will be sorted.
+     * @param  string $dir
+     * @return QueriableEntity
+     */
+    public function direction($dir)
     {
         $this->reloadQueryAdapter();
-        $this->activeQuery->direction($order);
+        $this->activeQuery->direction($dir);
         return $this;
     }
 
+    /**
+     * Shorthand for setting conditions on the post_status
+     * column.
+     * @param  string $status
+     * @return QueriableEntity
+     */
     public function status($status = null)
     {
         $this->reloadQueryAdapter();
@@ -94,6 +109,12 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * The default catch all wrapper for WP_Query parameters.
+     * @param  string $field
+     * @param  mixed $value
+     * @return QueriableEntity
+     */
     public function where($field, $value)
     {
         $this->reloadQueryAdapter();
@@ -101,6 +122,13 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * Allows the branching of different conditions in the same
+     * Wordpress query.
+     * @param  string $field
+     * @param  mixed $value
+     * @return QueriableEntity
+     */
     public function orWhere($field, $value)
     {
         $this->reloadQueryAdapter();
@@ -108,6 +136,12 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * Sets the maximum number of results the current query may
+     * return.
+     * @param  integer $qty
+     * @return QueriableEntity
+     */
     public function limit($qty)
     {
         $this->reloadQueryAdapter();
@@ -115,7 +149,11 @@ trait QueriableEntityTrait
         return $this;
     }
 
-
+    /**
+     * Sets the starting offset of the current queries result set.
+     * @param  index $index
+     * @return QueriableEntity
+     */
     public function offset($index)
     {
         $this->reloadQueryAdapter();
@@ -123,6 +161,21 @@ trait QueriableEntityTrait
         return $this;
     }
 
+    /**
+     * Adds a 'author' condition to the current query.
+     * @param  integer $authorID
+     * @return QueriableEntity
+     */
+    public function byAuthorID($authorID)
+    {
+        return $this->where('author', $authorID);
+    }
+
+    /**
+     * Fetches the number of results the current queries returned.
+     * This ends the current query.
+     * @return integer
+     */
     public function count()
     {
         $this->throwIfContextInvalid();
@@ -153,7 +206,9 @@ trait QueriableEntityTrait
 
     /**
      * Executes the query and resets it anew.
-     * @return hash of key => label values
+     * This is useful for returning a list of
+     * [ID => post_title] elements.
+     * @return hash of $key => $label values
      */
     public function listing($key, $label)
     {
@@ -167,24 +222,31 @@ trait QueriableEntityTrait
         return $results;
     }
 
+    /**
+     * Fetches the first element matching the current query and
+     * resets it anew.
+     * @return Strata\Model\CustomPostType\ModelEntity
+     */
     public function first()
     {
-        $result = $this->fetch();
+        $result = $this->limit(1)->fetch();
         return array_shift($result);
     }
 
-    private function throwIfContextInvalid()
-    {
-        if (is_null($this->activeQuery)) {
-            throw new Exception("No active query to fetch.");
-        }
-    }
-
+    /**
+     * Returns all the possible entities and ends the query.
+     * @return array
+     */
     public function findAll()
     {
         return $this->query()->fetch();
     }
 
+    /**
+     * Finds a model entity by it's ID.
+     * @param  integer $id
+     * @return Strata\Model\CustomPostType\ModelEntity
+     */
     public function findById($id)
     {
         $post = get_post($id);
@@ -193,17 +255,35 @@ trait QueriableEntityTrait
         }
     }
 
+    /**
+     * Returns the total number of entities of the current type.
+     * Unlike count() this does not take additional filtering
+     * and maps to wp_count_posts().
+     * @return integer
+     */
     public function countTotal()
     {
         return wp_count_posts($this->getWordpressKey());
     }
 
+    /**
+     * Paginates the current query. Must be called before
+     * the result set has been generated.
+     * Maps to paginate_links()
+     * @param  array  $config A configuration array that will be sent to paginate_links()
+     * @return string A pagination HTML block
+     */
     public function paginate($config = array())
     {
         $this->reloadQueryAdapter();
         return $this->activeQuery->paginate($config);
     }
 
+    /**
+     * Wraps the resultset into entities of the current object type.
+     * @param  array  $entities
+     * @return array
+     */
     protected function wrapInEntities(array $entities)
     {
         $results = array();
@@ -212,5 +292,32 @@ trait QueriableEntityTrait
         }
 
         return $results;
+    }
+
+    /**
+     * Reloads the query adapter when it has not been initialized.
+     * Should none be set, it instantiates it with the correct default values.
+     * @return Query
+     */
+    private function reloadQueryAdapter()
+    {
+        if (is_null($this->activeQuery)) {
+            $this->activeQuery = $this->getQueryAdapter();
+            $this->activeQuery->type($this->getWordpressKey());
+        }
+
+        return $this->activeQuery;
+    }
+
+    /**
+     * Throws an exception when the query is manipulated
+     * after a resultset has been generated.
+     * @throws Exception
+     */
+    private function throwIfContextInvalid()
+    {
+        if (is_null($this->activeQuery)) {
+            throw new Exception("No active query to fetch.");
+        }
     }
 }

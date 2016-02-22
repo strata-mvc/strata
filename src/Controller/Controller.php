@@ -10,17 +10,23 @@ use Strata\View\View;
 
 /**
  * Base controller class.
- * @see http://strata.francoisfaubert.com/docs/controllers/
+ * @link http://strata.francoisfaubert.com/docs/controllers/
  */
 class Controller
 {
     use StrataObjectTrait;
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getNamespaceStringInStrata()
     {
         return "Controller";
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getClassNameSuffix()
     {
         return "Controller";
@@ -41,7 +47,7 @@ class Controller
     /**
      * These hooks allow views to use Wordpress nicely, but still trigger
      * items in the current controller.
-     * @see https://codex.wordpress.org/Shortcode_API
+     * @link https://codex.wordpress.org/Shortcode_API
      * @var array
      */
     public $shortcodes = array();
