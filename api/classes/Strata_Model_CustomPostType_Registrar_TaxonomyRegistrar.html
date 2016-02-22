@@ -65,24 +65,21 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/CustomPostType/Registrar/TaxonomyRegistrar.php.html#line7">Source</a>
+            <a href="../source/Model/CustomPostType/Registrar/TaxonomyRegistrar.php.html#line12">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Model\CustomPostType\Registrar\</small>TaxonomyRegistrar</h1>
-        <h4/>
+        <h4>Registers a taxonomy based on a Models' configuration.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class TaxonomyRegistrar
                 extends <a title="Strata\Model\CustomPostType\Registrar\Registrar" href="../classes/Strata_Model_CustomPostType_Registrar_Registrar.html">Registrar</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Model\CustomPostType\Registrar\Registrar">Registrar</span></li><li>protected  <a href="#members">$entity</a>;
-                        </li><li>protected  <a href="#members">$wordpressKey</a>;
-                        </li><li>protected  <a href="#members">$labelParser</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Model\CustomPostType\Registrar\Registrar">Registrar</span></li><li>protected <span title="Strata\Model\CustomPostType\CustomPostType">CustomPostType</span> <a href="#members">$model</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/register.html">register</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/registerTaxonomy.html">registerTaxonomy</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/hasTaxonomyConfiguration.html">hasTaxonomyConfiguration</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/getTaxonomyConfiguration.html">getTaxonomyConfiguration</a>()
+                    </li><li>private  <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/registerTaxonomy.html">registerTaxonomy</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\CustomPostType\Registrar\Registrar">Registrar</span></li><li>public void <a title="Strata\Model\CustomPostType\Registrar\Registrar" href="../classes/Strata_Model_CustomPostType_Registrar_Registrar/__construct.html">__construct</a>()
                         </li></ul>
 
@@ -100,36 +97,22 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="entity">
-              <strong>$entity</strong>
-            </li>
-            <li id="labelParser">
-              <strong>$labelParser</strong>
-            </li>
-            <li id="wordpressKey">
-              <strong>$wordpressKey</strong>
-            </li>
+            <li id="model"><strong>$model</strong>
+                —
+                <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType.html">Strata\Model\CustomPostType\CustomPostType</a></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="getTaxonomyConfiguration">
-              <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/getTaxonomyConfiguration.html">getTaxonomyConfiguration()</a>
-            </li>
-            <li id="hasTaxonomyConfiguration">
-              <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/hasTaxonomyConfiguration.html">hasTaxonomyConfiguration()</a>
-            </li>
-            <li id="registerTaxonomy">
-              <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/registerTaxonomy.html">registerTaxonomy()</a>
-            </li>
+            <li id="registerTaxonomy"><a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/registerTaxonomy.html">registerTaxonomy()</a>
+                — Registers a taxonomy</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="register">
-              <a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/register.html">register()</a>
-            </li>
+            <li id="register"><a title="Strata\Model\CustomPostType\Registrar\TaxonomyRegistrar" href="../classes/Strata_Model_CustomPostType_Registrar_TaxonomyRegistrar/register.html">register()</a>
+                — Attemps to register a taxonomy on a post type.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

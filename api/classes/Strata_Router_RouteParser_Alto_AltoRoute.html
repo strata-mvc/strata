@@ -56,6 +56,9 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
             <a href="#constants">Constants</a>
           </li>
           <li>
@@ -74,8 +77,9 @@
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Router\RouteParser\Alto\</small>AltoRoute</h1>
-        <h4/>
+        <h4>Handles routes generated for the AltoRouter class.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class AltoRoute
                 extends <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Route</a>
@@ -93,18 +97,18 @@
                     </li><li>protected void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/assignViewVars.html">assignViewVars</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/process.html">process</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addRouteConfig.html">addRouteConfig</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic</a>()
+                    </li><li>private boolean <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addDynamicRoute.html">addDynamicRoute</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addMatchedRoute.html">addMatchedRoute</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleRouterAnswer.html">handleRouterAnswer</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch</a>()
-                    </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch</a>()
+                    </li><li>private Controller <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch</a>()
+                    </li><li>private Controller <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch</a>()
+                    </li><li>private string <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch</a>()
+                    </li><li>private string <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch</a>()
+                    </li><li>private array <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch</a>()
+                    </li><li>private array <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch</a>()
                     </li><li>private void <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/patchBuiltInServerPrefix.html">patchBuiltInServerPrefix</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
                         </li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
@@ -129,6 +133,23 @@
             </li>
           </ul>
         </div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">86+</td>
+            <td>Is it required to send variables to the globals array?</td>
+          </tr>
+          <tr>
+            <td class="nummeric">322+</td>
+            <td>This should not be necessary if the permalinks are correctly</td>
+          </tr>
+        </table>
         <h2 id="constants">Constants</h2>
         <table class="styled">
           <thead>
@@ -175,45 +196,32 @@
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="addDynamicRoute">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addDynamicRoute.html">addDynamicRoute()</a>
-            </li>
-            <li id="addMatchedRoute">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addMatchedRoute.html">addMatchedRoute()</a>
-            </li>
-            <li id="addRouteConfig">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addRouteConfig.html">addRouteConfig()</a>
-            </li>
-            <li id="getActionFromDynamicMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch()</a>
-            </li>
-            <li id="getActionFromMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch()</a>
-            </li>
-            <li id="getArgumentsFromDynamicMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch()</a>
-            </li>
-            <li id="getArgumentsFromMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch()</a>
-            </li>
-            <li id="getControllerFromDynamicMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch()</a>
-            </li>
-            <li id="getControllerFromMatch">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch()</a>
-            </li>
-            <li id="handleDynamicRouterAnswer">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer()</a>
-            </li>
-            <li id="handleMatchedRouterAnswer">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer()</a>
-            </li>
-            <li id="handleRouterAnswer">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleRouterAnswer.html">handleRouterAnswer()</a>
-            </li>
-            <li id="isDynamic">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic()</a>
-            </li>
+            <li id="addDynamicRoute"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addDynamicRoute.html">addDynamicRoute()</a>
+                — Adds a new dynamic route</li>
+            <li id="addMatchedRoute"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addMatchedRoute.html">addMatchedRoute()</a>
+                — Adds a matched route</li>
+            <li id="addRouteConfig"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addRouteConfig.html">addRouteConfig()</a>
+                — Adds a new route configuration.</li>
+            <li id="getActionFromDynamicMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch()</a>
+                — Gets the action from the dynamic match.</li>
+            <li id="getActionFromMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getActionFromMatch.html">getActionFromMatch()</a>
+                — Gets the action from the AltoRouter match.</li>
+            <li id="getArgumentsFromDynamicMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch()</a>
+                — Gets the possible additional arguments from the dynamic match.</li>
+            <li id="getArgumentsFromMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getArgumentsFromMatch.html">getArgumentsFromMatch()</a>
+                — Gets the possible additional arguments from the route match.</li>
+            <li id="getControllerFromDynamicMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch()</a>
+                — Gets a Controller instance form the dynamic information</li>
+            <li id="getControllerFromMatch"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/getControllerFromMatch.html">getControllerFromMatch()</a>
+                — Gets a Controller instance form the matched information</li>
+            <li id="handleDynamicRouterAnswer"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer()</a>
+                — Handles dynamic routes</li>
+            <li id="handleMatchedRouterAnswer"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer()</a>
+                — Handles matched routes</li>
+            <li id="handleRouterAnswer"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/handleRouterAnswer.html">handleRouterAnswer()</a>
+                — Analized the route match to see if it's a dynamic or matched route.</li>
+            <li id="isDynamic"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/isDynamic.html">isDynamic()</a>
+                — Defines whether the $route is dynamic based on it's length</li>
             <li id="patchBuiltInServerPrefix"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/patchBuiltInServerPrefix.html">patchBuiltInServerPrefix()</a>
                 — Built in server will generate links with index.php because it doesn't have access to mod_rewrite. This function appends index to the route sent in.</li>
           </ul>
@@ -229,17 +237,14 @@
             </li>
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addPossibilities.html">addPossibilities()</a>
                 — {@inheritdoc}</li>
-            <li id="addResource">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addResource.html">addResource()</a>
-            </li>
-            <li id="end">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/end.html">end()</a>
-            </li>
+            <li id="addResource"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/addResource.html">addResource()</a>
+                — Adds a resourced based route possibility based on a custom post type.</li>
+            <li id="end"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/end.html">end()</a>
+                — {@inheritdoc}</li>
             <li id="process"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/process.html">process()</a>
                 — {@inheritdoc}</li>
-            <li id="start">
-              <a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/start.html">start()</a>
-            </li>
+            <li id="start"><a title="Strata\Router\RouteParser\Alto\AltoRoute" href="../classes/Strata_Router_RouteParser_Alto_AltoRoute/start.html">start()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h3>Inherited from <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a></h3>
           <h4>protected</h4>

@@ -62,42 +62,43 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/CustomPostType/QueriableEntityTrait.php.html#line7">Source</a>
+            <a href="../source/Model/CustomPostType/QueriableEntityTrait.php.html#line13">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Model\CustomPostType\</small>QueriableEntityTrait</h1>
-        <h4/>
+        <h4>The QueriableEntity trait allows for more object-oriented database queries by adding a layer of abstraction with WP_Query.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">trait QueriableEntityTrait
-            {<br/><ul class="none"><li>// members</li><li>protected <a href="#members">$activeQuery</a> =
+            {<br/><ul class="none"><li>// members</li><li>protected <span title="Strata\Model\CustomPostType\Query">Query</span> <a href="#members">$activeQuery</a> =
                         null;
                     </li></ul><ul class="none"><li>// methods</li><li>public static QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/repo.html">repo</a>()
-                    </li><li>public static void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/getEntity.html">getEntity</a>()
                     </li><li>public Query <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/getQueryAdapter.html">getQueryAdapter</a>()
                     </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/resetCurrentQuery.html">resetCurrentQuery</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/reloadQueryAdapter.html">reloadQueryAdapter</a>()
-                    </li><li>public (Query) <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/query.html">query</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/date.html">date</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orderby.html">orderby</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/direction.html">direction</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/status.html">status</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/where.html">where</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orWhere.html">orWhere</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/limit.html">limit</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count</a>()
+                    </li><li>public QueriableEntity; <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/query.html">query</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/date.html">date</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orderby.html">orderby</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/direction.html">direction</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/status.html">status</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/where.html">where</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orWhere.html">orWhere</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/limit.html">limit</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset</a>()
+                    </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID</a>()
+                    </li><li>public integer <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count</a>()
                     </li><li>public array <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/fetch.html">fetch</a>()
                     </li><li>public hash <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/listing.html">listing</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/first.html">first</a>()
+                    </li><li>public ModelEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/first.html">first</a>()
+                    </li><li>public array <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findAll.html">findAll</a>()
+                    </li><li>public ModelEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findById.html">findById</a>()
+                    </li><li>public integer <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/countTotal.html">countTotal</a>()
+                    </li><li>public string <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate</a>()
+                    </li><li>protected array <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/wrapInEntities.html">wrapInEntities</a>()
+                    </li><li>private Query <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/reloadQueryAdapter.html">reloadQueryAdapter</a>()
                     </li><li>private void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/throwIfContextInvalid.html">throwIfContextInvalid</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findAll.html">findAll</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findById.html">findById</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/countTotal.html">countTotal</a>()
-                    </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate</a>()
-                    </li><li>protected void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/wrapInEntities.html">wrapInEntities</a>()
                     </li></ul>
 
             }<br/></div>
@@ -126,88 +127,69 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="activeQuery">
-              <strong>$activeQuery</strong>
-            </li>
+            <li id="activeQuery"><strong>$activeQuery</strong>
+                —
+                <a title="Strata\Model\CustomPostType\Query" href="../traits/Strata_Model_CustomPostType_Query.html">Strata\Model\CustomPostType\Query</a><br/><span class="indent">Saves a pointer to the currently active query adapter.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="reloadQueryAdapter">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/reloadQueryAdapter.html">reloadQueryAdapter()</a>
-            </li>
-            <li id="throwIfContextInvalid">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/throwIfContextInvalid.html">throwIfContextInvalid()</a>
-            </li>
+            <li id="reloadQueryAdapter"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/reloadQueryAdapter.html">reloadQueryAdapter()</a>
+                — Reloads the query adapter when it has not been initialized.</li>
+            <li id="throwIfContextInvalid"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/throwIfContextInvalid.html">throwIfContextInvalid()</a>
+                — Throws an exception when the query is manipulated after a resultset has been generated.</li>
           </ul>
           <h4>protected</h4>
           <ul>
-            <li id="wrapInEntities">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/wrapInEntities.html">wrapInEntities()</a>
-            </li>
+            <li id="wrapInEntities"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/wrapInEntities.html">wrapInEntities()</a>
+                — Wraps the resultset into entities of the current object type.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="count">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count()</a>
-            </li>
-            <li id="countTotal">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/countTotal.html">countTotal()</a>
-            </li>
-            <li id="date">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/date.html">date()</a>
-            </li>
-            <li id="direction">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/direction.html">direction()</a>
-            </li>
+            <li id="byAuthorID"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID()</a>
+                — Adds a 'author' condition to the current query.</li>
+            <li id="count"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count()</a>
+                — Fetches the number of results the current queries returned.</li>
+            <li id="countTotal"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/countTotal.html">countTotal()</a>
+                — Returns the total number of entities of the current type.</li>
+            <li id="date"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/date.html">date()</a>
+                — Applies a date query to the querier.</li>
+            <li id="direction"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/direction.html">direction()</a>
+                — Defines the direction on which the orderby() field will be sorted.</li>
             <li id="fetch"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/fetch.html">fetch()</a>
                 — Executes the query and resets it anew.</li>
-            <li id="findAll">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findAll.html">findAll()</a>
-            </li>
-            <li id="findById">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findById.html">findById()</a>
-            </li>
-            <li id="first">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/first.html">first()</a>
-            </li>
-            <li id="getEntity">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/getEntity.html">getEntity()</a>
-            </li>
+            <li id="findAll"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findAll.html">findAll()</a>
+                — Returns all the possible entities and ends the query.</li>
+            <li id="findById"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/findById.html">findById()</a>
+                — Finds a model entity by it's ID.</li>
+            <li id="first"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/first.html">first()</a>
+                — Fetches the first element matching the current query and resets it anew.</li>
             <li id="getQueryAdapter"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/getQueryAdapter.html">getQueryAdapter()</a>
                 — Return an object inheriting from Query on which requests will be ran. Inheriting classes can modify this to suit their needs.</li>
-            <li id="limit">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/limit.html">limit()</a>
-            </li>
+            <li id="limit"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/limit.html">limit()</a>
+                — Sets the maximum number of results the current query may return.</li>
             <li id="listing"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/listing.html">listing()</a>
                 — Executes the query and resets it anew.</li>
-            <li id="offset">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset()</a>
-            </li>
-            <li id="orWhere">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orWhere.html">orWhere()</a>
-            </li>
-            <li id="orderby">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orderby.html">orderby()</a>
-            </li>
-            <li id="paginate">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate()</a>
-            </li>
+            <li id="offset"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset()</a>
+                — Sets the starting offset of the current queries result set.</li>
+            <li id="orWhere"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orWhere.html">orWhere()</a>
+                — Allows the branching of different conditions in the same Wordpress query.</li>
+            <li id="orderby"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/orderby.html">orderby()</a>
+                — Defines fields on which to order the current query.</li>
+            <li id="paginate"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate()</a>
+                — Paginates the current query. Must be called before the result set has been generated.</li>
             <li id="query"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/query.html">query()</a>
                 — Starts a wrapped wp_query pattern object. Used to chain parameters It resets the query.</li>
             <li id="repo"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/repo.html">repo()</a>
-                — Returns an instantiated object to access the repository.</li>
-            <li id="resetCurrentQuery">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/resetCurrentQuery.html">resetCurrentQuery()</a>
-            </li>
-            <li id="status">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/status.html">status()</a>
-            </li>
-            <li id="where">
-              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/where.html">where()</a>
-            </li>
+                — Returns an instantiated QueriableEntity to access the repository.</li>
+            <li id="resetCurrentQuery"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/resetCurrentQuery.html">resetCurrentQuery()</a>
+                — Resets (forgets) the active query.</li>
+            <li id="status"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/status.html">status()</a>
+                — Shorthand for setting conditions on the post_status column.</li>
+            <li id="where"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/where.html">where()</a>
+                — The default catch all wrapper for WP_Query parameters.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

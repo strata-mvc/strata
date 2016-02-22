@@ -62,18 +62,18 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/Model/CustomPostType/CustomPostType.php.html#line104">Source</a>
+            <a href="../../source/Model/CustomPostType/CustomPostType.php.html#line135">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1><small>Strata\Model\CustomPostType\CustomPostType::</small>create</h1>
-        <h4>Creates a post of the current post type</h4>
+        <h4>Creates a post of the current post type based on the passed options.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function create(
+          <code>public function create(array
         $options )
             </code>
         </div>
@@ -81,14 +81,13 @@
         <dl class="styled">
           <dt><code>$options</code>
                 —
-                </dt>
-          <dd/>
+                array</dt>
+          <dd>Options to be sent to wp_insert_post()</dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt>(int)</dt>
-          <dd>postID<br/>
-        </dd>
+          <dt>int</dt>
+          <dd>The created post id</dd>
         </dl>
       </section>
     </div>

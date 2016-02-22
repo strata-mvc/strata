@@ -65,13 +65,13 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/I18n/WpCode.php.html#line14">Source</a>
+            <a href="../source/I18n/WpCode.php.html#line13">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\I18n\</small>WpCode</h1>
-        <h4>Class to get gettext strings from php files returning arrays</h4>
+        <h4>Class to lookup Gettext strings from PHP files that are coded using the slightly different Wordpress translation scheme.</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
@@ -96,25 +96,20 @@
         <div class="styled members">
           <h4>public</h4>
           <ul class="members">
-            <li id="functions">
-              <strong>$functions</strong>
-              <br/>
-              <span class="indent">These functions behave like the general Gettext implementation. Lets them fall back to the default behavior.</span>
-            </li>
-            <li id="wp_functions">
-              <strong>$wp_functions</strong>
-              <br/>
-              <span class="indent">These functions have been Wordpressed in that parameters may not be in the same order has the default Gettext functions.</span>
-            </li>
+            <li id="functions"><strong>$functions</strong>
+                —
+                array<br/><span class="indent">These functions behave like the general Gettext implementation. We let them fall back to the default behavior.</span></li>
+            <li id="wp_functions"><strong>$wp_functions</strong>
+                —
+                array<br/><span class="indent">These functions have been "Wordpressed" -- meaning parameters may not be in the same order as the default Gettext functions.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>public</h4>
           <ul>
-            <li id="fromString">
-              <a title="Strata\I18n\WpCode" href="../classes/Strata_I18n_WpCode/fromString.html">fromString()</a>
-            </li>
+            <li id="fromString"><a title="Strata\I18n\WpCode" href="../classes/Strata_I18n_WpCode/fromString.html">fromString()</a>
+                — {@inheritdoc}</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

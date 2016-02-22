@@ -65,21 +65,22 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/CustomPostType/CustomPostTypeLoader.php.html#line9">Source</a>
+            <a href="../source/Model/CustomPostType/CustomPostTypeLoader.php.html#line13">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Model\CustomPostType\</small>CustomPostTypeLoader</h1>
-        <h4/>
+        <h4>Loads Custom Post Types objects based on the loader's configuration.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class CustomPostTypeLoader
             {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/load.html">load</a>()
                     </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/logAutoloadedEntities.html">logAutoloadedEntities</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddAdminMenus.html">shouldAddAdminMenus</a>()
+                    </li><li>private boolean <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddAdminMenus.html">shouldAddAdminMenus</a>()
                     </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressMenusRegisteringAction.html">addWordpressMenusRegisteringAction</a>()
-                    </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddRoutes.html">shouldAddRoutes</a>()
+                    </li><li>private boolean <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddRoutes.html">shouldAddRoutes</a>()
                     </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addResourceRoute.html">addResourceRoute</a>()
                     </li><li>private void <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressRegisteringAction.html">addWordpressRegisteringAction</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
@@ -114,30 +115,23 @@
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="addResourceRoute">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addResourceRoute.html">addResourceRoute()</a>
-            </li>
-            <li id="addWordpressMenusRegisteringAction">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressMenusRegisteringAction.html">addWordpressMenusRegisteringAction()</a>
-            </li>
-            <li id="addWordpressRegisteringAction">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressRegisteringAction.html">addWordpressRegisteringAction()</a>
-            </li>
-            <li id="logAutoloadedEntities">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/logAutoloadedEntities.html">logAutoloadedEntities()</a>
-            </li>
-            <li id="shouldAddAdminMenus">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddAdminMenus.html">shouldAddAdminMenus()</a>
-            </li>
-            <li id="shouldAddRoutes">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddRoutes.html">shouldAddRoutes()</a>
-            </li>
+            <li id="addResourceRoute"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addResourceRoute.html">addResourceRoute()</a>
+                — Adds a new resource route to the router attached to the current app.</li>
+            <li id="addWordpressMenusRegisteringAction"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressMenusRegisteringAction.html">addWordpressMenusRegisteringAction()</a>
+                — Queues the $customPostType's admin menus for registration.</li>
+            <li id="addWordpressRegisteringAction"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/addWordpressRegisteringAction.html">addWordpressRegisteringAction()</a>
+                — Adds the Wordpress action to instantiate the custom post type on init.</li>
+            <li id="logAutoloadedEntities"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/logAutoloadedEntities.html">logAutoloadedEntities()</a>
+                — Logs the names of the entities the loader is attempting to load.</li>
+            <li id="shouldAddAdminMenus"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddAdminMenus.html">shouldAddAdminMenus()</a>
+                — Returns whether the $customPostType has declared sub-menus that need to be autoloaded.</li>
+            <li id="shouldAddRoutes"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/shouldAddRoutes.html">shouldAddRoutes()</a>
+                — Specifies whether the $customPostType should be routed as a resource.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="load">
-              <a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/load.html">load()</a>
-            </li>
+            <li id="load"><a title="Strata\Model\CustomPostType\CustomPostTypeLoader" href="../classes/Strata_Model_CustomPostType_CustomPostTypeLoader/load.html">load()</a>
+                — Loads the entities.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
           <h4>protected</h4>
