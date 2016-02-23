@@ -90,7 +90,7 @@ class Logger
      * @param  string $context (optional) Flag to separate message types
      * @return string
      */
-    protected function buildRichLine($context, $message)
+    protected function buildRichLine($message, $context)
     {
         return sprintf("%s%s\e[0m %s", $this->color, $context, $message);
     }
@@ -101,7 +101,7 @@ class Logger
      * @param  string $context (optional) Flag to separate message types
      * @return string
      */
-    protected function buildSimpleLine($context, $message)
+    protected function buildSimpleLine($message, $context)
     {
         return sprintf("%s %s\n", $context, $message);
     }
