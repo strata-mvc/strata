@@ -33,7 +33,7 @@ class Security
      */
     protected function setTimezone()
     {
-        $parser = new TimezoneSetter();
-        $parser->register();
+        $setter = new TimezoneSetter();
+        $setter->register();
     }
 }
