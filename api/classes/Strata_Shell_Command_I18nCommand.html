@@ -65,31 +65,32 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/I18nCommand.php.html#line21">Source</a>
+            <a href="../source/Shell/Command/I18nCommand.php.html#line28">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Shell\Command\</small>I18nCommand</h1>
-        <h4/>
-        <p/>
+        <h4>Automates Strata's localization actions.</h4>
+        <p>Intended use include:<br/>    &lt;code&gt;./strata i18n extract&lt;/code&gt;</p>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class I18nCommand
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
             {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
                         </li><li>protected string <a href="#members">$tree_end</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/execute.html">execute</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/getLocales.html">getLocales</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/projectHasActiveLocales.html">projectHasActiveLocales</a>()
+                    </li><li>protected array <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/getLocales.html">getLocales</a>()
+                    </li><li>protected boolean <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/projectHasActiveLocales.html">projectHasActiveLocales</a>()
                     </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/ensureFolderStructure.html">ensureFolderStructure</a>()
                     </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocales.html">saveStringToLocales</a>()
                     </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocale.html">saveStringToLocale</a>()
-                    </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractGettextStrings.html">extractGettextStrings</a>()
-                    </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/recurseThroughDirectory.html">recurseThroughDirectory</a>()
-                    </li><li>private void <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractFrom.html">extractFrom</a>()
+                    </li><li>private Translation <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractGettextStrings.html">extractGettextStrings</a>()
+                    </li><li>private array <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/recurseThroughDirectory.html">recurseThroughDirectory</a>()
+                    </li><li>private array <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractFrom.html">extractFrom</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -128,34 +129,28 @@
           <ul class="members">
             <li id="input"><strong>$input</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+                <a title="Symfony\Component\Console\Input\InputInterface" href="../classes/Symfony_Component_Console_Input_InputInterface.html">Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
             <li id="output"><strong>$output</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+                <a title="Symfony\Component\Console\Output\OutputInterface" href="../classes/Symfony_Component_Console_Output_OutputInterface.html">Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="ensureFolderStructure">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/ensureFolderStructure.html">ensureFolderStructure()</a>
-            </li>
-            <li id="extractFrom">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractFrom.html">extractFrom()</a>
-            </li>
-            <li id="extractGettextStrings">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractGettextStrings.html">extractGettextStrings()</a>
-            </li>
-            <li id="recurseThroughDirectory">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/recurseThroughDirectory.html">recurseThroughDirectory()</a>
-            </li>
-            <li id="saveStringToLocale">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocale.html">saveStringToLocale()</a>
-            </li>
-            <li id="saveStringToLocales">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocales.html">saveStringToLocales()</a>
-            </li>
+            <li id="ensureFolderStructure"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/ensureFolderStructure.html">ensureFolderStructure()</a>
+                — Confirms the directories required to build the mo and po files exist.</li>
+            <li id="extractFrom"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractFrom.html">extractFrom()</a>
+                — Extracts gettext string from $filename</li>
+            <li id="extractGettextStrings"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/extractGettextStrings.html">extractGettextStrings()</a>
+                — Extracts gettext string from predefined areas within the project.</li>
+            <li id="recurseThroughDirectory"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/recurseThroughDirectory.html">recurseThroughDirectory()</a>
+                — Recurses through a directory looking for files matching the $lookingFor pattern.</li>
+            <li id="saveStringToLocale"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocale.html">saveStringToLocale()</a>
+                — Saves the list of $translation to the $locale.</li>
+            <li id="saveStringToLocales"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/saveStringToLocales.html">saveStringToLocales()</a>
+                — Saves extracted strings from the project to locale mo and po files.</li>
           </ul>
           <h4>protected</h4>
           <ul>
@@ -163,12 +158,10 @@
                 — {@inheritdoc}</li>
             <li id="execute"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/execute.html">execute()</a>
                 — {@inheritdoc}</li>
-            <li id="getLocales">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/getLocales.html">getLocales()</a>
-            </li>
-            <li id="projectHasActiveLocales">
-              <a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/projectHasActiveLocales.html">projectHasActiveLocales()</a>
-            </li>
+            <li id="getLocales"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/getLocales.html">getLocales()</a>
+                — Gets the list of application Locales</li>
+            <li id="projectHasActiveLocales"><a title="Strata\Shell\Command\I18nCommand" href="../classes/Strata_Shell_Command_I18nCommand/projectHasActiveLocales.html">projectHasActiveLocales()</a>
+                — Specifies whether the project is actively using localization.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></h3>
           <h4>protected</h4>

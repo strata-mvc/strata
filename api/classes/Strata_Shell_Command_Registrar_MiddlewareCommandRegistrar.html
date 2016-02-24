@@ -62,17 +62,18 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/Registrar/MiddlewareCommandRegistrar.php.html#line7">Source</a>
+            <a href="../source/Shell/Command/Registrar/MiddlewareCommandRegistrar.php.html#line12">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Shell\Command\Registrar\</small>MiddlewareCommandRegistrar</h1>
-        <h4/>
+        <h4>Registers shell commands that may have been added by middlewares loaded by the application.</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class MiddlewareCommandRegistrar
-            {<br/><ul class="none"><li>// members</li><li>private <a href="#members">$application</a> =
+            {<br/><ul class="none"><li>// members</li><li>private <span title="Symfony\Component\Console\Application">Application</span> <a href="#members">$application</a> =
                         null;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/__construct.html">__construct</a>()
                     </li><li>public void <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/assign.html">assign</a>()
@@ -85,30 +86,27 @@
         <div class="styled members">
           <h4>private</h4>
           <ul class="members">
-            <li id="application">
-              <strong>$application</strong>
-            </li>
+            <li id="application"><strong>$application</strong>
+                —
+                <a title="Symfony\Component\Console\Application" href="../classes/Symfony_Component_Console_Application.html">Symfony\Component\Console\Application</a><br/><span class="indent">A link to a shell application to which the commands will be added.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="attemptMultipleRegistrations">
-              <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/attemptMultipleRegistrations.html">attemptMultipleRegistrations()</a>
-            </li>
-            <li id="attemptRegistration">
-              <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/attemptRegistration.html">attemptRegistration()</a>
-            </li>
+            <li id="attemptMultipleRegistrations"><a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/attemptMultipleRegistrations.html">attemptMultipleRegistrations()</a>
+                — Attempts to register an array of commands</li>
+            <li id="attemptRegistration"><a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/attemptRegistration.html">attemptRegistration()</a>
+                — Attempts the registration of a single shell command.</li>
           </ul>
           <h4>public</h4>
           <ul>
             <li id="__construct">
               <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/__construct.html">__construct()</a>
             </li>
-            <li id="assign">
-              <a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/assign.html">assign()</a>
-            </li>
+            <li id="assign"><a title="Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar" href="../classes/Strata_Shell_Command_Registrar_MiddlewareCommandRegistrar/assign.html">assign()</a>
+                — Assigns all the declared shell commands of the middlewares.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

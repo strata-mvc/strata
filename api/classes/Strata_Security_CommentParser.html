@@ -65,14 +65,14 @@
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Security\</small>CommentParser</h1>
-        <h4>Assigns callback to common WP functions that needs additional security</h4>
+        <h4>Wordpress comments, by default, allows one to inject javascript and weird HTML that may break a website.</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class CommentParser
             {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/register.html">register</a>()
-                    </li><li>protected void <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/shouldParseComments.html">shouldParseComments</a>()
-                    </li><li>public void <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment</a>()
+                    </li><li>protected boolean <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/shouldParseComments.html">shouldParseComments</a>()
+                    </li><li>public array <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment</a>()
                     </li></ul>
 
             }<br/></div>
@@ -80,18 +80,15 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="shouldParseComments">
-              <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/shouldParseComments.html">shouldParseComments()</a>
-            </li>
+            <li id="shouldParseComments"><a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/shouldParseComments.html">shouldParseComments()</a>
+                — Checks the configuration file to ensure we are expected to force Strata' comment parser.</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="preprocessComment">
-              <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment()</a>
-            </li>
-            <li id="register">
-              <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/register.html">register()</a>
-            </li>
+            <li id="preprocessComment"><a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment()</a>
+                — Converts html in the comment's content into safer HTML entities.</li>
+            <li id="register"><a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/register.html">register()</a>
+                — Registers the filter that handles comment validation if required.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

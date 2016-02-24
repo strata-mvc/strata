@@ -90,7 +90,7 @@
                         </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
                         </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
                         </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
-                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
+                        </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
                         </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation</a>()
                         </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart</a>()
                         </li><li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion</a>()
@@ -111,9 +111,9 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="cancelled">
-              <strong>$cancelled</strong>
-            </li>
+            <li id="cancelled"><strong>$cancelled</strong>
+                —
+                boolean</li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -134,52 +134,41 @@
           <ul>
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/addPossibilities.html">addPossibilities()</a>
                 — {@inheritdoc}</li>
-            <li id="end">
-              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/end.html">end()</a>
-            </li>
-            <li id="process">
-              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/process.html">process()</a>
-            </li>
-            <li id="start">
-              <a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/start.html">start()</a>
-            </li>
+            <li id="end"><a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/end.html">end()</a>
+                — {@inheritdoc}</li>
+            <li id="process"><a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/process.html">process()</a>
+                — {@inheritdoc}</li>
+            <li id="start"><a title="Strata\Router\RouteParser\Callback\CallbackRoute" href="../classes/Strata_Router_RouteParser_Callback_CallbackRoute/start.html">start()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h3>Inherited from <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a></h3>
           <h4>protected</h4>
           <ul>
-            <li id="log">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log()</a>
-            </li>
-            <li id="logRouteCancellation">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation()</a>
-            </li>
-            <li id="logRouteCompletion">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion()</a>
-            </li>
-            <li id="logRouteStart">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart()</a>
-            </li>
+            <li id="log"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/log.html">log()</a>
+                — Sends a message to the global logger.</li>
+            <li id="logRouteCancellation"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation()</a>
+                — Logs a message explaining how the route was canceled.</li>
+            <li id="logRouteCompletion"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion()</a>
+                — Logs a message warning a routing process had end.</li>
+            <li id="logRouteStart"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart()</a>
+                — Logs a message warning a routing process had begun.</li>
           </ul>
           <h4>public</h4>
           <ul>
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
                 — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
-            <li id="cancel">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
-            </li>
-            <li id="end">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
-            </li>
-            <li id="isCancelled">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled()</a>
-            </li>
+            <li id="cancel"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
+                — Cancels the current route process.</li>
+            <li id="end"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
+                — Ends the handling of the route.</li>
+            <li id="isCancelled"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled()</a>
+                — Specifies whether the current route has been canceled.</li>
             <li id="isValid"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid()</a>
                 — Verifies that the current values can be ran by the router.</li>
             <li id="process"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
                 — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
-            <li id="start">
-              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
-            </li>
+            <li id="start"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
+                — Starts the handling of the route.</li>
           </ul>
         </div>
         <h2 id="history">History</h2>

@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/ServerCommand.php.html#line20">Source</a>
+            <a href="../source/Shell/Command/ServerCommand.php.html#line21">Source</a>
           </li>
         </ul>
       </nav>
@@ -79,11 +79,11 @@
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
             {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
                         </li><li>protected string <a href="#members">$tree_end</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/execute.html">execute</a>()
-                    </li><li>private void <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile</a>()
+                    </li><li>private boolean <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>public static mixed <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/factory.html">factory</a>()
                         </li><li>public static string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/generateClassPath.html">generateClassPath</a>()
                         </li><li>public string <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand/tree.html">tree</a>()
@@ -122,19 +122,18 @@
           <ul class="members">
             <li id="input"><strong>$input</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+                <a title="Symfony\Component\Console\Input\InputInterface" href="../classes/Symfony_Component_Console_Input_InputInterface.html">Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
             <li id="output"><strong>$output</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+                <a title="Symfony\Component\Console\Output\OutputInterface" href="../classes/Symfony_Component_Console_Output_OutputInterface.html">Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="hasIniFile">
-              <a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile()</a>
-            </li>
+            <li id="hasIniFile"><a title="Strata\Shell\Command\ServerCommand" href="../classes/Strata_Shell_Command_ServerCommand/hasIniFile.html">hasIniFile()</a>
+                — Confirms whether $filename exists at the base of the project.</li>
           </ul>
           <h4>protected</h4>
           <ul>

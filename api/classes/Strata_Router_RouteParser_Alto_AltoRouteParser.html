@@ -65,13 +65,13 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Router/RouteParser/Alto/AltoRouteParser.php.html#line13">Source</a>
+            <a href="../source/Router/RouteParser/Alto/AltoRouteParser.php.html#line12">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Router\RouteParser\Alto\</small>AltoRouteParser</h1>
-        <h4>Maps wordpress urls to Strata classes</h4>
+        <h4>Maps Wordpress urls to Strata classes</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
@@ -80,21 +80,21 @@
             {<br/><ul class="none"><li>// members</li><li>private boolean <a href="#members">$registered</a> =
                         false;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Router\Router">Router</span></li><li>public <span title="Strata\Router\Strata\Router\RouteParser\Route">Route</span> <a href="#members">$route</a>;
-                        </li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/factory.html">factory</a>()
+                        </li></ul><ul class="none"><li>// methods</li><li>public static AltoRouteParser <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/factory.html">factory</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/__construct.html">__construct</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/addRoutes.html">addRoutes</a>()
                     </li><li>protected void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/registerWordpressAction.html">registerWordpressAction</a>()
-                    </li><li>protected void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/isRegistered.html">isRegistered</a>()
+                    </li><li>protected boolean <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/isRegistered.html">isRegistered</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressInit.html">onWordpressInit</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressEarlyInit.html">onWordpressEarlyInit</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\Router">Router</span></li><li>public static array <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/callback.html">callback</a>()
                         </li><li>public static AltoRouteParser <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/urlRouting.html">urlRouting</a>()
-                        </li><li>public static void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax</a>()
-                        </li><li>public static void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax</a>()
+                        </li><li>public static boolean <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax</a>()
+                        </li><li>public static boolean <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax</a>()
                         </li><li>public mixed <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/run.html">run</a>()
                         </li><li>public void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/abandonCurrent.html">abandonCurrent</a>()
-                        </li><li>public void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentController.html">getCurrentController</a>()
-                        </li><li>public void <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentAction.html">getCurrentAction</a>()
+                        </li><li>public Controller <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentController.html">getCurrentController</a>()
+                        </li><li>public string <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentAction.html">getCurrentAction</a>()
                         </li></ul>
 
             }<br/></div>
@@ -111,9 +111,9 @@
         <div class="styled members">
           <h4>private</h4>
           <ul class="members">
-            <li id="registered">
-              <strong>$registered</strong>
-            </li>
+            <li id="registered"><strong>$registered</strong>
+                —
+                boolean</li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -126,12 +126,10 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="isRegistered">
-              <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/isRegistered.html">isRegistered()</a>
-            </li>
-            <li id="registerWordpressAction">
-              <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/registerWordpressAction.html">registerWordpressAction()</a>
-            </li>
+            <li id="isRegistered"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/isRegistered.html">isRegistered()</a>
+                — Returns whether the Wordpress event has already been added.</li>
+            <li id="registerWordpressAction"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/registerWordpressAction.html">registerWordpressAction()</a>
+                — Registers the Wordpress action required to handle the routing at the correct timing.</li>
           </ul>
           <h4>public</h4>
           <ul>
@@ -139,38 +137,31 @@
               <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/__construct.html">__construct()</a>
             </li>
             <li id="addRoutes"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/addRoutes.html">addRoutes()</a>
-                — Configures the router instance</li>
-            <li id="factory">
-              <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/factory.html">factory()</a>
-            </li>
-            <li id="onWordpressEarlyInit">
-              <a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressEarlyInit.html">onWordpressEarlyInit()</a>
-            </li>
-            <li id="onWordpressInit"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressInit.html">onWordpressInit()</a>
+                — Adds possibles routes the router instance</li>
+            <li id="factory"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/factory.html">factory()</a>
+                — Returns an instance of the router instantiated with the optional $routes.</li>
+            <li id="onWordpressEarlyInit"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressEarlyInit.html">onWordpressEarlyInit()</a>
                 — The callback sent to Wordpress' 'init' action. It understands the current url context and calls the current controller's method, if applicable.</li>
+            <li id="onWordpressInit"><a title="Strata\Router\RouteParser\Alto\AltoRouteParser" href="../classes/Strata_Router_RouteParser_Alto_AltoRouteParser/onWordpressInit.html">onWordpressInit()</a>
+                — The callback sent to Wordpress' 'wp' action. It understands the current url context and calls the current controller's method, if applicable.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Router\Router" href="../classes/Strata_Router_Router.html">Strata\Router\Router</a></h3>
           <h4>public</h4>
           <ul>
-            <li id="abandonCurrent">
-              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/abandonCurrent.html">abandonCurrent()</a>
-            </li>
+            <li id="abandonCurrent"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/abandonCurrent.html">abandonCurrent()</a>
+                — Abandons the current route.</li>
             <li id="callback"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/callback.html">callback()</a>
-                — Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.</li>
-            <li id="getCurrentAction">
-              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentAction.html">getCurrentAction()</a>
-            </li>
-            <li id="getCurrentController">
-              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentController.html">getCurrentController()</a>
-            </li>
-            <li id="isAjax">
-              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax()</a>
-            </li>
-            <li id="isFrontendAjax">
-              <a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax()</a>
-            </li>
+                — Generates a dynamic and unique callback ready to use with Wordpress' add_action or add_filter calls.</li>
+            <li id="getCurrentAction"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentAction.html">getCurrentAction()</a>
+                — Returns the current action.</li>
+            <li id="getCurrentController"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/getCurrentController.html">getCurrentController()</a>
+                — Returns the current controller object.</li>
+            <li id="isAjax"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isAjax.html">isAjax()</a>
+                — Returns whether the current request is considered being called as an Ajax query.</li>
+            <li id="isFrontendAjax"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/isFrontendAjax.html">isFrontendAjax()</a>
+                — Attempts to decide if the current Ajax request is happening on the frontend instead of the backend.</li>
             <li id="run"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/run.html">run()</a>
-                — Attemps to run the currently loaded route object.</li>
+                — Attempts to run the currently loaded route object.</li>
             <li id="urlRouting"><a title="Strata\Router\Router" href="../classes/Strata_Router_Router/urlRouting.html">urlRouting()</a>
                 — Generates a parser for URL based rules, as one may be used to in the world of Model View Controller programming.</li>
           </ul>

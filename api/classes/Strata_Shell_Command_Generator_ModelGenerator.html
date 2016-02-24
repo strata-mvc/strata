@@ -65,14 +65,15 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/Generator/ModelGenerator.php.html#line8">Source</a>
+            <a href="../source/Shell/Command/Generator/ModelGenerator.php.html#line12">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Shell\Command\Generator\</small>ModelGenerator</h1>
-        <h4/>
+        <h4>Generates a Strata model</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class ModelGenerator
                 extends <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">GeneratorBase</a>
@@ -108,15 +109,15 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="classname">
-              <strong>$classname</strong>
-            </li>
+            <li id="classname"><strong>$classname</strong>
+                —
+                string</li>
             <li id="command"><strong>$command</strong>
                 —
                 <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></li>
-            <li id="keyword">
-              <strong>$keyword</strong>
-            </li>
+            <li id="keyword"><strong>$keyword</strong>
+                —
+                string</li>
             <li id="writer"><strong>$writer</strong>
                 —
                 <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">Strata\Shell\Command\Generator\ClassWriter</a></li>
@@ -126,33 +127,25 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="generateEntity">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateEntity.html">generateEntity()</a>
-            </li>
-            <li id="generateEntityTest">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateEntityTest.html">generateEntityTest()</a>
-            </li>
-            <li id="generateModel">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateModel.html">generateModel()</a>
-            </li>
-            <li id="generateTest">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateTest.html">generateTest()</a>
-            </li>
-            <li id="getExtends">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/getExtends.html">getExtends()</a>
-            </li>
-            <li id="getScaffoldMessage">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/getScaffoldMessage.html">getScaffoldMessage()</a>
-            </li>
+            <li id="generateEntity"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateEntity.html">generateEntity()</a>
+                — Configures the class writer and makes it generate the accompanying model entity required by the object type.</li>
+            <li id="generateEntityTest"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateEntityTest.html">generateEntityTest()</a>
+                — Configures the class writer and makes it generate the test classes required by the accompanying model entity.</li>
+            <li id="generateModel"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateModel.html">generateModel()</a>
+                — Configures the class writer and makes it generate the classes required by the object type.</li>
+            <li id="generateTest"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generateTest.html">generateTest()</a>
+                — Configures the class writer and makes it generate the test classes required by the object type.</li>
+            <li id="getExtends"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/getExtends.html">getExtends()</a>
+                — {@inheritdoc}</li>
+            <li id="getScaffoldMessage"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/getScaffoldMessage.html">getScaffoldMessage()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="applyOptions">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/applyOptions.html">applyOptions()</a>
-            </li>
-            <li id="generate">
-              <a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generate.html">generate()</a>
-            </li>
+            <li id="applyOptions"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/applyOptions.html">applyOptions()</a>
+                — {@inheritdoc}</li>
+            <li id="generate"><a title="Strata\Shell\Command\Generator\ModelGenerator" href="../classes/Strata_Shell_Command_Generator_ModelGenerator/generate.html">generate()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h3>Inherited from <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">Strata\Shell\Command\Generator\GeneratorBase</a></h3>
           <h4>protected</h4>

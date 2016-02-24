@@ -56,6 +56,9 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
+            <a href="#tasks">Tasks</a>
+          </li>
+          <li>
             <a href="#members">Members</a>
           </li>
           <li>
@@ -65,49 +68,48 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/View/Helper/FormHelper.php.html#line9">Source</a>
+            <a href="../source/View/Helper/FormHelper.php.html#line14">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\View\Helper\</small>FormHelper</h1>
-        <h4/>
-        <p/>
+        <h4>The FormHelper is an objects that helps create forms in the view files.</h4>
+        <p>It automates the handling of ModelEntities.</p>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class FormHelper
                 extends <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Helper</a>
-            {<br/><ul class="none"><li>// members</li><li>private <a href="#members">$request</a> =
+            {<br/><ul class="none"><li>// members</li><li>private <span title="Strata\View\Helper\Strata\Controller\Request">Request</span> <a href="#members">$request</a> =
                         null;
-                    </li><li>protected array <a href="#members">$configuration</a> =
-                        ;
-                    </li><li>protected <a href="#members">$associatedEntity</a> =
+                    </li><li>protected <span title="Strata\Model\ModelEntity">ModelEntity</span> <a href="#members">$associatedEntity</a> =
                         null;
-                    </li><li>public <a href="#members">$validationErrors</a> =
+                    </li><li>public array <a href="#members">$validationErrors</a> =
                         null;
                     </li><li>public array <a href="#members">$keys</a> =
                         ;
-                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input</a>()
-                    </li><li>public void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonceTag.html">generateNonceTag</a>()
-                    </li><li>protected void <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getNonceSalt.html">getNonceSalt</a>()
+                    </li></ul><ul class="none"><li>// methods</li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input</a>()
+                    </li><li>public string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonceTag.html">generateNonceTag</a>()
+                    </li><li>protected string <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getNonceSalt.html">getNonceSalt</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\View\Helper\Helper">Helper</span></li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                         </li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getFactoryScopes.html">getFactoryScopes</a>()
                         </li><li>public static void <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getClassNameSuffix.html">getClassNameSuffix</a>()
@@ -139,122 +141,111 @@
             </li>
           </ul>
         </div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="nummeric">14+</td>
+            <td>Complete the integration of the configurable trait</td>
+          </tr>
+          <tr>
+            <td class="nummeric">+</td>
+            <td>Move to the configurable array</td>
+          </tr>
+        </table>
         <h2 id="members">Members</h2>
         <div class="styled members">
           <h4>private</h4>
           <ul class="members">
-            <li id="request">
-              <strong>$request</strong>
-            </li>
+            <li id="request"><strong>$request</strong>
+                —
+                <a title="Strata\View\Helper\Strata\Controller\Request" href="../classes/Strata_View_Helper_Strata_Controller_Request.html">Strata\View\Helper\Strata\Controller\Request</a></li>
           </ul>
           <h4>protected</h4>
           <ul class="members">
-            <li id="associatedEntity">
-              <strong>$associatedEntity</strong>
-            </li>
-            <li id="configuration">
-              <strong>$configuration</strong>
-            </li>
+            <li id="associatedEntity"><strong>$associatedEntity</strong>
+                —
+                <a title="Strata\Model\ModelEntity" href="../classes/Strata_Model_ModelEntity.html">Strata\Model\ModelEntity</a></li>
             <li id="configuration"><strong>$configuration</strong>
                 —
                 array<br/><span class="indent">The configuration cache.</span></li>
           </ul>
           <h4>public</h4>
           <ul class="members">
-            <li id="keys">
-              <strong>$keys</strong>
-            </li>
-            <li id="validationErrors">
-              <strong>$validationErrors</strong>
-            </li>
+            <li id="keys"><strong>$keys</strong>
+                —
+                array</li>
+            <li id="validationErrors"><strong>$validationErrors</strong>
+                —
+                array</li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="arrayToHtmlAttributes">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes()</a>
-            </li>
-            <li id="generateCheckbox">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox()</a>
-            </li>
-            <li id="generateHidden">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden()</a>
-            </li>
-            <li id="generateLabel">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel()</a>
-            </li>
-            <li id="generateNonceTag">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonceTag.html">generateNonceTag()</a>
-            </li>
-            <li id="generateRadio">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio()</a>
-            </li>
-            <li id="generateSelect">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect()</a>
-            </li>
-            <li id="generateTextarea">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea()</a>
-            </li>
-            <li id="generateTextinput">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput()</a>
-            </li>
-            <li id="getCurrentValue">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue()</a>
-            </li>
-            <li id="getNonceSalt">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getNonceSalt.html">getNonceSalt()</a>
-            </li>
-            <li id="parseFormConfiguration">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration()</a>
-            </li>
-            <li id="removeBrackets">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets()</a>
-            </li>
+            <li id="arrayToHtmlAttributes"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/arrayToHtmlAttributes.html">arrayToHtmlAttributes()</a>
+                — Generates a html attributes from the $values hash.</li>
+            <li id="generateCheckbox"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateCheckbox.html">generateCheckbox()</a>
+                — Generates a checkbox field</li>
+            <li id="generateHidden"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateHidden.html">generateHidden()</a>
+                — Generates an hidden field</li>
+            <li id="generateLabel"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateLabel.html">generateLabel()</a>
+                — Generates a field label</li>
+            <li id="generateNonceTag"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateNonceTag.html">generateNonceTag()</a>
+                — Generates a Wordpress Nonce tag</li>
+            <li id="generateRadio"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateRadio.html">generateRadio()</a>
+                — Generates a radio button</li>
+            <li id="generateSelect"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateSelect.html">generateSelect()</a>
+                — Generates a select field</li>
+            <li id="generateTextarea"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextarea.html">generateTextarea()</a>
+                — Generates a textarea</li>
+            <li id="generateTextinput"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateTextinput.html">generateTextinput()</a>
+                — Generates a basic text field</li>
+            <li id="getCurrentValue"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getCurrentValue.html">getCurrentValue()</a>
+                — Attemps to find the current value of a field named $key based on the current request type.</li>
+            <li id="getNonceSalt"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/getNonceSalt.html">getNonceSalt()</a>
+                — Generates a nonce salt</li>
+            <li id="parseFormConfiguration"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/parseFormConfiguration.html">parseFormConfiguration()</a>
+                — Parses the supplied form configuration and populates the missing default values.</li>
+            <li id="removeBrackets"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/removeBrackets.html">removeBrackets()</a>
+                — Goes from HTML post names to dot notation values</li>
           </ul>
           <h4>public</h4>
           <ul>
-            <li id="button">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button()</a>
-            </li>
-            <li id="create">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create()</a>
-            </li>
-            <li id="end">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end()</a>
-            </li>
-            <li id="generateInlineErrors">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors()</a>
-            </li>
-            <li id="honeypot">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot()</a>
-            </li>
-            <li id="id">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id()</a>
-            </li>
-            <li id="input">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input()</a>
-            </li>
-            <li id="name">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name()</a>
-            </li>
-            <li id="submit">
-              <a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit()</a>
-            </li>
+            <li id="button"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/button.html">button()</a>
+                — Generates a button</li>
+            <li id="create"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/create.html">create()</a>
+                — Opens up a form tag</li>
+            <li id="end"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/end.html">end()</a>
+                — Closes a form tag</li>
+            <li id="generateInlineErrors"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/generateInlineErrors.html">generateInlineErrors()</a>
+                — Generates the inline error messages for a field named $postName</li>
+            <li id="honeypot"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/honeypot.html">honeypot()</a>
+                — Generates a honeypot field named $name.</li>
+            <li id="id"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/id.html">id()</a>
+                — Generates an id from a field name</li>
+            <li id="input"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/input.html">input()</a>
+                — Generates an input field</li>
+            <li id="name"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/name.html">name()</a>
+                — Generates a valid field name</li>
+            <li id="submit"><a title="Strata\View\Helper\FormHelper" href="../classes/Strata_View_Helper_FormHelper/submit.html">submit()</a>
+                — Generates a submit button</li>
           </ul>
           <h3>Inherited from <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper.html">Strata\View\Helper\Helper</a></h3>
           <h4>public</h4>
           <ul>
-            <li id="getClassNameSuffix">
-              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getClassNameSuffix.html">getClassNameSuffix()</a>
-            </li>
-            <li id="getFactoryScopes">
-              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getFactoryScopes.html">getFactoryScopes()</a>
-            </li>
-            <li id="getNamespaceStringInStrata">
-              <a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
-            </li>
+            <li id="getClassNameSuffix"><a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — {@inheritdoc}</li>
+            <li id="getFactoryScopes"><a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getFactoryScopes.html">getFactoryScopes()</a>
+                — {@inheritdoc}</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\View\Helper\Helper" href="../classes/Strata_View_Helper_Helper/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
           <h4>public</h4>

@@ -90,12 +90,12 @@
                         ;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
                         </li><li>protected string <a href="#members">$tree_end</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/execute.html">execute</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair</a>()
-                    </li><li>protected [type] <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/psr2format.html">psr2format</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/psr2format.html">psr2format</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createDirectoryStructure.html">createDirectoryStructure</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/createStarterFiles.html">createStarterFiles</a>()
                     </li><li>protected null <a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/flagFailing.html">flagFailing</a>()
@@ -133,7 +133,7 @@
           </thead>
           <tr>
             <td class="nummeric">+</td>
-            <td>This needs to be a composer dependency.</td>
+            <td>This list is not up to date (the test bootstrappers for one thing).</td>
           </tr>
         </table>
         <h2 id="members">Members</h2>
@@ -163,10 +163,10 @@
           <ul class="members">
             <li id="input"><strong>$input</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+                <a title="Symfony\Component\Console\Input\InputInterface" href="../classes/Symfony_Component_Console_Input_InputInterface.html">Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
             <li id="output"><strong>$output</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+                <a title="Symfony\Component\Console\Output\OutputInterface" href="../classes/Symfony_Component_Console_Output_OutputInterface.html">Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
@@ -186,7 +186,7 @@
             <li id="installDone"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/installDone.html">installDone()</a>
                 — Presents a summary of the operation to the user.</li>
             <li id="psr2format"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/psr2format.html">psr2format()</a>
-                — Formats Strata files in the PSR2 format using</li>
+                — Formats Strata files in the PSR2 format using phpcbf</li>
             <li id="repair"><a title="Strata\Shell\Command\EnvCommand" href="../classes/Strata_Shell_Command_EnvCommand/repair.html">repair()</a>
                 — Installs Strata files and directories</li>
           </ul>

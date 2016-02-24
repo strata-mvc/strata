@@ -68,7 +68,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Shell/Command/DBCommand.php.html#line22">Source</a>
+            <a href="../source/Shell/Command/DBCommand.php.html#line23">Source</a>
           </li>
         </ul>
       </nav>
@@ -82,12 +82,12 @@
                 extends <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">StrataCommand</a>
             {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span></li><li>protected string <a href="#members">$tree_line</a>;
                         </li><li>protected string <a href="#members">$tree_end</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
-                        </li><li>public <span title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Input\InputInterface">InputInterface</span> <a href="#members">$input</a>;
+                        </li><li>public <span title="Symfony\Component\Console\Output\OutputInterface">OutputInterface</span> <a href="#members">$output</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/configure.html">configure</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/execute.html">execute</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/createDB.html">createDB</a>()
-                    </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath</a>()
+                    </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/dumpCurrentDB.html">dumpCurrentDB</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/importSqlFile.html">importSqlFile</a>()
                     </li><li>protected string <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getSqlFile.html">getSqlFile</a>()
@@ -124,11 +124,11 @@
             </tr>
           </thead>
           <tr>
-            <td class="nummeric">111+</td>
+            <td class="nummeric">119+</td>
             <td>Ensure this works in and outside of Vagrant.</td>
           </tr>
           <tr>
-            <td class="nummeric">124+</td>
+            <td class="nummeric">132+</td>
             <td>Ensure this works in an outside of Vagrant.</td>
           </tr>
         </table>
@@ -147,10 +147,10 @@
           <ul class="members">
             <li id="input"><strong>$input</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Input_InputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
+                <a title="Symfony\Component\Console\Input\InputInterface" href="../classes/Symfony_Component_Console_Input_InputInterface.html">Symfony\Component\Console\Input\InputInterface</a><br/><span class="indent">A reference to the current input interface object</span></li>
             <li id="output"><strong>$output</strong>
                 —
-                <a title="Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface" href="../classes/Strata_Shell_Command_Symfony_Component_Console_Output_OutputInterface.html">Strata\Shell\Command\Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
+                <a title="Symfony\Component\Console\Output\OutputInterface" href="../classes/Symfony_Component_Console_Output_OutputInterface.html">Symfony\Component\Console\Output\OutputInterface</a><br/><span class="indent">A reference to the current output interface object</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
@@ -159,9 +159,8 @@
           <ul>
             <li id="configure"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/configure.html">configure()</a>
                 — {@inheritdoc}</li>
-            <li id="createDB">
-              <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/createDB.html">createDB()</a>
-            </li>
+            <li id="createDB"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/createDB.html">createDB()</a>
+                — Creates the project's database.</li>
             <li id="dumpCurrentDB"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/dumpCurrentDB.html">dumpCurrentDB()</a>
                 — Dumps the current environment's database to an .sql file in /db/</li>
             <li id="execute"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/execute.html">execute()</a>
@@ -170,9 +169,8 @@
                 — Returns the most recent file in $path.</li>
             <li id="getSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getSqlFile.html">getSqlFile()</a>
                 — Gets the working .sql file either from an option passed to the command or by returning the most recent sql file in /db/.</li>
-            <li id="getWpCliPath">
-              <a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath()</a>
-            </li>
+            <li id="getWpCliPath"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/getWpCliPath.html">getWpCliPath()</a>
+                — Returns the path of wp-cli within the project.</li>
             <li id="importSqlFile"><a title="Strata\Shell\Command\DBCommand" href="../classes/Strata_Shell_Command_DBCommand/importSqlFile.html">importSqlFile()</a>
                 — Imports an .sql file to the current environment's database.</li>
           </ul>
