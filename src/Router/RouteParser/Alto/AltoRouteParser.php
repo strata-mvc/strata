@@ -1,18 +1,22 @@
 <?php
+
 namespace Strata\Router\RouteParser\Alto;
 
 use Strata\Router\Router;
 use Strata\Router\RouteParser\Alto\AltoRoute;
 
 /**
- * Maps wordpress urls to Strata classes
- *
- * @package Strata.Router
+ * Maps Wordpress urls to Strata classes
  * @link    http://strata.francoisfaubert.com/docs/routes/
  */
 class AltoRouteParser extends Router
 {
-
+    /**
+     * Returns an instance of the router instantiated
+     * with the optional $routes.
+     * @param  array  $routes (optional)
+     * @return AltoRouteParser
+     */
     public static function factory($routes = array())
     {
         $router = new self();
@@ -22,6 +26,9 @@ class AltoRouteParser extends Router
         return $router;
     }
 
+    /**
+     * @var boolean Flag used to prevent routes from being registered twice.
+     */
     private $registered = false;
 
     function __construct()
@@ -30,7 +37,8 @@ class AltoRouteParser extends Router
     }
 
     /**
-     * Configures the router instance
+     * Adds possibles routes the router instance
+     * @param array $routes
      */
     public function addRoutes($routes = array())
     {
@@ -41,6 +49,10 @@ class AltoRouteParser extends Router
         $this->route->addPossibilities($routes);
     }
 
+    /**
+     * Registers the Wordpress action required to
+     * handle the routing at the correct timing.
+     */
     protected function registerWordpressAction()
     {
         if (function_exists('add_action')) {
@@ -54,13 +66,18 @@ class AltoRouteParser extends Router
         $this->registered = true;
     }
 
+    /**
+     * Returns whether the Wordpress event has
+     * already been added.
+     * @return boolean
+     */
     protected function isRegistered()
     {
         return (bool)$this->registered;
     }
 
     /**
-     * The callback sent to Wordpress' 'init' action. It understands the current
+     * The callback sent to Wordpress' 'wp' action. It understands the current
      * url context and calls the current controller's method, if applicable.
      */
     public function onWordpressInit()
@@ -68,6 +85,10 @@ class AltoRouteParser extends Router
         $this->run();
     }
 
+    /**
+     * The callback sent to Wordpress' 'init' action. It understands the current
+     * url context and calls the current controller's method, if applicable.
+     */
     public function onWordpressEarlyInit()
     {
         $this->onWordpressInit();

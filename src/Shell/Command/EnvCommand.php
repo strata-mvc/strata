@@ -1,9 +1,9 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Shell\Command\StrataCommand;
 use Strata\Strata;
-
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,14 +23,12 @@ class EnvCommand extends StrataCommand
     /**
      * A flag that is maintain through a process to advise the
      * user should something happen.
-     *
      * @var boolean
      */
     protected $seemsFine = true;
 
     /**
      * Strata's directory structure
-     *
      * @var array
      */
     protected $directoryStructure = array(
@@ -58,21 +56,20 @@ class EnvCommand extends StrataCommand
 
     /**
      * The source URL for stater app files
-     *
-     * @todo This needs to be a composer dependency.
      * @var  string
      */
     protected $srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
 
     /**
      * Strata's empty project files and their destination.
-     *
+     * @todo This list is not up to date (the test bootstrappers for one thing).
      * @var array
      */
     protected $starterFiles = array(
         'src/Controller/AppController.php' => 'src/Controller/AppController.php',
         'src/Model/AppModel.php'      => 'src/Model/AppModel.php',
         'src/Model/AppCustomPostType.php'      => 'src/Model/AppCustomPostType.php',
+        'src/Model/Entity/AppModelEntity.php'      => 'src/Model/Entity/AppModelEntity.php',
         'src/View/Helper/AppHelper.php'     => 'src/View/Helper/AppHelper.php',
         'config/strata.php'        => 'config/strata.php',
         'web/app/mu-plugins/strata-bootstraper.php'        => 'web/app/mu-plugins/strata-bootstraper.php',
@@ -129,8 +126,7 @@ class EnvCommand extends StrataCommand
 
     /**
      * Formats Strata files in the PSR2 format
-     * using
-     * @return [type] [description]
+     * using phpcbf
      */
     protected function psr2format()
     {
@@ -170,7 +166,6 @@ class EnvCommand extends StrataCommand
 
         $this->nl();
     }
-
 
     /**
      * Adds the starter file to a new project. Does not overwrite existing

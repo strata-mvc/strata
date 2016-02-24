@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
@@ -18,6 +19,12 @@ use Gettext\Translations;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+/**
+ * Automates Strata's localization actions.
+ *
+ * Intended use include:
+ *     <code>./strata i18n extract</code>
+ */
 class I18nCommand extends StrataCommand
 {
     /**
@@ -55,16 +62,29 @@ class I18nCommand extends StrataCommand
         $this->shutdown();
     }
 
+    /**
+     * Gets the list of application Locales
+     * @return array A list of Locale objects
+     */
     protected function getLocales()
     {
         return Strata::app()->i18n->getLocales();
     }
 
+    /**
+     * Specifies whether the project is actively using
+     * localization.
+     * @return boolean
+     */
     protected function projectHasActiveLocales()
     {
         return Strata::app()->i18n->hasActiveLocales();
     }
 
+    /**
+     * Confirms the directories required to build the mo and po files
+     * exist.
+     */
     private function ensureFolderStructure()
     {
         $localeDir = Strata::getLocalePath();
@@ -73,6 +93,10 @@ class I18nCommand extends StrataCommand
         }
     }
 
+    /**
+     * Saves extracted strings from the project to
+     * locale mo and po files.
+     */
     private function saveStringToLocales()
     {
         $tanslation = $this->extractGettextStrings();
@@ -82,6 +106,11 @@ class I18nCommand extends StrataCommand
         }
     }
 
+    /**
+     * Saves the list of $translation to the $locale.
+     * @param  Locale       $locale
+     * @param  Translations $translation
+     */
     private function saveStringToLocale(Locale $locale, Translations $translation)
     {
         $poFilename = $locale->getPoFilePath();
@@ -111,6 +140,10 @@ class I18nCommand extends StrataCommand
         $translation->toMoFile($locale->getMoFilePath(WP_ENV));
     }
 
+    /**
+     * Extracts gettext string from predefined areas within the project.
+     * @return Translation
+     */
     private function extractGettextStrings()
     {
         $translation = null;
@@ -137,6 +170,13 @@ class I18nCommand extends StrataCommand
         return $translation;
     }
 
+    /**
+     * Recurses through a directory looking for files matching the $lookingFor pattern.
+     * Returns the extracted string from these matches.
+     * @param  string $baseDir
+     * @param  string $lookingFor
+     * @return array
+     */
     private function recurseThroughDirectory($baseDir, $lookingFor = "/(.*)\.php$/i")
     {
         $results = array();
@@ -153,6 +193,11 @@ class I18nCommand extends StrataCommand
         return $results;
     }
 
+    /**
+     * Extracts gettext string from $filename
+     * @param  string $filename
+     * @return array
+     */
     private function extractFrom($filename)
     {
         return WpCode::fromFile($filename);

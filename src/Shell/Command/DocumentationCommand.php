@@ -1,9 +1,9 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
-
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -278,12 +278,11 @@ class DocumentationCommand extends StrataCommand
 
     /**
      * This is a lightly modified copy of Wordpress get_file_data() found in wp-includes/functions.php.
-     * Because we don't load Wordpress when executing Strata Shell, we don't have access to it.
-     * @todo  Allow a way for Strata to load Wordpress on demand.
-     * @param  [type] $file            [description]
-     * @param  [type] $default_headers [description]
-     * @param  string $context         [description]
-     * @return [type]                  [description]
+     * Because we don't load Wordpress when executing Strata Shell, we don't have access to that function.
+     * @param  string $file
+     * @param  array $default_headers
+     * @param  string $context
+     * @return array
      */
     protected function getFileData($file, $all_headers = array(), $context = '')
     {

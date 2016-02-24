@@ -1,10 +1,6 @@
 <?php
-/**
- */
-namespace Strata\Shell\Command;
 
-use Strata\Utility\Inflector;
-use Strata\Shell\Command\StrataCommand;
+namespace Strata\Shell\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,6 +10,8 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 use InvalidArgumentException;
 
+use Strata\Utility\Inflector;
+use Strata\Shell\Command\StrataCommand;
 use Strata\Shell\Command\Generator\ControllerGenerator;
 use Strata\Shell\Command\Generator\ModelGenerator;
 use Strata\Shell\Command\Generator\FormGenerator;
@@ -32,8 +30,6 @@ use Strata\Shell\Command\Generator\RouteGenerator;
  *     <code>bin/strata generate controller User</code>
  *     <code>bin/strata generate customposttype Task</code>
  *     ...
- *
- * @todo Route generation needs to be re-factored
  */
 class GenerateCommand extends StrataCommand
 {
@@ -79,6 +75,12 @@ class GenerateCommand extends StrataCommand
         $this->shutdown();
     }
 
+    /**
+     * Returns a generator object based on $type.
+     * @param  string $type
+     * @return Strata\Shell\Command\Generator\GeneratorBase
+     * @throws InvalidArgumentException
+     */
     protected function getGenerator($type)
     {
         switch ($type) {
@@ -103,9 +105,6 @@ class GenerateCommand extends StrataCommand
 
             case "command":
                 return new CommandGenerator($this);
-
-            // case "route":
-            //     return new RouteGenerator($this);
         }
 
         throw new InvalidArgumentException("That is not a valid command.");

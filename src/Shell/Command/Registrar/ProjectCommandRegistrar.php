@@ -1,29 +1,43 @@
 <?php
+
 namespace Strata\Shell\Command\Registrar;
 
 use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
+use Symfony\Component\Console\Application;
 
+/**
+ * Registers commands declared at the project level.
+ */
 class ProjectCommandRegistrar
 {
+    /**
+     * A link to a shell application to which
+     * the commands will be added.
+     * @var Application
+     */
     private $application = null;
-    private $validProjectCommands = array();
 
-    function __construct(\Symfony\Component\Console\Application $application)
+    function __construct(Application $application)
     {
         $this->application = $application;
     }
 
+    /**
+     * Assigns all the declared project commands.
+     */
     public function assign()
     {
         $cmdPath = Strata::getCommandPath();
         if (is_dir($cmdPath)) {
             $this->parseDirectoryForCommandFiles($cmdPath);
         }
-
-        return $this->validProjectCommands;
     }
 
+    /**
+     * Parsed the $path for available Strata shell commands
+     * @param  string $path
+     */
     private function parseDirectoryForCommandFiles($path)
     {
         foreach (glob($path . "*Command.php") as $filename) {
@@ -33,6 +47,10 @@ class ProjectCommandRegistrar
         }
     }
 
+    /**
+     * Attempts the registration of a single shell command.
+     * @param  string $name
+     */
     private function attemptRegistration($name)
     {
         try {

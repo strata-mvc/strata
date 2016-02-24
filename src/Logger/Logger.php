@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Logger;
 
 use Strata\Strata;

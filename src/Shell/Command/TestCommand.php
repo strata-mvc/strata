@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
@@ -45,14 +46,18 @@ class TestCommand extends StrataCommand
     }
 
     /**
-     * Return the path to the Apigen binary
-     * @return string Apigen binary path
+     * Returns the path to the phpunit binary
+     * @return string
      */
     protected function getPhpunitBin()
     {
         return "vendor/bin/phpunit";
     }
 
+    /**
+     * Prepares the arguments that can be sent to phpunit
+     * @return string
+     */
     protected function preparePhpunitArguments()
     {
         $arguments = array("--colors");
@@ -68,11 +73,19 @@ class TestCommand extends StrataCommand
         return implode(" ", $arguments);
     }
 
+    /**
+     * Confirms the presence of a phpunit bootstrap file
+     * @return boolean
+     */
     private function hasBootstrapFile()
     {
         return file_exists($this->getBootstrapFile());
     }
 
+    /**
+     * Returns the path to where phpunit's bootstrap file should be.
+     * @return string
+     */
     protected function getBootstrapFile()
     {
         return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "strata-test-bootstraper.php"));

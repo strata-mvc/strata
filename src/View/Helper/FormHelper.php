@@ -6,20 +6,43 @@ use Strata\Model\ModelEntity;
 use Strata\Strata;
 use Exception;
 
+/**
+ * The FormHelper is an objects that helps create forms in the view files.
+ * It automates the handling of ModelEntities.
+ * @todo Complete the integration of the configurable trait
+ */
 class FormHelper extends Helper
 {
+    /**
+     * @var Strata\Controller\Request The active request
+     */
     private $request = null;
 
-    protected $configuration = array();
+    /**
+     * @var ModelEntity The model entity being edited by the form
+     */
     protected $associatedEntity = null;
 
+    /**
+     * @var array Exposes the validation errors in the form
+     */
     public $validationErrors = null;
 
+    /**
+     * @var array Exposes basic object configuration
+     * @todo Move to the configurable array
+     */
     public $keys = array(
         'POST_KEY_SUBMIT'       => "strata-submit",
         'POST_WRAP'             => "data"
     );
 
+    /**
+     * Opens up a form tag
+     * @param  mixed   ModelEntity or null
+     * @param  array  $options
+     * @return string
+     */
     public function create($mixed = null, $options = array())
     {
         $this->request = Strata::app()->router->getCurrentController()->request;
@@ -58,11 +81,22 @@ class FormHelper extends Helper
         return sprintf("<form %s>\n%s\n%s\n", $htmlAttributes, $nonceHidden, $nonceTag);
     }
 
+    /**
+     * Closes a form tag
+     * @return string
+     */
     public function end()
     {
         return "</form>";
     }
 
+    /**
+     * Generates a honeypot field named $name.
+     * Be wary of the name chosen as browser autocompleters may
+     * fill in the form (themselves failing the honeypot test).
+     * @param  string $name
+     * @return string
+     */
     public function honeypot($name)
     {
         $input = $this->input($name, array("name" => $name));
@@ -78,6 +112,11 @@ class FormHelper extends Helper
         return sprintf('<div class="validation" style="%s">%s</div>', implode("; ", $wrapperStyles), $input);
     }
 
+    /**
+     * Generates an id from a field name
+     * @param  string $name
+     * @return string
+     */
     public function id($name)
     {
         $keepIdx = preg_replace('/\[(\d+)\]/', "_$1", $name);
@@ -94,6 +133,11 @@ class FormHelper extends Helper
         return $this->keys['POST_WRAP'] . "_" . $clean;
     }
 
+    /**
+     * Generates a valid field name
+     * @param  string $name
+     * @return string
+     */
     public function name($name)
     {
         $prefix = !is_null($this->associatedEntity) && $this->associatedEntity->isSupportedAttribute($name) ?
@@ -109,12 +153,23 @@ class FormHelper extends Helper
         return $prefix . '[' . $name . ']';
     }
 
+    /**
+     * Generates a submit button
+     * @param  array  $options
+     * @return string
+     */
     public function submit($options = array())
     {
         $options["type"] = "submit";
         return $this->button($this->keys['POST_KEY_SUBMIT'], $options);
     }
 
+    /**
+     * Generates a button
+     * @param  string $name
+     * @param  array  $options
+     * @return string
+     */
     public function button($name, $options = array())
     {
         $options += array(
@@ -130,6 +185,12 @@ class FormHelper extends Helper
         return sprintf('<button %s>%s</button>', $this->arrayToHtmlAttributes($options), $label);
     }
 
+    /**
+     * Generates an input field
+     * @param  string $name
+     * @param  array  $options
+     * @return string
+     */
     public function input($name, $options = array())
     {
         $options += array(
@@ -175,6 +236,11 @@ class FormHelper extends Helper
         }
     }
 
+    /**
+     * Generates the inline error messages for a field named $postName
+     * @param  string $postName
+     * @return string
+     */
     public function generateInlineErrors($postName)
     {
         if (array_key_exists($postName, (array)$this->validationErrors)) {
@@ -184,14 +250,20 @@ class FormHelper extends Helper
             }
             return $errorTag . '</ul>';
         }
+
         return "";
     }
 
+    /**
+     * Parses the supplied form configuration and populates
+     * the missing default values.
+     * @param  array $options
+     * @return string
+     */
     protected function parseFormConfiguration($options)
     {
         $options += array(
             "type" => "POST",
-            "hasSteps" => false,
             "action" => $_SERVER['REQUEST_URI'],
             "nonce" => null
         );
@@ -206,6 +278,12 @@ class FormHelper extends Helper
         return $options;
     }
 
+    /**
+     * Generates a textarea
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateTextarea($options, $currentValue = null)
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
@@ -216,6 +294,12 @@ class FormHelper extends Helper
         return sprintf('<textarea %s>%s</textarea>', $this->arrayToHtmlAttributes($options), stripslashes($value));
     }
 
+    /**
+     * Generates a select field
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateSelect($options, $currentValue = null)
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
@@ -234,11 +318,23 @@ class FormHelper extends Helper
         return sprintf('<select %s>%s</select>', $this->arrayToHtmlAttributes($options), $optionsHtml);
     }
 
+    /**
+     * Generates a radio button
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateRadio($options, $currentValue = null)
     {
         return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked="checked"' : '');
     }
 
+    /**
+     * Generates a checkbox field
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateCheckbox($options, $currentValue = null)
     {
         $hidden = sprintf('<input type="hidden" name="%s" value="0">', $options['name']);
@@ -246,6 +342,12 @@ class FormHelper extends Helper
         return $hidden . $chk;
     }
 
+    /**
+     * Generates an hidden field
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateHidden($options, $currentValue)
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
@@ -268,6 +370,12 @@ class FormHelper extends Helper
         }
     }
 
+    /**
+     * Generates a basic text field
+     * @param  array $options
+     * @param  string $currentValue (Optional)
+     * @return string
+     */
     protected function generateTextinput($options, $currentValue = null)
     {
         $value = is_null($currentValue) ? $options['value'] : $currentValue;
@@ -285,11 +393,21 @@ class FormHelper extends Helper
         return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);
     }
 
+    /**
+     * Generates a field label
+     * @param  array $options
+     * @return string
+     */
     protected function generateLabel($options)
     {
         return sprintf('<label for="%s">%s</label>', $options['id'], $options['label']);
     }
 
+    /**
+     * Generates a html attributes from the $values hash.
+     * @param  array $options
+     * @return string
+     */
     protected function arrayToHtmlAttributes(array $values)
     {
         $output = "";
@@ -302,11 +420,23 @@ class FormHelper extends Helper
         return $output;
     }
 
+    /**
+     * Goes from HTML post names to dot notation values
+     * @param  string $key
+     * @param  string $replacement (Optional)
+     * @return string
+     */
     protected function removeBrackets($key, $replacement = '.')
     {
         return str_replace(array('[', ']'), array($replacement, ''), $key);
     }
 
+    /**
+     * Attemps to find the current value of a field named $key based on the
+     * current request type.
+     * @param  string $key
+     * @return string
+     */
     protected function getCurrentValue($key)
     {
         $key = $this->removeBrackets($key);
@@ -328,11 +458,20 @@ class FormHelper extends Helper
         }
     }
 
+    /**
+     * Generates a Wordpress Nonce tag
+     * @param  string $salt
+     * @return string
+     */
     protected function generateNonceTag($salt)
     {
         return wp_nonce_field($salt, "authenticity_token", true, false);
     }
 
+    /**
+     * Generates a nonce salt
+     * @return string
+     */
     protected function getNonceSalt()
     {
         // Allow users to set their own nonce

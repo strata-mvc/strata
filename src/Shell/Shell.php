@@ -1,8 +1,8 @@
 <?php
+
 namespace Strata\Shell;
 
 use Symfony\Component\Console\Application;
-
 use Strata\Strata;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
 use Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar;
@@ -15,7 +15,7 @@ class Shell
     /**
      * Returns a application allowing for known commands.
      * @todo  Account for commands to be loaded by the project namespace (ex: for cron commands).
-     * @return Symfony\Component\Console\Application The command line application
+     * @return Application The command line application
      */
     public static function getApplication()
     {

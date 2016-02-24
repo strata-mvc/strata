@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\View\Helper;
 
 use Strata\Core\StrataObjectTrait;
@@ -9,15 +10,20 @@ use Strata\Core\StrataConfigurableTrait;
  */
 class Helper
 {
-
     use StrataObjectTrait;
     use StrataConfigurableTrait;
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getNamespaceStringInStrata()
     {
         return "View\\Helper";
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getFactoryScopes($name)
     {
         return array(
@@ -26,6 +32,9 @@ class Helper
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getClassNameSuffix()
     {
         return "Helper";

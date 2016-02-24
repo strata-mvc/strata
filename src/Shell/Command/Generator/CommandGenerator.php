@@ -1,18 +1,27 @@
 <?php
+
 namespace Strata\Shell\Command\Generator;
 
 use Strata\Shell\Command\StrataCommandNamer;
 use Strata\Strata;
 
+/**
+ * Generates a Strata shell command
+ */
 class CommandGenerator extends GeneratorBase
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function applyOptions(array $args)
     {
         $this->keyword = $args[0];
         $this->classname = StrataCommandNamer::generateClassName($this->keyword);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate()
     {
         $this->command->output->writeLn("Scaffolding command <info>{$this->classname}</info>");
@@ -21,6 +30,10 @@ class CommandGenerator extends GeneratorBase
         $this->generateTest();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * classes required by the object type.
+     */
     protected function generateCommand()
     {
         $namespace = Strata::getNamespace() . "\\Shell\\Command";
@@ -56,6 +69,10 @@ use Symfony\Component\Console\Output\OutputInterface;
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * test classes required by the object type.
+     */
     protected function generateTest()
     {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Shell", "Command", $this->classname . "Test.php"));

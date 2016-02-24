@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Router;
 
 use Exception;
@@ -8,9 +9,7 @@ use Strata\Router\RouteParser\Alto\AltoRouteParser;
 use Strata\Router\RouteParser\Callback\CallbackRouter;
 
 /**
- * Assigns callback handlers on demand and from the URL context.
- *
- * @package Strata.Router
+ * Assigns callback handlers based on the possible different contexts.
  * @link    http://strata.francoisfaubert.com/docs/routes/
  */
 class Router
@@ -20,10 +19,10 @@ class Router
      */
     public $route = null;
 
-
     /**
-     * Generates a dynamic and unique callback ready to use with Wordpress' add_action calls.
-     * @param string $ctrl   Controller class shortname
+     * Generates a dynamic and unique callback ready to use with Wordpress'
+     * add_action or add_filter calls.
+     * @param string $ctrl   Controller class short name
      * @param string $action
      * @return array A valid callback for call_user_func
      */
@@ -36,24 +35,34 @@ class Router
      * Generates a parser for URL based rules, as one may be used to in
      * the world of Model View Controller programming.
      * @param  array $routes A list of available routes and callbacks
-     * @return Strata\Router\RouteParser\Alto\AltoRouteParser  The parser that generates a valid route
+     * @return AltoRouteParser  The parser that generates a valid route
      */
     public static function urlRouting($routes = array())
     {
         return AltoRouteParser::factory($routes);
     }
 
+    /**
+     * Returns whether the current request is considered being
+     * called as an Ajax query.
+     * @return boolean
+     */
     public static function isAjax()
     {
         return defined('DOING_AJAX') && DOING_AJAX;
     }
 
-    // @thanks to https://snippets.khromov.se/determine-if-wordpress-ajax-request-is-a-backend-of-frontend-request/
+    /**
+     * Attempts to decide if the current Ajax request is happening on the frontend
+     * instead of the backend.
+     * @return boolean
+     * @link https://snippets.khromov.se/determine-if-wordpress-ajax-request-is-a-backend-of-frontend-request/
+     */
     public static function isFrontendAjax()
     {
         if (self::isAjax()) {
-              $referer = '';
-              $filename = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+            $referer = '';
+            $filename = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
 
             if (!empty($_REQUEST['_wp_http_referer'])) {
                 $referer = wp_unslash($_REQUEST['_wp_http_referer']);
@@ -61,16 +70,17 @@ class Router
                 $referer = wp_unslash($_SERVER['HTTP_REFERER']);
             }
 
-              return strpos($referer, admin_url()) === false && basename($filename) === 'admin-ajax.php';
+            return strpos($referer, admin_url()) === false && basename($filename) === 'admin-ajax.php';
         }
 
         return false;
     }
 
     /**
-     * Attemps to run the currently loaded route object.
+     * Attempts to run the currently loaded route object.
      * @return mixed Returns what the action function will have returned.
      * @throws  Exception when the route is not instantiated.
+     * @filter strata_on_before_url_routing
      */
     public function run($url = null)
     {
@@ -78,7 +88,7 @@ class Router
             throw new Exception("This is an invalid route.");
         }
 
-        // Allow plugins and code outside the MVC to cancel
+        // Allow plugins and the code outside the MVC system to cancel
         // a route.
         if (function_exists('apply_filters')) {
             $url = apply_filters('strata_on_before_url_routing', $url);
@@ -90,14 +100,23 @@ class Router
             return $this->loopCurrentRequest();
         }
 
-        $this->log(sprintf("%s#%s is not a matched Strata route.", get_class($this->route->controller), $this->route->action));
+        $controllerClass = get_class($this->route->controller);
+        $messagePattern = "%s#%s is not a matched Strata route.";
+        $this->log(sprintf($messagePattern, $controllerClass, $this->route->action));
     }
 
+    /**
+     * Abandons the current route.
+     */
     public function abandonCurrent()
     {
         $this->route->cancel();
     }
 
+    /**
+     * Returns the current controller object.
+     * @return Strata\Controller\Controller
+     */
     public function getCurrentController()
     {
         if ($this->route->isValid()) {
@@ -105,6 +124,10 @@ class Router
         }
     }
 
+    /**
+     * Returns the current action.
+     * @return string
+     */
     public function getCurrentAction()
     {
         if ($this->route->isValid()) {
@@ -112,6 +135,11 @@ class Router
         }
     }
 
+    /**
+     * While the route is not completed or canceled,
+     * executes the route.
+     * @return mixed Whatever is being returned by the function
+     */
     private function loopCurrentRequest()
     {
         while (!$this->route->isCancelled()) {
@@ -129,6 +157,11 @@ class Router
         }
     }
 
+    /**
+     * Sends a message to the global logger.
+     * @param  string $msg
+     * @param  string $type
+     */
     private function log($msg, $type = "[Strata:Router]")
     {
         $app = Strata::app();

@@ -1,17 +1,27 @@
 <?php
+
 namespace Strata\Shell\Command\Generator;
 
 use Strata\Model\Validator\Validator;
 use Strata\Strata;
 
+/**
+ * Generates a Strata model entity validator
+ */
 class ValidatorGenerator extends GeneratorBase
 {
+    /**
+     * {@inheritdoc}
+     */
     public function applyOptions(array $args)
     {
         $this->keyword = $args[0];
         $this->classname = Validator::generateClassName($this->keyword);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate()
     {
         $this->command->output->writeLn("Scaffolding validator <info>{$this->classname}</info>");
@@ -20,6 +30,10 @@ class ValidatorGenerator extends GeneratorBase
         $this->generateTest();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * classes required by the object type.
+     */
     protected function generateValidator()
     {
         $namespace = Strata::getNamespace() . "\\Model\\Validator";
@@ -34,6 +48,10 @@ class ValidatorGenerator extends GeneratorBase
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * test classes required by the object type.
+     */
     protected function generateTest()
     {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", "Validator", $this->classname . "Test.php"));

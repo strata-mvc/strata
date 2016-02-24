@@ -15,16 +15,25 @@ class CallbackRoute extends Route
         $this->action = $route[1];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function process()
     {
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function start()
     {
         $this->logRouteStart();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function end()
     {
         $this->logRouteCompletion();

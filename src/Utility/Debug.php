@@ -18,7 +18,6 @@ if (!function_exists('debug')) {
         var_dump($mixed);
         $debug .= ob_get_clean();
 
-
         $footer =  "=======[Debug]=======";
 
         $context = "unknown context at unknown line";

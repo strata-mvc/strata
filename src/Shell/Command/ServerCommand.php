@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Shell\Command\StrataCommand;
@@ -52,9 +53,13 @@ class ServerCommand extends StrataCommand
         $this->shutdown();
     }
 
-    private function hasIniFile()
+    /**
+     * Confirms whether $filename exists at the base
+     * of the project.
+     * @return boolean
+     */
+    private function hasIniFile($filename = "php.ini")
     {
-        return file_exists(Strata::getRootPath() . "php.ini");
+        return file_exists(Strata::getRootPath() . $filename);
     }
-
 }

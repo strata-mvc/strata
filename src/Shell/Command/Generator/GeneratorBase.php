@@ -1,9 +1,7 @@
 <?php
-/**
- */
+
 namespace Strata\Shell\Command\Generator;
 
-use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
 
 /**
@@ -21,7 +19,15 @@ abstract class GeneratorBase
      * @var StrataCommand A reference to the current command interface
      */
     protected $command = null;
+
+    /**
+     * @var string The type of the object to generate
+     */
     protected $keyword;
+
+    /**
+     * @var string The name of the class to generate
+     */
     protected $classname;
 
     /**

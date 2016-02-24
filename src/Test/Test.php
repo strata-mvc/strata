@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\Test;
 
 use PHPUnit_Framework_TestCase;

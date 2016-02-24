@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
@@ -28,6 +29,8 @@ if (!class_exists('Strata\\Strata')) {
     $app->init();
 }
 
+// Make strata understand that the server variables are being
+// set by WP-CLI.
 \Strata\Strata::app()->takeOverWPCLIArgs();
 
 // Get and run the shell.

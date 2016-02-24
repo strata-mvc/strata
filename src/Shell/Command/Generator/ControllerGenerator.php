@@ -4,14 +4,23 @@ namespace Strata\Shell\Command\Generator;
 use Strata\Controller\Controller;
 use Strata\Strata;
 
+/**
+ * Generates a Strata controller
+ */
 class ControllerGenerator extends GeneratorBase
 {
+    /**
+     * {@inheritdoc}
+     */
     public function applyOptions(array $args)
     {
         $this->keyword = $args[0];
         $this->classname = Controller::generateClassName($this->keyword);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate()
     {
         $this->command->output->writeLn("Scaffolding controller <info>{$this->classname}</info>");
@@ -20,6 +29,10 @@ class ControllerGenerator extends GeneratorBase
         $this->generateTest();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * classes required by the object type.
+     */
     protected function generateController()
     {
         $namespace = Strata::getNamespace() . "\\Controller";
@@ -33,6 +46,10 @@ class ControllerGenerator extends GeneratorBase
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * test classes required by the object type.
+     */
     protected function generateTest()
     {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Controller", $this->classname . "Test.php"));

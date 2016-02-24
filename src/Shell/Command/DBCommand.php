@@ -1,9 +1,10 @@
 <?php
+
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
 use Strata\Shell\Command\StrataCommand;
-
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -62,13 +63,17 @@ class DBCommand extends StrataCommand
             case "export":
                 $this->dumpCurrentDB();
                 break;
+
+            default : throw new InvalidArgumentException("This is not a valid argument for this command.");
         }
 
         $this->nl();
-
         $this->shutdown();
     }
 
+    /**
+     * Creates the project's database.
+     */
     protected function createDB()
     {
         $this->output->writeLn("Generating MySQL database based on the environment's configuration.");
@@ -92,6 +97,10 @@ class DBCommand extends StrataCommand
         system($command);
     }
 
+    /**
+     * Returns the path of wp-cli within the project.
+     * @return string
+     */
     protected function getWpCliPath()
     {
         $filename = sprintf("%sbin/wp", Strata::getVendorPath());
@@ -102,7 +111,6 @@ class DBCommand extends StrataCommand
 
         return $filename;
     }
-
 
     /**
      * Dumps the current environment's database to an .sql file in /db/

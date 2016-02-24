@@ -2,6 +2,11 @@
 
 namespace Strata\Shell\Command\Generator;
 
+use Strata\Shell\Command\StrataCommand;
+
+/**
+ * Generates classes files within Strata.
+ */
 class ClassWriter
 {
     /**
@@ -18,11 +23,34 @@ class {CLASSNAME} extends {EXTENDS}
 }
 ";
 
+    /**
+     * @var string The namespace of the class
+     */
     private $namespace;
+
+    /**
+     * @var string The actual class short name
+     */
     private $classname;
+
+    /**
+     * @var string The class being extended
+     */
     private $extends;
+
+    /**
+     * @var string The contents of the file
+     */
     private $contents = '';
+
+    /**
+     * @var string The class' dependencies.
+     */
     private $uses = '';
+
+    /**
+     * @var string The generated file name
+     */
     private $destination;
 
     /**
@@ -79,7 +107,11 @@ class {CLASSNAME} extends {EXTENDS}
         $this->contents = $contents;
     }
 
-    public function setCommandContext($command)
+    /**
+     * Sets the command that triggered the generation.
+     * @param  StrataCommand $command
+     */
+    public function setCommandContext(StrataCommand $command)
     {
         $this->command = $command;
     }
@@ -108,7 +140,6 @@ class {CLASSNAME} extends {EXTENDS}
     public function create($last = false)
     {
         if (!file_exists($this->destination)) {
-
             $dir = dirname($this->destination);
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);

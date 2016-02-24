@@ -285,6 +285,6 @@ class Strata extends StrataContext
     protected function improveSecurity()
     {
         $security = new Security();
-        $security->addMesures();
+        $security->addMeasures();
     }
 }

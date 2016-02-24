@@ -1,18 +1,28 @@
 <?php
+
 namespace Strata\Shell\Command\Generator;
 
 use Strata\Model\Model;
 use Strata\Model\CustomPostType\ModelEntity;
 use Strata\Strata;
 
+/**
+ * Generates a Strata model
+ */
 class ModelGenerator extends GeneratorBase
 {
+    /**
+     * {@inheritdoc}
+     */
     public function applyOptions(array $args)
     {
         $this->keyword = $args[0];
         $this->classname = Model::generateClassName($this->keyword);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate()
     {
         $this->command->output->writeLn($this->getScaffoldMessage());
@@ -23,16 +33,26 @@ class ModelGenerator extends GeneratorBase
         $this->generateEntityTest();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getExtends()
     {
         return "AppModel";
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getScaffoldMessage()
     {
         return "Scaffolding model <info>{$this->classname}</info>";
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * classes required by the object type.
+     */
     protected function generateModel()
     {
         $namespace = Strata::getNamespace() . "\\Model";
@@ -46,6 +66,10 @@ class ModelGenerator extends GeneratorBase
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * test classes required by the object type.
+     */
     protected function generateTest()
     {
         $destination = implode(DIRECTORY_SEPARATOR, array("test", "Model", $this->classname . "Test.php"));
@@ -60,6 +84,10 @@ class ModelGenerator extends GeneratorBase
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * accompanying model entity required by the object type.
+     */
     protected function generateEntity()
     {
         $classname = ModelEntity::generateClassName($this->keyword);
@@ -70,11 +98,14 @@ class ModelGenerator extends GeneratorBase
         $writer->setClassname($classname);
         $writer->setNamespace($namespace);
         $writer->setDestination($destination);
-        $writer->setUses("\nuse Strata\Model\CustomPostType\ModelEntity as StrataModelEntity;\n");
-        $writer->setExtends("StrataModelEntity");
+        $writer->setExtends("AppModelEntity");
         $writer->create();
     }
 
+    /**
+     * Configures the class writer and makes it generate the
+     * test classes required by the accompanying model entity.
+     */
     protected function generateEntityTest()
     {
         $classname = ModelEntity::generateClassName($this->keyword);
