@@ -1,4 +1,5 @@
 <?php
+
 namespace Strata\View;
 
 use Strata\View\Template;
@@ -25,6 +26,11 @@ class View
      */
     protected $templateVars = array();
 
+    /**
+     * Compiles a template using the file located at $path
+     * @param  string $path
+     * @return string
+     */
     public function loadTemplate($path)
     {
         $tpl = new Template();
@@ -37,6 +43,12 @@ class View
         return $tpl->compile();
     }
 
+    /**
+     * Loads and declares a ViewHelper in the current view instance.
+     * @param  string $helperName
+     * @param  array  $config
+     * @return null
+     */
     public function loadHelper($helperName, $config = array())
     {
         $helper = Helper::factory($helperName, $config);
@@ -46,6 +58,8 @@ class View
 
     /**
      * Assigns the variable to the current view
+     * @param string $name
+     * @param mixed $value
      */
     public function set($name, $value)
     {
@@ -63,6 +77,7 @@ class View
 
     /**
      * Returns a variable assigned to the current view
+     * @param string $name
      * @return mixed
      */
     public function get($name)
@@ -72,6 +87,7 @@ class View
 
     /**
      * Checks whether a variable is assigned to the current view
+     * @param string $name
      * @return boolean
      */
     public function check($name)
@@ -121,8 +137,8 @@ class View
     }
 
     /**
-     * Applies header values sent as options. For the time being, only Content-type and Content-disposition
-     * are supported.
+     * Applies PHP header values sent as options. For the time being, only Content-type
+     * and Content-disposition are supported.
      * @return null
      */
     protected function applyHeaders()
@@ -136,6 +152,10 @@ class View
         }
     }
 
+    /**
+     * Returns the list of default view configuration values.
+     * @return array
+     */
     protected function getDefaultConfiguration()
     {
         return array(

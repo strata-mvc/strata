@@ -1,17 +1,16 @@
 <?php
+
 namespace Strata;
 
 use Strata\Logger\Logger;
 use Strata\Router\Router;
 use Strata\Utility\Hash;
-
 use Strata\Core\StrataContext;
 use Strata\Core\StrataConfigurableTrait;
-
 use Strata\Model\CustomPostType\CustomPostTypeLoader;
 use Strata\Middleware\MiddlewareLoader;
 use Strata\Security\Security;
-
+use Strata\I18n\I18n;
 use Composer\Autoload\ClassLoader;
 use Exception;
 
@@ -23,28 +22,41 @@ use Exception;
  */
 class Strata extends StrataContext
 {
-
     use StrataConfigurableTrait;
 
     /**
-     * @var bool Specifies the requirements have been met from the current configuration
+     * @var bool Flag specifying the requirements have been met from the current configuration.
      */
     protected $ready = false;
 
     /**
-     * @var \Composer\Autoload\ClassLoader Keeps a reference to the current project's Composer autoloader file.
+     * @var ClassLoader A reference to the current project's Composer autoloader file.
      */
     protected $loader = null;
 
+    /**
+     * @var Logger A reference to the global Strata logger object.
+     */
     protected $logger = null;
+
+    /**
+     * @var MiddlewareLoader A reference to the middleware manager.
+     */
     private $middlewareLoader = null;
 
+    /**
+     * @var I18n A reference to the localizations manager.
+     */
     public $i18n = null;
+
+    /**
+     * @var Router A ference to the active routing object.
+     */
     public $router = null;
 
     /**
-     * Prepares the object for its run.
-     * @throws \Exception Throws an exception if the configuration array could not be loaded.
+     * Prepares the Strata object for running.
+     * @throws Exception Throws an exception if the configuration array could not be loaded.
      */
     public function init()
     {
@@ -57,14 +69,13 @@ class Strata extends StrataContext
 
         $this->loadConfiguration();
         $this->addProjectNamespaces();
-        $this->setTimeZone();
         $this->localize();
 
         $this->ready = true;
     }
 
     /**
-     * Kickstarts the router and preload the custom post types associated to the project.
+     * Kickstarts the Router and preload the custom post types associated to the project.
      */
     public function run()
     {
@@ -78,6 +89,11 @@ class Strata extends StrataContext
         $this->improveSecurity();
     }
 
+    /**
+     * Loads the configuration file and assigns it to the running app.
+     * @throws Exception An exception is raised when the configuration file cannot
+     * be loaded.
+     */
     public function loadConfiguration()
     {
         $this->saveConfigurationFileSettings(self::parseProjectConfigFile());
@@ -115,6 +131,10 @@ class Strata extends StrataContext
         $this->middlewareLoader->initialize();
     }
 
+    /**
+     * Returns the list of declared middlewares in the application.
+     * @return array
+     */
     public function getMiddlewares()
     {
         if (!is_null($this->middlewareLoader)) {
@@ -125,8 +145,9 @@ class Strata extends StrataContext
     }
 
     /**
-     * Loads up a fake Wordpress wrapper on which the tests will register things.
-     * Will only include the file under CLI mode.
+     * Loads up a Wordpress fixture on which the tests will register filters and
+     * actions.
+     * The file will only be included under CLI mode.
      */
     public function includeWordpressFixture()
     {
@@ -135,6 +156,11 @@ class Strata extends StrataContext
         }
     }
 
+    /**
+     * ~/src/Scripts/runner.php and WP-CLI command line scripts do not have the same
+     * amount of parameters. This takes over WP-CLI's order of arguments
+     * and registers them back for Strata.
+     */
     public function takeOverWPCLIArgs()
     {
         if (self::isCommandLineInterface()) {
@@ -151,10 +177,9 @@ class Strata extends StrataContext
         }
     }
 
-
     /**
-     * Loads up a fake gettext wrapper against which the tests will test.
-     * Will only include the file under CLI mode.
+     * Loads up a gettext fixture against which the tests will test.
+     * The file will only be included under CLI mode.
      */
     public function includeGettextFixture()
     {
@@ -163,34 +188,47 @@ class Strata extends StrataContext
         }
     }
 
+    /**
+     * Configures the global Logger instance
+     */
     protected function configureLogger()
     {
         $this->logger = new Logger();
     }
 
+    /**
+     * Sends a message to the active logger
+     * @param  string $message
+     * @param  string $context (Optional)
+     */
     public function log($message, $context = "[Strata]")
     {
         if (!is_null($this->logger)) {
-            return $this->logger->log($message, $context);
+            $this->logger->log($message, $context);
         }
     }
 
+    /**
+     * Initializes the internationalization class
+     */
     protected function localize()
     {
-        $this->i18n = new I18n\I18n();
+        $this->i18n = new I18n();
         $this->i18n->initialize();
     }
 
     /**
-     * Configures the default router object to ensure that URL mapping
-     * is automated.
-     * @return null
+     * Configures the default router object.
      */
     protected function configureRouter()
     {
         $this->router = Router::urlRouting();
     }
 
+    /**
+     * Adds the pre-configured routes to the global
+     * router.
+     */
     protected function addAppRoutes()
     {
         $routes = $this->getConfig('routes');
@@ -201,8 +239,6 @@ class Strata extends StrataContext
 
     /**
      * Configures the post type loader
-     * is automated.
-     * @return null
      */
     protected function configureCustomPostType()
     {
@@ -212,7 +248,7 @@ class Strata extends StrataContext
     }
 
     /**
-     * Saves an array of options to the configuration attribute.
+     * Saves an array of configuration attribute to the application.
      * @param  array $values A list of project values.
      * @return null
      */
@@ -235,20 +271,27 @@ class Strata extends StrataContext
 
     /**
      * Save the latest PHP process ID as a temp file in case an infinite loop
-     * or any unexpected error breaks the server, but doesn't close it.
+     * or any unexpected error breaks the server and prevents Strata
+     * from closing it automatically.
+     * @return boolean
      */
     protected function saveCurrentPID()
     {
         $pid = getmypid();
 
         if (!self::isCommandLineInterface()) {
-            $this->log("", sprintf("[Strata] Loaded and running with process ID %s", $pid));
+            $this->log("[Strata]", sprintf("Loaded and running with process ID %s", $pid));
         }
 
         $filename = self::getTmpPath() . "pid";
         return @file_put_contents($filename, $pid);
     }
 
+    /**
+     * Includes the global debug function in the current scope and
+     * returns whether the include was successful or not.
+     * @return boolean
+     */
     protected function includeDebug()
     {
         $debug = self::getUtilityPath() . "Debug.php";
@@ -267,21 +310,19 @@ class Strata extends StrataContext
         $this->loader->setPsr4(self::getNamespace() . "\\", self::getSRCPath());
     }
 
+    /**
+     * Sets the default namespaces Strata knows about in the project's Composer's
+     * ClassLoader.
+     */
     public function setDefaultNamespace()
     {
         $this->loader->setPsr4(self::getDefaultNamespace() . "\\", self::getSRCPath());
         $this->loader->setPsr4(self::getDefaultTestNamespace() . "\\", self::getTestPath());
     }
 
-    protected function setTimeZone()
-    {
-        $timezone = Strata::app()->getConfig("timezone");
-        if (is_null($timezone)) {
-            $timezone = 'America/New_York';
-        }
-        date_default_timezone_set($timezone);
-    }
-
+    /**
+     * Improves PHP and Wordpress security of the application.
+     */
     protected function improveSecurity()
     {
         $security = new Security();

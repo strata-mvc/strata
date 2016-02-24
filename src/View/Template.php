@@ -5,10 +5,17 @@ namespace Strata\View;
 use Strata\Strata;
 use Strata\Core\StrataConfigurableTrait;
 
+/**
+ * The template object is used to generate views.
+ */
 class Template
 {
     use StrataConfigurableTrait;
 
+    /**
+     * @var string A unique code to identify where the template
+     * should yield the generated contents.
+     */
     const TPL_YIELD = "__STRATA_YIELD__";
 
     /**
@@ -37,11 +44,21 @@ class Template
         return $tpl->compile();
     }
 
+    /**
+     * Loads up the file located at $templateFilePath, assigns it $variables
+     * and saves the generated HTML.
+     * @param  string  $templateFilePath
+     * @param  array   $variables
+     * @param  boolean $allowDebug
+     * @return string
+     */
     public static function parseFile($templateFilePath, $variables = array(), $allowDebug = true)
     {
         ob_start();
 
         // Print debug info in the the logs
+        // only when Strata is running as the development
+        // environment.
         if (Strata::isDev()) {
             $app = Strata::app();
             $startedAt = microtime(true);
@@ -72,7 +89,14 @@ class Template
         return ob_get_clean();
     }
 
+    /**
+     * @var array Variables available only in the scope of the template
+     */
     private $contextualVariables = array();
+
+    /**
+     * @var string The name o the
+     */
     private $viewName = "index";
 
     public function __construct()
@@ -85,16 +109,30 @@ class Template
         ));
     }
 
+    /**
+     * Injects variables to the template scope.
+     * @param  array  $vars
+     */
     public function injectVariables(array $vars)
     {
         $this->contextualVariables = $vars;
     }
 
+    /**
+     * Sets the view name which will define the name of file used
+     * to build the view.
+     * @param string $name
+     */
     public function setViewName($name)
     {
         $this->viewName = $name;
     }
 
+    /**
+     * Compiles the generated contents of the current template
+     * configuration.
+     * @return string
+     */
     public function compile()
     {
         $templateFilePrefix = $this->hasLocalizedVersion() ?
@@ -120,6 +158,11 @@ class Template
         return str_replace(self::TPL_YIELD, $content, $layout);
     }
 
+    /**
+     * Checks whether there is a localized version of the current view in the
+     * current Locale.
+     * @return boolean
+     */
     protected function hasLocalizedVersion()
     {
         $app = Strata::app();
@@ -131,22 +174,39 @@ class Template
         return false;
     }
 
+    /**
+     * Generates the path of where the view localized in the current locale would
+     * be located.
+     * @return string
+     */
     protected function generateLocalizedViewPath()
     {
         $app = Strata::app();
         return $this->generateDefaultViewPath() . "." . $app->i18n->getCurrentLocaleCode();
     }
 
+    /**
+     * Generates the path of where the basic view would be located.
+     * @return string
+     */
     protected function generateDefaultViewPath()
     {
         return $this->generateDefaultViewLocation() . $this->viewName;
     }
 
+    /**
+     * Generates the path of where the basic layout file would be located.
+     * @return string
+     */
     protected function generateDefaultLayoutPath()
     {
         return $this->generateDefaultViewLocation() . $this->getConfig("layout");
     }
 
+    /**
+     * Generates the path of where the view files are located.
+     * @return string
+     */
     protected function generateDefaultViewLocation()
     {
         return $this->getConfig("view_source_path") . DIRECTORY_SEPARATOR;

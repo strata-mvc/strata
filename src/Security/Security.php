@@ -15,6 +15,7 @@ class Security
     {
         if (function_exists('add_filter')) {
             $this->handleComments();
+            $this->setTimezone();
         }
     }
 
@@ -24,6 +25,15 @@ class Security
     protected function handleComments()
     {
         $parser = new CommentParser();
+        $parser->register();
+    }
+
+    /**
+     * Sets the php timezone to prevent errors messages
+     */
+    protected function setTimezone()
+    {
+        $parser = new TimezoneSetter();
         $parser->register();
     }
 }

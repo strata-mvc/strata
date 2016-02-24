@@ -3,15 +3,16 @@
 namespace Strata\Security;
 
 use Strata\Strata;
+use Strata\Security\ImprovementBase;
 
 /**
  * Wordpress comments, by default, allows one to inject javascript and weird
  * HTML that may break a website.
  */
-class CommentParser
+class CommentParser extends ImprovementBase
 {
     /**
-     * Registers the filter that handles comment validation if required.
+     * {@inheritdoc}
      */
     public function register()
     {
