@@ -59,12 +59,15 @@ class BaseErrorHandler
                 if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
                     return;
                 }
+
                 $this->handleFatalError(
                     $error['type'],
                     $error['message'],
                     $error['file'],
                     $error['line']
                 );
+
+                return true;
             });
         }
     }

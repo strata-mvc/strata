@@ -10,11 +10,10 @@
     <?php if ($filename) : ?>
         <?php $lines = file($filename); ?>
         <?php if (count($lines)) : ?>
-        <div class="source">~ <?php echo $error['file']; ?></div>
         <table>
             <?php $specificLine = $error['line']; ?>
             <?php $start = $specificLine - 4; ?>
-            <?php $end = $specificLine + 4; ?>
+            <?php $end = $specificLine + 5; ?>
             <?php for ($i = $start; $i < $end; $i++) : ?>
             <tr>
                 <td class="lines"><?php echo ($i + 1); ?></td>
@@ -22,6 +21,7 @@
             </tr>
             <?php endfor; ?>
         </table>
+        <div class="source">~ <?php echo $error['file']; ?></div>
         <?php endif; ?>
     <?php endif; ?>
 

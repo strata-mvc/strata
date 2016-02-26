@@ -11,14 +11,14 @@
             body { font-family: "Open Sans", arial, sans; color:#000; padding: 1em;}
             h1, h3, h4 { margin:0; line-height:1.4; }
             h1 { font-size: 30px; }
-            h3 { font-size: 25px; color: #444; }
-            h4 { font-size: 20px; color: #666; }
+            h3 { color:#ff0000; font-size: 25px;  }
+            h4 { color:#666; font-size: 15px; margin-bottom: 1em; }
 
             table { color:#666; border-collapse: collapse; border:1px solid #ddd; border-bottom-width: 2px; width: 100%;}
             table td:even { background: #fefefe; }
             table td.lines { background-color: #efefef; color: #888; font-size: 14px; text-align: right; white-space: nowrap; vertical-align: middle; border-right:1px solid #ddd; width: 30px; padding:0 .8em;}
             table td.code { white-space: pre-wrap; border-bottom: 1px solid #eee; padding: 0.25em;}
-            table td.focus { background-color: #FFCC99; color:#000;}
+            table td.focus { background-color: #ffd0ce; color:#000;}
             .source { font-size: 12px; color:#888; margin: 1em 0 .25em 0; }
         </style>
     </head>
