@@ -62,6 +62,19 @@ class Logger
     }
 
     /**
+     * Sends a message of type debug
+     * @param  string $message
+     * @param  string $context (optional) Flag to separate message types
+     */
+    public function error($message, $context = "[Strata:Error]")
+    {
+        $originalColor = $this->color;
+        $this->color = "\e[0;31m";
+        $this->log($message, $context);
+        $this->color = $originalColor;
+    }
+
+    /**
      * Specifies whether the application should generate logs.
      * @return boolean
      */

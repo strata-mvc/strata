@@ -42,7 +42,7 @@ if (!function_exists('debug')) {
             echo $debug;
             echo "\n\n<div style=\"overflow:auto; font-size: 12px; font-family: consolas; background:transparent; width:100%; height:80px;\">";
             debug_print_backtrace();
-            echo "</div>";
+            echo "</pre>";
             echo "\n".$footer."</pre>";
         }
     }

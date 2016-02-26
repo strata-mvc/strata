@@ -11,6 +11,7 @@ use Strata\Model\CustomPostType\CustomPostTypeLoader;
 use Strata\Middleware\MiddlewareLoader;
 use Strata\Security\Security;
 use Strata\I18n\I18n;
+use Strata\Error\BaseErrorHandler;
 use Composer\Autoload\ClassLoader;
 use Exception;
 
@@ -63,11 +64,13 @@ class Strata extends StrataContext
         $this->ready = false;
 
         $this->configureLogger();
+
         $this->includeUtils();
         $this->setDefaultNamespace();
         $this->configureRouter();
 
         $this->loadConfiguration();
+        $this->registerErrorHadler();
         $this->addProjectNamespaces();
         $this->localize();
 
@@ -203,9 +206,19 @@ class Strata extends StrataContext
      */
     public function log($message, $context = "[Strata]")
     {
-        if (!is_null($this->logger)) {
-            $this->logger->log($message, $context);
+        $logger = $this->getLogger();
+        if (!is_null($logger)) {
+            $logger->log($message, $context);
         }
+    }
+
+    /**
+     * Returns a reference to the gloabl Logger
+     * @return Logger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
     }
 
     /**
@@ -285,6 +298,13 @@ class Strata extends StrataContext
 
         $filename = self::getTmpPath() . "pid";
         return @file_put_contents($filename, $pid);
+    }
+
+    protected function registerErrorHadler()
+    {
+        ob_start();
+        $handler = new BaseErrorHandler();
+        $handler->register();
     }
 
     /**
