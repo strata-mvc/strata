@@ -3,7 +3,7 @@
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * Intended use is <code>bin/strata test</code>
  */
-class TestCommand extends StrataCommand
+class TestCommand extends StrataCommandBase
 {
     /**
      * {@inheritdoc}

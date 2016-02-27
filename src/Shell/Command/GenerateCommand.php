@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use InvalidArgumentException;
 
 use Strata\Utility\Inflector;
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 use Strata\Shell\Command\Generator\ControllerGenerator;
 use Strata\Shell\Command\Generator\ModelGenerator;
 use Strata\Shell\Command\Generator\FormGenerator;
@@ -31,7 +31,7 @@ use Strata\Shell\Command\Generator\RouteGenerator;
  *     <code>bin/strata generate customposttype Task</code>
  *     ...
  */
-class GenerateCommand extends StrataCommand
+class GenerateCommand extends StrataCommandBase
 {
     /**
      * {@inheritdoc}

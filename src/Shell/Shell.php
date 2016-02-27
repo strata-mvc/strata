@@ -6,6 +6,7 @@ use Symfony\Component\Console\Application;
 use Strata\Strata;
 use Strata\Shell\Command\Registrar\ProjectCommandRegistrar;
 use Strata\Shell\Command\Registrar\MiddlewareCommandRegistrar;
+use Strata\Shell\Command\Registrar\StrataCommandRegistrar;
 
 /**
  * A factory that build the Strata command line application.
@@ -19,6 +20,9 @@ class Shell
      */
     public static function getApplication()
     {
+        restore_error_handler();
+        restore_exception_handler();
+
         $application = new Application('Strata Console Application', '0.1.0');
 
         $registrar = new ProjectCommandRegistrar($application);
@@ -27,13 +31,8 @@ class Shell
         $registrar = new MiddlewareCommandRegistrar($application);
         $registrar->assign();
 
-        $application->add(new \Strata\Shell\Command\ServerCommand());
-        $application->add(new \Strata\Shell\Command\GenerateCommand());
-        $application->add(new \Strata\Shell\Command\DBCommand());
-        $application->add(new \Strata\Shell\Command\DocumentationCommand());
-        $application->add(new \Strata\Shell\Command\EnvCommand());
-        $application->add(new \Strata\Shell\Command\TestCommand());
-        $application->add(new \Strata\Shell\Command\I18nCommand());
+        $registrar = new StrataCommandRegistrar($application);
+        $registrar->assign();
 
         return $application;
     }

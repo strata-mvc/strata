@@ -22,7 +22,8 @@
         "altorouter/altorouter": "~1.1.0",
         "symfony/console": "~2.6",
         "wp-cli/wp-cli": "~0.21.1",
-        "gettext/gettext": "~3.4"
+        "gettext/gettext": "~3.4",
+        "psy/psysh": "@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.7.0",

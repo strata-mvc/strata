@@ -2,7 +2,7 @@
 
 namespace Strata\Shell\Command;
 
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 use Strata\Strata;
 
 use Symfony\Component\Console\Command\Command;
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * Intended use is <code>./strata server</code>
  */
-class ServerCommand extends StrataCommand
+class ServerCommand extends StrataCommandBase
 {
     /**
      * {@inheritdoc}

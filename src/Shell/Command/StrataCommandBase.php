@@ -16,7 +16,7 @@ use Strata\Strata;
  * This class contains a basic toolset to perform repetitive visual outputs.
  * It is also the interface between Strata and Symfony's codebase.
  */
-class StrataCommand extends Command
+class StrataCommandBase extends Command
 {
     /**
      *

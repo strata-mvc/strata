@@ -2,7 +2,7 @@
 
 namespace Strata\Shell\Command;
 
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 use Strata\Strata;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +18,7 @@ use InvalidArgumentException;
  *     <code>./strata env repair</code>
  *     <code>./strata env psr4format</code>
  */
-class EnvCommand extends StrataCommand
+class EnvCommand extends StrataCommandBase
 {
     /**
      * A flag that is maintain through a process to advise the

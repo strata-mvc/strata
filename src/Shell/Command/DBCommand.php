@@ -3,7 +3,7 @@
 namespace Strata\Shell\Command;
 
 use Strata\Strata;
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *     <code>bin/strata db import</code>
  *     <code>bin/strata db dump</code>
  */
-class DBCommand extends StrataCommand
+class DBCommand extends StrataCommandBase
 {
     /**
      * {@inheritdoc}

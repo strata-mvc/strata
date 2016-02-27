@@ -3,13 +3,13 @@
 namespace Strata\Shell\Command\Registrar;
 
 use Strata\Strata;
-use Strata\Shell\Command\StrataCommandBase;
+use Strata\Shell\Command\StrataCommandNamer;
 use Symfony\Component\Console\Application;
 
 /**
- * Registers commands declared at the project level.
+ * Registers commands declared at Strata's level.
  */
-class ProjectCommandRegistrar
+class StrataCommandRegistrar
 {
     /**
      * A link to a shell application to which
@@ -28,7 +28,9 @@ class ProjectCommandRegistrar
      */
     public function assign()
     {
-        $cmdPath = Strata::getCommandPath();
+        $path = array(Strata::getOurVendorPath(), "src", "Shell", "Command");
+        $cmdPath = implode($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+
         if (is_dir($cmdPath)) {
             $this->parseDirectoryForCommandFiles($cmdPath);
         }
@@ -40,7 +42,7 @@ class ProjectCommandRegistrar
      */
     private function parseDirectoryForCommandFiles($path)
     {
-        foreach (glob($path . "*Command.php") as $filename) {
+        foreach (glob($path . "*". StrataCommandNamer::getClassNameSuffix() .".php") as $filename) {
             if (preg_match("/(\w+?Command).php$/", $filename, $matches)) {
                 $this->attemptRegistration($matches[1]);
             }
@@ -54,7 +56,13 @@ class ProjectCommandRegistrar
     private function attemptRegistration($name)
     {
         try {
-            $this->application->add(StrataCommandBase::factory($name));
+            $classpath = implode(array(
+                "Strata",
+                StrataCommandNamer::getNamespaceStringInStrata(),
+                $name
+            ), "\\");
+
+            $this->application->add(new $classpath());
         } catch (Exception $e) {
             echo "Unable to autoload the '$name' command.";
         }

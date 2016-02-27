@@ -25,7 +25,7 @@ use RecursiveIteratorIterator;
  * Intended use include:
  *     <code>./strata i18n extract</code>
  */
-class I18nCommand extends StrataCommand
+class I18nCommand extends StrataCommandBase
 {
     /**
      * {@inheritdoc}
