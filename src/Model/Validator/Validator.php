@@ -8,9 +8,10 @@ use Strata\Core\StrataConfigurableTrait;
 /**
  * A base class for Validator objects.
  */
-abstract class Validator
+class Validator
 {
     use StrataObjectTrait;
+    use StrataConfigurableTrait;
 
     public static function getNamespaceStringInStrata()
     {
@@ -39,7 +40,10 @@ abstract class Validator
      * Initiates the validator object. Useful for inheritance and
      * translating error labels.
      */
-    abstract function init();
+    public function init()
+    {
+
+    }
 
     /**
      * The actual test function.

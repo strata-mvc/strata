@@ -43,7 +43,7 @@ class LengthValidator extends Validator
                 __("The length must be at least %s characters long.", "strata"),
                 $this->getConfig('min')
             );
-        } elseif (!is_null($this->getConfig('min')) && $this->getConfig('min') === $this->getConfig('min')) {
+        } elseif (!is_null($this->getConfig('min')) && $this->getConfig('min') === $this->getConfig('max')) {
             return sprintf(
                 __("The length must be exactly %s characters.", "strata"),
                 $this->getConfig('min')
