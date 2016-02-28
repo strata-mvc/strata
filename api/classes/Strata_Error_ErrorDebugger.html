@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Error\ErrorDebugger</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Error">Strata\Error</a>
+          </li>
+          <li class="separator">ErrorDebugger</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Error/ErrorDebugger.php.html#line11">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Error\</small>ErrorDebugger</h1>
+        <h4>The object that helps representing the errors visually.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class ErrorDebugger
+                extends <a title="Strata\View\Template" href="../classes/Strata_View_Template.html">Template</a>
+            {<br/><ul class="none"><li>// Inherited constants from <a title="Strata\View\Template" href="../classes/Strata_View_Template.html">Template</a></li><li>const <a href="#TPL_YIELD">TPL_YIELD</a> = "__STRATA_YIELD__";</li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Error\ErrorDebugger" href="../classes/Strata_Error_ErrorDebugger/setErrorData.html">setErrorData</a>()
+                    </li><li>protected void <a title="Strata\Error\ErrorDebugger" href="../classes/Strata_Error_ErrorDebugger/updateCommonConfiguration.html">updateCommonConfiguration</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\View\Template">Template</span></li><li>public static string <a title="Strata\View\Template" href="../classes/Strata_View_Template/parse.html">parse</a>()
+                        </li><li>public static string <a title="Strata\View\Template" href="../classes/Strata_View_Template/parseFile.html">parseFile</a>()
+                        </li><li>public void <a title="Strata\View\Template" href="../classes/Strata_View_Template/__construct.html">__construct</a>()
+                        </li><li>public void <a title="Strata\View\Template" href="../classes/Strata_View_Template/injectVariables.html">injectVariables</a>()
+                        </li><li>public void <a title="Strata\View\Template" href="../classes/Strata_View_Template/setViewName.html">setViewName</a>()
+                        </li><li>public string <a title="Strata\View\Template" href="../classes/Strata_View_Template/compile.html">compile</a>()
+                        </li><li>protected boolean <a title="Strata\View\Template" href="../classes/Strata_View_Template/hasLocalizedVersion.html">hasLocalizedVersion</a>()
+                        </li><li>protected string <a title="Strata\View\Template" href="../classes/Strata_View_Template/generateLocalizedViewPath.html">generateLocalizedViewPath</a>()
+                        </li><li>protected string <a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultViewPath.html">generateDefaultViewPath</a>()
+                        </li><li>protected string <a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultLayoutPath.html">generateDefaultLayoutPath</a>()
+                        </li><li>protected string <a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultViewLocation.html">generateDefaultViewLocation</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li><li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\View\Template" href="../classes/Strata_View_Template.html">Strata\View\Template</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="TPL_YIELD">TPL_YIELD</td>
+              <td>"__STRATA_YIELD__"</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="configuration"><strong>$configuration</strong>
+                —
+                array<br/><span class="indent">The configuration cache.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="updateCommonConfiguration">
+              <a title="Strata\Error\ErrorDebugger" href="../classes/Strata_Error_ErrorDebugger/updateCommonConfiguration.html">updateCommonConfiguration()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="setErrorData">
+              <a title="Strata\Error\ErrorDebugger" href="../classes/Strata_Error_ErrorDebugger/setErrorData.html">setErrorData()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\View\Template" href="../classes/Strata_View_Template.html">Strata\View\Template</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="generateDefaultLayoutPath"><a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultLayoutPath.html">generateDefaultLayoutPath()</a>
+                — Generates the path of where the basic layout file would be located.</li>
+            <li id="generateDefaultViewLocation"><a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultViewLocation.html">generateDefaultViewLocation()</a>
+                — Generates the path of where the view files are located.</li>
+            <li id="generateDefaultViewPath"><a title="Strata\View\Template" href="../classes/Strata_View_Template/generateDefaultViewPath.html">generateDefaultViewPath()</a>
+                — Generates the path of where the basic view would be located.</li>
+            <li id="generateLocalizedViewPath"><a title="Strata\View\Template" href="../classes/Strata_View_Template/generateLocalizedViewPath.html">generateLocalizedViewPath()</a>
+                — Generates the path of where the view localized in the current locale would be located.</li>
+            <li id="hasLocalizedVersion"><a title="Strata\View\Template" href="../classes/Strata_View_Template/hasLocalizedVersion.html">hasLocalizedVersion()</a>
+                — Checks whether there is a localized version of the current view in the current Locale.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="compile"><a title="Strata\View\Template" href="../classes/Strata_View_Template/compile.html">compile()</a>
+                — Compiles the generated contents of the current template configuration.</li>
+            <li id="injectVariables"><a title="Strata\View\Template" href="../classes/Strata_View_Template/injectVariables.html">injectVariables()</a>
+                — Injects variables to the template scope.</li>
+            <li id="parse"><a title="Strata\View\Template" href="../classes/Strata_View_Template/parse.html">parse()</a>
+                — Parses a template file and declares view variables in this scope for the template to have access to them. Loads localized templates based on the current active locale.</li>
+            <li id="parseFile"><a title="Strata\View\Template" href="../classes/Strata_View_Template/parseFile.html">parseFile()</a>
+                — Loads up the file located at $templateFilePath, assigns it $variables and saves the generated HTML.</li>
+            <li id="setViewName"><a title="Strata\View\Template" href="../classes/Strata_View_Template/setViewName.html">setViewName()</a>
+                — Sets the view name which will define the name of file used to build the view.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="normalizeConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="configure"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
+            <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
+            <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-02-26T22:12:07+00:00 (commit #<span title="cf164c9ded88bbd7e772bcf2121e4ed0f31c316c">cf164c9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added 500 error page</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

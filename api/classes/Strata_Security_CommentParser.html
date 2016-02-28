@@ -53,13 +53,16 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
             <a href="#methods">Methods</a>
           </li>
           <li>
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Security/CommentParser.php.html#line11">Source</a>
+            <a href="../source/Security/CommentParser.php.html#line12">Source</a>
           </li>
         </ul>
       </nav>
@@ -70,12 +73,23 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class CommentParser
+                extends <a title="Strata\Security\ImprovementBase" href="../classes/Strata_Security_ImprovementBase.html">ImprovementBase</a>
             {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/register.html">register</a>()
                     </li><li>protected boolean <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/shouldParseComments.html">shouldParseComments</a>()
                     </li><li>public array <a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment</a>()
-                    </li></ul>
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Security\ImprovementBase">ImprovementBase</span></li><li>public abstract void <a title="Strata\Security\ImprovementBase" href="../classes/Strata_Security_ImprovementBase/register.html">register</a>()
+                        </li></ul>
 
             }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Security\ImprovementBase" href="../classes/Strata_Security_ImprovementBase.html">Strata\Security\ImprovementBase</a>
+            </li>
+          </ul>
+        </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>protected</h4>
@@ -88,6 +102,12 @@
             <li id="preprocessComment"><a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/preprocessComment.html">preprocessComment()</a>
                 — Converts html in the comment's content into safer HTML entities.</li>
             <li id="register"><a title="Strata\Security\CommentParser" href="../classes/Strata_Security_CommentParser/register.html">register()</a>
+                — {@inheritdoc}</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Security\ImprovementBase" href="../classes/Strata_Security_ImprovementBase.html">Strata\Security\ImprovementBase</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="register"><a title="Strata\Security\ImprovementBase" href="../classes/Strata_Security_ImprovementBase/register.html">register()</a>
                 — Registers the filter that handles comment validation if required.</li>
           </ul>
         </div>

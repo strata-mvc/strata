@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Model\Validator\RegexValidator</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Model_Validator">Strata\Model\Validator</a>
+          </li>
+          <li class="separator">RegexValidator</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Model/Validator/RegexValidator.php.html#line7">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Model\Validator\</small>RegexValidator</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class RegexValidator
+                extends <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Validator</a>
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Model\Validator\Validator">Validator</span></li><li>protected string <a href="#members">$errorMessage</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\Validator\RegexValidator" href="../classes/Strata_Model_Validator_RegexValidator/init.html">init</a>()
+                    </li><li>public void <a title="Strata\Model\Validator\RegexValidator" href="../classes/Strata_Model_Validator_RegexValidator/test.html">test</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\Validator\Validator">Validator</span></li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public abstract void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init</a>()
+                        </li><li>public boolean <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test</a>()
+                        </li><li>public [type] <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage</a>()
+                        </li><li>public string <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
+                        </li><li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Strata\Model\Validator\Validator</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="errorMessage"><strong>$errorMessage</strong>
+                —
+                string</li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="init"><a title="Strata\Model\Validator\RegexValidator" href="../classes/Strata_Model_Validator_RegexValidator/init.html">init()</a>
+                — {@inheritdoc}</li>
+            <li id="test"><a title="Strata\Model\Validator\RegexValidator" href="../classes/Strata_Model_Validator_RegexValidator/test.html">test()</a>
+                — {@inheritdoc}</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Strata\Model\Validator\Validator</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="getClassNameSuffix">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getFactoryScopes">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getMessage"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage()</a>
+                — Fetches the global error message for this validation.</li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="init"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init()</a>
+                — Initiates the validator object. Useful for inheritance and translating error labels.</li>
+            <li id="setMessage"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage()</a>
+                — Sets the global error message for this validation.</li>
+            <li id="test"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test()</a>
+                — The actual test function.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
+                — Instantiates an object that uses the StrataObjectTrait which class name matches the $name value.</li>
+            <li id="generateClassName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+                — Generates a valid class name from the $name value.</li>
+            <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere (or whatever else would the namespace have been).</li>
+            <li id="getClassNameSuffix"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+                — Returns scopes in which Strata will look in to load objects.</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — Returns the default namespace path.</li>
+            <li id="getShortName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+                — Returns this object's class name without the full namespace.</li>
+            <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
+                — Instantiates an object of the current class.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history"/>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

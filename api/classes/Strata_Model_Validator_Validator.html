@@ -56,9 +56,6 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
-            <a href="#tasks">Tasks</a>
-          </li>
-          <li>
             <a href="#members">Members</a>
           </li>
           <li>
@@ -74,19 +71,17 @@
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Model\Validator\</small>Validator</h1>
-        <h4>A base class for Validator objects</h4>
+        <h4>A base class for Validator objects.</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class Validator
-            {<br/><ul class="none"><li>// members</li><li>protected string <a href="#members">$_errorMessage</a> =
+            {<br/><ul class="none"><li>// members</li><li>protected string <a href="#members">$errorMessage</a> =
                         "There has been an error with this field.";
-                    </li><li>protected array <a href="#members">$_config</a> =
-                        ;
                     </li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                     </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix</a>()
                     </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes</a>()
-                    </li><li>public void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/configure.html">configure</a>()
+                    </li><li>public abstract void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init</a>()
                     </li><li>public boolean <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test</a>()
                     </li><li>public [type] <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage</a>()
                     </li><li>public string <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage</a>()
@@ -110,31 +105,11 @@
             </li>
           </ul>
         </div>
-        <h2 id="tasks">Tasks</h2>
-        <table class="styled">
-          <thead>
-            <tr>
-              <th style="width:3em;">Line</th>
-              <th>Task</th>
-            </tr>
-          </thead>
-          <tr>
-            <td class="nummeric">11+</td>
-            <td>Validator needs to use the configurable trait.</td>
-          </tr>
-          <tr>
-            <td class="nummeric">11+</td>
-            <td>Validator needs to be refactored without underscores as scope indicators.</td>
-          </tr>
-        </table>
         <h2 id="members">Members</h2>
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_config"><strong>$_config</strong>
-                —
-                array</li>
-            <li id="_errorMessage"><strong>$_errorMessage</strong>
+            <li id="errorMessage"><strong>$errorMessage</strong>
                 —
                 string</li>
           </ul>
@@ -143,8 +118,6 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
-            <li id="configure"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/configure.html">configure()</a>
-                — Configures the validator</li>
             <li id="getClassNameSuffix">
               <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix()</a>
             </li>
@@ -156,6 +129,8 @@
             <li id="getNamespaceStringInStrata">
               <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
             </li>
+            <li id="init"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init()</a>
+                — Initiates the validator object. Useful for inheritance and translating error labels.</li>
             <li id="setMessage"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage()</a>
                 — Sets the global error message for this validation.</li>
             <li id="test"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test()</a>

@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/Validator/PostalcodeValidator.php.html#line4">Source</a>
+            <a href="../source/Model/Validator/PostalcodeValidator.php.html#line5">Source</a>
           </li>
         </ul>
       </nav>
@@ -76,14 +76,12 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class PostalcodeValidator
                 extends <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Validator</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Model\Validator\Validator">Validator</span></li><li>protected string <a href="#members">$_errorMessage</a>;
-                        </li><li>protected array <a href="#members">$_config</a>;
-                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/__construct.html">__construct</a>()
-                    </li><li>public void <a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/test.html">test</a>()
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Model\Validator\Validator">Validator</span></li><li>protected string <a href="#members">$errorMessage</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/init.html">init</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\Validator\Validator">Validator</span></li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                         </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix</a>()
                         </li><li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes</a>()
-                        </li><li>public void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/configure.html">configure</a>()
+                        </li><li>public abstract void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init</a>()
                         </li><li>public boolean <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test</a>()
                         </li><li>public [type] <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage</a>()
                         </li><li>public string <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage</a>()
@@ -111,10 +109,7 @@
         <div class="styled members">
           <h4>protected</h4>
           <ul class="members">
-            <li id="_config"><strong>$_config</strong>
-                —
-                array</li>
-            <li id="_errorMessage"><strong>$_errorMessage</strong>
+            <li id="errorMessage"><strong>$errorMessage</strong>
                 —
                 string</li>
           </ul>
@@ -123,18 +118,12 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
-            <li id="__construct">
-              <a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/__construct.html">__construct()</a>
-            </li>
-            <li id="test">
-              <a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/test.html">test()</a>
-            </li>
+            <li id="init"><a title="Strata\Model\Validator\PostalcodeValidator" href="../classes/Strata_Model_Validator_PostalcodeValidator/init.html">init()</a>
+                — {@inheritdoc}</li>
           </ul>
           <h3>Inherited from <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Strata\Model\Validator\Validator</a></h3>
           <h4>public</h4>
           <ul>
-            <li id="configure"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/configure.html">configure()</a>
-                — Configures the validator</li>
             <li id="getClassNameSuffix">
               <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix()</a>
             </li>
@@ -146,6 +135,8 @@
             <li id="getNamespaceStringInStrata">
               <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
             </li>
+            <li id="init"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init()</a>
+                — Initiates the validator object. Useful for inheritance and translating error labels.</li>
             <li id="setMessage"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage()</a>
                 — Sets the global error message for this validation.</li>
             <li id="test"><a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test()</a>

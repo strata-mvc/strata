@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Error\BaseErrorHandler</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Error">Strata\Error</a>
+          </li>
+          <li class="separator">BaseErrorHandler</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Error/BaseErrorHandler.php.html#line14">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Error\</small>BaseErrorHandler</h1>
+        <h4>The base error handler of Strata code. This is very much so based on CakePHP's method.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class BaseErrorHandler
+            {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/wrapAndHandleException.html">wrapAndHandleException</a>()
+                    </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/register.html">register</a>()
+                    </li><li>public bool <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleError.html">handleError</a>()
+                    </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleFatalError.html">handleFatalError</a>()
+                    </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleException.html">handleException</a>()
+                    </li><li>protected void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/displayErrorData.html">displayErrorData</a>()
+                    </li><li>protected void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/displayExceptionData.html">displayExceptionData</a>()
+                    </li><li>protected void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/logErrorData.html">logErrorData</a>()
+                    </li><li>protected void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/logExceptionData.html">logExceptionData</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getDebugLevel.html">getDebugLevel</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getFatalErrorsTypes.html">getFatalErrorsTypes</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/clearBuffer.html">clearBuffer</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/useStrataDebugger.html">useStrataDebugger</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li><li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Uses</h4>
+          <ul>
+            <li>
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="configuration"><strong>$configuration</strong>
+                —
+                array<br/><span class="indent">The configuration cache.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="clearBuffer">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/clearBuffer.html">clearBuffer()</a>
+            </li>
+            <li id="getDebugLevel">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getDebugLevel.html">getDebugLevel()</a>
+            </li>
+            <li id="getFatalErrorsTypes">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getFatalErrorsTypes.html">getFatalErrorsTypes()</a>
+            </li>
+            <li id="useStrataDebugger">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/useStrataDebugger.html">useStrataDebugger()</a>
+            </li>
+          </ul>
+          <h4>protected</h4>
+          <ul>
+            <li id="displayErrorData"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/displayErrorData.html">displayErrorData()</a>
+                — Displays an error.</li>
+            <li id="displayExceptionData"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/displayExceptionData.html">displayExceptionData()</a>
+                — Displays an exception.</li>
+            <li id="logErrorData"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/logErrorData.html">logErrorData()</a>
+                — Log an error.</li>
+            <li id="logExceptionData"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/logExceptionData.html">logExceptionData()</a>
+                — Log an exception.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="handleError"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleError.html">handleError()</a>
+                — Set as the default error handler by Strata</li>
+            <li id="handleException"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleException.html">handleException()</a>
+                — Handle uncaught exceptions.</li>
+            <li id="handleFatalError"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleFatalError.html">handleFatalError()</a>
+                — Logs a fatal error.</li>
+            <li id="register"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/register.html">register()</a>
+                — Register the error and exception handlers.</li>
+            <li id="wrapAndHandleException"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/wrapAndHandleException.html">wrapAndHandleException()</a>
+                — Checks the passed exception type. If it is an instance of `Error` then, it wraps the passed object inside another Exception object for backwards compatibility purposes.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="normalizeConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="configure"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
+            <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
+            <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-02-26T22:22:43+00:00 (commit #<span title="a5309a34a697f82390cf0f4d75a199f9c113d240">a5309a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">styled a little better</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-02-26T22:12:07+00:00 (commit #<span title="cf164c9ded88bbd7e772bcf2121e4ed0f31c316c">cf164c9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added 500 error page</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

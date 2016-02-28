@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/View/View.php.html#line18">Source</a>
+            <a href="../source/View/View.php.html#line19">Source</a>
           </li>
         </ul>
       </nav>
@@ -78,8 +78,8 @@
         <div class="synopsis">class View
             {<br/><ul class="none"><li>// members</li><li>protected array <a href="#members">$templateVars</a> =
                         ;
-                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\View\View" href="../classes/Strata_View_View/loadTemplate.html">loadTemplate</a>()
-                    </li><li>public void <a title="Strata\View\View" href="../classes/Strata_View_View/loadHelper.html">loadHelper</a>()
+                    </li></ul><ul class="none"><li>// methods</li><li>public string <a title="Strata\View\View" href="../classes/Strata_View_View/loadTemplate.html">loadTemplate</a>()
+                    </li><li>public null <a title="Strata\View\View" href="../classes/Strata_View_View/loadHelper.html">loadHelper</a>()
                     </li><li>public void <a title="Strata\View\View" href="../classes/Strata_View_View/set.html">set</a>()
                     </li><li>public array <a title="Strata\View\View" href="../classes/Strata_View_View/getVariables.html">getVariables</a>()
                     </li><li>public mixed <a title="Strata\View\View" href="../classes/Strata_View_View/get.html">get</a>()
@@ -87,7 +87,7 @@
                     </li><li>public string <a title="Strata\View\View" href="../classes/Strata_View_View/render.html">render</a>()
                     </li><li>protected string <a title="Strata\View\View" href="../classes/Strata_View_View/parseCurrentContent.html">parseCurrentContent</a>()
                     </li><li>protected null <a title="Strata\View\View" href="../classes/Strata_View_View/applyHeaders.html">applyHeaders</a>()
-                    </li><li>protected void <a title="Strata\View\View" href="../classes/Strata_View_View/getDefaultConfiguration.html">getDefaultConfiguration</a>()
+                    </li><li>protected array <a title="Strata\View\View" href="../classes/Strata_View_View/getDefaultConfiguration.html">getDefaultConfiguration</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
@@ -124,10 +124,9 @@
           <h4>protected</h4>
           <ul>
             <li id="applyHeaders"><a title="Strata\View\View" href="../classes/Strata_View_View/applyHeaders.html">applyHeaders()</a>
-                — Applies header values sent as options. For the time being, only Content-type and Content-disposition are supported.</li>
-            <li id="getDefaultConfiguration">
-              <a title="Strata\View\View" href="../classes/Strata_View_View/getDefaultConfiguration.html">getDefaultConfiguration()</a>
-            </li>
+                — Applies PHP header values sent as options. For the time being, only Content-type and Content-disposition are supported.</li>
+            <li id="getDefaultConfiguration"><a title="Strata\View\View" href="../classes/Strata_View_View/getDefaultConfiguration.html">getDefaultConfiguration()</a>
+                — Returns the list of default view configuration values.</li>
             <li id="parseCurrentContent"><a title="Strata\View\View" href="../classes/Strata_View_View/parseCurrentContent.html">parseCurrentContent()</a>
                 — Takes the current value of the content option and ensure that it is correctly formatted for output. If the content is an array or an object, the value.</li>
           </ul>
@@ -139,12 +138,10 @@
                 — Returns a variable assigned to the current view</li>
             <li id="getVariables"><a title="Strata\View\View" href="../classes/Strata_View_View/getVariables.html">getVariables()</a>
                 — Returns the list of currently declared variables in this view.</li>
-            <li id="loadHelper">
-              <a title="Strata\View\View" href="../classes/Strata_View_View/loadHelper.html">loadHelper()</a>
-            </li>
-            <li id="loadTemplate">
-              <a title="Strata\View\View" href="../classes/Strata_View_View/loadTemplate.html">loadTemplate()</a>
-            </li>
+            <li id="loadHelper"><a title="Strata\View\View" href="../classes/Strata_View_View/loadHelper.html">loadHelper()</a>
+                — Loads and declares a ViewHelper in the current view instance.</li>
+            <li id="loadTemplate"><a title="Strata\View\View" href="../classes/Strata_View_View/loadTemplate.html">loadTemplate()</a>
+                — Compiles a template using the file located at $path</li>
             <li id="render"><a title="Strata\View\View" href="../classes/Strata_View_View/render.html">render()</a>
                 — Renders on the page and end the process. Useful for simple HTML returns or data in another format like JSON.</li>
             <li id="set"><a title="Strata\View\View" href="../classes/Strata_View_View/set.html">set()</a>
