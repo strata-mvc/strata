@@ -1,26 +1,28 @@
 <?php
+
 namespace Strata\Model\Validator;
 
 use Strata\Strata;
 
 class RequiredValidator extends Validator
 {
-    protected $_config = array(
-        "if" => null
-    );
-
-    function __construct()
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
     {
         $this->setMessage(__("This is a required field.", "strata"));
     }
 
+    /**
+     * Should one of the conditions be missing, the validator
+     * will return a successful test.
+     */
     public function test($value, $context)
     {
-        // Should one of the conditions be missing, the validator
-        // will return a successful test.
-        if (!is_null($this->_config['if'])) {
+        if ($this->hasConfig("if") && !is_null($this->getConfig("if"))) {
             $request =  Strata::app()->router->getCurrentController()->request;
-            foreach ($this->_config['if'] as $key => $expectedValue) {
+            foreach ($this->getConfig("if") as $key => $expectedValue) {
                 $comparedValue = $request->isPost() ? $request->post($key) : $request->get($key);
                 if ($comparedValue !== $expectedValue) {
                     // ignore the rest of the validations, $expectedValue is not met

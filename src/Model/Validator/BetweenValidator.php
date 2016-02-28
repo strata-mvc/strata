@@ -3,27 +3,60 @@ namespace Strata\Model\Validator;
 
 class BetweenValidator extends Validator
 {
-
-    protected $_config = array(
-        "min" => null,
-        "max" => null
-    );
-
-    function __construct()
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
     {
         $this->setMessage(__("This is not a valid selection.", "strata"));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function test($value, $context)
     {
-        if (!is_null($this->_config['min'])) {
-            if ((int)$value < (int)$this->_config['min']) {
+        return $this->excludes() ?
+            $this->testExclusion() :
+            $this->testInclusion();
+    }
+
+    private function excludes()
+    {
+        return $this->hasConfig("excludes") && (bool)$this->getConfig("excludes");
+    }
+
+    private function testExclusion()
+    {
+        if ($this->hasConfig("min")) {
+            $min = $this->getConfig("min");
+            if (round($value) < round($min)) {
                 return false;
             }
         }
 
-        if (!is_null($this->_config['max'])) {
-            if ((int)$value > (int)$this->_config['max']) {
+        if ($this->hasConfig("max")) {
+            $max = $this->getConfig("max");
+            if (round($value) > round($max)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private function testInclusion()
+    {
+        if ($this->hasConfig("min")) {
+            $min = $this->getConfig("min");
+            if (round($value) <= round($min)) {
+                return false;
+            }
+        }
+
+        if ($this->hasConfig("max")) {
+            $max = $this->getConfig("max");
+            if (round($value) >= round($max)) {
                 return false;
             }
         }

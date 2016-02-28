@@ -9,7 +9,6 @@ php:
 matrix:
   allow_failures:
     - php: nightly
-    - php: 7.0
 before_script:
   - "/home/travis/.phpenv/versions/5.4/bin/composer self-update"
   - "composer update --prefer-source"

@@ -4,15 +4,62 @@ namespace Strata\Model\Validator;
 
 class LengthValidator extends Validator
 {
-
-    protected $_config = array(
-        "min" => null,
-        "max" => null
-    );
-
+    /**
+     * {@inheritdoc}
+     */
     public function test($value, $context)
     {
+        $length = $this->figureOutLength($value);
+
+        if ($this->hasConfig("min")) {
+            $min = $this->getConfig("min");
+            if ($length < round($min)) {
+                return false;
+            }
+        }
+
+        if ($this->hasConfig("max")) {
+            $max = $this->getConfig("max");
+            if ($length > round($max)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMessage()
+    {
+        if (!$this->hasConfig("min") && $this->hasConfig("max")) {
+            return sprintf(
+                __("The length must be at most %s characters long.", "strata"),
+                $this->getConfig("max")
+            );
+        } elseif ($this->hasConfig("min") && !$this->hasConfig("max")) {
+            return sprintf(
+                __("The length must be at least %s characters long.", "strata"),
+                $this->getConfig('min')
+            );
+        } elseif (!is_null($this->getConfig('min')) && $this->getConfig('min') === $this->getConfig('min')) {
+            return sprintf(
+                __("The length must be exactly %s characters.", "strata"),
+                $this->getConfig('min')
+            );
+        }
+
+        return sprintf(__("The length must be between %s and %s.", "strata"),
+            $this->getConfig('min'),
+            $this->getConfig('max')
+        );
+    }
+
+    public function figureOutLength($value)
+    {
         $length = 0;
+
         if (is_array($value)) {
             foreach ($value as $val) {
                 if ($val !== "0") {
@@ -23,31 +70,6 @@ class LengthValidator extends Validator
             $length = strlen($value);
         }
 
-        if (!is_null($this->_config['min'])) {
-            if ($length < (int)$this->_config['min']) {
-                return false;
-            }
-        }
-
-        if (!is_null($this->_config['max'])) {
-            if ($length > (int)$this->_config['max']) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public function getMessage()
-    {
-        if (is_null($this->_config['min']) && !is_null($this->_config['max'])) {
-            return sprintf(__("The length must be at most %s characters long.", "strata"), $this->_config['max']);
-        } elseif (!is_null($this->_config['min']) && is_null($this->_config['max'])) {
-            return sprintf(__("The length must be at least %s characters long.", "strata"), $this->_config['min']);
-        } elseif ($this->_config['min'] === $this->_config['max'] && !is_null($this->_config['min'])) {
-            return sprintf(__("The length must be exactly %s characters.", "strata"), $this->_config['min']);
-        }
-
-        return sprintf(__("The length must be between %s and %s.", "strata"), $this->_config['min'], $this->_config['max']);
+        return $length;
     }
 }

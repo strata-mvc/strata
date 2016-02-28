@@ -26,7 +26,6 @@ Feel free to ask questions to the Strata community in [the chat](https://gitter.
 Code must be submit through pull requests. You need to follow the conventions you see used in the source already, which mostly consist of using the PSR2 standard.
 
 1. Create a new branch, please don't work in your master branch directly.
-1. Add failing tests for the change you want to make. Run 'grunt watch' to see the tests fail.
-1. Repeat until the tests do not fail and your feature/fix is complete.
-1. Update the documentation to reflect any changes. Be clear about what you have done.
-1. Push to your fork and submit a pull request.
+1. Add new tests for the change you want to make.
+1. Run the testing script to ensure your tests pass.
+1. Push to your fork and submit a pull request (be clear about what you have done please).

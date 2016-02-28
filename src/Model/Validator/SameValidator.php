@@ -1,27 +1,36 @@
 <?php
+
 namespace Strata\Model\Validator;
 
 use Strata\Strata;
+use Exception;
 
 class SameValidator extends Validator
 {
-
-    protected $_config = array(
-        "as" => null,
-    );
-
-    function __construct()
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
     {
         $this->setMessage(__("The two values do not match.", "strata"));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function test($value, $context)
     {
+        if ($this->hasConfig("as")) {
+            throw new Exception("SameValidator is missing the required 'as' configuration key.");
+        }
+
         $request =  Strata::app()->router->getCurrentController()->request;
-        if ($request->isPost($this->_config['as'])) {
-            $comparedWith = $request->post($this->_config['as']);
-        } elseif ($request->isGet($this->_config['as'])) {
-            $comparedWith = $request->get($this->_config['as']);
+        $as = $this->getConfig('as');
+
+        if ($request->isPost($as)) {
+            $comparedWith = $request->post($as);
+        } elseif ($request->isGet($as)) {
+            $comparedWith = $request->get($as);
         } else {
             return false;
         }

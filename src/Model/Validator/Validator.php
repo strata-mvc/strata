@@ -1,14 +1,14 @@
 <?php
+
 namespace Strata\Model\Validator;
 
 use Strata\Core\StrataObjectTrait;
+use Strata\Core\StrataConfigurableTrait;
 
 /**
- * A base class for Validator objects
- * @todo Validator needs to use the configurable trait.
- * @todo Validator needs to be refactored without underscores as scope indicators.
+ * A base class for Validator objects.
  */
-class Validator
+abstract class Validator
 {
     use StrataObjectTrait;
 
@@ -33,26 +33,18 @@ class Validator
     /**
      * @var string An error message for this validation.
      */
-    protected $_errorMessage = "There has been an error with this field.";
+    protected $errorMessage = "There has been an error with this field.";
 
     /**
-     * @var array An associative array of options used during the validation.
+     * Initiates the validator object. Useful for inheritance and
+     * translating error labels.
      */
-    protected $_config = array();
-
-    /**
-     * Configures the validator
-     * @param array $config The associative configuration array
-     */
-    public function configure($config = array())
-    {
-        $this->_config = $config;
-    }
+    abstract function init();
 
     /**
      * The actual test function.
-     * @param  mixed                          $value   [description]
-     * @param  \Strata\View\Helper\FormHelper $context The form context upon which the tests are being done
+     * @param  mixed                          $value
+     * @param  \Strata\Model\CustomPostType\ModelEntity $context The entity upon which the tests are being done
      * @return boolean          True if the test passes
      */
     public function test($value, $context)
@@ -66,7 +58,7 @@ class Validator
      */
     public function getMessage()
     {
-        return $this->_errorMessage;
+        return $this->errorMessage;
     }
 
     /**
@@ -75,6 +67,6 @@ class Validator
      */
     public function setMessage($msg)
     {
-        return $this->_errorMessage = $msg;
+        return $this->errorMessage = $msg;
     }
 }

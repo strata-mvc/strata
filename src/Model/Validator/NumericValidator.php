@@ -1,16 +1,15 @@
 <?php
+
 namespace Strata\Model\Validator;
 
-class NumericValidator extends Validator
+class NumericValidator extends RegexValidator
 {
-
-    function __construct()
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
     {
         $this->setMessage(__("Only numeric values are allowed.", "strata"));
-    }
-
-    public function test($value, $context)
-    {
-        return !preg_match("/\D/i", $value);
+        $this->setConfig("pattern", "/\d/i");
     }
 }

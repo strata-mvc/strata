@@ -1,14 +1,21 @@
 <?php
+
 namespace Strata\Model\Validator;
 
 class PostexistValidator extends Validator
 {
 
-    function __construct()
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
     {
         $this->setMessage(__("This post could not be found.", "strata"));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function test($value, $context)
     {
         $postId = (int)$value;
