@@ -302,7 +302,6 @@ class Strata extends StrataContext
 
     protected function registerErrorHadler()
     {
-        ob_start();
         $handler = new BaseErrorHandler();
         $handler->register();
     }

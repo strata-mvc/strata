@@ -42,34 +42,35 @@ class BaseErrorHandler
         $useDebugger = $this->useStrataDebugger();
 
         if ($debugLevel > 0 && Strata::isDev()) {
-            error_reporting();
+            error_reporting(0); // we'll report it ourselves
             set_error_handler(array($this, 'handleError'), $debugLevel);
             set_exception_handler(array($this, 'wrapAndHandleException'));
-            register_shutdown_function(function () {
-                if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
-                    return;
-                }
-
-                $error = error_get_last();
-                if (!is_array($error)) {
-                    return;
-                }
-
-
-                if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
-                    return;
-                }
-
-                $this->handleFatalError(
-                    $error['type'],
-                    $error['message'],
-                    $error['file'],
-                    $error['line']
-                );
-
-                return true;
-            });
+            add_action('shutdown', array($this, 'shutdown'));
         }
+    }
+
+    public function shutdown()
+    {
+        if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
+            return;
+        }
+
+        $error = error_get_last();
+        if (!is_array($error)) {
+            return;
+        }
+
+
+        if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
+            return;
+        }
+
+        $this->handleFatalError(
+            $error['type'],
+            $error['message'],
+            $error['file'],
+            $error['line']
+        );
     }
 
     /**
@@ -155,7 +156,7 @@ class BaseErrorHandler
         $debug = new ErrorDebugger();
         $debug->setErrorData($data);
         echo $debug->compile();
-        die();
+        exit();
     }
 
     /**
@@ -168,7 +169,7 @@ class BaseErrorHandler
         $debug = new ErrorDebugger();
         $debug->setErrorData($data);
         echo $debug->compile();
-        die();
+        exit();
     }
 
     /**
