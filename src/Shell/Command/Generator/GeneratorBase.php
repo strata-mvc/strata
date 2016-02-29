@@ -2,7 +2,7 @@
 
 namespace Strata\Shell\Command\Generator;
 
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 
 /**
  * Automates repetitive creation of code files. It validates the class names and
@@ -35,7 +35,7 @@ abstract class GeneratorBase
      */
     protected $writer = null;
 
-    function __construct(StrataCommand $command)
+    function __construct(StrataCommandBase $command)
     {
         $this->command = $command;
     }
