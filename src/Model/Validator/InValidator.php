@@ -33,10 +33,10 @@ class InValidator extends Validator
     {
         $configuration = $this->configuration;
 
-        if (is_callable($this->configuration)) {
-            return call_user_func($this->configuration);
-        } elseif (is_array($this->configuration)) {
-            return $this->configuration;
+        if (is_callable($configuration)) {
+            return call_user_func($configuration);
+        } elseif (is_array($configuration)) {
+            return $configuration;
         }
 
         throw new Exception("InValidator received an incorrect type of allowed object.");

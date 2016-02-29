@@ -29,7 +29,8 @@ class Mailer
             "title" => "",
             "attachedFile" => null,
             "to" => array(),
-            "bcc" => array()
+            "bcc" => array(),
+            "email_separator" => ";"
         ));
     }
 

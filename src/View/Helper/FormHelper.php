@@ -326,7 +326,7 @@ class FormHelper extends Helper
      */
     protected function generateRadio($options, $currentValue = null)
     {
-        return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), $options['value'] === $currentValue ? ' checked="checked"' : '');
+        return sprintf('<input %s%s>', $this->arrayToHtmlAttributes($options), "{$options['value']}" === "$currentValue" ? ' checked="checked"' : '');
     }
 
     /**
