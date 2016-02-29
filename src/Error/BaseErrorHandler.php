@@ -41,7 +41,7 @@ class BaseErrorHandler
         $debugLevel = $this->getDebugLevel();
         $useDebugger = $this->useStrataDebugger();
 
-        if ($debugLevel > 0 && Strata::isDev()) {
+        if ($debugLevel > 0 && Strata::isDev() && !Strata::isCommandLineInterface()) {
             error_reporting(0); // we'll report it ourselves
             set_error_handler(array($this, 'handleError'), $debugLevel);
             set_exception_handler(array($this, 'wrapAndHandleException'));
