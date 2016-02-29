@@ -31,7 +31,7 @@ abstract class GeneratorBase
     protected $classname;
 
     /**
-     * @var ClassWriter A reference to the current class writer
+     * @var StrataCommandBase A reference to the current command
      */
     protected $writer = null;
 

@@ -2,7 +2,7 @@
 
 namespace Strata\Shell\Command\Generator;
 
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
 
 /**
  * Generates classes files within Strata.
@@ -109,9 +109,9 @@ class {CLASSNAME} extends {EXTENDS}
 
     /**
      * Sets the command that triggered the generation.
-     * @param  StrataCommand $command
+     * @param  StrataCommandBase $command
      */
-    public function setCommandContext(StrataCommand $command)
+    public function setCommandContext(StrataCommandBase $command)
     {
         $this->command = $command;
     }
