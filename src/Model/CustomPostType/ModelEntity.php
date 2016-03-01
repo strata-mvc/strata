@@ -139,6 +139,15 @@ class ModelEntity
     }
 
     /**
+     * Returns a list of properties defined on the bound object.
+     * @return array
+     */
+    public function toArray()
+    {
+        return (array)get_object_vars($this->associatedObject);
+    }
+
+    /**
      * Assigns the entity data that may be found in the request
      * to this entity.
      * @param  Request $request

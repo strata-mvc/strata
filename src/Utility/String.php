@@ -18,6 +18,8 @@
 
 namespace Strata\Utility;
 
+use Strata\Strata;
+
 /**
  * String handling methods.
  *
@@ -33,7 +35,7 @@ class String
  */
     public static function uuid()
     {
-        $node = env('SERVER_ADDR');
+        $node = getenv('SERVER_ADDR');
         if (strpos($node, ':') !== false) {
             if (substr_count($node, '::')) {
                 $node = str_replace(
@@ -54,9 +56,9 @@ class String
                 $node = crc32($node);
             }
         } elseif (empty($node)) {
-            $host = env('HOSTNAME');
+            $host = getenv('HOSTNAME');
             if (empty($host)) {
-                $host = env('HOST');
+                $host = getenv('HOST');
             }
             if (!empty($host)) {
                 $ip = gethostbyname($host);
@@ -72,7 +74,7 @@ class String
             $node = null;
         }
         if (empty($node)) {
-            $node = crc32(Configure::read('Security.salt'));
+            $node = crc32(Strata::app()->getConfig('security.salt'));
         }
         if (function_exists('hphp_get_thread_id')) {
             $pid = hphp_get_thread_id();
@@ -504,7 +506,7 @@ class String
         );
         if (isset($options['ending'])) {
             $defaults['ellipsis'] = $options['ending'];
-        } elseif (!empty($options['html']) && Configure::read('App.encoding') === 'UTF-8') {
+        } elseif (!empty($options['html']) && Strata::app()->getConfig('app.encoding') === 'UTF-8') {
             $defaults['ellipsis'] = "\xe2\x80\xa6";
         }
         $options += $defaults;
