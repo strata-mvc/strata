@@ -15,6 +15,8 @@ class BaseErrorHandler
 {
     use StrataConfigurableTrait;
 
+    public $somethingWasReported = false;
+
     /**
      * Checks the passed exception type. If it is an instance of `Error`
      * then, it wraps the passed object inside another Exception object
@@ -39,38 +41,37 @@ class BaseErrorHandler
     public function register()
     {
         $debugLevel = $this->getDebugLevel();
-        $useDebugger = $this->useStrataDebugger();
 
-        if ($debugLevel > 0 && Strata::isDev() && !Strata::isCommandLineInterface() && !is_admin() && $useDebugger) {
-            error_reporting(0); // we'll report it ourselves
+        if ($this->shouldBeDebugging()) {
+
+            ob_start();
+            add_action('shutdown', array($this, "wordpressShutdown"), 0);
+
+            register_shutdown_function(function() {
+                if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
+                    return;
+                }
+
+                $error = error_get_last();
+                if (!is_array($error)) {
+                    return;
+                }
+
+                if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
+                    return;
+                }
+
+                $this->handleFatalError(
+                    $error['type'],
+                    $error['message'],
+                    $error['file'],
+                    $error['line']
+                );
+            });
             set_error_handler(array($this, 'handleError'), $debugLevel);
             set_exception_handler(array($this, 'wrapAndHandleException'));
-            add_action('shutdown', array($this, 'shutdown'));
+            error_reporting($debugLevel);
         }
-    }
-
-    public function shutdown()
-    {
-        if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
-            return;
-        }
-
-        $error = error_get_last();
-        if (!is_array($error)) {
-            return;
-        }
-
-
-        if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
-            return;
-        }
-
-        $this->handleFatalError(
-            $error['type'],
-            $error['message'],
-            $error['file'],
-            $error['line']
-        );
     }
 
     /**
@@ -96,6 +97,7 @@ class BaseErrorHandler
 
         $this->logErrorData($data);
         $this->displayErrorData($data);
+        $this->endProcesses();
     }
 
     /**
@@ -118,6 +120,7 @@ class BaseErrorHandler
 
         $this->logErrorData($data);
         $this->displayErrorData($data);
+        $this->endProcesses();
     }
 
     /**
@@ -139,11 +142,13 @@ class BaseErrorHandler
             'description' => $exception->getMessage(),
             'file' => $exception->getFile(),
             'line' => $exception->getLine(),
-            'error' => 'Fatal Error',
+            'error' => 'Exception',
         );
 
         $this->displayExceptionData($data);
         $this->logExceptionData($data);
+        die();
+        $this->endProcesses();
     }
 
     /**
@@ -152,11 +157,13 @@ class BaseErrorHandler
      */
     protected function displayErrorData($data)
     {
-        $this->clearBuffer();
-        $debug = new ErrorDebugger();
-        $debug->setErrorData($data);
-        echo $debug->compile();
-        exit();
+        if (!$this->somethingWasReported) {
+            $this->clearBuffer();
+            $debug = new ErrorDebugger();
+            $debug->setErrorData($data);
+            echo $debug->compile();
+            $this->somethingWasReported = true;
+        }
     }
 
     /**
@@ -165,11 +172,13 @@ class BaseErrorHandler
      */
     protected function displayExceptionData($data)
     {
-        $this->clearBuffer();
-        $debug = new ErrorDebugger();
-        $debug->setErrorData($data);
-        echo $debug->compile();
-        exit();
+        if (!$this->somethingWasReported) {
+            $this->clearBuffer();
+            $debug = new ErrorDebugger();
+            $debug->setErrorData($data);
+            echo $debug->compile();
+            $this->somethingWasReported = true;
+        }
     }
 
     /**
@@ -198,15 +207,17 @@ class BaseErrorHandler
             return $this->getConfig("error.debug_level");
         }
 
-        return E_ALL;
+        return -1;
     }
 
     private function getFatalErrorsTypes()
     {
         return array(
-            E_USER_ERROR,
             E_ERROR,
             E_PARSE,
+            E_CORE_ERROR,
+            E_COMPILE_ERROR,
+            E_USER_ERROR,
         );
     }
 
@@ -224,6 +235,30 @@ class BaseErrorHandler
         }
 
         return true;
+    }
+
+    private function shouldBeDebugging()
+    {
+        return $this->useStrataDebugger() &&
+                Strata::isDev() &&
+               !Strata::isCommandLineInterface() &&
+               !is_admin();
+    }
+
+    private function endProcesses()
+    {
+        if (function_exists('do_action')) {
+            do_action('shutdown');
+        }
+
+        die();
+    }
+
+    public function wordpressShutdown()
+    {
+        if ($this->somethingWasReported) {
+            $this->clearBuffer();
+        }
     }
 
 }
