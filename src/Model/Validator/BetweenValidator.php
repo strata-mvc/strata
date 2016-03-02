@@ -16,14 +16,15 @@ class BetweenValidator extends Validator
      */
     public function test($value, $context)
     {
-        return $this->excludes() ?
-            $this->testExclusion() :
-            $this->testInclusion();
+        // This gets confusing
+        return $this->includes() ?
+            $this->testExclusion($value, $context) :
+            $this->testInclusion($value, $context);
     }
 
-    private function excludes()
+    private function includes()
     {
-        return $this->hasConfig("excludes") && (bool)$this->getConfig("excludes");
+        return $this->hasConfig("includes") && (bool)$this->getConfig("includes");
     }
 
     private function testExclusion()
