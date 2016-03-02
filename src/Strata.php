@@ -70,7 +70,6 @@ class Strata extends StrataContext
         $this->configureRouter();
 
         $this->loadConfiguration();
-        $this->registerErrorHadler();
         $this->addProjectNamespaces();
         $this->localize();
 
@@ -300,7 +299,7 @@ class Strata extends StrataContext
         return @file_put_contents($filename, $pid);
     }
 
-    protected function registerErrorHadler()
+    public function registerErrorHandler()
     {
         $handler = new BaseErrorHandler();
         $handler->register();
