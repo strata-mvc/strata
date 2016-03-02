@@ -15,7 +15,7 @@ class BaseErrorHandler
 {
     use StrataConfigurableTrait;
 
-    public $somethingWasReported = false;
+    private $hasError = false;
 
     /**
      * Checks the passed exception type. If it is an instance of `Error`
@@ -43,11 +43,11 @@ class BaseErrorHandler
         $debugLevel = $this->getDebugLevel();
 
         if ($this->shouldBeDebugging()) {
-
-            ob_start();
-            add_action('shutdown', array($this, "wordpressShutdown"), 0);
-
             register_shutdown_function(function() {
+                if (function_exists("is_admin") && is_admin()) {
+                    return;
+                }
+
                 if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
                     return;
                 }
@@ -60,7 +60,6 @@ class BaseErrorHandler
                 if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
                     return;
                 }
-
                 $this->handleFatalError(
                     $error['type'],
                     $error['message'],
@@ -85,6 +84,10 @@ class BaseErrorHandler
      */
     public function handleError($code, $description, $file = null, $line = null, $context = null)
     {
+        if (function_exists("is_admin") && is_admin()) {
+            return;
+        }
+
         $data = array(
             'type' => "Error",
             'code' => $code,
@@ -109,6 +112,10 @@ class BaseErrorHandler
      */
     public function handleFatalError($code, $description, $file, $line)
     {
+        if (function_exists("is_admin") && is_admin()) {
+            return;
+        }
+
         $data = array(
             'type' => "Fatal Error",
             'code' => $code,
@@ -136,6 +143,10 @@ class BaseErrorHandler
      */
     public function handleException(Exception $exception)
     {
+        if (function_exists("is_admin") && is_admin()) {
+            return;
+        }
+
         $data = array(
             'type' => "Exception",
             'code' => $exception->getCode(),
@@ -147,7 +158,6 @@ class BaseErrorHandler
 
         $this->displayExceptionData($data);
         $this->logExceptionData($data);
-        die();
         $this->endProcesses();
     }
 
@@ -157,13 +167,11 @@ class BaseErrorHandler
      */
     protected function displayErrorData($data)
     {
-        if (!$this->somethingWasReported) {
-            $this->clearBuffer();
-            $debug = new ErrorDebugger();
-            $debug->setErrorData($data);
-            echo $debug->compile();
-            $this->somethingWasReported = true;
-        }
+        $this->raiseDebuggerTakeover();
+
+        $debug = new ErrorDebugger();
+        $debug->setErrorData($data);
+        echo $debug->compile();
     }
 
     /**
@@ -172,13 +180,11 @@ class BaseErrorHandler
      */
     protected function displayExceptionData($data)
     {
-        if (!$this->somethingWasReported) {
-            $this->clearBuffer();
-            $debug = new ErrorDebugger();
-            $debug->setErrorData($data);
-            echo $debug->compile();
-            $this->somethingWasReported = true;
-        }
+        $this->raiseDebuggerTakeover();
+
+        $debug = new ErrorDebugger();
+        $debug->setErrorData($data);
+        echo $debug->compile();
     }
 
     /**
@@ -224,7 +230,7 @@ class BaseErrorHandler
     private function clearBuffer()
     {
         while (ob_get_level()) {
-            ob_end_clean();
+            ob_get_clean();
         }
     }
 
@@ -241,8 +247,7 @@ class BaseErrorHandler
     {
         return $this->useStrataDebugger() &&
                 Strata::isDev() &&
-               !Strata::isCommandLineInterface() &&
-               !is_admin();
+               !Strata::isCommandLineInterface();
     }
 
     private function endProcesses()
@@ -254,11 +259,10 @@ class BaseErrorHandler
         die();
     }
 
-    public function wordpressShutdown()
+    public function raiseDebuggerTakeover()
     {
-        if ($this->somethingWasReported) {
-            $this->clearBuffer();
-        }
+        $this->hasError = true;
+        $this->clearBuffer();
     }
 
 }
