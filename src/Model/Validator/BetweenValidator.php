@@ -27,7 +27,7 @@ class BetweenValidator extends Validator
         return $this->hasConfig("includes") && (bool)$this->getConfig("includes");
     }
 
-    private function testExclusion()
+    private function testExclusion($value, $context)
     {
         if ($this->hasConfig("min")) {
             $min = $this->getConfig("min");
@@ -46,7 +46,7 @@ class BetweenValidator extends Validator
         return true;
     }
 
-    private function testInclusion()
+    private function testInclusion($value, $context)
     {
         if ($this->hasConfig("min")) {
             $min = $this->getConfig("min");
