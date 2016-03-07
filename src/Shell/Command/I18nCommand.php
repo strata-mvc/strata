@@ -116,15 +116,15 @@ class I18nCommand extends StrataCommandBase
         $poFilename = $locale->getPoFilePath();
         $poEnvFilename = $locale->getPoFilePath(WP_ENV);
 
+        // Merge with the current environment's changes
+        if ($locale->hasPoFile(WP_ENV)) {
+            $envPoTranslations = Translations::fromPoFile($poEnvFilename);
+            $translation->mergeWith($envPoTranslations);
+        }
+
         // Merge with an existing .po
         if ($locale->hasPoFile()) {
             $poTranslations = Translations::fromPoFile($poFilename);
-            $translation->mergeWith($poTranslations);
-        }
-
-        // Merge with the current environment's changes
-        if ($locale->hasPoFile(WP_ENV)) {
-            $poTranslations = Translations::fromPoFile($poEnvFilename);
             $translation->mergeWith($poTranslations);
         }
 
