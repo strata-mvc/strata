@@ -138,6 +138,7 @@ class I18nCommand extends StrataCommandBase
         $translation->toPoFile($poEnvFilename);
 
         $translation->toMoFile($locale->getMoFilePath(WP_ENV));
+        $translation->toMoFile($locale->getMoFilePath());
     }
 
     /**

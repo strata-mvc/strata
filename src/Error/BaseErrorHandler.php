@@ -43,6 +43,7 @@ class BaseErrorHandler
         $debugLevel = $this->getDebugLevel();
 
         if ($this->shouldBeDebugging()) {
+            ob_start();
             register_shutdown_function(function() {
                 if (function_exists("is_admin") && is_admin()) {
                     return;

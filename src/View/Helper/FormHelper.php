@@ -441,11 +441,11 @@ class FormHelper extends Helper
     {
         $key = $this->removeBrackets($key);
 
-        if ($this->configuration['method'] === "GET" && $this->request->hasGet($key)) {
+        if ($this->getConfig('method') === "GET" && $this->request->hasGet($key)) {
             return $this->request->get($key);
         }
 
-        if ($this->configuration['method'] === "POST" && $this->request->hasPost($key)) {
+        if ($this->getConfig('method') === "POST" && $this->request->hasPost($key)) {
             return $this->request->post($key);
         }
 
@@ -475,8 +475,8 @@ class FormHelper extends Helper
     protected function getNonceSalt()
     {
         // Allow users to set their own nonce
-        if (!is_null($this->configuration['nonce'])) {
-            return $this->request->generateNonceKey($this->configuration['nonce']);
+        if (!is_null($this->getConfig('nonce'))) {
+            return $this->request->generateNonceKey($this->getConfig('nonce'));
         // Use the entity if it is present
         } elseif (!is_null($this->associatedEntity)) {
             return $this->request->generateNonceKey($this->associatedEntity);
