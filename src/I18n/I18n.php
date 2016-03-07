@@ -359,7 +359,7 @@ class i18n
             throw new Exception(sprintf(__("The project has never been scanned for %s.", 'polyglot'), $locale->getNativeLabel()));
         }
 
-        return Translations::fromPoFile($locale->getPoFilePath());
+        return Translations::fromMoFile($locale->getMoFilePath());
     }
 
     /**
@@ -370,15 +370,31 @@ class i18n
      */
     public function saveTranslations(Locale $locale, array $postedTranslations)
     {
-        $poFile = $locale->getPoFilePath();
-        $originalTranslations = Translations::fromPoFile($poFile);
-        $newTranslations = new Translations();
+        $editedTranslations = $this->postedValuesToTranslation($locale, $postedTranslations);
+
+        // The locally modified locales are stored in a
+        // file that is identified as belonging to the current
+        // environment.
+        $envPoFile = $locale->getPoFilePath(WP_ENV);
+        $envTranslation = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
+        $envTranslation->mergeWith($editedTranslations);
+        $envTranslation->toPoFile($envPoFile);
+
+        return $this->generateTranslationFiles($locale);
+    }
+
+    public function postedValuesToTranslation(Locale $locale, array $postedTranslations)
+    {
+        $newTranslations = array();
+
+        $envPoFile = $locale->getPoFilePath(WP_ENV);
+        $activeTranslations = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
 
         foreach ($postedTranslations as $t) {
             $original = html_entity_decode($t['original']);
             $context = html_entity_decode($t['context']);
 
-            $translation = $originalTranslations->find($context, $original);
+            $translation = $activeTranslations->find($context, $original);
             if ($translation === false) {
                 $translation = new Translation($context, $original, $t['plural']);
             }
@@ -388,10 +404,31 @@ class i18n
             $newTranslations[] = $translation;
         }
 
-        $originalTranslations->mergeWith($newTranslations, Translations::MERGE_HEADERS | Translations::MERGE_COMMENTS | Translations::MERGE_ADD | Translations::MERGE_LANGUAGE);
-        $originalTranslations->toPoFile($poFile);
-        $originalTranslations->toPoFile($locale->getPoFilePath(WP_ENV));
-        $originalTranslations->toMoFile($locale->getMoFilePath());
+        return $newTranslations;
+    }
+
+    public function generateTranslationFiles(Locale $locale)
+    {
+        $envPoFile = $locale->getPoFilePath(WP_ENV);
+        $poFile = $locale->getPoFilePath();
+        $moFile = $locale->getMoFilePath();
+
+        $activeTranslations = Translations::fromMoFile($moFile);
+
+        // Add local modifications to the default set should there
+        // be any.
+        $envTranslations = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
+        $activeTranslations->mergeWith($envTranslations);
+
+        $textDomain = Strata::app()->i18n->getTextdomain();
+        $activeTranslations->setDomain($textDomain);
+        $activeTranslations->setHeader('Language', $locale->getCode());
+        $activeTranslations->setHeader('Text Domain', $textDomain);
+        $activeTranslations->setHeader('X-Domain', $textDomain);
+
+        $activeTranslations->toPoFile($envPoFile);
+        $activeTranslations->toPoFile($poFile);
+        $activeTranslations->toMoFile($moFile);
     }
 
     /**

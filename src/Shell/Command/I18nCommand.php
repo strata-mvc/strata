@@ -113,32 +113,15 @@ class I18nCommand extends StrataCommandBase
      */
     private function saveStringToLocale(Locale $locale, Translations $translation)
     {
-        $poFilename = $locale->getPoFilePath();
-        $poEnvFilename = $locale->getPoFilePath(WP_ENV);
+        // The locally modified locales are stored in a
+        // file that is identified as belonging to the current
+        // environment.
+        $envPoFile = $locale->getPoFilePath(WP_ENV);
+        $envTranslation = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
+        $envTranslation->mergeWith($translation);
+        $envTranslation->toPoFile($envPoFile);
 
-        // Merge with the current environment's changes
-        if ($locale->hasPoFile(WP_ENV)) {
-            $envPoTranslations = Translations::fromPoFile($poEnvFilename);
-            $translation->mergeWith($envPoTranslations);
-        }
-
-        // Merge with an existing .po
-        if ($locale->hasPoFile()) {
-            $poTranslations = Translations::fromPoFile($poFilename);
-            $translation->mergeWith($poTranslations);
-        }
-
-        $textDomain = Strata::app()->i18n->getTextdomain();
-        $translation->setDomain($textDomain);
-        $translation->setHeader('Language', $locale->getCode());
-        $translation->setHeader('Text Domain', $textDomain);
-        $translation->setHeader('X-Domain', $textDomain);
-
-        $translation->toPoFile($poFilename);
-        $translation->toPoFile($poEnvFilename);
-
-        $translation->toMoFile($locale->getMoFilePath(WP_ENV));
-        $translation->toMoFile($locale->getMoFilePath());
+        Strata::app()->i18n->generateTranslationFiles();
     }
 
     /**
