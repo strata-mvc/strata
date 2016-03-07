@@ -416,8 +416,9 @@ class i18n
 
         // Add local modifications to the default set should there
         // be any.
-        $envTranslations = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
-        $activeTranslations->mergeWith($envTranslations);
+        if ($locale->hasPoFile(WP_ENV)) {
+            $activeTranslations->addFromPoFile($envPoFile);
+        }
 
         $textDomain = Strata::app()->i18n->getTextdomain();
         $activeTranslations->setDomain($textDomain);
@@ -427,6 +428,8 @@ class i18n
 
         $activeTranslations->toPoFile($envPoFile);
         $activeTranslations->toPoFile($poFile);
+
+        @unlink($moFile);
         $activeTranslations->toMoFile($moFile);
     }
 
