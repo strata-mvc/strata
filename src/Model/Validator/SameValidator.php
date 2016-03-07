@@ -20,7 +20,8 @@ class SameValidator extends Validator
      */
     public function test($value, $context)
     {
-        if ($this->hasConfig("as")) {
+        $confiiguration = $this->getconfiguration();
+        if (!isset($confiiguration['as'])) {
             throw new Exception("SameValidator is missing the required 'as' configuration key.");
         }
 
