@@ -386,7 +386,6 @@ class i18n
     public function postedValuesToTranslation(Locale $locale, array $postedTranslations)
     {
         $newTranslations = array();
-
         $envPoFile = $locale->getPoFilePath(WP_ENV);
         $activeTranslations = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
 
@@ -397,14 +396,14 @@ class i18n
             $translation = $activeTranslations->find($context, $original);
             if ($translation === false) {
                 $translation = new Translation($context, $original, $t['plural']);
+                $activeTranslations[] = $translation;
             }
 
             $translation->setTranslation($t['translation']);
             $translation->setPluralTranslation($t['pluralTranslation']);
-            $newTranslations[] = $translation;
         }
 
-        return $newTranslations;
+        return $activeTranslations;
     }
 
     public function generateTranslationFiles(Locale $locale)
