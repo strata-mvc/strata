@@ -359,7 +359,7 @@ class i18n
             throw new Exception(sprintf(__("The project has never been scanned for %s.", 'polyglot'), $locale->getNativeLabel()));
         }
 
-        return Translations::fromMoFile($locale->getMoFilePath());
+        return Translations::fromPoFile($locale->getPoFilePath());
     }
 
     /**
