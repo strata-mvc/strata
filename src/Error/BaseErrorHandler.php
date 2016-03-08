@@ -92,7 +92,6 @@ class BaseErrorHandler
         $data = array(
             'type' => "Error",
             'code' => $code,
-            'error' => $error,
             'description' => $description,
             'file' => $file,
             'line' => $line,
