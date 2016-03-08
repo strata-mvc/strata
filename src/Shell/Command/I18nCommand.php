@@ -121,7 +121,7 @@ class I18nCommand extends StrataCommandBase
         $envTranslation->mergeWith($translation);
         $envTranslation->toPoFile($envPoFile);
 
-        Strata::app()->i18n->generateTranslationFiles();
+        Strata::app()->i18n->generateTranslationFiles($locale);
     }
 
     /**
