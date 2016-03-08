@@ -25,6 +25,8 @@ class ErrorLogger
     private function logMessage($message = "")
     {
         $logger = Strata::app()->getLogger();
-        $logger->error($message, "[Strata:ErrorLogger]");
+        if (!is_null($logger)) {
+            $logger->error($message, "[Strata:ErrorLogger]");
+        }
     }
 }
