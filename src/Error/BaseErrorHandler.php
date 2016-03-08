@@ -122,7 +122,7 @@ class BaseErrorHandler
             'description' => $description,
             'file' => $file,
             'line' => $line,
-            'error' => 'Fatal Error',
+            'context' => null,
         );
 
         $this->logErrorData($data);
@@ -153,7 +153,7 @@ class BaseErrorHandler
             'description' => $exception->getMessage(),
             'file' => $exception->getFile(),
             'line' => $exception->getLine(),
-            'error' => 'Exception',
+            'context' => null,
         );
 
         $this->displayExceptionData($data);

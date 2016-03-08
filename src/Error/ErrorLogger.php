@@ -14,7 +14,7 @@ class ErrorLogger
     {
         $this->logMessage(sprintf(
             '%s (%s): %s in [%s, line %s]',
-            $error['error'],
+            $error['type'],
             $error['code'],
             $error['description'],
             $error['file'],
