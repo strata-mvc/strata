@@ -356,7 +356,7 @@ class i18n
         $locale = $this->getLocaleByCode($localeCode);
 
         if (!$locale->hasPoFile()) {
-            throw new Exception(sprintf(__("The project has never been scanned for %s.", 'polyglot'), $locale->getNativeLabel()));
+            throw new Exception(sprintf(__("The project has never been scanned for %s.", 'strata'), $locale->getNativeLabel()));
         }
 
         return Translations::fromPoFile($locale->getPoFilePath());
@@ -371,39 +371,54 @@ class i18n
     public function saveTranslations(Locale $locale, array $postedTranslations)
     {
         $editedTranslations = $this->postedValuesToTranslation($locale, $postedTranslations);
-
-        // The locally modified locales are stored in a
-        // file that is identified as belonging to the current
-        // environment.
-        $envPoFile = $locale->getPoFilePath(WP_ENV);
-        $envTranslation = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
-        $envTranslation->mergeWith($editedTranslations);
-        $envTranslation->toPoFile($envPoFile);
-
+        $editedTranslations->toPoFile($locale->getPoFilePath(WP_ENV));
         return $this->generateTranslationFiles($locale);
     }
 
     public function postedValuesToTranslation(Locale $locale, array $postedTranslations)
     {
-        $newTranslations = array();
         $envPoFile = $locale->getPoFilePath(WP_ENV);
-        $activeTranslations = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
+        $activeTranslations = $locale->hasPoFile(WP_ENV) ?
+            Translations::fromPoFile($envPoFile) :
+            new Translations();
 
         foreach ($postedTranslations as $t) {
             $original = html_entity_decode($t['original']);
             $context = html_entity_decode($t['context']);
+            $translationText = html_entity_decode($t['translation']);
+            $plural = html_entity_decode($t['pluralTranslation']);
 
-            $translation = $activeTranslations->find($context, $original);
-            if ($translation === false) {
-                $translation = new Translation($context, $original, $t['plural']);
-                $activeTranslations[] = $translation;
-            }
-
-            $translation->setTranslation($t['translation']);
-            $translation->setPluralTranslation($t['pluralTranslation']);
+            $translation = $this->addOrCreateString($activeTranslations, $context, $original);
+            $translation->setTranslation($translationText);
+            $translation->setPluralTranslation($plural);
         }
 
         return $activeTranslations;
+    }
+
+    public function addOrCreateString(Translations $translationSet, $context, $original)
+    {
+        $translation = $translationSet->find($context, $original);
+        if ($translation === false) {
+            $translation = new Translation($context, $original, "");
+            $translationSet[] = $translation;
+        }
+
+        return $translation;
+    }
+
+    public function hardTranslationSetMerge(Locale $locale, $from, $into)
+    {
+        foreach ($from as $translation) {
+            $context = $translation->getContext();
+            $original = $translation->getOriginal();
+            $merged = $this->addOrCreateString($into, $context, $original);
+            $merged->setTranslation($translation->getTranslation());
+            // The following Raises an array to string warning
+            // $merged->setPluralTranslation($translation->getPluralTranslation());
+        }
+
+        $into->toPoFile($locale->getPoFilePath(WP_ENV));
     }
 
     public function generateTranslationFiles(Locale $locale)
@@ -412,12 +427,14 @@ class i18n
         $poFile = $locale->getPoFilePath();
         $moFile = $locale->getMoFilePath();
 
+        // Load the binary to ensure projects always attempts
+        // to compile the same basic string.
         $activeTranslations = Translations::fromMoFile($moFile);
 
         // Add local modifications to the default set should there
         // be any.
         if ($locale->hasPoFile(WP_ENV)) {
-            $activeTranslations->addFromPoFile($envPoFile);
+             $this->hardTranslationSetMerge($locale, Translations::fromPoFile($envPoFile), $activeTranslations);
         }
 
         $textDomain = Strata::app()->i18n->getTextdomain();
@@ -426,10 +443,10 @@ class i18n
         $activeTranslations->setHeader('Text Domain', $textDomain);
         $activeTranslations->setHeader('X-Domain', $textDomain);
 
-        $activeTranslations->toPoFile($envPoFile);
-        $activeTranslations->toPoFile($poFile);
-
+        @unlink($poFile);
         @unlink($moFile);
+
+        $activeTranslations->toPoFile($poFile);
         $activeTranslations->toMoFile($moFile);
     }
 

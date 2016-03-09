@@ -99,10 +99,9 @@ class I18nCommand extends StrataCommandBase
      */
     private function saveStringToLocales()
     {
-        $tanslation = $this->extractGettextStrings();
-
+        $gettextEntries = $this->extractGettextStrings();
         foreach ($this->getLocales() as $locale) {
-            $this->saveStringToLocale($locale, $tanslation);
+            $this->addGettextEntriesToLocale($locale, $gettextEntries);
         }
     }
 
@@ -111,17 +110,19 @@ class I18nCommand extends StrataCommandBase
      * @param  Locale       $locale
      * @param  Translations $translation
      */
-    private function saveStringToLocale(Locale $locale, Translations $translation)
+    private function addGettextEntriesToLocale(Locale $locale, Translations $translations)
     {
         // The locally modified locales are stored in a
         // file that is identified as belonging to the current
         // environment.
         $envPoFile = $locale->getPoFilePath(WP_ENV);
-        $envTranslation = $locale->hasPoFile(WP_ENV) ? Translations::fromPoFile($envPoFile) : new Translations();
-        $envTranslation->mergeWith($translation);
-        $envTranslation->toPoFile($envPoFile);
+        $envTranslation = $locale->hasPoFile(WP_ENV) ?
+            Translations::fromPoFile($envPoFile) :
+            new Translations();
 
-        Strata::app()->i18n->generateTranslationFiles($locale);
+        $i18n = Strata::app()->i18n;
+        $i18n->hardTranslationSetMerge($locale, $envTranslation, $translations);
+        $i18n->generateTranslationFiles($locale);
     }
 
     /**
