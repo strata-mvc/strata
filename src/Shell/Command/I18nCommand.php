@@ -115,13 +115,17 @@ class I18nCommand extends StrataCommandBase
         // The locally modified locales are stored in a
         // file that is identified as belonging to the current
         // environment.
-        $envPoFile = $locale->getPoFilePath(WP_ENV);
-        $envTranslation = $locale->hasPoFile(WP_ENV) ?
-            Translations::fromPoFile($envPoFile) :
+        $envTranslations = $locale->hasPoFile(WP_ENV) ?
+            Translations::fromPoFile($locale->getPoFilePath(WP_ENV)) :
+            new Translations();
+
+        $defaultTranslations = $locale->hasPoFile() ?
+            Translations::fromPoFile($locale->getPoFilePath()) :
             new Translations();
 
         $i18n = Strata::app()->i18n;
-        $i18n->hardTranslationSetMerge($locale, $envTranslation, $translations);
+        $i18n->hardTranslationSetMerge($locale, $defaultTranslations, $translations);
+        $i18n->hardTranslationSetMerge($locale, $envTranslations, $translations);
         $i18n->generateTranslationFiles($locale);
     }
 
