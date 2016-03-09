@@ -35,22 +35,22 @@ class LengthValidator extends Validator
     {
         if (!$this->hasConfig("min") && $this->hasConfig("max")) {
             return sprintf(
-                __("The length must be at most %s characters long.", "strata"),
+                __("The length must be at most %s characters long.", $this->getTextdomain()),
                 $this->getConfig("max")
             );
         } elseif ($this->hasConfig("min") && !$this->hasConfig("max")) {
             return sprintf(
-                __("The length must be at least %s characters long.", "strata"),
+                __("The length must be at least %s characters long.", $this->getTextdomain()),
                 $this->getConfig('min')
             );
         } elseif (!is_null($this->getConfig('min')) && $this->getConfig('min') === $this->getConfig('max')) {
             return sprintf(
-                __("The length must be exactly %s characters.", "strata"),
+                __("The length must be exactly %s characters.", $this->getTextdomain()),
                 $this->getConfig('min')
             );
         }
 
-        return sprintf(__("The length must be between %s and %s.", "strata"),
+        return sprintf(__("The length must be between %s and %s.", $this->getTextdomain()),
             $this->getConfig('min'),
             $this->getConfig('max')
         );

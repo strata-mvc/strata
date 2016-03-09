@@ -9,7 +9,7 @@ class NumericValidator extends RegexValidator
      */
     public function init()
     {
-        $this->setMessage(__("Only numeric values are allowed.", "strata"));
+        $this->setMessage(__("Only numeric values are allowed.", $this->getTextdomain()));
         $this->setConfig("pattern", "/\d/i");
     }
 }

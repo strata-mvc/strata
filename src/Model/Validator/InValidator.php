@@ -12,7 +12,7 @@ class InValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This is not a valid selection.", "strata"));
+        $this->setMessage(__("This is not a valid selection.", $this->getTextdomain()));
     }
 
     /**

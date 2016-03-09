@@ -9,7 +9,7 @@ class EmailValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This does not look like a valid email.", "strata"));
+        $this->setMessage(__("This does not look like a valid email.", $this->getTextdomain()));
     }
 
     /**

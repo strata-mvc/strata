@@ -1,5 +1,8 @@
 <?php
+
 namespace Strata\Model\Validator;
+
+
 
 class BetweenValidator extends Validator
 {
@@ -8,7 +11,7 @@ class BetweenValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This is not a valid selection.", "strata"));
+        $this->setMessage(__("This is not a valid selection.", $this->getTextdomain()));
     }
 
     /**

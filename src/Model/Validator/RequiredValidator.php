@@ -11,7 +11,7 @@ class RequiredValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This is a required field.", "strata"));
+        $this->setMessage(__("This is a required field.", $this->getTextdomain()));
     }
 
     /**

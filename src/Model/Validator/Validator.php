@@ -2,6 +2,7 @@
 
 namespace Strata\Model\Validator;
 
+use Strata\Strata;
 use Strata\Core\StrataObjectTrait;
 use Strata\Core\StrataConfigurableTrait;
 
@@ -72,5 +73,15 @@ class Validator
     public function setMessage($msg)
     {
         return $this->errorMessage = $msg;
+    }
+
+    protected function getTextdomain($default = "strata")
+    {
+        $app = Strata::app();
+        if ($app && $app->hasConfig("i18n.textdomain")) {
+            return $app->getConfig("i18n.textdomain");
+        }
+
+        return $default;
     }
 }

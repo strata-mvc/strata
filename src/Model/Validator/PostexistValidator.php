@@ -10,7 +10,7 @@ class PostexistValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This post could not be found.", "strata"));
+        $this->setMessage(__("This post could not be found.", $this->getTextdomain()));
     }
 
     /**

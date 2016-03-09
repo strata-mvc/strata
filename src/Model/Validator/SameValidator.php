@@ -12,7 +12,7 @@ class SameValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("The two values do not match.", "strata"));
+        $this->setMessage(__("The two values do not match.", $this->getTextdomain()));
     }
 
     /**
