@@ -3,6 +3,7 @@
 namespace Strata\Controller;
 
 use Strata\Utility\Hash;
+use Strata\Strata;
 
 /**
  * Handles safe access to HTTP request data, whether from POST, GET, files or cookies.
@@ -273,6 +274,7 @@ class Request
         }
 
         $key = $this->generateNonceKey($mixedNonceSalt);
+
         return wp_verify_nonce($token, $key);
     }
 
@@ -283,16 +285,15 @@ class Request
      */
     public function generateNonceKey($mixedNonceSalt = null)
     {
-        if (is_string($mixedNonceSalt)) {
-            return $mixedNonceSalt;
+        if (!is_string($mixedNonceSalt)) {
+            $mixedNonceSalt = json_encode($mixedNonceSalt);
         }
 
-        if (is_a($mixedNonceSalt, "Strata\\Model\\CustomPostType\\ModelEntity")) {
-            $distinction =  $mixedNonceSalt->isBound() ? $mixedNonceSalt->ID : "strata_request";
-            return get_class($mixedNonceSalt) . $distinction;
-        }
+        $strataSalt = Strata::app()->hasConfig('security.salt') ?
+            Strata::app()->getConfig('security.salt') :
+            crc32(getenv('SERVER_ADDR'));
 
-        return "strata_nonce";
+        return $strataSalt . md5($mixedNonceSalt);
     }
 
     /**
