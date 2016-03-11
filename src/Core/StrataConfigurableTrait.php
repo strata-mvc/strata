@@ -35,6 +35,17 @@ trait StrataConfigurableTrait
     }
 
     /**
+     * Intelligently extract data from the
+     * configuration array.
+     * @param string $key In dot-notation format
+     * @return mixed
+     */
+    public function extractConfig($key)
+    {
+        return Hash::extract($this->getConfiguration(), $key);
+    }
+
+    /**
      * Saves a value in the object's configuration array for the duration of the runtime.
      * @param string $key In dot-notation format
      * @return mixed

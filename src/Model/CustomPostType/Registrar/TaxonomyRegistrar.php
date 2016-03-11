@@ -6,6 +6,9 @@ use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
 use Strata\Model\Taxonomy\Taxonomy;
 
+use Strata\Strata;
+use Strata\Utility\Hash;
+
 /**
  * Registers a taxonomy based on a Models' configuration.
  */
@@ -47,18 +50,31 @@ class TaxonomyRegistrar extends Registrar
             'query_var'                 =>  $key,
             'show_in_nav_menus'          => false,
             'show_tagcloud'              => false,
-            'rewrite' => array(
-                'with_front' => true,
-                'slug' => $key
-            ),
-            'capabilities' => array(
-                'manage_terms' => 'read',
-                'edit_terms'   => 'read',
-                'delete_terms' => 'read',
-                'assign_terms' => 'read',
-            ),
+            'rewrite' => array(),
+            'capabilities' => array(),
             'labels'=> array()
         );
+
+        $customizedOptions['capabilities'] += array(
+            'manage_terms' => 'read',
+            'edit_terms'   => 'read',
+            'delete_terms' => 'read',
+            'assign_terms' => 'read',
+        );
+
+
+        $customizedOptions['rewrite'] += array(
+            'with_front' => true,
+            'slug' => $key
+        );
+
+        $currentLocale = Strata::app()->i18n->getCurrentLocale();
+        if (!$currentLocale->isDefault()) {
+            $translatedSlug = Hash::get($customizedOptions, "i18n." . $currentLocale->getCode() . ".rewrite.slug");
+            if (!is_null($translatedSlug)) {
+                $customizedOptions['rewrite']['slug'] = $translatedSlug;
+            }
+        }
 
         $customizedOptions['labels'] += array(
             'name'                => _x($plural, 'Post Type General Name', 'strata'),

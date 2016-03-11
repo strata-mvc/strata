@@ -4,6 +4,8 @@ namespace Strata\Model\CustomPostType\Registrar;
 
 use Strata\Model\CustomPostType\LabelParser;
 use Strata\Model\CustomPostType\Registrar\Registrar;
+use Strata\Utility\Hash;
+use Strata\Strata;
 
 /**
  * Registers a custom post type based on a Models' configuration.
@@ -20,7 +22,7 @@ class CustomPostTypeRegistrar extends Registrar
         // Ensure the default options have been set.
         $customizedOptions = $this->model->getConfiguration() + array(
             'labels'              => array(),
-            'supports'            => array( 'title' ),
+            'supports'            => array('title', 'editor'),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
@@ -31,10 +33,22 @@ class CustomPostTypeRegistrar extends Registrar
             'can_export'          => false,
             'has_archive'         => false,
             'exclude_from_search' => true,
-            'publicly_queryable'  => false,
-            'rewrite'             => null,
+            'publicly_queryable'  => true,
+            'rewrite'             => array(),
             'capability_type'     => 'post',
         );
+
+        $customizedOptions['rewrite'] += array(
+            'with_front' => false,
+        );
+
+        $currentLocale = Strata::app()->i18n->getCurrentLocale();
+        if (!$currentLocale->isDefault()) {
+            $translatedSlug = Hash::get($customizedOptions, "i18n." . $currentLocale->getCode() . ".rewrite.slug");
+            if (!is_null($translatedSlug)) {
+                $customizedOptions['rewrite']['slug'] = $translatedSlug;
+            }
+        }
 
         $labelParser = new LabelParser($this->model);
         $labelParser->parse();

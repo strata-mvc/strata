@@ -7,6 +7,7 @@ use Strata\Controller\Controller;
 use Strata\Controller\Request;
 use Strata\Model\CustomPostType\CustomPostType;
 use Strata\Utility\Inflector;
+use Strata\Strata;
 use AltoRouter;
 use Exception;
 
@@ -48,9 +49,22 @@ class AltoRoute extends Route
      */
     public function addResource(CustomPostType $customPostType)
     {
-        $slug = $customPostType->hasConfig("rewrite.slug")
-            ? $customPostType->getConfig("rewrite.slug")
-            : $customPostType->getWordpressKey();
+        $slug = null;
+
+        $currentLocale = Strata::app()->i18n->getCurrentLocale();
+        if (!$currentLocale->isDefault()) {
+            $slugInfo = $customPostType->extractConfig("i18n." . $currentLocale->getCode() . ".rewrite.slug");
+            $slug = array_pop($slugInfo);
+        }
+
+        if (is_null($slug)) {
+            $slugInfo = $customPostType->extractConfig("rewrite.slug");
+            $slug = array_pop($slugInfo);
+        }
+
+        if (is_null($slug)) {
+            $slug = $customPostType->getWordpressKey();
+        }
 
         $controller = Controller::generateClassName($customPostType->getShortName());
 
