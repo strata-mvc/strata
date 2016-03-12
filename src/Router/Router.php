@@ -101,7 +101,7 @@ class Router
         }
 
         $controllerClass = get_class($this->route->controller);
-        $messagePattern = "%s#%s is not a matched Strata route.";
+        $messagePattern = "<warning>%s#%s is not a matched Strata route.</warning>";
         $this->log(sprintf($messagePattern, $controllerClass, $this->route->action));
     }
 
@@ -162,9 +162,8 @@ class Router
      * @param  string $msg
      * @param  string $type
      */
-    private function log($msg, $type = "[Strata:Router]")
+    private function log($msg, $type = "<success>Router</success>")
     {
-        $app = Strata::app();
-        $app->log($msg, $type);
+        Strata::app()->log($msg, $type);
     }
 }

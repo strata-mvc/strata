@@ -87,6 +87,7 @@ class StrataContext
 
         // Expose the app context to the current process.
         $GLOBALS[self::STRATA_KEY] = $app;
+
         return $app;
     }
 

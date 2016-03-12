@@ -47,3 +47,26 @@ if (!function_exists('debug')) {
         }
     }
 }
+
+// This is on it way but we need to fix the server shell beforehand.
+// if (!function_exists('breakpoint')) {
+//     /**
+//      * Command to return the eval-able code to startup PsySH in interactive debugger
+//      * Works the same way as eval(\Psy\sh());
+//      * psy/psysh must be loaded in your project
+//      * @link http://psysh.org/
+//      * @link https://github.com/cakephp/cakephp/blob/master/src/basics.php
+//      * @return string
+//      */
+//     function breakpoint()
+//     {
+//         if ((PHP_SAPI === 'cli-server' || PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') && class_exists('\Psy\Shell')) {
+//              return eval(extract(\Psy\Shell::debug(get_defined_vars(), isset($this) ? $this : null)));
+//         }
+
+//         trigger_error(
+//             "psy/psysh must be installed and you must be in a CLI environment to use the breakpoint function",
+//             E_USER_WARNING
+//         );
+//     }
+// }

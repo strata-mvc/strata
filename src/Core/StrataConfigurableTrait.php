@@ -52,7 +52,7 @@ trait StrataConfigurableTrait
      */
     public function setConfig($key, $value)
     {
-        $this->configuration = Hash::merge($this->getConfiguration(), array($key => $value));
+        $this->configuration = Hash::insert($this->getConfiguration(), $key, $value);
     }
 
     /**
@@ -61,7 +61,9 @@ trait StrataConfigurableTrait
      */
     public function configure($config)
     {
-        $this->configuration = (array)$config;
+        foreach ((array)$config as $key => $value) {
+            $this->setConfig($key, $value);
+        }
     }
 
     /**

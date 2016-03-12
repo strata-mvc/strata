@@ -2,7 +2,7 @@
 
 namespace Strata;
 
-use Strata\Logger\Logger;
+use Strata\Logger\LoggerBase;
 use Strata\Router\Router;
 use Strata\Utility\Hash;
 use Strata\Core\StrataContext;
@@ -36,11 +36,6 @@ class Strata extends StrataContext
     protected $loader = null;
 
     /**
-     * @var Logger A reference to the global Strata logger object.
-     */
-    protected $logger = null;
-
-    /**
      * @var MiddlewareLoader A reference to the middleware manager.
      */
     private $middlewareLoader = null;
@@ -51,7 +46,7 @@ class Strata extends StrataContext
     public $i18n = null;
 
     /**
-     * @var Router A ference to the active routing object.
+     * @var Router A reference to the active routing object.
      */
     public $router = null;
 
@@ -63,7 +58,7 @@ class Strata extends StrataContext
     {
         $this->ready = false;
 
-        $this->configureLogger();
+        $this->configureLoggers();
 
         $this->includeUtils();
         $this->setDefaultNamespace();
@@ -84,11 +79,13 @@ class Strata extends StrataContext
         if (!$this->ready) {
             $this->init();
         }
+
         $this->configureCustomPostType();
         $this->addAppRoutes();
         $this->loadMiddleware();
-
         $this->improveSecurity();
+
+        $this->displayRuntimeHeader();
     }
 
     /**
@@ -193,9 +190,30 @@ class Strata extends StrataContext
     /**
      * Configures the global Logger instance
      */
-    protected function configureLogger()
+    protected function configureLoggers()
     {
-        $this->logger = new Logger();
+        $loggers = array();
+        foreach ($this->extractConfig('loggers') as $name => $config) {
+            $logger = LoggerBase::factory($name);
+            $logger->configure((array)$config);
+            $logger->initialize();
+            $logKey = isset($config['name']) ? $config['name'] : $name;
+            $loggers[$logKey] = $logger;
+        }
+
+        if (self::isCommandLineInterface() || self::isBundledServer()) {
+            $logger = LoggerBase::factory('Console');
+            $logger->initialize();
+            $loggers['StrataConsole'] = $logger;
+        }
+
+        if (self::isDev()) {
+            $logger = LoggerBase::factory('File');
+            $logger->initialize();
+            $loggers['StrataFile'] = $logger;
+        }
+
+        $this->setConfig('loggers', $loggers);
     }
 
     /**
@@ -212,12 +230,43 @@ class Strata extends StrataContext
     }
 
     /**
-     * Returns a reference to the gloabl Logger
+     * Returns a reference to the Logger. When no $name is
+     * provided, attempts to return the most plausible one.
+     * @param $name The logger's name
      * @return Logger
      */
-    public function getLogger()
+    public function getLogger($name = '')
     {
-        return $this->logger;
+        if (empty($name)) {
+            if (self::isCommandLineInterface() || self::isBundledServer()) {
+                return $this->getConfig("loggers.StrataConsole");
+            }
+
+            if (self::isDev()) {
+                return $this->getConfig("loggers.StrataFile");
+            }
+        }
+
+        return $this->getConfig("loggers.$name");
+    }
+
+    protected function displayRuntimeHeader()
+    {
+        $logger = $this->getLogger();
+
+        if (self::isCommandLineInterface()) {
+            // tbd
+        } elseif (self::isBundledServer()) {
+            $logger->nl();
+            $logger->log(sprintf(
+                "<yellow>Loaded as PID</yellow> <success>#%d</success> <yellow>with</yellow> <success>%d</success> <yellow>handled custom post types.</yellow>",
+                $this->getConfig("runtime.pid"),
+                count($this->getConfig("runtime.custom_post_types"))
+            ), "<info>Strata</info>");
+            $logger->log($this->getConfig("runtime.timezone"), "<info>Strata</info>");
+        } else {
+            // tbd
+        }
     }
 
     /**
@@ -290,12 +339,9 @@ class Strata extends StrataContext
     protected function saveCurrentPID()
     {
         $pid = getmypid();
+        $this->setConfig('runtime.pid', $pid);
+        $filename = self::getLogPath() . "pid";
 
-        if (!self::isCommandLineInterface()) {
-            $this->log("[Strata]", sprintf("Loaded and running with process ID %s", $pid));
-        }
-
-        $filename = self::getTmpPath() . "pid";
         return @file_put_contents($filename, $pid);
     }
 

@@ -59,7 +59,7 @@ class Template
         // Print debug info in the the logs
         // only when Strata is running as the development
         // environment.
-        if (Strata::isDev()) {
+        if (Strata::isDev() && $allowDebug) {
             $app = Strata::app();
             $startedAt = microtime(true);
 
@@ -67,23 +67,15 @@ class Template
             $partialFilePath = defined('ABSPATH') ?
                 str_replace(dirname(dirname(ABSPATH)), "", $templateFilePath) :
                 $templateFilePath;
-
-            if ($allowDebug) {
-                echo "\n<!-- [Strata::Template:Begin] -->\n<!--\n     Source    : .$partialFilePath \n     Variables : ".implode(", ", array_keys($variables))."\n -->\n";
-            }
         }
 
         extract($variables);
         include $templateFilePath;
 
-        if (Strata::isDev()) {
-            if ($allowDebug) {
-                echo "\n<!-- [Strata::Template:End] -->";
-            }
-
+        if (Strata::isDev() && $allowDebug) {
             $executionTime = microtime(true) - $startedAt;
             $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
-            $app->log($partialFilePath . $timer, "[Strata:Template]");
+            $app->log($partialFilePath . $timer, "<yellow>Strata:Template</yellow>");
         }
 
         return ob_get_clean();

@@ -44,11 +44,9 @@ class CustomPostTypeLoader
      */
     private function logAutoloadedEntities()
     {
-        $app = Strata::app();
         $cpts = array_keys($this->getConfiguration());
         $message = sprintf("Found %s custom post types : %s", count($cpts), implode(", ", $cpts));
-
-        $app->log($message, "[Strata:CustomPostTypeLoader]");
+        Strata::app()->setConfig("runtime.custom_post_types", $cpts);
     }
 
     /**

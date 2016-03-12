@@ -17,15 +17,15 @@ class TimezoneSetter extends ImprovementBase
      */
     public function register()
     {
-        $message = "PHP timezone set to %s";
+        $message = "Timezone set to <info>%s</info>";
         $timezone = Strata::app()->getConfig("timezone");
 
         if (is_null($timezone)) {
             $timezone = self::DEFAULT_TIMEZONE;
-            $message = "PHP timezone automatically set to %s";
+            $message = "Timezone automatically set to <info>%s</info>";
         }
 
         date_default_timezone_set($timezone);
-        Strata::app()->log(sprintf($message, $timezone));
+        Strata::app()->setConfig("runtime.timezone", sprintf($message, $timezone));
     }
 }

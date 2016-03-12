@@ -453,7 +453,6 @@ class Query
         $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
 
         $oneLine = preg_replace('/\s+/', ' ', trim($sql));
-        $app = Strata::app();
-        $app->log($oneLine . $timer, "[Strata:Query]");
+        Strata::app()->log($oneLine . $timer, "<magenta>Strata:Query</magenta>");
     }
 }

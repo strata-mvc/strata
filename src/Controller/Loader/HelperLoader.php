@@ -85,7 +85,7 @@ class HelperLoader
     private function logAvailableHelpers()
     {
         $names = array_keys($this->helpers);
-        $message = sprintf("Loaded %d helpers: %s", count($names), implode(", ", $names));
-        Strata::app()->log($message, "[Strata:HelperLoader]");
+        $app = Strata::app();
+        $app->setConfig("runtime.helpers", $names);
     }
 }

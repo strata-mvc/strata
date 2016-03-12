@@ -67,6 +67,7 @@ class i18n
     public function applyLocale()
     {
         $locale = $this->getCurrentLocale();
+        $app = Strata::app();
 
         if (!is_null($locale)) {
             $message =  setlocale(LC_ALL, $locale->getCode() .'.UTF-8') ?
@@ -75,18 +76,18 @@ class i18n
                 "local does not exist in this environment. Attempted to set: " .
                 $locale->getCode() . ".UTF-8";
 
-            Strata::app()->log($message, "[Strata:i18n]");
+            $app->setConfig("runtime.setlocale", $message);
         }
 
         // Set in PHP
         if (function_exists('bindtextdomain')) {
             $bound = bindtextdomain($this->getTextdomain(), Strata::getLocalePath());
-            Strata::app()->log("PHP text domain was bound to : " . $bound, "[Strata:i18n]");
+            $app->setConfig("runtime.bindtextdomain", "PHP text domain was bound to <info>$bound</info>");
         }
 
         if (function_exists('textdomain')) {
             $bound = textdomain($this->getTextdomain());
-            Strata::app()->log("PHP message domain was bound to : " . $bound, "[Strata:i18n]");
+            $app->setConfig("runtime.textdomain", "PHP message domain was bound to <info>$bound</info>");
         }
 
         // Set in WP
@@ -492,7 +493,7 @@ class i18n
      */
     protected function registerHooks()
     {
-        add_action('after_setup_theme', array($this, "applyLocale"));
+        add_action('after_setup_theme', array($this, "applyLocale"), 1);
 
         if (Router::isAjax() || !is_admin()) {
             add_filter('locale', array($this, "applyCurrentLanguageByContext"), 999);

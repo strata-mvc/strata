@@ -92,7 +92,10 @@ abstract class Route
      */
     protected function logRouteCancellation()
     {
-        $this->log(sprintf("[Cancel] Routing to -> %s#%s", get_class($this->controller), $this->action));
+        $message = sprintf("<warning>[Cancel]</warning> <info>Routing to -> %s#%s</info>", get_class($this->controller), $this->action);
+
+        $logger = Strata::app()->getLogger();
+        $logger->log($message, "<green>Strata:Route</green>");
     }
 
     /**
@@ -101,7 +104,10 @@ abstract class Route
     protected function logRouteStart()
     {
         $this->executionStart = microtime(true);
-        $this->log(sprintf("Routing to -> %s#%s", get_class($this->controller), $this->action));
+        $message = sprintf("<info>Routing to -> %s#%s</info>", get_class($this->controller), $this->action);
+
+        $logger = Strata::app()->getLogger();
+        $logger->logNewContext($message, "<green>Strata:Route</green>", "green");
     }
 
     /**
@@ -110,17 +116,8 @@ abstract class Route
     protected function logRouteCompletion()
     {
         $executionTime = microtime(true) - $this->executionStart;
-        $this->log(sprintf("Done in %s seconds", round($executionTime, 4)));
-    }
 
-    /**
-     * Sends a message to the global logger.
-     * @param  string $msg
-     * @param  string $type
-     */
-    protected function log($msg, $type = "[Strata::Route]")
-    {
-        $app = Strata::app();
-        $app->log($msg, $type);
+        $logger = Strata::app()->getLogger();
+        $logger->logContextEnd(sprintf("Done in %s seconds", round($executionTime, 4)), "<green>Strata:Route</green>");
     }
 }
