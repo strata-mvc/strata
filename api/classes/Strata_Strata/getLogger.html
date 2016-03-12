@@ -56,23 +56,34 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/Strata.php.html#line219">Source</a>
+            <a href="../../source/Strata.php.html#line238">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1><small>Strata\Strata::</small>getLogger</h1>
-        <h4>Returns a reference to the gloabl Logger</h4>
+        <h4>Returns a reference to the Logger. When no $name is provided, attempts to return the most plausible one.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function getLogger()
+          <code>public function getLogger([string
+        $name = ''] )
             </code>
         </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$name</code>
+                —
+                string</dt>
+          <dd>logger's name<br/><br/><br/>      </dd>
+        </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
           <dt>Logger</dt>

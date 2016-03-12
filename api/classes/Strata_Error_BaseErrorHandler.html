@@ -76,7 +76,9 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class BaseErrorHandler
-            {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/wrapAndHandleException.html">wrapAndHandleException</a>()
+            {<br/><ul class="none"><li>// members</li><li>private boolean <a href="#members">$hasError</a> =
+                        false;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/wrapAndHandleException.html">wrapAndHandleException</a>()
                     </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/register.html">register</a>()
                     </li><li>public bool <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleError.html">handleError</a>()
                     </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleFatalError.html">handleFatalError</a>()
@@ -89,7 +91,11 @@
                     </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getFatalErrorsTypes.html">getFatalErrorsTypes</a>()
                     </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/clearBuffer.html">clearBuffer</a>()
                     </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/useStrataDebugger.html">useStrataDebugger</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/shouldBeDebugging.html">shouldBeDebugging</a>()
+                    </li><li>private void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/endProcesses.html">endProcesses</a>()
+                    </li><li>public void <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/raiseDebuggerTakeover.html">raiseDebuggerTakeover</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
@@ -110,6 +116,12 @@
         </div>
         <h2 id="members">Members</h2>
         <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="hasError">
+              <strong>$hasError</strong>
+            </li>
+          </ul>
           <h4>protected</h4>
           <ul class="members">
             <li id="configuration"><strong>$configuration</strong>
@@ -124,11 +136,17 @@
             <li id="clearBuffer">
               <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/clearBuffer.html">clearBuffer()</a>
             </li>
+            <li id="endProcesses">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/endProcesses.html">endProcesses()</a>
+            </li>
             <li id="getDebugLevel">
               <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getDebugLevel.html">getDebugLevel()</a>
             </li>
             <li id="getFatalErrorsTypes">
               <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/getFatalErrorsTypes.html">getFatalErrorsTypes()</a>
+            </li>
+            <li id="shouldBeDebugging">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/shouldBeDebugging.html">shouldBeDebugging()</a>
             </li>
             <li id="useStrataDebugger">
               <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/useStrataDebugger.html">useStrataDebugger()</a>
@@ -153,6 +171,9 @@
                 — Handle uncaught exceptions.</li>
             <li id="handleFatalError"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/handleFatalError.html">handleFatalError()</a>
                 — Logs a fatal error.</li>
+            <li id="raiseDebuggerTakeover">
+              <a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/raiseDebuggerTakeover.html">raiseDebuggerTakeover()</a>
+            </li>
             <li id="register"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/register.html">register()</a>
                 — Register the error and exception handlers.</li>
             <li id="wrapAndHandleException"><a title="Strata\Error\BaseErrorHandler" href="../classes/Strata_Error_BaseErrorHandler/wrapAndHandleException.html">wrapAndHandleException()</a>
@@ -170,6 +191,8 @@
                 — Instantiate the configuration cache to the state supplied by $config.</li>
             <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
                 — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
             <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
             <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>

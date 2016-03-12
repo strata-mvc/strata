@@ -84,8 +84,6 @@
                         false;
                     </li><li>protected <span title="Composer\Autoload\ClassLoader">ClassLoader</span> <a href="#members">$loader</a> =
                         null;
-                    </li><li>protected <span title="Strata\Logger\Logger">Logger</span> <a href="#members">$logger</a> =
-                        null;
                     </li><li>private <span title="Strata\Middleware\MiddlewareLoader">MiddlewareLoader</span> <a href="#members">$middlewareLoader</a> =
                         null;
                     </li><li>public <span title="Strata\I18n\I18n">I18n</span> <a href="#members">$i18n</a> =
@@ -102,9 +100,10 @@
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeWordpressFixture.html">includeWordpressFixture</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture</a>()
-                    </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureLogger.html">configureLogger</a>()
+                    </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureLoggers.html">configureLoggers</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/log.html">log</a>()
                     </li><li>public Logger <a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger</a>()
+                    </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/displayRuntimeHeader.html">displayRuntimeHeader</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureRouter.html">configureRouter</a>()
                     </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/addAppRoutes.html">addAppRoutes</a>()
@@ -112,7 +111,7 @@
                     </li><li>protected null <a title="Strata\Strata" href="../classes/Strata_Strata/saveConfigurationFileSettings.html">saveConfigurationFileSettings</a>()
                     </li><li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils</a>()
                     </li><li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID</a>()
-                    </li><li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHadler.html">registerErrorHadler</a>()
+                    </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHandler.html">registerErrorHandler</a>()
                     </li><li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeDebug.html">includeDebug</a>()
                     </li><li>public null <a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces</a>()
                     </li><li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace</a>()
@@ -149,6 +148,7 @@
                         </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getProjectConfigurationFilePath.html">getProjectConfigurationFilePath</a>()
                         </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLocalePath.html">getLocalePath</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
@@ -204,9 +204,6 @@
             <li id="loader"><strong>$loader</strong>
                 —
                 <a title="Composer\Autoload\ClassLoader" href="../classes/Composer_Autoload_ClassLoader.html">Composer\Autoload\ClassLoader</a></li>
-            <li id="logger"><strong>$logger</strong>
-                —
-                <a title="Strata\Logger\Logger" href="../classes/Strata_Logger_Logger.html">Strata\Logger\Logger</a></li>
             <li id="ready"><strong>$ready</strong>
                 —
                 <a title="Strata\bool" href="../classes/Strata_bool.html">Strata\bool</a></li>
@@ -229,10 +226,13 @@
                 — Adds the pre-configured routes to the global router.</li>
             <li id="configureCustomPostType"><a title="Strata\Strata" href="../classes/Strata_Strata/configureCustomPostType.html">configureCustomPostType()</a>
                 — Configures the post type loader</li>
-            <li id="configureLogger"><a title="Strata\Strata" href="../classes/Strata_Strata/configureLogger.html">configureLogger()</a>
+            <li id="configureLoggers"><a title="Strata\Strata" href="../classes/Strata_Strata/configureLoggers.html">configureLoggers()</a>
                 — Configures the global Logger instance</li>
             <li id="configureRouter"><a title="Strata\Strata" href="../classes/Strata_Strata/configureRouter.html">configureRouter()</a>
                 — Configures the default router object.</li>
+            <li id="displayRuntimeHeader">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/displayRuntimeHeader.html">displayRuntimeHeader()</a>
+            </li>
             <li id="improveSecurity"><a title="Strata\Strata" href="../classes/Strata_Strata/improveSecurity.html">improveSecurity()</a>
                 — Improves PHP and Wordpress security of the application.</li>
             <li id="includeDebug"><a title="Strata\Strata" href="../classes/Strata_Strata/includeDebug.html">includeDebug()</a>
@@ -243,9 +243,6 @@
                 — Looks through all the packages in composer and if they are in our Strata\Middleware namespace, we try to autoload them.</li>
             <li id="localize"><a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize()</a>
                 — Initializes the internationalization class</li>
-            <li id="registerErrorHadler">
-              <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHadler.html">registerErrorHadler()</a>
-            </li>
             <li id="saveConfigurationFileSettings"><a title="Strata\Strata" href="../classes/Strata_Strata/saveConfigurationFileSettings.html">saveConfigurationFileSettings()</a>
                 — Saves an array of configuration attribute to the application.</li>
             <li id="saveCurrentPID"><a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID()</a>
@@ -258,7 +255,7 @@
             <li id="getLoader"><a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader()</a>
                 — Returns a class loader to the application</li>
             <li id="getLogger"><a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger()</a>
-                — Returns a reference to the gloabl Logger</li>
+                — Returns a reference to the Logger. When no $name is provided, attempts to return the most plausible one.</li>
             <li id="getMiddlewares"><a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares()</a>
                 — Returns the list of declared middlewares in the application.</li>
             <li id="includeGettextFixture"><a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture()</a>
@@ -271,6 +268,9 @@
                 — Loads the configuration file and assigns it to the running app.</li>
             <li id="log"><a title="Strata\Strata" href="../classes/Strata_Strata/log.html">log()</a>
                 — Sends a message to the active logger</li>
+            <li id="registerErrorHandler">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHandler.html">registerErrorHandler()</a>
+            </li>
             <li id="run"><a title="Strata\Strata" href="../classes/Strata_Strata/run.html">run()</a>
                 — Kickstarts the Router and preload the custom post types associated to the project.</li>
             <li id="setDefaultNamespace"><a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace()</a>
@@ -358,6 +358,8 @@
                 — Instantiate the configuration cache to the state supplied by $config.</li>
             <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
                 — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
             <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
             <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Logger\FileLogger</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Logger">Strata\Logger</a>
+          </li>
+          <li class="separator">FileLogger</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Logger/FileLogger.php.html#line7">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Logger\</small>FileLogger</h1>
+        <h4/>
+        <p/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class FileLogger
+                extends <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase.html">LoggerBase</a>
+            {<br/><ul class="none"><li>// Inherited constants from <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase.html">LoggerBase</a></li><li>const <a href="#PLAIN">PLAIN</a> = 1;</li><li>const <a href="#COLOR">COLOR</a> = 2;</li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Logger\LoggerBase">LoggerBase</span></li><li>public array <a href="#members">$colors</a>;
+                        </li><li>public array <a href="#members">$styles</a>;
+                        </li><li>protected array <a href="#members">$stackContext</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/initialize.html">initialize</a>()
+                    </li><li>public void <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/write.html">write</a>()
+                    </li><li>public void <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/writeNl.html">writeNl</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Logger\LoggerBase">LoggerBase</span></li><li>public static string <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/initialize.html">initialize</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/log.html">log</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/debug.html">debug</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/error.html">error</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/nl.html">nl</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/logNewContext.html">logNewContext</a>()
+                        </li><li>public void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/logContextEnd.html">logContextEnd</a>()
+                        </li><li>protected void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/format.html">format</a>()
+                        </li><li>protected void <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/replaceTags.html">replaceTags</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li><li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li><li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li><li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
+                        </li><li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li><li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase.html">Strata\Logger\LoggerBase</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="PLAIN">PLAIN</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td id="COLOR">COLOR</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="configuration"><strong>$configuration</strong>
+                —
+                array<br/><span class="indent">The configuration cache.</span></li>
+            <li id="stackContext"><strong>$stackContext</strong>
+                —
+                array<br/><span class="indent">The stack context helps carrying visual context to the log by indenting the lines.</span></li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="colors">
+              <strong>$colors</strong>
+            </li>
+            <li id="styles">
+              <strong>$styles</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="initialize">
+              <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/initialize.html">initialize()</a>
+            </li>
+            <li id="write">
+              <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/write.html">write()</a>
+            </li>
+            <li id="writeNl">
+              <a title="Strata\Logger\FileLogger" href="../classes/Strata_Logger_FileLogger/writeNl.html">writeNl()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase.html">Strata\Logger\LoggerBase</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="format">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/format.html">format()</a>
+            </li>
+            <li id="replaceTags">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/replaceTags.html">replaceTags()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="debug"><a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/debug.html">debug()</a>
+                — Sends a message of type debug</li>
+            <li id="error"><a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/error.html">error()</a>
+                — Sends a message of type debug</li>
+            <li id="getClassNameSuffix"><a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="initialize">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/initialize.html">initialize()</a>
+            </li>
+            <li id="log"><a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/log.html">log()</a>
+                — Sends a message of type log</li>
+            <li id="logContextEnd">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/logContextEnd.html">logContextEnd()</a>
+            </li>
+            <li id="logNewContext">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/logNewContext.html">logNewContext()</a>
+            </li>
+            <li id="nl">
+              <a title="Strata\Logger\LoggerBase" href="../classes/Strata_Logger_LoggerBase/nl.html">nl()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="normalizeConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="configure"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
+            <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
+            <li id="hasConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="factory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
+                — Instantiates an object that uses the StrataObjectTrait which class name matches the $name value.</li>
+            <li id="generateClassName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+                — Generates a valid class name from the $name value.</li>
+            <li id="generateClassPath"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere (or whatever else would the namespace have been).</li>
+            <li id="getClassNameSuffix"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+                — Returns scopes in which Strata will look in to load objects.</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — Returns the default namespace path.</li>
+            <li id="getShortName"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+                — Returns this object's class name without the full namespace.</li>
+            <li id="staticFactory"><a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
+                — Instantiates an object of the current class.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history"/>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>
