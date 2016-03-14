@@ -107,7 +107,9 @@ abstract class Route
         $message = sprintf("<info>Routing to -> %s#%s</info>", get_class($this->controller), $this->action);
 
         $logger = Strata::app()->getLogger();
-        $logger->logNewContext($message, "<green>Strata:Route</green>", "green");
+        if ($logger) {
+            $logger->logNewContext($message, "<green>Strata:Route</green>", "green");
+        }
     }
 
     /**
@@ -118,6 +120,8 @@ abstract class Route
         $executionTime = microtime(true) - $this->executionStart;
 
         $logger = Strata::app()->getLogger();
-        $logger->logContextEnd(sprintf("Done in %s seconds", round($executionTime, 4)), "<green>Strata:Route</green>");
+        if ($logger) {
+            $logger->logContextEnd(sprintf("Done in %s seconds", round($executionTime, 4)), "<green>Strata:Route</green>");
+        }
     }
 }
