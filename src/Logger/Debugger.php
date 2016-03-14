@@ -15,9 +15,13 @@ class Debugger
     const HTML = 3;
     const HTML_STYLES = "font-size: 12px; font-family: consolas; background:ccc; color:#000;";
 
-    public static function trace($options)
+    public static function trace($backtrace = null, $options = array())
     {
-        $backtrace = debug_backtrace();
+        if (is_null($backtrace)) {
+            $backtrace = debug_backtrace();
+        }
+        $backtrace = array_reverse($backtrace);
+
         $count = count($backtrace);
         $options += array(
             'depth' => 50,
@@ -26,19 +30,28 @@ class Debugger
         );
 
         switch ($options['output']) {
-            case static::PLAIN :
+            case static::RAW :
                 $tpl = "%s(%s) from of %s#%d\n"; break;
             case static::CONSOLE :
-                $tpl = "<info>%s(%s)</info> from of %s#<yellow>%d</yellow>\n"; break;
+                $tpl = "<info>%s(%s)</info> in %s @ <yellow>%d</yellow>\n"; break;
             default :
-                $tpl = "<div style=\"".static::HTML_STYLES."\"><strong>%s<em>(%s)</em></strong> from of %s#%d</div>";
+                $tpl = "<div style=\"".static::HTML_STYLES."\"><strong>%s<em>(%s)</em></strong><br/>in %s @ %d<br/><br/></div>";
         }
 
         $trace = "";
-        $i = $option['start'];
-        while ($i < $count && $i < $depth) {
+        $i = $options['start'];
+        while ($i < $count && $i < $options['depth']) {
             $details = $backtrace[$i];
-            $trace .= sprintf($tpl, $details['function'], $details['args'], $details['file'], $details['line']);
+            $file = isset($details['file']) ? str_replace(Strata::getRootPath(), '~', $details['file']) : 'unknown';
+            $line = isset($details['line']) ? $details['line'] : 'unknown';
+
+            $args = $details['args'];
+            $arguments = array();
+            // foreach ($args as $arg) {
+            //     $arguments[] = static::getType($arg);
+            // }
+
+            $trace .= sprintf($tpl, $details['function'], implode(", ", $arguments), $file, $line);
             $i++;
         }
 
@@ -218,7 +231,4 @@ class Debugger
         $out .= '}';
         return $out;
     }
-
-
-
 }

@@ -17,9 +17,10 @@
             table { color:#666; border-collapse: collapse; border:1px solid #ddd; border-bottom-width: 2px; width: 100%;}
             table td:even { background: #fefefe; }
             table td.lines { background-color: #efefef; color: #888; font-size: 14px; text-align: right; white-space: nowrap; vertical-align: middle; border-right:1px solid #ddd; width: 30px; padding:0 .8em;}
-            table td.code { white-space: pre-wrap; border-bottom: 1px solid #eee; padding: 0.25em;}
+            table td.code, .code { white-space: pre-wrap; border-bottom: 1px solid #eee; padding: 0.25em;}
             table td.focus { background-color: #ffd0ce; color:#000;}
             .source { font-size: 12px; color:#888; margin: 1em 0 .25em 0; }
+            .trace, .context { float:left; width:50%; margin-top: 2em; }
         </style>
     </head>
   <body class="strata-error-page">

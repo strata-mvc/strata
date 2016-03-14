@@ -1,4 +1,6 @@
-
+<?php
+    use Strata\Strata;
+?>
 <section>
     <header>
         <h1><?php echo ucfirst($error['type']); ?></h1>
@@ -25,13 +27,36 @@
             </tr>
             <?php endfor; ?>
         </table>
-        <div class="source">~ <?php echo $error['file']; ?></div>
+        <div class="source"><?php echo str_replace(\Strata\Strata::getRootPath(), '~', $error['file']); ?></div>
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php if (isset($error['trace'])) : ?>
-        <pre><?php echo $error['trace']; ?></pre>
-    <?php endif ;?>
+    <div class="trace">
+        <?php if (isset($error['trace'])) : ?>
+            <h3><?php echo "Trace"; ?></h3>
+            <?php echo $error['trace']; ?>
+        <?php endif ;?>
+    </div>
+
+    <div class="context">
+        <?php if (method_exists("\Strata\Strata", "app")) : ?>
+            <?php $app = Strata::app(); ?>
+            <h3>Context</h3>
+            <?php
+                $controller = $app->router->getCurrentController();
+                $action = $app->router->getCurrentAction();
+                $method = strtoupper($_SERVER['REQUEST_METHOD']);
+            ?>
+            <p>[<?php echo $method; ?>] <?php echo WP_HOME . $_SERVER['REQUEST_URI']; ?></p>
+            <p>
+                <?php if (!is_null($controller)) : ?>
+                    Routed to <?php echo get_class($controller); ?>#<?php echo $action; ?>.
+                <?php else : ?>
+                    Strata did not route to a controller.
+                <?php endif; ?>
+            </p>
+        <?php endif; ?>
+    </div>
 
 </section>
 

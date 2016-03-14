@@ -4,6 +4,8 @@ namespace Strata\Error;
 
 use Strata\Strata;
 use Strata\Core\StrataConfigurableTrait;
+use Strata\Logger\Debugger;
+
 use Exception;
 
 /**
@@ -96,6 +98,7 @@ class BaseErrorHandler
             'file' => $file,
             'line' => $line,
             'context' => $context,
+            'trace' => Debugger::trace(debug_backtrace()),
         );
 
         $this->logErrorData($data);
@@ -123,6 +126,7 @@ class BaseErrorHandler
             'file' => $file,
             'line' => $line,
             'context' => null,
+            'trace' => Debugger::trace(debug_backtrace()),
         );
 
         $this->logErrorData($data);
@@ -154,6 +158,7 @@ class BaseErrorHandler
             'file' => $exception->getFile(),
             'line' => $exception->getLine(),
             'context' => null,
+            'trace' => Debugger::trace($exception->getTrace()),
         );
 
         $this->displayExceptionData($data);
