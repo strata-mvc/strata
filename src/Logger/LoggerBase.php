@@ -129,6 +129,16 @@ class LoggerBase
         $this->write($context, $this->indent("└─ ") . $message);
     }
 
+    public function write($message, $context)
+    {
+        return false;
+    }
+
+    public function writeNl()
+    {
+        return false;
+    }
+
     protected function format($message)
     {
         return $this->formatColor($this->formatType($message));

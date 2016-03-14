@@ -193,7 +193,7 @@ class Strata extends StrataContext
     protected function configureLoggers()
     {
         $loggers = array();
-        foreach ($this->extractConfig('loggers') as $name => $config) {
+        foreach ($this->extractConfig('logging') as $name => $config) {
             $logger = LoggerBase::factory($name);
             $logger->configure((array)$config);
             $logger->initialize();
@@ -201,19 +201,13 @@ class Strata extends StrataContext
             $loggers[$logKey] = $logger;
         }
 
-        if (self::isCommandLineInterface() || self::isBundledServer()) {
+        if (self::isBundledServer()) {
             $logger = LoggerBase::factory('Console');
             $logger->initialize();
             $loggers['StrataConsole'] = $logger;
         }
 
-        if (self::isDev()) {
-            $logger = LoggerBase::factory('File');
-            $logger->initialize();
-            $loggers['StrataFile'] = $logger;
-        }
-
-        $this->setConfig('loggers', $loggers);
+        $this->setConfig('runtime.loggers', $loggers);
     }
 
     /**
@@ -239,15 +233,15 @@ class Strata extends StrataContext
     {
         if (empty($name)) {
             if (self::isCommandLineInterface() || self::isBundledServer()) {
-                return $this->getConfig("loggers.StrataConsole");
+                return $this->getConfig("runtime.loggers.StrataConsole");
             }
 
             if (self::isDev()) {
-                return $this->getConfig("loggers.StrataFile");
+                return $this->getConfig("runtime.loggers.StrataFile");
             }
         }
 
-        return $this->getConfig("loggers.$name");
+        return $this->getConfig("runtime.loggers.$name");
     }
 
     protected function displayRuntimeHeader()
