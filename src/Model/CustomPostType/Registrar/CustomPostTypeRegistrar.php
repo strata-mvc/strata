@@ -42,9 +42,9 @@ class CustomPostTypeRegistrar extends Registrar
             'with_front' => false,
         );
 
-        $app = Strata::app();
-        if ($app->isLocalized()) {
-            $currentLocale = $app->i18n->getCurrentLocale();
+        $i18n = Strata::app()->i18n;
+        if ($i18n->isLocalized()) {
+            $currentLocale = $i18n->getCurrentLocale();
             if ($currentLocale && !$currentLocale->isDefault()) {
                 $translatedSlug = Hash::get($customizedOptions, "i18n." . $currentLocale->getCode() . ".rewrite.slug");
                 if (!is_null($translatedSlug)) {
