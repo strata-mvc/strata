@@ -334,7 +334,7 @@ class Strata extends StrataContext
     {
         $pid = getmypid();
         $this->setConfig('runtime.pid', $pid);
-        $filename = self::getLogPath() . "pid";
+        $filename = self::getLogPath() . "pid.log";
 
         return @file_put_contents($filename, $pid);
     }
