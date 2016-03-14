@@ -146,11 +146,11 @@ class LoggerBase
 
     private function formatColor($text)
     {
-        $tags = array_keys($this->styles) + array_keys($this->colors);
         if ($this->getConfig("outputAs") === LoggerBase::PLAIN) {
-            return preg_replace('#</?(?:' . $tags . ')>#', '', $text);
+            return preg_replace('#</?.+?>#', '', $text);
         }
 
+        $tags = array_keys($this->styles) + array_keys($this->colors);
         return preg_replace_callback(
             '/<(?P<tag>[a-z0-9-_]+)>(?P<text>.*?)<\/(\1)>/ims',
             [$this, 'replaceTags'],
