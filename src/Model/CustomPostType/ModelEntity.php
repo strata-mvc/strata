@@ -148,6 +148,16 @@ class ModelEntity
     }
 
     /**
+     * Returns a list of properties defined on the bound object as json.
+     * @param array config (optional)
+     * @return string
+     */
+    public function toJson($config = null)
+    {
+        return json_encode($this->toArray(), $config);
+    }
+
+    /**
      * Assigns the entity data that may be found in the request
      * to this entity.
      * @param  Request $request

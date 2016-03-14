@@ -99,7 +99,7 @@ class LoggerBase
      */
     public function debug($message, $context = "Strata:Debug")
     {
-        $this->write($context, $message);
+        $this->write("<question>" . $context . "</question>", $message);
     }
 
     /**

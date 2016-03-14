@@ -321,7 +321,7 @@ class Strata extends StrataContext
      */
     protected function includeUtils()
     {
-        return $this->saveCurrentPID() && $this->includeDebug();
+        return $this->saveCurrentPID() && $this->includeToolset();
     }
 
     /**
@@ -346,16 +346,16 @@ class Strata extends StrataContext
     }
 
     /**
-     * Includes the global debug function in the current scope and
+     * Includes the global toolset functions in the current scope and
      * returns whether the include was successful or not.
      * @return boolean
      */
-    protected function includeDebug()
+    protected function includeToolset()
     {
-        $debug = self::getUtilityPath() . "Debug.php";
+        $toolset = self::getUtilityPath() . "Toolset.php";
 
-        if (file_exists($debug)) {
-            return include_once $debug;
+        if (file_exists($toolset)) {
+            return include_once $toolset;
         }
     }
 
