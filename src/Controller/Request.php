@@ -96,7 +96,7 @@ class Request
      */
     public function setPost($key, $value)
     {
-        $this->_POST = Hash::insert($this->_POST, array($key => $value));
+        $this->_POST = Hash::insert($this->_POST, $key, $value);
     }
 
     /**
@@ -106,7 +106,7 @@ class Request
      */
     public function setGet($key, $value)
     {
-        $this->_GET = Hash::insert($this->_GET, array($key => $value));
+        $this->_GET = Hash::insert($this->_GET, $key, $value);
     }
 
     /**
