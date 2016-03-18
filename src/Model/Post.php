@@ -11,6 +11,16 @@ use Exception;
 class Post extends CustomPostType
 {
     /**
+     * Returns the current global value of get_post()
+     * wrapped in a Strata entity.
+     * @return CustomPostType
+     */
+    public static function getCurrentGlobal()
+    {
+        return Post::getEntity(get_post());
+    }
+
+    /**
      * The Wordpress custom post type identifier prefix
      * @var string
      */

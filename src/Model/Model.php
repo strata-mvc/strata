@@ -4,6 +4,7 @@ namespace Strata\Model;
 
 use Strata\Core\StrataObjectTrait;
 use Strata\Model\CustomPostType\ModelEntity;
+use WP_Post;
 
 /**
  * A base class for model objects
@@ -42,5 +43,10 @@ class Model
         $entityRef = class_exists($ActualEntity) ? new $ActualEntity() : new ModelEntity();
         $entityRef->bindToObject($associatedObj);
         return $entityRef;
+    }
+
+    public static function getEntityFromPost(WP_Post $post)
+    {
+        return ModelEntity::factoryFromPost($post);
     }
 }

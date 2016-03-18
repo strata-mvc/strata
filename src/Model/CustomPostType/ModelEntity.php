@@ -33,6 +33,38 @@ class ModelEntity
         return "Entity";
     }
 
+   /**
+     * Factories a model entity based on the Wordpress key
+     * @param  string $str
+     * @return mixed An instanciated model
+     * @throws Exception
+     */
+    public static function factoryFromString($str, $associatedObject = null)
+    {
+        $obj = null;
+
+        if (preg_match('/_?cpt_(\w+)/', $str, $matches)) {
+            $obj = self::factory($matches[1]);
+        } elseif (preg_match('/_?(post|page)/', $str, $matches)) {
+            $obj = self::factory($matches[1]);
+        }
+
+        if (!is_null($obj)) {
+            if (!is_null($associatedObject)) {
+                $obj->bindToObject($associatedObject);
+            }
+
+            return $obj;
+        }
+
+        throw new Exception("Unknown pattern sent to ModelEntity::factoryFromString: " . $str);
+    }
+
+    public static function factoryFromPost(WP_Post $post)
+    {
+        return self::factoryFromString($post->post_type, $post);
+    }
+
     /**
      * A list of model attributes used for automated form
      * generation and validation.
@@ -116,6 +148,21 @@ class ModelEntity
     public function __isset($name)
     {
         return isset($this->associatedObject->{$name});
+    }
+
+    /**
+     * Used to express the contents of the model entity more clearly
+     * when debugged.
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        $objectVars = array();
+        foreach (get_object_vars($this) as $key => $value) {
+            $objectVars[$key] = Debugger::export($value);
+        }
+
+        return array_merge($objectVars, $this->toArray());
     }
 
     /**
