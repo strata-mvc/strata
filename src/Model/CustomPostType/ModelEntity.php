@@ -8,6 +8,7 @@ use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;
 use stdClass;
 use Exception;
+use WP_Post;
 
 /**
  * A ModelEntity can vaguely be seen as a table row. It is a class
