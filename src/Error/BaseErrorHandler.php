@@ -5,6 +5,7 @@ namespace Strata\Error;
 use Strata\Strata;
 use Strata\Core\StrataConfigurableTrait;
 use Strata\Logger\Debugger;
+use Strata\Router\Router;
 
 use Exception;
 
@@ -268,6 +269,7 @@ class BaseErrorHandler
     {
         $this->hasError = true;
         $this->clearBuffer();
-    }
 
+        Strata::app()->router->getCurrentController()->serverError();
+    }
 }

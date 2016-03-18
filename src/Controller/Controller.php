@@ -111,4 +111,23 @@ class Controller
     {
 
     }
+
+    public function notFound()
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found - Archive Empty', true, 400);
+
+        global $wp_query;
+        $wp_query->set_404();
+    }
+
+    public function serverError()
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+    }
+
+
+    public function redirect()
+    {
+
+    }
 }
