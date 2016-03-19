@@ -41,7 +41,7 @@ class CustomPostType extends WordpressEntity
      * Specifies whether Strata should attempt to automate routing
      * to the model's default controller when the custom post type's
      * slug is matched in the URL.
-     * @var boolean
+     * @var boolean|array
      */
     public $routed = false;
 
@@ -124,44 +124,5 @@ class CustomPostType extends WordpressEntity
         }
 
         return $tax;
-    }
-
-    /**
-     * Creates a post of the current post type based on the
-     * passed options.
-     * @param array $options Options to be sent to wp_insert_post()
-     * @return int The created post id
-     */
-    public function create($options)
-    {
-        $options += array(
-            'post_type'         => $this->getWordpressKey(),
-            'ping_status'       => false,
-            'comment_status'    => false
-        );
-
-        return wp_insert_post($options);
-    }
-
-    /**
-     * Updates a post of the current post type based on the
-     * passed options.
-     * @param array $options Options to be sent to wp_update_post()
-     * @return boolean Whether something was updated
-     */
-    public function update($options)
-    {
-        return wp_update_post($options);
-    }
-
-    /**
-     * Deletes a post of the current post type by its ID
-     * @param  int  $postId
-     * @param  boolean $force  (optional)
-     * @return boolean Whether something was updated
-     */
-    public function delete($postId, $force = false)
-    {
-        return wp_delete_post($postId, $force);
     }
 }

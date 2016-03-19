@@ -5,7 +5,7 @@ namespace Strata\Router;
 use Exception;
 
 use Strata\Strata;
-use Strata\Router\RouteParser\Alto\AltoRouteParser;
+use Strata\Router\RouteParser\Url\UrlRouter;
 use Strata\Router\RouteParser\Callback\CallbackRouter;
 
 /**
@@ -14,11 +14,6 @@ use Strata\Router\RouteParser\Callback\CallbackRouter;
  */
 class Router
 {
-    /**
-     * @var Strata\Router\RouteParser\Route A route that this object will try to execute
-     */
-    public $route = null;
-
     /**
      * Generates a dynamic and unique callback ready to use with Wordpress'
      * add_action or add_filter calls.
@@ -35,11 +30,11 @@ class Router
      * Generates a parser for URL based rules, as one may be used to in
      * the world of Model View Controller programming.
      * @param  array $routes A list of available routes and callbacks
-     * @return AltoRouteParser  The parser that generates a valid route
+     * @return AltoRouter  The parser that generates a valid route
      */
     public static function urlRouting($routes = array())
     {
-        return AltoRouteParser::factory($routes);
+        return UrlRouter::factory($routes);
     }
 
     /**
@@ -75,6 +70,11 @@ class Router
 
         return false;
     }
+
+    /**
+     * @var Strata\Router\RouteParser\Route A route that this object will try to execute
+     */
+    public $route = null;
 
     /**
      * Attempts to run the currently loaded route object.

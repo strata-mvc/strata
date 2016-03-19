@@ -295,6 +295,21 @@ class i18n
     }
 
     /**
+     * Specifies whether the application is currently using the
+     * default locale.
+     * @return boolean
+     */
+    public function currentLocaleIsDefault()
+    {
+        $currentLocale = $this->getCurrentLocale();
+        if ($currentLocale) {
+            return $currentLocale->isDefault();
+        }
+
+        return true;
+    }
+
+    /**
      * Checks whether a locale has been stored in the user's session.
      * @return boolean
      */

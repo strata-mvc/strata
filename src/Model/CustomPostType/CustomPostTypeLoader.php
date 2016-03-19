@@ -5,6 +5,7 @@ namespace Strata\Model\CustomPostType;
 use Strata\Strata;
 use Strata\Model\CustomPostType\CustomPostType;
 use Strata\Core\StrataConfigurableTrait;
+use Strata\Router\Registrar\ModelRewriteRegistrar;
 
 /**
  * Loads Custom Post Types objects based on the loader's
@@ -23,18 +24,25 @@ class CustomPostTypeLoader
         // been loaded, we should still inform the user.
         $this->logAutoloadedEntities();
 
-        foreach ($this->getConfiguration() as $cpt => $config) {
-            $obj = CustomPostType::factory($cpt);
+        $configuration = $this->getConfiguration();
+        if (count($configuration)) {
+            foreach ($configuration as $cpt => $config) {
+                $obj = CustomPostType::factory($cpt);
 
-            $this->addWordpressRegisteringAction($obj);
+                $this->addWordpressRegisteringAction($obj);
 
-            if ($this->shouldAddAdminMenus($obj)) {
-                $this->addWordpressMenusRegisteringAction($obj);
+                if ($this->shouldAddAdminMenus($obj)) {
+                    $this->addWordpressMenusRegisteringAction($obj);
+                }
+
+                if ($this->shouldAddRoutes($obj)) {
+                    $this->addResourceRoute($obj);
+                }
             }
 
-            if ($this->shouldAddRoutes($obj)) {
-                $this->addResourceRoute($obj);
-            }
+            // The second we register an internal CPT it becomes worth
+            // looking for additional model routes.
+            add_action('wp_loaded', array(new ModelRewriteRegistrar(), "onModelsActivated"), 1);
         }
     }
 
@@ -77,7 +85,7 @@ class CustomPostTypeLoader
      */
     private function shouldAddRoutes(CustomPostType $customPostType)
     {
-        return !is_admin() && (bool)$customPostType->routed === true;
+        return !is_admin() && ((bool)$customPostType->routed === true || is_array($customPostType->routed));
     }
 
     /**
@@ -87,7 +95,7 @@ class CustomPostTypeLoader
      */
     private function addResourceRoute(CustomPostType $customPostType)
     {
-        Strata::app()->router->route->addResource($customPostType);
+        Strata::app()->router->addResource($customPostType);
     }
 
     /**

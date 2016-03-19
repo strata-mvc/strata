@@ -1,15 +1,16 @@
 <?php
 
-namespace Strata\Router\RouteParser\Alto;
+namespace Strata\Router\RouteParser\Url;
 
+use Strata\Strata;
 use Strata\Router\Router;
-use Strata\Router\RouteParser\Alto\AltoRoute;
+use Strata\Router\RouteParser\Url\UrlRoute;
 
 /**
  * Maps Wordpress urls to Strata classes
  * @link    http://strata.francoisfaubert.com/docs/routes/
  */
-class AltoRouteParser extends Router
+class UrlRouter extends Router
 {
     /**
      * Returns an instance of the router instantiated
@@ -33,7 +34,7 @@ class AltoRouteParser extends Router
 
     function __construct()
     {
-        $this->route = new AltoRoute();
+        $this->route = new UrlRoute();
     }
 
     /**
@@ -47,6 +48,34 @@ class AltoRouteParser extends Router
         }
 
         $this->route->addPossibilities($routes);
+    }
+
+    /**
+     * Adds possibles routes to the router instance
+     * based on Custom Post Type information.
+     * @param array $routes
+     */
+    public function addResource($customPostType)
+    {
+        if (!$this->isRegistered()) {
+            $this->registerWordpressAction();
+        }
+
+        $this->route->addResourcePossibility($customPostType);
+    }
+
+    /**
+     * Adds customized routes to the router instance that
+     * have been defined in the custom post type's routing information.
+     * @param array $routes
+     */
+    public function addModelRoutes($routes = array())
+    {
+        if (!$this->isRegistered()) {
+            $this->registerWordpressAction();
+        }
+
+        $this->route->addModelPossibilities($routes);
     }
 
     /**
@@ -82,6 +111,9 @@ class AltoRouteParser extends Router
      */
     public function onWordpressInit()
     {
+        Strata::rewriter()->applyRules();
+
+        $this->route->listen();
         $this->run();
     }
 

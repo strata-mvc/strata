@@ -5,7 +5,6 @@ namespace Strata\Error;
 use Strata\Strata;
 use Strata\Core\StrataConfigurableTrait;
 use Strata\Logger\Debugger;
-use Strata\Router\Router;
 
 use Exception;
 
@@ -253,7 +252,8 @@ class BaseErrorHandler
     {
         return $this->useStrataDebugger() &&
                 Strata::isDev() &&
-               !Strata::isCommandLineInterface();
+               !Strata::isCommandLineInterface()
+               && function_exists('get_template_directory');
     }
 
     private function endProcesses()
@@ -272,4 +272,5 @@ class BaseErrorHandler
 
         Strata::app()->router->getCurrentController()->serverError();
     }
+
 }

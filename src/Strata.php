@@ -4,6 +4,7 @@ namespace Strata;
 
 use Strata\Logger\LoggerBase;
 use Strata\Router\Router;
+use Strata\Router\Rewriter;
 use Strata\Utility\Hash;
 use Strata\Core\StrataContext;
 use Strata\Core\StrataConfigurableTrait;
@@ -28,7 +29,7 @@ class Strata extends StrataContext
     /**
      * @var bool Flag specifying the requirements have been met from the current configuration.
      */
-    protected $ready = false;
+    protected $ready = null;
 
     /**
      * @var ClassLoader A reference to the current project's Composer autoloader file.
@@ -51,24 +52,32 @@ class Strata extends StrataContext
     public $router = null;
 
     /**
+     * @var Rewriter A reference to the global rewriter object.
+     */
+    public $rewriter = null;
+
+
+    /**
      * Prepares the Strata object for running.
      * @throws Exception Throws an exception if the configuration array could not be loaded.
      */
     public function init()
     {
-        $this->ready = false;
+        if (is_null($this->ready)) {
+            $this->ready = false;
 
-        $this->configureLoggers();
+            $this->configureLoggers();
 
-        $this->includeUtils();
-        $this->setDefaultNamespace();
-        $this->configureRouter();
+            $this->includeUtils();
+            $this->setDefaultNamespace();
+            $this->setupUrlRouting();
 
-        $this->loadConfiguration();
-        $this->addProjectNamespaces();
-        $this->localize();
+            $this->loadConfiguration();
+            $this->addProjectNamespaces();
+            $this->localize();
 
-        $this->ready = true;
+            $this->ready = true;
+        }
     }
 
     /**
@@ -275,8 +284,11 @@ class Strata extends StrataContext
     /**
      * Configures the default router object.
      */
-    protected function configureRouter()
+    protected function setupUrlRouting()
     {
+        $this->rewriter = new Rewriter();
+        $this->rewriter->initialize();
+
         $this->router = Router::urlRouting();
     }
 

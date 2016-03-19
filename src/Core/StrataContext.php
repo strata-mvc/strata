@@ -23,6 +23,34 @@ class StrataContext
         if (array_key_exists(self::STRATA_KEY, $GLOBALS)) {
             return $GLOBALS[self::STRATA_KEY];
         }
+
+        throw new Exception("Strata instance has not been created.");
+    }
+
+    /**
+     * Returns the current URL router of the instantiated Strata
+     * object.
+     * @return \Strata\Router\Router
+     */
+    public static function router()
+    {
+        $app = self::app();
+        if (!is_null($app)) {
+            return $app->router;
+        }
+    }
+
+    /**
+     * Returns the current URL rewriter of the instantiated Strata
+     * object.
+     * @return \Strata\Router\Rewriter
+     */
+    public static function rewriter()
+    {
+        $app = self::app();
+        if (!is_null($app)) {
+            return $app->rewriter;
+        }
     }
 
     /**
@@ -32,10 +60,6 @@ class StrataContext
      */
     public static function config($key)
     {
-        if (is_null($key)) {
-            throw new Exception("key parameter is required.");
-        }
-
         $app = Strata::app();
         if (!is_null($app)) {
             return $app->getConfig($key);

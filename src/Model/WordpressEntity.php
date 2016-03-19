@@ -22,6 +22,15 @@ class WordpressEntity extends Model
         return $obj->getWordpressKey();
     }
 
+    public static function factoryFromKey($wordpressKey)
+    {
+        if (preg_match('/_?cpt_(\w+)/', $wordpressKey, $matches)) {
+            return self::factory($matches[1]);
+        } elseif (preg_match('/_?(post|page)/', $wordpressKey, $matches)) {
+            return self::factory($matches[1]);
+        }
+    }
+
     /**
      * The permission level required for editing by the model
      * @var string

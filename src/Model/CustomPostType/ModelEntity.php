@@ -8,6 +8,7 @@ use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;
 use stdClass;
 use Exception;
+use WP_Post;
 
 /**
  * A ModelEntity can vaguely be seen as a table row. It is a class
@@ -350,6 +351,43 @@ class ModelEntity
         }
 
         return array();
+    }
+
+    /**
+     * Saves the model entity the current post type based on the
+     * associated object's values.
+     * @return boolean Whether something was updated
+     */
+    public function save()
+    {
+        if ($this->isBound()) {
+
+            if (!isset($this->post_type)) {
+                $this->post_type = $this->getWordpressKey();
+            }
+
+            if (!isset($this->ping_status)) {
+                $this->ping_status = false;
+            }
+
+            if (!isset($this->comment_status)) {
+                $this->comment_status = false;
+            }
+
+            return (int)$this->ID > 0 ?
+                wp_update_post($this->associatedObject) :
+                wp_insert_post($this->associatedObject);
+        }
+    }
+
+    /**
+     * Deletes the current entity
+     * @param  boolean $force  (optional)
+     * @return boolean Whether something was updated
+     */
+    public function delete($force = false)
+    {
+        return wp_delete_post($this->ID, $force);
     }
 
     /**

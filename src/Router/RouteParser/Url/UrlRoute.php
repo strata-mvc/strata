@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Router\RouteParser\Alto;
+namespace Strata\Router\RouteParser\Url;
 
 use Strata\Router\RouteParser\Route;
 use Strata\Controller\Controller;
@@ -14,7 +14,7 @@ use Exception;
 /**
  * Handles routes generated for the AltoRouter class.
  */
-class AltoRoute extends Route
+class UrlRoute extends Route
 {
     /**
      * @var string The hidden key for dynamically defined callback functions.
@@ -27,9 +27,33 @@ class AltoRoute extends Route
      */
     private $altoRouter = null;
 
-    public function __construct()
+    /**
+     * @var array Routes defined by the current application's configuration (3rd priority)
+     */
+    private $applicationRoutes = array();
+
+    /**
+     * @var array Routes defined by the current application's model (2nd priority)
+     */
+    private $modelRoutes = array();
+
+    /**
+     * @var array Routes defined automatically by Strata (1st priority)
+     */
+    private $automatedRoutes = array();
+
+    /**
+     * Configures the routing deamon from the routes that have
+     * been set during bootstrap.
+     */
+    public function listen()
     {
         $this->altoRouter = new AltoRouter();
+        $this->altoRouter->addRoutes(array_merge(
+            $this->modelRoutes,
+            $this->automatedRoutes,
+            $this->applicationRoutes
+        ));
     }
 
     /**
@@ -38,7 +62,7 @@ class AltoRoute extends Route
     public function addPossibilities(array $routes)
     {
         foreach ($routes as $route) {
-            $this->addRouteConfig($route);
+            $this->applicationRoutes[] = $this->parseRouteConfiguration($route);
         }
     }
 
@@ -47,7 +71,7 @@ class AltoRoute extends Route
      * post type.
      * @param CustomPostType $customPostType
      */
-    public function addResource(CustomPostType $customPostType)
+    public function addResourcePossibility(CustomPostType $customPostType)
     {
         $slug = null;
 
@@ -70,10 +94,16 @@ class AltoRoute extends Route
         }
 
         $controller = Controller::generateClassName($customPostType->getShortName());
+        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
+        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
+        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
+    }
 
-        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index"));
-        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show"));
-        $this->addMatchedRoute(array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index"));
+    public function addModelPossibilities(array $routes)
+    {
+        foreach ($routes as $route) {
+            $this->modelRoutes[] = $this->parseRouteConfiguration($route);
+        }
     }
 
     /**
@@ -138,15 +168,15 @@ class AltoRoute extends Route
      * Adds a new route configuration.
      * @param array $route
      */
-    private function addRouteConfig($route)
+    private function parseRouteConfiguration($route)
     {
         if (!is_array($route)) {
             throw new Exception("Strata configuration file contains an invalid route.");
         }
 
-        $this->isDynamic($route) ?
-            $this->addDynamicRoute($route) :
-            $this->addMatchedRoute($route);
+        return $this->isDynamic($route) ?
+            $this->parseDynamicRoute($route) :
+            $this->parseMatchedRoute($route);
     }
 
     /**
@@ -164,19 +194,18 @@ class AltoRoute extends Route
      * Adds a new dynamic route
      * @param array $route
      */
-    private function addDynamicRoute($route)
+    private function parseDynamicRoute($route)
     {
-        $this->addMatchedRoute(array($route[0], $route[1], self::DYNAMIC_PARSE));
+        return array($route[0], $route[1], self::DYNAMIC_PARSE);
     }
 
     /**
      * Adds a matched route
      * @param array $route
      */
-    private function addMatchedRoute($route)
+    private function parseMatchedRoute($route)
     {
-        $route = $this->patchBuiltInServerPrefix($route);
-        $this->altoRouter->map($route[0], $route[1], $route[2]);
+        return array($route[0], $route[1], $route[2]);
     }
 
     /**
@@ -327,21 +356,5 @@ class AltoRoute extends Route
         }
 
         return array();
-    }
-
-    /**
-     * Built in server will generate links with index.php because
-     * it doesn't have access to mod_rewrite. This function appends
-     * index to the route sent in.
-     * @todo This should not be necessary if the permalinks are correctly
-     * defined. Confirm and remove.
-     */
-    private function patchBuiltInServerPrefix($route)
-    {
-        if (!preg_match("/^\/index.php/i", $route[1])) {
-            $route[1] = "(/index.php)?" . $route[1];
-        }
-
-        return $route;
     }
 }

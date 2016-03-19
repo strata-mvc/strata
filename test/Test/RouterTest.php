@@ -1,7 +1,7 @@
 <?php
 
 use Strata\Router\Router;
-use Strata\Router\RouteParser\Alto\AltoRouteParser;
+use Strata\Router\RouteParser\Url\UrlRouter;
 
 use Test\Fixture\Controller\TestController;
 use Test\Fixture\Router\RouteMaker;
@@ -9,7 +9,7 @@ use Test\Fixture\Router\RouteMaker;
 class RouterTest extends PHPUnit_Framework_TestCase
 {
     public $callback;
-    public $alto;
+    public $url;
     public $wordpress;
 
     public function setUp()
@@ -18,9 +18,10 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->wordpress->reset();
 
         $this->callback = Router::callback("TestController", "returnTrue");
-        $this->alto = Router::urlRouting(array(
+        $this->url = Router::urlRouting(array(
             array("GET", "/test1/", "TestController#returnTrue")
         ));
+        $this->url->route->listen();
 
     }
 
@@ -54,9 +55,9 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(call_user_func($this->callback));
     }
 
-    public function testCanGenerateAltoRoutes()
+    public function testCanGenerateUrlRoutes()
     {
-        $this->assertTrue($this->alto instanceof AltoRouteParser);
+        $this->assertTrue($this->url instanceof UrlRouter);
     }
 
     public function testGeneratesAWordpressHook()
@@ -65,9 +66,9 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('onWordpressEarlyInit', $this->wordpress->actions['init'][0][1]);
     }
 
-    public function testAltoRoutesCanRun()
+    public function testUrlRoutesCanRun()
     {
-        $this->alto->run();
+        $this->url->run();
     }
 
     public function testExecutesInCorrectOrder()
