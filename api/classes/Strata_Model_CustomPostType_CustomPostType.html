@@ -83,7 +83,7 @@
                         ;
                     </li><li>public array <a href="#members">$belongs_to</a> =
                         ;
-                    </li><li>public boolean <a href="#members">$routed</a> =
+                    </li><li>public <span title="Strata\Model\CustomPostType\boolean|array">boolean|array</span> <a href="#members">$routed</a> =
                         false;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Model\WordpressEntity">WordpressEntity</span></li><li>public string <a href="#members">$permissionLevel</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public LabelParser <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/getLabel.html">getLabel</a>()
@@ -92,14 +92,13 @@
                     </li><li>public string <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/getIcon.html">getIcon</a>()
                     </li><li>public boolean <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/hasTaxonomies.html">hasTaxonomies</a>()
                     </li><li>public array <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/getTaxonomies.html">getTaxonomies</a>()
-                    </li><li>public int <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/create.html">create</a>()
-                    </li><li>public boolean <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/update.html">update</a>()
-                    </li><li>public boolean <a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/delete.html">delete</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\WordpressEntity">WordpressEntity</span></li><li>public static string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/wordpressKey.html">wordpressKey</a>()
+                        </li><li>public static void <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey</a>()
                         </li><li>public string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\Model">Model</span></li><li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                         </li><li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getClassNameSuffix.html">getClassNameSuffix</a>()
                         </li><li>public static ModelEntity <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntity.html">getEntity</a>()
+                        </li><li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntityFromPost.html">getEntityFromPost</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span></li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
                         </li><li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
                         </li><li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
@@ -109,6 +108,7 @@
                         </li><li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
                         </li><li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li><li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
@@ -179,7 +179,7 @@
                 string<br/><span class="indent">The permission level required for editing by the model</span></li>
             <li id="routed"><strong>$routed</strong>
                 —
-                boolean<br/><span class="indent">Specifies whether Strata should attempt to automate routing to the model's default controller when the custom post type's slug is matched in the URL.</span></li>
+                <a title="Strata\Model\CustomPostType\boolean|array" href="../classes/Strata_Model_CustomPostType_boolean|array.html">Strata\Model\CustomPostType\boolean|array</a><br/><span class="indent">Specifies whether Strata should attempt to automate routing to the model's default controller when the custom post type's slug is matched in the URL.</span></li>
             <li id="wpPrefix"><strong>$wpPrefix</strong>
                 —
                 string<br/><span class="indent">The Wordpress custom post type identifier prefix</span></li>
@@ -189,10 +189,6 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
-            <li id="create"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/create.html">create()</a>
-                — Creates a post of the current post type based on the passed options.</li>
-            <li id="delete"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/delete.html">delete()</a>
-                — Deletes a post of the current post type by its ID</li>
             <li id="getIcon"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/getIcon.html">getIcon()</a>
                 — Returns the model's menu icon as specified by the 'menu_icon' configuration key.</li>
             <li id="getLabel"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/getLabel.html">getLabel()</a>
@@ -205,12 +201,13 @@
                 — Registers the custom post type in Wordpress. A Custom post type must trigger this during the 'init' state for it to be recognized automatically by Wordpress.</li>
             <li id="registerAdminMenus"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/registerAdminMenus.html">registerAdminMenus()</a>
                 — Registers the custom post type's sub menus.</li>
-            <li id="update"><a title="Strata\Model\CustomPostType\CustomPostType" href="../classes/Strata_Model_CustomPostType_CustomPostType/update.html">update()</a>
-                — Updates a post of the current post type based on the passed options.</li>
           </ul>
           <h3>Inherited from <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity.html">Strata\Model\WordpressEntity</a></h3>
           <h4>public</h4>
           <ul>
+            <li id="factoryFromKey">
+              <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey()</a>
+            </li>
             <li id="getWordpressKey"><a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey()</a>
                 — Returns the internal custom post type slug</li>
             <li id="wordpressKey"><a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/wordpressKey.html">wordpressKey()</a>
@@ -223,6 +220,9 @@
                 — {@inheritdoc}</li>
             <li id="getEntity"><a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntity.html">getEntity()</a>
                 — Returns a ModelEntity related to this object.</li>
+            <li id="getEntityFromPost">
+              <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntityFromPost.html">getEntityFromPost()</a>
+            </li>
             <li id="getNamespaceStringInStrata"><a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
                 — {@inheritdoc}</li>
           </ul>
@@ -258,6 +258,8 @@
                 — Instantiate the configuration cache to the state supplied by $config.</li>
             <li id="containsConfigurations"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
                 — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
             <li id="getConfig"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
             <li id="getConfiguration"><a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>

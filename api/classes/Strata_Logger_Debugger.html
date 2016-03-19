@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Logger\Debugger</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Logger">Strata\Logger</a>
+          </li>
+          <li class="separator">Debugger</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Logger/Debugger.php.html#line11">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Logger\</small>Debugger</h1>
+        <h4/>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Debugger
+            {<br/><ul class="none"><li>// constants</li><li>const RAW = 1;</li><li>const CONSOLE = 2;</li><li>const HTML = 3;</li><li>const HTML_STYLES = "font-size: 12px; font-family: consolas; background:ccc; color:#000;";</li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/trace.html">trace</a>()
+                    </li><li>public static string <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/export.html">export</a>()
+                    </li><li>public static string <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/getType.html">getType</a>()
+                    </li><li>protected static string <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/exportArray.html">exportArray</a>()
+                    </li><li>protected static string <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/exportObject.html">exportObject</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="RAW">RAW</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td id="CONSOLE">CONSOLE</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td id="HTML">HTML</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td id="HTML_STYLES">HTML_STYLES</td>
+              <td>"font-size: 12px; font-family: consolas; background:ccc; color:#000;"</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="exportArray"><a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/exportArray.html">exportArray()</a>
+                — Export an array type object. Filters out keys used in datasource configuration.</li>
+            <li id="exportObject"><a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/exportObject.html">exportObject()</a>
+                — Handles object to string conversion.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="export"><a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/export.html">export()</a>
+                — Export function used to keep track of indentation and recursion.</li>
+            <li id="getType"><a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/getType.html">getType()</a>
+                — Get the type of the given variable. Will return the class name for objects.</li>
+            <li id="trace">
+              <a title="Strata\Logger\Debugger" href="../classes/Strata_Logger_Debugger/trace.html">trace()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-03-14T17:34:43+00:00 (commit #<span title="418204033fee7b37d44fe8ebbf82efecfb9e727a">4182040</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added contextual information and stack trace to the error page</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-03-14T14:37:10+00:00 (commit #<span title="3827df609e0d93cc3c7cba51d6ed7f410d59b8ab">3827df6</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">solidified the debugging tools, added toJson on model entities</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

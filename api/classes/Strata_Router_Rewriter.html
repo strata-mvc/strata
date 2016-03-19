@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Router\Rewriter</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router">Strata\Router</a>
+          </li>
+          <li class="separator">Rewriter</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Router/Rewriter.php.html#line14">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Router\</small>Rewriter</h1>
+        <h4>Declares new rewrite rules within Wordpress</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Rewriter
+            {<br/><ul class="none"><li>// members</li><li>private array <a href="#members">$rewrites</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/initialize.html">initialize</a>()
+                    </li><li>public boolean <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/hasRules.html">hasRules</a>()
+                    </li><li>public array <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/getRules.html">getRules</a>()
+                    </li><li>public void <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/addRule.html">addRule</a>()
+                    </li><li>public boolean <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/applyRules.html">applyRules</a>()
+                    </li><li>public string <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/getCurrentConfigurationState.html">getCurrentConfigurationState</a>()
+                    </li><li>private boolean <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/flush.html">flush</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="rewrites"><strong>$rewrites</strong>
+                —
+                array<br/><span class="indent">Caches the rewrite rules defined at runtime.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="flush"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/flush.html">flush()</a>
+                — Flushes the rewrite rules to the database if the rules look like they have not been saved before hand.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="addRule"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/addRule.html">addRule()</a>
+                — Adds a rule to the stack</li>
+            <li id="applyRules"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/applyRules.html">applyRules()</a>
+                — Applies the rules that have been defined at runtime. Note that the rules are added in the same order as they have been defined and this may cause racing condition in how rules are applied.</li>
+            <li id="getCurrentConfigurationState"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/getCurrentConfigurationState.html">getCurrentConfigurationState()</a>
+                — Returns a hash representing the current rewrite configuration.</li>
+            <li id="getRules"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/getRules.html">getRules()</a>
+                — Returns the list of defined rewrites.</li>
+            <li id="hasRules"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/hasRules.html">hasRules()</a>
+                — Denotes whether rules have been defined.</li>
+            <li id="initialize"><a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter/initialize.html">initialize()</a>
+                — Initialize the rewriter.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-03-19T21:25:06+00:00 (commit #<span title="2fcae787f4f7f210e37b2e4248c1586367be836c">2fcae78</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the Router to add configurable entities rewrite rules</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>
