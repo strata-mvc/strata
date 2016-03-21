@@ -74,6 +74,7 @@ class UrlRoute extends Route
     public function addResourcePossibility(CustomPostType $customPostType)
     {
         $slug = null;
+        $controller = Controller::generateClassName($customPostType->getShortName());
 
         $i18n = Strata::app()->i18n;
         if ($i18n->isLocalized()) {
@@ -81,19 +82,22 @@ class UrlRoute extends Route
             if ($currentLocale && !$currentLocale->isDefault()) {
                 $slugInfo = $customPostType->extractConfig("i18n." . $currentLocale->getCode() . ".rewrite.slug");
                 $slug = array_pop($slugInfo);
+
+                if (!is_null($slug)) {
+                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
+                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
+                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
+                }
             }
         }
 
-        if (is_null($slug)) {
-            $slugInfo = $customPostType->extractConfig("rewrite.slug");
-            $slug = array_pop($slugInfo);
-        }
+        $slugInfo = $customPostType->extractConfig("rewrite.slug");
+        $slug = array_pop($slugInfo);
 
         if (is_null($slug)) {
             $slug = $customPostType->getWordpressKey();
         }
 
-        $controller = Controller::generateClassName($customPostType->getShortName());
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");

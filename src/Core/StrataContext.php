@@ -67,6 +67,19 @@ class StrataContext
     }
 
     /**
+     * Returns the current localization object of the instantiated Strata
+     * object.
+     * @return \Strata\I18n\I18n
+     */
+    public static function i18n()
+    {
+        $app = self::app();
+        if (!is_null($app)) {
+            return $app->i18n;
+        }
+    }
+
+    /**
      * Returns the current project's root namespace key
      * @return string
      */

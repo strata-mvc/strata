@@ -91,6 +91,10 @@ class BaseErrorHandler
             return;
         }
 
+        if (!function_exists('get_template_directory')) {
+            return;
+        }
+
         $data = array(
             'type' => "Error",
             'code' => $code,
@@ -116,6 +120,10 @@ class BaseErrorHandler
     public function handleFatalError($code, $description, $file, $line)
     {
         if (function_exists("is_admin") && is_admin()) {
+            return;
+        }
+
+        if (!function_exists('get_template_directory')) {
             return;
         }
 
@@ -148,6 +156,10 @@ class BaseErrorHandler
     public function handleException(Exception $exception)
     {
         if (function_exists("is_admin") && is_admin()) {
+            return;
+        }
+
+        if (!function_exists('get_template_directory')) {
             return;
         }
 
@@ -252,8 +264,7 @@ class BaseErrorHandler
     {
         return $this->useStrataDebugger() &&
                 Strata::isDev() &&
-               !Strata::isCommandLineInterface()
-               && function_exists('get_template_directory');
+               !Strata::isCommandLineInterface();
     }
 
     private function endProcesses()
