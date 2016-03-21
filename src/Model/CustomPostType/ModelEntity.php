@@ -6,6 +6,7 @@ use Strata\Utility\Hash;
 use Strata\Model\Validator\Validator;
 use Strata\Core\StrataObjectTrait;
 use Strata\Controller\Request;
+use Strata\Logger\Debugger;
 use stdClass;
 use Exception;
 use WP_Post;

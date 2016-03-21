@@ -12,7 +12,7 @@ use AltoRouter;
 use Exception;
 
 /**
- * Handles routes generated for the AltoRouter class.
+ * Handles routes generated from REST requests.
  */
 class UrlRoute extends Route
 {

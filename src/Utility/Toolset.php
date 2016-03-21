@@ -16,14 +16,24 @@ if (!function_exists('debug')) {
             $mixed = $mixed[0];
         }
 
+        $context = "In unknown context at unknown line";
+        foreach (debug_backtrace() as $idx => $file) {
+            if ($file['file'] != __FILE__) {
+                $last = explode(DIRECTORY_SEPARATOR, $file['file']);
+                $context = sprintf("In %s at line %s: ", $last[count($last)-1], $file['line']);
+                break;
+            }
+        }
+
+
         foreach (func_get_args() as $variable) {
             $exported = Debugger::export($variable, 5);
 
             if (Strata::isCommandLineInterface() || Strata::isBundledServer()) {
-                Strata::app()->getLogger("StrataConsole")->debug("\n\n" . $exported . "\n");
+                Strata::app()->getLogger("StrataConsole")->debug("\n$context\n" . $exported . "\n");
             }
 
-            echo "<div style=\"".Debugger::HTML_STYLES."\"><pre>" . $exported . "</pre></div>";
+            echo "<div style=\"".Debugger::HTML_STYLES."\"><pre>$context<br>" . $exported . "</pre></div>";
         }
     }
 }

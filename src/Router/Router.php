@@ -30,7 +30,7 @@ class Router
      * Generates a parser for URL based rules, as one may be used to in
      * the world of Model View Controller programming.
      * @param  array $routes A list of available routes and callbacks
-     * @return AltoRouter  The parser that generates a valid route
+     * @return UrlRouter  The parser that generates a valid route
      */
     public static function urlRouting($routes = array())
     {

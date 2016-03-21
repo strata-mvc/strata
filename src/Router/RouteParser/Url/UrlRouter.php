@@ -16,7 +16,7 @@ class UrlRouter extends Router
      * Returns an instance of the router instantiated
      * with the optional $routes.
      * @param  array  $routes (optional)
-     * @return AltoRouteParser
+     * @return UrlRoute
      */
     public static function factory($routes = array())
     {

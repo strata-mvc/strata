@@ -14,7 +14,7 @@ class CallbackRouter extends Router
      * Returns an instance of the router instantiated
      * with the optional $routes.
      * @param  array  $routes (optional)
-     * @return AltoRouteParser
+     * @return CallbackRoute
      */
     public static function factory($ctrl, $action)
     {
