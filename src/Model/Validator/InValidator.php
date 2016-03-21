@@ -26,6 +26,7 @@ class InValidator extends Validator
         }
 
         $allowed = $this->getAllowedValues();
+
         return in_array((int)$value, array_keys($allowed));
     }
 
@@ -33,9 +34,10 @@ class InValidator extends Validator
     {
         $configuration = $this->configuration;
 
-        if (is_callable($configuration)) {
-            return call_user_func($configuration);
-        } elseif (is_array($configuration)) {
+        if (is_array($configuration)) {
+            if (count($configuration) === 1 && is_callable($configuration[0])) {
+                return call_user_func($configuration[0]);
+            }
             return $configuration;
         }
 
