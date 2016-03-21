@@ -23,8 +23,6 @@ class StrataContext
         if (array_key_exists(self::STRATA_KEY, $GLOBALS)) {
             return $GLOBALS[self::STRATA_KEY];
         }
-
-        throw new Exception("Strata instance has not been created.");
     }
 
     /**
