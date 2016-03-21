@@ -22,7 +22,9 @@ class Rewriter
      */
     public function initialize()
     {
-        add_action('init', array($this, "applyRules"), 2);
+        if (function_exists('add_action')) {
+            add_action('init', array($this, "applyRules"), 2);
+        }
     }
 
     /**
