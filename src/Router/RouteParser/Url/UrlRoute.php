@@ -49,11 +49,16 @@ class UrlRoute extends Route
     public function listen()
     {
         $this->altoRouter = new AltoRouter();
-        $this->altoRouter->addRoutes(array_merge(
+        $this->altoRouter->addRoutes($this->listRegisteredRoutes());
+    }
+
+    public function listRegisteredRoutes()
+    {
+        return array_merge(
             $this->modelRoutes,
             $this->automatedRoutes,
             $this->applicationRoutes
-        ));
+        );
     }
 
     /**
@@ -322,6 +327,10 @@ class UrlRoute extends Route
         if (array_key_exists("action", $match["params"])) {
             $action = $match["params"]["action"];
             $action = str_replace("-", "_", $action);
+            if (substr($action, -1) === "/") {
+                $action = substr($action, 0, -1);
+            }
+
             return lcfirst(Inflector::camelize($action));
         }
 

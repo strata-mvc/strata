@@ -33,8 +33,10 @@
 
     <div class="trace">
         <?php if (isset($error['trace'])) : ?>
-            <h3><?php echo "Trace"; ?></h3>
-            <?php echo $error['trace']; ?>
+            <div style="max-height: 300px;">
+                <h3><?php echo "Trace"; ?></h3>
+                <?php echo $error['trace']; ?>
+            </div>
         <?php endif ;?>
     </div>
 
@@ -55,6 +57,18 @@
                     Strata did not route to a controller.
                 <?php endif; ?>
             </p>
+
+            <h4>Known routes</h4>
+            <table>
+                <tr><th>Type</th><th>Match</th><th>Route</th></tr>
+            <?php foreach ((array)$app->router->route->listRegisteredRoutes() as $route) : ?>
+                <tr>
+                    <td><?php if (count($route) > 0) : echo $route[0]; endif; ?></td>
+                    <td><?php if (count($route) >= 1) : echo $route[1]; endif; ?></td>
+                    <td><?php if (count($route) >= 2) : echo $route[2]; endif; ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
         <?php endif; ?>
     </div>
 
