@@ -137,7 +137,6 @@ class UrlRoute extends Route
      * Unlike the templating using Controller#view->render() which allow
      * passing variables, Wordpress's load_template extracts variables in
      * $wp_query only.
-     * @todo Is it required to send variables to the globals array?
      */
     protected function assignViewVars()
     {
@@ -145,16 +144,8 @@ class UrlRoute extends Route
 
         if (!is_null($this->controller) && !is_null($this->controller->view)) {
             foreach ($this->controller->view->getVariables() as $key => $value) {
-                if (array_key_exists($key, $wp_query->query_vars)) {
-                    error_log(sprintf("[STRATA] : Wordpress has already reserved the view variable %s.", $key));
-                } else {
-                    $wp_query->set($key, $value);
-
-                    // I don't think the following is actually necessary.
-                    // I suspect setting using wp_query account the the same
-                    // exact thing.
-                    $GLOBALS[$key] = $value;
-                }
+                $wp_query->set($key, $value);
+                $GLOBALS[$key] = $value;
             }
         }
     }

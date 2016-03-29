@@ -60,6 +60,22 @@ abstract class Route
      */
     abstract function end();
 
+    public function attemptCompletion()
+    {
+        while (!$this->isCancelled()) {
+            $this->start();
+
+            $this->controller->init();
+            $this->controller->before();
+            $returnData = call_user_func_array(array($this->controller, $this->action), $this->arguments);
+            $this->controller->after();
+
+            $this->end();
+
+            return $returnData;
+        }
+    }
+
     /**
      * Verifies that the current values can be ran by the router.
      * @return boolean True is the route is considered working and valid.
@@ -92,7 +108,7 @@ abstract class Route
      */
     protected function logRouteCancellation()
     {
-        $message = sprintf("<warning>[Cancel]</warning> <info>Routing to -> %s#%s</info>", get_class($this->controller), $this->action);
+        $message = sprintf("<warning>Canceled routing to</warning> -> <info>%s#%s</info>", get_class($this->controller), $this->action);
 
         $logger = Strata::app()->getLogger();
         $logger->log($message, "<green>Strata:Route</green>");
@@ -104,7 +120,7 @@ abstract class Route
     protected function logRouteStart()
     {
         $this->executionStart = microtime(true);
-        $message = sprintf("<info>Routing to -> %s#%s</info>", get_class($this->controller), $this->action);
+        $message = sprintf("Routing to -> <info>%s#%s</info>", get_class($this->controller), $this->action);
 
         $logger = Strata::app()->getLogger();
         if ($logger) {

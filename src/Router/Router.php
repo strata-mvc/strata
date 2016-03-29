@@ -97,7 +97,7 @@ class Router
         $this->route->process($url);
 
         if ($this->route->isValid()) {
-            return $this->loopCurrentRequest();
+            return $this->route->attemptCompletion();
         }
 
         $controllerClass = get_class($this->route->controller);
@@ -135,27 +135,6 @@ class Router
         }
     }
 
-    /**
-     * While the route is not completed or canceled,
-     * executes the route.
-     * @return mixed Whatever is being returned by the function
-     */
-    private function loopCurrentRequest()
-    {
-        while (!$this->route->isCancelled()) {
-            $this->route->start();
-
-            $this->route->controller->init();
-            $this->route->controller->before();
-
-            $returnData = call_user_func_array(array($this->route->controller, $this->route->action), $this->route->arguments);
-
-            $this->route->controller->after();
-            $this->route->end();
-
-            return $returnData;
-        }
-    }
 
     /**
      * Sends a message to the global logger.

@@ -2,6 +2,9 @@
 
 namespace Strata\Controller;
 
+use Strata\Strata;
+use Strata\Router\Router;
+use Strata\Router\RouteParser\Url\UrlRoute;
 use Strata\Controller\Request;
 use Strata\Controller\Loader\ShortcodeLoader;
 use Strata\Controller\Loader\HelperLoader;
@@ -114,7 +117,7 @@ class Controller
 
     public function notFound()
     {
-        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found - Archive Empty', true, 400);
+        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 400);
 
         global $wp_query;
         $wp_query->set_404();
@@ -126,8 +129,25 @@ class Controller
     }
 
 
-    public function redirect()
+    public function redirect($controllerName, $action = "index", $arguments = array())
     {
+        $view = $this->view;
+        $request = $this->request;
 
+        $router = Strata::router();
+        if (is_null($router)) {
+            return;
+        }
+
+        $router->abandonCurrent();
+
+        $route = new UrlRoute();
+        $route->controller = Controller::factory($controllerName);
+        $route->controller->view = $view;
+        $route->controller->request = $request;
+        $route->action = $action;
+        $route->arguments = $arguments;
+
+        return $route->attemptCompletion();
     }
 }
