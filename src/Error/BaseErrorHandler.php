@@ -281,7 +281,10 @@ class BaseErrorHandler
         $this->hasError = true;
         $this->clearBuffer();
 
-        Strata::app()->router->getCurrentController()->serverError();
+        $controller = Strata::router()->getCurrentController();
+        if (!is_null($controller)) {
+            $controller->serverError();
+        }
     }
 
 }

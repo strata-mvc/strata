@@ -171,6 +171,32 @@ trait QueriableEntityTrait
         return $this->where('author', $authorID);
     }
 
+    public function byName()
+    {
+        return $this
+            ->orderby("post_title")
+            ->direction("ASC");
+    }
+
+    public function published()
+    {
+        return $this->status("publish");
+    }
+
+    public function byRecency()
+    {
+        return $this
+            ->orderby("creation_date")
+            ->direction("DESC");
+    }
+
+    public function byMenuOrder()
+    {
+        return $this
+            ->orderby("menu_order")
+            ->direction("ASC");
+    }
+
     /**
      * Fetches the number of results the current queries returned.
      * This ends the current query.
