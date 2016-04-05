@@ -61,7 +61,7 @@ class TaxonomyQuery extends Query
 
         if (is_null($this->postId)) {
             $queryLog = "get_terms(" . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
-            $return = get_terms(array(), $this->filters);
+            $return = get_terms($this->taxnomony, $this->filters);
         } else {
             $queryLog = "get_the_terms(" . Debugger::export($this->postId) . ", " . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
             $return = get_the_terms($this->postId, $this->taxnomony, $this->filters);
