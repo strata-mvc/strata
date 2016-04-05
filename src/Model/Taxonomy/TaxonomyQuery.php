@@ -3,6 +3,7 @@
 namespace Strata\Model\Taxonomy;
 
 use Strata\Model\CustomPostType\Query;
+use Strata\Logger\Debugger;
 use Exception;
 
 /**
@@ -13,14 +14,19 @@ use Exception;
 class TaxonomyQuery extends Query
 {
     /**
-     * @var array A list of get_terms() filters.
+     * @var array A list of get_terms() or get_the_terms() filters.
      */
     protected $filters = array();
 
     /**
-     * @var array A list of the taxonomies being queried.
+     * @var string A list of the taxonomies being queried.
      */
-    protected $taxnomonies = array();
+    protected $taxnomony = null;
+
+    /**
+     * @var int A post ID against which the terms are queried.
+     */
+    protected $postId = null;
 
     /**
      * Sets the taxonomy type
@@ -29,18 +35,19 @@ class TaxonomyQuery extends Query
      */
     public function type($type = null)
     {
-        $this->taxnomonies[] = $type;
+        $this->taxnomony = $type;
         return $this;
     }
 
     /**
-     * Adds a taxonomy to filter terms from
-     * @param  string $taxonomy
+     * Specified the query to lookup post terms and not general taxonomies.
+     * @param  int $postId
      * @return TaxonomyQuery
      */
-    public function in($taxonomy)
+    public function againstPostId($postId)
     {
-        return $this->type($taxonomy->wordpressKey());
+        $this->postId = (int)$postId;
+        return $this;
     }
 
     /**
@@ -49,6 +56,18 @@ class TaxonomyQuery extends Query
      */
     public function fetch()
     {
-        return get_terms($this->taxnomonies, $this->filters);
+        $this->logQueryStart();
+        $return = null;
+
+        if (is_null($this->postId)) {
+            $queryLog = "get_terms(" . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
+            $return = get_terms(array(), $this->filters);
+        } else {
+            $queryLog = "get_the_terms(" . Debugger::export($this->postId) . ", " . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
+            $return = get_the_terms($this->postId, $this->taxnomony, $this->filters);
+        }
+
+        $this->logQueryCompletion($queryLog);
+        return $return;
     }
 }
