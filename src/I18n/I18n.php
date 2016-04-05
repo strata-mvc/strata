@@ -445,7 +445,11 @@ class i18n
 
         // Load the binary to ensure projects always attempts
         // to compile the same basic string.
-        $activeTranslations = Translations::fromMoFile($moFile);
+        if ($locale->hasMoFile()) {
+            $activeTranslations = Translations::fromMoFile($moFile);
+        } else {
+            $activeTranslations = new Translations();
+        }
 
         // Add local modifications to the default set should there
         // be any.
@@ -453,7 +457,7 @@ class i18n
              $this->hardTranslationSetMerge($locale, Translations::fromPoFile($envPoFile), $activeTranslations);
         }
 
-        $textDomain = Strata::app()->i18n->getTextdomain();
+        $textDomain = Strata::i18n()->getTextdomain();
         $activeTranslations->setDomain($textDomain);
         $activeTranslations->setHeader('Language', $locale->getCode());
         $activeTranslations->setHeader('Text Domain', $textDomain);
