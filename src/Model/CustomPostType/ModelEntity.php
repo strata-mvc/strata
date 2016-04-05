@@ -10,6 +10,7 @@ use Strata\Logger\Debugger;
 use stdClass;
 use Exception;
 use WP_Post;
+use WP_Term;
 
 /**
  * A ModelEntity can vaguely be seen as a table row. It is a class
@@ -45,8 +46,8 @@ class ModelEntity
     {
         $obj = null;
 
-        if (preg_match('/_?cpt_(\w+)/', $str, $matches)) {
-            $obj = self::factory($matches[1]);
+        if (preg_match('/_?(cpt|tax)_(\w+)/', $str, $matches)) {
+            $obj = self::factory($matches[2]);
         } elseif (preg_match('/_?(post|page)/', $str, $matches)) {
             $obj = self::factory($matches[1]);
         }
@@ -65,6 +66,11 @@ class ModelEntity
     public static function factoryFromPost(WP_Post $post)
     {
         return self::factoryFromString($post->post_type, $post);
+    }
+
+    public static function factoryFromTerm(WP_Term $term)
+    {
+        return self::factoryFromString($term->taxonomy, $term);
     }
 
     /**
