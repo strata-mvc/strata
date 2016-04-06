@@ -62,10 +62,18 @@ class ModelRewriteRegistrar
         if (array_key_exists('rewrite', $model->routed)) {
 
             $rewriter = Strata::app()->rewriter;
+            $i18n = Strata::i18n();
+            $defaultLocalePrefix = "";
+
+            if ($i18n->isLocalized()) {
+                $defaultLocale = $i18n->getDefaultLocale();
+                if ($defaultLocale->hasACustomUrl()) {
+                    $defaultLocalePrefix = $defaultLocale->getUrl() . "/";
+                }
+            }
 
             foreach ($model->routed['rewrite'] as $routeKey => $routeUrl) {
-
-                $rule = sprintf('%s/([^/]+)/%s/?$', $slug, $routeUrl);
+                $rule = sprintf('%s%s/([^/]+)/%s/?$', $defaultLocalePrefix, $slug, $routeUrl);
                 $redirect = sprintf('index.php?%s=$matches[1]', $model->getWordpressKey());
                 $rewriter->addRule($rule, $redirect);
 

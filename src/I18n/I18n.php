@@ -557,7 +557,7 @@ class i18n
     {
         $urls = array();
         foreach ($this->getLocales() as $locale) {
-            if (!$locale->isDefault()) {
+            if ($locale->hasACustomUrl()) {
                 $urls[] =  preg_quote($locale->getUrl(), '/');
             }
         }

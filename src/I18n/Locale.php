@@ -89,6 +89,15 @@ class Locale
         return $this->url;
     }
 
+    public function getHomeUrl()
+    {
+        if ($this->isDefault() && $this->hasACustomUrl() || !$this->isDefault()) {
+            return get_home_url() . "/" . $this->getUrl() . "/";
+        }
+
+        return get_home_url() . "/";
+    }
+
     /**
      * Specifies whether this locale is the default one.
      * @return boolean
@@ -106,6 +115,14 @@ class Locale
     public function hasANativeLabel()
     {
         return $this->nativeLabel !== $this->code;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasACustomUrl()
+    {
+        return !is_null($this->url) || !$this->isDefault();
     }
 
     /**
