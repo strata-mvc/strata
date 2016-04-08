@@ -25,15 +25,18 @@ if (!function_exists('debug')) {
             }
         }
 
-
         foreach (func_get_args() as $variable) {
             $exported = Debugger::export($variable, 5);
 
-            if (Strata::isCommandLineInterface() || Strata::isBundledServer()) {
+            if (Strata::isBundledServer()) {
                 Strata::app()->getLogger("StrataConsole")->debug("\n$context\n" . $exported . "\n");
             }
 
-            echo "<div style=\"".Debugger::HTML_STYLES."\"><pre>$context<br>" . $exported . "</pre></div>";
+            if (Strata::isCommandLineInterface()) {
+                echo "$context\n$exported\n";
+            } else {
+                echo "<div style=\"".Debugger::HTML_STYLES."\"><pre>$context<br>" . $exported . "</pre></div>";
+            }
         }
     }
 }

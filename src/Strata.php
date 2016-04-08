@@ -210,7 +210,7 @@ class Strata extends StrataContext
             $loggers[$logKey] = $logger;
         }
 
-        if (self::isBundledServer()) {
+        if (Strata::isBundledServer()) {
             $logger = LoggerBase::factory('Console');
             $logger->initialize();
             $loggers['StrataConsole'] = $logger;
@@ -241,7 +241,7 @@ class Strata extends StrataContext
     public function getLogger($name = '')
     {
         if (empty($name)) {
-            if (self::isCommandLineInterface() || self::isBundledServer()) {
+            if (self::isBundledServer()) {
                 return $this->getConfig("runtime.loggers.StrataConsole");
             }
 
