@@ -299,6 +299,10 @@ class UrlRoute extends Route
             return $target[1];
         }
 
+        if (array_key_exists("action", $match["params"])) {
+            return $this->getActionFromParam($match["params"]);
+        }
+
         $this->controller->request = new Request();
         if (is_admin() && $this->controller->request->hasGet('page')) {
             return $this->controller->request->get('page');
@@ -316,13 +320,7 @@ class UrlRoute extends Route
     private function getActionFromDynamicMatch($match)
     {
         if (array_key_exists("action", $match["params"])) {
-            $action = $match["params"]["action"];
-            $action = str_replace("-", "_", $action);
-            if (substr($action, -1) === "/") {
-                $action = substr($action, 0, -1);
-            }
-
-            return lcfirst(Inflector::camelize($action));
+            return $this->getActionFromParam($match["params"]);
         }
 
         if (array_key_exists("controller", $match["params"]) && !array_key_exists("action", $match["params"])) {
@@ -330,6 +328,21 @@ class UrlRoute extends Route
         }
 
         return "noActionMatch";
+    }
+
+    /**
+     * Formats the action based on the router's match
+     * @param  string $action
+     * @return string
+     */
+    private function getActionFromParam($action)
+    {
+        $action = str_replace("-", "_", $action);
+        if (substr($action, -1) === "/") {
+            $action = substr($action, 0, -1);
+        }
+
+        return lcfirst(Inflector::camelize($action));
     }
 
     /**
