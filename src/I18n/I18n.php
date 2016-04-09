@@ -339,7 +339,7 @@ class i18n
     {
         $sessionId = session_id();
 
-        if (!$sessionId) {
+        if (!$sessionId && !headers_sent()) {
             return session_start();
         }
 

@@ -40,7 +40,13 @@ class TestCommand extends StrataCommandBase
 
         $phpunit = $this->getPhpunitBin();
         $arguments = $this->preparePhpunitArguments();
-        system(sprintf("php %s %s %s", $phpunit, $arguments, Strata::getTestPath()));
+
+        $call = sprintf("%s %s %s",
+            $this->getPhpunitBin(),
+            $this->preparePhpunitArguments(),
+            Strata::getTestPath()
+        );
+        system($call);
 
         $this->shutdown();
     }
@@ -88,6 +94,7 @@ class TestCommand extends StrataCommandBase
      */
     protected function getBootstrapFile()
     {
-        return implode(DIRECTORY_SEPARATOR, array(Strata::getTestPath() . "strata-test-bootstraper.php"));
+        $path = array(Strata::getVendorPath(), 'francoisfaubert', 'strata', 'src', 'Scripts', 'test_runner.php');
+        return implode(DIRECTORY_SEPARATOR, $path);
     }
 }
