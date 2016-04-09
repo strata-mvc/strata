@@ -300,7 +300,7 @@ class UrlRoute extends Route
         }
 
         if (array_key_exists("action", $match["params"])) {
-            return $this->getActionFromParam($match["params"]);
+            return $this->getActionFromParam($match["params"]["action"]);
         }
 
         $this->controller->request = new Request();
@@ -320,7 +320,7 @@ class UrlRoute extends Route
     private function getActionFromDynamicMatch($match)
     {
         if (array_key_exists("action", $match["params"])) {
-            return $this->getActionFromParam($match["params"]);
+            return $this->getActionFromParam($match["params"]["action"]);
         }
 
         if (array_key_exists("controller", $match["params"]) && !array_key_exists("action", $match["params"])) {
