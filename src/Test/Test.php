@@ -30,6 +30,10 @@ class Test extends PHPUnit_Framework_TestCase
             define('WP_USE_THEMES', false);
         }
 
+        if (!array_key_exists('_SERVER', $GLOBALS)) {
+            $GLOBALS['_SERVER'] = array();
+        }
+
         $GLOBALS['_SERVER']['SERVER_PROTOCOL'] = "http";
         $GLOBALS['_SERVER']['REQUEST_METHOD'] = "GET";
 
