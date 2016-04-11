@@ -24,11 +24,6 @@ class FormHelper extends Helper
     protected $associatedEntity = null;
 
     /**
-     * @var array Exposes the validation errors in the form
-     */
-    public $validationErrors = null;
-
-    /**
      * @var array Exposes basic object configuration
      * @todo Move to the configurable array
      */
@@ -63,8 +58,6 @@ class FormHelper extends Helper
         unset($formAttributes['nonce']);
 
         if (!is_null($this->associatedEntity) && $this->associatedEntity->hasValidationErrors()) {
-            $this->validationErrors = $this->associatedEntity->getValidationErrors();
-
             if (array_key_exists('class', $formAttributes)) {
                 $formAttributes['class'] .= " has-errors ";
             } else {
@@ -87,6 +80,8 @@ class FormHelper extends Helper
      */
     public function end()
     {
+        $this->associatedEntity = null;
+
         return "</form>";
     }
 
@@ -206,13 +201,17 @@ class FormHelper extends Helper
         $currentValue = $this->getCurrentValue($options['name']);
 
         $errorHtml = "";
-        if (array_key_exists($name, (array)$this->validationErrors)) {
-            if ((bool)$options['error']) {
-                $errorHtml = $this->generateInlineErrors($name);
+
+        if (!is_null($this->associatedEntity)) {
+            $errors = (array)$this->associatedEntity->getValidationErrors();
+            if (array_key_exists($name, $errors)) {
+                if ((bool)$options['error']) {
+                    $errorHtml = $this->generateInlineErrors($name);
+                }
+                $options['class'] .= " error ";
             }
-            $options['class'] .= " error ";
+            unset($options["error"]);
         }
-        unset($options["error"]);
 
         $label = "";
         if (!is_null($options['label'])) {
@@ -243,12 +242,16 @@ class FormHelper extends Helper
      */
     public function generateInlineErrors($postName)
     {
-        if (array_key_exists($postName, (array)$this->validationErrors)) {
-            $errorTag = '<ul class="inline-errors">';
-            foreach ($this->validationErrors[$postName] as $key => $message) {
-                $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
+        if (!is_null($this->associatedEntity)) {
+            $errors = (array)$this->associatedEntity->getValidationErrors();
+
+            if (array_key_exists($postName, $errors)) {
+                $errorTag = '<ul class="inline-errors">';
+                foreach ($errors[$postName] as $key => $message) {
+                    $errorTag .= sprintf('<li class="%s">%s</li>', $key, $message);
+                }
+                return $errorTag . '</ul>';
             }
-            return $errorTag . '</ul>';
         }
 
         return "";
