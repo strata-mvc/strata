@@ -30,6 +30,10 @@ class Test extends PHPUnit_Framework_TestCase
             define('WP_USE_THEMES', false);
         }
 
+        if (is_null($GLOBALS)) {
+            $GLOBALS = array();
+        }
+
         if (!array_key_exists('_SERVER', $GLOBALS)) {
             $GLOBALS['_SERVER'] = array();
         }
