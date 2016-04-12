@@ -127,55 +127,6 @@ class StrataContext
     }
 
     /**
-     * Mocks a Wordpress environment when running from the command line.
-     * @return bool True is the mock was included
-     */
-    public static function mockTestEnvironment()
-    {
-        if (defined('STRATA_INCLUDED_WORDPRESS_MOCK')) {
-            return true;
-        }
-
-        define('STRATA_INCLUDED_WORDPRESS_MOCK', true);
-
-        if (!defined('WP_USE_THEMES')) {
-            define('WP_USE_THEMES', false);
-        }
-
-        if (is_null($GLOBALS)) {
-            $GLOBALS = array();
-        }
-
-        if (!array_key_exists('_SESSION', $GLOBALS)) {
-            $GLOBALS['_SESSION'] = array();
-        }
-
-        if (!array_key_exists('_SERVER', $GLOBALS)) {
-            $GLOBALS['_SERVER'] = array();
-        }
-
-        $GLOBALS['_SERVER']['SERVER_PROTOCOL'] = "http";
-        $GLOBALS['_SERVER']['REQUEST_METHOD'] = "GET";
-
-        require_once Strata::getVendorPath() . DIRECTORY_SEPARATOR . 'autoload.php';
-
-        ob_start();
-        require_once Strata::getWordpressPath() . DIRECTORY_SEPARATOR . 'wp-blog-header.php';
-        $output = ob_get_clean();
-
-        // @todo: Validate common errors from the output and carry them over to the test suite:
-        //  DB connection + fatal errors
-
-        $projectBootstrapFile = Strata::getTestPath() . DIRECTORY_SEPARATOR . 'strata-test-bootstraper.php';
-        if (file_exists($projectBootstrapFile)) {
-            require_once($projectBootstrapFile);
-        }
-
-        return true;
-    }
-
-
-    /**
      * Loads ~/config/strata.php, cleans up the data and saves it as
      * the active configuration of the current instance of the Strata object.
      * @return  array Configuration array
