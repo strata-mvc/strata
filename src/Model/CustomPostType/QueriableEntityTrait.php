@@ -227,6 +227,10 @@ trait QueriableEntityTrait
 
         $this->resetCurrentQuery();
 
+        if (!is_array($results) && get_class($results) === "WP_Error") {
+            throw new Exception(json_encode($results));
+        }
+
         return $this->wrapInEntities($results);
     }
 
