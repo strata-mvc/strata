@@ -91,10 +91,10 @@ class Strata extends StrataContext
 
         $this->configureCustomPostType();
         $this->addAppRoutes();
-        $this->loadMiddleware();
         $this->improveSecurity();
 
         $this->displayRuntimeHeader();
+        $this->loadMiddleware();
     }
 
     /**

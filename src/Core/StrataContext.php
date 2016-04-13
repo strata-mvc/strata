@@ -315,6 +315,15 @@ class StrataContext
     }
 
     /**
+     * Returns the path to the Middleware folder.
+     * @return string Path
+     */
+    public static function getMiddlewarePath()
+    {
+        return implode(DIRECTORY_SEPARATOR, array(self::getSRCPath(), "Middleware")) . DIRECTORY_SEPARATOR;
+    }
+
+    /**
      * Returns the path to the bin folder.
      * @return string Path
      */

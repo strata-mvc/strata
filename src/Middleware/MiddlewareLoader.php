@@ -2,6 +2,7 @@
 
 namespace Strata\Middleware;
 
+use Strata\Strata;
 use Composer\Autoload\ClassLoader;
 use Exception;
 
@@ -12,7 +13,7 @@ use Exception;
  * convention:
  *
  * <?php
- *  namespace Strata\Middleware\Mycompany_MyclassInitializer {
+ *  namespace App\Middleware\MyclassInitializer {
  *
  *  }
  */
@@ -59,9 +60,12 @@ class MiddlewareLoader
     public function initialize()
     {
         if ($this->hasMiddlewares()) {
+            debug($this->middlewares);
             foreach ($this->middlewares as $middleware) {
                 $middleware->initialize();
             }
+
+            Strata::app()->log(sprintf("Loaded <info>%d</info> middlewares", count($this->middlewares)), "<info>Middleware</info>");
         }
     }
 
@@ -77,13 +81,36 @@ class MiddlewareLoader
     /**
      * Goes through the class loader and finds packages
      * defined as a possible Strata Middleware.
-     * @return array A list of instantiated Middlewares
+     * @return array A list of instantiated middlewares
      */
     private function findAvailableMiddlewares()
     {
+        $this->loadComposerMiddlewares();
+        $this->loadProjectMiddlewares();
+    }
+
+    private function loadComposerMiddlewares()
+    {
+        // Load middlewares registered through Composer.
+        $namespaceRegex = "^(Strata|" . preg_quote(Strata::getNamespace()) . ")";
         foreach ($this->classLoader->getPrefixesPsr4() as $prefix => $path) {
-            if (preg_match("/^Strata\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
+            if (preg_match("/$namespaceRegex\\\\Middleware\\\\(.+?)\\\\$/", $prefix)) {
                 $className = $prefix . "Initializer";
+                if (class_exists($className)) {
+                    $this->middlewares[] = new $className();
+                }
+            }
+        }
+    }
+
+    private function loadProjectMiddlewares()
+    {
+        $possibleMiddlewareLoaders = glob(Strata::getMiddlewarePath() . "*Initializer.php");
+        $namespace = Strata::getNamespace() . "\\Middleware\\";
+
+        foreach ($possibleMiddlewareLoaders as $filename) {
+            if (preg_match('/([^\/\\\\]+?Initializer).php$/', $filename, $matches)) {
+                $className = $namespace . $matches[1];
                 if (class_exists($className)) {
                     $this->middlewares[] = new $className();
                 }

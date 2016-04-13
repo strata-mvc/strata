@@ -89,13 +89,15 @@ class Locale
         return $this->url;
     }
 
-    public function getHomeUrl()
+    public function getHomeUrl($absolute = true)
     {
+        $prefix = $absolute ? get_home_url() . "/" : "/";
+
         if ($this->isDefault() && $this->hasACustomUrl() || !$this->isDefault()) {
-            return get_home_url() . "/" . $this->getUrl() . "/";
+            return $prefix . $this->getUrl() . "/";
         }
 
-        return get_home_url() . "/";
+        return $prefix;
     }
 
     /**
