@@ -60,7 +60,6 @@ class MiddlewareLoader
     public function initialize()
     {
         if ($this->hasMiddlewares()) {
-            debug($this->middlewares);
             foreach ($this->middlewares as $middleware) {
                 $middleware->initialize();
             }
