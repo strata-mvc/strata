@@ -14,6 +14,12 @@ class Test extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        // This whole process has to be terribly inefficient. Does someone
+        // have an idea on how to only loads once per test pass?
+        //
+        // PHPUnit dislikes playing with $GLOBALS in its bootstrap file
+        // that's why we had to do it on setup.
+
         if (is_null($GLOBALS)) {
             $GLOBALS = array();
         }
@@ -30,14 +36,21 @@ class Test extends PHPUnit_Framework_TestCase
         $GLOBALS['_SERVER']['REQUEST_METHOD'] = "GET";
         $GLOBALS['_SERVER']['REQUEST_URI'] = getenv("WP_HOME");
 
+
         if (!defined('WP_USE_THEMES')) {
             define('WP_USE_THEMES', false);
         }
 
         $this->instance = Strata::bootstrap(Strata::requireVendorAutoload());
         if (!defined('ABSPATH')) {
-            require(Strata::getRootPath() . '/web/wp/wp-load.php');
+            require_once Strata::getRootPath() . '/web/wp/wp-load.php';
         }
+
+        require_wp_db();
+        $GLOBALS['table_prefix'] = getenv('DB_PREFIX') ?: 'wp_';
+        wp_set_wpdb_vars();
+        wp_cache_init();
+
         $this->instance->run();
     }
 

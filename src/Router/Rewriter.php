@@ -57,6 +57,18 @@ class Rewriter
     }
 
     /**
+     * Updates a predefined rule by index.
+     * @param  int $index    The rule's index
+     * @param string $regex
+     * @param string $mapping
+     * @param string $priority Defaults to 'top'
+     */
+    public function updateRule($index, $regex, $mapping, $priority = 'top')
+    {
+        $this->rewrites[$index] = array($regex, $mapping, $priority);
+    }
+
+    /**
      * Applies the rules that have been defined at runtime. Note that
      * the rules are added in the same order as they have been defined
      * and this may cause racing condition in how rules are applied.
