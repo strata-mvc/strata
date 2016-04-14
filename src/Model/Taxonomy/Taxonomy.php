@@ -16,6 +16,14 @@ class Taxonomy extends WordpressEntity
     use QueriableEntityTrait;
 
     /**
+     * {@inheritdoc}
+     */
+    public static function getNamespaceStringInStrata()
+    {
+        return "Model\\Taxonomy";
+    }
+
+    /**
      * The Wordpress taxonomy identifier prefix
      * @var string
      */
