@@ -30,6 +30,28 @@ class Taxonomy extends WordpressEntity
     public $wpPrefix = "tax_";
 
     /**
+     * The generated query_var key
+     * @var straing
+     */
+    private $query_var = null;
+
+    /**
+     * Returns the complete taxonomy query var variable
+     */
+    public function getQueryVar()
+    {
+        return $this->query_var;
+    }
+
+    /**
+     * Sets the complete taxonomy query var variable
+     */
+    public function setQueryVar($var)
+    {
+        $this->query_var = $var;
+    }
+
+    /**
      * Return a TaxonomyQuery object on which requests
      * will be ran. Inheriting classes can modify this to suit their needs.
      * @return TaxonomyQuery

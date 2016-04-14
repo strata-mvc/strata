@@ -95,6 +95,7 @@ class TaxonomyRegistrar extends Registrar
             'not_found_in_trash'  => __('Not found in Trash', 'strata'),
         );
 
+        $taxonomy->setQueryVar($customizedOptions['query_var']);
         return register_taxonomy($taxonomy->getWordpressKey(), array($this->model->getWordpressKey()), $customizedOptions);
     }
 }
