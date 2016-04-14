@@ -32,7 +32,7 @@ class Taxonomy extends WordpressEntity
     }
 
     /**
-     * Specified the query to lookup post terms and not general taxonomies.
+     * Informs the query to lookup post terms and not general taxonomies.
      * @param  ModelEntity $entity
      * @return TaxonomyQuery
      */
@@ -40,6 +40,19 @@ class Taxonomy extends WordpressEntity
     {
         $this->reloadQueryAdapter();
         $this->activeQuery->againstPostId((int)$entity->ID);
+        return $this;
+    }
+
+    /**
+     * Forces the query to enter get_term_by lookup mode.
+     * @param  string $type  The field to lookup by
+     * @param  mixed $value The expected value
+     * @return TaxonomyQuery
+     */
+    public function by($type, $value)
+    {
+        $this->reloadQueryAdapter();
+        $this->activeQuery->triggerLookupMode($type, $value);
         return $this;
     }
 }

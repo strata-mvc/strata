@@ -29,6 +29,11 @@ class TaxonomyQuery extends Query
     protected $postId = null;
 
     /**
+     * @var array
+     */
+    protected $termLookupMode = null;
+
+    /**
      * Sets the taxonomy type
      * @param  string $type
      * @return TaxonomyQuery
@@ -50,6 +55,12 @@ class TaxonomyQuery extends Query
         return $this;
     }
 
+    public function triggerLookupMode($byTerm, $value)
+    {
+        $this->termLookupMode = array($byTerm, $value);
+        return $this;
+    }
+
     /**
      * Fetches the terms matching the TaxonomyQuery.
      * @return array
@@ -57,17 +68,26 @@ class TaxonomyQuery extends Query
     public function fetch()
     {
         $this->logQueryStart();
-        $return = null;
+        $results = null;
 
-        if (is_null($this->postId)) {
+        if (is_array($this->termLookupMode)) {
+            $queryLog = "get_term_by(" . Debugger::export($this->termLookupMode[0]) . ", " . Debugger::export($this->termLookupMode[1]) . ", " . Debugger::export($this->taxnomony) . ")";
+            $results = get_term_by($this->termLookupMode[0], $this->termLookupMode[1], $this->taxnomony);
+        } elseif (is_null($this->postId)) {
             $queryLog = "get_terms(" . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
-            $return = get_terms($this->taxnomony, $this->filters);
+            $results = get_terms($this->taxnomony, $this->filters);
         } else {
             $queryLog = "get_the_terms(" . Debugger::export($this->postId) . ", " . Debugger::export($this->taxnomony) . ", " . Debugger::export($this->filters) . ")";
-            $return = get_the_terms($this->postId, $this->taxnomony, $this->filters);
+            $results = get_the_terms($this->postId, $this->taxnomony, $this->filters);
         }
 
         $this->logQueryCompletion($queryLog);
-        return $return;
+
+        if (!is_array($results)) {
+            $results = array($results);
+        }
+
+        return $results;
     }
+
 }
