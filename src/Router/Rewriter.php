@@ -82,7 +82,7 @@ class Rewriter
 
         $rules = $this->getRules();
         foreach ($rules as $rewrite) {
-            add_rewrite_rule($rewrite[0], $rewrite[1], 'top');
+            add_rewrite_rule($rewrite[0], $rewrite[1], $rewrite[2]);
         }
 
         $wroteInDB = $this->flush();
