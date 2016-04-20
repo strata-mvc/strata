@@ -388,6 +388,7 @@ class i18n
     {
         $editedTranslations = $this->postedValuesToTranslation($locale, $postedTranslations);
         $editedTranslations->toPoFile($locale->getPoFilePath(WP_ENV));
+
         return $this->generateTranslationFiles($locale);
     }
 
@@ -399,14 +400,16 @@ class i18n
             new Translations();
 
         foreach ($postedTranslations as $t) {
-            $original = html_entity_decode($t['original']);
-            $context = html_entity_decode($t['context']);
-            $translationText = html_entity_decode($t['translation']);
-            $plural = html_entity_decode($t['pluralTranslation']);
+            if (!empty($t['translation'])) {
+                $original = html_entity_decode($t['original']);
+                $context = html_entity_decode($t['context']);
+                $translationText = html_entity_decode($t['translation']);
+                $plural = html_entity_decode($t['pluralTranslation']);
 
-            $translation = $this->addOrCreateString($activeTranslations, $context, $original);
-            $translation->setTranslation($translationText);
-            $translation->setPluralTranslation($plural);
+                $translation = $this->addOrCreateString($activeTranslations, $context, $original);
+                $translation->setTranslation($translationText);
+                $translation->setPluralTranslation($plural);
+            }
         }
 
         return $activeTranslations;
@@ -423,18 +426,26 @@ class i18n
         return $translation;
     }
 
+    /**
+     * This function also includes empty strings in the process.
+     * @param  Locale $locale [description]
+     * @param  [type] $from   [description]
+     * @param  [type] $into   [description]
+     * @return [type]         [description]
+     */
     public function hardTranslationSetMerge(Locale $locale, $from, $into)
     {
         foreach ($from as $translation) {
-            $context = $translation->getContext();
+            $translationString = $translation->getTranslation();
             $original = $translation->getOriginal();
+            $context = $translation->getContext();
             $merged = $this->addOrCreateString($into, $context, $original);
-            $merged->setTranslation($translation->getTranslation());
+            $merged->setTranslation($translationString);
             // The following Raises an array to string warning
             // $merged->setPluralTranslation($translation->getPluralTranslation());
         }
 
-        $into->toPoFile($locale->getPoFilePath(WP_ENV));
+        $into->toPoFile($locale->getPoFilePath());
     }
 
     public function generateTranslationFiles(Locale $locale)

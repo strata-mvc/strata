@@ -3,6 +3,7 @@
 namespace Strata\Error;
 
 use Strata\Strata;
+use Strata\Router\Router;
 use Strata\Core\StrataConfigurableTrait;
 use Strata\Logger\Debugger;
 
@@ -48,7 +49,12 @@ class BaseErrorHandler
             ob_start();
             register_shutdown_function(function() {
                 if (function_exists("is_admin") && is_admin()) {
-                    return;
+                    if (!class_exists("\Strata\Router\Router")) {
+                        return;
+                    }
+                    if (!Router::isAjax()) {
+                        return;
+                    }
                 }
 
                 if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
@@ -88,7 +94,12 @@ class BaseErrorHandler
     public function handleError($code, $description, $file = null, $line = null, $context = null)
     {
         if (function_exists("is_admin") && is_admin()) {
-            return;
+            if (!class_exists("\Strata\Router\Router")) {
+                return;
+            }
+            if (!Router::isAjax()) {
+                return;
+            }
         }
 
         if (!function_exists('get_template_directory')) {
@@ -120,7 +131,12 @@ class BaseErrorHandler
     public function handleFatalError($code, $description, $file, $line)
     {
         if (function_exists("is_admin") && is_admin()) {
-            return;
+            if (!class_exists("\Strata\Router\Router")) {
+                return;
+            }
+            if (!Router::isAjax()) {
+                return;
+            }
         }
 
         if (!function_exists('get_template_directory')) {
@@ -156,7 +172,12 @@ class BaseErrorHandler
     public function handleException(Exception $exception)
     {
         if (function_exists("is_admin") && is_admin()) {
-            return;
+            if (!class_exists("\Strata\Router\Router")) {
+                return;
+            }
+            if (!Router::isAjax()) {
+                return;
+            }
         }
 
         if (!function_exists('get_template_directory')) {
