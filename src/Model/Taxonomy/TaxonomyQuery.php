@@ -83,6 +83,10 @@ class TaxonomyQuery extends Query
 
         $this->logQueryCompletion($queryLog);
 
+        if ($results === false) {
+            return array();
+        }
+
         if (!is_array($results)) {
             $results = array($results);
         }
