@@ -5,7 +5,7 @@ namespace Strata\Router\Registrar;
 use Strata\Strata;
 use Strata\Utility\Hash;
 use Strata\Controller\Controller;
-use Strata\Model\CustomPostType\CustomPostType;
+use Strata\Model\WordpressEntity;
 
 /**
  * Registers rewrite rules defined in model configuration
@@ -37,18 +37,27 @@ class ModelRewriteRegistrar
     private function addRules()
     {
         foreach (get_post_types(null, "objects") as $cptKey => $cptActiveConfig) {
-            if (property_exists($cptActiveConfig, 'rewrite') && isset($cptActiveConfig->rewrite['slug'])) {
-                $slug = $cptActiveConfig->rewrite['slug'];
-                $model = CustomPostType::factoryFromKey($cptKey);
-                if (!is_null($model) && is_array($model->routed)) {
-                    $this->addDefaultRewrites($model, $slug);
-                    $this->addLocalizedRewrites($model, $slug);
-                }
-            }
+            $this->attemptRuleExtraction($cptKey, $cptActiveConfig);
+        }
+
+        foreach (get_taxonomies(array(), "objects") as $taxonomyKey => $taxonomyActiveConfig) {
+            $this->attemptRuleExtraction($taxonomyKey, $taxonomyActiveConfig);
         }
 
         if (count($this->additionalRoutes)) {
-            Strata::app()->router->addModelRoutes($this->additionalRoutes);
+            Strata::router()->addModelRoutes($this->additionalRoutes);
+        }
+    }
+
+    private function attemptRuleExtraction($key, $config)
+    {
+        if (property_exists($config, 'rewrite') && isset($config->rewrite['slug'])) {
+            $slug = $config->rewrite['slug'];
+            $model = WordpressEntity::factoryFromKey($key);
+            if (!is_null($model) && is_array($model->routed)) {
+                $this->addDefaultRewrites($model, $slug);
+                $this->addLocalizedRewrites($model, $slug);
+            }
         }
     }
 
@@ -134,10 +143,13 @@ class ModelRewriteRegistrar
     {
         $controller = Controller::generateClassName($model->getShortName());
         $controllerClass = Controller::generateClassPath($model->getShortName());
-        $action = "show";
 
-        if (!method_exists($controllerClass, $action)) {
-            $action = "noRouteMatch";
+        $action = null;
+        foreach (array($routeKey, "show", "noRouteMatch") as $method) {
+            if (method_exists($controllerClass, $method)) {
+                $action = $method;
+                break;
+            }
         }
 
         return array(

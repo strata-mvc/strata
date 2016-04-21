@@ -4,6 +4,7 @@ namespace Strata\Model;
 
 use Strata\Utility\Inflector;
 use Strata\Core\StrataConfigurableTrait;
+use Strata\Model\Taxonomy\Taxonomy;
 
 /**
  * A class that wraps around Wordpress' object's common concepts.
@@ -26,6 +27,8 @@ class WordpressEntity extends Model
     {
         if (preg_match('/_?cpt_(\w+)/', $wordpressKey, $matches)) {
             return self::factory($matches[1]);
+        } elseif (preg_match('/_?tax_(\w+)/', $wordpressKey, $matches)) {
+            return Taxonomy::factory($matches[1]);
         } elseif (preg_match('/_?(post|page)/', $wordpressKey, $matches)) {
             return self::factory($matches[1]);
         }
