@@ -82,7 +82,11 @@ class ModelEntity
             return self::factoryFromTerm($obj);
         }
 
-        return self::factoryFromPost($obj);
+        if (is_a($obj, "WP_Post")) {
+            return self::factoryFromPost($obj);
+        }
+
+        throw new Exception("Unknown pattern obtained from ModelEntity::factoryFromWpQuery: " . get_class($obj));
     }
 
     /**
