@@ -106,8 +106,6 @@ class UrlRoute extends Route
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
-
-        debug($this->automatedRoutes);
     }
 
     public function addModelPossibilities(array $routes)
