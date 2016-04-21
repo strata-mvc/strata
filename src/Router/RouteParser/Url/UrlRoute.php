@@ -5,7 +5,7 @@ namespace Strata\Router\RouteParser\Url;
 use Strata\Router\RouteParser\Route;
 use Strata\Controller\Controller;
 use Strata\Controller\Request;
-use Strata\Model\CustomPostType\CustomPostType;
+use Strata\Model\WordpressEntity;
 use Strata\Utility\Inflector;
 use Strata\Strata;
 use AltoRouter;
@@ -73,19 +73,19 @@ class UrlRoute extends Route
 
     /**
      * Adds a resourced based route possibility based on a custom
-     * post type.
-     * @param CustomPostType $customPostType
+     * post type or taxonomy.
+     * @param WordpressEntity $model
      */
-    public function addResourcePossibility(CustomPostType $customPostType)
+    public function addResourcePossibility(WordpressEntity $model)
     {
         $slug = null;
-        $controller = Controller::generateClassName($customPostType->getShortName());
+        $controller = Controller::generateClassName($model->getShortName());
 
-        $i18n = Strata::app()->i18n;
+        $i18n = Strata::i18n();
         if ($i18n->isLocalized()) {
             $currentLocale = $i18n->getCurrentLocale();
             if ($currentLocale && !$currentLocale->isDefault()) {
-                $slugInfo = $customPostType->extractConfig("i18n." . $currentLocale->getCode() . ".rewrite.slug");
+                $slugInfo = $model->extractConfig("i18n." . $currentLocale->getCode() . ".rewrite.slug");
                 $slug = array_pop($slugInfo);
 
                 if (!is_null($slug)) {
@@ -96,16 +96,18 @@ class UrlRoute extends Route
             }
         }
 
-        $slugInfo = $customPostType->extractConfig("rewrite.slug");
+        $slugInfo = $model->extractConfig("rewrite.slug");
         $slug = array_pop($slugInfo);
 
         if (is_null($slug)) {
-            $slug = $customPostType->getWordpressKey();
+            $slug = $model->getWordpressKey();
         }
 
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
+
+        debug($this->automatedRoutes);
     }
 
     public function addModelPossibilities(array $routes)

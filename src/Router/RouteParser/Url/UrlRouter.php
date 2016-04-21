@@ -53,15 +53,15 @@ class UrlRouter extends Router
     /**
      * Adds possibles routes to the router instance
      * based on Custom Post Type information.
-     * @param array $routes
+     * @param  \Strata\Model\WordpressEntity $model
      */
-    public function addResource($customPostType)
+    public function addResource($model)
     {
         if (!$this->isRegistered()) {
             $this->registerWordpressAction();
         }
 
-        $this->route->addResourcePossibility($customPostType);
+        $this->route->addResourcePossibility($model);
     }
 
     /**

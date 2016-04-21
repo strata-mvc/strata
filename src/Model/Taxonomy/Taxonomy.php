@@ -36,6 +36,14 @@ class Taxonomy extends WordpressEntity
     private $query_var = null;
 
     /**
+     * Specifies whether Strata should attempt to automate routing
+     * to the model's default controller when the custom post type's
+     * slug is matched in the URL.
+     * @var boolean|array
+     */
+    public $routed = false;
+
+    /**
      * Returns the complete taxonomy query var variable
      */
     public function getQueryVar()

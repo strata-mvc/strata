@@ -23,8 +23,32 @@ class TaxonomyRegistrar extends Registrar
         if ($this->model->hasTaxonomies()) {
             foreach ($this->model->getTaxonomies() as $taxonomy) {
                 $this->registerTaxonomy($taxonomy);
+
+                if ($this->shouldAddRoutes($taxonomy)) {
+                    $this->addResourceRoute($taxonomy);
+                }
             }
         }
+    }
+    /**
+     * Specifies whether the $customPostType should be routed as
+     * a resource.
+     * @param  Taxonomy $taxonomy
+     * @return boolean
+     */
+    private function shouldAddRoutes(Taxonomy $taxonomy)
+    {
+        return !is_admin() && ((bool)$taxonomy->routed === true || is_array($taxonomy->routed));
+    }
+
+    /**
+     * Adds a new resource route to the router attached to the current
+     * app.
+     * @param Taxonomy $taxonomy
+     */
+    private function addResourceRoute(Taxonomy $taxonomy)
+    {
+        Strata::router()->addResource($taxonomy);
     }
 
     /**
@@ -68,7 +92,7 @@ class TaxonomyRegistrar extends Registrar
             'slug' => $key
         );
 
-        $i18n = Strata::app()->i18n;
+        $i18n = Strata::i18n();
         if ($i18n->isLocalized()) {
             $currentLocale = $i18n->getCurrentLocale();
             if ($currentLocale && !$currentLocale->isDefault()) {
