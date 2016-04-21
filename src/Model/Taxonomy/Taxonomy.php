@@ -1,3 +1,4 @@
+        $this->activeQuery->againstPostId((int)$entity->ID);
 <?php
 
 namespace Strata\Model\Taxonomy;

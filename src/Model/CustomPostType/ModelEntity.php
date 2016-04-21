@@ -39,7 +39,7 @@ class ModelEntity
    /**
      * Factories a model entity based on the Wordpress key
      * @param  string $str
-     * @return mixed An instantiated model
+     * @return mixed An instanciated model
      * @throws Exception
      */
     public static function factoryFromString($str, $associatedObject = null)
@@ -71,6 +71,18 @@ class ModelEntity
     public static function factoryFromTerm(WP_Term $term)
     {
         return self::factoryFromString($term->taxonomy, $term);
+    }
+
+    public static function factoryFromWpQuery()
+    {
+        global $wp_query;
+        $obj = $wp_query->queried_object;
+
+        if (is_a($obj, "WP_Term")) {
+            return self::factoryFromTerm($obj);
+        }
+
+        return self::factoryFromPost($obj);
     }
 
     /**
