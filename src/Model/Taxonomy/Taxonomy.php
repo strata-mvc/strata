@@ -23,6 +23,22 @@ class Taxonomy extends WordpressEntity
         return "Model\\Taxonomy";
     }
 
+   /**
+     * Factories a model entity based on the Wordpress key
+     * @param  string $str
+     * @return mixed An instantiated model
+     * @throws Exception
+     */
+    public static function factoryFromWpQuery()
+    {
+        global $wp_query;
+        $taxonomy = $wp_query->queried_object;
+
+        if (is_a($taxonomy, "WP_Term")) {
+            return Taxonomy::factoryFromKey($taxonomy->taxonomy);
+        }
+    }
+
     /**
      * The Wordpress taxonomy identifier prefix
      * @var string

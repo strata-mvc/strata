@@ -39,7 +39,7 @@ class ModelEntity
    /**
      * Factories a model entity based on the Wordpress key
      * @param  string $str
-     * @return mixed An instanciated model
+     * @return mixed An instantiated model
      * @throws Exception
      */
     public static function factoryFromString($str, $associatedObject = null)
