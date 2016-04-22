@@ -111,8 +111,6 @@ class UrlRouter extends Router
      */
     public function onWordpressInit()
     {
-        Strata::rewriter()->applyRules();
-
         $this->route->listen();
         $this->run();
     }

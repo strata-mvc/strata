@@ -119,7 +119,9 @@ class TaxonomyRegistrar extends Registrar
             'not_found_in_trash'  => __('Not found in Trash', 'strata'),
         );
 
-        $taxonomy->setQueryVar($customizedOptions['query_var']);
-        return register_taxonomy($taxonomy->getWordpressKey(), array($this->model->getWordpressKey()), $customizedOptions);
+        $wordpressKey = $taxonomy->getWordpressKey();
+        Strata::app()->setConfig("runtime.taxonomy.query_vars.$wordpressKey", $customizedOptions['query_var']);
+
+        return register_taxonomy($wordpressKey, array($wordpressKey), $customizedOptions);
     }
 }

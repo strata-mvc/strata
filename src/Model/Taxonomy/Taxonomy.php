@@ -6,6 +6,7 @@ use Strata\Model\WordpressEntity;
 use Strata\Core\StrataObjectTrait;
 use Strata\Model\CustomPostType\ModelEntity;
 use Strata\Model\CustomPostType\QueriableEntityTrait;
+use Strata\Strata;
 
 /**
  * A class that wraps around Wordpress' taxonomies.
@@ -64,16 +65,15 @@ class Taxonomy extends WordpressEntity
      */
     public function getQueryVar()
     {
-        return $this->query_var;
+        $wordpressKey = $this->getWordpressKey();
+        $generatedQueryVar = Strata::config("runtime.taxonomy.query_vars.$wordpressKey");
+        if (!is_null($generatedQueryVar)) {
+            return $generatedQueryVar;
+        }
+
+        return $wordpressKey;
     }
 
-    /**
-     * Sets the complete taxonomy query var variable
-     */
-    public function setQueryVar($var)
-    {
-        $this->query_var = $var;
-    }
 
     /**
      * Return a TaxonomyQuery object on which requests

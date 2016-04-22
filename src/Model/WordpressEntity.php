@@ -51,4 +51,9 @@ class WordpressEntity extends Model
 
         return $this->wpPrefix . $name;
     }
+
+    public function getQueryVar()
+    {
+        return $this->getWordpressKey();
+    }
 }

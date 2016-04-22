@@ -23,7 +23,9 @@ class Rewriter
     public function initialize()
     {
         if (function_exists('add_action')) {
-            add_action('init', array($this, "applyRules"), 2);
+            // This needs to triggers after CustomPostTypeLoader::load() has finished
+            // because models may declare additional urls.
+            add_action('wp_loaded', array($this, "applyRules"), 10);
         }
     }
 

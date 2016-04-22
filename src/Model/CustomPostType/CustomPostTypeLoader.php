@@ -42,7 +42,7 @@ class CustomPostTypeLoader
 
             // The second we register an internal CPT it becomes worth
             // looking for additional model routes.
-            add_action('wp_loaded', array(new ModelRewriteRegistrar(), "onModelsActivated"), 1);
+            add_action('wp_loaded', array(new ModelRewriteRegistrar(), "onModelsActivated"), 5);
         }
     }
 
