@@ -7,6 +7,7 @@ use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
 use Strata\Controller\Controller;
 use Strata\Model\WordpressEntity;
+use Exception;
 
 /**
  * Registers rewrite rules defined in model configuration
@@ -60,10 +61,15 @@ class ModelRewriteRegistrar
     {
         if (property_exists($config, 'rewrite') && isset($config->rewrite['slug'])) {
             $slug = $config->rewrite['slug'];
-            $model = WordpressEntity::factoryFromKey($key);
-            if (!is_null($model) && is_array($model->routed)) {
-                $this->addDefaultRewrites($model, $slug);
-                $this->addLocalizedRewrites($model, $slug);
+
+            try {
+                $model = WordpressEntity::factoryFromKey($key);
+                if (!is_null($model) && is_array($model->routed)) {
+                    $this->addDefaultRewrites($model, $slug);
+                    $this->addLocalizedRewrites($model, $slug);
+                }
+            } catch (Exception $e) {
+                // it's fine, just means this is not a routed model
             }
         }
     }
