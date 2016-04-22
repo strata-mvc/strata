@@ -152,8 +152,7 @@ class DBCommand extends StrataCommandBase
             return $this->input->getOption('filename');
         }
 
-        $this->output->writeLn('No file passed as migration. Loading most recent .sql file in <info>./db/</info>');
-        return $this->getMostRecent(Strata::getDbPath());
+        throw new Exception('No file passed as migration. Add it using the -f option.');
     }
 
     /**
