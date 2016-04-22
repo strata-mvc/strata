@@ -141,7 +141,16 @@ class LoggerBase
 
     protected function format($message)
     {
-        return $this->formatColor($this->formatType($message));
+        $length = strlen(preg_replace('#</?.+?>#', '', $message));
+
+        // Largest internal known message is Strata:Template
+        $minLength = 13;
+        if (preg_match('#(</.+?>)#', $message, $matches)) {
+            $minLength += (strlen($matches[1]) * 2) + 1;
+
+        }
+
+        return $this->formatColor($this->formatType(str_pad($message, $minLength)));
     }
 
     private function formatColor($text)
