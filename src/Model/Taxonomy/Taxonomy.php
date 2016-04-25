@@ -36,7 +36,7 @@ class Taxonomy extends WordpressEntity
         $taxonomy = $wp_query->queried_object;
 
         if (is_a($taxonomy, "WP_Term")) {
-            return Taxonomy::factoryFromKey($taxonomy->taxonomy);
+            return ModelEntity::factoryFromString($taxonomy->taxonomy, $taxonomy);
         }
     }
 
