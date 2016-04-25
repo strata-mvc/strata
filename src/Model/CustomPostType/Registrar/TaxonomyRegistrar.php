@@ -122,6 +122,6 @@ class TaxonomyRegistrar extends Registrar
         $wordpressKey = $taxonomy->getWordpressKey();
         Strata::app()->setConfig("runtime.taxonomy.query_vars.$wordpressKey", $customizedOptions['query_var']);
 
-        return register_taxonomy($wordpressKey, array($wordpressKey), $customizedOptions);
+        return register_taxonomy($wordpressKey, array($this->model->getWordpressKey()), $customizedOptions);
     }
 }
