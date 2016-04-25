@@ -47,9 +47,9 @@ class Debugger
 
             $args = $details['args'];
             $arguments = array();
-            // foreach ($args as $arg) {
-            //     $arguments[] = static::getType($arg);
-            // }
+            foreach ($args as $arg) {
+                $arguments[] = static::getType($arg);
+            }
 
             $trace .= sprintf($tpl, $details['function'], implode(", ", $arguments), $file, $line);
             $i++;
