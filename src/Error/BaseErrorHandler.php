@@ -48,15 +48,6 @@ class BaseErrorHandler
         if ($this->shouldBeDebugging()) {
             ob_start();
             register_shutdown_function(function() {
-                if (function_exists("is_admin") && is_admin()) {
-                    if (!class_exists("\Strata\Router\Router")) {
-                        return;
-                    }
-                    if (!Router::isAjax()) {
-                        return;
-                    }
-                }
-
                 if ((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')) {
                     return;
                 }
@@ -69,6 +60,11 @@ class BaseErrorHandler
                 if (!in_array($error['type'], $this->getFatalErrorsTypes(), true)) {
                     return;
                 }
+
+                if (!$this->canCatchTheError($error['file'])) {
+                    return;
+                }
+
                 $this->handleFatalError(
                     $error['type'],
                     $error['message'],
@@ -93,16 +89,7 @@ class BaseErrorHandler
      */
     public function handleError($code, $description, $file = null, $line = null, $context = null)
     {
-        if (function_exists("is_admin") && is_admin()) {
-            if (!class_exists("\Strata\Router\Router")) {
-                return;
-            }
-            if (!Router::isAjax()) {
-                return;
-            }
-        }
-
-        if (!function_exists('get_template_directory')) {
+        if (!$this->canCatchTheError($file)) {
             return;
         }
 
@@ -130,16 +117,7 @@ class BaseErrorHandler
      */
     public function handleFatalError($code, $description, $file, $line)
     {
-        if (function_exists("is_admin") && is_admin()) {
-            if (!class_exists("\Strata\Router\Router")) {
-                return;
-            }
-            if (!Router::isAjax()) {
-                return;
-            }
-        }
-
-        if (!function_exists('get_template_directory')) {
+        if (!$this->canCatchTheError($file)) {
             return;
         }
 
@@ -171,16 +149,7 @@ class BaseErrorHandler
      */
     public function handleException(Exception $exception)
     {
-        if (function_exists("is_admin") && is_admin()) {
-            if (!class_exists("\Strata\Router\Router")) {
-                return;
-            }
-            if (!Router::isAjax()) {
-                return;
-            }
-        }
-
-        if (!function_exists('get_template_directory')) {
+        if (!$this->canCatchTheError($exception->getFile())) {
             return;
         }
 
@@ -297,7 +266,30 @@ class BaseErrorHandler
         die();
     }
 
-    public function raiseDebuggerTakeover()
+    private function canCatchTheError($triggerFilePath = '')
+    {
+        if (function_exists("is_admin") && is_admin()) {
+            if (!class_exists("\Strata\Router\Router")) {
+                return false;
+            }
+
+            if (!Router::isAjax()) {
+                return false;
+            }
+        }
+
+        if (strstr($triggerFilePath, Strata::getPluginsPath()) || strstr($triggerFilePath, Strata::getWordpressPath())) {
+            return false;
+        }
+
+        if (!function_exists('get_template_directory')) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function raiseDebuggerTakeover()
     {
         $this->hasError = true;
         $this->clearBuffer();
