@@ -96,14 +96,9 @@ class ModelRewriteRegistrar
 
             foreach ($model->routed['rewrite'] as $routeKey => $routeUrl) {
                 $this->queueAdditionalRewrite($routeKey, $defaultLocalePrefix, $routeUrl, $slug, $model->getQueryVar());
-
-                $preciseRoute = $this->createRouteFor($model, $routeKey, $slug);
-                if (!is_null($preciseRoute)) {
-                    $this->additionalRoutes[] = $preciseRoute;
-                }
+                $this->additionalRoutes[] = $this->createRouteFor($model, $routeKey, $slug);
             }
 
-            $this->additionalRoutes[] = $this->createGeneralRouteFor($model, $routeKey, $slug);
         }
     }
 
@@ -114,29 +109,29 @@ class ModelRewriteRegistrar
      */
     private function addLocalizedRewrites($model, $slug)
     {
-        if (array_key_exists('i18n', $model->routed)) {
-            $app = Strata::app();
-            $i18n = $app->i18n;
+        $app = Strata::app();
+        $i18n = $app->i18n;
+        $queryVar = $model->getQueryVar();
 
-            foreach ($model->routed['i18n'] as $localeCode => $localizedRouteInfo) {
-                $locale = $i18n->getLocaleByCode($localeCode);
+        foreach ($i18n->getLocales() as $locale) {
+            $localeCode = $locale->getCode();
 
-                $localizedSlug = $model->hasConfig("i18n.$localeCode.rewrite.slug") ?
-                    $model->getConfig("i18n.$localeCode.rewrite.slug") :
-                    $slug;
+            $localizedSlug = $model->hasConfig("i18n.$localeCode.rewrite.slug") ?
+                $model->getConfig("i18n.$localeCode.rewrite.slug") :
+                $slug;
 
-                if (!is_null($locale) && array_key_exists('rewrite', $localizedRouteInfo)) {
-                    foreach ($localizedRouteInfo['rewrite'] as $originalKey => $translatedUrl) {
 
-                        $this->queueAdditionalRewrite($originalKey, $locale->getUrl(), $translatedUrl, $localizedSlug, $model->getQueryVar());
+            $defaults = Hash::get($model->routed, "rewrite");
+            if (is_array($defaults)) {
+                foreach ($defaults as $defaultKey => $defaultUrl) {
 
-                        $preciseRoute = $this->createRouteFor($model, $translatedUrl, $locale->getUrl() . '/' . $slug);
-                        if (!is_null($preciseRoute)) {
-                            $this->additionalRoutes[] = $preciseRoute;
-                        }
+                    $localizedUrl = $defaultUrl;
+                    if (Hash::check($model->routed, "i18n.$localeCode.rewrite.$defaultKey")) {
+                        $localizedUrl = Hash::get($model->routed, "i18n.$localeCode.rewrite.$defaultKey");
                     }
 
-                    $this->additionalRoutes[] = $this->createGeneralRouteFor($model, $translatedUrl, $locale->getUrl() . '/' . $slug);
+                    $this->queueAdditionalRewrite($defaultKey, $locale->getUrl(), $localizedUrl, $localizedSlug, $queryVar);
+                    $this->additionalRoutes[] = $this->createRouteFor($model, $localizedUrl, $localizedSlug);
                 }
             }
         }
@@ -150,11 +145,11 @@ class ModelRewriteRegistrar
      * @param  string $slug
      * @return array
      */
-    private function createGeneralRouteFor($model, $routeKey, $slug)
+    private function createRouteFor($model, $routeKey, $slug)
     {
         $controller = Controller::generateClassName($model->getShortName());
         $controllerClass = Controller::generateClassPath($model->getShortName());
-        $impliedAction = lcfirst(Inflector::camelize($routeKey));
+        $impliedAction = lcfirst(Inflector::camelize(str_replace("-", "_", $routeKey)));
         $action = null;
 
         foreach (array($impliedAction, "show", "noRouteMatch") as $method) {
@@ -166,33 +161,9 @@ class ModelRewriteRegistrar
 
         return array(
             'GET|POST|PATCH|PUT|DELETE',
-            '/' . $slug ."/[:slug]/[:rewrite]/?",
+            '/' . $slug ."/[:slug]/[$routeKey:rewrite]/?",
             "$controller#" . $action
         );
-    }
-
-    /**
-     * Generated a rule readable by the Strata router which
-     * will attempt to catch a precise rewrite forwarded to
-     * an explicit action.
-     * @param  CustomPostType $model
-     * @param  string $routeKey
-     * @param  string $slug
-     * @return array
-     */
-    private function createRouteFor($model, $routeKey, $slug)
-    {
-        $controller = Controller::generateClassName($model->getShortName());
-        $controllerClass = Controller::generateClassPath($model->getShortName());
-        $action = $routeKey;
-
-        if (method_exists($controllerClass, $action)) {
-            return array(
-                'GET|POST|PATCH|PUT|DELETE',
-                '/' . $slug ."/[:slug]/[$routeKey:rewrite]/?",
-                "$controller#" . $action
-            );
-        }
     }
 
     private function queueAdditionalRewrite($routeKey, $localeUrl, $routeUrl, $slug, $wordpressKey)

@@ -82,7 +82,9 @@ class View
      */
     public function get($name)
     {
-        return $this->templateVars[$name];
+        if (array_key_exists($name, $this->templateVars)) {
+            return $this->templateVars[$name];
+        }
     }
 
     /**
