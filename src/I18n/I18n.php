@@ -417,6 +417,10 @@ class i18n
 
     public function addOrCreateString(Translations $translationSet, $context, $original)
     {
+        if (is_null($translationSet)) {
+            throw new Exception("Did not find a translation set to query.");
+        }
+
         $translation = $translationSet->find($context, $original);
         if ($translation === false) {
             $translation = new Translation($context, $original, "");
@@ -441,25 +445,22 @@ class i18n
             $context = $translation->getContext();
             $merged = $this->addOrCreateString($into, $context, $original);
             $merged->setTranslation($translationString);
-            // The following Raises an array to string warning
+
+            // The following raises an array to string warning
             // $merged->setPluralTranslation($translation->getPluralTranslation());
         }
-
-        $into->toPoFile($locale->getPoFilePath());
     }
 
-    public function generateTranslationFiles(Locale $locale)
+    public function generateTranslationFiles(Locale $locale, $activeTranslations = null)
     {
         $envPoFile = $locale->getPoFilePath(WP_ENV);
         $poFile = $locale->getPoFilePath();
         $moFile = $locale->getMoFilePath();
 
-        // Load the binary to ensure projects always attempts
-        // to compile the same basic string.
-        if ($locale->hasMoFile()) {
-            $activeTranslations = Translations::fromMoFile($moFile);
-        } else {
-            $activeTranslations = new Translations();
+        if (is_null($activeTranslations)) {
+            $activeTranslations = $locale->hasPoFile() ?
+                Translations::fromPoFile($locale->getPoFilePath()) :
+                new Translations();
         }
 
         // Add local modifications to the default set should there

@@ -16,8 +16,10 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Gettext\Translations;
+use Gettext\Translation;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use InvalidArgumentException;
 
 /**
  * Automates Strata's localization actions.
@@ -38,7 +40,7 @@ class I18nCommand extends StrataCommandBase
             ->addArgument(
                 'type',
                 InputArgument::REQUIRED,
-                'One of the following: extract.'
+                'One of the following: extract, list.'
             );
     }
 
@@ -55,8 +57,8 @@ class I18nCommand extends StrataCommandBase
 
             switch ($input->getArgument('type')) {
 
-                // usage : ./strata i18n scan
-                case "scan":
+                // usage : ./strata i18n extract
+                case "extract":
                     $this->saveStringToLocales();
                     break;
 
@@ -113,6 +115,7 @@ class I18nCommand extends StrataCommandBase
      */
     private function saveStringToLocales()
     {
+        $gettextEntries = $this->extractGettextStrings();
         foreach ($this->getLocales() as $locale) {
             $this->addGettextEntriesToLocale($locale, $gettextEntries);
         }
@@ -143,9 +146,12 @@ class I18nCommand extends StrataCommandBase
             Translations::fromPoFile($locale->getPoFilePath()) :
             new Translations();
 
-        $i18n = Strata::app()->i18n;
+        $i18n = Strata::i18n();
+
+        // it looks reversed to merge defaults into the found strings, but it's the
+        // most efficient way of keeping existing translations
         $i18n->hardTranslationSetMerge($locale, $defaultTranslations, $translations);
-        $i18n->generateTranslationFiles($locale);
+        $i18n->generateTranslationFiles($locale, $translations);
     }
 
     /**
