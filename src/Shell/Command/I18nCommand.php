@@ -49,10 +49,24 @@ class I18nCommand extends StrataCommandBase
     {
         $this->startup($input, $output);
 
+
         if ($this->projectHasActiveLocales()) {
             $this->ensureFolderStructure();
-            $this->saveStringToLocales();
 
+            switch ($input->getArgument('type')) {
+
+                // usage : ./strata i18n scan
+                case "scan":
+                    $this->saveStringToLocales();
+                    break;
+
+                // usage : ./strata i18n list | grep 'We have received your application' -A3
+                case "list":
+                    $this->listFoundStrings();
+                    break;
+
+                default : throw new InvalidArgumentException("This is not a valid argument for this command.");
+            }
         } else {
             $this->output->writeln("This project has no configured locale.");
         }
@@ -99,9 +113,22 @@ class I18nCommand extends StrataCommandBase
      */
     private function saveStringToLocales()
     {
-        $gettextEntries = $this->extractGettextStrings();
         foreach ($this->getLocales() as $locale) {
             $this->addGettextEntriesToLocale($locale, $gettextEntries);
+        }
+    }
+
+    private function listFoundStrings()
+    {
+        foreach ($this->extractGettextStrings() as $translation) {
+            $references = "";
+            foreach ($translation->getReferences() as $key => $details) {
+                $references .= $details[0] . " @ "  . $details[1] . "\n";
+            }
+
+            $output = sprintf("<info>%s</info>\n%s", $translation->getOriginal(), $references);
+            $this->output->writeln($output);
+            $this->nl();
         }
     }
 
@@ -112,20 +139,12 @@ class I18nCommand extends StrataCommandBase
      */
     private function addGettextEntriesToLocale(Locale $locale, Translations $translations)
     {
-        // The locally modified locales are stored in a
-        // file that is identified as belonging to the current
-        // environment.
-        // $envTranslations = $locale->hasPoFile(WP_ENV) ?
-        //     Translations::fromPoFile($locale->getPoFilePath(WP_ENV)) :
-        //     new Translations();
-
         $defaultTranslations = $locale->hasPoFile() ?
             Translations::fromPoFile($locale->getPoFilePath()) :
             new Translations();
 
         $i18n = Strata::app()->i18n;
         $i18n->hardTranslationSetMerge($locale, $defaultTranslations, $translations);
-        // $i18n->hardTranslationSetMerge($locale, $envTranslations, $translations);
         $i18n->generateTranslationFiles($locale);
     }
 
