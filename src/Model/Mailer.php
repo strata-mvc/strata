@@ -87,10 +87,7 @@ class Mailer
     {
         $useHtml = (bool)$this->getConfig("use_html");
 
-        $mergedHeaders = array_merge(
-            $this->headers,
-            $this->buildBCCList()
-        );
+        $mergedHeaders = $this->headers + $this->buildBCCList();
 
         if ($useHtml) {
             $this->setHtmlEmails();
