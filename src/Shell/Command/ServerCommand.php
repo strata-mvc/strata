@@ -38,15 +38,17 @@ class ServerCommand extends StrataCommandBase
         $this->startup($input, $output);
 
         $output->writeln('A webserver is now available at <info>http://127.0.0.1:5454/</info>');
-        $output->writeln('Press <info>CTRL + C</info> to exit');
 
         $this->nl();
 
         $command = "WP_ENV=development php -S 0.0.0.0:5454 -t web/";
 
         if ($this->hasIniFile()) {
+            $output->writeln('Using found <info>php.ini</info> file.');
             $command .= " -c php.ini";
         }
+
+        $output->writeln('Press <info>CTRL + C</info> to exit');
 
         system($command);
 
@@ -60,6 +62,6 @@ class ServerCommand extends StrataCommandBase
      */
     private function hasIniFile($filename = "php.ini")
     {
-        return file_exists(Strata::getRootPath() . $filename);
+        return file_exists(Strata::getRootPath() . DIRECTORY_SEPARATOR . $filename);
     }
 }
