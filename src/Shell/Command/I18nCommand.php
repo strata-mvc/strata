@@ -116,6 +116,18 @@ class I18nCommand extends StrataCommandBase
     private function saveStringToLocales()
     {
         $gettextEntries = $this->extractGettextStrings();
+
+        $root = Strata::getRootPath();
+
+        foreach ($gettextEntries as $translation) {
+            $references = $translation->getReferences();
+            $translation->deleteReferences();
+
+            foreach ($references as $idx => $context) {
+                $translation->addReference(str_replace($root, "~", $context[0]), $context[1]);
+            }
+        }
+
         foreach ($this->getLocales() as $locale) {
             $this->addGettextEntriesToLocale($locale, $gettextEntries);
         }
