@@ -39,8 +39,6 @@ class ServerCommand extends StrataCommandBase
 
         $output->writeln('A webserver is now available at <info>http://127.0.0.1:5454/</info>');
 
-        $this->nl();
-
         $command = "WP_ENV=development php -S 0.0.0.0:5454 -t web/";
 
         if ($this->hasIniFile()) {
@@ -49,6 +47,8 @@ class ServerCommand extends StrataCommandBase
         }
 
         $output->writeln('Press <info>CTRL + C</info> to exit');
+        $this->nl();
+        $this->nl();
 
         system($command);
 
