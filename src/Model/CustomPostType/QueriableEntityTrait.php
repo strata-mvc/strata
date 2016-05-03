@@ -190,6 +190,13 @@ trait QueriableEntityTrait
             ->direction("DESC");
     }
 
+    public function byPlublication()
+    {
+        return $this
+            ->orderby("date")
+            ->direction("DESC");
+    }
+
     public function byMenuOrder()
     {
         return $this
