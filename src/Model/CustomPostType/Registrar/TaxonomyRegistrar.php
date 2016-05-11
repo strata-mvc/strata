@@ -86,22 +86,10 @@ class TaxonomyRegistrar extends Registrar
             'assign_terms' => 'read',
         );
 
-
         $customizedOptions['rewrite'] += array(
             'with_front' => true,
             'slug' => $key
         );
-
-        $i18n = Strata::i18n();
-        if ($i18n->isLocalized()) {
-            $currentLocale = $i18n->getCurrentLocale();
-            if ($currentLocale && !$currentLocale->isDefault()) {
-                $translatedSlug = Hash::get($customizedOptions, "i18n." . $currentLocale->getCode() . ".rewrite.slug");
-                if (!is_null($translatedSlug)) {
-                    $customizedOptions['rewrite']['slug'] = $translatedSlug;
-                }
-            }
-        }
 
         $customizedOptions['labels'] += array(
             'name'                => _x($plural, 'Post Type General Name', 'strata'),

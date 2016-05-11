@@ -103,8 +103,6 @@ class ModelRewriteRegistrar
     private function addDefaultRewrites($model, $slug)
     {
         if (array_key_exists('rewrite', $model->routed)) {
-
-            $rewriter = Strata::app()->rewriter;
             $i18n = Strata::i18n();
             $defaultLocalePrefix = "";
 
@@ -116,10 +114,9 @@ class ModelRewriteRegistrar
             }
 
             foreach ($model->routed['rewrite'] as $routeKey => $routeUrl) {
-                $this->queueAdditionalRewrite($routeKey, $defaultLocalePrefix, $routeUrl, $slug, $model->getQueryVar());
+                $this->queueAdditionalRewrite($defaultLocalePrefix, $routeUrl, $slug, $model->getQueryVar());
                 $this->additionalRoutes[] = $this->createRouteFor($model, $routeKey, $slug);
             }
-
         }
     }
 
@@ -151,7 +148,7 @@ class ModelRewriteRegistrar
                         $localizedUrl = Hash::get($model->routed, "i18n.$localeCode.rewrite.$defaultKey");
                     }
 
-                    $this->queueAdditionalRewrite($defaultKey, $locale->getUrl(), $localizedUrl, $localizedSlug, $queryVar);
+                    $this->queueAdditionalRewrite($locale->getUrl(), $localizedUrl, $localizedSlug, $queryVar);
                     $this->additionalRoutes[] = $this->createRouteFor($model, $localizedUrl, $localizedSlug);
                 }
             }
@@ -187,27 +184,26 @@ class ModelRewriteRegistrar
         );
     }
 
-    private function queueAdditionalRewrite($routeKey, $localeUrl, $routeUrl, $slug, $wordpressKey)
+    private function queueAdditionalRewrite($localeUrl, $routeUrl, $slug, $wordpressKey)
     {
-        if (!array_key_exists($routeKey, $this->additionalRewrites)) {
-            $this->additionalRewrites[$routeKey] = array(
-                "model_entity" => $wordpressKey,
+        if (!array_key_exists($wordpressKey, $this->additionalRewrites)) {
+            $this->additionalRewrites[$wordpressKey] = array(
                 "model_slugs" => array(),
                 "locale_urls" => array(),
                 "localized_slugs" => array(),
             );
         }
 
-        if (!in_array($localeUrl, $this->additionalRewrites[$routeKey]["locale_urls"])) {
-            $this->additionalRewrites[$routeKey]["locale_urls"][] = $localeUrl;
+        if (!in_array($localeUrl, $this->additionalRewrites[$wordpressKey]["locale_urls"])) {
+            $this->additionalRewrites[$wordpressKey]["locale_urls"][] = $localeUrl;
         }
 
-        if (!in_array($routeUrl, $this->additionalRewrites[$routeKey]["localized_slugs"])) {
-            $this->additionalRewrites[$routeKey]["localized_slugs"][] = $routeUrl;
+        if (!in_array($routeUrl, $this->additionalRewrites[$wordpressKey]["localized_slugs"])) {
+            $this->additionalRewrites[$wordpressKey]["localized_slugs"][] = $routeUrl;
         }
 
-        if (!in_array($slug, $this->additionalRewrites[$routeKey]["model_slugs"])) {
-            $this->additionalRewrites[$routeKey]["model_slugs"][] = $slug;
+        if (!in_array($slug, $this->additionalRewrites[$wordpressKey]["model_slugs"])) {
+            $this->additionalRewrites[$wordpressKey]["model_slugs"][] = $slug;
         }
     }
 
@@ -215,13 +211,13 @@ class ModelRewriteRegistrar
     {
         $rewriter = Strata::rewriter();
 
-        foreach ($this->additionalRewrites as $routeKey => $routeConfig) {
+        foreach ($this->additionalRewrites as $wordpressKey => $routeConfig) {
             $rule = sprintf('(%s)/(%s)/([^/]+)/(%s)/?$',
                 implode("|", $routeConfig["locale_urls"]),
                 implode("|", $routeConfig["model_slugs"]),
                 implode("|", $routeConfig["localized_slugs"])
             );
-            $redirect = sprintf('index.php?%s=$matches[3]&locale=$matches[1]', $routeConfig["model_entity"]);
+            $redirect = sprintf('index.php?%s=$matches[3]&locale=$matches[1]', $wordpressKey);
             $rewriter->addRule($rule, $redirect);
         }
     }
