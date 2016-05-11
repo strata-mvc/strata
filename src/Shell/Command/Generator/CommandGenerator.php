@@ -44,11 +44,12 @@ class CommandGenerator extends GeneratorBase
         $writer->setNamespace($namespace);
         $writer->setDestination($destination);
         $writer->setUses("
-use Strata\Shell\Command\StrataCommand;
+use Strata\Shell\Command\StrataCommandBase;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 ");
-        $writer->setExtends("StrataCommand");
+        $writer->setExtends("StrataCommandBase");
         $writer->setContents("
     protected function configure()
     {

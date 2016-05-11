@@ -7,6 +7,8 @@ use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
 use Strata\Controller\Controller;
 use Strata\Model\WordpressEntity;
+
+use Strata\Model\Model;
 use Exception;
 
 /**
@@ -40,13 +42,12 @@ class ModelRewriteRegistrar
      */
     private function addRules()
     {
-        foreach (get_post_types(null, "objects") as $cptKey => $cptActiveConfig) {
-            $this->attemptRuleExtraction($cptKey, $cptActiveConfig);
-        }
+        // Keep in mind we don't support recursive directories (or cache the results)
+        $possibleModels = glob(Strata::getSRCPath() . "Model" . DIRECTORY_SEPARATOR . "*.php");
+        $this->batchFileRegistrationAttempt((array)$possibleModels);
 
-        foreach (get_taxonomies(array(), "objects") as $taxonomyKey => $taxonomyActiveConfig) {
-            $this->attemptRuleExtraction($taxonomyKey, $taxonomyActiveConfig);
-        }
+        $possibleTaxonomies = glob(Strata::getSRCPath() . "Model" . DIRECTORY_SEPARATOR . "Taxonomy" . DIRECTORY_SEPARATOR . "*.php");
+        $this->batchFileRegistrationAttempt((array)$possibleTaxonomies);
 
         if (count($this->additionalRoutes)) {
             Strata::router()->addModelRoutes($this->additionalRoutes);
@@ -57,19 +58,26 @@ class ModelRewriteRegistrar
         }
     }
 
-    private function attemptRuleExtraction($key, $config)
+    private function batchFileRegistrationAttempt($files = array())
     {
-        if (property_exists($config, 'rewrite') && isset($config->rewrite['slug'])) {
-            $slug = $config->rewrite['slug'];
-
+        foreach ($files as $filename) {
             try {
-                $model = WordpressEntity::factoryFromKey($key);
-                if (!is_null($model) && is_array($model->routed)) {
-                    $this->addDefaultRewrites($model, $slug);
-                    $this->addLocalizedRewrites($model, $slug);
-                }
+                $potentialClassName = basename(substr($filename, 0, -4));
+                $model = Model::factory($potentialClassName);
+                $this->attemptRuleExtraction($model);
             } catch (Exception $e) {
-                // it's fine, just means this is not a routed model
+                // falure only means its not a Strata model.
+            }
+        }
+    }
+
+    private function attemptRuleExtraction($model)
+    {
+        if (method_exists($model, "hasConfig") && $model->hasConfig('rewrite.slug')) {
+            $slug = $model->getConfig('rewrite.slug');
+            if (is_array($model->routed)) {
+                $this->addDefaultRewrites($model, $slug);
+                $this->addLocalizedRewrites($model, $slug);
             }
         }
     }

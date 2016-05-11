@@ -16,7 +16,7 @@ class Mailer
     /**
      * @var array The default email headers
      */
-    protected $headers = array('Content-Type: text/html; charset=UTF-8');
+    protected $defaultHeaders = array('Content-Type: text/html; charset=UTF-8');
 
     /**
      * Initiates the Mailer with common default
@@ -87,7 +87,7 @@ class Mailer
     {
         $useHtml = (bool)$this->getConfig("use_html");
 
-        $mergedHeaders = $this->headers + $this->buildBCCList();
+        $mergedHeaders = $this->getMergedHeaders();
 
         if ($useHtml) {
             $this->setHtmlEmails();
@@ -106,6 +106,13 @@ class Mailer
         }
 
         return $status;
+    }
+
+    protected function getMergedHeaders()
+    {
+        return (array)$this->defaultHeaders +
+            (array)$this->getConfig("headers") +
+            (array)$this->buildBCCList();
     }
 
     /**

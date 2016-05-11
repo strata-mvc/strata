@@ -107,7 +107,7 @@ class MiddlewareLoader
         $possibleMiddlewareLoaders = glob(Strata::getMiddlewarePath() . "*Initializer.php");
         $namespace = Strata::getNamespace() . "\\Middleware\\";
 
-        foreach ($possibleMiddlewareLoaders as $filename) {
+        foreach ((array)$possibleMiddlewareLoaders as $filename) {
             if (preg_match('/([^\/\\\\]+?Initializer).php$/', $filename, $matches)) {
                 $className = $namespace . $matches[1];
                 if (class_exists($className)) {
