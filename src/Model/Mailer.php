@@ -3,6 +3,7 @@
 namespace Strata\Model;
 
 use Strata\Core\StrataConfigurableTrait;
+use Strata\Utility\Hash;
 use Exception;
 
 /**
@@ -12,11 +13,6 @@ use Exception;
 class Mailer
 {
     use StrataConfigurableTrait;
-
-    /**
-     * @var array The default email headers
-     */
-    protected $defaultHeaders = array('Content-Type: text/html; charset=UTF-8');
 
     /**
      * Initiates the Mailer with common default
@@ -71,6 +67,14 @@ class Mailer
     }
 
     /**
+     * Sets an email header
+     */
+    public function setHeader($key, $value)
+    {
+        $this->setConfig("headers.$key", $value);
+    }
+
+    /**
      * Attaches a file to the email
      * @param  string $filePath
      */
@@ -97,7 +101,7 @@ class Mailer
             $this->getConfig("to"),
             $this->getConfig("title"),
             $this->getConfig("contents"),
-            $mergedHeaders,
+            $this->toHeaderString($mergedHeaders) . $this->buildBCCString(),
             $this->getConfig("attachedFile")
         );
 
@@ -110,9 +114,39 @@ class Mailer
 
     protected function getMergedHeaders()
     {
-        return (array)$this->defaultHeaders +
-            (array)$this->getConfig("headers") +
-            (array)$this->buildBCCList();
+        $defaults = array(
+            'Content-Type' => 'text/html; charset=UTF-8',
+            'X-Mailer' => "PHP " . phpversion()
+        );
+
+        return Hash::merge((array)$this->getConfig('headers'), $defaults);
+    }
+
+    protected function toHeaderString($headers)
+    {
+        $return = "";
+
+        foreach ($headers as $key => $value) {
+            $return .= sprintf("%s: %s\r\n", $key, $value);
+        }
+
+        return $return;
+    }
+
+    /**
+     * Builds the BCC user list in a format
+     * wp_mail can read.
+     * @return string
+     */
+    protected function buildBCCString()
+    {
+        $adresses = "";
+
+        foreach ((array)$this->getConfig("bcc") as $email) {
+            $adresses .= sprintf("Bcc: %s \r\n", trim($email));
+        }
+
+        return $adresses;
     }
 
     /**
@@ -135,22 +169,5 @@ class Mailer
         } else {
             remove_filter('wp_mail_content_type', array($this, 'setHtmlContentType'));
         }
-    }
-
-    /**
-     * Builds the BCC user list in a format
-     * wp_mail can read.
-     * @return array
-     */
-    protected function buildBCCList()
-    {
-        $adresses = array();
-        $bcc = $this->getConfig("bcc");
-
-        foreach ((array)$bcc as $email) {
-            $adresses[] = 'Bcc: ' . trim($email);
-        }
-
-        return $adresses;
     }
 }
