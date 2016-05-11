@@ -7,8 +7,8 @@ use Strata\Utility\Hash;
 use Strata\Utility\Inflector;
 use Strata\Controller\Controller;
 use Strata\Model\WordpressEntity;
-
 use Strata\Model\Model;
+use Strata\Model\Taxonomy\Taxonomy;
 use Exception;
 
 /**
@@ -44,10 +44,10 @@ class ModelRewriteRegistrar
     {
         // Keep in mind we don't support recursive directories (or cache the results)
         $possibleModels = glob(Strata::getSRCPath() . "Model" . DIRECTORY_SEPARATOR . "*.php");
-        $this->batchFileRegistrationAttempt((array)$possibleModels);
+        $this->batchModelFileRegistrationAttempt((array)$possibleModels);
 
         $possibleTaxonomies = glob(Strata::getSRCPath() . "Model" . DIRECTORY_SEPARATOR . "Taxonomy" . DIRECTORY_SEPARATOR . "*.php");
-        $this->batchFileRegistrationAttempt((array)$possibleTaxonomies);
+        $this->batchTaxonomyFileRegistrationAttempt((array)$possibleTaxonomies);
 
         if (count($this->additionalRoutes)) {
             Strata::router()->addModelRoutes($this->additionalRoutes);
@@ -58,12 +58,25 @@ class ModelRewriteRegistrar
         }
     }
 
-    private function batchFileRegistrationAttempt($files = array())
+    private function batchModelFileRegistrationAttempt($files = array())
     {
         foreach ($files as $filename) {
             try {
                 $potentialClassName = basename(substr($filename, 0, -4));
                 $model = Model::factory($potentialClassName);
+                $this->attemptRuleExtraction($model);
+            } catch (Exception $e) {
+                // falure only means its not a Strata model.
+            }
+        }
+    }
+
+    private function batchTaxonomyFileRegistrationAttempt($files = array())
+    {
+        foreach ($files as $filename) {
+            try {
+                $potentialClassName = basename(substr($filename, 0, -4));
+                $model = Taxonomy::factory($potentialClassName);
                 $this->attemptRuleExtraction($model);
             } catch (Exception $e) {
                 // falure only means its not a Strata model.
