@@ -134,7 +134,8 @@ class i18n
     {
         if (function_exists('apply_filters')) {
             // Give a chance for plugins to override this decision
-            $locale = apply_filters('strata_i18n_set_current_locale_by_context', null);
+            $locale = null;
+            $locale = apply_filters('strata_i18n_set_current_locale_by_context', $locale);
             if (!is_null($locale)) {
                 return $this->setLocale($locale);
             }
