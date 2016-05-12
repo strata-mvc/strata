@@ -79,7 +79,14 @@ class UrlRoute extends Route
     public function addResourcePossibility(WordpressEntity $model)
     {
         $slug = null;
-        $controller = Controller::generateClassName($model->getShortName());
+
+        if (property_exists($model, "routed") && is_array($model->routed) &&  array_key_exists("controller", $model->routed)) {
+            $controllerName = $this->model->routed['controller'];
+            $controllerObject = new $controllerName();
+            $controller = $controllerObject->getShortName();
+        } else {
+            $controller = Controller::generateClassName($model->getShortName());
+        }
 
         $i18n = Strata::i18n();
         if ($i18n->isLocalized()) {
