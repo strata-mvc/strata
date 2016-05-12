@@ -27,24 +27,26 @@ class CustomPostTypeRouteMaker extends RouteMakerBase
 
     protected function extractLocalizedInformation()
     {
-        foreach ($this->getLocales() as $locale) {
+        if ($this->modelSupportsRewrites()) {
+            foreach ($this->getLocales() as $locale) {
 
-            $localeCode = $locale->getCode();
-            $localizedSlug = $this->model->hasConfig("i18n.$localeCode.rewrite.slug") ?
-                $this->model->getConfig("i18n.$localeCode.rewrite.slug") :
-                $this->defaultSlug;
+                $localeCode = $locale->getCode();
+                $localizedSlug = $this->model->hasConfig("i18n.$localeCode.rewrite.slug") ?
+                    $this->model->getConfig("i18n.$localeCode.rewrite.slug") :
+                    $this->defaultSlug;
 
-            foreach ($this->model->routed['rewrite'] as $routeKey => $routeUrl) {
+                foreach ($this->model->routed['rewrite'] as $routeKey => $routeUrl) {
 
-                $localizedUrl = $routeUrl;
-                $localizedPath = "i18n.$localeCode.rewrite.$routeKey";
+                    $localizedUrl = $routeUrl;
+                    $localizedPath = "i18n.$localeCode.rewrite.$routeKey";
 
-                if (Hash::check($this->model->routed, $localizedPath)) {
-                    $localizedUrl = Hash::get($this->model->routed, $localizedPath);
+                    if (Hash::check($this->model->routed, $localizedPath)) {
+                        $localizedUrl = Hash::get($this->model->routed, $localizedPath);
+                    }
+
+                    $this->addRoute($this->createRouteFor($localizedUrl, $localizedSlug));
+                    $this->queueRewrite($localizedUrl, $localizedSlug, $locale);
                 }
-
-                $this->addRoute($this->createRouteFor($localizedUrl, $localizedSlug));
-                $this->queueRewrite($localizedUrl, $localizedSlug, $locale);
             }
         }
     }

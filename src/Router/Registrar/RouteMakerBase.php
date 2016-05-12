@@ -93,6 +93,11 @@ abstract class RouteMakerBase
         return "";
     }
 
+    protected function modelSupportsRewrites()
+    {
+        return is_array($this->model->routed) && array_key_exists("rewrite", $this->model->routed);
+    }
+
     protected function extractDefaultLocaleInformation()
     {
         $defaultLocale = null;
@@ -100,8 +105,10 @@ abstract class RouteMakerBase
             $defaultLocale = Strata::i18n()->getDefaultLocale();
         }
 
-        foreach ($this->model->routed['rewrite'] as $routeKey => $routeUrl) {
-            $this->queueRewrite($routeUrl, $this->defaultSlug, $defaultLocale);
+        if ($this->modelSupportsRewrites()) {
+            foreach ($this->model->routed['rewrite'] as $routeKey => $routeUrl) {
+                $this->queueRewrite($routeUrl, $this->defaultSlug, $defaultLocale);
+            }
         }
     }
 
