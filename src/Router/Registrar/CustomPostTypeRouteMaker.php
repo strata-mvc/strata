@@ -15,6 +15,16 @@ class CustomPostTypeRouteMaker extends RouteMakerBase
         $this->defaultSlug = $model->getConfig('rewrite.slug');
 
         if (is_array($this->model->routed)) {
+
+            // This seems inelegant.
+            if (is_a($model, "Strata\Model\Post") && array_key_exists("page_slug_regex", $model->routed)) {
+                $this->addRoute(array(
+                    'GET|POST|PATCH|PUT|DELETE',
+                    '/' . $model->routed["page_slug_regex"] ."/?",
+                    $this->getController()->getShortName() . "#index"
+                ));
+            }
+
             $this->extractDefaultLocaleInformation();
 
             if ($this->isLocalizedApp()) {
