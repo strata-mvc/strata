@@ -82,7 +82,11 @@ abstract class RouteMakerBase
 
     protected function getAction($controller, $routeKey)
     {
-        $impliedAction = lcfirst(Inflector::camelize(str_replace("-", "_", $routeKey)));
+        if (array_key_exists("action", $this->model->routed)) {
+            $impliedAction = $this->model->routed['action'];
+        } else {
+            $impliedAction = lcfirst(Inflector::camelize(str_replace("-", "_", $routeKey)));
+        }
 
         foreach (array($impliedAction, "show", "noActionMatch") as $method) {
             if (method_exists($controller, $method)) {
