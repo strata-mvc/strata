@@ -168,6 +168,16 @@ class UrlRoute extends Route
             return;
         }
 
+        if (is_404() && $match["target"] === self::DYNAMIC_PARSE) {
+            $match = array(
+                'target' => 'PageController',
+                'params' => [
+                    'action' => 'notFound'
+                ],
+                'name' => null
+            );
+        }
+
         $this->handleRouterAnswer($match);
     }
 
