@@ -88,7 +88,7 @@ class UrlRouter extends Router
             if (Router::isAjax() || is_admin()) {
                 add_action('init', array($this, "onWordpressEarlyInit"));
             } else {
-                add_action('wp', array($this, "onWordpressInit"), 2);
+                add_action('wp', array($this, "onWordpressInit"), 25);
             }
         }
 

@@ -40,7 +40,6 @@ class i18n
     {
         $this->startSession();
         $this->resetLocaleCache();
-        $this->setCurrentLocaleByContext();
 
         if ($this->shouldAddWordpressHooks()) {
             $this->registerHooks();
@@ -141,6 +140,10 @@ class i18n
             }
         }
 
+        if (!is_null($this->currentLocale)) {
+            return $this->currentLocale;
+        }
+
         $request = new Request();
 
         // Under ajax, one could post the value.
@@ -151,15 +154,15 @@ class i18n
             }
         }
 
+        if ($request->hasGet("locale")) {
+            $locale = $this->getLocaleByCode($request->get("locale"));
+            if (!is_null($locale)) {
+                return $this->setLocale($locale);
+            }
+        }
+
         $inAdmin = function_exists('is_admin') ? is_admin() : false;
         if (!$inAdmin) {
-            if ($request->hasGet("locale")) {
-                $locale = $this->getLocaleByCode($request->get("locale"));
-                if (!is_null($locale)) {
-                    return $this->setLocale($locale);
-                }
-            }
-
             // This validates all locales but the default one
             $urls = implode('|', $this->getLocaleRegexUrls());
 
@@ -253,8 +256,13 @@ class i18n
      */
     public function getCurrentLocale()
     {
+        if (is_null($this->currentLocale)) {
+            $this->setCurrentLocaleByContext();
+        }
+
         return $this->currentLocale;
     }
+
 
     /**
      * Returns the code of the locale that is currently used.
@@ -503,6 +511,8 @@ class i18n
     public function setLocale(Locale $locale)
     {
         $this->currentLocale = $locale;
+        $this->saveCurrentLocaleToSession();
+
         return $this->currentLocale;
     }
 
@@ -512,7 +522,7 @@ class i18n
      */
     private function getSessionKey()
     {
-        if (is_admin() && !Router::isAjax()) {
+        if (is_admin() && !Router::isFrontendAjax()) {
             return self::DOMAIN . "_admin";
         }
 
@@ -525,13 +535,10 @@ class i18n
      */
     protected function registerHooks()
     {
-        add_action('after_setup_theme', array($this, "applyLocale"), 1);
-
-        if (Router::isAjax() || !is_admin()) {
+        if (!is_admin() || Router::isFrontendAjax()) {
+            add_action('after_setup_theme', array($this, "applyLocale"), 1);
             add_filter('locale', array($this, "applyCurrentLanguageByContext"), 999);
         }
-
-        add_action('shutdown', array($this, "saveCurrentLocaleToSession"));
     }
 
     /**
