@@ -141,8 +141,18 @@ class i18n
             }
         }
 
-        if (Router::isAjax() || (function_exists('is_admin') && !is_admin())) {
-            $request = new Request();
+        $request = new Request();
+
+        // Under ajax, one could post the value.
+        if (Router::isAjax() && $request->hasPost("locale")) {
+            $locale = $this->getLocaleByCode($request->post("locale"));
+            if (!is_null($locale)) {
+                return $this->setLocale($locale);
+            }
+        }
+
+        $inAdmin = function_exists('is_admin') ? is_admin() : false;
+        if (!$inAdmin) {
             if ($request->hasGet("locale")) {
                 $locale = $this->getLocaleByCode($request->get("locale"));
                 if (!is_null($locale)) {
@@ -150,45 +160,32 @@ class i18n
                 }
             }
 
-            // Under ajax, one could post the value.
-            if (Router::isAjax()) {
-                if ($request->hasPost("locale")) {
-                    $locale = $this->getLocaleByCode($request->post("locale"));
-                    if (!is_null($locale)) {
-                        return $this->setLocale($locale);
-                    }
+            // This validates all locales but the default one
+            $urls = implode('|', $this->getLocaleRegexUrls());
+            if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
+                $locale = $this->getLocaleByUrl($match[1]);
+                if (!is_null($locale)) {
+                    return $this->setLocale($locale);
                 }
-
-            // when in Frontend and not in ajax, we can guestimate values
-            // from the url.
-            } else {
-                // This validates all locales but the default one
-                $urls = implode('|', $this->getLocaleRegexUrls());
-                if (preg_match('/^\/('.$urls.')\//i', $_SERVER['REQUEST_URI'], $match)) {
-                    $locale = $this->getLocaleByUrl($match[1]);
-                    if (!is_null($locale)) {
-                        return $this->setLocale($locale);
-                    }
-                // Also validates for lack of locale code, meaning
-                // a possible default locale match when no ajax-ing.
-                } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
-                    $locale = $this->getDefaultLocale();
-                    if (!is_null($locale)) {
-                        return $this->setLocale($locale);
-                    }
-                }
-            }
-
-            if ($this->hasLocaleInSession()) {
-                $locale = $this->getLocaleInSession();
+            // Also validates for lack of locale code, meaning
+            // a possible default locale match when no ajax-ing.
+            } elseif (preg_match('/^(?:(?!'.$urls.'))\/?/i', $_SERVER['REQUEST_URI'])) {
+                $locale = $this->getDefaultLocale();
                 if (!is_null($locale)) {
                     return $this->setLocale($locale);
                 }
             }
+        }
 
-            if ($this->hasDefaultLocale()) {
-                return $this->setLocale($this->getDefaultLocale());
+        if ($this->hasLocaleInSession()) {
+            $locale = $this->getLocaleInSession();
+            if (!is_null($locale)) {
+                return $this->setLocale($locale);
             }
+        }
+
+        if ($this->hasDefaultLocale()) {
+            return $this->setLocale($this->getDefaultLocale());
         }
     }
 
