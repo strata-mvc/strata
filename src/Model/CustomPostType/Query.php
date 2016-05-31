@@ -327,12 +327,20 @@ class Query
         // Copy the current Query but remove the OR conditions.
         // They will be looked up as this instance goes on with
         // the process.
-        $andQuery->applyFilters($this->filters);
+        $filterCopy = $this->filters;
+
+        unset($filterCopy["limit"]);
+        unset($filterCopy["posts_per_page"]);
+        $filterCopy[$query_type]["OR"] = array();
+        $filterCopy['nopaging'] = true;
+
+        $andQuery->applyFilters($filterCopy);
         $andQuery->resetQueryRelation($query_type, 'OR');
 
         // This forces the AND relationships to be loaded before
         // comparing the or parameters
         $andIds = $andQuery->listing("ID", "ID");
+
         $this->where('post__in', array_values($andIds));
         $this->resetQueryRelation($query_type, 'AND');
 
