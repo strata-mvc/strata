@@ -35,6 +35,8 @@ abstract class Route
      */
     protected $cancelled = false;
 
+    protected $directExecution = false;
+
     /**
      * This is the entry point of all routers. The inheriting classes will handle
      * how they handle the management of their route type from this function.
@@ -65,15 +67,26 @@ abstract class Route
         while (!$this->isCancelled()) {
             $this->start();
 
-            $this->controller->init();
-            $this->controller->before();
+            if (!$this->directExecution) {
+                $this->controller->init();
+                $this->controller->before();
+            }
+
             $returnData = call_user_func_array(array($this->controller, $this->action), $this->arguments);
-            $this->controller->after();
+
+            if (!$this->directExecution) {
+                $this->controller->after();
+            }
 
             $this->end();
 
             return $returnData;
         }
+    }
+
+    public function setDirectExecution()
+    {
+        $this->directExecution = true;
     }
 
     /**

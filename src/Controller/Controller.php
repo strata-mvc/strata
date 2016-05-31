@@ -121,6 +121,8 @@ class Controller
 
         global $wp_query;
         $wp_query->set_404();
+        status_header( 404 );
+        nocache_headers();
     }
 
     public function serverError()
@@ -131,9 +133,6 @@ class Controller
 
     public function redirect($controllerName, $action = "index", $arguments = array())
     {
-        $view = $this->view;
-        $request = $this->request;
-
         $router = Strata::router();
         if (is_null($router)) {
             return;
@@ -142,11 +141,17 @@ class Controller
         $router->abandonCurrent();
 
         $route = new UrlRoute();
-        $route->controller = Controller::factory($controllerName);
-        $route->controller->view = $view;
-        $route->controller->request = $request;
         $route->action = $action;
         $route->arguments = $arguments;
+
+        if ($controllerName !== $this->getShortName()) {
+            $route->controller = Controller::factory($controllerName);
+            $route->controller->request = $this->request;
+            $route->controller->view = $this->view;
+        } else {
+            $route->controller = $this;
+            $route->setDirectExecution();
+        }
 
         return $route->attemptCompletion();
     }
