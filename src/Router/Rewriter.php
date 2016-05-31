@@ -25,7 +25,7 @@ class Rewriter
         if (function_exists('add_action')) {
             // This needs to triggers after CustomPostTypeLoader::load() has finished
             // because models may declare additional urls.
-            add_action('wp', array($this, "applyRules"), 20);
+            add_action('wp_loaded', array($this, "applyRules"), 20);
         }
     }
 
@@ -115,6 +115,7 @@ class Rewriter
     private function flush()
     {
         $currentConfigurationHash = $this->getCurrentConfigurationState();
+
         if ($currentConfigurationHash !== get_option('strata_rewrite_state')) {
             update_option('strata_rewrite_state', $currentConfigurationHash);
             flush_rewrite_rules();
