@@ -11,6 +11,10 @@ if (!function_exists('debug')) {
      */
     function debug()
     {
+        if (!WP_DEBUG) {
+            return;
+        }
+
         $mixed = func_get_args();
         if (count($mixed) === 1) {
             $mixed = $mixed[0];
@@ -29,7 +33,7 @@ if (!function_exists('debug')) {
             $exported = Debugger::export($variable, 5);
 
             if (Strata::isBundledServer()) {
-                Strata::app()->getLogger("StrataConsole")->debug("\n$context\n" . $exported . "\n");
+                Strata::app()->getLogger("StrataConsole")->debug("\n\n<warning>$context</warning>\n" . $exported . "\n\n");
             }
 
             if (Strata::isCommandLineInterface()) {
@@ -60,16 +64,25 @@ if (!function_exists('stackTrace')) {
             return;
         }
 
-        $options += array('start' => 0);
-        $options['start']++;
+        $defaults =  array('start' => 0);
 
-        if (Strata::isCommandLineInterface() || Strata::isBundledServer()) {
-            $options['output'] = Debugger::CONSOLE;
-            Strata::getLogger("StrataConsole")->debug(Debugger::trace($options));
+        if (Strata::isBundledServer() || Strata::isCommandLineInterface()) {
+            $defaults['output'] = Debugger::CONSOLE;
         }
 
-        $options['output'] = Debugger::HTML;
-        echo Debugger::trace($options);
+        $options += $defaults;
+        $options['start']++;
+        $trace = Debugger::trace(null, $options);
+
+        if (Strata::isBundledServer()) {
+            Strata::app()->getLogger("StrataConsole")->debug("\n\n" . $trace . "\n\n");
+        }
+
+        if (Strata::isCommandLineInterface()) {
+            echo "\n\n" . $trace . "\n\n";
+        } else {
+            echo "<div style=\"".Debugger::HTML_STYLES."\"><pre>". $trace ."</pre></div>";
+        }
     }
 }
 
