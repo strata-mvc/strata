@@ -397,11 +397,15 @@ class ModelEntity
                 $this->comment_status = false;
             }
 
+            if (!isset($this->ID)) {
+                $this->ID = '';
+            }
+
             if ((int)$this->ID > 0) {
                 return wp_update_post($this->associatedObject);
             }
 
-            $id = wp_update_post($this->associatedObject);
+            $id = wp_insert_post($this->associatedObject);
 
             if ((int)$id > 0) {
                 $this->ID = $id;
