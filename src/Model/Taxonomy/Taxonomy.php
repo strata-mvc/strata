@@ -33,10 +33,15 @@ class Taxonomy extends WordpressEntity
     public static function factoryFromWpQuery()
     {
         global $wp_query;
-        $taxonomy = $wp_query->queried_object;
 
-        if (is_a($taxonomy, "WP_Term")) {
-            return ModelEntity::factoryFromString($taxonomy->taxonomy, $taxonomy);
+        if ((bool)$wp_query->is_tax) {
+            $term = get_term_by("slug", $wp_query->query_vars['term'], $wp_query->query_vars['taxonomy']);
+            return ModelEntity::factoryFromString($term->taxonomy, $term);
+        }
+
+        if ($wp_query->queried_object && get_class($wp_query->queried_object) === "WP_Term") {
+            $term = $wp_query->queried_object;
+            return ModelEntity::factoryFromString($term->taxonomy, $term);
         }
     }
 
