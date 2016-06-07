@@ -30,6 +30,15 @@ class InValidator extends Validator
         return in_array((int)$value, array_keys($allowed));
     }
 
+    public function configure($values)
+    {
+        // Prevent parent configure() to make sure
+        // the indexes don't normalize
+        if (is_array($values)) {
+            $this->configuration = $values;
+        }
+    }
+
     private function getAllowedValues()
     {
         $configuration = $this->configuration;

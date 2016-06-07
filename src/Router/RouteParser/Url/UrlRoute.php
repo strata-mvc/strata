@@ -81,7 +81,7 @@ class UrlRoute extends Route
         $slug = null;
 
         if (property_exists($model, "routed") && is_array($model->routed) &&  array_key_exists("controller", $model->routed)) {
-            $controllerName = $this->model->routed['controller'];
+            $controllerName = $model->routed['controller'];
             $controllerObject = new $controllerName();
             $controller = $controllerObject->getShortName();
         } else {
