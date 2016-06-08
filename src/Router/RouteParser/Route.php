@@ -124,7 +124,9 @@ abstract class Route
         $message = sprintf("<warning>Canceled routing to</warning> -> <info>%s#%s</info>", get_class($this->controller), $this->action);
 
         $logger = Strata::app()->getLogger();
-        $logger->log($message, "<green>Strata:Route</green>");
+        if ($logger) {
+            $logger->log($message, "<green>Strata:Route</green>");
+        }
     }
 
     /**
