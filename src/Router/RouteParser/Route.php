@@ -125,7 +125,7 @@ abstract class Route
 
         $logger = Strata::app()->getLogger();
         if ($logger) {
-            $logger->log($message, "<green>Strata:Route</green>");
+            $logger->log($message, "<green>Route</green>");
         }
     }
 
@@ -139,7 +139,7 @@ abstract class Route
 
         $logger = Strata::app()->getLogger();
         if ($logger) {
-            $logger->logNewContext($message, "<green>Strata:Route</green>", "green");
+            $logger->logNewContext($message, "<green>Route</green>", "green");
         }
     }
 
@@ -152,7 +152,7 @@ abstract class Route
 
         $logger = Strata::app()->getLogger();
         if ($logger) {
-            $logger->logContextEnd(sprintf("Done in %s seconds", round($executionTime, 4)), "<green>Strata:Route</green>");
+            $logger->logContextEnd(sprintf("Done in %s seconds", round($executionTime, 4)), "<green>Route</green>");
         }
     }
 }
