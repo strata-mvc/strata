@@ -5,7 +5,7 @@ Strata
 
 ## Welcome
 
-If you are (or wish to become) a Strata user please refer to the [official website](http://strata.francoisfaubert.com/) to obtain the latest information.
+If you are (or wish to become) a Strata user please refer to the [official website](http://strata-framework.com/) to obtain the latest information.
 
 ## Help and support
 
