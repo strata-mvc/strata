@@ -75,7 +75,7 @@ class Template
         if (Strata::isDev() && $allowDebug) {
             $executionTime = microtime(true) - $startedAt;
             $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
-            $app->log($partialFilePath . $timer, "<yellow>Strata:Template</yellow>");
+            $app->log($partialFilePath . $timer, "<yellow>Template</yellow>");
         }
 
         return ob_get_clean();

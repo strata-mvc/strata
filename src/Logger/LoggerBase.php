@@ -143,7 +143,7 @@ class LoggerBase
     {
         $length = strlen(preg_replace('#</?.+?>#', '', $message));
 
-        // Largest internal known message is Strata:Template
+        // Largest internal known message is Template
         $minLength = 13;
         if (preg_match('#(</.+?>)#', $message, $matches)) {
             $minLength += (strlen($matches[1]) * 2) + 1;
