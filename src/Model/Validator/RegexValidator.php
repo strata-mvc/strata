@@ -11,7 +11,7 @@ class RegexValidator extends Validator
      */
     public function init()
     {
-        $this->setMessage(__("This value doe not have the expected format.", $this->getTextdomain()));
+        $this->setMessage(__("This value does not have the expected format.", $this->getTextdomain()));
     }
 
     /**

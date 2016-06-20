@@ -94,7 +94,7 @@ class FormHelper extends Helper
      */
     public function honeypot($name)
     {
-        $input = $this->input($name, array("name" => $name));
+        $input = $this->input($name, array("name" => $name, "autocomplete" => "off"));
         $wrapperStyles = array(
             "height: 1px",
             "overflow: hidden",
