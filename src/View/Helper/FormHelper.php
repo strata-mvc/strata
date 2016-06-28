@@ -40,7 +40,7 @@ class FormHelper extends Helper
      */
     public function create($mixed = null, $options = array())
     {
-        $this->request = Strata::app()->router->getCurrentController()->request;
+        $this->request = Strata::router()->getCurrentController()->request;
 
         if (!is_null($mixed) && !in_array('Strata\\Model\\CustomPostType\\ModelEntity', class_parents($mixed))) {
             throw new Exception("A form can only be linked to either an object inheriting ModelEntity or nothing at all.");
