@@ -182,8 +182,11 @@ class ModelEntity
     public function __debugInfo()
     {
         $objectVars = array();
-        foreach (get_object_vars($this) as $key => $value) {
-            $objectVars[$key] = Debugger::export($value);
+
+        if (!is_null($this)) {
+            foreach (get_object_vars($this) as $key => $value) {
+                $objectVars[$key] = Debugger::export($value);
+            }
         }
 
         return array_merge($objectVars, $this->toArray());
@@ -197,6 +200,10 @@ class ModelEntity
      */
     public function bindToObject($obj)
     {
+        if (is_array($obj)) {
+            $obj = (object)$obj;
+        }
+
         $this->associatedObject = $obj;
     }
 
