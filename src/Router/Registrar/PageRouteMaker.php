@@ -3,6 +3,7 @@
 namespace Strata\Router\Registrar;
 
 use Strata\Utility\Hash;
+use Strata\Strata;
 use Exception;
 
 /**
@@ -36,14 +37,14 @@ class PageRouteMaker extends RouteMakerBase
      * @param  string $slug
      * @return array
      */
-    protected function createRouteFor($routeKey, $slug)
+    protected function createRouteFor($routeKey, $slug, $intentedActions = null)
     {
         $controller = $this->getController();
-        $action = $this->getAction($controller, $routeKey);
+        $action = $this->getAction($controller, $intentedActions);
 
         return array(
             'GET|POST|PATCH|PUT|DELETE',
-            '/' . $this->defaultSlug ."/[$routeKey:rewrite]/?",
+            '/' . $this->defaultSlug ."/[$slug:rewrite]/?",
             $controller->getShortName() . "#" . $action
         );
     }
@@ -60,7 +61,8 @@ class PageRouteMaker extends RouteMakerBase
                     $localizedUrl = Hash::get($this->model->routed, $localizedPath);
                 }
 
-                $this->addRoute($this->createRouteFor($localizedUrl, $this->defaultSlug));
+                $route = $this->createRouteFor($routeKey, $localizedUrl, array($localizedUrl, $routeUrl));
+                $this->addRoute($route);
                 $this->queueRewrite($localizedUrl, $this->defaultSlug, $locale);
             }
         }

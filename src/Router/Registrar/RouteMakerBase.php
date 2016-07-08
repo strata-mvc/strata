@@ -80,15 +80,21 @@ abstract class RouteMakerBase
         return new $controllerClass();
     }
 
-    protected function getAction($controller, $routeKey)
+    protected function getAction($controller, $impliedActions)
     {
-        if (array_key_exists("action", $this->model->routed)) {
-            $impliedAction = $this->model->routed['action'];
-        } else {
-            $impliedAction = lcfirst(Inflector::camelize(str_replace("-", "_", $routeKey)));
+        if (is_string($impliedActions)) {
+            $impliedActions = array($impliedActions);
         }
 
-        foreach (array($impliedAction, "show", "noActionMatch") as $method) {
+        if (array_key_exists("action", $this->model->routed)) {
+            $impliedActions[] = $this->model->routed['action'];
+        }
+
+        $impliedActions[] = "show";
+        $impliedActions[] = "noActionMatch";
+
+        foreach ($impliedActions as $method) {
+            $method = lcfirst(Inflector::camelize(str_replace("-", "_", $method)));
             if (method_exists($controller, $method)) {
                 return $method;
             }
@@ -145,10 +151,15 @@ abstract class RouteMakerBase
      * @param  string $slug
      * @return array
      */
-    protected function createRouteFor($routeKey, $slug)
+    protected function createRouteFor($routeKey, $slug, $impliedActions = null)
     {
         $controller = $this->getController();
-        $action = $this->getAction($controller, $routeKey);
+
+        if (is_null($impliedActions)) {
+            $impliedActions = array($routeKey);
+        }
+
+        $action = $this->getAction($controller, $impliedActions);
 
         return array(
             'GET|POST|PATCH|PUT|DELETE',
