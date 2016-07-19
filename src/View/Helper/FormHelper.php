@@ -201,6 +201,7 @@ class FormHelper extends Helper
         $currentValue = $this->getCurrentValue($options['name']);
 
         $errorHtml = "";
+        $fieldHasErrors = false;
 
         if (!is_null($this->associatedEntity)) {
             $errors = (array)$this->associatedEntity->getValidationErrors();
@@ -208,6 +209,7 @@ class FormHelper extends Helper
                 if ((bool)$options['error']) {
                     $errorHtml = $this->generateInlineErrors($name);
                 }
+                $fieldHasErrors = true;
                 $options['class'] .= " error ";
             }
             unset($options["error"]);
@@ -215,6 +217,9 @@ class FormHelper extends Helper
 
         $label = "";
         if (!is_null($options['label'])) {
+            if ($fieldHasErrors) {
+                $options['class'] .= " error ";
+            }
             $label .= $this->generateLabel($options);
         }
         unset($options['label']);
