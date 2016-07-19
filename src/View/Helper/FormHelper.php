@@ -217,10 +217,13 @@ class FormHelper extends Helper
 
         $label = "";
         if (!is_null($options['label'])) {
-            if ($fieldHasErrors) {
-                $options['class'] .= " error ";
-            }
-            $label .= $this->generateLabel($options);
+            $labelOptions = array(
+                "id"    => $options["id"],
+                "class" => $fieldHasErrors ? "error" : "",
+                "label" => $options["label"],
+            );
+
+            $label .= $this->generateLabel($labelOptions);
         }
         unset($options['label']);
 
@@ -408,7 +411,7 @@ class FormHelper extends Helper
      */
     protected function generateLabel($options)
     {
-        return sprintf('<label for="%s">%s</label>', $options['id'], $options['label']);
+        return sprintf('<label for="%s" class="%s">%s</label>', $options['id'], $options['class'], $options['label']);
     }
 
     /**
