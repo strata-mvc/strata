@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\I18n\i18n</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_I18n">Strata\I18n</a>
+          </li>
+          <li class="separator">i18n</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\I18n\</small>i18n</h1>
+        <h4>Handles code localization using Gettext for PHP.</h4>
+        <p>This requires a PHP installation that is compiled with extension=php_gettext.dll</p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class i18n
+            {<br><ul class="none">
+<li>// constants</li>
+<li>const DOMAIN = "strata_i18n";</li>
+</ul>
+<ul class="none">
+<li>// members</li>
+<li>protected array <a href="#members">$locales</a> =
+                        ;
+                    </li>
+<li>protected <a href="#members">$currentLocale</a> =
+                        null;
+                    </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/initialize.html">initialize</a>()
+                    </li>
+<li>public string <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyCurrentLanguageByContext.html">applyCurrentLanguageByContext</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyLocale.html">applyLocale</a>()
+                    </li>
+<li>public string <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTextdomain.html">getTextdomain</a>()
+                    </li>
+<li>public null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/resetLocaleCache.html">resetLocaleCache</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocaleSet.html">setLocaleSet</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setCurrentLocaleByContext.html">setCurrentLocaleByContext</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isLocalized.html">isLocalized</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasActiveLocales.html">hasActiveLocales</a>()
+                    </li>
+<li>public array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocales.html">getLocales</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByCode.html">getLocaleByCode</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByUrl.html">getLocaleByUrl</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocale.html">getCurrentLocale</a>()
+                    </li>
+<li>public string <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocaleCode.html">getCurrentLocaleCode</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasDefaultLocale.html">hasDefaultLocale</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getDefaultLocale.html">getDefaultLocale</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/currentLocaleIsDefault.html">currentLocaleIsDefault</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasLocaleInSession.html">hasLocaleInSession</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleInSession.html">getLocaleInSession</a>()
+                    </li>
+<li>private int <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/startSession.html">startSession</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveCurrentLocaleToSession.html">saveCurrentLocaleToSession</a>()
+                    </li>
+<li>public array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTranslations.html">getTranslations</a>()
+                    </li>
+<li>public null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveTranslations.html">saveTranslations</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/postedValuesToTranslation.html">postedValuesToTranslation</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/addOrCreateString.html">addOrCreateString</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hardTranslationSetMerge.html">hardTranslationSetMerge</a>()
+                    </li>
+<li>public void <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/generateTranslationFiles.html">generateTranslationFiles</a>()
+                    </li>
+<li>public boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isCurrentlyActive.html">isCurrentlyActive</a>()
+                    </li>
+<li>public Locale <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocale.html">setLocale</a>()
+                    </li>
+<li>private string <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getSessionKey.html">getSessionKey</a>()
+                    </li>
+<li>protected null <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/registerHooks.html">registerHooks</a>()
+                    </li>
+<li>private boolean <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks</a>()
+                    </li>
+<li>protected array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/parseLocalesFromConfig.html">parseLocalesFromConfig</a>()
+                    </li>
+<li>private array <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleRegexUrls.html">getLocaleRegexUrls</a>()
+                    </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+<thead><tr>
+<th>Name</th>
+              <th>Value</th>
+            </tr></thead>
+<tbody><tr>
+<td id="DOMAIN">DOMAIN</td>
+              <td>"strata_i18n"</td>
+            </tr></tbody>
+</table>
+<h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+<li id="currentLocale">
+              <strong>$currentLocale</strong>
+              <br><span class="indent">Locale @var Locale The locale that is currently active.</span>
+            </li>
+            <li id="locales">
+<strong>$locales</strong>
+                —
+                array</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+<li id="getLocaleRegexUrls">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleRegexUrls.html">getLocaleRegexUrls()</a>
+                — Returns the list of urls identifiers of all the active locales</li>
+            <li id="getSessionKey">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getSessionKey.html">getSessionKey()</a>
+                — Returns the localization key in the session array.</li>
+            <li id="shouldAddWordpressHooks">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/shouldAddWordpressHooks.html">shouldAddWordpressHooks()</a>
+                — Specifies whether the class should be registering the Wordpress hooks.</li>
+            <li id="startSession">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/startSession.html">startSession()</a>
+                — Starts a PHP session if there was none started already.</li>
+          </ul>
+<h4>protected</h4>
+          <ul>
+<li id="parseLocalesFromConfig">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/parseLocalesFromConfig.html">parseLocalesFromConfig()</a>
+                — Goes through the list of localization configurations values in Strata's configuration file.</li>
+            <li id="registerHooks">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/registerHooks.html">registerHooks()</a>
+                — Registers the Wordpress hooks required by this class.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="addOrCreateString">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/addOrCreateString.html">addOrCreateString()</a>
+            </li>
+            <li id="applyCurrentLanguageByContext">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyCurrentLanguageByContext.html">applyCurrentLanguageByContext()</a>
+                — Sets the locale based on the current process' context.</li>
+            <li id="applyLocale">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/applyLocale.html">applyLocale()</a>
+                — Assigns the theme's textdomain to Wordpress using 'load_theme_textdomain'.</li>
+            <li id="currentLocaleIsDefault">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/currentLocaleIsDefault.html">currentLocaleIsDefault()</a>
+                — Specifies whether the application is currently using the default locale.</li>
+            <li id="generateTranslationFiles">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/generateTranslationFiles.html">generateTranslationFiles()</a>
+            </li>
+            <li id="getCurrentLocale">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocale.html">getCurrentLocale()</a>
+                — Returns the locale that is currently used.</li>
+            <li id="getCurrentLocaleCode">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getCurrentLocaleCode.html">getCurrentLocaleCode()</a>
+                — Returns the code of the locale that is currently used.</li>
+            <li id="getDefaultLocale">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getDefaultLocale.html">getDefaultLocale()</a>
+                — Returns the default locale based off the localization documentation specified in the Strata configuration file.</li>
+            <li id="getLocaleByCode">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByCode.html">getLocaleByCode()</a>
+                — Returns a Locale object by code</li>
+            <li id="getLocaleByUrl">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleByUrl.html">getLocaleByUrl()</a>
+                — Returns a Locale object by locale url key</li>
+            <li id="getLocaleInSession">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocaleInSession.html">getLocaleInSession()</a>
+                — Returns the locale that is saved in the session array.</li>
+            <li id="getLocales">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getLocales.html">getLocales()</a>
+                — Returns the list of Locale objects</li>
+            <li id="getTextdomain">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTextdomain.html">getTextdomain()</a>
+                — Returns the current textdomain as defined either from Strata's configuration or the default value.</li>
+            <li id="getTranslations">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/getTranslations.html">getTranslations()</a>
+                — Loads the translations from the locale's PO file and returns the list.</li>
+            <li id="hardTranslationSetMerge">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hardTranslationSetMerge.html">hardTranslationSetMerge()</a>
+            </li>
+            <li id="hasActiveLocales">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasActiveLocales.html">hasActiveLocales()</a>
+                — Specifies if the list of active locales has possible elements</li>
+            <li id="hasDefaultLocale">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasDefaultLocale.html">hasDefaultLocale()</a>
+                — Specifies whether the application has a default locale defined.</li>
+            <li id="hasLocaleInSession">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/hasLocaleInSession.html">hasLocaleInSession()</a>
+                — Checks whether a locale has been stored in the user's session.</li>
+            <li id="initialize">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/initialize.html">initialize()</a>
+                — The class initializer is meant to be called only once during the Strata kickoff.</li>
+            <li id="isCurrentlyActive">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isCurrentlyActive.html">isCurrentlyActive()</a>
+                — Compares $locale to the current locale to see if it is currently active.</li>
+            <li id="isLocalized">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/isLocalized.html">isLocalized()</a>
+                — Specifies whether localization settings are present in Strata's configuration array.</li>
+            <li id="postedValuesToTranslation">
+              <a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/postedValuesToTranslation.html">postedValuesToTranslation()</a>
+            </li>
+            <li id="resetLocaleCache">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/resetLocaleCache.html">resetLocaleCache()</a>
+                — Clears the current locale cache and rebuilds it based on the loaded configuration.</li>
+            <li id="saveCurrentLocaleToSession">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveCurrentLocaleToSession.html">saveCurrentLocaleToSession()</a>
+                — The goal of dumping the code in the session vars is only to keep a fallback value when someone (for instance) renders a 404 when browsing in a locale. Having the value in session prevents the 404 to be rendered with the default locale.</li>
+            <li id="saveTranslations">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/saveTranslations.html">saveTranslations()</a>
+                — Saves the translations to .po and .mo files.</li>
+            <li id="setCurrentLocaleByContext">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setCurrentLocaleByContext.html">setCurrentLocaleByContext()</a>
+                — Sets the current locale based on either a GET parameter or the Locale URL prefix.</li>
+            <li id="setLocale">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocale.html">setLocale()</a>
+                — Sets the active locale</li>
+            <li id="setLocaleSet">
+<a title="Strata\I18n\i18n" href="../classes/Strata_I18n_i18n/setLocaleSet.html">setLocaleSet()</a>
+                — Sets the set of available locales.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

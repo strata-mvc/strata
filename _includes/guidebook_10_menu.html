@@ -1,0 +1,33 @@
+{% assign top_most_sections = "Getting Started|Digging In" | split: "|" %}
+<nav>
+    <ul>
+        {% for section in top_most_sections %}
+            <li>
+                {{section}}
+                <ul>
+                    {% for node in site.pages %}
+                        {% if node.entry_point == true %}
+                            {% if node.group_theme == section %}
+                                <li>
+                                    <a href="{{node.url}}" {% if page.url == node.url %}class="active"{% endif %}>
+                                        {{node.title}}
+                                    </a>
+
+                                    <ul>
+                                        {% for chapter in site.pages %}
+                                            {% if chapter.menu_group == node.menu_group %}
+                                                {% if chapter.entry_point != true %}
+                                                    <li><a href="{{chapter.url}}" {% if page.url == chapter.url %}class="active"{% endif %}>{{chapter.title}}</a></li>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

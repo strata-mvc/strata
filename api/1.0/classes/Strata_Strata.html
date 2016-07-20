@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Strata</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata">Strata</a>
+          </li>
+          <li class="separator">Strata</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\</small>Strata</h1>
+        <h4>Running Strata instance</h4>
+        <p></p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Strata
+                extends <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">StrataContext</a>
+            {<br><ul class="none">
+<li>// Inherited constants from <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">StrataContext</a>
+</li>
+<li>const <a href="#STRATA_KEY">STRATA_KEY</a> = "__Strata__";</li>
+</ul>
+<ul class="none">
+<li>// members</li>
+<li>protected <span title="Strata\bool">bool</span> <a href="#members">$ready</a> =
+                        null;
+                    </li>
+<li>protected <span title="Composer\Autoload\ClassLoader">ClassLoader</span> <a href="#members">$loader</a> =
+                        null;
+                    </li>
+<li>private <span title="Strata\Middleware\MiddlewareLoader">MiddlewareLoader</span> <a href="#members">$middlewareLoader</a> =
+                        null;
+                    </li>
+<li>public <span title="Strata\I18n\I18n">I18n</span> <a href="#members">$i18n</a> =
+                        null;
+                    </li>
+<li>public <span title="Strata\Router\Router">Router</span> <a href="#members">$router</a> =
+                        null;
+                    </li>
+<li>public <span title="Strata\Router\Rewriter">Rewriter</span> <a href="#members">$rewriter</a> =
+                        null;
+                    </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/init.html">init</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/run.html">run</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/loadConfiguration.html">loadConfiguration</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setLoader.html">setLoader</a>()
+                    </li>
+<li>public ClassLoader <a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/loadMiddleware.html">loadMiddleware</a>()
+                    </li>
+<li>public array <a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeWordpressFixture.html">includeWordpressFixture</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureLoggers.html">configureLoggers</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/log.html">log</a>()
+                    </li>
+<li>public Logger <a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/displayRuntimeHeader.html">displayRuntimeHeader</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/setupUrlRouting.html">setupUrlRouting</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/addAppRoutes.html">addAppRoutes</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureCustomPostType.html">configureCustomPostType</a>()
+                    </li>
+<li>protected null <a title="Strata\Strata" href="../classes/Strata_Strata/saveConfigurationFileSettings.html">saveConfigurationFileSettings</a>()
+                    </li>
+<li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils</a>()
+                    </li>
+<li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHandler.html">registerErrorHandler</a>()
+                    </li>
+<li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeToolset.html">includeToolset</a>()
+                    </li>
+<li>public null <a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace</a>()
+                    </li>
+<li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/improveSecurity.html">improveSecurity</a>()
+                    </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Core\StrataContext">StrataContext</span>
+</li>
+<li>public static Strata <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app</a>()
+                        </li>
+<li>public static Router <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/router.html">router</a>()
+                        </li>
+<li>public static Rewriter <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/rewriter.html">rewriter</a>()
+                        </li>
+<li>public static mixed <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace</a>()
+                        </li>
+<li>public static String <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace</a>()
+                        </li>
+<li>public static Strata <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/bootstrap.html">bootstrap</a>()
+                        </li>
+<li>public static array <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile</a>()
+                        </li>
+<li>public static bool <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/writeProjectConfigFile.html">writeProjectConfigFile</a>()
+                        </li>
+<li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload</a>()
+                        </li>
+<li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface</a>()
+                        </li>
+<li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer</a>()
+                        </li>
+<li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getRootPath.html">getRootPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getThemesPath.html">getThemesPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getPluginsPath.html">getPluginsPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMUPluginsPath.html">getMUPluginsPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getWordpressPath.html">getWordpressPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getSRCPath.html">getSRCPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getTmpPath.html">getTmpPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLogPath.html">getLogPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getTestPath.html">getTestPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getCommandPath.html">getCommandPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getShellPath.html">getShellPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDbPath.html">getDbPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getBinPath.html">getBinPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getUtilityPath.html">getUtilityPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getConfigurationPath.html">getConfigurationPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getVendorPath.html">getVendorPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getOurVendorPath.html">getOurVendorPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getProjectConfigurationFilePath.html">getProjectConfigurationFilePath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLocalePath.html">getLocalePath</a>()
+                        </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span>
+</li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li>
+<li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li>
+<li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li>
+<li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li>
+<li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+<li>
+              <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">Strata\Core\StrataContext</a>
+            </li>
+          </ul>
+<h4>Uses</h4>
+          <ul>
+<li>
+              <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a>
+            </li>
+          </ul>
+</div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+<thead><tr>
+<th>Name</th>
+              <th>Value</th>
+            </tr></thead>
+<tbody><tr>
+<td id="STRATA_KEY">STRATA_KEY</td>
+              <td>"__Strata__"</td>
+            </tr></tbody>
+</table>
+<h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+<li id="middlewareLoader">
+<strong>$middlewareLoader</strong>
+                —
+                <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader.html">Strata\Middleware\MiddlewareLoader</a>
+</li>
+          </ul>
+<h4>protected</h4>
+          <ul class="members">
+<li id="configuration">
+<strong>$configuration</strong>
+                —
+                array<br><span class="indent">The configuration cache.</span>
+</li>
+            <li id="loader">
+<strong>$loader</strong>
+                —
+                <a title="Composer\Autoload\ClassLoader" href="../classes/Composer_Autoload_ClassLoader.html">Composer\Autoload\ClassLoader</a>
+</li>
+            <li id="ready">
+<strong>$ready</strong>
+                —
+                <a title="Strata\bool" href="../classes/Strata_bool.html">Strata\bool</a>
+</li>
+          </ul>
+<h4>public</h4>
+          <ul class="members">
+<li id="i18n">
+<strong>$i18n</strong>
+                —
+                <a title="Strata\I18n\I18n" href="../classes/Strata_I18n_I18n.html">Strata\I18n\I18n</a>
+</li>
+            <li id="rewriter">
+<strong>$rewriter</strong>
+                —
+                <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter.html">Strata\Router\Rewriter</a>
+</li>
+            <li id="router">
+<strong>$router</strong>
+                —
+                <a title="Strata\Router\Router" href="../classes/Strata_Router_Router.html">Strata\Router\Router</a>
+</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+<li id="addAppRoutes">
+<a title="Strata\Strata" href="../classes/Strata_Strata/addAppRoutes.html">addAppRoutes()</a>
+                — Adds the pre-configured routes to the global router.</li>
+            <li id="configureCustomPostType">
+<a title="Strata\Strata" href="../classes/Strata_Strata/configureCustomPostType.html">configureCustomPostType()</a>
+                — Configures the post type loader</li>
+            <li id="configureLoggers">
+<a title="Strata\Strata" href="../classes/Strata_Strata/configureLoggers.html">configureLoggers()</a>
+                — Configures the global Logger instance</li>
+            <li id="displayRuntimeHeader">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/displayRuntimeHeader.html">displayRuntimeHeader()</a>
+            </li>
+            <li id="improveSecurity">
+<a title="Strata\Strata" href="../classes/Strata_Strata/improveSecurity.html">improveSecurity()</a>
+                — Improves PHP and Wordpress security of the application.</li>
+            <li id="includeToolset">
+<a title="Strata\Strata" href="../classes/Strata_Strata/includeToolset.html">includeToolset()</a>
+                — Includes the global toolset functions in the current scope and returns whether the include was successful or not.</li>
+            <li id="includeUtils">
+<a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils()</a>
+                — Includes the debugger classes.</li>
+            <li id="loadMiddleware">
+<a title="Strata\Strata" href="../classes/Strata_Strata/loadMiddleware.html">loadMiddleware()</a>
+                — Looks through all the packages in composer and if they are in our Strata\Middleware namespace, we try to autoload them.</li>
+            <li id="localize">
+<a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize()</a>
+                — Initializes the internationalization class</li>
+            <li id="saveConfigurationFileSettings">
+<a title="Strata\Strata" href="../classes/Strata_Strata/saveConfigurationFileSettings.html">saveConfigurationFileSettings()</a>
+                — Saves an array of configuration attribute to the application.</li>
+            <li id="saveCurrentPID">
+<a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID()</a>
+                — Save the latest PHP process ID as a temp file in case an infinite loop or any unexpected error breaks the server and prevents Strata from closing it automatically.</li>
+            <li id="setupUrlRouting">
+<a title="Strata\Strata" href="../classes/Strata_Strata/setupUrlRouting.html">setupUrlRouting()</a>
+                — Configures the default router object.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="addProjectNamespaces">
+<a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces()</a>
+                — Adds the current project namespace to the project's class loader.</li>
+            <li id="getLoader">
+<a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader()</a>
+                — Returns a class loader to the application</li>
+            <li id="getLogger">
+<a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger()</a>
+                — Returns a reference to the Logger. When no $name is provided, attempts to return the most plausible one.</li>
+            <li id="getMiddlewares">
+<a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares()</a>
+                — Returns the list of declared middlewares in the application.</li>
+            <li id="includeGettextFixture">
+<a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture()</a>
+                — Loads up a gettext fixture against which the tests will test.</li>
+            <li id="includeWordpressFixture">
+<a title="Strata\Strata" href="../classes/Strata_Strata/includeWordpressFixture.html">includeWordpressFixture()</a>
+                — Loads up a Wordpress fixture on which the tests will register filters and actions.</li>
+            <li id="init">
+<a title="Strata\Strata" href="../classes/Strata_Strata/init.html">init()</a>
+                — Prepares the Strata object for running.</li>
+            <li id="loadConfiguration">
+<a title="Strata\Strata" href="../classes/Strata_Strata/loadConfiguration.html">loadConfiguration()</a>
+                — Loads the configuration file and assigns it to the running app.</li>
+            <li id="log">
+<a title="Strata\Strata" href="../classes/Strata_Strata/log.html">log()</a>
+                — Sends a message to the active logger</li>
+            <li id="registerErrorHandler">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/registerErrorHandler.html">registerErrorHandler()</a>
+            </li>
+            <li id="run">
+<a title="Strata\Strata" href="../classes/Strata_Strata/run.html">run()</a>
+                — Kickstarts the Router and preload the custom post types associated to the project.</li>
+            <li id="setDefaultNamespace">
+<a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace()</a>
+                — Sets the default namespaces Strata knows about in the project's Composer's ClassLoader.</li>
+            <li id="setLoader">
+<a title="Strata\Strata" href="../classes/Strata_Strata/setLoader.html">setLoader()</a>
+                — Assigns a class loader to the application</li>
+            <li id="takeOverWPCLIArgs">
+<a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs()</a>
+                — ~/src/Scripts/runner.php and WP-CLI command line scripts do not have the same amount of parameters. This takes over WP-CLI's order of arguments and registers them back for Strata.</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">Strata\Core\StrataContext</a>
+</h3>
+          <h4>public</h4>
+          <ul>
+<li id="app">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/app.html">app()</a>
+                — Returns the global instantiated Strata object.</li>
+            <li id="bootstrap">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/bootstrap.html">bootstrap()</a>
+                — Bootstraps Strata by creating a Strata instance and saving it to the global scope.</li>
+            <li id="config">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config()</a>
+                — Fetches a value in the app's configuration array</li>
+            <li id="getBinPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getBinPath.html">getBinPath()</a>
+                — Returns the path to the bin folder.</li>
+            <li id="getCommandPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getCommandPath.html">getCommandPath()</a>
+                — Returns the path to the project shell command folder.</li>
+            <li id="getConfigurationPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getConfigurationPath.html">getConfigurationPath()</a>
+                — Returns the path to the configuration folder.</li>
+            <li id="getDbPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDbPath.html">getDbPath()</a>
+                — Returns the path to the db folder.</li>
+            <li id="getDefaultNamespace">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace()</a>
+                — Returns the default application namespace within Strata</li>
+            <li id="getDefaultTestNamespace">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace()</a>
+                — Returns the default namespace for tests within Strata</li>
+            <li id="getLocalePath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLocalePath.html">getLocalePath()</a>
+                — Returns the path to Strata's locale configurations.</li>
+            <li id="getLogPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getLogPath.html">getLogPath()</a>
+                — Returns the path to the log folder.</li>
+            <li id="getMUPluginsPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMUPluginsPath.html">getMUPluginsPath()</a>
+                — Returns the Wordpress must-use plugins path of the project.</li>
+            <li id="getNamespace">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace()</a>
+                — Returns the current project's root namespace key</li>
+            <li id="getOurVendorPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getOurVendorPath.html">getOurVendorPath()</a>
+                — Returns the path to Strata's vendor folder.</li>
+            <li id="getPluginsPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getPluginsPath.html">getPluginsPath()</a>
+                — Returns the Wordpress plugins path of the project.</li>
+            <li id="getProjectConfigurationFilePath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getProjectConfigurationFilePath.html">getProjectConfigurationFilePath()</a>
+                — Returns the path to Strata's configuration file.</li>
+            <li id="getRootPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getRootPath.html">getRootPath()</a>
+                — Returns the root path of the project.</li>
+            <li id="getSRCPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getSRCPath.html">getSRCPath()</a>
+                — Returns the path to the src folder.</li>
+            <li id="getShellPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getShellPath.html">getShellPath()</a>
+                — Returns the path to the project shell folder.</li>
+            <li id="getTestPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getTestPath.html">getTestPath()</a>
+                — Returns the path to the test folder.</li>
+            <li id="getThemesPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getThemesPath.html">getThemesPath()</a>
+                — Returns the Wordpress themes path of the project.</li>
+            <li id="getTmpPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getTmpPath.html">getTmpPath()</a>
+                — Returns the path to the temporary folder.</li>
+            <li id="getUtilityPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getUtilityPath.html">getUtilityPath()</a>
+                — Returns the path to the utility folder.</li>
+            <li id="getVendorPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getVendorPath.html">getVendorPath()</a>
+                — Returns the path to the project's vendor folder.</li>
+            <li id="getWordpressPath">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getWordpressPath.html">getWordpressPath()</a>
+                — Returns the Wordpress path.</li>
+            <li id="isBundledServer">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer()</a>
+                — Returns whether Strata is running from the command line server</li>
+            <li id="isCommandLineInterface">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface()</a>
+                — Returns whether Strata is running from the CLI tool but not the bundled server.</li>
+            <li id="isDev">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev()</a>
+                — Returns if Strata is running in development mode.</li>
+            <li id="parseProjectConfigFile">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile()</a>
+                — Loads ~/config/strata.php, cleans up the data and saves it as the active configuration of the current instance of the Strata object.</li>
+            <li id="requireVendorAutoload">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload()</a>
+                — Includes Composer's generator autoloader from the vendor directory</li>
+            <li id="rewriter">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/rewriter.html">rewriter()</a>
+                — Returns the current URL rewriter of the instantiated Strata object.</li>
+            <li id="router">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/router.html">router()</a>
+                — Returns the current URL router of the instantiated Strata object.</li>
+            <li id="writeProjectConfigFile">
+<a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/writeProjectConfigFile.html">writeProjectConfigFile()</a>
+                — Write the configuration object to the project's configuration file.</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a>
+</h3>
+          <h4>protected</h4>
+          <ul>
+<li id="normalizeConfiguration">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="configure">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
+            <li id="getConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
+            <li id="hasConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Utility\Inflector</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">Inflector</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\Utility\</small>Inflector</h1>
+        <h4>Pluralize and singularize English words.</h4>
+        <p>Inflector pluralizes and singularizes English nouns.<br>Used by CakePHP's naming conventions throughout the framework.</p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Inflector
+            {<br><ul class="none">
+<li>// members</li>
+<li>protected static array <a href="#members">$_plural</a> =
+                        ;
+                    </li>
+<li>protected static array <a href="#members">$_singular</a> =
+                        ;
+                    </li>
+<li>protected static array <a href="#members">$_uninflected</a> =
+                        ;
+                    </li>
+<li>protected static array <a href="#members">$_transliteration</a> =
+                        ;
+                    </li>
+<li>protected static array <a href="#members">$_cache</a> =
+                        ;
+                    </li>
+<li>protected static array <a href="#members">$_initialState</a> =
+                        ;
+                    </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>protected static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/_cache.html">_cache</a>()
+                    </li>
+<li>public static void <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/reset.html">reset</a>()
+                    </li>
+<li>public static void <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/rules.html">rules</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/pluralize.html">pluralize</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/singularize.html">singularize</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/camelize.html">camelize</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/underscore.html">underscore</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/humanize.html">humanize</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/tableize.html">tableize</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/classify.html">classify</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/variable.html">variable</a>()
+                    </li>
+<li>public static string <a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/slug.html">slug</a>()
+                    </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+<li id="_cache">
+<strong>$_cache</strong>
+                —
+                array<br><span class="indent">Method cache array.</span>
+</li>
+            <li id="_initialState">
+<strong>$_initialState</strong>
+                —
+                array<br><span class="indent">The initial state of Inflector so reset() works.</span>
+</li>
+            <li id="_plural">
+<strong>$_plural</strong>
+                —
+                array<br><span class="indent">Plural inflector rules</span>
+</li>
+            <li id="_singular">
+<strong>$_singular</strong>
+                —
+                array<br><span class="indent">Singular inflector rules</span>
+</li>
+            <li id="_transliteration">
+<strong>$_transliteration</strong>
+                —
+                array<br><span class="indent">Default map of accented and special characters to ASCII characters</span>
+</li>
+            <li id="_uninflected">
+<strong>$_uninflected</strong>
+                —
+                array<br><span class="indent">Words that should not be inflected</span>
+</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+<li id="_cache">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/_cache.html">_cache()</a>
+                — Cache inflected values, and return if already available</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="camelize">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/camelize.html">camelize()</a>
+                — Returns the given lower_case_and_underscored_word as a CamelCased word.</li>
+            <li id="classify">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/classify.html">classify()</a>
+                — Returns Cake model class name ("Person" for the database table "people".) for given database table.</li>
+            <li id="humanize">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/humanize.html">humanize()</a>
+                — Returns the given underscored_word_group as a Human Readable Word Group.</li>
+            <li id="pluralize">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/pluralize.html">pluralize()</a>
+                — Return $word in plural form.</li>
+            <li id="reset">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/reset.html">reset()</a>
+                — Clears Inflectors inflected value caches. And resets the inflection rules to the initial values.</li>
+            <li id="rules">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/rules.html">rules()</a>
+                — Adds custom inflection $rules, of either 'plural', 'singular' or 'transliteration' $type.</li>
+            <li id="singularize">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/singularize.html">singularize()</a>
+                — Return $word in singular form.</li>
+            <li id="slug">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/slug.html">slug()</a>
+                — Returns a string with all spaces converted to underscores (by default), accented characters converted to non-accented characters, and non word characters removed.</li>
+            <li id="tableize">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/tableize.html">tableize()</a>
+                — Returns corresponding table name for given model $className. ("people" for the model class "Person").</li>
+            <li id="underscore">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/underscore.html">underscore()</a>
+                — Returns the given camelCasedWord as an underscored_word.</li>
+            <li id="variable">
+<a title="Strata\Utility\Inflector" href="../classes/Strata_Utility_Inflector/variable.html">variable()</a>
+                — Returns camelBacked version of an underscored string.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

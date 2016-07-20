@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Model\CustomPostType\Query</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Model_CustomPostType">Strata\Model\CustomPostType</a>
+          </li>
+          <li class="separator">Query</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\Model\CustomPostType\</small>Query</h1>
+        <h4>The query is a cache of filters that will be eventually sent to WP_Query. It allows chaining and object-oriented manipulations of database queries.</h4>
+        <p></p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Query
+            {<br><ul class="none">
+<li>// members</li>
+<li>protected array <a href="#members">$filters</a> =
+                        ;
+                    </li>
+<li>private integer <a href="#members">$executionStart</a> =
+                        0;
+                    </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/fetch.html">fetch</a>()
+                    </li>
+<li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/query.html">query</a>()
+                    </li>
+<li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/listing.html">listing</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/date.html">date</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orderby.html">orderby</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/direction.html">direction</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/type.html">type</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/status.html">status</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/where.html">where</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orWhere.html">orWhere</a>()
+                    </li>
+<li>public string <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/paginate.html">paginate</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/limit.html">limit</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/offset.html">offset</a>()
+                    </li>
+<li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getFilters.html">getFilters</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/applyFilters.html">applyFilters</a>()
+                    </li>
+<li>protected mixed <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/executeFilteredQuery.html">executeFilteredQuery</a>()
+                    </li>
+<li>protected Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/carryOverIncompatibleQueries.html">carryOverIncompatibleQueries</a>()
+                    </li>
+<li>protected Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/relationsToQueries.html">relationsToQueries</a>()
+                    </li>
+<li>protected Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/andRelationToPostIn.html">andRelationToPostIn</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/resetQueryRelation.html">resetQueryRelation</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getRelationQuery.html">getRelationQuery</a>()
+                    </li>
+<li>public boolean <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/hasRelationQuery.html">hasRelationQuery</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/setQueryRelation.html">setQueryRelation</a>()
+                    </li>
+<li>public Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/prepareRelationFilter.html">prepareRelationFilter</a>()
+                    </li>
+<li>protected Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/metaWhere.html">metaWhere</a>()
+                    </li>
+<li>protected Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/taxWhere.html">taxWhere</a>()
+                    </li>
+<li>private Query <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/addRelationQuery.html">addRelationQuery</a>()
+                    </li>
+<li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryStart.html">logQueryStart</a>()
+                    </li>
+<li>protected void <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryCompletion.html">logQueryCompletion</a>()
+                    </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+<li id="executionStart">
+<strong>$executionStart</strong>
+                —
+                integer</li>
+          </ul>
+<h4>protected</h4>
+          <ul class="members">
+<li id="filters">
+<strong>$filters</strong>
+                —
+                array<br><span class="indent">A list of WP_Query filters. Defaults to a list of published posts ordered by name alphabetically unpaged.</span>
+</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+<li id="addRelationQuery">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/addRelationQuery.html">addRelationQuery()</a>
+                — Adds a new relation filter</li>
+          </ul>
+<h4>protected</h4>
+          <ul>
+<li id="andRelationToPostIn">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/andRelationToPostIn.html">andRelationToPostIn()</a>
+                — Takes in a resultsets and maps it to a 'post__in' condition to port the results to the main query.</li>
+            <li id="carryOverIncompatibleQueries">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/carryOverIncompatibleQueries.html">carryOverIncompatibleQueries()</a>
+                — If previous meta queries are set, they may prevent the combination of both 'AND' and 'OR' relation. Carries over the exclusive fields as a list of IDs to apply in a Query with a new meta_query relation type.</li>
+            <li id="executeFilteredQuery">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/executeFilteredQuery.html">executeFilteredQuery()</a>
+                — Executes the query based on the current filters.</li>
+            <li id="logQueryCompletion">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryCompletion.html">logQueryCompletion()</a>
+                — Logs the completion time of the database query.</li>
+            <li id="logQueryStart">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/logQueryStart.html">logQueryStart()</a>
+                — Sets the beginning microtime of when the query has begun reading the database.</li>
+            <li id="metaWhere">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/metaWhere.html">metaWhere()</a>
+                — This does not actually set the meta_query parameter. It is used to build a more complex AND/OR logical fetch.</li>
+            <li id="relationsToQueries">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/relationsToQueries.html">relationsToQueries()</a>
+                — Interprets the branching queries into resultsets that will be applied to the main query</li>
+            <li id="taxWhere">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/taxWhere.html">taxWhere()</a>
+                — This does not actually set the meta_query parameter. It is used to build a more complex AND/OR logical fetch.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="applyFilters">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/applyFilters.html">applyFilters()</a>
+                — Applies multiple filters to the current query in one pass.</li>
+            <li id="date">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/date.html">date()</a>
+                — Adds a 'data_query' condition</li>
+            <li id="direction">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/direction.html">direction()</a>
+                — Adds an 'order' condition</li>
+            <li id="fetch">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/fetch.html">fetch()</a>
+                — Fetches the set matching the current state of the filters.</li>
+            <li id="getFilters">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getFilters.html">getFilters()</a>
+                — Gets the list of active filters.</li>
+            <li id="getRelationQuery">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/getRelationQuery.html">getRelationQuery()</a>
+                — Fetches a special relation query</li>
+            <li id="hasRelationQuery">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/hasRelationQuery.html">hasRelationQuery()</a>
+                — Confirms if there is a special filter for a relation query.</li>
+            <li id="limit">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/limit.html">limit()</a>
+                — Sets the 'post_per_page' condition on the current query.</li>
+            <li id="listing">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/listing.html">listing()</a>
+                — Returns a custom listing based on the search results.</li>
+            <li id="offset">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/offset.html">offset()</a>
+                — Sets the 'offset' condition on the current query.</li>
+            <li id="orWhere">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orWhere.html">orWhere()</a>
+                — Allows for branching of query conditions.</li>
+            <li id="orderby">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/orderby.html">orderby()</a>
+                — Adds an 'orderby' condition.</li>
+            <li id="paginate">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/paginate.html">paginate()</a>
+                — Paginates the current query using paginate_links()</li>
+            <li id="prepareRelationFilter">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/prepareRelationFilter.html">prepareRelationFilter()</a>
+                — Prepopulates a special relation query</li>
+            <li id="query">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/query.html">query()</a>
+                — Executes the query using the current filters.</li>
+            <li id="resetQueryRelation">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/resetQueryRelation.html">resetQueryRelation()</a>
+                — Removes the query relationships that matter only to Strata.</li>
+            <li id="setQueryRelation">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/setQueryRelation.html">setQueryRelation()</a>
+                — Sets a new relationship query.</li>
+            <li id="status">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/status.html">status()</a>
+                — Adds a 'post_status' condition</li>
+            <li id="type">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/type.html">type()</a>
+                — Adds a 'post_type' condition</li>
+            <li id="where">
+<a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/where.html">where()</a>
+                — Adds any type of condition.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

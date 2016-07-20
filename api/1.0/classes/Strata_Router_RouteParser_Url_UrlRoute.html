@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Router\RouteParser\Url\UrlRoute</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router_RouteParser_Url">Strata\Router\RouteParser\Url</a>
+          </li>
+          <li class="separator">UrlRoute</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\Router\RouteParser\Url\</small>UrlRoute</h1>
+        <h4>Handles routes generated for the AltoRouter class.</h4>
+        <p></p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class UrlRoute
+                extends <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Route</a>
+            {<br><ul class="none">
+<li>// constants</li>
+<li>const DYNAMIC_PARSE = "__strata_dynamic_parse__";</li>
+</ul>
+<ul class="none">
+<li>// members</li>
+<li>private <span title="AltoRouter">AltoRouter</span> <a href="#members">$altoRouter</a> =
+                        null;
+                    </li>
+<li>private array <a href="#members">$applicationRoutes</a> =
+                        ;
+                    </li>
+<li>private array <a href="#members">$modelRoutes</a> =
+                        ;
+                    </li>
+<li>private array <a href="#members">$automatedRoutes</a> =
+                        ;
+                    </li>
+</ul>
+<ul class="none">
+<li>// Inherited members from <span title="Strata\Router\RouteParser\Route">Route</span>
+</li>
+<li>public <span title="Strata\Router\RouteParser\Strata\Controller\Controller">Controller</span> <a href="#members">$controller</a>;
+                        </li>
+<li>public string <a href="#members">$action</a>;
+                        </li>
+<li>public array <a href="#members">$arguments</a>;
+                        </li>
+<li>protected boolean <a href="#members">$cancelled</a>;
+                        </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listen.html">listen</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addPossibilities.html">addPossibilities</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addResourcePossibility.html">addResourcePossibility</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addModelPossibilities.html">addModelPossibilities</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/start.html">start</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/end.html">end</a>()
+                    </li>
+<li>protected void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/assignViewVars.html">assignViewVars</a>()
+                    </li>
+<li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/process.html">process</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseRouteConfiguration.html">parseRouteConfiguration</a>()
+                    </li>
+<li>private boolean <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/isDynamic.html">isDynamic</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseDynamicRoute.html">parseDynamicRoute</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseMatchedRoute.html">parseMatchedRoute</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleRouterAnswer.html">handleRouterAnswer</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer</a>()
+                    </li>
+<li>private void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer</a>()
+                    </li>
+<li>private Controller <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getControllerFromMatch.html">getControllerFromMatch</a>()
+                    </li>
+<li>private Controller <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch</a>()
+                    </li>
+<li>private string <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromMatch.html">getActionFromMatch</a>()
+                    </li>
+<li>private string <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch</a>()
+                    </li>
+<li>private array <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromMatch.html">getArgumentsFromMatch</a>()
+                    </li>
+<li>private array <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch</a>()
+                    </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Router\RouteParser\Route">Route</span>
+</li>
+<li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
+                        </li>
+<li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
+                        </li>
+<li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start</a>()
+                        </li>
+<li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
+                        </li>
+<li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
+                        </li>
+<li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
+                        </li>
+<li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
+                        </li>
+<li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation</a>()
+                        </li>
+<li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart</a>()
+                        </li>
+<li>protected void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion</a>()
+                        </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+<li>
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a>
+            </li>
+          </ul>
+</div>
+        <h2 id="tasks">Tasks</h2>
+        <table class="styled">
+<thead><tr>
+<th style="width:3em;">Line</th>
+              <th>Task</th>
+            </tr></thead>
+<tr>
+<td class="nummeric">133+</td>
+            <td>Is it required to send variables to the globals array?</td>
+          </tr>
+</table>
+<h2 id="constants">Constants</h2>
+        <table class="styled">
+<thead><tr>
+<th>Name</th>
+              <th>Value</th>
+            </tr></thead>
+<tbody><tr>
+<td id="DYNAMIC_PARSE">DYNAMIC_PARSE</td>
+              <td>"__strata_dynamic_parse__"</td>
+            </tr></tbody>
+</table>
+<h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+<li id="altoRouter">
+<strong>$altoRouter</strong>
+                —
+                <a title="AltoRouter" href="../classes/AltoRouter.html">AltoRouter</a><br><span class="indent">Altorouter is the library that does the heavy lifting for us.</span>
+</li>
+            <li id="applicationRoutes">
+<strong>$applicationRoutes</strong>
+                —
+                array</li>
+            <li id="automatedRoutes">
+<strong>$automatedRoutes</strong>
+                —
+                array</li>
+            <li id="modelRoutes">
+<strong>$modelRoutes</strong>
+                —
+                array</li>
+          </ul>
+<h4>protected</h4>
+          <ul class="members">
+<li id="cancelled">
+<strong>$cancelled</strong>
+                —
+                boolean</li>
+          </ul>
+<h4>public</h4>
+          <ul class="members">
+<li id="action">
+<strong>$action</strong>
+                —
+                string</li>
+            <li id="arguments">
+<strong>$arguments</strong>
+                —
+                array</li>
+            <li id="controller">
+<strong>$controller</strong>
+                —
+                <a title="Strata\Router\RouteParser\Strata\Controller\Controller" href="../classes/Strata_Router_RouteParser_Strata_Controller_Controller.html">Strata\Router\RouteParser\Strata\Controller\Controller</a>
+</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+<li id="getActionFromDynamicMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch()</a>
+                — Gets the action from the dynamic match.</li>
+            <li id="getActionFromMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromMatch.html">getActionFromMatch()</a>
+                — Gets the action from the AltoRouter match.</li>
+            <li id="getArgumentsFromDynamicMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch()</a>
+                — Gets the possible additional arguments from the dynamic match.</li>
+            <li id="getArgumentsFromMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromMatch.html">getArgumentsFromMatch()</a>
+                — Gets the possible additional arguments from the route match.</li>
+            <li id="getControllerFromDynamicMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch()</a>
+                — Gets a Controller instance form the dynamic information</li>
+            <li id="getControllerFromMatch">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getControllerFromMatch.html">getControllerFromMatch()</a>
+                — Gets a Controller instance form the matched information</li>
+            <li id="handleDynamicRouterAnswer">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleDynamicRouterAnswer.html">handleDynamicRouterAnswer()</a>
+                — Handles dynamic routes</li>
+            <li id="handleMatchedRouterAnswer">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleMatchedRouterAnswer.html">handleMatchedRouterAnswer()</a>
+                — Handles matched routes</li>
+            <li id="handleRouterAnswer">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/handleRouterAnswer.html">handleRouterAnswer()</a>
+                — Analized the route match to see if it's a dynamic or matched route.</li>
+            <li id="isDynamic">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/isDynamic.html">isDynamic()</a>
+                — Defines whether the $route is dynamic based on it's length</li>
+            <li id="parseDynamicRoute">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseDynamicRoute.html">parseDynamicRoute()</a>
+                — Adds a new dynamic route</li>
+            <li id="parseMatchedRoute">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseMatchedRoute.html">parseMatchedRoute()</a>
+                — Adds a matched route</li>
+            <li id="parseRouteConfiguration">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/parseRouteConfiguration.html">parseRouteConfiguration()</a>
+                — Adds a new route configuration.</li>
+          </ul>
+<h4>protected</h4>
+          <ul>
+<li id="assignViewVars">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/assignViewVars.html">assignViewVars()</a>
+                — This function is required to send variables in Wordpress' scope.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="addModelPossibilities">
+              <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addModelPossibilities.html">addModelPossibilities()</a>
+            </li>
+            <li id="addPossibilities">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addPossibilities.html">addPossibilities()</a>
+                — {@inheritdoc}</li>
+            <li id="addResourcePossibility">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addResourcePossibility.html">addResourcePossibility()</a>
+                — Adds a resourced based route possibility based on a custom post type.</li>
+            <li id="end">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/end.html">end()</a>
+                — {@inheritdoc}</li>
+            <li id="listen">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listen.html">listen()</a>
+                — Configures the routing deamon from the routes that have been set during bootstrap.</li>
+            <li id="process">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/process.html">process()</a>
+                — {@inheritdoc}</li>
+            <li id="start">
+<a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/start.html">start()</a>
+                — {@inheritdoc}</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route.html">Strata\Router\RouteParser\Route</a>
+</h3>
+          <h4>protected</h4>
+          <ul>
+<li id="logRouteCancellation">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCancellation.html">logRouteCancellation()</a>
+                — Logs a message explaining how the route was canceled.</li>
+            <li id="logRouteCompletion">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteCompletion.html">logRouteCompletion()</a>
+                — Logs a message warning a routing process had end.</li>
+            <li id="logRouteStart">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/logRouteStart.html">logRouteStart()</a>
+                — Logs a message warning a routing process had begun.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="addPossibilities">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
+                — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
+            <li id="cancel">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
+                — Cancels the current route process.</li>
+            <li id="end">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
+                — Ends the handling of the route.</li>
+            <li id="isCancelled">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled()</a>
+                — Specifies whether the current route has been canceled.</li>
+            <li id="isValid">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid()</a>
+                — Verifies that the current values can be ran by the router.</li>
+            <li id="process">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
+                — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
+            <li id="start">
+<a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
+                — Starts the handling of the route.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

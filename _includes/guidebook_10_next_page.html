@@ -1,0 +1,52 @@
+{% assign active_menu_group = page.menu_group %}
+{% assign take_next_one = false %}
+
+{% for node in site.pages %}
+    {% if node.menu_group == active_menu_group %}
+
+        {% if take_next_one == true %}
+            {% if node.entry_point != true %}
+                <footer>
+                    <a href="{{node.url}}">Next: {{node.title}}</a>
+                </footer>
+                {% assign take_next_one = false %}
+            {% endif %}
+        {% endif %}
+
+
+        {% if node.url == page.url %}
+            {% if node.guidebook_home == true %}
+                <h3>Topics</h3>
+                <ul>
+                    {% for chapter in site.pages %}
+                        {% if chapter.entry_point == true %}
+                            {% if node.url != chapter.url %}
+                                <li><a href="{{chapter.url}}">{{chapter.title}}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+
+                {% assign take_next_one = true %}
+
+                {% if node.entry_point == true %}
+                    {% if node.menu_group == active_menu_group %}
+                        <h3>Chapters</h3>
+                        <ul>
+                            {% for chapter in site.pages %}
+                                {% if chapter.menu_group == node.menu_group %}
+                                    {% if chapter.entry_point != true %}
+                                        <li><a href="{{chapter.url}}">{{chapter.title}}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+
+            {% endif %}
+        {% endif %}
+
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Controller\Request</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Controller">Strata\Controller</a>
+          </li>
+          <li class="separator">Request</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\Controller\</small>Request</h1>
+        <h4>Handles safe access to HTTP request data, whether from POST, GET, files or cookies.</h4>
+        <p>It encodes data accordingly and does basic data integrity validation.</p>
+        <ul></ul>
+<h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Request
+            {<br><ul class="none">
+<li>// members</li>
+<li>private array <a href="#members">$_GET</a> =
+                        ;
+                    </li>
+<li>private array <a href="#members">$_COOKIE</a> =
+                        ;
+                    </li>
+<li>private array <a href="#members">$_POST</a> =
+                        ;
+                    </li>
+<li>private array <a href="#members">$_FILES</a> =
+                        ;
+                    </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/__construct.html">__construct</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPost.html">isPost</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isGet.html">isGet</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPut.html">isPut</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPatch.html">isPatch</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isDelete.html">isDelete</a>()
+                    </li>
+<li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setPost.html">setPost</a>()
+                    </li>
+<li>public void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setGet.html">setGet</a>()
+                    </li>
+<li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/get.html">get</a>()
+                    </li>
+<li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/post.html">post</a>()
+                    </li>
+<li>public array <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/file.html">file</a>()
+                    </li>
+<li>public array <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/data.html">data</a>()
+                    </li>
+<li>public mixed <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/cookie.html">cookie</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasPost.html">hasPost</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasCookie.html">hasCookie</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFiles.html">hasFiles</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/honeypotValidates.html">honeypotValidates</a>()
+                    </li>
+<li>public boolean <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/nonceValidates.html">nonceValidates</a>()
+                    </li>
+<li>public string <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/generateNonceKey.html">generateNonceKey</a>()
+                    </li>
+<li>private null <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/buildRequestData.html">buildRequestData</a>()
+                    </li>
+<li>private void <a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/addFilesList.html">addFilesList</a>()
+                    </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+<li id="_COOKIE">
+<strong>$_COOKIE</strong>
+                —
+                array<br><span class="indent">A cache of the parsed Cookie values in the current request.</span>
+</li>
+            <li id="_FILES">
+<strong>$_FILES</strong>
+                —
+                array<br><span class="indent">A cache of the parsed Files values in the current request.</span>
+</li>
+            <li id="_GET">
+<strong>$_GET</strong>
+                —
+                array<br><span class="indent">A cache of the parsed GET values in the current request.</span>
+</li>
+            <li id="_POST">
+<strong>$_POST</strong>
+                —
+                array<br><span class="indent">A cache of the parsed POST values in the current request.</span>
+</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+<li id="addFilesList">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/addFilesList.html">addFilesList()</a>
+                — Adds uploaded files to the $data array.</li>
+            <li id="buildRequestData">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/buildRequestData.html">buildRequestData()</a>
+                — Goes through the PHP request data, sanitizes and strips additional characters added along the way.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="__construct">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/__construct.html">__construct()</a>
+                — PHP request data is parsed upon each Request instantiation.</li>
+            <li id="cookie">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/cookie.html">cookie()</a>
+                — Returns the cookie parameter matching $key.</li>
+            <li id="data">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/data.html">data()</a>
+                — Returns the POST form parameters created using the FormHelper</li>
+            <li id="file">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/file.html">file()</a>
+                — Returns the file parameter matching $key.</li>
+            <li id="generateNonceKey">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/generateNonceKey.html">generateNonceKey()</a>
+                — Generated a Wordpress nonce value.</li>
+            <li id="get">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/get.html">get()</a>
+                — Returns the GET parameter matching $key.</li>
+            <li id="hasCookie">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasCookie.html">hasCookie()</a>
+                — Informs whether the cookie parameter matching $key has a value.</li>
+            <li id="hasFile">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFile.html">hasFile()</a>
+                — Informs whether the file parameter matching $key has a value.</li>
+            <li id="hasFiles">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasFiles.html">hasFiles()</a>
+                — Returns whether the request contains uploaded files</li>
+            <li id="hasGet">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasGet.html">hasGet()</a>
+                — Informs whether the GET parameter matching $key has a value.</li>
+            <li id="hasPost">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/hasPost.html">hasPost()</a>
+                — Informs whether the POST parameter matching $key has a value.</li>
+            <li id="honeypotValidates">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/honeypotValidates.html">honeypotValidates()</a>
+                — Returns whether the honeypots validates. It is expected that the $name input did not send any value when posting.</li>
+            <li id="isDelete">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isDelete.html">isDelete()</a>
+                — Checks if the current value is of type DELETE.</li>
+            <li id="isGet">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isGet.html">isGet()</a>
+                — Checks if the current value is of type GET.</li>
+            <li id="isPatch">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPatch.html">isPatch()</a>
+                — Checks if the current value is of type PATCH.</li>
+            <li id="isPost">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPost.html">isPost()</a>
+                — Checks if the current value is of type POST.</li>
+            <li id="isPut">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/isPut.html">isPut()</a>
+                — Checks if the current value is of type PUT.</li>
+            <li id="nonceValidates">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/nonceValidates.html">nonceValidates()</a>
+                — Attempts to confirm the validation of the Wordpress nonce.</li>
+            <li id="post">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/post.html">post()</a>
+                — Returns the POST parameter matching $key.</li>
+            <li id="requestValidates">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/requestValidates.html">requestValidates()</a>
+                — Returns whether the request can validate it's nonce and it's honeypot.</li>
+            <li id="setGet">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setGet.html">setGet()</a>
+                — Sets a value in Strata's version of the GET array</li>
+            <li id="setPost">
+<a title="Strata\Controller\Request" href="../classes/Strata_Controller_Request/setPost.html">setPost()</a>
+                — Sets a value in Strata's version of the POST array</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

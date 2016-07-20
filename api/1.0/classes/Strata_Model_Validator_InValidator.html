@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>
+Strata\Model\Validator\InValidator</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+<!--
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-1624062-10', 'auto');
+    ga('send', 'pageview');
+  </script>
+  -->
+</head>
+
+  <body>
+
+    <header class="site-header">
+        <h1><a href="/">Strata</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/api/1.0/">API</a></li>
+                <li><a href="/hands-on/1.0/">Hands-On</a></li>
+                <li><a href="https://gitter.im/francoisfaubert/strata">Support</a></li>
+                <li><a href="https://github.com/francoisfaubert/strata/">Github</a></li>
+                <li>
+                    <button class="menu-icon">
+                        <svg viewBox="0 0 18 15">
+                            <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                            <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                            <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="api">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+<li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Model_Validator">Strata\Model\Validator</a>
+          </li>
+          <li class="separator">InValidator</li>
+        </ul>
+</div>
+      <section><h1 id="introduction">
+<small>Strata\Model\Validator\</small>InValidator</h1>
+        <h4></h4>
+        <p></p>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class InValidator
+                extends <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Validator</a>
+            {<br><ul class="none">
+<li>// Inherited members from <span title="Strata\Model\Validator\Validator">Validator</span>
+</li>
+<li>protected string <a href="#members">$errorMessage</a>;
+                        </li>
+</ul>
+<ul class="none">
+<li>// methods</li>
+<li>public void <a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/init.html">init</a>()
+                    </li>
+<li>public void <a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/test.html">test</a>()
+                    </li>
+<li>private void <a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/getAllowedValues.html">getAllowedValues</a>()
+                    </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Model\Validator\Validator">Validator</span>
+</li>
+<li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li>
+<li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li>
+<li>public static void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li>
+<li>public void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init</a>()
+                        </li>
+<li>public boolean <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test</a>()
+                        </li>
+<li>public [type] <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage</a>()
+                        </li>
+<li>public string <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage</a>()
+                        </li>
+<li>protected void <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getTextdomain.html">getTextdomain</a>()
+                        </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Core\StrataObjectTrait">StrataObjectTrait</span>
+</li>
+<li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory</a>()
+                        </li>
+<li>public static array <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes</a>()
+                        </li>
+<li>public static mixed <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                        </li>
+<li>public static string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName</a>()
+                        </li>
+<li>public string <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName</a>()
+                        </li>
+</ul>
+<ul class="none">
+<li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span>
+</li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
+                        </li>
+<li>public void <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig</a>()
+                        </li>
+<li>public boolean <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations</a>()
+                        </li>
+<li>public array <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration</a>()
+                        </li>
+<li>protected null <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration</a>()
+                        </li>
+</ul>
+
+            }<br>
+</div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+<li>
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Strata\Model\Validator\Validator</a>
+            </li>
+          </ul>
+</div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+<li id="configuration">
+<strong>$configuration</strong>
+                —
+                array<br><span class="indent">The configuration cache.</span>
+</li>
+            <li id="errorMessage">
+<strong>$errorMessage</strong>
+                —
+                string</li>
+          </ul>
+</div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+<li id="getAllowedValues">
+              <a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/getAllowedValues.html">getAllowedValues()</a>
+            </li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="init">
+<a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/init.html">init()</a>
+                — {@inheritdoc}</li>
+            <li id="test">
+<a title="Strata\Model\Validator\InValidator" href="../classes/Strata_Model_Validator_InValidator/test.html">test()</a>
+                — {@inheritdoc}</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator.html">Strata\Model\Validator\Validator</a>
+</h3>
+          <h4>protected</h4>
+          <ul>
+<li id="getTextdomain">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getTextdomain.html">getTextdomain()</a>
+            </li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="getClassNameSuffix">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getClassNameSuffix.html">getClassNameSuffix()</a>
+            </li>
+            <li id="getFactoryScopes">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getFactoryScopes.html">getFactoryScopes()</a>
+            </li>
+            <li id="getMessage">
+<a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getMessage.html">getMessage()</a>
+                — Fetches the global error message for this validation.</li>
+            <li id="getNamespaceStringInStrata">
+              <a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+            </li>
+            <li id="init">
+<a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/init.html">init()</a>
+                — Initiates the validator object. Useful for inheritance and translating error labels.</li>
+            <li id="setMessage">
+<a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/setMessage.html">setMessage()</a>
+                — Sets the global error message for this validation.</li>
+            <li id="test">
+<a title="Strata\Model\Validator\Validator" href="../classes/Strata_Model_Validator_Validator/test.html">test()</a>
+                — The actual test function.</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait.html">Strata\Core\StrataObjectTrait</a>
+</h3>
+          <h4>public</h4>
+          <ul>
+<li id="factory">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/factory.html">factory()</a>
+                — Instantiates an object that uses the StrataObjectTrait which class name matches the $name value.</li>
+            <li id="generateClassName">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassName.html">generateClassName()</a>
+                — Generates a valid class name from the $name value.</li>
+            <li id="generateClassPath">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/generateClassPath.html">generateClassPath()</a>
+                — Generates a possible namespace and classname combination of a Strata objecy. Mainly used to avoid hardcoding the '\\View\\Helper\\' string everywhere (or whatever else would the namespace have been).</li>
+            <li id="getClassNameSuffix">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — Returns the default class name suffix for this object.</li>
+            <li id="getFactoryScopes">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getFactoryScopes.html">getFactoryScopes()</a>
+                — Returns scopes in which Strata will look in to load objects.</li>
+            <li id="getNamespaceStringInStrata">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — Returns the default namespace path.</li>
+            <li id="getShortName">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/getShortName.html">getShortName()</a>
+                — Returns this object's class name without the full namespace.</li>
+            <li id="staticFactory">
+<a title="Strata\Core\StrataObjectTrait" href="../traits/Strata_Core_StrataObjectTrait/staticFactory.html">staticFactory()</a>
+                — Instantiates an object of the current class.</li>
+          </ul>
+<h3>Inherited from <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait.html">Strata\Core\StrataConfigurableTrait</a>
+</h3>
+          <h4>protected</h4>
+          <ul>
+<li id="normalizeConfiguration">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/normalizeConfiguration.html">normalizeConfiguration()</a>
+                — Normalizes the configuration cache. This will only run once on the object. It is mainly a safegard against a badly configured value cache.</li>
+          </ul>
+<h4>public</h4>
+          <ul>
+<li id="configure">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/configure.html">configure()</a>
+                — Instantiate the configuration cache to the state supplied by $config.</li>
+            <li id="containsConfigurations">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
+                — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
+            <li id="getConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
+                — Fetches a value in the configuration array</li>
+            <li id="getConfiguration">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfiguration.html">getConfiguration()</a>
+                — Returns the object's complete configuration cache.</li>
+            <li id="hasConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/hasConfig.html">hasConfig()</a>
+                — Confirms the presence of a value in the custom post type's configuration array</li>
+            <li id="setConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig()</a>
+                — Saves a value in the object's configuration array for the duration of the runtime.</li>
+          </ul>
+</div>
+        
+        </section>
+</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br clear="all">
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+            <p>&copy; Strata 2016</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/assets/scripts/strata.js"></script>
+
+  </body>
+</html>

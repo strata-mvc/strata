@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="guidebook">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <aside>
+                    {% capture navigation %}
+                        {% include guidebook_10_menu.html %}
+                    {% endcapture %}
+                    {{ navigation | strip_newlines }}
+                </aside>
+            </div>
+            <div class="col-md-9">
+                <article>
+                    <header>
+                        <h1>{{ page.title }}</h1>
+                    </header>
+
+                    {{ content }}
+
+                    {% capture next_page %}
+                        {% include guidebook_10_next_page.html %}
+                    {% endcapture %}
+                    {{ next_page | strip_newlines }}
+
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

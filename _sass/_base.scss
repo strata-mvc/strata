@@ -1,3 +1,21 @@
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $grey-color;
+        }
+    }
+}
+
 /**
  * Reset some basic elements
  */
@@ -19,8 +37,7 @@ body {
     line-height: $base-line-height;
     color: $text-color;
     background-color: $background-color;
-    margin-top: 92px;
-    font-weight:300;
+    padding-top: 110px;
 }
 
 
@@ -36,6 +53,16 @@ ul, ol, dl, figure,
 }
 
 
+/**
+ * Lists
+ */
+ul {
+    li {
+        margin-left: 1.25em;
+    }
+}
+
+
 
 /**
  * Images
@@ -46,164 +73,50 @@ img {
 }
 
 
+.site-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    font-size:14px;
 
-/**
- * Figures
- */
-figure > img {
-    display: block;
-}
+    height: 55px;
+    line-height: 55px;
+    margin: 38px 48px;
 
-figcaption {
-    font-size: $small-font-size;
-}
-
-
-
-/**
- * Lists
- */
-ul, ol {
-    margin-left: $spacing-unit;
-}
-
-li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
-}
-
-
-
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
-}
-
-
-
-/**
- * Links
- */
-a {
-    color: $brand-color;
-    text-decoration: none;
-
-    &:visited {
-        color: darken($brand-color, 15%);
+    h1 {
+        float: left;
+        margin: 0;
     }
 
-    &:hover {
-        color: $text-color;
-        text-decoration: underline;
-    }
-}
+    nav {
+        float: right;
 
+        ul {
+            margin: 0;
+            padding:0;
+        }
 
-
-/**
- * Blockquotes
- */
-blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-
-
-/**
- * Code formatting
- */
-pre,
-code {
-    font-size: 13px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #f8f8f8;
-    color: #333;
-    font-family: Consolas, Monaco, 'Andale Mono', monospace;
-}
-
-code {
-    padding: 3px;
-    margin:0 2px;
-}
-
-pre {
-    padding: 8px 12px;
-    overflow: auto;
-
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-
-strong {
-    font-weight: 400;
-}
-
-/**
- * Wrapper
- */
-.wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
-    }
-}
-
-
-
-/**
- * Clearfix
- */
-%clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
-
-
-
-/**
- * Icons
- */
-.icon {
-
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-
-        path {
-            fill: $grey-color;
+        li {
+            display: inline;
         }
     }
 }
+
+
+.action-button {
+    background: #00e9da;
+    color: #fff;
+    border-radius: 56px;
+    box-shadow: 0 13px 15px 0 rgba(0, 0, 0, .5);
+    display: inline-block;
+    line-height: 112px;
+    height: 112px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 112px;
+}
+
+
