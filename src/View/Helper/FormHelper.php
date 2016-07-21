@@ -204,16 +204,21 @@ class FormHelper extends Helper
         $fieldHasErrors = false;
 
         if (!is_null($this->associatedEntity)) {
-            $errors = (array)$this->associatedEntity->getValidationErrors();
-            if (array_key_exists($name, $errors)) {
+            // Checkboxes may be posted has data[name][0] and therefore
+            // we need to remove it to get the absolute field name.
+            $validationName = $options["type"] === "checkbox" ?
+                preg_replace('/\[\d+\]$/', '', $name) :
+                $name;
+
+            if ($this->associatedEntity->hasErrors($validationName)) {
                 if ((bool)$options['error']) {
-                    $errorHtml = $this->generateInlineErrors($name);
+                    $errorHtml = $this->generateInlineErrors($validationName);
                 }
                 $fieldHasErrors = true;
                 $options['class'] .= " error ";
             }
-            unset($options["error"]);
         }
+        unset($options["error"]);
 
         $label = "";
         if (!is_null($options['label'])) {
@@ -411,12 +416,6 @@ class FormHelper extends Helper
      */
     protected function generateLabel($options)
     {
-        $options += array(
-            "id"    => "",
-            "class" => "",
-            "label" => "",
-        );
-
         return sprintf('<label for="%s" class="%s">%s</label>', $options['id'], $options['class'], $options['label']);
     }
 
