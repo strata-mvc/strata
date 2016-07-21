@@ -376,12 +376,24 @@ class ModelEntity
     {
         $errors = $this->getValidationErrors();
 
-        if (array_key_exists($name, $errors)) {
+        if ($this->hasErrors($name)) {
             return $errors[$name];
         }
 
         return array();
     }
+
+    /**
+     * Checks for errors on a precise field.
+     * @param  string $name An attribute name
+     * @return bool
+     */
+    public function hasErrors($name)
+    {
+        return array_key_exists($name, $this->getValidationErrors());
+    }
+
+
 
     /**
      * Saves the model entity the current post type based on the
