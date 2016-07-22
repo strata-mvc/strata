@@ -476,6 +476,24 @@ class ModelEntity
     }
 
     /**
+     * Sets the current value of each entity attributes back to null.
+     */
+    public function resetAttributeValues()
+    {
+        foreach ($this->getAttributeNames() as $attributeName) {
+            $this->resetAttributeValue($attributeName);
+        }
+    }
+
+    /**
+     * Sets the current value of an attribute back to null.
+     */
+    public function resetAttributeValue($attributeName)
+    {
+        $this->{$attributeName} = null;
+    }
+
+    /**
      * Checks whether the specified attribute has declared any validations.
      * @param  string  $attr
      * @return boolean
