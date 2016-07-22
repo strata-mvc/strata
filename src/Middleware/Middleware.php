@@ -2,6 +2,8 @@
 
 namespace Strata\Middleware;
 
+use Strata\Core\StrataObjectTrait;
+
 /**
  * The base Middleware class.
  */

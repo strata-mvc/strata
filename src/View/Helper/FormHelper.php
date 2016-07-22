@@ -416,6 +416,12 @@ class FormHelper extends Helper
      */
     protected function generateLabel($options)
     {
+        $options += array(
+            "id"    => "",
+            "class" => "",
+            "label" => "",
+        );
+
         return sprintf('<label for="%s" class="%s">%s</label>', $options['id'], $options['class'], $options['label']);
     }
 
