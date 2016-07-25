@@ -8,7 +8,7 @@ menu_group: debugging
 
 Strata declares a global function named `debug()`. This function is very useful while developing because it allows you to dump object values both in the HTML and in the logs.
 
-Should you have previously declared your own global function named `debug` before Strata is executed, we will not inject our version of the function.
+Should you have previously declared your own global function named `debug` before Strata is executed, Strata's version will not be injected over the predefined one.
 
 The function accepts anything for as many parameters as you would like.
 
@@ -21,7 +21,7 @@ The function accepts anything for as many parameters as you would like.
 
 Would print the following in your logs:
 
-![Debug output](/images/debug-sample.png)
+![Debug output](/assets/images/debug-sample.png)
 
 
 

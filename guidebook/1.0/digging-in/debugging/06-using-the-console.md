@@ -6,7 +6,7 @@ covered_tags: development, console
 menu_group: debugging
 ---
 
-Should you wish to debug areas of your code that does not require a visual output from an HTTP server, you may want to test using the bundled Console.
+Should you wish to debug areas of your code that do not require visual output from an HTTP server, you may want to test using the bundled Console. This is one of the most efficient way of testing Query chaining within Strata.
 
 From the root of your project, launch a new Console using the command line interface:
 
@@ -14,6 +14,6 @@ From the root of your project, launch a new Console using the command line inter
 $ ./strata console
 {% endhighlight %}
 
-From there you may call your models and test complex query chaining for instance:
+From there you may call your models and test which values they may return:
 
-![Console to test queries](/images/console-sample.png)
+![Console to test queries](/assets/images/console-sample.png)

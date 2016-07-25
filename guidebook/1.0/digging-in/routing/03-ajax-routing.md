@@ -64,7 +64,7 @@ class AjaxController extends AppController {
             ->first();
 
         $this->view->render(array(
-            "Content-type" => "text/javascript",
+            "Content-type" => "application/json",
             "content" => $data
         ));
     }

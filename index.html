@@ -2,10 +2,55 @@
 layout: home
 ---
 
-<section class="step lead">
-    <p>Strata is a <strong>development framework</strong> that gives you a stable <strong>environment</strong> for creating Wordpress projects. It allows you to <strong>organize your code outside of the templating engine</strong>.</p>
-    <p>It keeps Wordpress's functions, filters and actions unmodified while doing so.</p>
-</section>
+<div class="hero">
+    <p class="lead">Development framework for MVC Wordpress projects</p>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row presentation">
+
+
+        <aside class="terminal">
+            <div class="header">~/src/Controller/SongController.php</div>
+            <div class="contents">
+{% highlight php linenos %}
+<?php
+namespace App\Controller;
+
+use App\Model\Song;
+
+class SongController extends AppController {
+
+    public $shortcodes = array(
+        "list_songs" => "getSongListing"
+    );
+
+    public function getSongListing()
+    {
+        $list = Song::repo()
+            ->onlyGlamRock()
+            ->listing("ID", "post_title");
+
+        return "<p>" . implode(", ", $list) . "</p>";
+    }
+}
+{% endhighlight %}
+            </div>
+        </aside>
+
+        <div class="col-sm-7">
+            <article>
+                <span class="number">1</span>
+                <h3>Application logic outside template file</h3>
+                <p>Strata is a development framework that provides tools for creating Wordpress projects. It allows you to organize your code outside of the template engine.</p>
+                <p>It keeps Wordpress's functions, filters and actions unmodified while doing so.</p>
+            </article>
+        </div>
+    </div>
+</div>
+
+
 
 <div class="step details">
 
@@ -40,5 +85,5 @@ layout: home
 
 <div class="step">
     <h1>Documentation</h1>
-    <p>You can learn more about Strata by reading <a href="{{ site.baseurl }}/docs/">our documentation</a> and inspecting the <a href="{{ site.baseurl }}/api/">API</a>.</p>
+    <p>You can learn more about Strata by reading <a href="/guidebook/1.0/">our documentation</a> and inspecting the <a href="/api/1.0/">API</a>.</p>
 </div>

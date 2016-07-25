@@ -8,7 +8,7 @@ menu_group: handling-requests
 
 On each instantiation of the Controller object a Request object is created. It is the wrapper around the current HTTP request. Use this wrapper to safely obtain HTTP request and cookie values.
 
-You may also define a new instance of `Request` in one of your object to gain its functionality anywhere else.
+You may also define another instance of `Request` in one of your object to gain its functionality anywhere else. Understand that data from the original Controller's request object will not transfer to other request instances.
 
 {% highlight php linenos %}
 <?php
@@ -25,7 +25,6 @@ class MyOtherApiService {
         $this->request = new Request();
     }
 }
-?>
 {% endhighlight %}
 
 ## Determining HTTP Request Method
@@ -59,7 +58,7 @@ You can *obtain* the current value stored in each of the request types datasourc
 
 ## Using it in a Controller
 
-This example illustrates the many ways of using the `Request` object in a Controller except for the file handling capabilities which will be explained further on.
+This example illustrates the many ways of using the `Request` object in a Controller.
 
 {% highlight php linenos %}
 <?php
@@ -84,7 +83,6 @@ class SongsController extends AppController {
     public function save()
     {
         if ($this->request->isPost()) {
-
             // This expects a form input named <input name="song[id]" ... >
             // Obtains the equivalent of $_POST['song']['id'].
             debug($this->request->post("song.id"));
@@ -95,5 +93,4 @@ class SongsController extends AppController {
         }
     }
 }
-?>
 {% endhighlight %}

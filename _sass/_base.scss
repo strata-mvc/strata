@@ -37,7 +37,6 @@ body {
     line-height: $base-line-height;
     color: $text-color;
     background-color: $background-color;
-    padding-top: 110px;
 }
 
 
@@ -68,27 +67,26 @@ ul {
  * Images
  */
 img {
+    display: block;
     max-width: 100%;
     vertical-align: middle;
+    border: 5px solid #113d4e;
+    margin: auto;
+    border-radius: 3px;
 }
 
+h1, h2, h3, h4 {
+    color: #062a37;
+}
 
 .site-header {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    font-size:14px;
-
-    height: 55px;
-    line-height: 55px;
-    margin: 38px 48px;
+    line-height: 110px;
+    position: relative;
+    z-index: 3;
 
     h1 {
-        float: left;
-        margin: 0;
+        margin:0;
+        display: inline;
     }
 
     nav {
@@ -105,18 +103,34 @@ img {
     }
 }
 
+@media (max-width: $screen-md-min) {
+    .site-header {
+        line-height: 50px;
 
-.action-button {
-    background: #00e9da;
-    color: #fff;
-    border-radius: 56px;
-    box-shadow: 0 13px 15px 0 rgba(0, 0, 0, .5);
-    display: inline-block;
-    line-height: 112px;
-    height: 112px;
+        nav {
+            float: none;
+            margin: auto;
+        }
+
+    }
+}
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+    background:#efefef;
+    border-top: 1px solid $grey-color-light;
+    color: $grey-color;
+    padding: $spacing-unit 0;
     text-align: center;
-    text-transform: uppercase;
-    width: 112px;
+    font-size: $small-font-size;
+
+    p {
+        margin: auto;
+        margin-bottom: 0.5em;
+    }
 }
 
 

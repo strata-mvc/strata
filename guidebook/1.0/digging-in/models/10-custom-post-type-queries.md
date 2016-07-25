@@ -6,9 +6,9 @@ covered_tags: models, custom-post-types, queries
 menu_group: models
 ---
 
-Strata Models generate `Query` adapters that hold configuration data and can be chained or manipulated before triggering the query lookup.
+Strata Models generate `Strata\Model\CustomPostType\Query` adapters that hold configuration data and can be chained or manipulated before triggering the query lookup.
 
-Up to the moment when `fetch()` is called, you can manipulate the query parameters at no cost.
+Up to the moment when `fetch()` or any of the executing commands are called, you can manipulate the query parameters at no cost.
 
 It offers some of the advantages of a full-fledged ORM without bastardizing Wordpress's `WP_Query`.
 
@@ -16,7 +16,6 @@ The following example shows how to query published posts ordered by the menu ord
 
 {% highlight php linenos %}
 <?php
-// src/Model/Artist.php
 namespace App;
 
 class Artist extends AppCustomPostType {
@@ -36,10 +35,10 @@ class Artist extends AppCustomPostType {
         return $this->orderby("menu_order");
     }
 }
-?>
+
 {% endhighlight %}
 
-You can call this query from your controllers by accessing the repository using `repo()`:
+You can call this query from your controllers by accessing the model repository using `repo()` :
 
 {% highlight php linenos %}
 <?php
@@ -49,12 +48,11 @@ You can call this query from your controllers by accessing the repository using 
 
 ## $this->where($field, $value);
 
-Querying a Custom Post Type using `where()` will eventually bubble up to Wordpress `[WP_Query](https://developer.wordpress.org/reference/classes/wp_query/)` object.
+Querying a Custom Post Type using `where($field, $value)` will eventually bubble up to Wordpress [WP_Query](https://developer.wordpress.org/reference/classes/wp_query/) object.
 
 Each `$field` is added to an internal array that is then sent as first parameter of `WP_Query` when a call to a fetch method ends the chain.
 
 Each of the allowed values that can be sent as `$field` are the same as those documented in Wordpress codex.
-
 
 ## Conventions
 

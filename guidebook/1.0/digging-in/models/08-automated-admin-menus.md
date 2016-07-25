@@ -6,7 +6,7 @@ covered_tags: models, custom-post-types, admin, menus
 menu_group: models
 ---
 
-Registering a model will add it to the list of custom post types in Wordpress' admin sidebar with the basic 'All posts' and 'Add new' links.
+Registering a model will add it to the list of custom post types in Wordpress' administration sidebar with the basic 'All posts' and 'Add new' links.
 
 During the registering process, Strata will look for `admin_menus` on the instantiated model and will automatically configure the setup of additional menu link under the custom post type in the backend.
 
@@ -91,3 +91,4 @@ Each key of the `admin_menus` attribute array will map to a controller's method.
 In the example above, `Profile` will have two links added. The first will link to `AdminController#exportProfiles()` while the second will link to `AdminController#secondProfileAction()`.
 
 On the other hand, `Song` will only have added one link. It will attempt to call `SongController#extraSongInfo()`.
+

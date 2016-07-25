@@ -1,15 +1,15 @@
 {% assign top_most_sections = "Getting Started|Digging In" | split: "|" %}
 <nav>
-    <ul>
+    <ul class="top-level">
         {% for section in top_most_sections %}
             <li>
-                {{section}}
+                <h4>{{section}}</h4>
                 <ul>
                     {% for node in site.pages %}
                         {% if node.entry_point == true %}
                             {% if node.group_theme == section %}
-                                <li>
-                                    <a href="{{node.url}}" {% if page.url == node.url %}class="active"{% endif %}>
+                                <li {% if page.url == node.url %}class="active"{% endif %}>
+                                    <a href="{{node.url}}">
                                         {{node.title}}
                                     </a>
 
@@ -17,7 +17,7 @@
                                         {% for chapter in site.pages %}
                                             {% if chapter.menu_group == node.menu_group %}
                                                 {% if chapter.entry_point != true %}
-                                                    <li><a href="{{chapter.url}}" {% if page.url == chapter.url %}class="active"{% endif %}>{{chapter.title}}</a></li>
+                                                    <li {% if page.url == chapter.url %}class="active"{% endif %}><a href="{{chapter.url}}">{{chapter.title}}</a></li>
                                                 {% endif %}
                                             {% endif %}
                                         {% endfor %}

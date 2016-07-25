@@ -6,7 +6,7 @@ covered_tags: views, helpers
 menu_group: Helpers
 ---
 
-Helpers are loaded and sometimes configured from controllers. Within Strata, Helpers are not auto-loaded based on the type of controller. Meaning that even if the code loaded `CareerController` Strata will not attempt to load `CareerHelper` for you.
+Helpers are loaded and configured from Controllers. Within Strata Helpers are not auto-loaded based on the type of Controller. Meaning that even if a route has loaded `CareerController`, Strata will not attempt to load `CareerHelper` for you.
 
 Helpers can be loaded using any of the following methods :
 
@@ -31,7 +31,6 @@ class AppController extends StrataController
         "Gtm"
     );
 }
-?>
 {% endhighlight %}
 
 
@@ -54,7 +53,6 @@ class BusinessController extends AppController
         $this->view->loadHelper('AccessoryCategory');
     }
 }
-?>
 {% endhighlight %}
 
 

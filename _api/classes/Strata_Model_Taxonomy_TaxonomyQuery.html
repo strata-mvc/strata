@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/Taxonomy/TaxonomyQuery.php.html#line13">Source</a>
+            <a href="../source/Model/Taxonomy/TaxonomyQuery.php.html#line14">Source</a>
           </li>
         </ul>
       </nav>
@@ -79,11 +79,16 @@
                 extends <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query.html">Query</a>
             {<br/><ul class="none"><li>// members</li><li>protected array <a href="#members">$filters</a> =
                         ;
-                    </li><li>protected array <a href="#members">$taxnomonies</a> =
-                        ;
+                    </li><li>protected string <a href="#members">$taxnomony</a> =
+                        null;
+                    </li><li>protected int <a href="#members">$postId</a> =
+                        null;
+                    </li><li>protected array <a href="#members">$termLookupMode</a> =
+                        null;
                     </li></ul><ul class="none"><li>// Inherited members from <span title="Strata\Model\CustomPostType\Query">Query</span></li><li>protected array <a href="#members">$filters</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public TaxonomyQuery <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/type.html">type</a>()
-                    </li><li>public TaxonomyQuery <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/in.html">in</a>()
+                    </li><li>public TaxonomyQuery <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/againstPostId.html">againstPostId</a>()
+                    </li><li>public void <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/triggerLookupMode.html">triggerLookupMode</a>()
                     </li><li>public array <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/fetch.html">fetch</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\CustomPostType\Query">Query</span></li><li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/fetch.html">fetch</a>()
                         </li><li>public array <a title="Strata\Model\CustomPostType\Query" href="../classes/Strata_Model_CustomPostType_Query/query.html">query</a>()
@@ -135,7 +140,13 @@
             <li id="filters"><strong>$filters</strong>
                 —
                 array<br/><span class="indent">A list of WP_Query filters. Defaults to a list of published posts ordered by name alphabetically unpaged.</span></li>
-            <li id="taxnomonies"><strong>$taxnomonies</strong>
+            <li id="postId"><strong>$postId</strong>
+                —
+                int</li>
+            <li id="taxnomony"><strong>$taxnomony</strong>
+                —
+                string</li>
+            <li id="termLookupMode"><strong>$termLookupMode</strong>
                 —
                 array</li>
           </ul>
@@ -144,10 +155,13 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
+            <li id="againstPostId"><a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/againstPostId.html">againstPostId()</a>
+                — Specified the query to lookup post terms and not general taxonomies.</li>
             <li id="fetch"><a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/fetch.html">fetch()</a>
                 — Fetches the terms matching the TaxonomyQuery.</li>
-            <li id="in"><a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/in.html">in()</a>
-                — Adds a taxonomy to filter terms from</li>
+            <li id="triggerLookupMode">
+              <a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/triggerLookupMode.html">triggerLookupMode()</a>
+            </li>
             <li id="type"><a title="Strata\Model\Taxonomy\TaxonomyQuery" href="../classes/Strata_Model_Taxonomy_TaxonomyQuery/type.html">type()</a>
                 — Sets the taxonomy type</li>
           </ul>

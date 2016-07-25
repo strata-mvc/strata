@@ -6,12 +6,12 @@ covered_tags: models, custom-post-types, url-rewrite
 menu_group: models
 ---
 
-There may be cases when you need additional sub-URLs for your custom post type. For instance, you can have a tab view widget on a custom post type's `single-*.php` template upon which you want to track each tabs with a unique URLs.
+There may be cases when you need additional sub-URLs for your custom post type. For instance you can have a tab view widget on a custom post type's `single-*.php` template upon which you want to track each tabs with a unique URLs.
 
 For two tabs you would then need your application to support the following URLs :
 
 * `mydomain.com/my-custom-post-type/tab-1`
-* `mydomain.com/my-custom-post-type/tab-2`.
+* `mydomain.com/my-custom-post-type/tab-2`
 
 Strata can add these rewrite rules based on the Custom Post Type's configuration and automatically route them to a Controller.
 

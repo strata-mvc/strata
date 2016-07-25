@@ -65,7 +65,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Model/Mailer.php.html#line12">Source</a>
+            <a href="../source/Model/Mailer.php.html#line13">Source</a>
           </li>
         </ul>
       </nav>
@@ -76,18 +76,19 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class Mailer
-            {<br/><ul class="none"><li>// members</li><li>protected array <a href="#members">$headers</a> =
-                        ;
-                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/init.html">init</a>()
+            {<br/><ul class="none"><li>// methods</li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/init.html">init</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setTitle.html">setTitle</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setDestination.html">setDestination</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setContent.html">setContent</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHeaders.html">setHeaders</a>()
+                    </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHeader.html">setHeader</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/attachFile.html">attachFile</a>()
                     </li><li>public boolean <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/send.html">send</a>()
+                    </li><li>protected void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/getMergedHeaders.html">getMergedHeaders</a>()
+                    </li><li>protected void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/toHeaderString.html">toHeaderString</a>()
+                    </li><li>protected string <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/buildBCCString.html">buildBCCString</a>()
                     </li><li>public void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHtmlContentType.html">setHtmlContentType</a>()
                     </li><li>protected void <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHtmlEmails.html">setHtmlEmails</a>()
-                    </li><li>protected array <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/buildBCCList.html">buildBCCList</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span></li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
                         </li><li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
@@ -115,19 +116,22 @@
             <li id="configuration"><strong>$configuration</strong>
                 —
                 array<br/><span class="indent">The configuration cache.</span></li>
-            <li id="headers"><strong>$headers</strong>
-                —
-                array</li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="buildBCCList"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/buildBCCList.html">buildBCCList()</a>
+            <li id="buildBCCString"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/buildBCCString.html">buildBCCString()</a>
                 — Builds the BCC user list in a format wp_mail can read.</li>
+            <li id="getMergedHeaders">
+              <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/getMergedHeaders.html">getMergedHeaders()</a>
+            </li>
             <li id="setHtmlEmails"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHtmlEmails.html">setHtmlEmails()</a>
                 — Registers filters to enable or disable HTML as the email content type</li>
+            <li id="toHeaderString">
+              <a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/toHeaderString.html">toHeaderString()</a>
+            </li>
           </ul>
           <h4>public</h4>
           <ul>
@@ -141,6 +145,8 @@
                 — Sets the email contents</li>
             <li id="setDestination"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setDestination.html">setDestination()</a>
                 — Sets the email destination</li>
+            <li id="setHeader"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHeader.html">setHeader()</a>
+                — Sets an email header</li>
             <li id="setHeaders"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHeaders.html">setHeaders()</a>
                 — Sets the email headers</li>
             <li id="setHtmlContentType"><a title="Strata\Model\Mailer" href="../classes/Strata_Model_Mailer/setHtmlContentType.html">setHtmlContentType()</a>

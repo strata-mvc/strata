@@ -6,10 +6,9 @@ covered_tags: controller, views, variables
 menu_group: controllers
 ---
 
+A `View` object is associated to the active Controller object each time a route is executed. It is the interface that handles how variables are passed from Controllers to Wordpress templates.
 
-On each instantiation of the Controller object, a linked View object is created. It is the interface that handles how generated content is handled.
-
-To expose a variable and make it available to the regular Wordpress templating, use the class' `set($key, $mixed)` method. This will globally expose a variable named `$key` having a value of `$mixed` to the templates.
+To expose a variable and make it available to the regular Wordpress templating use the View object's `set($key, $mixed)` method. This will globally expose a variable named `$key` having a value of `$mixed` to the templates.
 
 In the controller :
 

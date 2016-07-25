@@ -6,9 +6,9 @@ covered_tags: views, helpers, configuration
 menu_group: Helpers
 ---
 
-Whether included from a Controller's `$helpers` attribute or by using `$this->view->loadHelper()`, both of these methods allow for a configuration array that can be sent to the helper's constructor.
+Whether it's included from a Controller's `$helpers` attribute or by using `$this->view->loadHelper()`, Helpers accept a configuration array that is sent to the helper's constructor.
 
-You can send values that you must handle yourself afterwards within the Helper. The only value Strata will actively look for is for a `name`. If it is sent as part of the configuration, the helper will be declared as the supplied variable name in the view files. Otherwise the variable name in the view is always suffixed with `Helper`.
+You can send values that you can reuse afterwards within the Helper. The only value Strata will actively look for is for a `name`. If it is sent as part of the configuration, the helper will be declared as the supplied variable name in the view files. Otherwise the variable name in the view is always suffixed with `Helper`.
 
 {% highlight php linenos %}
 <?php
@@ -27,7 +27,6 @@ class ArtistController extends AppController {
 }
 {% endhighlight %}
 
-
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -41,5 +40,4 @@ class ArtistController extends AppController {
         $this->view->loadHelper("Calendar", array("numberOfDays" => 5));
     }
 }
-?>
 {% endhighlight %}

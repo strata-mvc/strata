@@ -2,10 +2,7 @@
 layout: guidebook
 title: When should I use it?
 permalink: /guidebook/1.0/getting-started/meet-strata/when-should-i-use-it/
-
 menu_group: meet-strata
-next_page: /guidebook/1.0/getting-started/meet-strata/the-technologies-used/
-next_page_label: The technologies used
 ---
 
 You should use Strata for applications that have one or more of the following traits:
@@ -17,7 +14,7 @@ You should use Strata for applications that have one or more of the following tr
 * Is focused on slugs (or permalinks) that do not change at runtime
 * Codebase needs to be shared across a team
 
-# When you should _not_ use it
+# When to _not_ use it
 
 Strata is not intended for everything. For one thing it's absolutely not trying to replace complete standalone frameworks like CakePHP or Ruby on Rails. It is also not attempting to over-engineer a simple Wordpress blog.
 

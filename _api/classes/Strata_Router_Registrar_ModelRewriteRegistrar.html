@@ -62,7 +62,7 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Router/Registrar/ModelRewriteRegistrar.php.html#line14">Source</a>
+            <a href="../source/Router/Registrar/ModelRewriteRegistrar.php.html#line15">Source</a>
           </li>
         </ul>
       </nav>
@@ -73,14 +73,16 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class ModelRewriteRegistrar
-            {<br/><ul class="none"><li>// members</li><li>private array <a href="#members">$additionalRoutes</a> =
+            {<br/><ul class="none"><li>// members</li><li>private array <a href="#members">$collectedRewrites</a> =
+                        ;
+                    </li><li>private array <a href="#members">$collectedRoutes</a> =
                         ;
                     </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/onModelsActivated.html">onModelsActivated</a>()
-                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addRules.html">addRules</a>()
-                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addDefaultRewrites.html">addDefaultRewrites</a>()
-                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addLocalizedRewrites.html">addLocalizedRewrites</a>()
-                    </li><li>private array <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/createGeneralRouteFor.html">createGeneralRouteFor</a>()
-                    </li><li>private array <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/createRouteFor.html">createRouteFor</a>()
+                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/extractRules.html">extractRules</a>()
+                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/saveRules.html">saveRules</a>()
+                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/batchModelFileRegistrationAttempt.html">batchModelFileRegistrationAttempt</a>()
+                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/batchTaxonomyFileRegistrationAttempt.html">batchTaxonomyFileRegistrationAttempt</a>()
+                    </li><li>private void <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/attemptRuleExtraction.html">attemptRuleExtraction</a>()
                     </li></ul>
 
             }<br/></div>
@@ -88,25 +90,32 @@
         <div class="styled members">
           <h4>private</h4>
           <ul class="members">
-            <li id="additionalRoutes"><strong>$additionalRoutes</strong>
-                —
-                array<br/><span class="indent">Keeps a lot of the additional Routing routes that may have been generated while adding custom rewrite rules.</span></li>
+            <li id="collectedRewrites">
+              <strong>$collectedRewrites</strong>
+            </li>
+            <li id="collectedRoutes">
+              <strong>$collectedRoutes</strong>
+            </li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="addDefaultRewrites"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addDefaultRewrites.html">addDefaultRewrites()</a>
-                — Adds rewrite rules based on the default locale.</li>
-            <li id="addLocalizedRewrites"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addLocalizedRewrites.html">addLocalizedRewrites()</a>
-                — Adds rewrite rules based on the explicitly defined locale.</li>
-            <li id="addRules"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/addRules.html">addRules()</a>
+            <li id="attemptRuleExtraction">
+              <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/attemptRuleExtraction.html">attemptRuleExtraction()</a>
+            </li>
+            <li id="batchModelFileRegistrationAttempt">
+              <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/batchModelFileRegistrationAttempt.html">batchModelFileRegistrationAttempt()</a>
+            </li>
+            <li id="batchTaxonomyFileRegistrationAttempt">
+              <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/batchTaxonomyFileRegistrationAttempt.html">batchTaxonomyFileRegistrationAttempt()</a>
+            </li>
+            <li id="extractRules"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/extractRules.html">extractRules()</a>
                 — Add rewrite rules found in the application Custom Post Types' router configuration.</li>
-            <li id="createGeneralRouteFor"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/createGeneralRouteFor.html">createGeneralRouteFor()</a>
-                — Generated a rule readable by the Strata router which will attempt to catch all the extra rewrites.</li>
-            <li id="createRouteFor"><a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/createRouteFor.html">createRouteFor()</a>
-                — Generated a rule readable by the Strata router which will attempt to catch a precise rewrite forwarded to an explicit action.</li>
+            <li id="saveRules">
+              <a title="Strata\Router\Registrar\ModelRewriteRegistrar" href="../classes/Strata_Router_Registrar_ModelRewriteRegistrar/saveRules.html">saveRules()</a>
+            </li>
           </ul>
           <h4>public</h4>
           <ul>

@@ -77,6 +77,7 @@
                     </li><li>public static Router <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/router.html">router</a>()
                     </li><li>public static Rewriter <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/rewriter.html">rewriter</a>()
                     </li><li>public static mixed <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/config.html">config</a>()
+                    </li><li>public static I18n <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/i18n.html">i18n</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultNamespace.html">getDefaultNamespace</a>()
                     </li><li>public static String <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDefaultTestNamespace.html">getDefaultTestNamespace</a>()
@@ -87,6 +88,7 @@
                     </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface</a>()
                     </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer</a>()
                     </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev</a>()
+                    </li><li>public static boolean <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isTest.html">isTest</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getRootPath.html">getRootPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getThemesPath.html">getThemesPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getPluginsPath.html">getPluginsPath</a>()
@@ -99,6 +101,7 @@
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getCommandPath.html">getCommandPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getShellPath.html">getShellPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getDbPath.html">getDbPath</a>()
+                    </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMiddlewarePath.html">getMiddlewarePath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getBinPath.html">getBinPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getUtilityPath.html">getUtilityPath</a>()
                     </li><li>public static string <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getConfigurationPath.html">getConfigurationPath</a>()
@@ -152,6 +155,8 @@
                 — Returns the path to the log folder.</li>
             <li id="getMUPluginsPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMUPluginsPath.html">getMUPluginsPath()</a>
                 — Returns the Wordpress must-use plugins path of the project.</li>
+            <li id="getMiddlewarePath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getMiddlewarePath.html">getMiddlewarePath()</a>
+                — Returns the path to the Middleware folder.</li>
             <li id="getNamespace"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getNamespace.html">getNamespace()</a>
                 — Returns the current project's root namespace key</li>
             <li id="getOurVendorPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getOurVendorPath.html">getOurVendorPath()</a>
@@ -178,12 +183,16 @@
                 — Returns the path to the project's vendor folder.</li>
             <li id="getWordpressPath"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/getWordpressPath.html">getWordpressPath()</a>
                 — Returns the Wordpress path.</li>
+            <li id="i18n"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/i18n.html">i18n()</a>
+                — Returns the current localization object of the instantiated Strata object.</li>
             <li id="isBundledServer"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isBundledServer.html">isBundledServer()</a>
                 — Returns whether Strata is running from the command line server</li>
             <li id="isCommandLineInterface"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isCommandLineInterface.html">isCommandLineInterface()</a>
                 — Returns whether Strata is running from the CLI tool but not the bundled server.</li>
             <li id="isDev"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isDev.html">isDev()</a>
-                — Returns if Strata is running in development mode.</li>
+                — Returns whether Strata is running in development mode.</li>
+            <li id="isTest"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/isTest.html">isTest()</a>
+                — Returns whether Strata is running in test mode.</li>
             <li id="parseProjectConfigFile"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/parseProjectConfigFile.html">parseProjectConfigFile()</a>
                 — Loads ~/config/strata.php, cleans up the data and saves it as the active configuration of the current instance of the Strata object.</li>
             <li id="requireVendorAutoload"><a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext/requireVendorAutoload.html">requireVendorAutoload()</a>

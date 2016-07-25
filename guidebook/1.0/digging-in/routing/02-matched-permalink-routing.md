@@ -32,22 +32,3 @@ AS you can see, a matched route is represented by an array consisting of 3 index
 ## Complex matching patterns
 
 Under the hood Strata uses AltoRouter to match routes. As long as you specify rules using their array notation it will work as intended in Strata. More information about how you can customize the rules can be found on [Altorouter's documention page](https://github.com/dannyvankooten/AltoRouter).
-
-
-## On common destinations
-
-You can map multiple URLs to the same controller, therefore you can expect the following example to work the way you would think :
-
-{% highlight php linenos %}
-<?php
-$app = array(
-    "routes" => array(
-
-        array('GET|POST', '/en/original-english-url/', 'HelloworldController#view')
-        array('GET|POST', '/fr/traduction-francaise/', 'HelloworldController#view')
-        array('GET|POST', '/es/hola-amigo/', 'HelloworldController#view')
-
-    )
-);
-?>
-{% endhighlight %}

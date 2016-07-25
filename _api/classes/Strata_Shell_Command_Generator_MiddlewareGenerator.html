@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Shell\Command\Generator\MiddlewareGenerator</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Shell_Command_Generator">Strata\Shell\Command\Generator</a>
+          </li>
+          <li class="separator">MiddlewareGenerator</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Shell/Command/Generator/MiddlewareGenerator.php.html#line11">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Shell\Command\Generator\</small>MiddlewareGenerator</h1>
+        <h4>Generates a Strata middleware</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class MiddlewareGenerator
+                extends <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">GeneratorBase</a>
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>protected <span title="Strata\Shell\Command\Generator\StrataCommand">StrataCommand</span> <a href="#members">$command</a>;
+                        </li><li>protected  <a href="#members">$keyword</a>;
+                        </li><li>protected  <a href="#members">$classname</a>;
+                        </li><li>protected <span title="Strata\Shell\Command\StrataCommandBase">StrataCommandBase</span> <a href="#members">$writer</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/applyOptions.html">applyOptions</a>()
+                    </li><li>public void <a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generate.html">generate</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generateMiddleware.html">generateMiddleware</a>()
+                    </li><li>protected void <a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generateTest.html">generateTest</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>public void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/__construct.html">__construct</a>()
+                        </li><li>public abstract void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/applyOptions.html">applyOptions</a>()
+                        </li><li>public abstract void <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/generate.html">generate</a>()
+                        </li><li>protected ClassWriter <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/getWriter.html">getWriter</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">Strata\Shell\Command\Generator\GeneratorBase</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="classname"><strong>$classname</strong>
+                —
+                string</li>
+            <li id="command"><strong>$command</strong>
+                —
+                <a title="Strata\Shell\Command\Generator\StrataCommand" href="../classes/Strata_Shell_Command_Generator_StrataCommand.html">Strata\Shell\Command\Generator\StrataCommand</a></li>
+            <li id="keyword"><strong>$keyword</strong>
+                —
+                string</li>
+            <li id="writer"><strong>$writer</strong>
+                —
+                <a title="Strata\Shell\Command\StrataCommandBase" href="../classes/Strata_Shell_Command_StrataCommandBase.html">Strata\Shell\Command\StrataCommandBase</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="generateMiddleware"><a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generateMiddleware.html">generateMiddleware()</a>
+                — Configures the class writer and makes it generate the classes required by the object type.</li>
+            <li id="generateTest"><a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generateTest.html">generateTest()</a>
+                — Configures the class writer and makes it generate the test classes required by the object type.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="applyOptions"><a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/applyOptions.html">applyOptions()</a>
+                — {@inheritdoc}</li>
+            <li id="generate"><a title="Strata\Shell\Command\Generator\MiddlewareGenerator" href="../classes/Strata_Shell_Command_Generator_MiddlewareGenerator/generate.html">generate()</a>
+                — {@inheritdoc}</li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">Strata\Shell\Command\Generator\GeneratorBase</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="getWriter"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/getWriter.html">getWriter()</a>
+                — Obtain an instantiated ClassWriter object to create files.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="applyOptions"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/applyOptions.html">applyOptions()</a>
+                — Send option values to the generator so it can manipulate the information.</li>
+            <li id="generate"><a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase/generate.html">generate()</a>
+                — Performs all the operations required by the generator.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-07-22T15:01:12+00:00 (commit #<span title="314181b96ca9045e2e08f79e862f9c853c4a66ad">314181b</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (Francois Faubert) /
+                        Commiter: François Faubert (Francois Faubert)
+                    </p>
+              <pre class="wrapped">added middleware generator</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-02-24T02:10:42+00:00 (commit #<span title="d956bf2f65bf01e106a39c9e4430b2c0b7c9d84c">d956bf2</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved the api documentation</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-14T21:09:27+00:00 (commit #<span title="5f108b9de9ba02c212cd5982a0e7c0f8ba57578d">5f108b9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the generators so they use the strataobject trait. Ensures the generated name are compatible accross the board</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-06-29T17:15:50+00:00 (commit #<span title="a805899ad85dad86023cc7f7adfffd04a7f7cca2">a805899</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">simplified class inheritance</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-14T16:46:46+00:00 (commit #<span title="d4a8f97e644b6e90856999501c2ed827c124cef0">d4a8f97</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">typos, bug fixes, improvents to debug function (now prints in logs as well)</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-13T16:41:39+00:00 (commit #<span title="6f4b7f1e4a0cfc48ce5a18ec20fec3cee6bd2f38">6f4b7f1</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">automated end parameter, fixed issues with gnerator namespace and { character</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-05-08T17:50:03+00:00 (commit #<span title="e989ec958eeca8ab5c7ccd121a673a316160c50a">e989ec9</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">refactored the scripts; excluded the generators to their own class; allow project shell scripts</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

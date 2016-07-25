@@ -42,3 +42,5 @@ class CustomerDetailEntity extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+
+[Validators documentation ](/guidebook/1.0/digging-in/validators/) explains how to configure validators and how to create custom ones.

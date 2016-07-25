@@ -9,5 +9,4 @@ group_label: Request Handling
 group_theme: Digging In
 ---
 
-Strata attempts to offer a layer of abstraction when requests are required to handle data. This abstraction will validate data integrity, prevent exploits and normalize how you interact with form data among other things.
-
+Strata offers a layer of abstraction for capturing HTTP request data. This abstraction will validate data integrity, prevent exploits and normalize how you interact with form and cookie data.

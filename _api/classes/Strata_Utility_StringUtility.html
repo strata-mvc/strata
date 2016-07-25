@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Utility\StringUtility</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Utility">Strata\Utility</a>
+          </li>
+          <li class="separator">StringUtility</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Utility/StringUtility.php.html#line28">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Utility\</small>StringUtility</h1>
+        <h4>String handling methods.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class StringUtility
+            {<br/><ul class="none"><li>// methods</li><li>public static RFC <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/uuid.html">uuid</a>()
+                    </li><li>public static mixed <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/tokenize.html">tokenize</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/insert.html">insert</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/cleanInsert.html">cleanInsert</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/wrap.html">wrap</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/wordWrap.html">wordWrap</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/highlight.html">highlight</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/stripLinks.html">stripLinks</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/tail.html">tail</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/truncate.html">truncate</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/excerpt.html">excerpt</a>()
+                    </li><li>public static string <a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/toList.html">toList</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="cleanInsert"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/cleanInsert.html">cleanInsert()</a>
+                — Cleans up a StringUtility::insert() formatted string with given $options depending on the 'clean' key in $options. The default method used is text but html is also available. The goal of this function is to replace all whitespace and unneeded markup around placeholders that did not get replaced by StringUtility::insert().</li>
+            <li id="excerpt"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/excerpt.html">excerpt()</a>
+                — Extracts an excerpt from the text surrounding the phrase with a number of characters on each side determined by radius.</li>
+            <li id="highlight"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/highlight.html">highlight()</a>
+                — Highlights a given phrase in a text. You can specify any expression in highlighter that may include the \1 expression to include the $phrase found.</li>
+            <li id="insert"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/insert.html">insert()</a>
+                — Replaces variable placeholders inside a $str with any given $data. Each key in the $data array corresponds to a variable placeholder name in $str.</li>
+            <li id="stripLinks"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/stripLinks.html">stripLinks()</a>
+                — Strips given text of all links (&lt;a href=....).</li>
+            <li id="tail"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/tail.html">tail()</a>
+                — Truncates text starting from the end.</li>
+            <li id="toList"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/toList.html">toList()</a>
+                — Creates a comma separated list where the last two items are joined with 'and', forming natural English</li>
+            <li id="tokenize"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/tokenize.html">tokenize()</a>
+                — Tokenizes a string using $separator, ignoring any instance of $separator that appears between $leftBound and $rightBound.</li>
+            <li id="truncate"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/truncate.html">truncate()</a>
+                — Truncates text.</li>
+            <li id="uuid"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/uuid.html">uuid()</a>
+                — Generate a random UUID</li>
+            <li id="wordWrap"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/wordWrap.html">wordWrap()</a>
+                — Unicode aware version of wordwrap.</li>
+            <li id="wrap"><a title="Strata\Utility\StringUtility" href="../classes/Strata_Utility_StringUtility/wrap.html">wrap()</a>
+                — Wraps text to a specific width, can optionally wrap at word breaks.</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-05-30T18:46:16+00:00 (commit #<span title="ff6823295ed55958cbc785dc0fddfac4ce69c11c">ff68232</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">renamed string to stringUtility to be compatible with php 7</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-03-01T21:51:40+00:00 (commit #<span title="63e38074d0e9409f760580d106b023e9ab740a96">63e3807</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">fixed string functions, added toArray function</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:23:09+00:00 (commit #<span title="9cdb8b4b30a6cb11c9eb95f696a5452747660e61">9cdb8b4</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf using the correct standard</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-10-07T20:19:42+00:00 (commit #<span title="f37696d855d04a5112d2def6790b29a8db196b84">f37696d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">ran phpcbf on the project</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2015-04-27T17:22:22+00:00 (commit #<span title="09cc9a3be1e259d0c9b3f13a2d914d3898636df3">09cc9a3</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">the library is now intended to be used over Bedrock.</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2014-12-17T15:44:50+00:00 (commit #<span title="68c757462505a66acecb7122daf9f8a886426098">68c7574</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (francois.faubert@iprospect.com) /
+                        Commiter: François Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">testing composer autoload. This should be one of many commits</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2014-12-17T14:51:23+00:00 (commit #<span title="85ad363497ae965903bd80cb42d0a89d4886d1be">85ad363</span>)</h3>
+            <div>
+              <p>
+                        Author: François Faubert (francois.faubert@iprospect.com) /
+                        Commiter: François Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added the untested package in preparation of building the composer package.</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

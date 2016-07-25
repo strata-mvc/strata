@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Strata\Router\Registrar\CustomPostTypeRouteMaker</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Strata_Router_Registrar">Strata\Router\Registrar</a>
+          </li>
+          <li class="separator">CustomPostTypeRouteMaker</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/Router/Registrar/CustomPostTypeRouteMaker.php.html#line10">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Strata\Router\Registrar\</small>CustomPostTypeRouteMaker</h1>
+        <h4>Registers rewrite rules defined in model configuration files.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class CustomPostTypeRouteMaker
+                extends <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase.html">RouteMakerBase</a>
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Router\Registrar\RouteMakerBase">RouteMakerBase</span></li><li>protected array <a href="#members">$rewriteBatch</a>;
+                        </li><li>protected  <a href="#members">$model</a>;
+                        </li><li>protected  <a href="#members">$defaultSlug</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/parseObject.html">parseObject</a>()
+                    </li><li>protected void <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/extractLocalizedInformation.html">extractLocalizedInformation</a>()
+                    </li><li>protected void <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewriteIdentifier.html">getRewriteIdentifier</a>()
+                    </li><li>protected void <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewritePattern.html">getRewritePattern</a>()
+                    </li><li>protected void <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewriteDestination.html">getRewriteDestination</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\Registrar\RouteMakerBase">RouteMakerBase</span></li><li>public abstract void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/parseObject.html">parseObject</a>()
+                        </li><li>protected abstract void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/extractLocalizedInformation.html">extractLocalizedInformation</a>()
+                        </li><li>protected abstract void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewritePattern.html">getRewritePattern</a>()
+                        </li><li>protected abstract void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewriteDestination.html">getRewriteDestination</a>()
+                        </li><li>protected abstract void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewriteIdentifier.html">getRewriteIdentifier</a>()
+                        </li><li>public void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewrites.html">getRewrites</a>()
+                        </li><li>public void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRoutes.html">getRoutes</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/isLocalizedApp.html">isLocalizedApp</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getLocales.html">getLocales</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/addRoute.html">addRoute</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/addRewrite.html">addRewrite</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getController.html">getController</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getAction.html">getAction</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/modelSupportsRewrites.html">modelSupportsRewrites</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/extractDefaultLocaleInformation.html">extractDefaultLocaleInformation</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/saveRewriteBatch.html">saveRewriteBatch</a>()
+                        </li><li>protected array <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/createRouteFor.html">createRouteFor</a>()
+                        </li><li>protected void <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/queueRewrite.html">queueRewrite</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase.html">Strata\Router\Registrar\RouteMakerBase</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="defaultSlug">
+              <strong>$defaultSlug</strong>
+            </li>
+            <li id="model">
+              <strong>$model</strong>
+            </li>
+            <li id="rewriteBatch">
+              <strong>$rewriteBatch</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="extractLocalizedInformation">
+              <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/extractLocalizedInformation.html">extractLocalizedInformation()</a>
+            </li>
+            <li id="getRewriteDestination">
+              <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewriteDestination.html">getRewriteDestination()</a>
+            </li>
+            <li id="getRewriteIdentifier">
+              <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewriteIdentifier.html">getRewriteIdentifier()</a>
+            </li>
+            <li id="getRewritePattern">
+              <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/getRewritePattern.html">getRewritePattern()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="parseObject">
+              <a title="Strata\Router\Registrar\CustomPostTypeRouteMaker" href="../classes/Strata_Router_Registrar_CustomPostTypeRouteMaker/parseObject.html">parseObject()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase.html">Strata\Router\Registrar\RouteMakerBase</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="addRewrite">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/addRewrite.html">addRewrite()</a>
+            </li>
+            <li id="addRoute">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/addRoute.html">addRoute()</a>
+            </li>
+            <li id="createRouteFor"><a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/createRouteFor.html">createRouteFor()</a>
+                — Generates a rule readable by the Strata router which will attempt to catch all the extra rewrites.</li>
+            <li id="extractDefaultLocaleInformation">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/extractDefaultLocaleInformation.html">extractDefaultLocaleInformation()</a>
+            </li>
+            <li id="extractLocalizedInformation">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/extractLocalizedInformation.html">extractLocalizedInformation()</a>
+            </li>
+            <li id="getAction">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getAction.html">getAction()</a>
+            </li>
+            <li id="getController">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getController.html">getController()</a>
+            </li>
+            <li id="getLocales">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getLocales.html">getLocales()</a>
+            </li>
+            <li id="getRewriteDestination">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewriteDestination.html">getRewriteDestination()</a>
+            </li>
+            <li id="getRewriteIdentifier">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewriteIdentifier.html">getRewriteIdentifier()</a>
+            </li>
+            <li id="getRewritePattern">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewritePattern.html">getRewritePattern()</a>
+            </li>
+            <li id="isLocalizedApp">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/isLocalizedApp.html">isLocalizedApp()</a>
+            </li>
+            <li id="modelSupportsRewrites">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/modelSupportsRewrites.html">modelSupportsRewrites()</a>
+            </li>
+            <li id="queueRewrite">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/queueRewrite.html">queueRewrite()</a>
+            </li>
+            <li id="saveRewriteBatch">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/saveRewriteBatch.html">saveRewriteBatch()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="getRewrites">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRewrites.html">getRewrites()</a>
+            </li>
+            <li id="getRoutes">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/getRoutes.html">getRoutes()</a>
+            </li>
+            <li id="parseObject">
+              <a title="Strata\Router\Registrar\RouteMakerBase" href="../classes/Strata_Router_Registrar_RouteMakerBase/parseObject.html">parseObject()</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-05-17T18:19:38+00:00 (commit #<span title="cade31b93ddc2202a8eda228bc7192d91ed1d233">cade31b</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">post have some differences</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-05-12T20:02:37+00:00 (commit #<span title="fcb7d3eabdf95c03e79698dbbcf8d361b1a673da">fcb7d3e</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved validation before using the array</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-05-12T16:02:20+00:00 (commit #<span title="47bd66452f25ef4eaebcc457e5ba7ffef2fe5b37">47bd664</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added automatic urls and routes on loose pages, refactored automatic routing and rules on custom post types</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.2-dev - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

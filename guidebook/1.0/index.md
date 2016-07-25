@@ -19,5 +19,5 @@ If you are short of time and you already have a good understanding of how MVC fr
 For a deeper understanding, you may want to read on the core concepts :
 
 * [Introduction](/guidebook/1.0/getting-started/meet-strata/)
-  * [How it integrates in Wordpress](/guidebook/1.0/getting-started/meet-strata/how-it-integrates-in-wordpress/)
+  * [How it integrates in Wordpress](/guidebook/1.0/getting-started/meet-strata/how-it-integrates-with-wordpress/)
   * [Conventions](/guidebook/1.0/getting-started/meet-strata/conventions/)

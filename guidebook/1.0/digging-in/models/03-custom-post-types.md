@@ -18,14 +18,15 @@ It will generate a couple of files for you, including the actual model file and 
 
 {% highlight bash linenos %}
 Scaffolding model Song
-  ├── [ OK ] src/model/Song.php
-  ├── [ OK ] src/model/Entity/SongEntity.php
-  └── [ OK ] tests/model/SongTest.php
+  ├── [ OK ] src/Model/Song.php
+  ├── [ OK ] src/Model/Entity/SongEntity.php
+  └── [ OK ] test/Model/SongTest.php
+  └── [ OK ] test/Model/Entity/SongTest.php
 {% endhighlight %}
 
 ## Enabling autoload
 
-By default Strata Custom Post Types objects are not automatically instantiated in Wordpress. To inform Strata it needs to load a new post type you must add the declaration to `config/strata.php` under the `custom-post-types` key.
+By default Strata Custom Post Types objects are not automatically instantiated as Wordpress custom post types. To inform Strata it needs to explicitly load a new post type you must add the declaration to the global configuration array in `config/strata.php` under the `custom-post-types` key.
 
 {% highlight php linenos %}
 <?php
@@ -41,14 +42,13 @@ $strata = array(
   // ...
 
 );
-?>
 {% endhighlight %}
 
 ## Wrapping other post types
 
-Such explicit declaration allows for distinction between wrapper models and actual dynamic post types.
+Such explicit declaration allows for distinction between wrapper models and actual Strata-based dynamic post types.
 
-You could create wrapper classes against post types that have not been created through Strata. For instance, you could map BBPress topics by creating a model similar to the following example. You would gain all the functionality of a Strata Custom Post Type event if you do not declare the post type yourself.
+You could create wrapper classes against post types that have not been created through Strata and still use the `AppModel`'s utility methods. For instance, you could map BBPress topics by creating a model similar to the following example. You would gain all the functionality of a Strata Custom Post Type even if you do not declare the post type through Strata directly.
 
 {% highlight php linenos %}
 <?php
@@ -60,17 +60,22 @@ class ForumPost extends AppCustomPostType {
     {
         return "reply";
     }
+
+    public function foo()
+    {
+        return "bar";
+    }
 }
 ?>
 {% endhighlight %}
 
-## Customizing the CustomPostType Model isntantiation
+## Customizing the CustomPostType Model instantiation
 
-You can customize the Custom Post Type declaration by supplying the optional `$configuration` public attribute in the Model class. It allows you to customize the configuration array that is internally sent to `register_post_type`.
+You can customize the Custom Post Type declaration by supplying the optional `$configuration` public attribute in the Model class. It allows you to customize the configuration array that is internally sent to `register_post_type()`.
 
-As long as you follow the [conventions](http://codex.wordpress.org/Function_Reference/register_post_type) your post type will be created using these customized values, filling the missing options with their default counterparts.
+As long as you follow the [Wordpress conventions](http://codex.wordpress.org/Function_Reference/register_post_type) your post type will be created using these customized values, filling the missing options with their default counterparts.
 
-The following example illustrates how we allow the `editor` feature and also make the custom post type accessible in the frontend using the `music-page` slug (ex: `yourwebsite.com/music-page/weezer/`).
+The following example illustrates how we grant support for the `editor` feature and also make the custom post type accessible in the frontend using the `music-page` slug (ex: `yourwebsite.com/music-page/weezer/`).
 
 {% highlight php linenos %}
 <?php
@@ -87,7 +92,7 @@ class Artist extends AppCustomPostType {
     );
 
 }
-?>
+
 {% endhighlight %}
 
 ## On automated configuration
@@ -102,7 +107,7 @@ $model = new App\Model\Fruit();
 echo $model->getWordpressKey();
 
 $data = new WP_Query(array(
-    'post_type'     => App\Model\Profile::wordpressKey()
+    'post_type' => App\Model\Profile::wordpressKey()
 ));
 ?>
 {% endhighlight %}

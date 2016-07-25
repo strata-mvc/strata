@@ -62,14 +62,14 @@
             <a href="#history">History</a>
           </li>
           <li>
-            <a href="../source/Middleware/MiddlewareLoader.php.html#line19">Source</a>
+            <a href="../source/Middleware/MiddlewareLoader.php.html#line20">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Middleware\</small>MiddlewareLoader</h1>
         <h4>Allows bridging between Strata and its middlewares.</h4>
-        <p>Middlewares must be loaded in Composer's json file and must<br/>contain a initializer using the following namespace as<br/>convention:<br/><br/>&lt;?php<br/>namespace Strata\Middleware\Mycompany_MyclassInitializer {<br/><br/> }</p>
+        <p>Middlewares must be loaded in Composer's json file and must<br/>contain a initializer using the following namespace as<br/>convention:<br/><br/>&lt;?php<br/>namespace App\Middleware\MyclassInitializer {<br/><br/> }</p>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class MiddlewareLoader
@@ -81,6 +81,8 @@
                     </li><li>public void <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/initialize.html">initialize</a>()
                     </li><li>public array <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/getMiddlewares.html">getMiddlewares</a>()
                     </li><li>private array <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/findAvailableMiddlewares.html">findAvailableMiddlewares</a>()
+                    </li><li>private void <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/loadComposerMiddlewares.html">loadComposerMiddlewares</a>()
+                    </li><li>private void <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/loadProjectMiddlewares.html">loadProjectMiddlewares</a>()
                     </li></ul>
 
             }<br/></div>
@@ -102,6 +104,12 @@
           <ul>
             <li id="findAvailableMiddlewares"><a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/findAvailableMiddlewares.html">findAvailableMiddlewares()</a>
                 — Goes through the class loader and finds packages defined as a possible Strata Middleware.</li>
+            <li id="loadComposerMiddlewares">
+              <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/loadComposerMiddlewares.html">loadComposerMiddlewares()</a>
+            </li>
+            <li id="loadProjectMiddlewares">
+              <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader/loadProjectMiddlewares.html">loadProjectMiddlewares()</a>
+            </li>
           </ul>
           <h4>public</h4>
           <ul>

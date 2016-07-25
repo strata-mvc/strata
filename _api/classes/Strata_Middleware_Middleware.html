@@ -53,6 +53,9 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
             <a href="#members">Members</a>
           </li>
           <li>
@@ -75,10 +78,19 @@
         <div class="synopsis">class Middleware
             {<br/><ul class="none"><li>// members</li><li>public array <a href="#members">$shellCommands</a> =
                         ;
-                    </li></ul><ul class="none"><li>// methods</li><li>public abstract void <a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/initialize.html">initialize</a>()
+                    </li></ul><ul class="none"><li>// methods</li><li>public static void <a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
+                    </li><li>public static void <a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/getClassNameSuffix.html">getClassNameSuffix</a>()
+                    </li><li>public abstract void <a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/initialize.html">initialize</a>()
                     </li></ul>
 
             }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Uses</h4>
+          <ul>
+            <li>Strata\Middleware\StrataObjectTrait</li>
+          </ul>
+        </div>
         <h2 id="members">Members</h2>
         <div class="styled members">
           <h4>public</h4>
@@ -92,6 +104,10 @@
         <div class="styled">
           <h4>public</h4>
           <ul>
+            <li id="getClassNameSuffix"><a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/getClassNameSuffix.html">getClassNameSuffix()</a>
+                — {@inheritdoc}</li>
+            <li id="getNamespaceStringInStrata"><a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
+                — {@inheritdoc}</li>
             <li id="initialize"><a title="Strata\Middleware\Middleware" href="../classes/Strata_Middleware_Middleware/initialize.html">initialize()</a>
                 — The entry point of the middleware. The class is expected to generate their own filters afterwards.</li>
           </ul>

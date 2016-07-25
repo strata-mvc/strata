@@ -4,4 +4,4 @@ title: Hand On
 permalink: /hands-on/1.0/
 ---
 
-Need to make a landing page
+<p class="lead">Stay tuned for hands-on examples of how to use Strata!</p>

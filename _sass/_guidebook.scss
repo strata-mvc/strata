@@ -1,18 +1,49 @@
 .guidebook {
-
     aside {
-        margin-top: 110px;
+        color: #fff;
+        background: $brand-secondary;
+        margin: 0 -15px;
+        padding: 1em;
+
+        a {
+            color:#fff;
+        }
+
+        .top-level > li {
+            margin: 0;
+            list-style-type: none;
+        }
+
+        h4 {
+            border-bottom: 1px solid darken($brand-secondary, 10%);
+            color: darken($brand-secondary, 50%);
+            font-size: 1.2em;
+            padding-bottom: .85em;
+            margin: 1em 0;
+        }
+
+        ul ul {
+            margin-bottom: 1em;
+            list-style-type: disc;
+        }
+
+        .active > a {
+            color: #fcc403;
+        }
     }
 
     article {
-        padding-top: 110px;
-
-        color: #111;
-        background: #fff;
 
         h2 {
             margin-top: 1em;
         }
-    }
 
+        footer {
+            border-top: 1px solid #dedede;
+            margin:2em 0;
+            padding:1.2em 0;
+            text-align: right;
+            font-size: 120%;
+        }
+    }
 }

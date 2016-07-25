@@ -83,10 +83,14 @@
                         ;
                     </li><li>protected boolean <a href="#members">$cancelled</a> =
                         false;
+                    </li><li>protected boolean <a href="#members">$directExecution</a> =
+                        false;
                     </li></ul><ul class="none"><li>// methods</li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
                     </li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
                     </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start</a>()
                     </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/attemptCompletion.html">attemptCompletion</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/setDirectExecution.html">setDirectExecution</a>()
                     </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
                     </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
@@ -109,6 +113,9 @@
             <li id="cancelled"><strong>$cancelled</strong>
                 —
                 boolean</li>
+            <li id="directExecution">
+              <strong>$directExecution</strong>
+            </li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -138,6 +145,9 @@
           <ul>
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
                 — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
+            <li id="attemptCompletion">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/attemptCompletion.html">attemptCompletion()</a>
+            </li>
             <li id="cancel"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
                 — Cancels the current route process.</li>
             <li id="end"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
@@ -148,6 +158,9 @@
                 — Verifies that the current values can be ran by the router.</li>
             <li id="process"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
                 — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
+            <li id="setDirectExecution">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/setDirectExecution.html">setDirectExecution()</a>
+            </li>
             <li id="start"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
                 — Starts the handling of the route.</li>
           </ul>

@@ -6,7 +6,7 @@ covered_tags: controller, views, layouts
 menu_group: controllers
 ---
 
-If you know a controller will break the normal Wordpress rendering stack, you may apply layout to the View object through which the rendered content will be inserted.
+When you know a Controller will cancel the normal Wordpress rendering stack because it invokes `$this->view->render()` you may apply layout to the View object through which the rendered content will be inserted.
 
 {% highlight php linenos %}
 <?php
@@ -30,7 +30,6 @@ class MyController extends AppController
     }
 
 }
-?>
 {% endhighlight %}
 
 The layout file must include a yield flag in order for Strata to understand where content should be injected. The flag can be printed with `Strata\View\Template::TPL_YIELD`:

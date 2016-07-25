@@ -6,25 +6,23 @@ covered_tags: views, helpers, form-helper
 menu_group: Helpers
 ---
 
-The `FormHelper` is a class that eases the generation of forms used to create entities of a predefined model. It is not intended to be used by forms that don't save something to a custom post type entity.
+The `Strata\View\Helper\FormHelper` is a class that eases the generation of forms based on `ModelEntity` attributes. It will automate field validation and take part in much of the request handling process for you. It is not intended to be used by forms that don't save something against a custom post type entity, but you could still use it.
 
 ## Using the form helper
 
-
-The `FormHelper` can be loaded through regular means using the `Form` helper key. Should you have a local View class also named `FormHelper` that inherits Strata's then your version will be loading.
+The `FormHelper` can be loaded through regular means using the `Form` helper key. Should you have a local View class also named `FormHelper` that inherits from Strata's then your version will be loaded.
 
 This type of inheritance can be useful should you wish to customize return values.
 
-
 ## API
 
-The following is the list of available tools provided by the `Strata\View\Helper\FormHelper` class. More in-depth information can be obtained on it's [detailed API page](/api/1.0/classes/Strata_View_Helper_FormHelper.html).
+The following is the list of available tools provided by the `FormHelper` class. More in-depth information can be obtained on it's [detailed API page](/api/1.0/classes/Strata_View_Helper_FormHelper.html).
 
 ## Public methods
 
 ### $FormHelper->create($modelEntity, $configuration = array());
 
-The helper's `create` method is used to open a new `form` html tag by associating it to a `ModelEntity` and further customizing html attributes.
+The helper's `create($entity, $config)` method is used to open a new `form` html tag by associating it to a `ModelEntity` and further customizing HTML attributes. `$entity` can be `null` in forms that are not associated to a `AppModelEntity` object.
 
 {% highlight php linenos %}
 
@@ -35,7 +33,7 @@ The helper's `create` method is used to open a new `form` html tag by associatin
         "id" => "product-contact-application"
     )); ?>
 
-</div>
+    ...
 
 {% endhighlight %}
 
@@ -44,9 +42,22 @@ Additional information sent through the `$configuration` hash will be parsed int
 Type should be a valid HTTP method: `POST`, `GET`, `PATCH` or `file` which will instruct Strata to specify the `enctype` attribute.
 
 
+{% highlight php linenos %}
+
+<div class="contact-form">
+
+    <?php echo $FormHelper->create($myEntity, array("type" => "file")); ?>
+
+    ...
+
+</div>
+
+{% endhighlight %}
+
+
 ### $FormHelper->end();
 
-The helper's `end` method simply closes the form.
+The helper's `end()` method simply closes the form.
 
 {% highlight php linenos %}
 
@@ -62,11 +73,11 @@ The helper's `end` method simply closes the form.
 
 ### $FormHelper->honeypot();
 
-The helper's `honeypot` method will generate a honeypot field named after the first parameter.
+The helper's `honeypot($key)` method will generate a honeypot field named after the `$key` parameter.
 
 {% highlight php linenos %}
 
-    <?php echo $FormHelper->honeypot("my-fake-field-name"); ?>
+    <?php echo $FormHelper->honeypot("honeypot-fieldname"); ?>
 
 {% endhighlight %}
 
@@ -74,7 +85,7 @@ The generated html is as follows :
 
 {% highlight php linenos %}
 <div class="validation" style="height: 1px; overflow: hidden; padding:1px 0 0 1px; position: absolute; width: 1px; z-index: -1">
-    <input autocomplete="off" class="" id="data_fieldname" name="fieldname" type="text" value="">
+    <input autocomplete="off" class="" id="data_honeypotfieldname" name="honeypot-fieldname" type="text" value="">
 </div>
 {% endhighlight %}
 
@@ -93,7 +104,7 @@ class ContactController extends AppController
         $contact = ContactApplication::getEntity(new \stdClass());
 
         if ($this->request->isPost()) {
-            if ($this->request->requestValidates($contact, "my-fake-field-name")) {
+            if ($this->request->requestValidates($contact, "honeypot-fieldname")) {
                 debug("it does validate!");
             } else {
                 debug("it doesn't validate.");
@@ -106,7 +117,7 @@ class ContactController extends AppController
 
 ### $FormHelper->id($attributeName);
 
-Get the internally generated `id` of any field using the `id()` method. The associated ModelEntity `$attribute` array must contain the `$attributeName` key.
+Get the internally generated `id` of any field using the `id()` method. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
 {% highlight php linenos %}
 
@@ -118,7 +129,7 @@ Get the internally generated `id` of any field using the `id()` method. The asso
 
 ### $FormHelper->name($attributeName);
 
-Get the internally generated `name` of any field using the `name()` method. The associated ModelEntity `$attribute` array must contain the `$attributeName` key.
+Get the internally generated `name` of any field using the `name()` method. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
 {% highlight php linenos %}
 
@@ -157,9 +168,9 @@ Adds an html `button` to the form. Additional information sent through the `$con
 
 ### $FormHelper->input($inputName, $configuration);
 
-Adds an html field to the form. Additional information sent through the `$configuration` hash will be parsed into html attributes. The associated ModelEntity `$attribute` array must contain the `$attributeName` key.
+Adds an html field to the form. Additional information sent through the `$configuration` hash will be parsed into html attributes. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
-The most important configuration key is the `type` as it is how the type of field is defined. If `type` is not set `FormHelper` will fallback to `text`.
+The most important configuration key is the `type` as it is how the type of field is defined. If `type` is not set `FormHelper` will default to `text`.
 
 
 {% highlight php linenos %}
@@ -194,35 +205,42 @@ The most important configuration key is the `type` as it is how the type of fiel
 
 ### $FormHelper->generateInlineErrors($attributeName);
 
-Generates the possible validation errors on the `$inputName` field. Useful when you do not want Strata to automatically handle the printing of errors on your fields. The associated ModelEntity `$attribute` array must contain the `$attributeName` key.
+Generates the possible validation errors on the `$inputName` field. Useful when you do not want Strata to automatically handle the printing of errors on your fields. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
 In this case two fields using Bootstraps' grid are linked together and it would be impractical to have the error messages printed twice in each one of their smaller alignment boxes. You can turn off error rendering and decide when to print the fields error messages.
 
 {% highlight php linenos %}
-    <div class="row gender clearfix">
-        <div class="col-md-6">
-            <?php echo $FormHelper->input('gender', array(
-                'type' => 'radio',
-                'label' => 'Mrs',
-                'value' => 1,
-                'error' => false,
-            )); ?>
-        </div>
-        <div class="col-md-6">
-            <?php echo $FormHelper->input('gender', array(
-                'type' => 'radio',
-                'value' => 2,
-                'label' => 'M',
-                'error' => false,
-            )); ?>
-        </div>
-    </div>
 
-    <?php if ($modelEntity->hasValidationErrors()) : ?>
-        <div class="row">
-            <div class="col-md-12">
-                <?php echo $FormHelper->generateInlineErrors('gender'); ?>
+    <?php echo $FormHelper->create($modelEntity); ?>
+
+        <div class="row gender clearfix">
+            <div class="col-md-6">
+                <?php echo $FormHelper->input('title', array(
+                    'type' => 'radio',
+                    'label' => 'Mrs',
+                    'value' => 1,
+                    'error' => false,
+                )); ?>
+            </div>
+            <div class="col-md-6">
+                <?php echo $FormHelper->input('title', array(
+                    'type' => 'radio',
+                    'value' => 2,
+                    'label' => 'M',
+                    'error' => false,
+                )); ?>
             </div>
         </div>
-    <?php endif ?>
+
+
+        <?php if ($modelEntity->hasErrors('title')) : ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php echo $FormHelper->generateInlineErrors('title'); ?>
+                </div>
+            </div>
+        <?php endif ?>
+
+    <?php echo $FormHelper->end(); ?>
+
 {% endhighlight %}

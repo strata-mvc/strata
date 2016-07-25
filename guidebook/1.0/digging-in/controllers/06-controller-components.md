@@ -6,11 +6,11 @@ covered_tags: controller, component, trait, inheritance
 menu_group: controllers
 ---
 
-Strata believes in the "thin controller - fat models" theorem in that Controllers should not contain much code at all where as Model should hold most of the application logic.
+Strata believes in the "thin controller - fat models" theorem in that Controllers should not contain much code at all whereas Model should hold most of the application logic.
 
 A method of inheriting behavior and simplifying Controller classes is to use [PHP Traits](http://php.net/manual/en/language.oop5.traits.php).
 
-You may then place all function which to not map to a routed action as part of a trait.
+You may then place all methods and concepts that do not relate to routed actions as part of multiple reusable traits.
 
 {% highlight php linenos %}
 <?php

@@ -56,9 +56,6 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
-            <a href="#tasks">Tasks</a>
-          </li>
-          <li>
             <a href="#constants">Constants</a>
           </li>
           <li>
@@ -77,7 +74,7 @@
       </nav>
       <section>
         <h1 id="introduction"><small>Strata\Router\RouteParser\Url\</small>UrlRoute</h1>
-        <h4>Handles routes generated for the AltoRouter class.</h4>
+        <h4>Handles routes generated from REST requests.</h4>
         <p/>
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
@@ -95,7 +92,9 @@
                         </li><li>public string <a href="#members">$action</a>;
                         </li><li>public array <a href="#members">$arguments</a>;
                         </li><li>protected boolean <a href="#members">$cancelled</a>;
+                        </li><li>protected boolean <a href="#members">$directExecution</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listen.html">listen</a>()
+                    </li><li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listRegisteredRoutes.html">listRegisteredRoutes</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addPossibilities.html">addPossibilities</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addResourcePossibility.html">addResourcePossibility</a>()
                     </li><li>public void <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addModelPossibilities.html">addModelPossibilities</a>()
@@ -114,12 +113,15 @@
                     </li><li>private Controller <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getControllerFromDynamicMatch.html">getControllerFromDynamicMatch</a>()
                     </li><li>private string <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromMatch.html">getActionFromMatch</a>()
                     </li><li>private string <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromDynamicMatch.html">getActionFromDynamicMatch</a>()
+                    </li><li>private string <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromParam.html">getActionFromParam</a>()
                     </li><li>private array <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromMatch.html">getArgumentsFromMatch</a>()
                     </li><li>private array <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Router\RouteParser\Route">Route</span></li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process</a>()
                         </li><li>public abstract null <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities</a>()
                         </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start</a>()
                         </li><li>public abstract void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/attemptCompletion.html">attemptCompletion</a>()
+                        </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/setDirectExecution.html">setDirectExecution</a>()
                         </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isValid.html">isValid</a>()
                         </li><li>public void <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel</a>()
                         </li><li>public boolean <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/isCancelled.html">isCancelled</a>()
@@ -138,19 +140,6 @@
             </li>
           </ul>
         </div>
-        <h2 id="tasks">Tasks</h2>
-        <table class="styled">
-          <thead>
-            <tr>
-              <th style="width:3em;">Line</th>
-              <th>Task</th>
-            </tr>
-          </thead>
-          <tr>
-            <td class="nummeric">133+</td>
-            <td>Is it required to send variables to the globals array?</td>
-          </tr>
-        </table>
         <h2 id="constants">Constants</h2>
         <table class="styled">
           <thead>
@@ -188,6 +177,9 @@
             <li id="cancelled"><strong>$cancelled</strong>
                 —
                 boolean</li>
+            <li id="directExecution">
+              <strong>$directExecution</strong>
+            </li>
           </ul>
           <h4>public</h4>
           <ul class="members">
@@ -210,6 +202,8 @@
                 — Gets the action from the dynamic match.</li>
             <li id="getActionFromMatch"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromMatch.html">getActionFromMatch()</a>
                 — Gets the action from the AltoRouter match.</li>
+            <li id="getActionFromParam"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getActionFromParam.html">getActionFromParam()</a>
+                — Formats the action based on the router's match</li>
             <li id="getArgumentsFromDynamicMatch"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromDynamicMatch.html">getArgumentsFromDynamicMatch()</a>
                 — Gets the possible additional arguments from the dynamic match.</li>
             <li id="getArgumentsFromMatch"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/getArgumentsFromMatch.html">getArgumentsFromMatch()</a>
@@ -246,9 +240,12 @@
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addPossibilities.html">addPossibilities()</a>
                 — {@inheritdoc}</li>
             <li id="addResourcePossibility"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/addResourcePossibility.html">addResourcePossibility()</a>
-                — Adds a resourced based route possibility based on a custom post type.</li>
+                — Adds a resourced based route possibility based on a custom post type or taxonomy.</li>
             <li id="end"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/end.html">end()</a>
                 — {@inheritdoc}</li>
+            <li id="listRegisteredRoutes">
+              <a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listRegisteredRoutes.html">listRegisteredRoutes()</a>
+            </li>
             <li id="listen"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/listen.html">listen()</a>
                 — Configures the routing deamon from the routes that have been set during bootstrap.</li>
             <li id="process"><a title="Strata\Router\RouteParser\Url\UrlRoute" href="../classes/Strata_Router_RouteParser_Url_UrlRoute/process.html">process()</a>
@@ -270,6 +267,9 @@
           <ul>
             <li id="addPossibilities"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/addPossibilities.html">addPossibilities()</a>
                 — Adds a mixed type of possibility against which the route will be validating during the process() step.</li>
+            <li id="attemptCompletion">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/attemptCompletion.html">attemptCompletion()</a>
+            </li>
             <li id="cancel"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/cancel.html">cancel()</a>
                 — Cancels the current route process.</li>
             <li id="end"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/end.html">end()</a>
@@ -280,6 +280,9 @@
                 — Verifies that the current values can be ran by the router.</li>
             <li id="process"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/process.html">process()</a>
                 — This is the entry point of all routers. The inheriting classes will handle how they handle the management of their route type from this function.</li>
+            <li id="setDirectExecution">
+              <a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/setDirectExecution.html">setDirectExecution()</a>
+            </li>
             <li id="start"><a title="Strata\Router\RouteParser\Route" href="../classes/Strata_Router_RouteParser_Route/start.html">start()</a>
                 — Starts the handling of the route.</li>
           </ul>

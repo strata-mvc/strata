@@ -43,11 +43,11 @@ trait QueriablePostTrait {
             ->direction("ASC");
     }
 }
-?>
+
 {% endhighlight %}
 
 
-By adding the Trait to either one of your project's model classes or the common `AppModel` class, it will gain the prepared behavior.
+By adding the Trait to either one of your project's model classes or the common `AppModel` class it will gain the prepared behavior.
 
 {% highlight php linenos %}
 <?php

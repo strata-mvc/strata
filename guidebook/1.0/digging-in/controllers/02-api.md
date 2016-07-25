@@ -6,7 +6,7 @@ covered_tags: controller, api
 menu_group: controllers
 ---
 
-The following is the list of available tools provided by the Controller class. More in-depth information can be obtained on it's [detailed API page](/api/classes/Strata_Controller_Controller.html).
+The following is the list of available tools provided by the Controller class. More in-depth information is found on the [Controller API page](/api/classes/Strata_Controller_Controller.html).
 
 ## Public attributes
 

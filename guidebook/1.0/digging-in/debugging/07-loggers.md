@@ -6,17 +6,17 @@ covered_tags: logs
 menu_group: debugging
 ---
 
-Strata comes with 4 types of loggers :
+Strata comes with 3 types of loggers :
 
 * **Console**: Outputs to a shell
 * **File**: Outputs to a file
 * **Null**: Catch all loggers similar to sending output to /dev/null
 
-Loggers are configured at runtime in the global configuration file. Values set under the `logging` key of the configuration array in `~/config/strata.php` will be matched against the known logger types and made available through the global `Strata\Strata::app()->getLogger($name)` function.
+Loggers are configured at runtime in the global configuration file. Values set under the `logging` key of the configuration array in `~/config/strata.php` will be matched against the known logger types and made available through the global `Strata\Strata::app()->getLogger($name)` method.
 
 ## Configuring
 
-Here's how you would configure a `FileLogger`. Add your custom logger to the configuration file. You may pass the optional `name` key as optional configuration to name your logger. Without a `name`, the logger will automatically be named like it's type.
+One would configure a `FileLogger` by declaring a custom logger in the project's configuration file. You may pass the optional `name` key as optional configuration to name your logger. In fact you may send anything you need in that array and it will become accessible within the class later on. Strata only looks for `name` however and without a `name`, the logger will automatically be named from its type.
 
 {% highlight php linenos %}
 <?php
@@ -34,14 +34,12 @@ $strata = array(
 );
 
 return $strata;
-
-?>
 {% endhighlight %}
 
 ## Programmatically declare a logger
 
-Should you need a logger that you do not wish to declare in your configuration file, you may obtain an object reference from `LoggerBase`.
-what
+To instantiate a logger straight from another class, you may obtain an object reference from `LoggerBase`.
+
 {% highlight php linenos %}
 <?php
 namespace App\Model\Service\Importer;
@@ -65,7 +63,6 @@ class ImportHTMLCrawler
         $this->logger->initialize();
     }
 }
-?>
 {% endhighlight %}
 
 

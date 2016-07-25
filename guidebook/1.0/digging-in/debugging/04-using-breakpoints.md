@@ -6,11 +6,13 @@ covered_tags: development, breakpoint
 menu_group: debugging
 ---
 
-At any point during the execution of the request, you can stop the process on a breakpoint from which to debug your application.
+At any point during the execution of the request, you can stop the process by entering a breakpoint from which to debug your application.
 
-The breakpoint will open a new console in which you can try different operations based on the current code state.
+The breakpoint will open a new console in which you can try different operations based on the current state of the application.
 
-To declare a breakpoint, use the global `breakpoint();` function from anywhere within your code.
+To declare a breakpoint invoke the global `breakpoint();` function from anywhere within your code.
+
+Should you have previously declared your own global function named `breakpoint` before Strata is executed, Strata's version will not be injected over the predefined one.
 
 {% highlight php linenos %}
 <?php
@@ -35,4 +37,4 @@ class ExpertAdviceTypeController extends AppController
 
 It will bring up a console through which you can debug the current context.
 
-![Breakpoint output](/images/breakpoint-sample.png)
+![Breakpoint output](/assets/images/breakpoint-sample.png)

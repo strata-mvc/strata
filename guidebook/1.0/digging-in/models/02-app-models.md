@@ -8,7 +8,7 @@ menu_group: models
 
 ## Creating a model file
 
-To generate a Model in which you can add business logic but cannot CRUD entities to Wordpress' database, you should use the automated generator provided by Strata. It will validate your object's name and ensure it is correctly defined.
+To generate a Model in which you can add business logic but cannot CRUD entities to Wordpress' database, you should use the automated generator provided by Strata. It will validate your object's name and ensure it is defined following the intended conventions.
 
 Look at [automated custom post type models](/guidebook/1.0/digging-in/models/custom-post-types/) for information on how to create models that map to database entries.
 
@@ -22,14 +22,15 @@ It will generate a couple of files for you, including the actual model file and 
 
 {% highlight bash linenos %}
 Scaffolding model Artist
-  ├── [ OK ] src/model/Artist.php
-  ├── [ OK ] src/model/Entity/ArtistEntity.php
-  └── [ OK ] tests/model/ArtistTest.php
+  ├── [ OK ] src/Model/Artist.php
+  ├── [ OK ] src/Model/Entity/ArtistEntity.php
+  └── [ OK ] test/Model/ArtistTest.php
+  ├── [ OK ] test/Model/Entity/ArtistEntityTest.php
 {% endhighlight %}
 
 ## Building a data supplier
 
-The ideas behind models not associated to a Wordpress custom post type is to have a unique place where you can hold information in a meaningful way. For instance, the `Artist` model can supply a list of genre's.
+The idea behind `AppModels` not associated to a Wordpress custom post type is to have a single unique place where you can store information and behavior in a meaningful way. For instance, the `Artist` model can supply a list of genre's throughout the application.
 
 {% highlight php linenos %}
 <?php
@@ -48,4 +49,4 @@ class Artist extends AppModel
 }
 {% endhighlight %}
 
-A Model is the perfect type of object unto which add API access to a remote services.
+A `Model` is the perfect type of object unto which add API access to a remote services.
