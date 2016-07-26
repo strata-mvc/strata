@@ -12,7 +12,7 @@ Strata executes itself parallel to Wordpress during the `init` action.
 
 Should a matching route have been defined, the current URL context will dictate which [Controller](/guidebook/1.0/digging-in/controllers/) is to be instantiated. From this object-oriented entry point a series of actions will then be performed.
 
-During that process you are expected to prepare view variables by running queries on [Models](/guidebook/1.0/digging-in/models/), to prepare [View Helpers](/guidebook/1.0/digging-in/view-helpers/) or handle special [Requests](/guidebook/1.0/handing-requests/).
+During that process you are expected to prepare view variables by running queries on [Models](/guidebook/1.0/digging-in/models/), to prepare [View Helpers](/guidebook/1.0/digging-in/helpers/) or handle special [Requests](/guidebook/1.0/digging-in/handling-requests/).
 
 At the end of this process Wordpress is only aware that new variables have been defined for its template stack and otherwise remains unimpacted.
 

@@ -5,9 +5,11 @@ description: >
   Strata gives you a stable development environment and a
   Model View Controller framework that allows you to organize your
   Wordpress code outside of the templating engine.
+
 baseurl: ""
 url: "http://www.strata-framework.com"
 twitter_username: strataframework
+baseurl: "" # the subpath of your site, e.g. /blog/
 github_username:  francoisfaubert
 current_version: dev-master
 
