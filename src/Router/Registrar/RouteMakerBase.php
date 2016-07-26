@@ -55,7 +55,7 @@ abstract class RouteMakerBase
 
     protected function getLocales()
     {
-        return Strata::app()->i18n->getLocales();
+        return Strata::i18n()->getLocales();
     }
 
     protected function addRoute($route)
@@ -71,7 +71,6 @@ abstract class RouteMakerBase
     protected function getController()
     {
         if (array_key_exists("controller", $this->model->routed)) {
-
             $controllerName = $this->model->routed['controller'];
             return new $controllerName();
         }

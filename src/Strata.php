@@ -32,30 +32,19 @@ class Strata extends StrataContext
     protected $ready = null;
 
     /**
-     * @var ClassLoader A reference to the current project's Composer autoloader file.
-     */
-    protected $loader = null;
-
-    /**
-     * @var MiddlewareLoader A reference to the middleware manager.
-     */
-    private $middlewareLoader = null;
-
-    /**
      * @var I18n A reference to the localizations manager.
      */
-    public $i18n = null;
+    // public $i18n = null;
 
     /**
      * @var Router A reference to the active routing object.
      */
-    public $router = null;
+    // public $router = null;
 
     /**
      * @var Rewriter A reference to the global rewriter object.
      */
-    public $rewriter = null;
-
+    // public $rewriter = null;
 
     /**
      * Prepares the Strata object for running.
@@ -63,12 +52,11 @@ class Strata extends StrataContext
      */
     public function init()
     {
-        if (is_null($this->ready)) {
-            $this->ready = false;
-
+        if (!(bool)$this->ready) {
+            $this->saveCurrentPID();
             $this->configureLoggers();
 
-            $this->includeUtils();
+            $this->includeToolset();
             $this->setDefaultNamespace();
             $this->setupUrlRouting();
 
@@ -85,7 +73,7 @@ class Strata extends StrataContext
      */
     public function run()
     {
-        if (!$this->ready) {
+        if (!(bool)$this->ready) {
             $this->init();
         }
 
@@ -115,18 +103,18 @@ class Strata extends StrataContext
      * Assigns a class loader to the application
      * @param ClassLoader $loader The application's class loader.
      */
-    public function setLoader(ClassLoader $loader)
+    public function setClassLoader(ClassLoader $loader)
     {
-        $this->loader = $loader;
+        $this->setConfig("runtime.classLoader", $loader);
     }
 
     /**
      * Returns a class loader to the application
      * @return ClassLoader $loader The application's class loader.
      */
-    public function getLoader()
+    public function getClassLoader()
     {
-        return $this->loader;
+        return $this->getConfig("runtime.classLoader");
     }
 
     /**
@@ -135,8 +123,10 @@ class Strata extends StrataContext
      */
     protected function loadMiddleware()
     {
-        $this->middlewareLoader = new MiddlewareLoader($this->getLoader());
-        $this->middlewareLoader->initialize();
+        $middlewareLoader = new MiddlewareLoader($this->getClassLoader());
+        $middlewareLoader->initialize();
+
+        $this->setConfig("runtime.middlewares", $middlewareLoader->getMiddlewares());
     }
 
     /**
@@ -145,11 +135,7 @@ class Strata extends StrataContext
      */
     public function getMiddlewares()
     {
-        if (!is_null($this->middlewareLoader)) {
-            return $this->middlewareLoader->getMiddlewares();
-        }
-
-        return array();
+        return (array)$this->extractConfig("runtime.middlewares");
     }
 
     /**
@@ -253,13 +239,26 @@ class Strata extends StrataContext
         return $this->getConfig("runtime.loggers.$name");
     }
 
+    public function getRouter()
+    {
+        return $this->getConfig("runtime.router_reference");
+    }
+
+    public function getRewriter()
+    {
+        return $this->getConfig("runtime.rewriter_reference");
+    }
+
+    public function getI18n()
+    {
+        return $this->getConfig("runtime.i18n_reference");
+    }
+
     protected function displayRuntimeHeader()
     {
         $logger = $this->getLogger();
 
-        if (self::isCommandLineInterface()) {
-            // tbd
-        } elseif (self::isBundledServer()) {
+        if (self::isBundledServer()) {
             $logger->nl();
             $logger->log(sprintf(
                 "<yellow>Loaded as PID</yellow> <success>#%d</success> <yellow>with</yellow> <success>%d</success> <yellow>handled custom post types.</yellow>",
@@ -267,9 +266,14 @@ class Strata extends StrataContext
                 count($this->getConfig("runtime.custom_post_types"))
             ), "<info>Strata</info>");
             $logger->log($this->getConfig("runtime.timezone"), "<info>Strata</info>");
-        } else {
-            // tbd
         }
+
+        // TBD
+        // elseif (self::isCommandLineInterface()) {
+        //
+        // } else {
+        //
+        // }
     }
 
     /**
@@ -277,8 +281,10 @@ class Strata extends StrataContext
      */
     protected function localize()
     {
-        $this->i18n = new I18n();
-        $this->i18n->initialize();
+        $i18n = new I18n();
+        $i18n->initialize();
+
+        $this->setConfig("runtime.i18n_reference", $i18n);
     }
 
     /**
@@ -286,10 +292,13 @@ class Strata extends StrataContext
      */
     protected function setupUrlRouting()
     {
-        $this->rewriter = new Rewriter();
-        $this->rewriter->initialize();
+        $rewriter = new Rewriter();
+        $rewriter->initialize();
 
-        $this->router = Router::urlRouting();
+        $router = Router::urlRouting();
+
+        $this->setConfig("runtime.rewriter_reference", $rewriter);
+        $this->setConfig("runtime.router_reference", $router);
     }
 
     /**
@@ -300,7 +309,7 @@ class Strata extends StrataContext
     {
         $routes = $this->getConfig('routes');
         if (is_array($routes)) {
-            $this->router->addRoutes($routes);
+            $this->getRouter()->addRoutes($routes);
         }
     }
 
@@ -325,15 +334,6 @@ class Strata extends StrataContext
             $this->configure($values);
             $this->normalizeConfiguration();
         }
-    }
-
-    /**
-     * Includes the debugger classes.
-     * @return boolean True if the file was correctly included.
-     */
-    protected function includeUtils()
-    {
-        return $this->saveCurrentPID() && $this->includeToolset();
     }
 
     /**
@@ -369,6 +369,8 @@ class Strata extends StrataContext
         if (file_exists($toolset)) {
             return include_once $toolset;
         }
+
+        return false;
     }
 
     /**
@@ -377,7 +379,8 @@ class Strata extends StrataContext
      */
     public function addProjectNamespaces()
     {
-        $this->loader->setPsr4(self::getNamespace() . "\\", self::getSRCPath());
+        $classLoader = $this->getConfig("runtime.classLoader");
+        $classLoader->setPsr4(self::getNamespace() . "\\", self::getSRCPath());
     }
 
     /**
@@ -386,8 +389,9 @@ class Strata extends StrataContext
      */
     public function setDefaultNamespace()
     {
-        $this->loader->setPsr4(self::getDefaultNamespace() . "\\", self::getSRCPath());
-        $this->loader->setPsr4(self::getDefaultTestNamespace() . "\\", self::getTestPath());
+        $classLoader = $this->getConfig("runtime.classLoader");
+        $classLoader->setPsr4(self::getDefaultNamespace() . "\\", self::getSRCPath());
+        $classLoader->setPsr4(self::getDefaultTestNamespace() . "\\", self::getTestPath());
     }
 
     /**

@@ -95,7 +95,7 @@ class CustomPostTypeLoader
      */
     private function addResourceRoute(CustomPostType $customPostType)
     {
-        Strata::app()->router->addResource($customPostType);
+        Strata::router()->addResource($customPostType);
     }
 
     /**
