@@ -12,6 +12,7 @@ To view the current stack trace invoke the global `stackTrace();` function from 
 
 Should you have previously declared your own global function named `stackTrace` before Strata is executed, Strata's version will not be injected over the predefined one.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -26,6 +27,7 @@ class ExpertAdviceTypeController extends AppController
     }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 It will output both in your server logs and right in the html :
 

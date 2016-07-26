@@ -2,16 +2,13 @@
 layout: guidebook
 title: Localization
 permalink: /guidebook/1.0/getting-started/creating-projects/localization/
-
 covered_tags: configuration, localization
-
 menu_group: creating-projects
-next_page: /guidebook/1.0/getting-started/creating-projects/completing-the-installation/
-next_page_label: Completing the installation
 ---
 
 Strata objects can be localized across the whole spectrum of what it handles. To do so, Strata will use the `i18n.locales` configuration key of the global configuration object.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 
@@ -29,12 +26,15 @@ $strata = array(
 return $strata;
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 A unique `textdomain` for your application must be set. It will be the secondary parameter to `__()` within your application's files.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <p><?php _e("Hello!", "my_application"); ?></p>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### Locale configuration
@@ -43,6 +43,7 @@ A locale configuration will be associated to the ISO language code and will supp
 
 Additionally, you may supply additional fields which will not be used by Strata but can be useful in the context of your application.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 $strata = array(
@@ -60,9 +61,12 @@ $strata = array(
 );
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
+
 
 Required configuration keys should be accessed through [predefined methods](/api/1.0/classes/Strata_I18n_Locale.html) while custom configuration may be accessed through a `Locale` object like so :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     use Strata\Strata;
@@ -75,3 +79,4 @@ Required configuration keys should be accessed through [predefined methods](/api
     ));
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

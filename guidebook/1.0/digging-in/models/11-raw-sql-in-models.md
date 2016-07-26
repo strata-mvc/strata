@@ -8,6 +8,7 @@ menu_group: models
 
 You can bundle all of the related queries in the same object. It will make it much easier to create a central area that contains all queries against a custom post type :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -31,5 +32,6 @@ class Artist extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Every view and template files would then call the centralized `App\Model\Artist::findPublished()` ensuring the query is always correct, testable and unique. Note however, the internal `Query` class is a preferred method of handling `WP_Query` assignments as it is a more descriptive process.

@@ -17,6 +17,7 @@ Strata can add these rewrite rules based on the Custom Post Type's configuration
 
 The following configuration would achieve this. Note the notation where the array key is a unique identifier while the second parameter corresponds to the actual URL slug.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -32,3 +33,4 @@ class MyCPT extends AppCustomPostType
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

@@ -16,9 +16,11 @@ These may be installed as Wordpress plugins or as regular PHP projects. The way 
 
 Regular PHP packages can be created by running Composer's `init` command within the package's root directory. A wizard will guide you through the process of creating a valid `composer.json` file.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ composer init
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Private repositories
 
@@ -26,6 +28,7 @@ $ composer init
 
 Inform Composer of the location of your private repository by adding it to the `repositories` block. In this example we give the location of private a Bitbucket Git repository.
 
+{% include terminal_start.html %}
 {% highlight json linenos %}
 {
     "repositories": [{
@@ -37,12 +40,14 @@ Inform Composer of the location of your private repository by adding it to the `
     }]
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### Adding the requirement
 
 With this information Composer will be able to find your private `required` packages and will ask you for credentials as needed when installing or updating.
 
+{% include terminal_start.html %}
 {% highlight json linenos %}
 {
     "require": {
@@ -53,3 +58,5 @@ With this information Composer will be able to find your private `required` pack
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}
+

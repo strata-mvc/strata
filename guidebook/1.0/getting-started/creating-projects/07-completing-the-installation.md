@@ -14,9 +14,11 @@ With the database credentials configured you can finally complete the installati
 
 Invoke the `create` command of the `db` object to complete the installation.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ ./strata db create
 {% endhighlight %}
+{% include terminal_end.html %}
 
 This will create the tables used by Wordpress, pre-populate them with default data and create a default administrator user.
 

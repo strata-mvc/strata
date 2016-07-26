@@ -12,12 +12,14 @@ Should you have previously declared your own global function named `debug` befor
 
 The function accepts anything for as many parameters as you would like.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     $bar = "bar";
     debug(null, "foo", $bar);
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Would print the following in your logs:
 

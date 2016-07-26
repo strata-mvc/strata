@@ -12,6 +12,7 @@ A method of inheriting behavior and simplifying Controller classes is to use [PH
 
 You may then place all methods and concepts that do not relate to routed actions as part of multiple reusable traits.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -41,9 +42,11 @@ class ContactController extends AppController
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The `ContactTrait` can therefore be used by any Controller of your application which will gain the `setupContactForm()` and `attemptContactFormSave()` methods.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller\Component;
@@ -98,3 +101,4 @@ trait ContactTrait
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

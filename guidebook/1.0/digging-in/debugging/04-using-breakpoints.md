@@ -14,6 +14,7 @@ To declare a breakpoint invoke the global `breakpoint();` function from anywhere
 
 Should you have previously declared your own global function named `breakpoint` before Strata is executed, Strata's version will not be injected over the predefined one.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -34,6 +35,7 @@ class ExpertAdviceTypeController extends AppController
     }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 It will bring up a console through which you can debug the current context.
 

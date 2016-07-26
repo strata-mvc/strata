@@ -14,16 +14,19 @@ The `callback()` function requires 2 parameters:
 
 To illustrate how you would do so in your active theme, the following could be placed in `~/web/app/themes/you-theme/functions.php`:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     add_filter('pre_get_posts', \Strata\Router\Router::callback('CallbackController', 'onPreGetPosts'));
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The previous example will call the method `onPreGetPosts` of your project's `CallbackController` controller class and send the expected function parameters as documented by the Wordpress filter or action.
 
 The controller endpoint would look like the following:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -38,3 +41,4 @@ class CallbackController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

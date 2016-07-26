@@ -10,6 +10,7 @@ Both the Custom Post Type slug and the additional sub-URLs can be localized at r
 
 ## Slugs
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -32,9 +33,11 @@ class MyCPT extends AppCustomPostType
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Additional urls
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -61,3 +64,4 @@ class MyCPT extends AppCustomPostType
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

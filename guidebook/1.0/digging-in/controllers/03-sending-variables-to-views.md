@@ -12,16 +12,20 @@ To expose a variable and make it available to the regular Wordpress templating u
 
 In the controller :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     $this->view->set("song", $mysong);
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 In a template file :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php if (isset($song)) : ?>
     <p><?php echo $song->post_title; ?></p>
 <?php endif; ?>
 {% endhighlight %}
+{% include terminal_end.html %}

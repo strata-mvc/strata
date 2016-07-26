@@ -11,6 +11,7 @@ Note that this process only compares strings to validate the validity of a URL. 
 
 Here are some examples of how to use dynamic matches :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 $strata = array(
@@ -22,6 +23,7 @@ $strata = array(
 );
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 You can catch URL parameters to variables with the use of `[*:varname]`. A variable caught that way would then be available as first parameter of the callback function inside the controller.
 
@@ -37,6 +39,7 @@ Assuming you have created one top level page with two children :
 
 With the following set of routing rules :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 $strata = array(
@@ -47,9 +50,11 @@ $strata = array(
 );
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The last rule in the previous example will trigger on calls to `/our-company/people/` and `/our-company/contact/`. These request will be routed to the `show` method of the controller `CompanyController` with the matched `subpage` as first parameter.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -71,5 +76,6 @@ class CompanyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Resourced-based routes will work very similarly to this example. However instead of matching `Pages` or any type of hard-coded URL, they will be automatically based on custom post type slugs. You should favor Resourceful routes when applicable.

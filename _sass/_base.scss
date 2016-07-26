@@ -77,9 +77,11 @@ img {
 
 h1, h2, h3, h4 {
     color: #062a37;
+    font-family: 'Poppins', sans-serif;
 }
 
 .site-header {
+    background-color: $brand-primary-darkest;
     line-height: 110px;
     position: relative;
     z-index: 3;
@@ -90,6 +92,7 @@ h1, h2, h3, h4 {
     }
 
     nav {
+        text-transform: uppercase;
         float: right;
 
         ul {
@@ -99,6 +102,30 @@ h1, h2, h3, h4 {
 
         li {
             display: inline;
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            color: $brand-secondary;
+        }
+    }
+
+    .icon {
+        margin-top: -5px;
+
+        path {
+            fill: #ffffff;
+        }
+
+        &:hover {
+
+            path {
+                fill: $brand-secondary;
+            }
         }
     }
 }
@@ -120,9 +147,8 @@ h1, h2, h3, h4 {
  * Site footer
  */
 .site-footer {
-    background:#efefef;
-    border-top: 1px solid $grey-color-light;
-    color: $grey-color;
+    background-color: $brand-primary-darkest;
+    color: $brand-primary;
     padding: $spacing-unit 0;
     text-align: center;
     font-size: $small-font-size;
@@ -133,4 +159,7 @@ h1, h2, h3, h4 {
     }
 }
 
-
+.underlined-title {
+    background: 0 75% url(/assets/images/title-underline.png) repeat-x;
+    padding: 0 0.3em 0 0;
+}

@@ -1,227 +1,205 @@
 .home {
     margin-top: -110px;
-    background: #4949f7;
+    background: $brand-primary-darkest;
     color: #fff;
-    font-size: 150%;
 
     .hero {
         text-align: center;
-        background: #0f105d url(/images/hero-home.jpg);
+        background: $brand-primary-darkest;
         background-size: cover;
         height: 700px;
         position:relative;
 
-        .action-button {
-            position: absolute;
-            bottom:-55px;
-            left:50%;
-            margin-left:-55px;
-            z-index: 1;
-        }
-
         .lead {
+            font-family: 'Poppins', sans-serif;
             position: absolute;
             top: 260px;
-            font-size: 70px;
             margin: 0 180px;
+            font-size: $title-font-size;
+            font-weight: bold;
+            span {
+                @extend .underlined-title;
+            }
         }
 
     }
 
     article {
         height: 800px;
+        font-size: 18px;
         padding-right: 16.666%;
         position: relative;
+        z-index: 1;
+        padding-top: $padding-base-vertical * 20;
 
         .number {
             background: #fff;
             border-radius: 20px;
-            color: #2f2ff3;
             display:block;
             font-size: 20px;
+            font-weight: bold;
             height: 40px;
             width: 40px;
             line-height: 40px;
             text-align: center;
-            margin: 32px;
-            box-shadow: 0 0 0 20px #2f2ff3;
+            margin: 40px 0 50px 40px;
+        }
+
+        h3 {
+            color: #fff;
+            font-size: $title-font-size;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 1em;
+
+            span {
+                @extend .underlined-title;
+            }
+        }
+
+        p {
+            margin-bottom: $spacing-unit;
         }
     }
 
     .presentation {
         position: relative;
-    }
+        overflow: hidden;
 
-    aside  {
-        position: absolute;
-        top: 110px;
-        right:0;
-        width: 47%;
-    }
-
-
-    // .presentation-box {
-    //     img {
-    //         width:100%;
-    //         height:100%;
-    //     }
-
-    //     article, aside {
-    //         position:absolute;
-    //         font-size: 18px;
-    //         line-height: 1.3;
-    //     }
-
-    //     h3 {
-    //         background: #fff;
-    //         border-radius: 20px;
-    //         display:block;
-    //         font-size: 18px;
-    //         height: 40px;
-    //         width: 40px;
-    //         line-height: 40px;
-    //         text-align: center;
-    //         margin: 32px;
-    //     }
-    // }
-
-    .terminal {
-        .header {
-            background: #fefefe;
-            border-bottom: 1px solid #8f8faa;
-            border-top-left-radius: 3px;
-            font-size: 14px;
-            line-height: 40px;
-            text-shadow: 0 1px #fff;
-            color: #999;
-            padding: 0 1em;
+        article {
+            padding-left: ($container-sm / $grid-columns) + $grid-gutter-width;
         }
 
-        .gutter {
-            border-top-left-radius: 3px;
+        aside  {
+            position: absolute;
+            width: 47%;
+
+            figure {
+                height: 550px;
+            }
         }
-        // .contents {
-        //     background: #0e0e48;
-        //     border-bottom: 1px solid #232283;
-        //     min-height: 100px;
-        //     padding: 1em;
-        // }
     }
 
-    // .present-left {
-    //     background: #4949f7;
-    //     position:relative;
+    .presentating-right {
+        aside  {
+            top: 110px;
+            right: -5px;
+        }
+    }
 
-    //     article {
-    //         top: 197px;
-    //         margin-left:10%;
-    //         width: 40%;
+    .presentating-left {
+        aside  {
+            top: 110px;
+            left: -5px;
+        }
+    }
 
-    //         h2 {
-    //             margin: 0.5em 0 0.75em;
-    //         }
+    .presentating-bottom {
+        article {
 
-    //         h3 {
-    //             color: #2f2ff3;
-    //             box-shadow: 0 0 0 32px #2f2ff3;
-    //         }
-    //     }
+            .number {
+                margin: 40px auto 50px auto;
+            }
 
-    //     aside {
-    //         background: #2f2ff3;
-    //         bottom:0;
-    //         top:0;
-    //         right:0;
-    //         width: 33%;
+            h3 span {
+                padding: 0 0.3em;
+            }
 
-    //         .terminal {
-    //             margin:170px 0 0 -35%;
+            code {
+                padding-bottom: 1em;
+            }
 
-    //             .header {
-    //                 border-top-left-radius: 5px;
-    //             }
-    //             .contents {
-    //                 border-bottom-left-radius: 5px;
-    //             }
-    //         }
-    //     }
-    // }
-
-    // .present-right {
-    //     background: #6e2ac6;
-    //     position:relative;
-
-    //     article {
-    //         top: 197px;
-    //         right:0;
-    //         width: 50%;
-
-    //         h2 {
-    //             margin: 0.5em 0 0.75em;
-    //         }
-
-    //         h3 {
-    //             color: #4c1ab5;
-    //             box-shadow: 0 0 0 32px #4c1ab5;
-    //         }
-    //     }
-
-    //     aside {
-    //         background: #531bb3;
-    //         bottom: 0;
-    //         top: 0;
-    //         left: 0;
-    //         margin-right:10%;
-    //         width: 33%;
-
-    //         .terminal {
-    //             margin:170px -35% 0 0;
-
-    //             .header {
-    //                 border-top-right-radius: 5px;
-    //             }
-    //             .contents {
-    //                 border-bottom-right-radius: 5px;
-    //             }
-    //         }
-    //     }
-    // }
+            text-align: center;
+            max-width:50%;
+            margin: auto;
+            padding:120px 0 200px;
+            height: auto;
+        }
 
 
-    // .present-bottom {
-    //     background: #00e9da;
-    //     position:relative;
+        .terminal-holder {
+            position: relative;
+            margin-bottom: -5px;
 
-    //     article {
-    //         top: 197px;
-    //         right:0;
-    //         width: 50%;
+            aside  {
+                position: relative;
+                margin-top:-150px;
+                top: 0;
+                left: 20%;
+                width: 60%;
+                height: 585px;
+            }
+        }
+    }
 
-    //         h2 {
-    //             margin: 0.5em 0 0.75em;
-    //         }
+    .get-to-know {
+        ul {
+            border-left: 1px solid $brand-primary;
+            margin-top: 250px;
+            list-style-type: none;
+            font-size: $title-font-size * 0.5;
 
-    //         h3 {
-    //             color: #4c1ab5;
-    //             box-shadow: 0 0 0 32px #4c1ab5;
-    //         }
-    //     }
+            li {
+                margin-bottom: .85em;
+            }
 
-    //     aside {
-    //         background: #00dec7;
-    //         position: relative;
-    //         height:300px;
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
 
-    //         .terminal {
-    //             margin:-37px 32px 0;
+            a:hover {
+                color: $brand-primary;
+            }
 
-    //             .header {
-    //                 border-top-right-radius: 5px;
-    //             }
-    //             .contents {
-    //                 border-bottom-right-radius: 5px;
-    //             }
-    //         }
-    //     }
-    // }
+            a:after {
+                content: "→";
+                padding-left: 0.25em;
+                transition: padding .3s;
+            }
+
+            a:hover:after {
+                padding-left: 0.75em;
+            }
+        }
+    }
+
+    .bg-1 {
+        background: $brand-primary-dark;
+
+        .number {
+            color: $brand-primary-dark;
+            box-shadow: 0 0 0 30px $brand-primary-dark;
+        }
+
+        .pale {
+            background: $brand-primary;
+        }
+    }
+
+    .bg-2 {
+        background: $brand-secondary-dark;
+
+        .number {
+            color: $brand-secondary-dark;
+            box-shadow: 0 0 0 30px $brand-secondary-dark;
+        }
+
+        .pale {
+            background: $brand-secondary;
+        }
+    }
+
+    .bg-3 {
+        background: $brand-third-dark;
+
+        .number {
+            color: $brand-third-dark;
+            box-shadow: 0 0 0 30px $brand-third-dark;
+        }
+
+        .pale {
+            background: $brand-third-dark;
+        }
+    }
 }

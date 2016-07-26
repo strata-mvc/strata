@@ -8,6 +8,7 @@ menu_group: validators
 
 If a bundled Validator does not do all you desire you may extend the, in your project. In this example, we will allow translation on the default error message of the `PostexistValidator`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model\Validator;
@@ -24,3 +25,4 @@ class PostexistValidator extends StrataPostExist {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

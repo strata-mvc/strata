@@ -3,87 +3,205 @@ layout: home
 ---
 
 <div class="hero">
-    <p class="lead">Development framework for MVC Wordpress projects</p>
+    <p class="lead"><span>Development framework for MVC Wordpress projects</span></p>
 </div>
 
-
 <div class="container-fluid">
-    <div class="row presentation">
-
-
+    <div class="row presentation presentating-right bg-1">
         <aside class="terminal">
-            <div class="header">~/src/Controller/SongController.php</div>
+            <div class="header">
+                <svg height="18" width="70">
+                    <circle cx="8" cy="8" r="8" fill="#eaeaea" />
+                    <circle cx="35" cy="8" r="8" fill="#eaeaea" />
+                    <circle cx="62" cy="8" r="8" fill="#eaeaea" />
+                </svg>
+             </div>
             <div class="contents">
-{% highlight php linenos %}
+{% highlight php %}
 <?php
-namespace App\Controller;
+namespace App\Model\Entity;
 
-use App\Model\Song;
+class EventEntity extends AppModelEntity
+{
 
-class SongController extends AppController {
-
-    public $shortcodes = array(
-        "list_songs" => "getSongListing"
-    );
-
-    public function getSongListing()
+    public function getUniqueHash()
     {
-        $list = Song::repo()
-            ->onlyGlamRock()
-            ->listing("ID", "post_title");
-
-        return "<p>" . implode(", ", $list) . "</p>";
+        return md5($this->ID . $this->post_name);
     }
+
+    public function getThumbnail()
+    {
+        return get_bloginfo("stylesheet_directory") . "/images/event.png";
+    }
+
 }
+
 {% endhighlight %}
             </div>
         </aside>
 
-        <div class="col-sm-7">
+        <div class="col-sm-7 pale">
             <article>
                 <span class="number">1</span>
-                <h3>Application logic outside template file</h3>
-                <p>Strata is a development framework that provides tools for creating Wordpress projects. It allows you to organize your code outside of the template engine.</p>
-                <p>It keeps Wordpress's functions, filters and actions unmodified while doing so.</p>
+                <h3><span>Expressive application layer</span></h3>
+                <p>
+                    Strata allows you to organize your code outside of
+                    the template engine. It keeps Wordpress's functions, filters
+                    and actions unmodified while doing so.
+                </p>
             </article>
+        </div>
+    </div>
+
+    <div class="row presentation presentating-left bg-2">
+        <aside class="terminal">
+            <div class="header">
+                <svg height="18" width="70">
+                    <circle cx="8" cy="8" r="8" fill="#eaeaea" />
+                    <circle cx="35" cy="8" r="8" fill="#eaeaea" />
+                    <circle cx="62" cy="8" r="8" fill="#eaeaea" />
+                </svg>
+             </div>
+            <div class="contents">
+{% highlight php %}
+<?php
+namespace App\Model;
+
+class Product extends AppCustomPostType
+{
+    public function byName()
+    {
+        return $this
+            ->orderby("post_title")
+            ->direction("ASC");
+    }
+
+    public function published()
+    {
+        return $this->status("publish");
+    }
+
+    public function byRecency()
+    {
+        return $this
+            ->orderby("creation_date")
+            ->direction("DESC");
+    }
+}
+
+{% endhighlight %}
+            </div>
+        </aside>
+
+        <div class="col-sm-offset-5 col-sm-7 pale">
+            <article>
+                <span class="number">2</span>
+                <h3><span>Centralized SQL queries</span></h3>
+                <p>
+                    Strata models reference Wordpress Custom Post Types
+                    and Taxonomies in a layer of abstraction that allows
+                    descriptive SQL query chaining.
+                </p>
+                <p>
+                    Centralized query management eases development by
+                    simplifying complex fetches and by allowing the integration
+                    of new features easily.
+                </p>
+            </article>
+        </div>
+    </div>
+
+    <div class="row presentation presentating-bottom bg-3">
+
+        <div class="col-sm-12 pale">
+            <article>
+                <span class="number">3</span>
+                <h3><span>Code with intent</span></h3>
+                <p>
+                    Spend less time removing default Wordpress behavior through filters and
+                    spend more time in writing descriptive and testable application behavior.
+                </p>
+                <p>
+                    With object oriented MVC programming and a set of development tools
+                    Strata will allow you to build an application without counting exclusively
+                    on plugins that 'almost work right' for your use case.
+                </p>
+            </article>
+        </div>
+
+        <div class="col-sm-12 terminal-holder">
+
+            <aside class="terminal">
+                <div class="header">
+                    <svg height="18" width="70">
+                        <circle cx="8" cy="8" r="8" fill="#eaeaea" />
+                        <circle cx="35" cy="8" r="8" fill="#eaeaea" />
+                        <circle cx="62" cy="8" r="8" fill="#eaeaea" />
+                    </svg>
+                 </div>
+                <div class="contents">
+{% highlight php %}
+<?php
+namespace App\Controller;
+
+use App\Model\Event;
+
+class EventController extends AppController
+{
+    public function index()
+    {
+        $events = Event::repo()
+            ->published()
+            ->where("meta_type", 'DATETIME')
+            ->orderBy("meta_value")
+            ->direction("DESC");
+
+        $this->view->set("pagination", $events->paginate());
+        $this->view->set("events", $events->fetch());
+    }
+
+    public function show()
+    {
+        $post = get_post();
+        if ($post) {
+            $this->view->set("entity", Event::getEntityFromPost($post));
+        } else {
+            $this->notFound();
+        }
+    }
+}
+
+{% endhighlight %}
+                </div>
+            </aside>
+        </div>
+    </div>
+
+
+   <div class="row presentation presentating-right get-to-know">
+        <div class="col-sm-7">
+            <article>
+                <h3><span>Get to know Strata</span></h3>
+                <p>
+                    Strata provides a development environment which features concepts often seen
+                    in other MVC solutions found in multiple programming languages.
+                </p>
+                <p>
+                    It eases the development of the more complex and tailored Wordpress applications
+                    by separating logic and presentation.
+                </p>
+                <p>
+                    In doing so, the code is easier to work on by teams of developers in the context of a business.
+                </p>
+            </article>
+        </div>
+        <div class="col-sm-4">
+            <ul>
+                <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                <li><a href="/hands-on/1.0/">Code examples</a></li>
+                <li><a href="/api/1.0/">Browse the API</a></li>
+            </ul>
         </div>
     </div>
 </div>
 
-
-
-<div class="step details">
-
-    <div class="col">
-        <p><strong>The development environment contains:</strong></p>
-        <ul>
-            <li>A stand-alone webserver</li>
-            <li>Generation and scaffolding of <abbr title="Model View Controller">MVC</abbr> files</li>
-            <li>Testing suite</li>
-            <li>Automated documentation tools</li>
-            <li>DB management tools</li>
-        </ul>
-    </div>
-
-    <div class="col">
-        <p><strong>The framework allows:</strong></p>
-        <ul>
-            <li>PHP dependencies through Composer</li>
-            <li>Controller based page handling</li>
-            <li>Contained Model queries</li>
-            <li>ViewHelper tools</li>
-            <li><abbr title="Test Driven Development">TDD</abbr> approach</li>
-            <li>Same codebase for all website themes</li>
-        </ul>
-    </div>
-
-    <br clear="all" />
-
-    <p>Strata provides a development environment which features concepts often seen in other <abbr title="Model View Controller">MVC</abbr> solutions found in multiple programming languages. It eases the development of the more complex and tailored Wordpress applications by separating logic and presentation. In doing so, the code is easier to work on by teams of developers in the context of a business.</p>
-
-</div>
-
-<div class="step">
-    <h1>Documentation</h1>
-    <p>You can learn more about Strata by reading <a href="/guidebook/1.0/">our documentation</a> and inspecting the <a href="/api/1.0/">API</a>.</p>
-</div>

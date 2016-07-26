@@ -14,6 +14,7 @@ The following is the list of available tools provided by the Controller class. M
 
 Holds a reference to the request that is currently active in the process. It can be used to see information on the current page state. See [Handling requests](/guidebook/1.0/digging-in/handling-requests/) for additional information.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -31,11 +32,13 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### $this->view
 
 Holds a reference to the active View object. See [Sending variables to views](/guidebook/1.0/digging-in/controllers/sending-variables-to-views/) for additional information.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -55,12 +58,14 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $this->shortcodes
 
 Allows automatic creation of shortcodes within the scope of the Controller. See [Automatic shortcodes](/guidebook/1.0/digging-in/controllers/automatic-shortcodes) for additional information.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -83,11 +88,13 @@ class ForumController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### $this->helpers
 
 Allows automatic instantiation of Helpers within the scope of the Controller. See [Helpers](/guidebook/1.0/digging-in/helpers/) for additional information.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -109,6 +116,7 @@ class AppController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Public methods
 
@@ -124,6 +132,7 @@ Make sure to call `parent::init();` if you need to plug into it as it would prev
 
 Executed after each calls to a Controller's action. Recommended area for placing cleanup functions.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -139,12 +148,14 @@ class AppController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### before()
 
 Executed before each calls to a Controller's action. Recommended area for initiating objects and running code that is common across a Controller's methods.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -158,11 +169,13 @@ class EmailController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### before()
 
 Base action when no action is found. This is used mainly as a precautionary fallback when a route matches a controller but not a method.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -177,11 +190,13 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### notFound()
 
 Applies a valid 404 status to the current Request.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -200,11 +215,13 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### serverError()
 
 Applies a valid 500 status to the current Request.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -223,11 +240,13 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### ok()
 
 Applies a valid 200 status to the current Request.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -244,12 +263,14 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### redirect($controllerName, $action = "index", $arguments = array())
 
 Redirects a Controller call to another during a same route.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -276,3 +297,4 @@ class MyController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

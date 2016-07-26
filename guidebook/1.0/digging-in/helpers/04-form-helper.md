@@ -24,6 +24,7 @@ The following is the list of available tools provided by the `FormHelper` class.
 
 The helper's `create($entity, $config)` method is used to open a new `form` html tag by associating it to a `ModelEntity` and further customizing HTML attributes. `$entity` can be `null` in forms that are not associated to a `AppModelEntity` object.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
 <div class="contact-form">
@@ -36,12 +37,14 @@ The helper's `create($entity, $config)` method is used to open a new `form` html
     ...
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Additional information sent through the `$configuration` hash will be parsed into html attributes except for the `type` key.
 
 Type should be a valid HTTP method: `POST`, `GET`, `PATCH` or `file` which will instruct Strata to specify the `enctype` attribute.
 
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
 <div class="contact-form">
@@ -53,12 +56,14 @@ Type should be a valid HTTP method: `POST`, `GET`, `PATCH` or `file` which will 
 </div>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $FormHelper->end();
 
 The helper's `end()` method simply closes the form.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     ...
@@ -68,6 +73,7 @@ The helper's `end()` method simply closes the form.
 </div>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 
@@ -75,22 +81,27 @@ The helper's `end()` method simply closes the form.
 
 The helper's `honeypot($key)` method will generate a honeypot field named after the `$key` parameter.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     <?php echo $FormHelper->honeypot("honeypot-fieldname"); ?>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The generated html is as follows :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <div class="validation" style="height: 1px; overflow: hidden; padding:1px 0 0 1px; position: absolute; width: 1px; z-index: -1">
     <input autocomplete="off" class="" id="data_honeypotfieldname" name="honeypot-fieldname" type="text" value="">
 </div>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 It is up to you to validate the honeypot from your controllers once a request has been posted.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -114,34 +125,40 @@ class ContactController extends AppController
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### $FormHelper->id($attributeName);
 
 Get the internally generated `id` of any field using the `id()` method. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     <label for="<?php echo $FormHelper->id("query"); ?>">A custom label</label>
     <?php echo $FormHelper->input("query"); ?>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $FormHelper->name($attributeName);
 
 Get the internally generated `name` of any field using the `name()` method. The associated ModelEntity `$attributes` array must contain the `$attributeName` key.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     jQuery('input[name="<?php echo <?php echo $FormHelper->name("zipcode"); ?>"]').hide();
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $FormHelper->submit($configuration);
 
 Adds an html `button` of type `submit` to the form. Additional information sent through the `$configuration` hash will be parsed into except attributes expect for the `label` key which will be used as button label if present.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     <?php echo $FormHelper->submit(array(
@@ -150,12 +167,14 @@ Adds an html `button` of type `submit` to the form. Additional information sent 
     )); ?>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $FormHelper->button($inputName, $configuration);
 
 Adds an html `button` to the form. Additional information sent through the `$configuration` hash will be parsed into html attributes except for the `label` key which will be used as button label if present.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     <?php echo $FormHelper->button(array(
@@ -165,6 +184,7 @@ Adds an html `button` to the form. Additional information sent through the `$con
     )); ?>
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ### $FormHelper->input($inputName, $configuration);
 
@@ -173,6 +193,7 @@ Adds an html field to the form. Additional information sent through the `$config
 The most important configuration key is the `type` as it is how the type of field is defined. If `type` is not set `FormHelper` will default to `text`.
 
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
  <?php echo $FormHelper->input("range", array(
     "type" => "select",
@@ -185,7 +206,9 @@ The most important configuration key is the `type` as it is how the type of fiel
     )
 )); ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php echo $FormHelper->input("multiple[1]", array(
     "type" => "checkbox",
@@ -193,14 +216,19 @@ The most important configuration key is the `type` as it is how the type of fiel
     "label" => "A 3rd choice",
 )); ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php echo $FormHelper->input("City", array("label" => "City")); ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php echo $FormHelper->input("message", array("type" => "textarea", "label" => "Message *")); ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $FormHelper->generateInlineErrors($attributeName);
@@ -209,6 +237,7 @@ Generates the possible validation errors on the `$inputName` field. Useful when 
 
 In this case two fields using Bootstraps' grid are linked together and it would be impractical to have the error messages printed twice in each one of their smaller alignment boxes. You can turn off error rendering and decide when to print the fields error messages.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 
     <?php echo $FormHelper->create($modelEntity); ?>
@@ -244,3 +273,4 @@ In this case two fields using Bootstraps' grid are linked together and it would 
     <?php echo $FormHelper->end(); ?>
 
 {% endhighlight %}
+{% include terminal_end.html %}

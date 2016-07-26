@@ -11,6 +11,7 @@ When you have created [Custom Post Types](/guidebook/1.0/digging-in/models/custo
 
 The simplest way of enabling routes on a Model is to set its `$routed` attribute to `true` :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -24,6 +25,7 @@ class Poll extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 This will automatically declare 2 routes : the first pointing to `PollController::index()` and the second pointing to the `PollController::show($slug)` action.
 
@@ -35,6 +37,7 @@ If you wish to change the destination of a resourceful route, you may pass a con
 
 The following configuration will send all requests that match a request the this type of custom post type's (think `single-*.php`) to `BusinessController#sendQuote($slug)`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -47,6 +50,7 @@ class Poll extends AppCustomPostType {
 
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Automated trailing URL parts
 
@@ -54,6 +58,7 @@ You may want to have additional unique URLs that eventually point to the same cu
 
 Additional model urls parts are defined under `rewrite`. The following configuration will allow `/contact/` and `/contact/send-my-form` to coexist.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -68,6 +73,7 @@ class ContactFormApplication extends AppModel
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Customizing match rules
 
@@ -75,6 +81,7 @@ All the previous examples are expected to be ran on object inheriting from `AppC
 
 This class representing a form for a quote on a custom build of a product does not map to posts in Wordpress and therefore cannot imply routing rules. However by setting the `page_slug_regex` key it enables a route to `BusinessController::sendQuote()` when the current post's permalink matches `business/get-a-quote`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -92,3 +99,4 @@ class CustomSystemApplication extends AppModel
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

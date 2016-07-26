@@ -18,6 +18,7 @@ Loggers are configured at runtime in the global configuration file. Values set u
 
 One would configure a `FileLogger` by declaring a custom logger in the project's configuration file. You may pass the optional `name` key as optional configuration to name your logger. In fact you may send anything you need in that array and it will become accessible within the class later on. Strata only looks for `name` however and without a `name`, the logger will automatically be named from its type.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 
@@ -35,11 +36,13 @@ $strata = array(
 
 return $strata;
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Programmatically declare a logger
 
 To instantiate a logger straight from another class, you may obtain an object reference from `LoggerBase`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model\Service\Importer;
@@ -64,6 +67,7 @@ class ImportHTMLCrawler
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ## Sending a message
@@ -72,9 +76,11 @@ You can obtain a reference to your custom logger using `Strata\Strata::app()->ge
 
 To build on the previous `FileLogger` example, here's how you would log a message:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     $logger = Strata\Strata::app()->getLogger("MyCustomLogger");
     $logger->log("Hello World!", "App");
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

@@ -14,6 +14,7 @@ You can add additional menu links to the post type when configuring the model en
 
 Explicitly declare autoloaded models in `config/strata.php`:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 $strata = array(
@@ -26,9 +27,11 @@ $strata = array(
 return $strata;
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Add the admin menus from within the model class. The definition for Profile inside of `src/Model/Profile.php` would look like :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -60,9 +63,11 @@ class Profile extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 While the definition for Song within `src/Model/Song.php` could look like :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -83,6 +88,7 @@ class Song extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 These two model entities will be automatically set up at runtime: `Profile` and `Song`. By passing the `admin_menus` attribute you will see the model generate a call to `add_submenu_page` based on the information passed.
 

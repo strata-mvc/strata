@@ -10,14 +10,17 @@ To generate a custom validator, you should use the automated generator provided 
 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ bin/mvc generate validator MyPasswordValidator
 {% endhighlight %}
+{% include terminal_end.html %}
 
 You class must implement a function named `test` which will run the actual test. This function is expected to return a boolean value. The two parameters are the posted value and the FormHelper object. Using the FormHelper reference allows you to reach out to posted values and various contextual information.
 
 To customize the error message of your validator, implement the function `getMessage`. This function is called when the test has failed and the form object is gathering error messages.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model\Validator;
@@ -38,3 +41,4 @@ class MyPasswordValidator extends StrataValidator {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

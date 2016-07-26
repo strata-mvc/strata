@@ -16,6 +16,7 @@ Your application's Controllers have a public attribute named `$helpers` through 
 
 Notice the `Helper` suffix is not necessary when listing helper names.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -32,6 +33,7 @@ class AppController extends StrataController
     );
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ### $controller->view->loadHelper()
@@ -40,6 +42,7 @@ In times when you wish to load helpers on a per-action basis, you can use a Cont
 
 Notice the `Helper` suffix is not necessary when load helpers.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -54,12 +57,14 @@ class BusinessController extends AppController
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ## Calling a Helper
 
 Once the helpers are set to be instantiated by your controllers, you can use them in the template files like so:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <h1><?php the_title(); ?></h1>
 
@@ -67,3 +72,4 @@ Once the helpers are set to be instantiated by your controllers, you can use the
 
 <article><?php the_content(); ?></article>
 {% endhighlight %}
+{% include terminal_end.html %}

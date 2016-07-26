@@ -8,6 +8,7 @@ menu_group: controllers
 
 When you know a Controller will cancel the normal Wordpress rendering stack because it invokes `$this->view->render()` you may apply layout to the View object through which the rendered content will be inserted.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -31,9 +32,11 @@ class MyController extends AppController
 
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The layout file must include a yield flag in order for Strata to understand where content should be injected. The flag can be printed with `Strata\View\Template::TPL_YIELD`:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <html>
     <head>
@@ -48,3 +51,4 @@ The layout file must include a yield flag in order for Strata to understand wher
     </body>
 </html>
 {% endhighlight %}
+{% include terminal_end.html %}

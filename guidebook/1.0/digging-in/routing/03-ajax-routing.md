@@ -14,11 +14,13 @@ You may render content directly at the controller level and end the request befo
 
 Assuming you want to call Wordpress' default url for ajax request. You would add the following routing path in `config/strata.php`:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     array('POST', '/wp/wp-admin/admin-ajax.php', 'AjaxController'),
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Notice here that no method has been entered as action to the `AjaxController` route. This is because Wordpress uses `$_POST['action']` to fork ajax requests and does not use distinct urls. Therefore Strata will call the method matching the value of the posted `$_POST['action']` value implicitly to determine the current action.
 
@@ -26,6 +28,7 @@ Notice here that no method has been entered as action to the `AjaxController` ro
 
 From anywhere within your active theme, you may set the ajax call as so :
 
+{% include terminal_start.html %}
 {% highlight js linenos %}
 <script>
     $.ajax({
@@ -41,6 +44,7 @@ From anywhere within your active theme, you may set the ajax call as so :
     });
 </script>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The important value here is the `action` parameter. This will automatically determine the intended controller action.
 
@@ -48,6 +52,7 @@ The important value here is the `action` parameter. This will automatically dete
 
 The controller file could look like so :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -71,5 +76,6 @@ class AjaxController extends AppController {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 In this case, this example will effectively return a JSON object representing the matched custom post type.

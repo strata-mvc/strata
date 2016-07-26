@@ -10,6 +10,7 @@ On each instantiation of the Controller object a Request object is created. It i
 
 You may also define another instance of `Request` in one of your object to gain its functionality anywhere else. Understand that data from the original Controller's request object will not transfer to other request instances.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model\Service;
@@ -26,6 +27,7 @@ class MyOtherApiService {
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Determining HTTP Request Method
 
@@ -60,6 +62,7 @@ You can *obtain* the current value stored in each of the request types datasourc
 
 This example illustrates the many ways of using the `Request` object in a Controller.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -94,3 +97,4 @@ class SongsController extends AppController {
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}

@@ -10,6 +10,7 @@ Strata Models should inherit either one of `App\Model\AppModel` or `App\Model\Ap
 
 Start by building your behavior as a Trait and place it under `~/src/Model/Behavior/`. Here we add more flexible query methods under the `QueriablePostTrait`:
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 
@@ -45,10 +46,12 @@ trait QueriablePostTrait {
 }
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 By adding the Trait to either one of your project's model classes or the common `AppModel` class it will gain the prepared behavior.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -63,3 +66,4 @@ class AppModel extends StrataModel
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

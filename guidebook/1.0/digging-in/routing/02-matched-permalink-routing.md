@@ -9,6 +9,7 @@ Matched routing occurs when the current page URL is compared to an exact string 
 
 Routes of this type must be set as part of Strata's configuration array in `~/config/strata.php` under the `routes` key :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 $strata = array(
@@ -22,6 +23,7 @@ $strata = array(
 );
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 AS you can see, a matched route is represented by an array consisting of 3 indexes :
 

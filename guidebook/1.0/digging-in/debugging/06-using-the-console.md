@@ -10,9 +10,11 @@ Should you wish to debug areas of your code that do not require visual output fr
 
 From the root of your project, launch a new Console using the command line interface:
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ ./strata console
 {% endhighlight %}
+{% include terminal_end.html %}
 
 From there you may call your models and test which values they may return:
 

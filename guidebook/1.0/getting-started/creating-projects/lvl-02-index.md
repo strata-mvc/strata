@@ -17,9 +17,12 @@ It is important to visualize that a Strata project is composed of two different 
 
 Use Composer's `create-project` command to create a new blank Strata project. The starter project package is named `francoisfaubert/strata-env` and you must specify the final directory as second parameter.
 
-{% highlight bash linenos %}
+
+{% include terminal_start.html %}
+{% highlight bash %}
 $ composer create-project francoisfaubert/strata-env MyApplication
 $ cd MyApplication
 {% endhighlight %}
+{% include terminal_end.html %}
 
 After the command will have completed you will be with a project that is not entirely installed. Your project's theme and any PHP dependencies still need to be added and installed.

@@ -10,6 +10,7 @@ Whether it's included from a Controller's `$helpers` attribute or by using `$thi
 
 You can send values that you can reuse afterwards within the Helper. The only value Strata will actively look for is for a `name`. If it is sent as part of the configuration, the helper will be declared as the supplied variable name in the view files. Otherwise the variable name in the view is always suffixed with `Helper`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -26,7 +27,9 @@ class ArtistController extends AppController {
 
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -41,3 +44,4 @@ class ArtistController extends AppController {
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}

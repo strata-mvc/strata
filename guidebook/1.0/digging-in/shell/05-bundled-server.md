@@ -7,8 +7,10 @@ menu_group: shell
 
 Strata can launch a server for you at [127.0.0.1:5454](http://127.0.0.1:5454/) by invoking the `server` command.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ ./strata server
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Should you have a `php.ini` file located at the root of your project, Strata will launch the server by taking it into account.

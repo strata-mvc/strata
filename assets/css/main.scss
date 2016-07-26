@@ -5,17 +5,25 @@
 @charset "utf-8";
 
 $base-font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-$base-font-size:   14px;
+$base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
+$title-font-size:  $base-font-size * 4;
 $base-line-height: 1.65;
-
 $spacing-unit:     30px;
 
 $text-color:       #444;
 $background-color: #fefefe;
-$brand-secondary:  #0f105d;
-$brand-primary:    #66d9ef;
-$brand-color:      $brand-primary;
+
+$brand-primary:    #4949f7;
+$brand-primary-dark: #2f2ff3;
+$brand-primary-darkest: #0f105d;
+
+$brand-secondary: #6f2ac5;
+$brand-secondary-dark: #511ab0;
+
+$brand-third: #02e4db;
+$brand-third-dark: #07b9d1;
+
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);

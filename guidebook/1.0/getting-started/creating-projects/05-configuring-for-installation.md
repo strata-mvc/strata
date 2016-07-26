@@ -19,6 +19,7 @@ Database credentials, API keys and various salts should not be stored in the pro
 
 When developing locally, you may use a `.env` file stored at the root of your project. Values listed in this file will be automatically available in your project by using PHP `getenv()` function. You can read more on [dotenv](https://github.com/vlucas/phpdotenv) if you need more information on the mechanics.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 # Database
 
@@ -36,6 +37,7 @@ WP_SITEURL=${WP_HOME}/wp
 
 WP_ENV=development
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Configuring by environment
 
@@ -51,6 +53,7 @@ Strata has one configuration file that contains the information it needs to run 
 
 The configuration file returns an array to Strata that can specify a custom optional **namespace**, automated **custom post type** creation, **routes** and **custom defined variables**.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 
@@ -95,6 +98,7 @@ if ((int)date("j") === 1) {
 return $strata;
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The previous example mentions custom namespaces (explained bellow), [routing](/guidebook/1.0/digging-in/routing/), dynamic instantiation of [custom post types](/guidebook/1.0/digging-in/models/custom-post-types/) and user defined configuration values.
 
@@ -103,11 +107,13 @@ The previous example mentions custom namespaces (explained bellow), [routing](/g
 
 By default, your project classes will be created in the `App` namespace. If you wish to customize this value to something that better defines your application, you may define the `namespace` key in the configuration array in `config/strata.php`.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     $strata["namespace"] = "ValidNamespaceName";
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 <p class="warning">
     Should you change the namespace mid-project you will have to change the namespace value of the all previously generated project files manually.

@@ -12,6 +12,8 @@ Strata ships with multiple CLI tools that allow you to automate actions. It also
 
 The basic call to trigger the command line interface is:
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $ ./strata _command_ _arguments_
 {% endhighlight %}
+{% include terminal_end.html %}

@@ -10,6 +10,7 @@ If you supply `$attributes` in the ModelEntity, you will be able to pass this en
 
 This is useful when you want to take user-submitted information, validate the data and save the info as custom post types with additional business logic applied to and implied from the saved information.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model\Entity;
@@ -42,5 +43,6 @@ class CustomerDetailEntity extends AppCustomPostType {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 [Validators documentation ](/guidebook/1.0/digging-in/validators/) explains how to configure validators and how to create custom ones.

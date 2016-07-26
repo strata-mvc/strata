@@ -14,7 +14,6 @@ The are 4 steps to this process :
 * Saving the data through the model object.
 
 
-{% include workinprogress.html %}
 
 # Setting up the controller
 

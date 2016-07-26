@@ -12,25 +12,31 @@ Projects often have a need for customized command line accessible scripts, may i
 
 Using the command line, run the `generate` command from your project's base directory. Here we create a command called `bundle`.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $  ./strata generate command bundle
 {% endhighlight %}
+{% include terminal_end.html %}
 
 The command will create a new class in the `src/Shell` directory.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 Scaffolding command BundleCommand
   ├── [ OK ] src/Shell/Command/BundleCommand.php
   └── [ OK ] test/Shell/Command/BundleCommandTest.php
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Executing
 
 Custom commands are being auto-loaded when you call the script. Therefore, the previous `bundle` script can be called using:
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 $  ./strata bundle
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Requirements
 
@@ -46,6 +52,7 @@ The following is an example `bundle` command. It goes through all the themes ins
 
 Looking at this class should give you a good understanding of what is possible with custom commands.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Shell\Command;
@@ -104,3 +111,4 @@ class BundleCommand extends \Strata\Shell\Command\StrataCommand {
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

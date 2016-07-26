@@ -14,6 +14,7 @@ Strata offers predefined classes from which to inherit in order for your models 
 
 Represents a `Post` category. The complete API definition for this class can be found on our [Api](/api/1.0/classes/Strata_Model_Taxonomy_Category.html).
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -28,11 +29,13 @@ class Category extends StrataCategory
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## Post
 
 Represents a `Post` object. The complete API definition for this class can be found on our [Api](/api/1.0/classes/Strata_Model_Post.html).
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -47,9 +50,11 @@ class Post extends StrataPost
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 It can also be applied to a custom `Page` object. You should then override `getWordpressKey()` in order for it to understand the `page` post type.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -68,12 +73,14 @@ class Page extends StrataPost
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ## User
 
 Represents a `User` object. The complete API definition for this class can be found on our [Api](/api/1.0/classes/Strata_Model_User.html).
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Model;
@@ -88,3 +95,4 @@ class User extends StrataUser
 }
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}

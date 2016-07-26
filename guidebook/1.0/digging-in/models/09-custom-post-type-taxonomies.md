@@ -18,6 +18,7 @@ $ ./strata generate taxonomy ProfileType
 
 It will generate a couple of files for you, including the actual taxonomy file and test suites for the generated class.
 
+{% include terminal_start.html %}
 {% highlight bash linenos %}
 Scaffolding model Artist
   ├── [ OK ] src/Model/Taxonomy/ProfileType.php
@@ -25,6 +26,7 @@ Scaffolding model Artist
   └── [ OK ] test/Model/Taxonomy/ProfileTypeTest.php
   ├── [ OK ] test/Model/Entity/ProfileTypeEntityTest.php
 {% endhighlight %}
+{% include terminal_end.html %}
 
 
 ## Loading the Taxonomy to a AppCustomPostType

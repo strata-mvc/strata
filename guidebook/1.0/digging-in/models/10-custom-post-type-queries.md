@@ -14,6 +14,7 @@ It offers some of the advantages of a full-fledged ORM without bastardizing Word
 
 The following example shows how to query published posts ordered by the menu order.
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App;
@@ -37,14 +38,17 @@ class Artist extends AppCustomPostType {
 }
 
 {% endhighlight %}
+{% include terminal_end.html %}
 
 You can call this query from your controllers by accessing the model repository using `repo()` :
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
     debug(Artist::repo()->findPublished());
 ?>
 {% endhighlight %}
+{% include terminal_end.html %}
 
 ## $this->where($field, $value);
 

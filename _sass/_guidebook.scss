@@ -15,10 +15,8 @@
         }
 
         h4 {
-            border-bottom: 1px solid darken($brand-secondary, 10%);
-            color: darken($brand-secondary, 50%);
+            color: $brand-primary-darkest;
             font-size: 1.2em;
-            padding-bottom: .85em;
             margin: 1em 0;
         }
 
@@ -33,6 +31,7 @@
     }
 
     article {
+        padding: $spacing-unit 0;
 
         h2 {
             margin-top: 1em;
@@ -44,6 +43,18 @@
             padding:1.2em 0;
             text-align: right;
             font-size: 120%;
+
+            a:after {
+                content: "→";
+                padding-left: 0.25em;
+                margin-left: 0.5em;
+                transition: padding margin .3s;
+            }
+
+            a:hover:after {
+                padding-left: 0.75em;
+                margin-left: 0;
+            }
         }
     }
 }

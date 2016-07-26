@@ -11,6 +11,7 @@ In the case where you have created a page through Wordpress's CMS and need to in
 In this example a shortcode named `list_songs` is registered by Strata and will point to `SongController::getSongsListing()`. This means that in Wordpress' WYSIWYG, entering `[list_songs]` in the post body will print out whatever is returned by `SongController::getSongListing()`.
 
 
+{% include terminal_start.html %}
 {% highlight php linenos %}
 <?php
 namespace App\Controller;
@@ -30,6 +31,7 @@ class SongController extends AppController {
     }
 }
 {% endhighlight %}
+{% include terminal_end.html %}
 
 Note that the permalink of this page must be caught by a route in order for the Controller object to be instantiated and have its shortcodes be declared and applied.
 
