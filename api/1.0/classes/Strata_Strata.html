@@ -86,30 +86,16 @@ Strata\Strata</title>
         <div class="synopsis">class Strata
                 extends <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">StrataContext</a>
             {<br><ul class="none">
-<li>// Inherited constants from <a title="Strata\Core\StrataContext" href="../classes/Strata_Core_StrataContext.html">StrataContext</a>
-</li>
-<li>const <a href="#STRATA_KEY">STRATA_KEY</a> = "__Strata__";</li>
-</ul>
-<ul class="none">
 <li>// members</li>
 <li>protected <span title="Strata\bool">bool</span> <a href="#members">$ready</a> =
                         null;
                     </li>
-<li>protected <span title="Composer\Autoload\ClassLoader">ClassLoader</span> <a href="#members">$loader</a> =
-                        null;
-                    </li>
-<li>private <span title="Strata\Middleware\MiddlewareLoader">MiddlewareLoader</span> <a href="#members">$middlewareLoader</a> =
-                        null;
-                    </li>
-<li>public <span title="Strata\I18n\I18n">I18n</span> <a href="#members">$i18n</a> =
-                        null;
-                    </li>
-<li>public <span title="Strata\Router\Router">Router</span> <a href="#members">$router</a> =
-                        null;
-                    </li>
-<li>public <span title="Strata\Router\Rewriter">Rewriter</span> <a href="#members">$rewriter</a> =
-                        null;
-                    </li>
+</ul>
+<ul class="none">
+<li>// Inherited members from <span title="Strata\Core\StrataContext">StrataContext</span>
+</li>
+<li>public static  <a href="#members">$reference</a>;
+                        </li>
 </ul>
 <ul class="none">
 <li>// methods</li>
@@ -119,9 +105,9 @@ Strata\Strata</title>
                     </li>
 <li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/loadConfiguration.html">loadConfiguration</a>()
                     </li>
-<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setLoader.html">setLoader</a>()
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/setClassLoader.html">setClassLoader</a>()
                     </li>
-<li>public ClassLoader <a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader</a>()
+<li>public ClassLoader <a title="Strata\Strata" href="../classes/Strata_Strata/getClassLoader.html">getClassLoader</a>()
                     </li>
 <li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/loadMiddleware.html">loadMiddleware</a>()
                     </li>
@@ -139,6 +125,12 @@ Strata\Strata</title>
                     </li>
 <li>public Logger <a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger</a>()
                     </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/getRouter.html">getRouter</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/getRewriter.html">getRewriter</a>()
+                    </li>
+<li>public void <a title="Strata\Strata" href="../classes/Strata_Strata/getI18n.html">getI18n</a>()
+                    </li>
 <li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/displayRuntimeHeader.html">displayRuntimeHeader</a>()
                     </li>
 <li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/localize.html">localize</a>()
@@ -150,8 +142,6 @@ Strata\Strata</title>
 <li>protected void <a title="Strata\Strata" href="../classes/Strata_Strata/configureCustomPostType.html">configureCustomPostType</a>()
                     </li>
 <li>protected null <a title="Strata\Strata" href="../classes/Strata_Strata/saveConfigurationFileSettings.html">saveConfigurationFileSettings</a>()
-                    </li>
-<li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils</a>()
                     </li>
 <li>protected boolean <a title="Strata\Strata" href="../classes/Strata_Strata/saveCurrentPID.html">saveCurrentPID</a>()
                     </li>
@@ -280,38 +270,14 @@ Strata\Strata</title>
             </li>
           </ul>
 </div>
-        <h2 id="constants">Constants</h2>
-        <table class="styled">
-<thead><tr>
-<th>Name</th>
-              <th>Value</th>
-            </tr></thead>
-<tbody><tr>
-<td id="STRATA_KEY">STRATA_KEY</td>
-              <td>"__Strata__"</td>
-            </tr></tbody>
-</table>
-<h2 id="members">Members</h2>
+        <h2 id="members">Members</h2>
         <div class="styled members">
-          <h4>private</h4>
-          <ul class="members">
-<li id="middlewareLoader">
-<strong>$middlewareLoader</strong>
-                —
-                <a title="Strata\Middleware\MiddlewareLoader" href="../classes/Strata_Middleware_MiddlewareLoader.html">Strata\Middleware\MiddlewareLoader</a>
-</li>
-          </ul>
-<h4>protected</h4>
+          <h4>protected</h4>
           <ul class="members">
 <li id="configuration">
 <strong>$configuration</strong>
                 —
                 array<br><span class="indent">The configuration cache.</span>
-</li>
-            <li id="loader">
-<strong>$loader</strong>
-                —
-                <a title="Composer\Autoload\ClassLoader" href="../classes/Composer_Autoload_ClassLoader.html">Composer\Autoload\ClassLoader</a>
 </li>
             <li id="ready">
 <strong>$ready</strong>
@@ -321,21 +287,9 @@ Strata\Strata</title>
           </ul>
 <h4>public</h4>
           <ul class="members">
-<li id="i18n">
-<strong>$i18n</strong>
-                —
-                <a title="Strata\I18n\I18n" href="../classes/Strata_I18n_I18n.html">Strata\I18n\I18n</a>
-</li>
-            <li id="rewriter">
-<strong>$rewriter</strong>
-                —
-                <a title="Strata\Router\Rewriter" href="../classes/Strata_Router_Rewriter.html">Strata\Router\Rewriter</a>
-</li>
-            <li id="router">
-<strong>$router</strong>
-                —
-                <a title="Strata\Router\Router" href="../classes/Strata_Router_Router.html">Strata\Router\Router</a>
-</li>
+<li id="reference">
+              <strong>$reference</strong>
+            </li>
           </ul>
 </div>
         <h2 id="methods">Methods</h2>
@@ -360,9 +314,6 @@ Strata\Strata</title>
             <li id="includeToolset">
 <a title="Strata\Strata" href="../classes/Strata_Strata/includeToolset.html">includeToolset()</a>
                 — Includes the global toolset functions in the current scope and returns whether the include was successful or not.</li>
-            <li id="includeUtils">
-<a title="Strata\Strata" href="../classes/Strata_Strata/includeUtils.html">includeUtils()</a>
-                — Includes the debugger classes.</li>
             <li id="loadMiddleware">
 <a title="Strata\Strata" href="../classes/Strata_Strata/loadMiddleware.html">loadMiddleware()</a>
                 — Looks through all the packages in composer and if they are in our Strata\Middleware namespace, we try to autoload them.</li>
@@ -384,15 +335,24 @@ Strata\Strata</title>
 <li id="addProjectNamespaces">
 <a title="Strata\Strata" href="../classes/Strata_Strata/addProjectNamespaces.html">addProjectNamespaces()</a>
                 — Adds the current project namespace to the project's class loader.</li>
-            <li id="getLoader">
-<a title="Strata\Strata" href="../classes/Strata_Strata/getLoader.html">getLoader()</a>
+            <li id="getClassLoader">
+<a title="Strata\Strata" href="../classes/Strata_Strata/getClassLoader.html">getClassLoader()</a>
                 — Returns a class loader to the application</li>
+            <li id="getI18n">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/getI18n.html">getI18n()</a>
+            </li>
             <li id="getLogger">
 <a title="Strata\Strata" href="../classes/Strata_Strata/getLogger.html">getLogger()</a>
                 — Returns a reference to the Logger. When no $name is provided, attempts to return the most plausible one.</li>
             <li id="getMiddlewares">
 <a title="Strata\Strata" href="../classes/Strata_Strata/getMiddlewares.html">getMiddlewares()</a>
                 — Returns the list of declared middlewares in the application.</li>
+            <li id="getRewriter">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/getRewriter.html">getRewriter()</a>
+            </li>
+            <li id="getRouter">
+              <a title="Strata\Strata" href="../classes/Strata_Strata/getRouter.html">getRouter()</a>
+            </li>
             <li id="includeGettextFixture">
 <a title="Strata\Strata" href="../classes/Strata_Strata/includeGettextFixture.html">includeGettextFixture()</a>
                 — Loads up a gettext fixture against which the tests will test.</li>
@@ -414,12 +374,12 @@ Strata\Strata</title>
             <li id="run">
 <a title="Strata\Strata" href="../classes/Strata_Strata/run.html">run()</a>
                 — Kickstarts the Router and preload the custom post types associated to the project.</li>
+            <li id="setClassLoader">
+<a title="Strata\Strata" href="../classes/Strata_Strata/setClassLoader.html">setClassLoader()</a>
+                — Assigns a class loader to the application</li>
             <li id="setDefaultNamespace">
 <a title="Strata\Strata" href="../classes/Strata_Strata/setDefaultNamespace.html">setDefaultNamespace()</a>
                 — Sets the default namespaces Strata knows about in the project's Composer's ClassLoader.</li>
-            <li id="setLoader">
-<a title="Strata\Strata" href="../classes/Strata_Strata/setLoader.html">setLoader()</a>
-                — Assigns a class loader to the application</li>
             <li id="takeOverWPCLIArgs">
 <a title="Strata\Strata" href="../classes/Strata_Strata/takeOverWPCLIArgs.html">takeOverWPCLIArgs()</a>
                 — ~/src/Scripts/runner.php and WP-CLI command line scripts do not have the same amount of parameters. This takes over WP-CLI's order of arguments and registers them back for Strata.</li>

@@ -1,5 +1,5 @@
-$presentation-box-top-distance: $padding-base-vertical * 15;
-$presentation-box-height: 700px;
+$presentation-box-top-distance: $padding-base-vertical * 18;
+$presentation-box-height: 800px;
 
 $home-font-size: 18px;
 
@@ -11,7 +11,7 @@ $home-font-size: 18px;
     .hero {
         background: $brand-primary-darkest;
         background-size: cover;
-        height: $presentation-box-height;
+        height: $presentation-box-height - 100;
         position:relative;
         text-align: center;
 
@@ -29,6 +29,14 @@ $home-font-size: 18px;
             }
         }
 
+        .action-button {
+            position: absolute;
+            bottom:-50px;
+            left:50%;
+            margin-left:-55px;
+            z-index: 1;
+            opacity: 0;
+        }
     }
 
     article {
@@ -141,6 +149,7 @@ $home-font-size: 18px;
     }
 
     .get-to-know {
+        color: #babacb;
         ul {
             border-left: 1px solid $brand-primary;
             margin-top:  ($presentation-box-height * 0.35);
@@ -153,7 +162,7 @@ $home-font-size: 18px;
 
             a {
                 text-decoration: none;
-                color: #efefef;
+                color: #babacb;
             }
 
             a:hover {
@@ -212,11 +221,12 @@ $home-font-size: 18px;
     }
 
 
-    @media (max-width: $screen-md-min) {
+    @media (max-width: $screen-sm-min) {
         .hero {
             .lead {
                 margin-left: 0;
                 margin-right: 0;
+                top: 170px;
                 font-size: $title-font-size * .85;
 
                 span {
@@ -256,20 +266,20 @@ $home-font-size: 18px;
             }
         }
 
-            .get-to-know {
-                padding-top: 50px;
+        .get-to-know {
+            padding-top: 50px;
 
-                ul {
-                    margin-top: 1em;
-                    padding-top: 1em;
-                    border-top: 1px solid $brand-primary;
-                    border-left: none;
+            ul {
+                margin-top: 1em;
+                padding-top: 1em;
+                border-top: 1px solid $brand-primary;
+                border-left: none;
 
-                    li {
-                        margin-left: 0;
-                    }
+                li {
+                    margin-left: 0;
                 }
             }
+        }
     }
 }
 

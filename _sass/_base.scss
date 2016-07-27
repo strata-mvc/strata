@@ -1,6 +1,6 @@
 
 * {
-    transition: all .4s;
+    transition: padding .4s, opacity .4s, color .4s;
 }
 
 /**
@@ -172,4 +172,19 @@ h1, h2, h3, h4 {
 .underlined-title {
     background: 0 75% url(/assets/images/title-underline.png) repeat-x;
     padding: 0 0.3em 0 0;
+}
+
+
+.action-button {
+    background: #00e9da;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 56px;
+    box-shadow: 0 13px 15px 0 rgba(0, 0, 0, .5);
+    display: inline-block;
+    line-height: 112px;
+    height: 112px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 112px;
 }

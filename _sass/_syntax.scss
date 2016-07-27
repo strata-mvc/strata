@@ -16,7 +16,7 @@ code.highlighter-rouge,
     z-index: 2;
 
     .header {
-        background: #efefef;
+        background: #fefefe;
         border-bottom: 1px solid #8f8faa;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
@@ -47,8 +47,8 @@ figure {
     margin-bottom: 30px;
 
     pre {
-        margin:0;
-        padding:1em;
+        margin: 0;
+        padding: 2em;
     }
 
     .gutter {
@@ -85,7 +85,7 @@ figure {
         .l { color: #ae81ff } /* Literal */
         .n { color: #d46b73 } /* Name */
         .o { color: #f92672 } /* Operator */
-        .p { color: #d46b73 } /* Punctuation */
+        .p { color: #babacb } /* Punctuation */
         .cm { color: #757396 } /* Comment.Multiline */
         .cp { color: #757396 } /* Comment.Preproc */
         .c1 { color: #757396 } /* Comment.Single */
@@ -111,7 +111,7 @@ figure {
         .nf { color: #8ca989 } /* Name.Function */
         .nl { color: #d46b73 } /* Name.Label */
         .nn { color: #d46b73 } /* Name.Namespace */
-        .nx { color: #8ca989 } /* Name.Other */
+        .nx { color: #ffffff } /* Name.Other */
         .py { color: #d46b73 } /* Name.Property */
         .nt { color: #f92672 } /* Name.Tag */
         .nv { color: #d46b73 } /* Name.Variable */
