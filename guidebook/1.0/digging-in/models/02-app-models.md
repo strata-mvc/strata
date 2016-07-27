@@ -15,7 +15,7 @@ Look at [automated custom post type models](/guidebook/1.0/digging-in/models/cus
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a model named `Artist` :
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate model artist
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -23,7 +23,7 @@ $ ./strata generate model artist
 It will generate a couple of files for you, including the actual model file and test suites for the generated class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding model Artist
   ├── [ OK ] src/Model/Artist.php
   ├── [ OK ] src/Model/Entity/ArtistEntity.php

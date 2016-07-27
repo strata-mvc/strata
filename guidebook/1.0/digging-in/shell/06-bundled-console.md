@@ -8,7 +8,7 @@ menu_group: shell
 Strata can launch a console for you by invoking the `console` command.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata console
 {% endhighlight %}
 {% include terminal_end.html %}

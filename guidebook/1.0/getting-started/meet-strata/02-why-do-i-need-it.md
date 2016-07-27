@@ -2,10 +2,7 @@
 layout: guidebook
 title: Why do I need it?
 permalink: /guidebook/1.0/getting-started/meet-strata/why-do-i-need-it/
-
 menu_group: meet-strata
-next_page: /guidebook/1.0/getting-started/meet-strata/when-should-i-use-it/
-next_page_label: When is Strata especially useful?
 ---
 
 ## Wordpress as a CMS

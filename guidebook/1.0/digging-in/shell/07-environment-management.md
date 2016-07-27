@@ -14,7 +14,7 @@ If you have reasons to think the directory structure and default project files a
 Using the command line, run the `repair` command from your project's base directory.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata env repair
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -22,7 +22,7 @@ $ ./strata env repair
 The command will check for existence of known default folders as well as default files.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Ensuring correct directory structure.
   ├── [SKIP] bin
   ├── [SKIP] config
@@ -64,7 +64,7 @@ In themes and inside Wordpress, you will see code written using Wordpress' own s
 You can run the `psr2format` to go through each of the files under `src/` and `test/` and fix PSR2 formatting errors. This script will modify your files, but should not have a destructive behavior. For additional information on how the formatting is done, you may wish to read on [Phpcbf](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically).
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $  ./strata env psr2format
 {% endhighlight %}
 {% include terminal_end.html %}

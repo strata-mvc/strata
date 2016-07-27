@@ -12,7 +12,7 @@ You should not be creating the files by hand when building a Strata app. We have
 Generates a new Controller class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate controller MyController
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -22,7 +22,7 @@ $ ./strata generate controller MyController
 Generates a new model class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate model MyModel
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -32,7 +32,7 @@ $ ./strata generate model MyModel
 Generates a new custom post type model class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate customposttype MyModel
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -42,7 +42,7 @@ $ ./strata generate customposttype MyModel
 Generates a new taxonomy model class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate taxonomy MyClass
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -52,7 +52,7 @@ $ ./strata generate taxonomy MyClass
 Generates a new view helper class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate helper MyClass
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -62,7 +62,7 @@ $ ./strata generate helper MyClass
 Generates a new form validator class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate validator MyClass
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -72,7 +72,7 @@ $ ./strata generate validator MyClass
 Generates a new shell command class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate command MyClass
 {% endhighlight %}
 {% include terminal_end.html %}

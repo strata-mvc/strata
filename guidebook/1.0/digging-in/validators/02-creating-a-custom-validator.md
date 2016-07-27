@@ -11,7 +11,7 @@ To generate a custom validator, you should use the automated generator provided 
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a validator extending the one you passed (or the base validator if nothing is passed)
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ bin/mvc generate validator MyPasswordValidator
 {% endhighlight %}
 {% include terminal_end.html %}

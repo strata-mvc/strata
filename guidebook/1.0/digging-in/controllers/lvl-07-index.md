@@ -21,7 +21,7 @@ To generate a Controller, you should use the automated generator provided by Str
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a controller for the `Artist` object:
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate controller artist
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -29,7 +29,7 @@ $ ./strata generate controller artist
 The command generates a couple of files for you, including the actual Controller file and test suites for the generated class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding controller ArtistController
   ├── [ OK ] src/Controller/ArtistController.php
   └── [ OK ] test/Controller/ArtistControllerTest.php

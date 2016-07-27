@@ -13,7 +13,7 @@ Projects often have a need for customized command line accessible scripts, may i
 Using the command line, run the `generate` command from your project's base directory. Here we create a command called `bundle`.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $  ./strata generate command bundle
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -21,7 +21,7 @@ $  ./strata generate command bundle
 The command will create a new class in the `src/Shell` directory.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding command BundleCommand
   ├── [ OK ] src/Shell/Command/BundleCommand.php
   └── [ OK ] test/Shell/Command/BundleCommandTest.php
@@ -33,7 +33,7 @@ Scaffolding command BundleCommand
 Custom commands are being auto-loaded when you call the script. Therefore, the previous `bundle` script can be called using:
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $  ./strata bundle
 {% endhighlight %}
 {% include terminal_end.html %}

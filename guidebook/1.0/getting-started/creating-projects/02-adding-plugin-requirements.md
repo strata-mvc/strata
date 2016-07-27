@@ -77,7 +77,7 @@ The previous command will add a new entry in the `require` block of your project
 Once the requirements are updated to reflect the application's needs they will be kept up to date each time you build the application. This means you should not update plugins through the Wordpress admin.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ composer update
 {% endhighlight %}
 {% include terminal_end.html %}

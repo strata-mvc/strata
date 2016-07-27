@@ -10,7 +10,7 @@ todo: be less technical and make a better presentation of the subject as this is
 Strata can launch a server for you at [127.0.0.1:5454](http://127.0.0.1:5454/) by invoking the `server` command.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata server
 {% endhighlight %}
 {% include terminal_end.html %}

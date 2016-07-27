@@ -10,7 +10,7 @@ To generate a `Middleware`, you should use the automated generator provided by S
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a middleware for IP forwarding:
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate middleware IpForwarding
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -18,7 +18,7 @@ $ ./strata generate middleware IpForwarding
 The command generates a couple of files for you, including the actual `Middleware` initializer file and test suites for the generated class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding controller ArtistController
   ├── [ OK ] src/Middleware/IpForwardingInitializer.php
   └── [ OK ] test/Middleware/IpForwardingInitializerTest.php

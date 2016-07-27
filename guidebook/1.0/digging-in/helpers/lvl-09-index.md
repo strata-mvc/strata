@@ -17,7 +17,7 @@ To generate a `ViewHelper`, you should use the automated generator provided by S
 Using the command line, run the `generate` command from your project's base directory. In this example, we will generate a view helper for the `Artist` object:
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ ./strata generate helper Artist
 {% endhighlight %}
 {% include terminal_end.html %}
@@ -25,7 +25,7 @@ $ ./strata generate helper Artist
 The command generates a couple of files for you, including the actual `ViewHelper` file and test suites for the generated class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding controller ArtistController
   ├── [ OK ] src/View/Helper/ArtistHelper.php
   └── [ OK ] test/View/Helper/ArtistHelperTest.php

@@ -19,7 +19,7 @@ $ ./strata generate taxonomy ProfileType
 It will generate a couple of files for you, including the actual taxonomy file and test suites for the generated class.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 Scaffolding model Artist
   ├── [ OK ] src/Model/Taxonomy/ProfileType.php
   ├── [ OK ] src/Model/Entity/ProfileTypeEntity.php

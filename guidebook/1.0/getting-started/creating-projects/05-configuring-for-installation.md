@@ -20,7 +20,7 @@ Database credentials, API keys and various salts should not be stored in the pro
 When developing locally, you may use a `.env` file stored at the root of your project. Values listed in this file will be automatically available in your project by using PHP `getenv()` function. You can read more on [dotenv](https://github.com/vlucas/phpdotenv) if you need more information on the mechanics.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight INI linenos %}
 # Database
 
 DB_HOST=:/Applications/MAMP/tmp/mysql/mysql.sock

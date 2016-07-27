@@ -17,7 +17,7 @@ These may be installed as Wordpress plugins or as regular PHP projects. The way 
 Regular PHP packages can be created by running Composer's `init` command within the package's root directory. A wizard will guide you through the process of creating a valid `composer.json` file.
 
 {% include terminal_start.html %}
-{% highlight bash linenos %}
+{% highlight bash %}
 $ composer init
 {% endhighlight %}
 {% include terminal_end.html %}
