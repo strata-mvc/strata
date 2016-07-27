@@ -43,11 +43,15 @@ class EventEntity extends AppModelEntity
         <div class="col-sm-7 pale">
             <article>
                 <span class="number">1</span>
-                <h3><span>Expressive application layer</span></h3>
+                <h3><span>An expressive application layer</span></h3>
                 <p>
                     Strata allows you to organize your code outside of
-                    the template engine. It keeps Wordpress's functions, filters
-                    and actions unmodified while doing so.
+                    the template engine. It encourages and is built around
+                    object-oriented programming concepts.
+                </p>
+                <p>
+                    It keeps Wordpress's features and interaction with filters,
+                    actions and plugins unmodified while doing so.
                 </p>
             </article>
         </div>
@@ -98,9 +102,9 @@ class Product extends AppCustomPostType
                 <span class="number">2</span>
                 <h3><span>Centralized SQL queries</span></h3>
                 <p>
-                    Strata models reference Wordpress Custom Post Types
+                    Strata models wrap default Wordpress Custom Post Types
                     and Taxonomies in a layer of abstraction that allows
-                    descriptive SQL query chaining.
+                    descriptive SQL query chaining and concept binding.
                 </p>
                 <p>
                     Centralized query management eases development by
@@ -118,13 +122,12 @@ class Product extends AppCustomPostType
                 <span class="number">3</span>
                 <h3><span>Code with intent</span></h3>
                 <p>
-                    Spend less time removing default Wordpress behavior through filters and
-                    spend more time in writing descriptive and testable application behavior.
+                    Spend less time removing default Wordpress behavior and more time
+                    writing descriptive and testable application behavior.
                 </p>
                 <p>
-                    With object oriented MVC programming and a set of development tools
                     Strata will allow you to build an application without counting exclusively
-                    on plugins that 'almost work right' for your use case.
+                    on plugins that cannot possibly answer your custom use case.
                 </p>
             </article>
         </div>
@@ -191,7 +194,8 @@ class EventController extends AppController
                     by separating logic and presentation.
                 </p>
                 <p>
-                    In doing so, the code is easier to work on by teams of developers in the context of a business.
+                    In doing so the code is easier to manage by teams of developers or by you, two months
+                    after the project is completed.
                 </p>
             </article>
         </div>

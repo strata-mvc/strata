@@ -7,7 +7,8 @@
 $base-font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
-$title-font-size:  $base-font-size * 4;
+
+$title-font-size:  $base-font-size * 3.6;
 $base-line-height: 1.65;
 $spacing-unit:     30px;
 
@@ -24,15 +25,22 @@ $brand-secondary-dark: #511ab0;
 $brand-third: #02e4db;
 $brand-third-dark: #07b9d1;
 
+$brand-highlight-color: #fcc403;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 
-// Import partials from `sass_dir` (defaults to `_sass`)
+@import "bootstrap";
+
+$column-width: percentage(1 / $grid-columns);
+
+@media (max-width: $screen-md-min) {
+    $title-font-size: $title-font-size * .8;
+}
+
 @import
-    "bootstrap",
     "base",
     "syntax",
     "guidebook",
@@ -40,3 +48,4 @@ $grey-color-dark:  darken($grey-color, 25%);
     "hands-on",
     "home"
 ;
+
