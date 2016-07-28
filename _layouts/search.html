@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<section class="guidebook">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <article>
+                    <header>
+                        <h1>{{ page.title }}</h1>
+                    </header>
+
+                    <form action="/search/">
+                        <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+                    </form>
+
+                    {{ content }}
+
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 ---
 layout: hands-on
-title: Hand On
+title: Hands On
 permalink: /hands-on/1.0/
 ---
 

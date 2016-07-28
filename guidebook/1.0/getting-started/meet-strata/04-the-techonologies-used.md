@@ -2,12 +2,8 @@
 layout: guidebook
 title: The Technologies Used
 permalink: /guidebook/1.0/getting-started/meet-strata/the-technologies-used/
-
 covered_tags: installation
-
 menu_group: meet-strata
-next_page: /guidebook/1.0/getting-started/meet-strata/how-it-integrates-with-wordpress/
-next_page_label: How it integrates with Wordpress
 ---
 
 Strata uses [Composer](https://getcomposer.org/) to fetch Wordpress, the plugins and required PHP libraries at specified versions.
