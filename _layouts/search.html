@@ -12,8 +12,9 @@ layout: default
                         <h1>{{ page.title }}</h1>
                     </header>
 
-                    <form action="/search/">
-                        <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+                    <form action="/search/" method="GET">
+                        <input type="text" name="q" autocomplete="off" required>
+                        <input type="submit" value="Search">
                     </form>
 
                     {{ content }}
