@@ -84,7 +84,7 @@ class I18nCommand extends StrataCommandBase
      */
     protected function getLocales()
     {
-        return Strata::app()->i18n->getLocales();
+        return Strata::i18n()->getLocales();
     }
 
     /**
@@ -94,7 +94,7 @@ class I18nCommand extends StrataCommandBase
      */
     protected function projectHasActiveLocales()
     {
-        return Strata::app()->i18n->hasActiveLocales();
+        return Strata::i18n()->hasActiveLocales();
     }
 
     /**
