@@ -1,5 +1,5 @@
 {
-    "name": "francoisfaubert/strata",
+    "name": "strata-mvc/strata",
     "type": "library",
     "description": "Strata is a MVC programming environment for Wordpress.",
     "keywords": [
@@ -37,7 +37,7 @@
         }
     },
     "support": {
-        "issues": "https://github.com/francoisfaubert/strata/issues"
+        "issues": "https://github.com/strata-mvc/strata/issues"
     },
     "prefer-stable" : true
 }
