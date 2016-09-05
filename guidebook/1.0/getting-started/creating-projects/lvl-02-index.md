@@ -10,8 +10,8 @@ group_theme: Getting Started
 
 It is important to visualize that a Strata project is composed of two different entities:
 
-* **Strata Environment** : A Strata project's file structure. It is the empty shell in which you will add your application's code.
-* **Strata MVC** : The Model-View-Controller library itself that is loaded as a dependency in the Strata Environment.
+* **strata-mvc/project** : A Strata project's file structure. It is the empty shell in which you will add your application's code.
+* **strata-mvc/strata** : The Model-View-Controller library itself that is loaded as a dependency in the Strata Environment.
 
 ## Generating an environment
 
@@ -20,7 +20,7 @@ Use Composer's `create-project` command to create a new blank Strata project. Th
 
 {% include terminal_start.html %}
 {% highlight bash %}
-$ composer create-project francoisfaubert/strata-env MyApplication
+$ composer create-project strata-mvc/project MyApplication
 $ cd MyApplication
 {% endhighlight %}
 {% include terminal_end.html %}
