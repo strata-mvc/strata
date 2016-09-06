@@ -8,7 +8,6 @@ use Strata\Strata;
 /**
  * Handles safe access to HTTP request data, whether from POST, GET, files or cookies.
  * It encodes data accordingly and does basic data integrity validation.
- * @link http://strata.francoisfaubert.com/docs/controllers/request/
  */
 class Request
 {

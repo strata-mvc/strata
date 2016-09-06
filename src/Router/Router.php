@@ -10,7 +10,6 @@ use Strata\Router\RouteParser\Callback\CallbackRouter;
 
 /**
  * Assigns callback handlers based on the possible different contexts.
- * @link    http://strata.francoisfaubert.com/docs/routes/
  */
 class Router
 {

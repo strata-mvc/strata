@@ -20,7 +20,6 @@ use Exception;
  * Running Strata instance
  *
  * @package Strata
- * @link    http://strata.francoisfaubert.com/docs/
  */
 class Strata extends StrataContext
 {

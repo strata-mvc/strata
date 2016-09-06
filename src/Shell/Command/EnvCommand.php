@@ -58,7 +58,7 @@ class EnvCommand extends StrataCommandBase
      * The source URL for stater app files
      * @var  string
      */
-    protected $srcUrl = "https://raw.githubusercontent.com/francoisfaubert/strata-env/master/";
+    protected $srcUrl = "https://raw.githubusercontent.com/strata-mvc/project/master/";
 
     /**
      * Strata's empty project files and their destination.
@@ -219,7 +219,7 @@ class EnvCommand extends StrataCommandBase
             $this->output->writeLn("========================================================================");
         } else {
             $this->output->writeLn("Automatic installation failed to complete cleanly.");
-            $this->output->writeLn("Head over to https://github.com/francoisfaubert/strata/ to get help.");
+            $this->output->writeLn("Head over to https://github.com/strata-mvc/strata/ to get help.");
         }
         $this->nl();
     }

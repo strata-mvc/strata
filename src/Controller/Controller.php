@@ -13,7 +13,6 @@ use Strata\View\View;
 
 /**
  * Base controller class.
- * @link http://strata.francoisfaubert.com/docs/controllers/
  */
 class Controller
 {

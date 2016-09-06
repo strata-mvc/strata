@@ -175,7 +175,7 @@ class I18nCommand extends StrataCommandBase
         $translation = null;
         $translationObjects = array();
         $lookupDirectories = array(
-            Strata::getVendorPath() . 'francoisfaubert' . DIRECTORY_SEPARATOR . 'strata' . DIRECTORY_SEPARATOR . 'src',
+            Strata::getVendorPath() . 'strata-mvc' . DIRECTORY_SEPARATOR . 'strata' . DIRECTORY_SEPARATOR . 'src',
             Strata::getSrcPath(),
             Strata::getThemesPath(),
         );

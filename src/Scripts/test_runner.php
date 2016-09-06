@@ -9,7 +9,7 @@ $cwd = getcwd();
 // Prevent calls form our vendor directory.
 // The cwd should always be a project's root.
 if ($cwd === dirname(__FILE__)) {
-    // Up from 'vendor/francoisfaubert/strata/src/Scripts'
+    // Up from 'vendor/strata-mvc/strata/src/Scripts'
     $projectedRoot = dirname(dirname(dirname(dirname(dirname($cwd)))));
     if (file_exists($projectedRoot) && file_exists($projectedRoot . DIRECTORY_SEPARATOR . 'composer.json')) {
         $cwd = $projectedRoot;

@@ -363,7 +363,7 @@ class StrataContext
      */
     public static function getOurVendorPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "francoisfaubert", "strata")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "strata-mvc", "strata")) . DIRECTORY_SEPARATOR;
     }
 
     /**

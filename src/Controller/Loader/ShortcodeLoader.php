@@ -10,7 +10,6 @@ use Exception;
 /**
  * Automated the declaration of Wordpress Shortcodes within a Strata Controller object.
  * @link https://codex.wordpress.org/Shortcode_API
- * @link http://strata.francoisfaubert.com/docs/controllers/
  */
 class ShortcodeLoader
 {

@@ -6,7 +6,6 @@ use Strata\Router\Router;
 
 /**
  * Maps Wordpress actions, filters and callbacks to Strata classes
- * @link    http://strata.francoisfaubert.com/docs/routes/
  */
 class CallbackRouter extends Router
 {

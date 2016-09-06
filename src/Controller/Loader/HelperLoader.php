@@ -9,7 +9,6 @@ use Exception;
 
 /**
  * Allows the automation of Helpers loading on a specified Controller object.
- * @link http://strata.francoisfaubert.com/docs/controllers/
  */
 class HelperLoader
 {

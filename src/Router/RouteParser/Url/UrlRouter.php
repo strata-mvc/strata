@@ -8,7 +8,6 @@ use Strata\Router\RouteParser\Url\UrlRoute;
 
 /**
  * Maps Wordpress urls to Strata classes
- * @link    http://strata.francoisfaubert.com/docs/routes/
  */
 class UrlRouter extends Router
 {
