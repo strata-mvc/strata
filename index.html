@@ -2,15 +2,15 @@
 layout: home
 ---
 
-<div class="hero">
-    <p class="lead"><span>Model View Controller toolset for Wordpress projects</span></p>
+<div class="action-button"><a href="#" onclick="return false;">Explore</a></div>
 
-    <div class="action-button">Explore</div>
+<div class="hero" data-step data-focus-color="#0f105d">
+    <p class="lead"><span>Model View Controller toolset for Wordpress projects</span></p>
 </div>
 
 <div class="container-fluid">
-    <div class="row presentation presentating-right bg-1">
-        <aside class="terminal">
+    <div class="row presentation presentating-right bg-1" data-step data-focus-color="#2f2ff3">
+        <aside class="terminal" data-push-top>
             <div class="header">
                 <svg height="18" width="70">
                     <circle cx="8" cy="8" r="8" fill="#eaeaea" />
@@ -42,8 +42,8 @@ class EventEntity extends AppModelEntity
             </div>
         </aside>
 
-        <div class="col-sm-7 pale">
-            <article>
+        <div class="col-sm-7 pale" data-highlight-color="#4949f7">
+            <article data-push-top data-push-bottom>
                 <span class="number">1</span>
                 <h3><span>An expressive application layer</span></h3>
                 <p>
@@ -59,8 +59,12 @@ class EventEntity extends AppModelEntity
         </div>
     </div>
 
-    <div class="row presentation presentating-left bg-2">
-        <aside class="terminal">
+
+
+
+
+    <div class="row presentation presentating-left bg-2" data-step data-focus-color="#511ab0">
+        <aside class="terminal" data-push-top>
             <div class="header">
                 <svg height="18" width="70">
                     <circle cx="8" cy="8" r="8" fill="#eaeaea" />
@@ -99,8 +103,8 @@ class Product extends AppCustomPostType
             </div>
         </aside>
 
-        <div class="col-sm-offset-5 col-sm-7 pale">
-            <article>
+        <div class="col-sm-offset-5 col-sm-7 pale" data-highlight-color="#6f2ac5">
+            <article data-push-top data-push-bottom>
                 <span class="number">2</span>
                 <h3><span>Centralized SQL queries</span></h3>
                 <p>
@@ -117,10 +121,14 @@ class Product extends AppCustomPostType
         </div>
     </div>
 
-    <div class="row presentation presentating-bottom bg-3">
 
-        <div class="col-sm-12 pale">
-            <article>
+
+
+
+    <div class="row presentation presentating-bottom bg-3" data-step data-focus-color="#07b9d1">
+
+        <div class="col-sm-12 pale" data-highlight-color="#02e4db">
+            <article data-push-top>
                 <span class="number">3</span>
                 <h3><span>Code with intent</span></h3>
                 <p>
@@ -136,7 +144,7 @@ class Product extends AppCustomPostType
 
         <div class="col-sm-12 terminal-holder">
 
-            <aside class="terminal">
+            <aside class="terminal" data-push-bottom>
                 <div class="header">
                     <svg height="18" width="70">
                         <circle cx="8" cy="8" r="8" fill="#eaeaea" />
@@ -183,9 +191,12 @@ class EventController extends AppController
     </div>
 
 
-   <div class="row presentation presentating-right get-to-know">
-        <div class="col-sm-7">
-            <article>
+
+
+   <div class="row presentation presentating-right get-to-know" data-step data-focus-color="#0f105d">
+
+        <article data-push-top>
+            <div class="col-sm-7">
                 <h3><span>Get to know Strata</span></h3>
                 <p>
                     Strata provides a development environment which features concepts often seen
@@ -199,15 +210,15 @@ class EventController extends AppController
                     In doing so the code is easier to manage by teams of developers or by you, two months
                     after the project is completed.
                 </p>
-            </article>
-        </div>
-        <div class="col-sm-4">
-            <ul>
-                <li><a href="/guidebook/1.0/">Guidebook</a></li>
-                <li><a href="/hands-on/1.0/">Code examples</a></li>
-                <li><a href="/api/1.0/">Browse the API</a></li>
-            </ul>
-        </div>
+            </div>
+            <div class="col-sm-4">
+                <ul>
+                    <li><a href="/guidebook/1.0/">Guidebook</a></li>
+                    <li><a href="/hands-on/1.0/">Code examples</a></li>
+                    <li><a href="/api/1.0/">Browse the API</a></li>
+                </ul>
+            </div>
+        </article>
     </div>
 </div>
 

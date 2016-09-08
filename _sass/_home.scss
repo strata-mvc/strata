@@ -8,6 +8,14 @@ $home-font-size: 18px;
     background: $brand-primary-darkest;
     color: #fff;
 
+    .action-button {
+        position: fixed;
+        bottom:50px;
+        left:50%;
+        margin-left: -56px;
+        z-index: 10;
+    }
+
     .hero {
         background: $brand-primary-darkest;
         background-size: cover;
@@ -25,17 +33,7 @@ $home-font-size: 18px;
             top: $presentation-box-height * 0.35;
             span {
                 @extend .underlined-title;
-                padding-left: $title-font-size;
             }
-        }
-
-        .action-button {
-            position: absolute;
-            bottom:-50px;
-            left:50%;
-            margin-left:-55px;
-            z-index: 1;
-            opacity: 0;
         }
     }
 
@@ -152,7 +150,7 @@ $home-font-size: 18px;
         color: #babacb;
         ul {
             border-left: 1px solid $brand-primary;
-            margin-top:  ($presentation-box-height * 0.35);
+            margin-top:  ($presentation-box-height * 0.15);
             list-style-type: none;
             font-size: $title-font-size * 0.5;
 

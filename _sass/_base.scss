@@ -1,6 +1,6 @@
 
 * {
-    transition: padding .4s, opacity .4s, color .4s;
+    transition: padding .4s, color .4s, opacity 1.2s, background-color 2s;
 }
 
 /**
@@ -126,7 +126,6 @@ h1, h2, h3, h4 {
     }
 
     .icon {
-
         path {
             fill: #ffffff;
         }
@@ -171,7 +170,7 @@ h1, h2, h3, h4 {
 
 .underlined-title {
     background: 0 75% url(/assets/images/title-underline.png) repeat-x;
-    padding: 0 0.3em 0 0;
+    padding: 0.2em;
 }
 
 
@@ -187,4 +186,8 @@ h1, h2, h3, h4 {
     text-align: center;
     text-transform: uppercase;
     width: 112px;
+
+    a {
+        color: #fff;
+    }
 }

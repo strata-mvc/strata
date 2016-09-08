@@ -10,7 +10,7 @@ baseurl: ""
 url: "http://www.strata-framework.com"
 twitter_username: strataframework
 baseurl: "" # the subpath of your site, e.g. /blog/
-github_username:  francoisfaubert
+github_username:  strata-mvc
 current_version: dev-master
 
 # Build settings
