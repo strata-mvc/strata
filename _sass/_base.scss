@@ -1,6 +1,11 @@
 
 * {
     transition: padding .4s, color .4s, opacity 1.2s, background-color 2s;
+    font-weight: 300;
+}
+
+.button {
+    transition: background-color .3s;
 }
 
 /**
@@ -81,8 +86,20 @@ img {
 
 h1, h2, h3, h4 {
     color: #062a37;
-    font-family: 'Poppins', sans-serif;
 }
+
+h1 {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 70px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 45px;
+}
+
 
 .site-header {
     background-color: $brand-primary-darkest;
@@ -91,7 +108,8 @@ h1, h2, h3, h4 {
     z-index: 3;
 
     h1 {
-        margin: 0;
+        margin: .8em 0 0 .8em;
+        font-size: 40px;
         display: inline;
     }
 
@@ -173,7 +191,6 @@ h1, h2, h3, h4 {
     padding: 0.2em;
 }
 
-
 .action-button {
     background: #00e9da;
     color: #fff;
@@ -181,13 +198,40 @@ h1, h2, h3, h4 {
     border-radius: 56px;
     box-shadow: 0 13px 15px 0 rgba(0, 0, 0, .5);
     display: inline-block;
-    line-height: 112px;
     height: 112px;
     text-align: center;
     text-transform: uppercase;
     width: 112px;
+    padding-top:45px;
 
     a {
         color: #fff;
+        text-decoration: none;
+    }
+
+    span {
+        display:block;
+        font-size: 12px;
     }
 }
+
+a.button {
+    background: #00e9da;
+    cursor: pointer;
+    display: inline-block;
+    padding: .5em 1em;
+    text-align: center;
+    text-transform: uppercase;
+    min-width: 112px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+
+    text-decoration: none;
+    color: #fff;
+
+    &:hover, &:focus {
+        background-color: $brand-highlight-color;
+        color: #fff;
+    }
+}
+

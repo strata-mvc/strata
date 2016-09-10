@@ -100,6 +100,7 @@
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\WordpressEntity">WordpressEntity</span></li><li>public static string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/wordpressKey.html">wordpressKey</a>()
                         </li><li>public static void <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey</a>()
                         </li><li>public string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey</a>()
+                        </li><li>public void <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getQueryVar.html">getQueryVar</a>()
                         </li></ul><ul class="none"><li>// Inherited methods from <span title="Strata\Model\Model">Model</span></li><li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getNamespaceStringInStrata.html">getNamespaceStringInStrata</a>()
                         </li><li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getClassNameSuffix.html">getClassNameSuffix</a>()
                         </li><li>public static ModelEntity <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntity.html">getEntity</a>()
@@ -133,6 +134,11 @@
                         </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/limit.html">limit</a>()
                         </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset</a>()
                         </li><li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID</a>()
+                        </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byName.html">byName</a>()
+                        </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/published.html">published</a>()
+                        </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byRecency.html">byRecency</a>()
+                        </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byPlublication.html">byPlublication</a>()
+                        </li><li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byMenuOrder.html">byMenuOrder</a>()
                         </li><li>public integer <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count</a>()
                         </li><li>public array <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/fetch.html">fetch</a>()
                         </li><li>public hash <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/listing.html">listing</a>()
@@ -227,6 +233,9 @@
             <li id="factoryFromKey">
               <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey()</a>
             </li>
+            <li id="getQueryVar">
+              <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getQueryVar.html">getQueryVar()</a>
+            </li>
             <li id="getWordpressKey"><a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey()</a>
                 — Returns the internal custom post type slug</li>
             <li id="wordpressKey"><a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/wordpressKey.html">wordpressKey()</a>
@@ -298,6 +307,18 @@
           <ul>
             <li id="byAuthorID"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID()</a>
                 — Adds a 'author' condition to the current query.</li>
+            <li id="byMenuOrder">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byMenuOrder.html">byMenuOrder()</a>
+            </li>
+            <li id="byName">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byName.html">byName()</a>
+            </li>
+            <li id="byPlublication">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byPlublication.html">byPlublication()</a>
+            </li>
+            <li id="byRecency">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byRecency.html">byRecency()</a>
+            </li>
             <li id="count"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count()</a>
                 — Fetches the number of results the current queries returned.</li>
             <li id="countTotal"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/countTotal.html">countTotal()</a>
@@ -328,6 +349,9 @@
                 — Defines fields on which to order the current query.</li>
             <li id="paginate"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate()</a>
                 — Paginates the current query. Must be called before the result set has been generated.</li>
+            <li id="published">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/published.html">published()</a>
+            </li>
             <li id="query"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/query.html">query()</a>
                 — Starts a wrapped wp_query pattern object. Used to chain parameters It resets the query.</li>
             <li id="repo"><a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/repo.html">repo()</a>
@@ -342,6 +366,26 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-03-18T14:51:53+00:00 (commit #<span title="abfc6e1e11827d6950995d713ce25e7cbb2a8fd4">abfc6e1</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">added better debugging to model entities, added easier entity getters on models and pages</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-02-22T00:02:41+00:00 (commit #<span title="c111d5d648a95796bf3128f31cfc93887d5521ca">c111d5d</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">continued documentation pass</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-12-22T14:46:26+00:00 (commit #<span title="984230e6b339389229676bbfbbbba46a1e086d67">984230e</span>)</h3>
             <div>

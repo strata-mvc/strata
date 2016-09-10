@@ -50,11 +50,16 @@ Strata\Shell\Command\Generator\ControllerGenerator</title>
     <section class="api">
         <div class="container-fluid">
             <div class="row top-sections">
-                <div class="col-xs-offset-1 col-xs-5">
+                <div class="col-xs-4">
                     <a href="/api/1.0/classes.html">Classes</a>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-4">
                     <a href="/api/1.0/traits.html">Traits</a>
+                </div>
+                <div class="col-xs-4">
+                    <form action="/search/">
+                        <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+                    </form>
                 </div>
             </div>
         </div>
@@ -88,13 +93,13 @@ Strata\Shell\Command\Generator\ControllerGenerator</title>
             {<br><ul class="none">
 <li>// Inherited members from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span>
 </li>
-<li>protected <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span> <a href="#members">$command</a>;
+<li>protected <span title="Strata\Shell\Command\Generator\StrataCommand">StrataCommand</span> <a href="#members">$command</a>;
                         </li>
 <li>protected  <a href="#members">$keyword</a>;
                         </li>
 <li>protected  <a href="#members">$classname</a>;
                         </li>
-<li>protected <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span> <a href="#members">$writer</a>;
+<li>protected <span title="Strata\Shell\Command\StrataCommandBase">StrataCommandBase</span> <a href="#members">$writer</a>;
                         </li>
 </ul>
 <ul class="none">
@@ -143,7 +148,7 @@ Strata\Shell\Command\Generator\ControllerGenerator</title>
             <li id="command">
 <strong>$command</strong>
                 —
-                <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a>
+                <a title="Strata\Shell\Command\Generator\StrataCommand" href="../classes/Strata_Shell_Command_Generator_StrataCommand.html">Strata\Shell\Command\Generator\StrataCommand</a>
 </li>
             <li id="keyword">
 <strong>$keyword</strong>
@@ -152,7 +157,7 @@ Strata\Shell\Command\Generator\ControllerGenerator</title>
             <li id="writer">
 <strong>$writer</strong>
                 —
-                <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">Strata\Shell\Command\Generator\ClassWriter</a>
+                <a title="Strata\Shell\Command\StrataCommandBase" href="../classes/Strata_Shell_Command_StrataCommandBase.html">Strata\Shell\Command\StrataCommandBase</a>
 </li>
           </ul>
 </div>

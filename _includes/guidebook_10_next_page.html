@@ -7,7 +7,7 @@
         {% if take_next_one == true %}
             {% if node.entry_point != true %}
                 <footer>
-                    <a href="{{node.url}}">Next: {{node.title}}</a>
+                    <a class="button" href="{{node.url}}">{{node.title}}</a>
                 </footer>
                 {% assign take_next_one = false %}
             {% endif %}

@@ -77,10 +77,10 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class TaxonomyGenerator
                 extends <a title="Strata\Shell\Command\Generator\GeneratorBase" href="../classes/Strata_Shell_Command_Generator_GeneratorBase.html">GeneratorBase</a>
-            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>protected <span title="Strata\Shell\Command\StrataCommand">StrataCommand</span> <a href="#members">$command</a>;
+            {<br/><ul class="none"><li>// Inherited members from <span title="Strata\Shell\Command\Generator\GeneratorBase">GeneratorBase</span></li><li>protected <span title="Strata\Shell\Command\Generator\StrataCommand">StrataCommand</span> <a href="#members">$command</a>;
                         </li><li>protected  <a href="#members">$keyword</a>;
                         </li><li>protected  <a href="#members">$classname</a>;
-                        </li><li>protected <span title="Strata\Shell\Command\Generator\ClassWriter">ClassWriter</span> <a href="#members">$writer</a>;
+                        </li><li>protected <span title="Strata\Shell\Command\StrataCommandBase">StrataCommandBase</span> <a href="#members">$writer</a>;
                         </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Strata\Shell\Command\Generator\TaxonomyGenerator" href="../classes/Strata_Shell_Command_Generator_TaxonomyGenerator/applyOptions.html">applyOptions</a>()
                     </li><li>public void <a title="Strata\Shell\Command\Generator\TaxonomyGenerator" href="../classes/Strata_Shell_Command_Generator_TaxonomyGenerator/generate.html">generate</a>()
                     </li><li>protected void <a title="Strata\Shell\Command\Generator\TaxonomyGenerator" href="../classes/Strata_Shell_Command_Generator_TaxonomyGenerator/generateTaxonomy.html">generateTaxonomy</a>()
@@ -110,13 +110,13 @@
                 string</li>
             <li id="command"><strong>$command</strong>
                 —
-                <a title="Strata\Shell\Command\StrataCommand" href="../classes/Strata_Shell_Command_StrataCommand.html">Strata\Shell\Command\StrataCommand</a></li>
+                <a title="Strata\Shell\Command\Generator\StrataCommand" href="../classes/Strata_Shell_Command_Generator_StrataCommand.html">Strata\Shell\Command\Generator\StrataCommand</a></li>
             <li id="keyword"><strong>$keyword</strong>
                 —
                 string</li>
             <li id="writer"><strong>$writer</strong>
                 —
-                <a title="Strata\Shell\Command\Generator\ClassWriter" href="../classes/Strata_Shell_Command_Generator_ClassWriter.html">Strata\Shell\Command\Generator\ClassWriter</a></li>
+                <a title="Strata\Shell\Command\StrataCommandBase" href="../classes/Strata_Shell_Command_StrataCommandBase.html">Strata\Shell\Command\StrataCommandBase</a></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
@@ -151,6 +151,16 @@
         </div>
         <h2 id="history">History</h2>
         <ul class="styled history">
+          <li>
+            <h3>2016-02-24T02:10:42+00:00 (commit #<span title="d956bf2f65bf01e106a39c9e4430b2c0b7c9d84c">d956bf2</span>)</h3>
+            <div>
+              <p>
+                        Author: Francois Faubert (francois.faubert@iprospect.com) /
+                        Commiter: Francois Faubert (francois.faubert@iprospect.com)
+                    </p>
+              <pre class="wrapped">improved the api documentation</pre>
+            </div>
+          </li>
           <li>
             <h3>2015-10-14T21:09:27+00:00 (commit #<span title="5f108b9de9ba02c212cd5982a0e7c0f8ba57578d">5f108b9</span>)</h3>
             <div>

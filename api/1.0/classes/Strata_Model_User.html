@@ -50,11 +50,16 @@ Strata\Model\User</title>
     <section class="api">
         <div class="container-fluid">
             <div class="row top-sections">
-                <div class="col-xs-offset-1 col-xs-5">
+                <div class="col-xs-4">
                     <a href="/api/1.0/classes.html">Classes</a>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-4">
                     <a href="/api/1.0/traits.html">Traits</a>
+                </div>
+                <div class="col-xs-4">
+                    <form action="/search/">
+                        <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+                    </form>
                 </div>
             </div>
         </div>
@@ -114,7 +119,11 @@ Strata\Model\User</title>
 </li>
 <li>public static string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/wordpressKey.html">wordpressKey</a>()
                         </li>
+<li>public static void <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey</a>()
+                        </li>
 <li>public string <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey</a>()
+                        </li>
+<li>public void <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getQueryVar.html">getQueryVar</a>()
                         </li>
 </ul>
 <ul class="none">
@@ -126,11 +135,15 @@ Strata\Model\User</title>
                         </li>
 <li>public static ModelEntity <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntity.html">getEntity</a>()
                         </li>
+<li>public static void <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntityFromPost.html">getEntityFromPost</a>()
+                        </li>
 </ul>
 <ul class="none">
 <li>// Inherited methods from <span title="Strata\Core\StrataConfigurableTrait">StrataConfigurableTrait</span>
 </li>
 <li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig</a>()
+                        </li>
+<li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig</a>()
                         </li>
 <li>public mixed <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/setConfig.html">setConfig</a>()
                         </li>
@@ -193,6 +206,16 @@ Strata\Model\User</title>
 <li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/offset.html">offset</a>()
                         </li>
 <li>public QueriableEntity <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID</a>()
+                        </li>
+<li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byName.html">byName</a>()
+                        </li>
+<li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/published.html">published</a>()
+                        </li>
+<li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byRecency.html">byRecency</a>()
+                        </li>
+<li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byPlublication.html">byPlublication</a>()
+                        </li>
+<li>public void <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byMenuOrder.html">byMenuOrder</a>()
                         </li>
 <li>public integer <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count</a>()
                         </li>
@@ -289,7 +312,13 @@ Strata\Model\User</title>
 </h3>
           <h4>public</h4>
           <ul>
-<li id="getWordpressKey">
+<li id="factoryFromKey">
+              <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/factoryFromKey.html">factoryFromKey()</a>
+            </li>
+            <li id="getQueryVar">
+              <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getQueryVar.html">getQueryVar()</a>
+            </li>
+            <li id="getWordpressKey">
 <a title="Strata\Model\WordpressEntity" href="../classes/Strata_Model_WordpressEntity/getWordpressKey.html">getWordpressKey()</a>
                 — Returns the internal custom post type slug</li>
             <li id="wordpressKey">
@@ -306,6 +335,9 @@ Strata\Model\User</title>
             <li id="getEntity">
 <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntity.html">getEntity()</a>
                 — Returns a ModelEntity related to this object.</li>
+            <li id="getEntityFromPost">
+              <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getEntityFromPost.html">getEntityFromPost()</a>
+            </li>
             <li id="getNamespaceStringInStrata">
 <a title="Strata\Model\Model" href="../classes/Strata_Model_Model/getNamespaceStringInStrata.html">getNamespaceStringInStrata()</a>
                 — {@inheritdoc}</li>
@@ -326,6 +358,9 @@ Strata\Model\User</title>
             <li id="containsConfigurations">
 <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/containsConfigurations.html">containsConfigurations()</a>
                 — Returns whether the configuration cache contains something.</li>
+            <li id="extractConfig">
+<a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/extractConfig.html">extractConfig()</a>
+                — Intelligently extract data from the configuration array.</li>
             <li id="getConfig">
 <a title="Strata\Core\StrataConfigurableTrait" href="../traits/Strata_Core_StrataConfigurableTrait/getConfig.html">getConfig()</a>
                 — Fetches a value in the configuration array</li>
@@ -381,6 +416,18 @@ Strata\Model\User</title>
 <li id="byAuthorID">
 <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byAuthorID.html">byAuthorID()</a>
                 — Adds a 'author' condition to the current query.</li>
+            <li id="byMenuOrder">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byMenuOrder.html">byMenuOrder()</a>
+            </li>
+            <li id="byName">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byName.html">byName()</a>
+            </li>
+            <li id="byPlublication">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byPlublication.html">byPlublication()</a>
+            </li>
+            <li id="byRecency">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/byRecency.html">byRecency()</a>
+            </li>
             <li id="count">
 <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/count.html">count()</a>
                 — Fetches the number of results the current queries returned.</li>
@@ -426,6 +473,9 @@ Strata\Model\User</title>
             <li id="paginate">
 <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/paginate.html">paginate()</a>
                 — Paginates the current query. Must be called before the result set has been generated.</li>
+            <li id="published">
+              <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/published.html">published()</a>
+            </li>
             <li id="query">
 <a title="Strata\Model\CustomPostType\QueriableEntityTrait" href="../traits/Strata_Model_CustomPostType_QueriableEntityTrait/query.html">query()</a>
                 — Starts a wrapped wp_query pattern object. Used to chain parameters It resets the query.</li>

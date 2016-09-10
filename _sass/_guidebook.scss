@@ -1,12 +1,20 @@
 .guidebook {
     aside {
-        color: #fff;
-        background: $brand-secondary;
+        background: #e5e5e5;
         margin: 0 -15px;
         padding: 1em;
 
+        form {
+            display: block;
+            border-bottom: 1px solid #dedede;
+            padding: 1em 0;
+            input {
+                width:100%;
+            }
+        }
+
         a {
-            color:#fff;
+            color:#0e0e48;
         }
 
         .top-level > li {
@@ -31,10 +39,32 @@
     }
 
     article {
+
+        h1, h2, h3 {
+            color: #0e0e48;
+        }
+
+        h1 {
+            max-width: 80%;
+        }
+
         padding: $spacing-unit 0;
+        max-width:660px;
+        margin:90px 0 0 120px;
+
+        .intro {
+            border-left: 4px solid #e3e3e3;
+            font-style: italic;
+            font-size: 28px;
+            line-height: 38px;
+        }
 
         h2 {
-            margin-top: 1em;
+            margin-top: 45px;
+        }
+
+        p, ul {
+            margin-bottom: 45px;
         }
 
         footer {
