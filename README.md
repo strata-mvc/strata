@@ -1,7 +1,7 @@
 Strata
 ======
 
-[![Build Status](https://travis-ci.org/strata-mvc/strata.svg?branch=master)](https://travis-ci.org/strata-mvc/strata) [![Join the chat at https://gitter.im/francoisfaubert/strata](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/francoisfaubert/strata?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/strata-mvc/strata.svg?branch=master)](https://travis-ci.org/strata-mvc/strata) [![Join the chat at https://gitter.im/strata-mvc/strata](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/strata-mvc/strata?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Welcome
 
@@ -9,7 +9,7 @@ If you are (or wish to become) a Strata user please refer to the [official websi
 
 ## Help and support
 
-Feel free to ask questions to the Strata community in [the chat](https://gitter.im/francoisfaubert/strata) or raise any problems in the [issue page](https://github.com/francoisfaubert/strata/issues).
+Feel free to ask questions to the Strata community in [the chat](https://gitter.im/strata-mvc/strata) or raise any problems in the [issue page](https://github.com/francoisfaubert/strata/issues).
 
 ## Contributing
 

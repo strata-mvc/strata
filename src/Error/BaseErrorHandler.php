@@ -74,7 +74,9 @@ class BaseErrorHandler
             });
             set_error_handler(array($this, 'handleError'), $debugLevel);
             set_exception_handler(array($this, 'wrapAndHandleException'));
+
             error_reporting($debugLevel);
+            ini_set($debugLevel);
         }
     }
 
@@ -147,7 +149,7 @@ class BaseErrorHandler
      * @throws \Exception When renderer class not found
      * @see http://php.net/manual/en/function.set-exception-handler.php
      */
-    public function handleException(Exception $exception)
+    public function handleException($exception)
     {
         if (!$this->canCatchTheError($exception->getFile())) {
             return;
@@ -220,7 +222,7 @@ class BaseErrorHandler
             return $this->getConfig("error.debug_level");
         }
 
-        return -1;
+        return E_ALL;
     }
 
     private function getFatalErrorsTypes()
