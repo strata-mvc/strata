@@ -126,7 +126,7 @@ abstract class RouteMakerBase
         foreach ($this->rewriteBatch as $queryVar => $routeConfig) {
 
             if (count($routeConfig['locale_urls'])) {
-                $localeUrlsBit = sprintf("(%s)/", implode("|", $routeConfig["locale_urls"]));
+                $localeUrlsBit = sprintf("(%s)?/?", implode("|", $routeConfig["locale_urls"]));
             } else {
                 $localeUrlsBit = "";
             }
