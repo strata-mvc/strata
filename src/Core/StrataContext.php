@@ -192,6 +192,24 @@ class StrataContext
     }
 
     /**
+     * Returns whether Strata is running in staging mode.
+     * @return boolean
+     */
+    public static function isStaging()
+    {
+        return defined("WP_ENV") && WP_ENV == 'staging';
+    }
+
+    /**
+     * Returns whether Strata is running in production mode.
+     * @return boolean
+     */
+    public static function isProduction()
+    {
+        return defined("WP_ENV") && WP_ENV == 'production';
+    }
+
+    /**
      * Returns whether Strata is running in test mode.
      * @return boolean
      */
