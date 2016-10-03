@@ -162,6 +162,10 @@ class UrlRoute extends Route
      */
     public function process($url = null)
     {
+        if ($url === "/index.php/") {
+            $url = "/";
+        }
+
         $match = $this->altoRouter->match($url);
 
         if (!is_array($match)) {
