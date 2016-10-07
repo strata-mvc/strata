@@ -65,15 +65,15 @@ class i18n
      */
     public function applyLocale()
     {
-        $locale = $this->getCurrentLocale();
+        $strataLocale = $this->getCurrentLocale();
         $app = Strata::app();
 
-        if (!is_null($locale)) {
-            $message =  setlocale(LC_ALL, $locale->getCode() .'.UTF-8') ?
-                "Localized to : " . $locale->getCode() . ".UTF-8" :
+        if (!is_null($strataLocale)) {
+            $message =  setlocale(LC_ALL, $strataLocale->getCode() .'.UTF-8') ?
+                "Localized to : " . $strataLocale->getCode() . ".UTF-8" :
                 "Locale function is not available on this platform, or the given " .
                 "local does not exist in this environment. Attempted to set: " .
-                $locale->getCode() . ".UTF-8";
+                $strataLocale->getCode() . ".UTF-8";
 
             $app->setConfig("runtime.setlocale", $message);
         }
@@ -90,6 +90,9 @@ class i18n
         }
 
         // Set in WP
+        global $locale;
+        $locale = $strataLocale->getCode();
+
         return load_theme_textdomain($this->getTextdomain(), Strata::getLocalePath());
     }
 
@@ -258,6 +261,10 @@ class i18n
     {
         if (is_null($this->currentLocale)) {
             $this->setCurrentLocaleByContext();
+
+            if (!is_admin() || Router::isFrontendAjax()) {
+                $this->applyLocale();
+            }
         }
 
         return $this->currentLocale;
@@ -535,10 +542,10 @@ class i18n
      */
     protected function registerHooks()
     {
-        if (!is_admin() || Router::isFrontendAjax()) {
-            add_action('after_setup_theme', array($this, "applyLocale"), 1);
-            add_filter('locale', array($this, "applyCurrentLanguageByContext"), 999);
-        }
+        // if (!is_admin() || Router::isFrontendAjax()) {
+        //     // add_action('after_setup_theme', array($this, "applyLocale"), 1);
+        //     // add_filter('locale', array($this, "applyCurrentLanguageByContext"), 999);
+        // }
     }
 
     /**

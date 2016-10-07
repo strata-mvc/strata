@@ -2,6 +2,7 @@
 
 namespace Strata\Model;
 
+use Strata\Strata;
 use Strata\Utility\Inflector;
 use Strata\Core\StrataConfigurableTrait;
 use Strata\Model\Taxonomy\Taxonomy;
@@ -19,8 +20,17 @@ class WordpressEntity extends Model
      */
     public static function wordpressKey()
     {
-        $obj = self::staticFactory();
-        return $obj->getWordpressKey();
+        $app = Strata::app();
+
+        $classHash = md5(get_called_class());
+        $cacheKey = "runtime.static.$classHash.wpkey";
+
+        if (!$app->hasConfig($cacheKey)) {
+            $obj = self::staticFactory();
+            $app->setConfig($cacheKey, $obj->getWordpressKey());
+        }
+
+        return $app->getConfig($cacheKey);
     }
 
     public static function factoryFromKey($wordpressKey)

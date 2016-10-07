@@ -1,12 +1,12 @@
 {
-    "name": "francoisfaubert/strata",
+    "name": "strata-mvc/strata",
     "type": "library",
     "description": "Strata is a MVC programming environment for Wordpress.",
     "keywords": [
         "wordpress",
         "mvc"
     ],
-    "homepage": "http://github.com/francoisfaubert/strata",
+    "homepage": "http://github.com/strata-mvc/strata",
     "license": "GPL",
     "authors": [
         {
@@ -21,7 +21,7 @@
         "vlucas/phpdotenv": "~2.0.1",
         "altorouter/altorouter": "~1.1.0",
         "symfony/console": "~2.6",
-        "wp-cli/wp-cli": "~0.21.1",
+        "wp-cli/wp-cli": "~0.24",
         "gettext/gettext": "~3.4",
         "psy/psysh": "@stable"
     },
@@ -37,7 +37,7 @@
         }
     },
     "support": {
-        "issues": "https://github.com/francoisfaubert/strata/issues"
+        "issues": "https://github.com/strata-mvc/strata/issues"
     },
     "prefer-stable" : true
 }

@@ -12,7 +12,7 @@ use Exception;
  */
 class StrataContext
 {
-    const STRATA_KEY = "__Strata__";
+    static $reference;
 
     /**
      * Returns the global instantiated Strata object.
@@ -20,9 +20,7 @@ class StrataContext
      */
     public static function app()
     {
-        if (array_key_exists(self::STRATA_KEY, $GLOBALS)) {
-            return $GLOBALS[self::STRATA_KEY];
-        }
+        return self::$reference;
     }
 
     /**
@@ -34,7 +32,7 @@ class StrataContext
     {
         $app = self::app();
         if (!is_null($app)) {
-            return $app->router;
+            return $app->getRouter();
         }
     }
 
@@ -47,7 +45,7 @@ class StrataContext
     {
         $app = self::app();
         if (!is_null($app)) {
-            return $app->rewriter;
+            return $app->getRewriter();
         }
     }
 
@@ -73,7 +71,7 @@ class StrataContext
     {
         $app = self::app();
         if (!is_null($app)) {
-            return $app->i18n;
+            return $app->getI18n();
         }
     }
 
@@ -118,10 +116,10 @@ class StrataContext
     public static function bootstrap(ClassLoader $loader)
     {
         $app = new Strata();
-        $app->setLoader($loader);
+        $app->setClassLoader($loader);
 
         // Expose the app context to the current process.
-        $GLOBALS[self::STRATA_KEY] = $app;
+        self::$reference = $app;
 
         return $app;
     }
@@ -191,6 +189,24 @@ class StrataContext
     public static function isDev()
     {
         return !defined("WP_ENV") || WP_ENV == 'development';
+    }
+
+    /**
+     * Returns whether Strata is running in staging mode.
+     * @return boolean
+     */
+    public static function isStaging()
+    {
+        return defined("WP_ENV") && WP_ENV == 'staging';
+    }
+
+    /**
+     * Returns whether Strata is running in production mode.
+     * @return boolean
+     */
+    public static function isProduction()
+    {
+        return defined("WP_ENV") && WP_ENV == 'production';
     }
 
     /**
@@ -365,7 +381,7 @@ class StrataContext
      */
     public static function getOurVendorPath()
     {
-        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "francoisfaubert", "strata")) . DIRECTORY_SEPARATOR;
+        return implode(DIRECTORY_SEPARATOR, array(self::getVendorPath(), "strata-mvc", "strata")) . DIRECTORY_SEPARATOR;
     }
 
     /**

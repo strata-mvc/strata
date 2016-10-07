@@ -43,10 +43,11 @@
     <div class="context">
         <?php if (method_exists("\Strata\Strata", "app")) : ?>
             <?php $app = Strata::app(); ?>
+            <?php $router = Strata::router(); ?>
             <h3>Context</h3>
             <?php
-                $controller = $app->router->getCurrentController();
-                $action = $app->router->getCurrentAction();
+                $controller = $router->getCurrentController();
+                $action = $router->getCurrentAction();
                 $method = strtoupper($_SERVER['REQUEST_METHOD']);
             ?>
             <p>[<?php echo $method; ?>] <?php echo WP_HOME . $_SERVER['REQUEST_URI']; ?></p>
@@ -61,7 +62,7 @@
             <h4>Known routes</h4>
             <table>
                 <tr><th>Type</th><th>Match</th><th>Route</th></tr>
-            <?php foreach ((array)$app->router->route->listRegisteredRoutes() as $route) : ?>
+            <?php foreach ((array)$router->route->listRegisteredRoutes() as $route) : ?>
                 <tr>
                     <td><?php if (count($route) > 0) : echo $route[0]; endif; ?></td>
                     <td><?php if (count($route) >= 1) : echo $route[1]; endif; ?></td>

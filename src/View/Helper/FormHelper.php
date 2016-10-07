@@ -40,7 +40,7 @@ class FormHelper extends Helper
      */
     public function create($mixed = null, $options = array())
     {
-        $this->request = Strata::app()->router->getCurrentController()->request;
+        $this->request = Strata::router()->getCurrentController()->request;
 
         if (!is_null($mixed) && !in_array('Strata\\Model\\CustomPostType\\ModelEntity', class_parents($mixed))) {
             throw new Exception("A form can only be linked to either an object inheriting ModelEntity or nothing at all.");
@@ -94,7 +94,7 @@ class FormHelper extends Helper
      */
     public function honeypot($name)
     {
-        $input = $this->input($name, array("name" => $name));
+        $input = $this->input($name, array("name" => $name, "autocomplete" => "off"));
         $wrapperStyles = array(
             "height: 1px",
             "overflow: hidden",
@@ -201,21 +201,34 @@ class FormHelper extends Helper
         $currentValue = $this->getCurrentValue($options['name']);
 
         $errorHtml = "";
+        $fieldHasErrors = false;
 
         if (!is_null($this->associatedEntity)) {
-            $errors = (array)$this->associatedEntity->getValidationErrors();
-            if (array_key_exists($name, $errors)) {
+            // Checkboxes may be posted has data[name][0] and therefore
+            // we need to remove it to get the absolute field name.
+            $validationName = $options["type"] === "checkbox" ?
+                preg_replace('/\[\d+\]$/', '', $name) :
+                $name;
+
+            if ($this->associatedEntity->hasErrors($validationName)) {
                 if ((bool)$options['error']) {
-                    $errorHtml = $this->generateInlineErrors($name);
+                    $errorHtml = $this->generateInlineErrors($validationName);
                 }
+                $fieldHasErrors = true;
                 $options['class'] .= " error ";
             }
-            unset($options["error"]);
         }
+        unset($options["error"]);
 
         $label = "";
         if (!is_null($options['label'])) {
-            $label .= $this->generateLabel($options);
+            $labelOptions = array(
+                "id"    => $options["id"],
+                "class" => $fieldHasErrors ? "error" : "",
+                "label" => $options["label"],
+            );
+
+            $label .= $this->generateLabel($labelOptions);
         }
         unset($options['label']);
 
@@ -403,7 +416,13 @@ class FormHelper extends Helper
      */
     protected function generateLabel($options)
     {
-        return sprintf('<label for="%s">%s</label>', $options['id'], $options['label']);
+        $options += array(
+            "id"    => "",
+            "class" => "",
+            "label" => "",
+        );
+
+        return sprintf('<label for="%s" class="%s">%s</label>', $options['id'], $options['class'], $options['label']);
     }
 
     /**

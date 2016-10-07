@@ -102,7 +102,14 @@ if (!function_exists('breakpoint')) {
         }
 
         if ((PHP_SAPI === 'cli-server' || PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') && class_exists('\Psy\Shell')) {
-            return 'extract(\Psy\Shell::debug(get_defined_vars(), isset($this) ? $this : null));';
+
+            if (Strata::isBundledServer()) {
+                Strata::app()->getLogger("StrataConsole")->debug("\n\nLaunching debugger...\n\n");
+            }
+
+            list(, $caller) = debug_backtrace(false);
+            extract(\Psy\Shell::debug(get_defined_vars(), isset($caller) ? $caller : null));
+            return;
         }
 
         trigger_error(

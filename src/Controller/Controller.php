@@ -13,7 +13,6 @@ use Strata\View\View;
 
 /**
  * Base controller class.
- * @link http://strata.francoisfaubert.com/docs/controllers/
  */
 class Controller
 {
@@ -130,6 +129,10 @@ class Controller
         header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
     }
 
+    public function ok()
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 200', true, 200);
+    }
 
     public function redirect($controllerName, $action = "index", $arguments = array())
     {

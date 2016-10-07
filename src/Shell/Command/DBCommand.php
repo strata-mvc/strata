@@ -119,7 +119,7 @@ class DBCommand extends StrataCommandBase
     protected function dumpCurrentDB()
     {
         date_default_timezone_set("Etc/UTC");
-        $relativeFilename = sprintf("export_%s_%s.sql", date('m-d-Y'), time());
+        $relativeFilename = sprintf("export_%s_%s.sql", date('Y-m-d'), time());
         $command = sprintf("%s db export %s%s --add-drop-table", $this->getWpCliPath(), Strata::getDbPath(), $relativeFilename);
         $this->output->writeLn("Generating MySQL export dump to ./$relativeFilename");
         system($command);

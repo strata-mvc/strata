@@ -94,7 +94,7 @@ class TestCommand extends StrataCommandBase
      */
     protected function getBootstrapFile()
     {
-        $path = array(Strata::getVendorPath(), 'francoisfaubert', 'strata', 'src', 'Scripts', 'test_runner.php');
+        $path = array(Strata::getVendorPath(), 'strata-mvc', 'strata', 'src', 'Scripts', 'test_runner.php');
         return implode(DIRECTORY_SEPARATOR, $path);
     }
 }

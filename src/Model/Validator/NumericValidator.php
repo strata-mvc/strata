@@ -12,4 +12,12 @@ class NumericValidator extends RegexValidator
         $this->setMessage(__("Only numeric values are allowed.", $this->getTextdomain()));
         $this->setConfig("pattern", "/\d/i");
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function test($value, $context)
+    {
+        return empty($value) || parent::test($value, $context);
+    }
 }

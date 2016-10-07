@@ -75,7 +75,7 @@ class Template
         if (Strata::isDev() && $allowDebug) {
             $executionTime = microtime(true) - $startedAt;
             $timer = sprintf(" (Done in %s seconds)", round($executionTime, 4));
-            $app->log($partialFilePath . $timer, "<yellow>Strata:Template</yellow>");
+            $app->log($partialFilePath . $timer, "<yellow>Template</yellow>");
         }
 
         return ob_get_clean();
@@ -157,8 +157,7 @@ class Template
      */
     protected function hasLocalizedVersion()
     {
-        $app = Strata::app();
-        if ((bool)$this->getConfig("use_localized_views") && $app->i18n->hasActiveLocales()) {
+        if ((bool)$this->getConfig("use_localized_views") && Strata::i18n()->hasActiveLocales()) {
             $localizedFilename =  $this->generateLocalizedViewPath();
             return file_exists($localizedFilename . $this->getConfig('file_extention'));
         }
@@ -173,8 +172,7 @@ class Template
      */
     protected function generateLocalizedViewPath()
     {
-        $app = Strata::app();
-        return $this->generateDefaultViewPath() . "." . $app->i18n->getCurrentLocaleCode();
+        return $this->generateDefaultViewPath() . "." . Strata::i18n()->getCurrentLocaleCode();
     }
 
     /**

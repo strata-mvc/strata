@@ -6,6 +6,7 @@ use Strata\View\Template;
 use Strata\View\Helper\Helper;
 use Strata\Utility\Inflector;
 use Strata\Router\Router;
+use Strata\Strata;
 
 use Strata\Core\StrataConfigurableTrait;
 
@@ -114,6 +115,7 @@ class View
             $this->applyHeaders();
 
             echo $content;
+            Strata::router()->route->end();
             exit();
         }
 

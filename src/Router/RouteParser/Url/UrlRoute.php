@@ -96,8 +96,8 @@ class UrlRoute extends Route
                 $slug = array_pop($slugInfo);
 
                 if (!is_null($slug)) {
-                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
-                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
+                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/?", "$controller#index");
+                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/?", "$controller#show");
                     $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
                 }
             }
@@ -110,8 +110,8 @@ class UrlRoute extends Route
             $slug = $model->getWordpressKey();
         }
 
-        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/", "$controller#index");
-        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/", "$controller#show");
+        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/?", "$controller#index");
+        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/?", "$controller#show");
         $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
     }
 
@@ -162,6 +162,10 @@ class UrlRoute extends Route
      */
     public function process($url = null)
     {
+        if ($url === "/index.php/") {
+            $url = "/";
+        }
+
         $match = $this->altoRouter->match($url);
 
         if (!is_array($match)) {

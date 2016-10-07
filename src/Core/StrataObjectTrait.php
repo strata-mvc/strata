@@ -132,7 +132,16 @@ trait StrataObjectTrait
      */
     public function getShortName()
     {
-        $rc = new ReflectionClass($this);
-        return $rc->getShortName();
+        $app = Strata::app();
+
+        $classHash = md5(get_class($this));
+        $cacheKey = "runtime.static.$classHash.shortname";
+
+        if (!$app->hasConfig($cacheKey)) {
+            $rc = new ReflectionClass($this);
+            $app->setConfig($cacheKey, $rc->getShortName());
+        }
+
+        return $app->getConfig($cacheKey);
     }
 }

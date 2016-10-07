@@ -8,7 +8,6 @@ use Strata\Strata;
 /**
  * Handles safe access to HTTP request data, whether from POST, GET, files or cookies.
  * It encodes data accordingly and does basic data integrity validation.
- * @link http://strata.francoisfaubert.com/docs/controllers/request/
  */
 class Request
 {
@@ -286,7 +285,12 @@ class Request
     public function generateNonceKey($mixedNonceSalt = null)
     {
         if (!is_string($mixedNonceSalt)) {
-            $mixedNonceSalt = json_encode($mixedNonceSalt);
+            if (is_object($mixedNonceSalt)) {
+                $methods = get_class_methods($mixedNonceSalt);
+                $mixedNonceSalt = get_class($mixedNonceSalt) . implode("", $methods);
+            } elseif (is_array($mixedNonceSalt)) {
+                $mixedNonceSalt = json_encode($mixedNonceSalt);
+            }
         }
 
         $strataSalt = Strata::app()->hasConfig('security.salt') ?

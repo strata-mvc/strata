@@ -182,8 +182,11 @@ class ModelEntity
     public function __debugInfo()
     {
         $objectVars = array();
-        foreach (get_object_vars($this) as $key => $value) {
-            $objectVars[$key] = Debugger::export($value);
+
+        if (!is_null($this)) {
+            foreach (get_object_vars($this) as $key => $value) {
+                $objectVars[$key] = Debugger::export($value);
+            }
         }
 
         return array_merge($objectVars, $this->toArray());
@@ -197,6 +200,10 @@ class ModelEntity
      */
     public function bindToObject($obj)
     {
+        if (is_array($obj)) {
+            $obj = (object)$obj;
+        }
+
         $this->associatedObject = $obj;
     }
 
@@ -369,12 +376,24 @@ class ModelEntity
     {
         $errors = $this->getValidationErrors();
 
-        if (array_key_exists($name, $errors)) {
+        if ($this->hasErrors($name)) {
             return $errors[$name];
         }
 
         return array();
     }
+
+    /**
+     * Checks for errors on a precise field.
+     * @param  string $name An attribute name
+     * @return bool
+     */
+    public function hasErrors($name)
+    {
+        return array_key_exists($name, $this->getValidationErrors());
+    }
+
+
 
     /**
      * Saves the model entity the current post type based on the
@@ -454,6 +473,24 @@ class ModelEntity
     {
         $simpleAttr = preg_replace("/\[\d+\]$/", "", $attr);
         return in_array($simpleAttr, $this->getAttributeNames());
+    }
+
+    /**
+     * Sets the current value of each entity attributes back to null.
+     */
+    public function resetAttributeValues()
+    {
+        foreach ($this->getAttributeNames() as $attributeName) {
+            $this->resetAttributeValue($attributeName);
+        }
+    }
+
+    /**
+     * Sets the current value of an attribute back to null.
+     */
+    public function resetAttributeValue($attributeName)
+    {
+        $this->{$attributeName} = null;
     }
 
     /**
