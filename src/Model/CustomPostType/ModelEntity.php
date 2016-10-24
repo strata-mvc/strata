@@ -430,9 +430,9 @@ class ModelEntity
                 $this->ID = $id;
                 return true;
             }
-
-            return false;
         }
+
+        return false;
     }
 
     /**

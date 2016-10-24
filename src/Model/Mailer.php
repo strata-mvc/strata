@@ -105,10 +105,11 @@ class Mailer
             $this->toHeaderString($mergedHeaders) . $this->buildBCCString(),
             $this->getConfig("attachedFile")
         );
+        
 
         $logMessage = $status ?
-            sprintf("<success>Sent an email</success> to %s with title \"%s\" and a body length of %d characters.",  $this->getConfig("to"), $this->getConfig("title"), strlen($this->getConfig("contents"))) :
-            sprintf("<warning>Failed to send an email</warning> to %s with title \"%s\" and a body length of %d characters.",  $this->getConfig("to"), $this->getConfig("title"), strlen($this->getConfig("contents")));
+            sprintf("<success>Sent an email</success> to %s with title \"%s\" and a body length of %d characters.", implode(", ", (array)$this->getConfig("to")), $this->getConfig("title"), strlen($this->getConfig("contents"))) :
+            sprintf("<warning>Failed to send an email</warning> to %s with title \"%s\" and a body length of %d characters.",  implode(", ", (array)$this->getConfig("to")), $this->getConfig("title"), strlen($this->getConfig("contents")));
 
         Strata::app()->log($logMessage, "<info>Strata:Mailer</info>");
 
