@@ -25,7 +25,7 @@ class SameValidator extends Validator
             throw new Exception("SameValidator is missing the required 'as' configuration key.");
         }
 
-        $request =  Strata::app()->router->getCurrentController()->request;
+        $request =  Strata::router()->getCurrentController()->request;
         $as = $this->getConfig('as');
 
         if ($request->isPost($as)) {
