@@ -54,11 +54,11 @@ class UrlRoute extends Route
 
     public function listRegisteredRoutes()
     {
-        return array_merge(
+        return $this->parseMethodTypes(array_merge(
             $this->modelRoutes,
             $this->automatedRoutes,
             $this->applicationRoutes
-        );
+        ));
     }
 
     /**
@@ -96,9 +96,9 @@ class UrlRoute extends Route
                 $slug = array_pop($slugInfo);
 
                 if (!is_null($slug)) {
-                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/?", "$controller#index");
-                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/?", "$controller#show");
-                    $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
+                    $this->automatedRoutes[] = array('*', "/$slug/page/[i:pageNumber]/?", "$controller#index");
+                    $this->automatedRoutes[] = array('*', "/$slug/[:slug]/?", "$controller#show");
+                    $this->automatedRoutes[] = array('*', "/$slug/?", "$controller#index");
                 }
             }
         }
@@ -110,9 +110,9 @@ class UrlRoute extends Route
             $slug = $model->getWordpressKey();
         }
 
-        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/page/[i:pageNumber]/?", "$controller#index");
-        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/[:slug]/?", "$controller#show");
-        $this->automatedRoutes[] = array('GET|POST|PATCH|PUT|DELETE', "/$slug/?", "$controller#index");
+        $this->automatedRoutes[] = array('*', "/$slug/page/[i:pageNumber]/?", "$controller#index");
+        $this->automatedRoutes[] = array('*', "/$slug/[:slug]/?", "$controller#show");
+        $this->automatedRoutes[] = array('*', "/$slug/?", "$controller#index");
     }
 
     public function addModelPossibilities(array $routes)
@@ -394,5 +394,25 @@ class UrlRoute extends Route
         }
 
         return array();
+    }
+
+    /** 
+     * Strata allows a wildcard for global routes, replace that wildcard
+     * with all the availlable possibilities explicitly.
+     * @param  array $routes
+     * @return array
+     */
+    private function parseMethodTypes($routes = array())
+    {
+        $parsed = array();
+
+        foreach ($routes as $route) {
+            if ($route[0] === "*") {
+                $route[0] = "HEAD|GET|PUT|DELETE|OPTIONS";
+            }
+            $parsed[] = $route;
+        }
+
+        return $parsed;
     }
 }

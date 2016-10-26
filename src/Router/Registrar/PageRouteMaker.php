@@ -43,7 +43,7 @@ class PageRouteMaker extends RouteMakerBase
         $action = $this->getAction($controller, $intentedActions);
 
         return array(
-            'GET|POST|PATCH|PUT|DELETE',
+            '*',
             '/' . $this->defaultSlug ."/[$slug:rewrite]/?",
             $controller->getShortName() . "#" . $action
         );

@@ -161,7 +161,7 @@ abstract class RouteMakerBase
         $action = $this->getAction($controller, $impliedActions);
 
         return array(
-            'GET|POST|PATCH|PUT|DELETE',
+            '*',
             '/' . $slug ."/[:slug]/[$routeKey:rewrite]/?",
             $controller->getShortName() . "#" . $action
         );
