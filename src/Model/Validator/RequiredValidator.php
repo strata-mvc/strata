@@ -21,7 +21,7 @@ class RequiredValidator extends Validator
     public function test($value, $context)
     {
         if ($this->hasConfig("if") && !is_null($this->getConfig("if"))) {
-            $request =  Strata::app()->router->getCurrentController()->request;
+            $request =  Strata::router()->getCurrentController()->request;
             foreach ($this->getConfig("if") as $key => $expectedValue) {
                 $comparedValue = $request->isPost() ? $request->post($key) : $request->get($key);
                 if ($comparedValue !== $expectedValue) {
