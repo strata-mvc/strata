@@ -408,7 +408,7 @@ class UrlRoute extends Route
 
         foreach ($routes as $route) {
             if ($route[0] === "*") {
-                $route[0] = "HEAD|GET|PUT|DELETE|OPTIONS";
+                $route[0] = "HEAD|GET|PUT|POST|UPDATE|DELETE|OPTIONS";
             }
             $parsed[] = $route;
         }
