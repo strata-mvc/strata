@@ -53,6 +53,7 @@ class ModelEntity
         }
 
         if (!is_null($obj)) {
+
             if (!is_null($associatedObject)) {
                 $obj->bindToObject($associatedObject);
             }
@@ -108,6 +109,13 @@ class ModelEntity
      */
     private $validationErrors = array();
 
+    /** 
+     * Flag that mentions whether object attributes have changed since the object 
+     * has been created.
+     * @var bool
+     */
+    protected $dirty = false;
+
     /**
      * Upon construction, an entity is associated to an object
      * if one is passed as parameter, the attributes are normalized
@@ -156,8 +164,8 @@ class ModelEntity
      */
     public function __set($var, $value)
     {
-        if (is_null($this->associatedObject)) {
-            return $this->{$var} = $value;
+        if (property_exists($this->associatedObject, $var) && $this->associatedObject->{$var} != $value) {
+            $this->dirty = true;
         }
 
         return $this->associatedObject->{$var} = $value;
@@ -205,6 +213,16 @@ class ModelEntity
         }
 
         $this->associatedObject = $obj;
+    }
+
+    /**
+     * Specifies whether this object's attributes have changed since it 
+     * has been created.
+     * @return boolean
+     */
+    public function isDirty()
+    {
+        return (bool)$this->dirty;
     }
 
     /**
