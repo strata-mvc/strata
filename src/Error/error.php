@@ -46,9 +46,12 @@
             <?php $router = Strata::router(); ?>
             <h3>Context</h3>
             <?php
-                $controller = $router->getCurrentController();
-                $action = $router->getCurrentAction();
+                $controller = null;
                 $method = strtoupper($_SERVER['REQUEST_METHOD']);
+                if (isset($router))  {
+                    $controller = $router->getCurrentController();
+                    $action = $router->getCurrentAction();
+                }
             ?>
             <p>[<?php echo $method; ?>] <?php echo WP_HOME . $_SERVER['REQUEST_URI']; ?></p>
             <p>
@@ -62,13 +65,17 @@
             <h4>Known routes</h4>
             <table>
                 <tr><th>Type</th><th>Match</th><th>Route</th></tr>
-            <?php foreach ((array)$router->route->listRegisteredRoutes() as $route) : ?>
-                <tr>
-                    <td><?php if (count($route) > 0) : echo $route[0]; endif; ?></td>
-                    <td><?php if (count($route) >= 1) : echo $route[1]; endif; ?></td>
-                    <td><?php if (count($route) >= 2) : echo $route[2]; endif; ?></td>
-                </tr>
-            <?php endforeach; ?>
+                <?php if (isset($router))  : ?>
+                    <?php foreach ((array)$router->route->listRegisteredRoutes() as $route) : ?>
+                        <tr>
+                            <td><?php if (count($route) > 0) : echo $route[0]; endif; ?></td>
+                            <td><?php if (count($route) >= 1) : echo $route[1]; endif; ?></td>
+                            <td><?php if (count($route) >= 2) : echo $route[2]; endif; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr><td colspan="3">No routes loaded</td></tr>
+                <?php endif; ?>
             </table>
         <?php endif; ?>
     </div>
