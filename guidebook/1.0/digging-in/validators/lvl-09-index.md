@@ -4,6 +4,8 @@ title: Validators
 permalink: /guidebook/1.0/digging-in/validators/
 covered_tags: validators, model-entities, form-helper
 menu_group: validators
+group_label: Validators
+group_theme: Digging In
 ---
 
 Should you require to save the post data of your custom models, you may automate the validation of the entity's known attributes.
