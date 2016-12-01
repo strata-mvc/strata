@@ -70,6 +70,11 @@ class Router
         return false;
     }
 
+    public static function isLogin()
+    {
+        return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+    }
+
     /**
      * @var Strata\Router\RouteParser\Route A route that this object will try to execute
      */
