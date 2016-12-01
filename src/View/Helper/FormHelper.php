@@ -181,6 +181,25 @@ class FormHelper extends Helper
     }
 
     /**
+     * Generates a field label
+     * @param  array $options
+     * @return string
+     */
+    public function label($name, $options = array())
+    {
+        $options += array(
+            "for"    => $this->id($name),
+            "class" => "",
+            "label" => "",
+        );
+
+        $label = $options["label"];
+        unset($options["label"]);
+
+        return sprintf('<label %s>%s</label>', $this->arrayToHtmlAttributes($options), $label);
+    }
+
+    /**
      * Generates an input field
      * @param  string $name
      * @param  array  $options
@@ -223,12 +242,12 @@ class FormHelper extends Helper
         $label = "";
         if (!is_null($options['label'])) {
             $labelOptions = array(
-                "id"    => $options["id"],
+                "for"    => $options["id"],
                 "class" => $fieldHasErrors ? "error" : "",
                 "label" => $options["label"],
             );
 
-            $label .= $this->generateLabel($labelOptions);
+            $label .= $this->label($options['name'], $labelOptions);
         }
         unset($options['label']);
 
@@ -407,22 +426,6 @@ class FormHelper extends Helper
         unset($options["value"]);
 
         return sprintf('<input %s value="%s">', $this->arrayToHtmlAttributes($options), $value);
-    }
-
-    /**
-     * Generates a field label
-     * @param  array $options
-     * @return string
-     */
-    protected function generateLabel($options)
-    {
-        $options += array(
-            "id"    => "",
-            "class" => "",
-            "label" => "",
-        );
-
-        return sprintf('<label for="%s" class="%s">%s</label>', $options['id'], $options['class'], $options['label']);
     }
 
     /**
