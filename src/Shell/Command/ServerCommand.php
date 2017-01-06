@@ -39,7 +39,8 @@ class ServerCommand extends StrataCommandBase
 
         $output->writeln('A webserver is now available at <info>http://127.0.0.1:5454/</info>');
 
-        $command = "WP_ENV=development php -S 0.0.0.0:5454 -t web/";
+        $command = !$this->isWindows() ? "WP_ENV=development " : "";
+        $command .= "php -S 0.0.0.0:5454 -t web";
 
         if ($this->hasIniFile()) {
             $output->writeln('Using found <info>php.ini</info> file.');
