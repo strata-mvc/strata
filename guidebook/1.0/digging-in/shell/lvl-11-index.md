@@ -17,3 +17,5 @@ The basic call to trigger the command line interface is:
 $ ./strata _command_ _arguments_
 {% endhighlight %}
 {% include terminal_end.html %}
+
+Note that on Windows, the default `strata` binary will not work. You can copy `vendor\strata-mvc\strata\src\Scripts\strata.bat` to the root of your project to have a script compatible with Windows.
