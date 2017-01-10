@@ -119,6 +119,15 @@ class StrataCommandBase extends Command
     }
 
     /**
+     * Specifies whether the script is currently running under windows
+     * @return boolean
+     */
+    protected function isWindows()
+    {
+        return strtoupper(substr(PHP_OS, 0, 3)) === "WIN";
+    }
+
+    /**
      * Return a new line.
      * @return string      An empty line break.
      */
