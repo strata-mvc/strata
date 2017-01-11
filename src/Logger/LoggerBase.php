@@ -119,14 +119,14 @@ class LoggerBase
 
     public function logNewContext($message, $context =  "Strata:Log", $style = "black")
     {
-        $this->write($context, $this->indent("┌─ ") . $message);
+        $this->write($context, $this->indent("/ ") . $message);
         $this->stackContext[] = $style;
     }
 
     public function logContextEnd($message, $context =  "Strata:Log", $style = "black")
     {
         array_pop($this->stackContext);
-        $this->write($context, $this->indent("└─ ") . $message);
+        $this->write($context, $this->indent("\ ") . $message);
     }
 
     public function write($message, $context)

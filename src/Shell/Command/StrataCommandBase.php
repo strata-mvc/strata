@@ -51,14 +51,14 @@ class StrataCommandBase extends Command
      *
      * @var string
      */
-    protected $tree_line = "  ├── ";
+    protected $tree_line = "  |-- ";
 
     /**
      * The bottom part of a tree representation prefix.
      *
      * @var string
      */
-    protected $tree_end = "  └── ";
+    protected $tree_end = "  \-- ";
 
     /**
      * A reference to the current input interface object
