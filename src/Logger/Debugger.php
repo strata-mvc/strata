@@ -45,10 +45,12 @@ class Debugger
             $file = isset($details['file']) ? str_replace(Strata::getRootPath(), '~', $details['file']) : 'unknown';
             $line = isset($details['line']) ? $details['line'] : 'unknown';
 
-            $args = $details['args'];
-            $arguments = array();
-            foreach ($args as $arg) {
-                $arguments[] = static::getType($arg);
+            if (array_key_exists('args', $details)) {
+                $args = $details['args'];
+                $arguments = array();
+                foreach ($args as $arg) {
+                    $arguments[] = static::getType($arg);
+                }
             }
 
             $trace .= sprintf($tpl, $details['function'], implode(", ", $arguments), $file, $line);
