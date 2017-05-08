@@ -27,10 +27,12 @@
     },
     "require-dev": {
         "phploc/phploc": "*",
-        "theseer/phpdox": "*",
         "phpunit/phpunit": "~5.7",
         "phpmd/phpmd" : "@stable",
         "squizlabs/php_codesniffer": "^2.8"
+    },
+    "suggest" : {
+        "theseer/phpdox": "*"
     },
     "autoload": {
         "psr-4": {
