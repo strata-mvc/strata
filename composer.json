@@ -22,7 +22,7 @@
         "altorouter/altorouter": "@stable",
         "symfony/console": "@stable",
         "wp-cli/wp-cli": "@stable",
-        "gettext/gettext": "@stable",
+        "gettext/gettext": "^3.6",
         "psy/psysh": "@stable"
     },
     "require-dev": {
