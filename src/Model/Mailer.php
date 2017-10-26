@@ -98,14 +98,22 @@ class Mailer
             $this->setHtmlEmails();
         }
 
-        $status = wp_mail(
-            $this->getConfig("to"),
-            $this->getConfig("title"),
-            $this->getConfig("contents"),
-            $this->toHeaderString($mergedHeaders) . $this->buildBCCString(),
-            $this->getConfig("attachedFile")
-        );
-        
+        if ($this->hasConfig("attachedFile")) {
+            $status = wp_mail(
+                $this->getConfig("to"),
+                $this->getConfig("title"),
+                $this->getConfig("contents"),
+                $this->toHeaderString($mergedHeaders) . $this->buildBCCString(),
+                $this->getConfig("attachedFile")
+            );
+        } else {
+            $status = wp_mail(
+                $this->getConfig("to"),
+                $this->getConfig("title"),
+                $this->getConfig("contents"),
+                $this->toHeaderString($mergedHeaders) . $this->buildBCCString()
+            );
+        }
 
         $logMessage = $status ?
             sprintf("<success>Sent an email</success> to %s with title \"%s\" and a body length of %d characters.", implode(", ", (array)$this->getConfig("to")), $this->getConfig("title"), strlen($this->getConfig("contents"))) :
