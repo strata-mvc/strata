@@ -308,8 +308,17 @@ class Request
     private function buildRequestData()
     {
         $strip_slashes_deep = function ($value) use (&$strip_slashes_deep) {
-            return is_array($value) || is_object($value) ? array_map($strip_slashes_deep, $value) : sanitize_text_field(stripslashes($value));
+            if (is_object($value)) {
+                $value = json_decode(json_encode($value), true);
+            }
+
+            if (is_array($value)) {
+                return array_map($strip_slashes_deep, $value);
+            }
+
+            return sanitize_text_field(stripslashes($value));
         };
+
         $this->_GET = array_map($strip_slashes_deep, $_GET);
         $this->_POST = array_map($strip_slashes_deep, $_POST);
         $this->_COOKIE = array_map($strip_slashes_deep, $_COOKIE);
