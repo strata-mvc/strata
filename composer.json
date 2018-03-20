@@ -7,7 +7,7 @@
         "mvc"
     ],
     "homepage": "http://github.com/strata-mvc/strata",
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Francois Faubert",
