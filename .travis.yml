@@ -9,6 +9,6 @@ matrix:
   allow_failures:
     - php: nightly
 before_script:
-  - "/home/travis/.phpenv/versions/5.4/bin/composer self-update"
+  - "composer self-update"
   - "composer update --prefer-source"
 script: sh src/Scripts/test_strata
